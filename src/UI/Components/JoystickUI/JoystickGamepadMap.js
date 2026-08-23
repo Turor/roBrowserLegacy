@@ -42,7 +42,7 @@ function buttonValue(button) {
 }
 
 function makeButton(pressed, value) {
-	const v = value != null ? value : (pressed ? 1 : 0);
+	const v = value != null ? value : pressed ? 1 : 0;
 	return { pressed: !!pressed || v > 0.5, value: v };
 }
 
@@ -107,10 +107,7 @@ export function hatToDpad(value) {
 }
 
 function alreadyStandard(gp) {
-	return gp &&
-		gp.mapping === 'standard' &&
-		gp.buttons && gp.buttons.length >= 12 &&
-		gp.axes && gp.axes.length >= 4;
+	return gp && gp.mapping === 'standard' && gp.buttons && gp.buttons.length >= 12 && gp.axes && gp.axes.length >= 4;
 }
 
 /**
@@ -149,14 +146,13 @@ function remapDirectInput(gp) {
 	let right = isPressed(srcButtons[15]);
 
 	if (!up && !down && !left && !right) {
-		if (srcAxes.length >= 8 &&
-			(Math.abs(srcAxes[6] || 0) > 0.5 || Math.abs(srcAxes[7] || 0) > 0.5)) {
+		if (srcAxes.length >= 8 && (Math.abs(srcAxes[6] || 0) > 0.5 || Math.abs(srcAxes[7] || 0) > 0.5)) {
 			left = (srcAxes[6] || 0) < -0.5;
 			right = (srcAxes[6] || 0) > 0.5;
 			up = (srcAxes[7] || 0) < -0.5;
 			down = (srcAxes[7] || 0) > 0.5;
 		} else {
-			const hatIndex = srcAxes.length >= 10 ? 9 : (srcAxes.length >= 7 ? srcAxes.length - 1 : -1);
+			const hatIndex = srcAxes.length >= 10 ? 9 : srcAxes.length >= 7 ? srcAxes.length - 1 : -1;
 			if (hatIndex >= 0) {
 				const dpad = hatToDpad(srcAxes[hatIndex]);
 				up = dpad.up;
