@@ -12,6 +12,7 @@ import ButtonInput from './JoystickButtonInput.js';
 import AxisInput from './JoystickAxisInput.js';
 import JoystickUIRenderer from './JoystickUIRenderer.js';
 import ControlsSettings from 'Preferences/Controls.js';
+import { pickGamepad, normalizeGamepad } from './JoystickGamepadMap.js';
 
 let hideTimeout = false;
 let hideTimeoutHandle = null;
@@ -79,13 +80,7 @@ export default {
 	update: function () {
 		const gamepads = navigator.getGamepads ? navigator.getGamepads() : [];
 
-		let activeGamepad = null;
-		for (let i = 0; i < gamepads.length; i++) {
-			if (gamepads[i]) {
-				activeGamepad = gamepads[i];
-				break;
-			}
-		}
+		const activeGamepad = normalizeGamepad(pickGamepad(gamepads));
 		if (!activeGamepad) {
 			if (this.active) {
 				this.active = false;
