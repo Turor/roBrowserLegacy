@@ -608,12 +608,22 @@ class DB {
 				);
 			}
 
-			// EntitySignBoard
+			// EntitySignBoard (Renewal NPC captions). Skip unless enableSignboards
+			// is true; if omitted, follow Configs.renewal so official RE still loads.
 			const onSignBoardEnd = onLoad();
-			loadSignBoardList(DB.LUA_PATH + 'SignBoardList.lub', null, () => {
-				// this is not official, its a translation file
-				loadSignBoardData('SystemEN/Sign_Data.lub', null, onSignBoardEnd);
-			});
+			const enableSignboards = Configs.get('enableSignboards');
+			const loadSignboards =
+				enableSignboards === undefined || enableSignboards === null
+					? !!Configs.get('renewal')
+					: !!enableSignboards;
+			if (loadSignboards) {
+				loadSignBoardList(DB.LUA_PATH + 'SignBoardList.lub', null, () => {
+					// this is not official, its a translation file
+					loadSignBoardData('SystemEN/Sign_Data.lub', null, onSignBoardEnd);
+				});
+			} else {
+				onSignBoardEnd();
+			}
 
 			// CheckAttendance
 			if (Configs.get('enableCheckAttendance') && PACKETVER.value >= 20180307) {

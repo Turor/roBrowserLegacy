@@ -677,15 +677,21 @@ function onMapChange(pkt) {
 		Session.Entity.aura.free();
 		Session.Entity.aura.load(EffectManager);
 
-		// Spawn all signboards for the current map
-		const mapName = MapRenderer.currentMap.replace('.gat', '').toLowerCase();
-		const signboards = DB.getAllSignboardsForMap(mapName);
-
-		if (signboards) {
-			for (const x in signboards) {
-				for (const y in signboards[x]) {
-					const signboardData = signboards[x][y];
-					SignboardManager.add(parseInt(x), parseInt(y), signboardData);
+		// Spawn Renewal NPC signboards when enabled (default: follow renewal).
+		const enableSignboards = Configs.get('enableSignboards');
+		const loadSignboards =
+			enableSignboards === undefined || enableSignboards === null
+				? !!Configs.get('renewal')
+				: !!enableSignboards;
+		if (loadSignboards) {
+			const mapName = MapRenderer.currentMap.replace('.gat', '').toLowerCase();
+			const signboards = DB.getAllSignboardsForMap(mapName);
+			if (signboards) {
+				for (const x in signboards) {
+					for (const y in signboards[x]) {
+						const signboardData = signboards[x][y];
+						SignboardManager.add(parseInt(x), parseInt(y), signboardData);
+					}
 				}
 			}
 		}
