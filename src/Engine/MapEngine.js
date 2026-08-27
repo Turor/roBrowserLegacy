@@ -680,9 +680,7 @@ function onMapChange(pkt) {
 		// Spawn Renewal NPC signboards when enabled (default: follow renewal).
 		const enableSignboards = Configs.get('enableSignboards');
 		const loadSignboards =
-			enableSignboards === undefined || enableSignboards === null
-				? !!Configs.get('renewal')
-				: !!enableSignboards;
+			enableSignboards === undefined || enableSignboards === null ? !!Configs.get('renewal') : !!enableSignboards;
 		if (loadSignboards) {
 			const mapName = MapRenderer.currentMap.replace('.gat', '').toLowerCase();
 			const signboards = DB.getAllSignboardsForMap(mapName);
