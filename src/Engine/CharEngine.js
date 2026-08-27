@@ -396,7 +396,13 @@ function onDeleteRequest(charID) {
 	}
 
 	// Display prompt message
-	_ui_box = UIManager.showPromptBox('This character will be permanently deleted. Type delete in the next window to confirm.', 'ok', 'cancel', onOk, onCancel);
+	_ui_box = UIManager.showPromptBox(
+		'This character will be permanently deleted. Type delete in the next window to confirm.',
+		'ok',
+		'cancel',
+		onOk,
+		onCancel
+	);
 	const _overlay = document.createElement('div');
 	_overlay.className = 'win_popup_overlay';
 	document.body.appendChild(_overlay);

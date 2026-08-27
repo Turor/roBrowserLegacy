@@ -539,7 +539,7 @@ function UpdateBodyStyle(look) {
 		return;
 	}
 
-setTimeout(
+	setTimeout(
 		function () {
 			this._body = look;
 			let job = this._job;

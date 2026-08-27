@@ -1331,9 +1331,9 @@ class DB {
 	 */
 	static getHeadPath(id, job, sex, orcish) {
 		if (!id) {
-		id = 1;
-	}
-	// ORC HEAD
+			id = 1;
+		}
+		// ORC HEAD
 		if (orcish) {
 			return 'data/sprite/\xc0\xcc\xc6\xd1\xc6\xae/orcface';
 		}
