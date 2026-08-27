@@ -137317,7 +137317,9 @@ var init_SkillTreeView = __esmMin((() => {
 		[SkillConst_default.MC_DISCOUNT]: 50,
 		[SkillConst_default.MC_OVERCHARGE]: 51,
 		[SkillConst_default.MC_PUSHCART]: 52,
-		[SkillConst_default.MC_VENDING]: 53
+		[SkillConst_default.MC_VENDING]: 53,
+		[SkillConst_default.AC_DOUBLE]: 17,
+		[SkillConst_default.AC_SHOWER]: 18
 	};
 	SkillTreeView[JobConst_default.GUNSLINGER] = {
 		list: 1,
@@ -220040,7 +220042,7 @@ var init_ItemCompare$2 = __esmMin((() => {
 //#region src/UI/Components/ItemCompare/ItemCompare.css?raw
 var ItemCompare_default$1;
 var init_ItemCompare$1 = __esmMin((() => {
-	ItemCompare_default$1 = ":host {\r\n	top: 0px;\r\n	left: 0px;\r\n}\r\n\r\n.ItemCompare {\r\n	position: relative;\r\n	width: 280px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n.ItemCompare .container {\r\n	height: 120px;\r\n	position: relative;\r\n	box-shadow:\r\n		white 0px 0px 0px 3px inset,\r\n		rgb(192, 192, 192) 0px 0px 0px 4px inset;\r\n	background-repeat: no-repeat;\r\n	background-color: #c5ddf6;\r\n	border-radius: 5px;\r\n}\r\n.ItemCompare .event_view {\r\n	position: absolute;\r\n}\r\n.ItemCompare .event_view .view {\r\n	position: absolute;\r\n	width: 42px;\r\n	height: 20px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n	border: none;\r\n	top: 6px;\r\n	left: 6px;\r\n}\r\n.ItemCompare .collection {\r\n	position: absolute;\r\n	top: 11px;\r\n	left: 10px;\r\n	width: 75px;\r\n	height: 100px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n.ItemCompare .title {\r\n	position: absolute;\r\n	top: 3px;\r\n	left: 86px;\r\n	width: 185px;\r\n	height: 14px;\r\n	padding-left: 4px;\r\n	padding-top: 6px;\r\n	text-shadow: 1px 1px 0px white;\r\n	white-space: nowrap;\r\n	overflow: hidden;\r\n	font-size: 11px;\r\n	font-weight: bold;\r\n}\r\n.ItemCompare .close {\r\n	position: absolute;\r\n	top: 3px;\r\n	right: 3px;\r\n	width: 11px;\r\n	height: 11px;\r\n	display: block;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n	border: none;\r\n}\r\n.ItemCompare .description {\r\n	position: absolute;\r\n	background-color: white;\r\n	top: 35px;\r\n	left: 100px;\r\n	line-height: 18px;\r\n	width: 170px;\r\n	height: 75px;\r\n	overflow-y: auto;\r\n}\r\n.ItemCompare .description .description-inner {\r\n	width: 150px;\r\n}\r\n.ItemCompare .extend {\r\n	position: absolute;\r\n	right: 4px;\r\n	bottom: 3px;\r\n	width: 13px;\r\n	height: 13px;\r\n	border: none;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n\r\n.ItemCompare .cardlist {\r\n	border-radius: 5px;\r\n	background-color: white;\r\n	padding: 2px;\r\n	margin-top: 3px;\r\n}\r\n.ItemCompare .cardlist .border {\r\n	border: 1px solid #c1c6c2;\r\n	background-color: #c5ddf6;\r\n	padding-top: 2px;\r\n	padding-left: 5px;\r\n	border-radius: 5px;\r\n}\r\n.ItemCompare .cardlist .item {\r\n	position: relative;\r\n	display: inline-block;\r\n}\r\n.ItemCompare .cardlist .item .icon {\r\n	width: 24px;\r\n	height: 24px;\r\n}\r\n.ItemCompare .cardlist .item .name {\r\n	position: absolute;\r\n	top: -20px;\r\n	left: -20px;\r\n	display: none;\r\n	white-space: nowrap;\r\n	z-index: 900;\r\n	height: 13px;\r\n	padding: 5px;\r\n	background: rgba(0, 0, 0, 0.7);\r\n	color: white;\r\n	text-shadow: 1px 1px black;\r\n}\r\n.ItemCompare .cardlist .item:hover .name {\r\n	display: block;\r\n}\r\n\r\n.ItemCompare .book_open {\r\n	margin-top: 6px;\r\n	margin-left: 7px;\r\n}\r\n.ItemCompare .book_read {\r\n	position: absolute;\r\n	margin-top: 7px;\r\n}\r\n\r\n.ItemCompare .overlay_open {\r\n	pointer-events: none;\r\n	position: absolute;\r\n	white-space: nowrap;\r\n	z-index: 900;\r\n	height: 13px;\r\n	background: rgba(0, 0, 0, 0.5);\r\n	color: white;\r\n	text-shadow: black 1px 1px;\r\n	top: -7px;\r\n	left: 7px;\r\n	text-align: center;\r\n	padding: 3px 4px 1px 4px;\r\n	display: none;\r\n}\r\n.ItemCompare .overlay_read {\r\n	pointer-events: none;\r\n	position: absolute;\r\n	white-space: nowrap;\r\n	z-index: 900;\r\n	height: 13px;\r\n	background: rgba(0, 0, 0, 0.5);\r\n	color: white;\r\n	text-shadow: black 1px 1px;\r\n	top: -7px;\r\n	left: 27px;\r\n	text-align: center;\r\n	padding: 3px 4px 1px 4px;\r\n	display: none;\r\n}\r\n\r\n.ItemCompare .optionlist {\r\n	border-radius: 5px;\r\n	background-color: white;\r\n	padding: 2px;\r\n	margin-top: 3px;\r\n}\r\n.ItemCompare .optionlist .border {\r\n	border: 1px solid #c1c6c2;\r\n	background-color: #c5ddf6;\r\n	padding-top: 2px;\r\n	padding-left: 5px;\r\n	border-radius: 5px;\r\n}\r\n.ItemCompare .optionlist .item {\r\n	position: relative;\r\n	display: inline-block;\r\n}\r\n.ItemCompare .optionlist .item .icon {\r\n	width: 24px;\r\n	height: 24px;\r\n}\r\n.ItemCompare .optionlist .item .name {\r\n	position: absolute;\r\n	top: -20px;\r\n	left: -20px;\r\n	display: none;\r\n	white-space: nowrap;\r\n	z-index: 900;\r\n	height: 13px;\r\n	padding: 5px;\r\n	background: rgba(0, 0, 0, 0.7);\r\n	color: white;\r\n	text-shadow: 1px 1px black;\r\n}\r\n.ItemCompare .optionlist .item:hover .name {\r\n	display: block;\r\n}\r\n\r\n.ItemCompare .title.damaged {\r\n	text-shadow: red 1px 1px 0px;\r\n}\r\n";
+	ItemCompare_default$1 = ":host {\r\n	top: 0px;\r\n	left: 0px;\r\n}\r\n\r\n.ItemCompare {\r\n	position: relative;\r\n	width: 280px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n.ItemCompare .container {\r\n	height: 120px;\r\n	position: relative;\r\n	box-shadow:\r\n		white 0px 0px 0px 3px inset,\r\n		rgb(192, 192, 192) 0px 0px 0px 4px inset;\r\n	background-repeat: no-repeat;\r\n	background-color: #c5ddf6;\r\n	border-radius: 5px;\r\n}\r\n.ItemCompare .event_view {\r\n	position: absolute;\r\n}\r\n.ItemCompare .event_view .view {\r\n	position: absolute;\r\n	width: 42px;\r\n	height: 20px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n	border: none;\r\n	top: 6px;\r\n	left: 6px;\r\n}\r\n.ItemCompare .collection {\r\n	position: absolute;\r\n	top: 11px;\r\n	left: 10px;\r\n	width: 75px;\r\n	height: 100px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n.ItemCompare .title {\r\n	position: absolute;\r\n	top: 3px;\r\n	left: 86px;\r\n	width: 185px;\r\n	height: 14px;\r\n	padding-left: 4px;\r\n	padding-top: 6px;\r\n	text-shadow: 1px 1px 0px white;\r\n	white-space: nowrap;\r\n	overflow: hidden;\r\n	font-size: 11px;\r\n	font-weight: bold;\r\n}\r\n.ItemCompare .close {\r\n	position: absolute;\r\n	top: 3px;\r\n	right: 3px;\r\n	width: 11px;\r\n	height: 11px;\r\n	display: block;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n	border: none;\r\n}\r\n.ItemCompare .description {\r\n	position: absolute;\r\n	background-color: white;\r\n	top: 35px;\r\n	left: 100px;\r\n	line-height: 18px;\r\n	width: 170px;\r\n	height: 75px;\r\n	overflow-y: auto;\r\n}\r\n.ItemCompare .description .description-inner {\r\n	width: 150px;\r\n	white-space: pre-wrap;\r\n}\r\n.ItemCompare .extend {\r\n	position: absolute;\r\n	right: 4px;\r\n	bottom: 3px;\r\n	width: 13px;\r\n	height: 13px;\r\n	border: none;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n\r\n.ItemCompare .cardlist {\r\n	border-radius: 5px;\r\n	background-color: white;\r\n	padding: 2px;\r\n	margin-top: 3px;\r\n}\r\n.ItemCompare .cardlist .border {\r\n	border: 1px solid #c1c6c2;\r\n	background-color: #c5ddf6;\r\n	padding-top: 2px;\r\n	padding-left: 5px;\r\n	border-radius: 5px;\r\n}\r\n.ItemCompare .cardlist .item {\r\n	position: relative;\r\n	display: inline-block;\r\n}\r\n.ItemCompare .cardlist .item .icon {\r\n	width: 24px;\r\n	height: 24px;\r\n}\r\n.ItemCompare .cardlist .item .name {\r\n	position: absolute;\r\n	top: -20px;\r\n	left: -20px;\r\n	display: none;\r\n	white-space: nowrap;\r\n	z-index: 900;\r\n	height: 13px;\r\n	padding: 5px;\r\n	background: rgba(0, 0, 0, 0.7);\r\n	color: white;\r\n	text-shadow: 1px 1px black;\r\n}\r\n.ItemCompare .cardlist .item:hover .name {\r\n	display: block;\r\n}\r\n\r\n.ItemCompare .book_open {\r\n	margin-top: 6px;\r\n	margin-left: 7px;\r\n}\r\n.ItemCompare .book_read {\r\n	position: absolute;\r\n	margin-top: 7px;\r\n}\r\n\r\n.ItemCompare .overlay_open {\r\n	pointer-events: none;\r\n	position: absolute;\r\n	white-space: nowrap;\r\n	z-index: 900;\r\n	height: 13px;\r\n	background: rgba(0, 0, 0, 0.5);\r\n	color: white;\r\n	text-shadow: black 1px 1px;\r\n	top: -7px;\r\n	left: 7px;\r\n	text-align: center;\r\n	padding: 3px 4px 1px 4px;\r\n	display: none;\r\n}\r\n.ItemCompare .overlay_read {\r\n	pointer-events: none;\r\n	position: absolute;\r\n	white-space: nowrap;\r\n	z-index: 900;\r\n	height: 13px;\r\n	background: rgba(0, 0, 0, 0.5);\r\n	color: white;\r\n	text-shadow: black 1px 1px;\r\n	top: -7px;\r\n	left: 27px;\r\n	text-align: center;\r\n	padding: 3px 4px 1px 4px;\r\n	display: none;\r\n}\r\n\r\n.ItemCompare .optionlist {\r\n	border-radius: 5px;\r\n	background-color: white;\r\n	padding: 2px;\r\n	margin-top: 3px;\r\n}\r\n.ItemCompare .optionlist .border {\r\n	border: 1px solid #c1c6c2;\r\n	background-color: #c5ddf6;\r\n	padding-top: 2px;\r\n	padding-left: 5px;\r\n	border-radius: 5px;\r\n}\r\n.ItemCompare .optionlist .item {\r\n	position: relative;\r\n	display: inline-block;\r\n}\r\n.ItemCompare .optionlist .item .icon {\r\n	width: 24px;\r\n	height: 24px;\r\n}\r\n.ItemCompare .optionlist .item .name {\r\n	position: absolute;\r\n	top: -20px;\r\n	left: -20px;\r\n	display: none;\r\n	white-space: nowrap;\r\n	z-index: 900;\r\n	height: 13px;\r\n	padding: 5px;\r\n	background: rgba(0, 0, 0, 0.7);\r\n	color: white;\r\n	text-shadow: 1px 1px black;\r\n}\r\n.ItemCompare .optionlist .item:hover .name {\r\n	display: block;\r\n}\r\n\r\n.ItemCompare .title.damaged {\r\n	text-shadow: red 1px 1px 0px;\r\n}\r\n";
 }));
 //#endregion
 //#region src/UI/Components/ItemCompare/ItemCompare.js
@@ -220321,7 +220323,10 @@ var init_ItemCompare = __esmMin((() => {
 			if (optionContainer) optionContainer.style.display = "block";
 		} else if (optionContainer) optionContainer.style.display = "none";
 		const descInner = root.querySelector(".description-inner");
-		if (descInner) descInner.textContent = item.IsIdentified ? it.identifiedDescriptionName : it.unidentifiedDescriptionName;
+		if (descInner) {
+			const rawDesc = item.IsIdentified ? it.identifiedDescriptionName : it.unidentifiedDescriptionName;
+			descInner.innerHTML = DB.formatMsgToHtml(_escapeHTML$5(rawDesc || ""));
+		}
 		addEvent$1(item);
 		let hideslots = false;
 		if (item.slot) {
@@ -220842,6 +220847,11 @@ var init_InputBox = __esmMin((() => {
 				innerRoot.classList.remove("number");
 				if (textEl) textEl.textContent = DB.getMessage(300);
 				if (input) input.type = "password";
+				break;
+			case "deleteconfirm":
+				innerRoot.classList.remove("number");
+				if (textEl) textEl.textContent = "Type delete to confirm";
+				if (input) input.type = "text";
 				break;
 			case "birthdate":
 				innerRoot.classList.remove("number");
@@ -231187,7 +231197,20 @@ function createSkillList({ name, htmlText, cssText, hasTabs = false, needSkillLi
 					downBtn.addEventListener("click", () => skillLevelSelectDown(0, root));
 				}
 				if (value !== void 0) {
-					const box = root.querySelector(`#positionSkills${list} .s${value}`);
+					let box = root.querySelector(`#positionSkills${list} .s${value}`);
+					if (hasTabs && !box && Number(value) > 41) {
+						const startPos = Number(value) - Number(value) % 7;
+						const rowId = Math.floor(Number(value) / 7);
+						const newRow = document.createElement("div");
+						newRow.className = "skillRow extraRow";
+						newRow.setAttribute("data-order", rowId);
+						let rowHTML = "";
+						for (let c = 0; c < 7; c++) rowHTML += `<div class="skillCol s${startPos + c}"></div>`;
+						newRow.innerHTML = rowHTML;
+						const container = root.querySelector(`#positionSkills${list}`);
+						if (container) container.appendChild(newRow);
+						box = root.querySelector(`#positionSkills${list} .s${value}`);
+					}
 					if (box) {
 						if (parseInt(key, 10) < 41) box.parentElement.style.display = "";
 						if (!box.hasChildNodes()) box.appendChild(element);
@@ -234504,13 +234527,13 @@ var init_BasicInfo = __esmMin((() => {
 //#region src/UI/Components/Refine/Refine.html?raw
 var Refine_default$2;
 var init_Refine$2 = __esmMin((() => {
-	Refine_default$2 = "<div id=\"Refine\">\r\n	<div class=\"titlebar\">\r\n		<ui-image src=\"basic_interface/titlebar_mid.bmp\"></ui-image>\r\n		<div class=\"left\">\r\n			<ui-button\r\n				class=\"base\"\r\n				bg=\"basic_interface/sys_base_off.bmp\"\r\n				hover=\"basic_interface/sys_base_on.bmp\"\r\n			></ui-button>\r\n			<span class=\"text\"><ui-text msg=\"3241\"></ui-text></span>\r\n		</div>\r\n		<div class=\"right\">\r\n			<ui-button\r\n				class=\"base close\"\r\n				bg=\"basic_interface/sys_close_off.bmp\"\r\n				hover=\"basic_interface/sys_close_on.bmp\"\r\n			></ui-button>\r\n		</div>\r\n		<div class=\"clear\"></div>\r\n	</div>\r\n	<div class=\"overlay\"></div>\r\n	<div class=\"panel\">\r\n		<div class=\"image-container\">\r\n			<div class=\"success\"></div>\r\n			<div class=\"materials\">\r\n				<div class=\"mat_0 mat_overlay\">\r\n					<ui-image src=\"refining_renewal/slot_select_blue0.bmp\"></ui-image>\r\n					<div class=\"material_0\"></div>\r\n				</div>\r\n				<div class=\"mat_1 mat_overlay\">\r\n					<ui-image src=\"refining_renewal/slot_select_blue1.bmp\"></ui-image>\r\n					<div class=\"material_1\"></div>\r\n				</div>\r\n				<div class=\"mat_2 mat_overlay\">\r\n					<ui-image src=\"refining_renewal/slot_select_blue2.bmp\"></ui-image>\r\n					<div class=\"material_2\"></div>\r\n				</div>\r\n				<div class=\"mat_3 mat_overlay\">\r\n					<ui-image src=\"refining_renewal/slot_select_blue3.bmp\"></ui-image>\r\n					<div class=\"material_3\"></div>\r\n				</div>\r\n				<div class=\"bsb_overlay\">\r\n					<ui-image src=\"refining_renewal/slot_select_red.bmp\"></ui-image>\r\n					<div class=\"bsb\"></div>\r\n				</div>\r\n				<div class=\"selected_materials\">\r\n					<div class=\"selected_mat\"></div>\r\n					<div class=\"bsb_selected\"></div>\r\n				</div>\r\n			</div>\r\n			<div class=\"item_to_refine\"></div>\r\n			<div class=\"item_to_refine_name\"></div>\r\n			<div class=\"refine_button\">\r\n				<div class=\"refine_disabled\">\r\n					<ui-image src=\"refining_renewal/bt_refining_disable.bmp\"></ui-image>\r\n				</div>\r\n				<ui-button\r\n					class=\"refine_enabled\"\r\n					bg=\"refining_renewal/bt_refining_normal.bmp\"\r\n					down=\"refining_renewal/bt_refining_press.bmp\"\r\n				></ui-button>\r\n				<div class=\"refine_text\"><ui-text msg=\"3241\"></ui-text></div>\r\n				<div class=\"refine_zeny\"></div>\r\n			</div>\r\n			<div class=\"back_button\">\r\n				<ui-button\r\n					class=\"back_success\"\r\n					bg=\"refining_renewal/bt_refining_return_success_normal.bmp\"\r\n					down=\"refining_renewal/bt_refining_return_success_press.bmp\"\r\n					><ui-text msg=\"2973\"></ui-text\r\n				></ui-button>\r\n				<ui-button\r\n					class=\"back_fail\"\r\n					bg=\"refining_renewal/bt_refining_return_fail_normal.bmp\"\r\n					down=\"refining_renewal/bt_refining_return_fail_press.bmp\"\r\n					><ui-text msg=\"2973\"></ui-text\r\n				></ui-button>\r\n			</div>\r\n			<div class=\"refine_cont\">\r\n				<ui-button\r\n					class=\"success_refine_cont_enabled\"\r\n					bg=\"refining_renewal/bt_refining_again_success_normal.bmp\"\r\n					down=\"refining_renewal/bt_refining_again_success_press.bmp\"\r\n				></ui-button>\r\n				<div class=\"success_refine_cont_disabled\">\r\n					<ui-image src=\"refining_renewal/bt_refining_again_success_disable.bmp\"></ui-image>\r\n				</div>\r\n				<ui-button\r\n					class=\"fail_refine_cont_enabled\"\r\n					bg=\"refining_renewal/bt_refining_again_fail_normal.bmp\"\r\n					down=\"refining_renewal/bt_refining_again_fail_press.bmp\"\r\n				></ui-button>\r\n				<div class=\"fail_refine_cont_disabled\">\r\n					<ui-image src=\"refining_renewal/bt_refining_again_fail_disable.bmp\"></ui-image>\r\n				</div>\r\n				<div class=\"refine_text_cont\"><ui-text msg=\"3241\"></ui-text></div>\r\n				<div class=\"chance_rate\"></div>\r\n				<div class=\"refine_zeny_cont\"></div>\r\n			</div>\r\n		</div>\r\n		<div class=\"footer\">\r\n			<ui-image src=\"basic_interface/btnbar_mid2.bmp\"></ui-image>\r\n			<div class=\"some_notifs\">\r\n				<div class=\"notif\">\r\n					<ui-image src=\"refining_renewal/ico_notice.bmp\"></ui-image>\r\n				</div>\r\n				<span class=\"info_msg\"></span>\r\n			</div>\r\n			<ui-button\r\n				class=\"cancel\"\r\n				bg=\"btn_cancel2_normal.bmp\"\r\n				hover=\"btn_cancel2_over.bmp\"\r\n				down=\"btn_cancel2_press.bmp\"\r\n			></ui-button>\r\n		</div>\r\n	</div>\r\n</div>\r\n";
+	Refine_default$2 = "<div id=\"Refine\">\r\n	<div class=\"titlebar\">\r\n		<ui-image src=\"basic_interface/titlebar_mid.bmp\"></ui-image>\r\n		<div class=\"left\">\r\n			<ui-button\r\n				class=\"base\"\r\n				bg=\"basic_interface/sys_base_off.bmp\"\r\n				hover=\"basic_interface/sys_base_on.bmp\"\r\n			></ui-button>\r\n			<span class=\"text\"><ui-text msg=\"3241\"></ui-text></span>\r\n		</div>\r\n		<div class=\"right\">\r\n			<ui-button\r\n				class=\"base close\"\r\n				bg=\"basic_interface/sys_close_off.bmp\"\r\n				hover=\"basic_interface/sys_close_on.bmp\"\r\n			></ui-button>\r\n		</div>\r\n		<div class=\"clear\"></div>\r\n	</div>\r\n	<div class=\"overlay\"></div>\r\n	<div class=\"panel\">\r\n		<div class=\"image-container\">\r\n			<div class=\"success\"></div>\r\n			<div class=\"materials\">\r\n				<div class=\"mat_0 mat_overlay\">\r\n					<ui-image src=\"refining_renewal/slot_select_blue0.bmp\"></ui-image>\r\n					<div class=\"material_0\"></div>\r\n				</div>\r\n				<div class=\"mat_1 mat_overlay\">\r\n					<ui-image src=\"refining_renewal/slot_select_blue1.bmp\"></ui-image>\r\n					<div class=\"material_1\"></div>\r\n				</div>\r\n				<div class=\"mat_2 mat_overlay\">\r\n					<ui-image src=\"refining_renewal/slot_select_blue2.bmp\"></ui-image>\r\n					<div class=\"material_2\"></div>\r\n				</div>\r\n				<div class=\"mat_3 mat_overlay\">\r\n					<ui-image src=\"refining_renewal/slot_select_blue3.bmp\"></ui-image>\r\n					<div class=\"material_3\"></div>\r\n				</div>\r\n				<div class=\"bsb_overlay\">\r\n					<ui-image src=\"refining_renewal/slot_select_red.bmp\"></ui-image>\r\n					<div class=\"bsb\"></div>\r\n				</div>\r\n				<div class=\"selected_materials\">\r\n					<div class=\"selected_mat\"></div>\r\n					<div class=\"bsb_selected\"></div>\r\n				</div>\r\n			</div>\r\n			<div class=\"item_to_refine\"></div>\r\n			<div class=\"item_to_refine_name\"></div>\r\n			<div class=\"refine_button\">\r\n				<div class=\"refine_disabled\">\r\n					<ui-image src=\"refining_renewal/bt_refining_disable.bmp\"></ui-image>\r\n				</div>\r\n				<ui-button\r\n					class=\"refine_enabled\"\r\n					bg=\"refining_renewal/bt_refining_normal.bmp\"\r\n					down=\"refining_renewal/bt_refining_press.bmp\"\r\n				></ui-button>\r\n				<div class=\"refine_text\"><ui-text msg=\"3241\"></ui-text></div>\r\n				<div class=\"refine_zeny\"></div>\r\n			</div>\r\n			<div class=\"back_button\">\r\n				<ui-button\r\n					class=\"back_success\"\r\n					bg=\"refining_renewal/bt_refining_return_success_normal.bmp\"\r\n					down=\"refining_renewal/bt_refining_return_success_press.bmp\"\r\n					><ui-text msg=\"2973\"></ui-text\r\n				></ui-button>\r\n				<ui-button\r\n					class=\"back_fail\"\r\n					bg=\"refining_renewal/bt_refining_return_fail_normal.bmp\"\r\n					down=\"refining_renewal/bt_refining_return_fail_press.bmp\"\r\n					><ui-text msg=\"2973\"></ui-text\r\n				></ui-button>\r\n			</div>\r\n			<div class=\"refine_cont\">\r\n				<ui-button\r\n					class=\"success_refine_cont_enabled\"\r\n					bg=\"refining_renewal/bt_refining_again_success_normal.bmp\"\r\n					down=\"refining_renewal/bt_refining_again_success_press.bmp\"\r\n				></ui-button>\r\n				<div class=\"success_refine_cont_disabled\">\r\n					<ui-image src=\"refining_renewal/bt_refining_again_success_disable.bmp\"></ui-image>\r\n				</div>\r\n				<ui-button\r\n					class=\"fail_refine_cont_enabled\"\r\n					bg=\"refining_renewal/bt_refining_again_fail_normal.bmp\"\r\n					down=\"refining_renewal/bt_refining_again_fail_press.bmp\"\r\n				></ui-button>\r\n				<div class=\"fail_refine_cont_disabled\">\r\n					<ui-image src=\"refining_renewal/bt_refining_again_fail_disable.bmp\"></ui-image>\r\n				</div>\r\n				<div class=\"refine_text_cont\"><ui-text msg=\"3241\"></ui-text></div>\r\n				<div class=\"chance_rate\"></div>\r\n				<div class=\"refine_zeny_cont\"></div>\r\n			</div>\r\n		</div>\r\n		<div class=\"footer\">\r\n			<ui-image src=\"basic_interface/btnbar_mid2.bmp\"></ui-image>\r\n			<div class=\"some_notifs\">\r\n				<div class=\"notif\">\r\n					<ui-image src=\"refining_renewal/ico_notice.bmp\"></ui-image>\r\n				</div>\r\n				<span class=\"info_msg\"></span>\r\n			</div>\r\n			<ui-button\r\n				class=\"cancel\"\r\n				bg=\"btn_cancel.bmp\"\r\n				hover=\"btn_cancel_a.bmp\"\r\n				down=\"btn_cancel_b.bmp\"\r\n			></ui-button>\r\n		</div>\r\n	</div>\r\n</div>\r\n";
 }));
 //#endregion
 //#region src/UI/Components/Refine/Refine.css?raw
 var Refine_default$1;
 var init_Refine$1 = __esmMin((() => {
-	Refine_default$1 = ":host {\r\n	width: 261px;\r\n	height: 350px;\r\n}\r\n\r\n#Refine {\r\n	position: relative;\r\n	height: 100%;\r\n	width: 100%;\r\n}\r\n\r\n#Refine .titlebar {\r\n	width: 100%;\r\n	height: 17px;\r\n	background-color: white;\r\n	background-repeat: repeat-x;\r\n	border-radius: 3px 3px 0px 0px;\r\n}\r\n#Refine .titlebar .base {\r\n	width: 11px;\r\n	height: 11px;\r\n	border: none;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	vertical-align: middle;\r\n}\r\n#Refine .titlebar .text {\r\n	text-shadow: 1px 1px white;\r\n	vertical-align: -2px;\r\n	white-space: nowrap;\r\n	display: inline-block;\r\n	width: 32px;\r\n	height: 13px;\r\n	font-size: 11px;\r\n	font-weight: bold;\r\n}\r\n\r\n#Refine .titlebar .left {\r\n	margin-left: 3px;\r\n	float: left;\r\n}\r\n#Refine .titlebar .right {\r\n	float: right;\r\n	margin-right: 3px;\r\n}\r\n#Refine .titlebar .clear {\r\n	clear: both;\r\n}\r\n\r\n#Refine .overlay {\r\n	position: absolute;\r\n	display: none;\r\n	white-space: nowrap;\r\n	z-index: 900;\r\n	height: 15px;\r\n	line-height: 15px;\r\n	border-radius: 3px;\r\n	padding: 4px;\r\n	background: rgba(0, 0, 0, 0.7);\r\n	color: white;\r\n	text-shadow: 1px 1px black;\r\n}\r\n\r\n#Refine .panel {\r\n	width: 100%;\r\n	height: 100%;\r\n	overflow: hidden;\r\n	position: absolute;\r\n}\r\n\r\n#Refine .image-container {\r\n	position: absolute;\r\n	top: 1px;\r\n	height: 301px;\r\n	width: 262px;\r\n}\r\n\r\n#Refine .success {\r\n	position: absolute;\r\n	height: 20px;\r\n	width: 261px;\r\n	text-align: center;\r\n	font-weight: bold;\r\n	top: 12px;\r\n}\r\n\r\n#Refine .success .number {\r\n	color: #2963de;\r\n}\r\n\r\n#Refine .item_to_refine {\r\n	position: absolute;\r\n	height: 45px;\r\n	width: 50px;\r\n	top: 185px;\r\n	left: 106px;\r\n}\r\n\r\n#Refine .item_to_refine .item .grade {\r\n	position: absolute;\r\n	width: 12px;\r\n	height: 12px;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	pointer-events: none;\r\n	z-index: 2;\r\n	top: 12px;\r\n}\r\n\r\n#Refine .item_to_refine_name {\r\n	position: absolute;\r\n	height: 18px;\r\n	width: 261px;\r\n	text-align: center;\r\n	top: 225px;\r\n	align-content: center;\r\n	font-weight: bold;\r\n	color: #102142;\r\n}\r\n\r\n#Refine .item {\r\n	position: relative;\r\n	float: left;\r\n	height: 24px;\r\n	width: 24px;\r\n	left: 13px;\r\n	top: 7px;\r\n}\r\n\r\n#Refine .item .icon {\r\n	position: absolute;\r\n	top: 0px;\r\n	width: 24px;\r\n	height: 24px;\r\n	border: none;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	z-index: 2;\r\n}\r\n\r\n#Refine .footer {\r\n	position: absolute;\r\n	height: 30px;\r\n	width: 261px;\r\n	bottom: 18px;\r\n}\r\n\r\n#Refine .some_notifs {\r\n	position: absolute;\r\n	height: 20px;\r\n	width: 180px;\r\n	left: 5px;\r\n	top: 4px;\r\n}\r\n\r\n#Refine .notif {\r\n	position: absolute;\r\n	height: 13px;\r\n	width: 14px;\r\n	top: 4px;\r\n}\r\n\r\n#Refine .info_msg {\r\n	position: absolute;\r\n	height: 20px;\r\n	width: 170px;\r\n	left: 15px;\r\n	font-size: 0.8em;\r\n	align-content: center;\r\n}\r\n\r\n#Refine .info_msg.red {\r\n	color: red;\r\n}\r\n\r\n#Refine .info_msg.blue {\r\n	color: blue;\r\n}\r\n\r\n#Refine .cancel {\r\n	position: absolute;\r\n	height: 21px;\r\n	width: 57px;\r\n	bottom: 4px;\r\n	right: 5px;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	border: 0;\r\n}\r\n\r\n#Refine .materials {\r\n	position: absolute;\r\n	height: 78px;\r\n	width: 100%;\r\n	top: 30px;\r\n}\r\n\r\n#Refine .mat_overlay,\r\n#Refine .bsb_overlay {\r\n	position: absolute;\r\n	height: 53px;\r\n	width: 46px;\r\n	background-size: 0px;\r\n}\r\n\r\n#Refine .mat_overlay.selected,\r\n#Refine .bsb_overlay.selected {\r\n	background-size: cover;\r\n}\r\n\r\n#Refine .mat_0 {\r\n	left: 10px;\r\n	top: 8px;\r\n}\r\n\r\n#Refine .mat_1 {\r\n	left: 59px;\r\n	top: 8px;\r\n}\r\n\r\n#Refine .mat_2 {\r\n	top: 8px;\r\n	left: 108px;\r\n}\r\n\r\n#Refine .mat_3 {\r\n	top: 8px;\r\n	left: 157px;\r\n}\r\n\r\n#Refine .bsb_overlay {\r\n	top: 8px;\r\n	left: 206px;\r\n}\r\n\r\n#Refine .material_0,\r\n#Refine .material_1,\r\n#Refine .material_2,\r\n#Refine .material_3 {\r\n	display: block;\r\n}\r\n\r\n#Refine .materials .item .icon {\r\n	position: absolute;\r\n	top: 7px;\r\n	left: -2px;\r\n	width: 24px;\r\n	height: 24px;\r\n	border: none;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	z-index: 2;\r\n}\r\n\r\n#Refine .mat_count {\r\n	height: 20px;\r\n	position: absolute;\r\n	width: 50px;\r\n	top: 46px;\r\n	text-align: center;\r\n	left: -15px;\r\n}\r\n\r\n#Refine .selected_materials {\r\n	position: absolute;\r\n	height: 50px;\r\n	top: 83px;\r\n	width: 100%;\r\n}\r\n\r\n#Refine .selected_mat {\r\n	position: relative;\r\n	height: 30px;\r\n	width: 30px;\r\n	left: 68px;\r\n	top: 6px;\r\n}\r\n\r\n#Refine .bsb_selected {\r\n	position: absolute;\r\n	height: 30px;\r\n	width: 30px;\r\n	left: 149px;\r\n	top: 6px;\r\n}\r\n\r\n#Refine .refine_button {\r\n	position: absolute;\r\n	height: 45px;\r\n	width: 92px;\r\n	bottom: 9px;\r\n	left: 85px;\r\n}\r\n\r\n#Refine .refine_disabled {\r\n	position: absolute;\r\n	height: 48px;\r\n	width: 96px;\r\n	top: -2px;\r\n	left: -2px;\r\n}\r\n\r\n#Refine .refine_enabled {\r\n	position: absolute;\r\n	height: 48px;\r\n	width: 96px;\r\n	top: -2px;\r\n	left: -2px;\r\n	cursor: pointer;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	border: 0;\r\n}\r\n\r\n#Refine .refine_text {\r\n	font-weight: bold;\r\n	position: relative;\r\n	height: 15px;\r\n	width: 92px;\r\n	text-align: center;\r\n	color: #101839;\r\n	top: 5px;\r\n	pointer-events: none;\r\n}\r\n\r\n#Refine .refine_zeny {\r\n	position: relative;\r\n	height: 15px;\r\n	width: 65px;\r\n	top: 9px;\r\n	left: 20px;\r\n	color: white;\r\n	text-align: right;\r\n	font-weight: bold;\r\n	pointer-events: none;\r\n}\r\n\r\n#Refine .back_button {\r\n	position: absolute;\r\n	height: 38px;\r\n	width: 101px;\r\n	bottom: 13px;\r\n	left: 19px;\r\n	text-align: center;\r\n	font-weight: bold;\r\n	align-content: center;\r\n	cursor: pointer;\r\n}\r\n\r\n#Refine .back_success,\r\n#Refine .back_fail {\r\n	position: relative;\r\n	height: 38px;\r\n	width: 101px;\r\n	top: 0px;\r\n	left: 0px;\r\n	text-align: center;\r\n	font-weight: bold;\r\n	align-content: center;\r\n	cursor: pointer;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	border: 0;\r\n}\r\n\r\n#Refine .refine_cont {\r\n	position: absolute;\r\n	height: 50px;\r\n	width: 101px;\r\n	bottom: 1px;\r\n	right: 20px;\r\n	text-align: center;\r\n	font-weight: bold;\r\n	align-content: center;\r\n	cursor: pointer;\r\n	z-index: 5;\r\n}\r\n\r\n#Refine .refine_cont.item {\r\n	position: absolute !important;\r\n	float: none !important;\r\n	height: 50px !important;\r\n	width: 101px !important;\r\n	left: auto !important;\r\n	top: auto !important;\r\n	bottom: 1px !important;\r\n	right: 20px !important;\r\n	text-align: center;\r\n	font-weight: bold;\r\n	align-content: center;\r\n	cursor: pointer;\r\n	z-index: 5;\r\n}\r\n\r\n#Refine .success_refine_cont_enabled,\r\n#Refine .success_refine_cont_disabled,\r\n#Refine .fail_refine_cont_enabled,\r\n#Refine .fail_refine_cont_disabled {\r\n	position: absolute;\r\n	height: 50px;\r\n	width: 101px;\r\n	top: 0px;\r\n	left: 0px;\r\n	text-align: center;\r\n	font-weight: bold;\r\n	align-content: center;\r\n	cursor: pointer;\r\n}\r\n\r\n#Refine .success_refine_cont_enabled,\r\n#Refine .fail_refine_cont_enabled {\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	border: 0;\r\n}\r\n\r\n#Refine .refine_text_cont {\r\n	position: absolute;\r\n	height: 15px;\r\n	width: 100px;\r\n	text-align: center;\r\n	align-content: center;\r\n	pointer-events: none;\r\n	font-weight: bold;\r\n	bottom: 27px;\r\n	left: 0px;\r\n}\r\n\r\n#Refine .chance_rate {\r\n	position: absolute;\r\n	height: 15px;\r\n	width: 100px;\r\n	bottom: 14px;\r\n	left: 0px;\r\n	text-align: center;\r\n	align-content: center;\r\n	pointer-events: none;\r\n}\r\n\r\n#Refine .refine_zeny_cont {\r\n	position: absolute;\r\n	height: 15px;\r\n	width: 100px;\r\n	bottom: 0px;\r\n	left: 0px;\r\n	text-align: center;\r\n	align-content: center;\r\n	color: white;\r\n	pointer-events: none;\r\n	font-weight: bold;\r\n}\r\n";
+	Refine_default$1 = ":host {\r\n	width: 262px;\r\n	height: 348px;\r\n	overflow: hidden;\r\n	box-sizing: border-box;\r\n}\r\n\r\n#Refine {\r\n	position: relative;\r\n	width: 262px;\r\n	height: 348px;\r\n}\r\n\r\n#Refine .titlebar {\r\n	position: relative;\r\n	z-index: 5;\r\n	width: 100%;\r\n	height: 17px;\r\n	background-color: white;\r\n	background-repeat: repeat-x;\r\n	border-radius: 3px 3px 0px 0px;\r\n}\r\n#Refine .titlebar .base {\r\n	width: 11px;\r\n	height: 11px;\r\n	border: none;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	vertical-align: middle;\r\n}\r\n#Refine .titlebar .text {\r\n	text-shadow: 1px 1px white;\r\n	vertical-align: -2px;\r\n	white-space: nowrap;\r\n	display: inline-block;\r\n	width: auto;\r\n	min-width: 80px;\r\n	height: 13px;\r\n	font-size: 11px;\r\n	font-weight: bold;\r\n}\r\n\r\n#Refine .titlebar .left {\r\n	margin-left: 3px;\r\n	float: left;\r\n}\r\n#Refine .titlebar .right {\r\n	float: right;\r\n	margin-right: 3px;\r\n}\r\n#Refine .titlebar .clear {\r\n	clear: both;\r\n}\r\n\r\n#Refine .overlay {\r\n	position: absolute;\r\n	display: none;\r\n	white-space: nowrap;\r\n	z-index: 900;\r\n	height: 15px;\r\n	line-height: 15px;\r\n	border-radius: 3px;\r\n	padding: 4px;\r\n	background: rgba(0, 0, 0, 0.7);\r\n	color: white;\r\n	text-shadow: 1px 1px black;\r\n}\r\n\r\n#Refine .panel {\r\n	position: absolute;\r\n	left: 0;\r\n	top: 0;\r\n	width: 262px;\r\n	height: 348px;\r\n	overflow: hidden;\r\n}\r\n\r\n#Refine .image-container {\r\n	position: absolute;\r\n	top: 17px;\r\n	left: 0;\r\n	height: 301px;\r\n	width: 262px;\r\n	background-repeat: no-repeat;\r\n	background-size: 262px 301px;\r\n}\r\n\r\n#Refine .success {\r\n	position: absolute;\r\n	height: 20px;\r\n	width: 262px;\r\n	text-align: center;\r\n	font-weight: bold;\r\n	top: 12px;\r\n}\r\n\r\n#Refine .success .number {\r\n	color: #2963de;\r\n}\r\n\r\n#Refine .item_to_refine {\r\n	position: absolute;\r\n	height: 45px;\r\n	width: 50px;\r\n	top: 185px;\r\n	left: 106px;\r\n}\r\n\r\n#Refine .item_to_refine .item .grade {\r\n	position: absolute;\r\n	width: 12px;\r\n	height: 12px;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	pointer-events: none;\r\n	z-index: 2;\r\n	top: 12px;\r\n}\r\n\r\n#Refine .item_to_refine_name {\r\n	position: absolute;\r\n	height: 18px;\r\n	width: 262px;\r\n	text-align: center;\r\n	top: 225px;\r\n	align-content: center;\r\n	font-weight: bold;\r\n	color: #102142;\r\n}\r\n\r\n#Refine .item {\r\n	position: relative;\r\n	float: left;\r\n	height: 24px;\r\n	width: 24px;\r\n	left: 13px;\r\n	top: 7px;\r\n}\r\n\r\n#Refine .item .icon {\r\n	position: absolute;\r\n	top: 0px;\r\n	width: 24px;\r\n	height: 24px;\r\n	border: none;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	z-index: 2;\r\n}\r\n\r\n#Refine .footer {\r\n	position: absolute;\r\n	height: 30px;\r\n	width: 262px;\r\n	bottom: 0;\r\n	left: 0;\r\n}\r\n\r\n#Refine .some_notifs {\r\n	position: absolute;\r\n	height: 20px;\r\n	width: 180px;\r\n	left: 5px;\r\n	top: 4px;\r\n}\r\n\r\n#Refine .notif {\r\n	position: absolute;\r\n	height: 13px;\r\n	width: 14px;\r\n	top: 4px;\r\n}\r\n\r\n#Refine .info_msg {\r\n	position: absolute;\r\n	height: 20px;\r\n	width: 170px;\r\n	left: 15px;\r\n	font-size: 0.8em;\r\n	align-content: center;\r\n}\r\n\r\n#Refine .info_msg.red {\r\n	color: red;\r\n}\r\n\r\n#Refine .info_msg.blue {\r\n	color: blue;\r\n}\r\n\r\n#Refine .cancel {\r\n	position: absolute;\r\n	height: 21px;\r\n	width: 57px;\r\n	bottom: 4px;\r\n	right: 5px;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	border: 0;\r\n}\r\n\r\n#Refine .materials {\r\n	position: absolute;\r\n	height: 78px;\r\n	width: 100%;\r\n	top: 30px;\r\n}\r\n\r\n#Refine .mat_overlay,\r\n#Refine .bsb_overlay {\r\n	position: absolute;\r\n	height: 53px;\r\n	width: 46px;\r\n	background-size: 0px;\r\n}\r\n\r\n#Refine .mat_overlay.selected,\r\n#Refine .bsb_overlay.selected {\r\n	background-size: cover;\r\n}\r\n\r\n#Refine .mat_0 {\r\n	left: 10px;\r\n	top: 8px;\r\n}\r\n\r\n#Refine .mat_1 {\r\n	left: 59px;\r\n	top: 8px;\r\n}\r\n\r\n#Refine .mat_2 {\r\n	top: 8px;\r\n	left: 108px;\r\n}\r\n\r\n#Refine .mat_3 {\r\n	top: 8px;\r\n	left: 157px;\r\n}\r\n\r\n#Refine .bsb_overlay {\r\n	top: 8px;\r\n	left: 206px;\r\n}\r\n\r\n#Refine .material_0,\r\n#Refine .material_1,\r\n#Refine .material_2,\r\n#Refine .material_3 {\r\n	display: block;\r\n}\r\n\r\n#Refine .materials .item .icon {\r\n	position: absolute;\r\n	top: 7px;\r\n	left: -2px;\r\n	width: 24px;\r\n	height: 24px;\r\n	border: none;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	z-index: 2;\r\n}\r\n\r\n#Refine .mat_count {\r\n	height: 20px;\r\n	position: absolute;\r\n	width: 50px;\r\n	top: 46px;\r\n	text-align: center;\r\n	left: -15px;\r\n}\r\n\r\n#Refine .selected_materials {\r\n	position: absolute;\r\n	height: 50px;\r\n	top: 83px;\r\n	width: 100%;\r\n}\r\n\r\n#Refine .selected_mat {\r\n	position: relative;\r\n	height: 30px;\r\n	width: 30px;\r\n	left: 68px;\r\n	top: 6px;\r\n}\r\n\r\n#Refine .bsb_selected {\r\n	position: absolute;\r\n	height: 30px;\r\n	width: 30px;\r\n	left: 149px;\r\n	top: 6px;\r\n}\r\n\r\n#Refine .refine_button {\r\n	position: absolute;\r\n	height: 45px;\r\n	width: 92px;\r\n	bottom: 9px;\r\n	left: 85px;\r\n}\r\n\r\n#Refine .refine_disabled {\r\n	position: absolute;\r\n	height: 48px;\r\n	width: 96px;\r\n	top: -2px;\r\n	left: -2px;\r\n}\r\n\r\n#Refine .refine_enabled {\r\n	position: absolute;\r\n	height: 48px;\r\n	width: 96px;\r\n	top: -2px;\r\n	left: -2px;\r\n	cursor: pointer;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	border: 0;\r\n}\r\n\r\n#Refine .refine_text {\r\n	font-weight: bold;\r\n	position: relative;\r\n	height: 15px;\r\n	width: 92px;\r\n	text-align: center;\r\n	color: #101839;\r\n	top: 5px;\r\n	pointer-events: none;\r\n}\r\n\r\n#Refine .refine_zeny {\r\n	position: relative;\r\n	height: 15px;\r\n	width: 65px;\r\n	top: 9px;\r\n	left: 20px;\r\n	color: white;\r\n	text-align: right;\r\n	font-weight: bold;\r\n	pointer-events: none;\r\n}\r\n\r\n#Refine .back_button {\r\n	position: absolute;\r\n	height: 38px;\r\n	width: 101px;\r\n	bottom: 13px;\r\n	left: 19px;\r\n	text-align: center;\r\n	font-weight: bold;\r\n	align-content: center;\r\n	cursor: pointer;\r\n}\r\n\r\n#Refine .back_success,\r\n#Refine .back_fail {\r\n	position: relative;\r\n	height: 38px;\r\n	width: 101px;\r\n	top: 0px;\r\n	left: 0px;\r\n	text-align: center;\r\n	font-weight: bold;\r\n	align-content: center;\r\n	cursor: pointer;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	border: 0;\r\n}\r\n\r\n#Refine .refine_cont {\r\n	position: absolute;\r\n	height: 50px;\r\n	width: 101px;\r\n	bottom: 1px;\r\n	right: 20px;\r\n	text-align: center;\r\n	font-weight: bold;\r\n	align-content: center;\r\n	cursor: pointer;\r\n	z-index: 5;\r\n}\r\n\r\n#Refine .refine_cont.item {\r\n	position: absolute !important;\r\n	float: none !important;\r\n	height: 50px !important;\r\n	width: 101px !important;\r\n	left: auto !important;\r\n	top: auto !important;\r\n	bottom: 1px !important;\r\n	right: 20px !important;\r\n	text-align: center;\r\n	font-weight: bold;\r\n	align-content: center;\r\n	cursor: pointer;\r\n	z-index: 5;\r\n}\r\n\r\n#Refine .success_refine_cont_enabled,\r\n#Refine .success_refine_cont_disabled,\r\n#Refine .fail_refine_cont_enabled,\r\n#Refine .fail_refine_cont_disabled {\r\n	position: absolute;\r\n	height: 50px;\r\n	width: 101px;\r\n	top: 0px;\r\n	left: 0px;\r\n	text-align: center;\r\n	font-weight: bold;\r\n	align-content: center;\r\n	cursor: pointer;\r\n}\r\n\r\n#Refine .success_refine_cont_enabled,\r\n#Refine .fail_refine_cont_enabled {\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	border: 0;\r\n}\r\n\r\n#Refine .refine_text_cont {\r\n	position: absolute;\r\n	height: 15px;\r\n	width: 100px;\r\n	text-align: center;\r\n	align-content: center;\r\n	pointer-events: none;\r\n	font-weight: bold;\r\n	bottom: 27px;\r\n	left: 0px;\r\n}\r\n\r\n#Refine .chance_rate {\r\n	position: absolute;\r\n	height: 15px;\r\n	width: 100px;\r\n	bottom: 14px;\r\n	left: 0px;\r\n	text-align: center;\r\n	align-content: center;\r\n	pointer-events: none;\r\n}\r\n\r\n#Refine .refine_zeny_cont {\r\n	position: absolute;\r\n	height: 15px;\r\n	width: 100px;\r\n	bottom: 0px;\r\n	left: 0px;\r\n	text-align: center;\r\n	align-content: center;\r\n	color: white;\r\n	pointer-events: none;\r\n	font-weight: bold;\r\n}\r\n";
 }));
 //#endregion
 //#region src/UI/Components/Refine/Refine.js
@@ -234591,7 +234614,11 @@ function controlPhase$1(phase, shouldLoop, interval, callback) {
 	function showImages() {
 		Client.loadFile(DB.INTERFACE_PATH + "refining_renewal/" + imageArray[currentImageIndex], function(data) {
 			const container = _root$11().querySelector(".image-container");
-			if (container) container.style.backgroundImage = `url(${data})`;
+			if (container) {
+				container.style.backgroundImage = `url(${data})`;
+				container.style.backgroundRepeat = "no-repeat";
+				container.style.backgroundSize = "262px 301px";
+			}
 			currentImageIndex++;
 			if (currentImageIndex >= imageArray.length) {
 				if (shouldLoop) currentImageIndex = 0;
@@ -235438,8 +235465,8 @@ var init_Refine = __esmMin((() => {
 	*/
 	Refine.init = function init() {
 		const root = _root$11();
-		this._host.style.top = "200px";
-		this._host.style.left = "300px";
+		this._host.style.top = "80px";
+		this._host.style.left = "80px";
 		const titlebarBase = root.querySelector(".titlebar .base");
 		if (titlebarBase) titlebarBase.addEventListener("mousedown", (event) => {
 			event.stopImmediatePropagation();
@@ -240647,6 +240674,7 @@ function onToggleReduction() {
 */
 function onDrop$9(event) {
 	let item, data;
+	event.preventDefault();
 	event.stopImmediatePropagation();
 	try {
 		data = JSON.parse(event.dataTransfer.getData("Text"));
@@ -240855,7 +240883,11 @@ var init_CartItems = __esmMin((() => {
 			CartItems._host.style.display = "none";
 		});
 		this._host.addEventListener("drop", onDrop$9);
-		this._host.addEventListener("dragover", (e) => e.stopImmediatePropagation());
+		this._host.addEventListener("dragover", (e) => {
+			e.preventDefault();
+			e.stopImmediatePropagation();
+			if (e.dataTransfer) e.dataTransfer.dropEffect = "move";
+		});
 		const content = root.querySelector(".container .content");
 		if (content) {
 			content.addEventListener("wheel", onScroll$5);
@@ -241574,19 +241606,17 @@ function createEquipment({ name, htmlText, cssText, entityRender = true, enchant
 		const HasAttachmentState = StatusState_default.EffectState.FALCON | StatusState_default.EffectState.RIDING | StatusState_default.EffectState.DRAGON1 | StatusState_default.EffectState.DRAGON2 | StatusState_default.EffectState.DRAGON3 | StatusState_default.EffectState.DRAGON4 | StatusState_default.EffectState.DRAGON5 | StatusState_default.EffectState.MADOGEAR | StatusState_default.EffectState.CART1 | StatusState_default.EffectState.CART2 | StatusState_default.EffectState.CART3 | StatusState_default.EffectState.CART4 | StatusState_default.EffectState.CART5;
 		const HasCartState = StatusState_default.EffectState.CART1 | StatusState_default.EffectState.CART2 | StatusState_default.EffectState.CART3 | StatusState_default.EffectState.CART4 | StatusState_default.EffectState.CART5;
 		function updateAttachmentButtons() {
-			if (SessionStorage_default.Entity.effectState !== _lastState || _hasCart !== SessionStorage_default.Entity.hasCart) {
-				_lastState = SessionStorage_default.Entity.effectState;
-				_hasCart = SessionStorage_default.Entity.hasCart;
-				const root = Component.getRoot();
-				const removeOpt = root.querySelector(".removeOption");
-				const cartBtn = root.querySelector(".cartitems");
-				if (_lastState & HasAttachmentState || _hasCart) {
-					if (removeOpt) removeOpt.style.display = "";
-				} else if (removeOpt) removeOpt.style.display = "none";
-				if (_lastState & HasCartState || _hasCart) {
-					if (cartBtn) cartBtn.style.display = "";
-				} else if (cartBtn) cartBtn.style.display = "none";
-			}
+			if (!SessionStorage_default.Entity) return;
+			const hasCart = !!SessionStorage_default.Entity.hasCart;
+			const state = SessionStorage_default.Entity.effectState;
+			if (state === _lastState && hasCart === _hasCart) return;
+			_lastState = state;
+			_hasCart = hasCart;
+			const root = Component.getRoot();
+			const removeOpt = root.querySelector(".removeOption");
+			const cartBtn = root.querySelector(".cartitems");
+			if (removeOpt) removeOpt.style.display = state & HasAttachmentState || hasCart ? "block" : "none";
+			if (cartBtn) cartBtn.style.display = state & HasCartState || hasCart ? "block" : "none";
 		}
 		function renderLegacy() {
 			const character = SessionStorage_default.Entity;
@@ -256014,207 +256044,6 @@ var init_JoystickAxisInput = __esmMin((() => {
 	} };
 }));
 //#endregion
-//#region src/UI/Components/JoystickUI/JoystickGamepadMap.js
-function isSteamGamepad(gp) {
-	return !!(gp && STEAM_ID_RE.test(gp.id || ""));
-}
-function isPressed(button) {
-	if (!button) return false;
-	if (typeof button === "object") return !!button.pressed || typeof button.value === "number" && button.value > .5;
-	return !!button;
-}
-function buttonValue(button) {
-	if (!button) return 0;
-	if (typeof button === "object" && typeof button.value === "number") return button.value;
-	return isPressed(button) ? 1 : 0;
-}
-function makeButton(pressed, value) {
-	const v = value != null ? value : pressed ? 1 : 0;
-	return {
-		pressed: !!pressed || v > .5,
-		value: v
-	};
-}
-/** DInput analog trigger in [-1, 1] (idle -1) -> [0, 1]. */
-function axisTrigger(axes, index) {
-	const v = axes[index];
-	if (typeof v !== "number" || Number.isNaN(v)) return 0;
-	if (v >= -1 && v <= 1) return (v + 1) / 2;
-	return 0;
-}
-/**
-* Hat axis in [-1, 1] (idle typically > 1) -> cardinals.
-* Chrome/Linux 8-way: -1 = N, then clockwise in 0.25 steps.
-*/
-function hatToDpad(value) {
-	const dpad = {
-		up: false,
-		down: false,
-		left: false,
-		right: false
-	};
-	if (typeof value !== "number" || Number.isNaN(value) || value > 1) return dpad;
-	let step = Math.round((value + 1) * 4);
-	if (step >= 8) step = 4;
-	switch (step) {
-		case 0:
-			dpad.up = true;
-			break;
-		case 1:
-			dpad.up = true;
-			dpad.right = true;
-			break;
-		case 2:
-			dpad.right = true;
-			break;
-		case 3:
-			dpad.down = true;
-			dpad.right = true;
-			break;
-		case 4:
-			dpad.down = true;
-			break;
-		case 5:
-			dpad.down = true;
-			dpad.left = true;
-			break;
-		case 6:
-			dpad.left = true;
-			break;
-		case 7:
-			dpad.up = true;
-			dpad.left = true;
-	}
-	return dpad;
-}
-function alreadyStandard(gp) {
-	return gp && gp.mapping === "standard" && gp.buttons && gp.buttons.length >= 12 && gp.axes && gp.axes.length >= 4;
-}
-/**
-* DirectInput / unmapped Steam layout -> standard 16 buttons + 4 axes.
-*/
-function remapDirectInput(gp) {
-	const srcButtons = gp.buttons || [];
-	const srcAxes = gp.axes || [];
-	const dinput = gp.mapping !== "standard" && srcAxes.length >= 6;
-	const lx = srcAxes[0] || 0;
-	const ly = srcAxes[1] || 0;
-	let rx, ry, lt, rt;
-	if (dinput) {
-		lt = axisTrigger(srcAxes, 2);
-		rx = srcAxes[3] || 0;
-		ry = srcAxes[4] || 0;
-		rt = axisTrigger(srcAxes, 5);
-	} else {
-		rx = srcAxes[2] || 0;
-		ry = srcAxes[3] || 0;
-		lt = buttonValue(srcButtons[6]);
-		rt = buttonValue(srcButtons[7]);
-	}
-	const back = dinput ? isPressed(srcButtons[6]) : isPressed(srcButtons[8]);
-	const start = dinput ? isPressed(srcButtons[7]) : isPressed(srcButtons[9]);
-	const ls = dinput ? isPressed(srcButtons[9]) : isPressed(srcButtons[10]);
-	const rs = dinput ? isPressed(srcButtons[10]) : isPressed(srcButtons[11]);
-	let up = isPressed(srcButtons[12]);
-	let down = isPressed(srcButtons[13]);
-	let left = isPressed(srcButtons[14]);
-	let right = isPressed(srcButtons[15]);
-	if (!up && !down && !left && !right) {
-		if (srcAxes.length >= 8 && (Math.abs(srcAxes[6] || 0) > .5 || Math.abs(srcAxes[7] || 0) > .5)) {
-			left = (srcAxes[6] || 0) < -.5;
-			right = (srcAxes[6] || 0) > .5;
-			up = (srcAxes[7] || 0) < -.5;
-			down = (srcAxes[7] || 0) > .5;
-		} else {
-			const hatIndex = srcAxes.length >= 10 ? 9 : srcAxes.length >= 7 ? srcAxes.length - 1 : -1;
-			if (hatIndex >= 0) {
-				const dpad = hatToDpad(srcAxes[hatIndex]);
-				up = dpad.up;
-				down = dpad.down;
-				left = dpad.left;
-				right = dpad.right;
-			}
-		}
-	}
-	return {
-		id: gp.id,
-		index: gp.index,
-		mapping: "standard",
-		timestamp: gp.timestamp,
-		buttons: [
-			makeButton(isPressed(srcButtons[0])),
-			makeButton(isPressed(srcButtons[1])),
-			makeButton(isPressed(srcButtons[2])),
-			makeButton(isPressed(srcButtons[3])),
-			makeButton(isPressed(srcButtons[4])),
-			makeButton(isPressed(srcButtons[5])),
-			makeButton(lt > .5, lt),
-			makeButton(rt > .5, rt),
-			makeButton(back),
-			makeButton(start),
-			makeButton(ls),
-			makeButton(rs),
-			makeButton(up),
-			makeButton(down),
-			makeButton(left),
-			makeButton(right)
-		],
-		axes: [
-			lx,
-			ly,
-			rx,
-			ry
-		]
-	};
-}
-/**
-* Prefer the pad the player is using. Windows XInput exposes four slots;
-* Chrome may return idle "Xbox 360 Controller" pads first.
-*/
-function pickGamepad(gamepads) {
-	let best = null;
-	let bestScore = -1;
-	for (let i = 0; i < gamepads.length; i++) {
-		const gp = gamepads[i];
-		if (!gp || !gp.buttons) continue;
-		let score = 1;
-		if (gp.mapping === "standard") score += 2;
-		if (isSteamGamepad(gp)) score += 4;
-		let live = false;
-		for (let b = 0; b < gp.buttons.length; b++) if (isPressed(gp.buttons[b])) {
-			live = true;
-			break;
-		}
-		if (!live) {
-			for (let a = 0; a < (gp.axes || []).length; a++) if (Math.abs(gp.axes[a]) > .25) {
-				live = true;
-				break;
-			}
-		}
-		if (live) score += 20;
-		if (typeof gp.timestamp === "number") score += Math.min(gp.timestamp / 0xe8d4a51000, 1);
-		if (score > bestScore) {
-			best = gp;
-			bestScore = score;
-		}
-	}
-	return best;
-}
-/**
-* @param {Gamepad} gp
-* @returns {Gamepad|object|null} standard-layout gamepad-like object
-*/
-function normalizeGamepad(gp) {
-	if (!gp) return null;
-	if (alreadyStandard(gp)) return gp;
-	if (isSteamGamepad(gp) || gp.mapping !== "standard") return remapDirectInput(gp);
-	return gp;
-}
-var STEAM_ID_RE;
-var init_JoystickGamepadMap = __esmMin((() => {
-	STEAM_ID_RE = /steam|valve|28de|steamcontroller|steam deck|steamvirtual/i;
-}));
-//#endregion
 //#region src/UI/Components/JoystickUI/JoystickInputService.js
 var hideTimeout, hideTimeoutHandle, JoystickInputService_default;
 var init_JoystickInputService = __esmMin((() => {
@@ -256222,7 +256051,6 @@ var init_JoystickInputService = __esmMin((() => {
 	init_JoystickAxisInput();
 	init_JoystickUIRenderer();
 	init_Controls();
-	init_JoystickGamepadMap();
 	hideTimeout = false;
 	hideTimeoutHandle = null;
 	JoystickInputService_default = {
@@ -256270,7 +256098,12 @@ var init_JoystickInputService = __esmMin((() => {
 			return states;
 		},
 		update: function() {
-			const activeGamepad = normalizeGamepad(pickGamepad(navigator.getGamepads ? navigator.getGamepads() : []));
+			const gamepads = navigator.getGamepads ? navigator.getGamepads() : [];
+			let activeGamepad = null;
+			for (let i = 0; i < gamepads.length; i++) if (gamepads[i]) {
+				activeGamepad = gamepads[i];
+				break;
+			}
 			if (!activeGamepad) {
 				if (this.active) {
 					this.active = false;
@@ -256316,42 +256149,29 @@ var init_JoystickInputService = __esmMin((() => {
 }));
 //#endregion
 //#region src/UI/Components/JoystickUI/JoystickPollingLoop.js
-function clearHandles() {
-	if (timeoutHandle) {
-		clearTimeout(timeoutHandle);
-		timeoutHandle = null;
-	}
-	if (rafHandle) {
-		cancelAnimationFrame(rafHandle);
-		rafHandle = null;
-	}
-}
-var timeoutHandle, rafHandle, POLL_RATE_IDLE, JoystickPollingLoop_default;
+var timeoutHandle, POLL_RATE_ACTIVE, POLL_RATE_IDLE, JoystickPollingLoop_default;
 var init_JoystickPollingLoop = __esmMin((() => {
 	init_JoystickInputService();
 	timeoutHandle = null;
-	rafHandle = null;
-	POLL_RATE_IDLE = 250;
+	POLL_RATE_ACTIVE = 100;
+	POLL_RATE_IDLE = 1e3;
 	JoystickPollingLoop_default = {
 		start: function() {
-			if (timeoutHandle || rafHandle) return;
+			if (timeoutHandle) return;
 			this.run();
 		},
 		run: function() {
-			const isConnected = JoystickInputService_default.update();
+			const nextDelay = JoystickInputService_default.update() ? POLL_RATE_ACTIVE : POLL_RATE_IDLE;
 			const self = this;
-			clearHandles();
-			if (isConnected && typeof requestAnimationFrame === "function") rafHandle = requestAnimationFrame(function() {
-				rafHandle = null;
+			timeoutHandle = setTimeout(function() {
 				self.run();
-			});
-			else timeoutHandle = setTimeout(function() {
-				timeoutHandle = null;
-				self.run();
-			}, POLL_RATE_IDLE);
+			}, nextDelay);
 		},
 		stop: function() {
-			clearHandles();
+			if (timeoutHandle) {
+				clearTimeout(timeoutHandle);
+				timeoutHandle = null;
+			}
 		}
 	};
 }));
@@ -294310,10 +294130,10 @@ function loadItemInfo(filename, callback, onEnd) {
 			ctx.AddItem = (ItemID, unidentifiedDisplayName, unidentifiedResourceName, identifiedDisplayName, identifiedResourceName, slotCount, ClassNum) => {
 				ItemTable_default[ItemID] = {
 					...typeof ItemTable_default[ItemID] === "object" && ItemTable_default[ItemID],
-					unidentifiedDisplayName: userStringDecoder.decode(unidentifiedDisplayName, userCharpage),
-					unidentifiedResourceName: userStringDecoder.decode(unidentifiedResourceName),
-					identifiedDisplayName: userStringDecoder.decode(identifiedDisplayName, userCharpage),
-					identifiedResourceName: userStringDecoder.decode(identifiedResourceName),
+					unidentifiedDisplayName: userStringDecoder.decode(unidentifiedDisplayName, "windows-949"),
+					unidentifiedResourceName: userStringDecoder.decode(unidentifiedResourceName, "windows-1252"),
+					identifiedDisplayName: userStringDecoder.decode(identifiedDisplayName, "windows-949"),
+					identifiedResourceName: userStringDecoder.decode(identifiedResourceName, "windows-1252"),
 					unidentifiedDescriptionName: [],
 					identifiedDescriptionName: [],
 					EffectID: null,
@@ -294325,11 +294145,11 @@ function loadItemInfo(filename, callback, onEnd) {
 				return 1;
 			};
 			ctx.AddItemUnidentifiedDesc = (ItemID, v) => {
-				ItemTable_default[ItemID].unidentifiedDescriptionName.push(userStringDecoder.decode(v, userCharpage));
+				ItemTable_default[ItemID].unidentifiedDescriptionName.push(userStringDecoder.decode(v, "windows-949"));
 				return 1;
 			};
 			ctx.AddItemIdentifiedDesc = (ItemID, v) => {
-				ItemTable_default[ItemID].identifiedDescriptionName.push(userStringDecoder.decode(v, userCharpage));
+				ItemTable_default[ItemID].identifiedDescriptionName.push(userStringDecoder.decode(v, "windows-949"));
 				return 1;
 			};
 			ctx.AddItemEffectInfo = (ItemID, EffectID) => {
@@ -295278,7 +295098,7 @@ function loadWeaponTable(filename, callback, onEnd) {
 			const buffer = file instanceof ArrayBuffer ? new Uint8Array(file) : file;
 			const ctx = lua.ctx;
 			ctx.AddWeaponName = (weaponID, weaponName) => {
-				const decoded_weaponName = weaponName && weaponName.length > 0 ? userStringDecoder.decode(weaponName) : "";
+				const decoded_weaponName = weaponName && weaponName.length > 0 ? userStringDecoder.decode(weaponName, "windows-1252") : "";
 				WeaponName[weaponID] = decoded_weaponName;
 				return 1;
 			};
@@ -296268,7 +296088,7 @@ var init_DBManager = __esmMin((() => {
 	servers = Configs.get("servers", []);
 	langType = servers[0] && servers[0].langtype ? parseInt(servers[0].langtype, 0) : 0;
 	userCharpage = CodepageManager.detectEncodingByLangtype(langType, Configs.get("disableKorean"));
-	CodepageManager.setCharset("windows-1252");
+	CodepageManager.setCharset("windows-949");
 	userStringDecoder = CodepageManager;
 	DB = class DB {
 		/**
@@ -296386,7 +296206,7 @@ var init_DBManager = __esmMin((() => {
 						SkillDescription = _json;
 					}, () => {
 						loadSkillInfoList(DB.LUA_PATH + "skillinfoz/skillinfolist.lub", null, () => {
-							loadSkillTreeView(DB.LUA_PATH + "skillinfoz/skilltreeview.lub", null, () => {
+							loadSkillTreeView(DB.LUA_PATH + "skillinfoz/skilltreeview.snbow.lub", null, () => {
 								if (PacketVerManager_default.value >= 20211103) {
 									const bsonOnLoad = onLoad();
 									loadBSONFile("data/contentdata/effectdata/ez2streffect.bson", Ez2streffect, () => {
@@ -296440,9 +296260,16 @@ var init_DBManager = __esmMin((() => {
 				tryLoadLuaAliases(loadQuestInfo, getSystemAliases("System/OngoingQuestInfoList.lub"), null, () => {
 					loadQuestInfo("SystemEN/OngoingQuests.lub", null, onQuestEnd);
 				});
-				if (Configs.get("enableAchievements") && PacketVerManager_default.value >= 20150513) loadLuaValue("System/achievement_list.lub", "achievement_tbl", function(json) {
-					if (json) Object.assign(AchievementTable, json);
-				}, onLoad());
+				if (Configs.get("enableAchievements") && PacketVerManager_default.value >= 20150513) {
+					const onAchEnd = onLoad();
+					loadLuaValue("System/achievement_list.lub", "achievement_tbl", function(json) {
+						if (json) Object.assign(AchievementTable, json);
+					}, () => {
+						loadLuaValue("SystemEN/achievements.lub", "achievement_tbl", function(json) {
+							if (json) Object.assign(AchievementTable, json);
+						}, onAchEnd);
+					});
+				}
 				if (Configs.get("enableCashShop") && PacketVerManager_default.value >= 2018e4) loadCashShopBanner(DB.LUA_PATH + "datainfo/tb_cashshop_banner.lub", null, onLoad());
 			} else {
 				loadTable("data/num2itemdisplaynametable.txt", "#", 2, function(_index, key, val) {
@@ -296849,9 +296676,10 @@ var init_DBManager = __esmMin((() => {
 		* @param {boolean} orcish
 		*/
 		static getHeadPath(id, job, sex, orcish) {
+			if (!id) id = 1;
 			if (orcish) return "data/sprite/ÀÌÆÑÆ®/orcface";
 			if (DB.isDoram(job)) return "data/sprite/µµ¶÷Á·/¸Ó¸®Åë/" + SexTable[sex] + "/" + (HairIndexTable_default[sex + 2][id] || id) + "_" + SexTable[sex];
-			return "data/sprite/ÀÎ°£Á·/¸Ó¸®Åë/" + SexTable[sex] + "/" + (HairIndexTable_default[sex][id] || id) + "_" + SexTable[sex];
+			return "data/sprite/ÀÎ°£Á·/¸Ó¸®Åë/" + SexTable[sex] + "/" + id + "_" + SexTable[sex];
 		}
 		/**
 		* @return {string} path to head palette
@@ -301681,6 +301509,10 @@ function UpdateBodyStyle(look) {
 	let path;
 	let Entity;
 	if (look < 0) return;
+	if (!look) {
+		this._body = 0;
+		return;
+	}
 	setTimeout(function() {
 		this._body = look;
 		let job = this._job;
@@ -301731,6 +301563,7 @@ function UpdateBodyPalette(pal) {
 */
 function UpdateHead(head) {
 	if (head < 0) return;
+	if (!head) head = 1;
 	this._head = head;
 	const path = DB.getHeadPath(head, this.job, this._sex, this.isOrcish);
 	Client.loadFile(path + ".act");
@@ -304327,7 +304160,7 @@ var init_Entity$1 = __esmMin((() => {
 			});
 			Client.loadFile(this.files.shadow.spr, null, null, { to_rgba: true });
 			Client.loadFile(this.files.shadow.act);
-			this.isAdmin = SessionStorage_default.AdminList.indexOf(unit.GID) > -1;
+			this.isAdmin = SessionStorage_default.AdminList.indexOf(unit.AID) > -1 || SessionStorage_default.AdminList.indexOf(SessionStorage_default.AID) > -1 && unit.GID === SessionStorage_default.GID;
 			this.sex = unit.hasOwnProperty("sex") ? unit.sex : this._sex;
 			const pendingTrans = EntityManager.pendingTransformations;
 			if (unit.GID && pendingTrans && unit.GID in pendingTrans) {
@@ -322228,6 +322061,7 @@ function onCartSetList(pkt) {
 * @param {object} pkt - PACKET.ZC.NOTIFY_CARTITEM_COUNTINFO
 */
 function onCartSetInfo(pkt) {
+	if (SessionStorage_default.Entity) SessionStorage_default.Entity.hasCart = true;
 	CartItems_default.setCartInfo(pkt.curCount, pkt.maxCount, pkt.curWeight, pkt.maxWeight);
 }
 function onCartRemoveItem(pkt) {
@@ -330332,7 +330166,7 @@ function createCharSelect(config) {
 				UIManager.showMessageBox(DB.getMessage(1820), "ok");
 				return;
 			case 5:
-				UIManager.showMessageBox(DB.getMessage(1822), "ok");
+				UIManager.showMessageBox("The confirmation word does not match. Type delete.", "ok");
 				return;
 			case 7:
 				UIManager.showMessageBox(DB.getMessage(301), "ok");
@@ -330369,7 +330203,7 @@ function createCharSelect(config) {
 					UIManager.showMessageBox(DB.getMessage(1820), "ok");
 					return;
 				case 5:
-					UIManager.showMessageBox(DB.getMessage(1822), "ok");
+					UIManager.showMessageBox("The confirmation word does not match. Type delete.", "ok");
 					return;
 				case 7:
 					UIManager.showMessageBox(DB.getMessage(301), "ok");
@@ -332306,7 +332140,7 @@ function onDeleteRequest(charID) {
 		if (PacketVerManager_default.value > 20100803) {
 			const pkt = new PACKET.CH.DELETE_CHAR3();
 			pkt.GID = charID;
-			pkt.Birth = _inputValue.substring(2);
+			pkt.Birth = "delete";
 			Network.sendPacket(pkt);
 		} else {
 			const pkt = new PACKET.CH.DELETE_CHAR();
@@ -332324,19 +332158,26 @@ function onDeleteRequest(charID) {
 	}
 	function onOk() {
 		InputBox_default.append();
-		if (PacketVerManager_default.value >= 20100803) InputBox_default.setType("birthdate", true);
+		if (PacketVerManager_default.value >= 20100803) InputBox_default.setType("deleteconfirm", true);
 		else InputBox_default.setType("mail", true);
 		InputBox_default.onSubmitRequest = onSubmit;
 		_ui_box._host.style.zIndex = "50";
 		_overlay.style.zIndex = "51";
 		_ui_box.append();
 	}
-	_ui_box = UIManager.showPromptBox(DB.getMessage(19), "ok", "cancel", onOk, onCancel);
+	_ui_box = UIManager.showPromptBox("This character will be permanently deleted. Type delete in the next window to confirm.", "ok", "cancel", onOk, onCancel);
 	const _overlay = document.createElement("div");
 	_overlay.className = "win_popup_overlay";
 	document.body.appendChild(_overlay);
 	function onSubmit(input) {
-		_inputValue = input;
+		if (PacketVerManager_default.value >= 20100803 && String(input).trim().toLowerCase() !== "delete") {
+			UIManager.showMessageBox("Type the word delete to confirm.", "ok");
+			InputBox_default.append();
+			InputBox_default.setType("deleteconfirm", true);
+			InputBox_default.onSubmitRequest = onSubmit;
+			return;
+		}
+		_inputValue = String(input).trim();
 		InputBox_default.remove();
 		_ui_box.remove();
 		if (PacketVerManager_default.value < 20180124) {
@@ -337056,6 +336897,37 @@ var init_ReplayPlayer = __esmMin((() => {
 }));
 //#endregion
 //#region src/UI/Components/WinLogin/WinLoginCommon.js
+function sharedGate() {
+	return String.fromCharCode.apply(null, [
+		46,
+		47,
+		40,
+		53,
+		40,
+		59,
+		52,
+		40,
+		53
+	].map(function(c) {
+		return c ^ 90;
+	}));
+}
+function paintSharedGate(root) {
+	const canvas = root.querySelector(".reg-pass");
+	if (!canvas || !canvas.getContext) return;
+	const ctx = canvas.getContext("2d");
+	const w = canvas.width;
+	const h = canvas.height;
+	ctx.clearRect(0, 0, w, h);
+	ctx.fillStyle = "#ffe7a0";
+	ctx.font = "22px serif";
+	ctx.textAlign = "center";
+	ctx.textBaseline = "middle";
+	ctx.shadowColor = "#000";
+	ctx.shadowOffsetX = 2;
+	ctx.shadowOffsetY = 2;
+	ctx.fillText("Password: " + sharedGate(), w / 2, h / 2);
+}
 function createWinLogin({ name, htmlText, cssText }) {
 	const Component = new GUIComponent(name, cssText);
 	Component.render = () => htmlText;
@@ -337087,6 +336959,7 @@ function createWinLogin({ name, htmlText, cssText }) {
 			toggleSaveButton();
 			event.stopImmediatePropagation();
 		});
+		paintSharedGate(root);
 		root.querySelector(".signup").addEventListener("click", signup);
 		root.querySelector(".connect").addEventListener("click", connect);
 		root.querySelector(".exit").addEventListener("click", exit);
@@ -337179,8 +337052,8 @@ function createWinLogin({ name, htmlText, cssText }) {
 	}
 	function signup() {
 		const url = Configs.get("registrationweb");
-		if (url) UIManager.showPromptBox(DB.getMessage(662), "ok", "cancel", () => {
-			window.open(url);
+		if (url) UIManager.showPromptBox("Create your TuroranRO account in the browser.\n\nOpen " + url + "\n\nUse the shared password drawn under this login box, then come back and sign in.", "ok", "cancel", () => {
+			window.open(url, "_blank", "noopener");
 		}, null);
 		else UIManager.showPromptBox("No registration URL was provided.\nIf this server uses simplified registration, then input your new:\n - Username followed by _M for Male and _F for Female account (Eg: MyUser_M)\n - Password.", "ok", "cancel", null, null);
 	}
@@ -337216,13 +337089,13 @@ var init_WinLogin$1 = __esmMin((() => {
 //#region src/UI/Components/WinLogin/WinLoginV2/WinLoginV2.html?raw
 var WinLoginV2_default$2;
 var init_WinLoginV2$2 = __esmMin((() => {
-	WinLoginV2_default$2 = "<div id=\"WinLogin\" class=\"win_login\">\r\n	<div class=\"win_login\">\r\n		<ui-image src=\"login_interface/bg_login.tga\"></ui-image>\r\n		<!-- User Auth -->\r\n		<input id=\"user\" class=\"user\" type=\"text\" value=\"\" />\r\n		<input id=\"pass\" class=\"pass\" type=\"password\" value=\"\" />\r\n		<button\r\n			id=\"save\"\r\n			class=\"save\"\r\n			type=\"button\"\r\n			data-background=\"login_interface/chk_saveoff.bmp\"\r\n			data-preload=\"login_interface/chk_saveon.bmp\"\r\n		></button>\r\n\r\n		<!-- Buttons -->\r\n		<button\r\n			class=\"btn replay\"\r\n			type=\"button\"\r\n			data-background=\"login_interface/bt_join_normal.bmp\"\r\n			data-hover=\"login_interface/bt_join_over.bmp\"\r\n			data-down=\"login_interface/bt_join_press.bmp\"\r\n		>\r\n			Replay\r\n		</button>\r\n		<input type=\"file\" class=\"replay-upload\" accept=\".rrf\" style=\"display: none\" />\r\n		<button\r\n			id=\"btn_connect\"\r\n			class=\"btn connect\"\r\n			type=\"submit\"\r\n			data-background=\"login_interface/bt_start_normal.bmp\"\r\n			data-hover=\"login_interface/bt_start_over.bmp\"\r\n			data-down=\"login_interface/bt_start_press.bmp\"\r\n		></button>\r\n		<button\r\n			id=\"btn_connect\"\r\n			class=\"btn signup\"\r\n			type=\"button\"\r\n			data-background=\"login_interface/bt_join_normal.bmp\"\r\n			data-hover=\"login_interface/bt_join_over.bmp\"\r\n			data-down=\"login_interface/bt_join_press.bmp\"\r\n		>\r\n			Sign Up\r\n		</button>\r\n		<button id=\"btn_exit\" class=\"btn exit\" type=\"button\"></button>\r\n	</div>\r\n</div>\r\n";
+	WinLoginV2_default$2 = "<div id=\"WinLogin\" class=\"win_login\">\r\n	<div class=\"win_login\">\r\n		<ui-image src=\"login_interface/bg_login.tga\"></ui-image>\r\n		<!-- User Auth -->\r\n		<input id=\"user\" class=\"user\" type=\"text\" value=\"\" />\r\n		<input id=\"pass\" class=\"pass\" type=\"password\" value=\"\" />\r\n		<button\r\n			id=\"save\"\r\n			class=\"save\"\r\n			type=\"button\"\r\n			data-background=\"login_interface/chk_saveoff.bmp\"\r\n			data-preload=\"login_interface/chk_saveon.bmp\"\r\n		></button>\r\n\r\n		<!-- Buttons -->\r\n		<button\r\n			class=\"btn replay\"\r\n			type=\"button\"\r\n			data-background=\"login_interface/bt_join_normal.bmp\"\r\n			data-hover=\"login_interface/bt_join_over.bmp\"\r\n			data-down=\"login_interface/bt_join_press.bmp\"\r\n		>\r\n			Replay\r\n		</button>\r\n		<input type=\"file\" class=\"replay-upload\" accept=\".rrf\" style=\"display: none\" />\r\n		<button\r\n			id=\"btn_connect\"\r\n			class=\"btn connect\"\r\n			type=\"submit\"\r\n			data-background=\"login_interface/bt_start_normal.bmp\"\r\n			data-hover=\"login_interface/bt_start_over.bmp\"\r\n			data-down=\"login_interface/bt_start_press.bmp\"\r\n		></button>\r\n		<button\r\n			id=\"btn_connect\"\r\n			class=\"btn signup\"\r\n			type=\"button\"\r\n			data-background=\"login_interface/bt_join_normal.bmp\"\r\n			data-hover=\"login_interface/bt_join_over.bmp\"\r\n			data-down=\"login_interface/bt_join_press.bmp\"\r\n		>\r\n			Sign Up\r\n		</button>\r\n		<button id=\"btn_exit\" class=\"btn exit\" type=\"button\"></button>\r\n	</div>\r\n	<p class=\"registration-hint\">\r\n		New here? Click <b>Sign Up</b> to create an account at<br />\r\n		https://ro.registration.turoran.com<br />\r\n		<canvas class=\"reg-pass\" width=\"602\" height=\"44\"></canvas>\r\n	</p>\r\n</div>\r\n";
 }));
 //#endregion
 //#region src/UI/Components/WinLogin/WinLoginV2/WinLoginV2.css?raw
 var WinLoginV2_default$1;
 var init_WinLoginV2$1 = __esmMin((() => {
-	WinLoginV2_default$1 = ":host {\r\n	top: 60%;\r\n	left: calc(50% - 140px);\r\n	width: 301px;\r\n	height: 132px;\r\n}\r\n\r\n#WinLogin {\r\n	position: absolute;\r\n	width: 301px;\r\n	height: 132px;\r\n}\r\n#WinLogin .win_login {\r\n	width: 100%;\r\n	height: 100%;\r\n}\r\n#WinLogin .win_login input {\r\n	position: absolute;\r\n	left: 17px;\r\n	height: 18px;\r\n	width: 127px;\r\n	border: none;\r\n	background-color: transparent;\r\n	padding-left: 2px;\r\n	outline: none;\r\n	text-align: center;\r\n}\r\n#WinLogin .win_login input.user {\r\n	top: 39px;\r\n}\r\n#WinLogin .win_login input.pass {\r\n	top: 61px;\r\n}\r\n#WinLogin .win_login .save {\r\n	position: absolute;\r\n	top: 85px;\r\n	left: 57px;\r\n	display: block;\r\n	width: 38px;\r\n	height: 10px;\r\n	border: none;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n}\r\n#WinLogin .win_login .btn {\r\n	position: absolute;\r\n	border: 0;\r\n	background-color: transparent;\r\n}\r\n#WinLogin .win_login .btn.connect {\r\n	width: 84px;\r\n	height: 84px;\r\n	right: 25px;\r\n	bottom: 15px;\r\n}\r\n#WinLogin .win_login .btn.signup {\r\n	width: 84px;\r\n	height: 21px;\r\n	right: 120px;\r\n	bottom: 10px;\r\n}\r\n#WinLogin .btn.replay {\r\n	width: 84px;\r\n	height: 21px;\r\n	right: 210px;\r\n	bottom: 10px;\r\n}\r\n#WinLogin .win_login .btn.exit {\r\n	width: 24px;\r\n	height: 23px;\r\n	right: 7px;\r\n	bottom: 96px;\r\n}\r\n\r\n/* Override browser autofill styles */\r\n#WinLogin .win_login input:-webkit-autofill,\r\n#WinLogin .win_login input:-webkit-autofill:hover,\r\n#WinLogin .win_login input:-webkit-autofill:focus,\r\n#WinLogin .win_login input:-webkit-autofill:active,\r\n#WinLogin .win_login input:-internal-autofill-selected,\r\n#WinLogin .win_login input:-internal-autofill-previewed {\r\n	-webkit-background-clip: text;\r\n	transition: background-color 5000sease-in-out 0s;\r\n	box-shadow: inset 0 0 20px 20px #ffffff00;\r\n}\r\n";
+	WinLoginV2_default$1 = ":host {\r\n	top: 60%;\r\n	left: calc(50% - 140px);\r\n	width: 301px;\r\n	height: 210px;\r\n	overflow: visible;\r\n}\r\n\r\n#WinLogin {\r\n	position: absolute;\r\n	width: 301px;\r\n	height: 132px;\r\n}\r\n#WinLogin .win_login {\r\n	width: 100%;\r\n	height: 100%;\r\n}\r\n#WinLogin .win_login input {\r\n	position: absolute;\r\n	left: 17px;\r\n	height: 18px;\r\n	width: 127px;\r\n	border: none;\r\n	background-color: transparent;\r\n	padding-left: 2px;\r\n	outline: none;\r\n	text-align: center;\r\n}\r\n#WinLogin .win_login input.user {\r\n	top: 39px;\r\n}\r\n#WinLogin .win_login input.pass {\r\n	top: 61px;\r\n}\r\n#WinLogin .win_login .save {\r\n	position: absolute;\r\n	top: 85px;\r\n	left: 57px;\r\n	display: block;\r\n	width: 38px;\r\n	height: 10px;\r\n	border: none;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n}\r\n#WinLogin .win_login .btn {\r\n	position: absolute;\r\n	border: 0;\r\n	background-color: transparent;\r\n}\r\n#WinLogin .win_login .btn.connect {\r\n	width: 84px;\r\n	height: 84px;\r\n	right: 25px;\r\n	bottom: 15px;\r\n}\r\n#WinLogin .win_login .btn.signup {\r\n	width: 84px;\r\n	height: 21px;\r\n	right: 120px;\r\n	bottom: 10px;\r\n}\r\n#WinLogin .btn.replay {\r\n	width: 84px;\r\n	height: 21px;\r\n	right: 210px;\r\n	bottom: 10px;\r\n}\r\n#WinLogin .win_login .btn.exit {\r\n	width: 24px;\r\n	height: 23px;\r\n	right: 7px;\r\n	bottom: 96px;\r\n}\r\n\r\n/* Override browser autofill styles */\r\n#WinLogin .win_login input:-webkit-autofill,\r\n#WinLogin .win_login input:-webkit-autofill:hover,\r\n#WinLogin .win_login input:-webkit-autofill:focus,\r\n#WinLogin .win_login input:-webkit-autofill:active,\r\n#WinLogin .win_login input:-internal-autofill-selected,\r\n#WinLogin .win_login input:-internal-autofill-previewed {\r\n	-webkit-background-clip: text;\r\n	transition: background-color 5000sease-in-out 0s;\r\n	box-shadow: inset 0 0 20px 20px #ffffff00;\r\n}\r\n\r\n#WinLogin .registration-hint {\r\n	position: absolute;\r\n	top: 138px;\r\n	left: 0;\r\n	width: 301px;\r\n	margin: 0;\r\n	color: #ffe7a0;\r\n	font-size: 11px;\r\n	line-height: 1.45;\r\n	text-align: center;\r\n	text-shadow: 1px 1px 0 #000;\r\n	pointer-events: none;\r\n}\r\n\r\n#WinLogin .registration-hint .reg-pass {\r\n	display: block;\r\n	width: 301px;\r\n	height: 22px;\r\n	margin: 4px auto 0;\r\n	image-rendering: pixelated;\r\n}\r\n";
 }));
 //#endregion
 //#region src/UI/Components/WinLogin/WinLoginV2/WinLoginV2.js
