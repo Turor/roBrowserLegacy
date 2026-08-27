@@ -533,7 +533,13 @@ function UpdateBodyStyle(look) {
 		return;
 	}
 
-	setTimeout(
+	// look 0 is default job clothes; reloading via costume can drop the body.
+	if (!look) {
+		this._body = 0;
+		return;
+	}
+
+setTimeout(
 		function () {
 			this._body = look;
 			let job = this._job;
@@ -616,6 +622,11 @@ function UpdateBodyPalette(pal) {
 function UpdateHead(head) {
 	if (head < 0) {
 		return;
+	}
+
+	// Style 0 is not a sprite; sex/job init was requesting 0_<sex>.spr
+	if (!head) {
+		head = 1;
 	}
 
 	this._head = head;

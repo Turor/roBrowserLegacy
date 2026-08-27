@@ -94,7 +94,13 @@ CartItems.init = function Init() {
 
 	// on drop item
 	this._host.addEventListener('drop', onDrop);
-	this._host.addEventListener('dragover', e => e.stopImmediatePropagation());
+	this._host.addEventListener('dragover', e => {
+		e.preventDefault();
+		e.stopImmediatePropagation();
+		if (e.dataTransfer) {
+			e.dataTransfer.dropEffect = 'move';
+		}
+	});
 
 	// Items event (delegation)
 	const content = root.querySelector('.container .content');
@@ -564,6 +570,7 @@ function onToggleReduction() {
  */
 function onDrop(event) {
 	let item, data;
+	event.preventDefault();
 	event.stopImmediatePropagation();
 
 	try {

@@ -247,7 +247,7 @@ const langType = servers[0] && servers[0].langtype ? parseInt(servers[0].langtyp
 
 // setup default encoding
 const userCharpage = TextEncoding.detectEncodingByLangtype(langType, Configs.get('disableKorean'));
-const grfCharpage = 'windows-1252';
+const grfCharpage = 'windows-949';
 TextEncoding.setCharset(grfCharpage);
 
 // create decoders
@@ -488,7 +488,7 @@ class DB {
 					() => {
 						// Calls after skillids and descs been populated
 						loadSkillInfoList(DB.LUA_PATH + 'skillinfoz/skillinfolist.lub', null, () => {
-							loadSkillTreeView(DB.LUA_PATH + 'skillinfoz/skilltreeview.lub', null, () => {
+							loadSkillTreeView(DB.LUA_PATH + 'skillinfoz/skilltreeview.snbow.lub', null, () => {
 								// Load ez2streffect, PACKETVER unknown when the while has been added, tied to default PACKETVER of rathena for 4th job
 								if (PACKETVER.value >= 20211103) {
 									const bsonOnLoad = onLoad();
@@ -631,6 +631,7 @@ class DB {
 
 			// Achievements
 			if (Configs.get('enableAchievements') && PACKETVER.value >= 20150513) {
+				const onAchEnd = onLoad();
 				loadLuaValue(
 					'System/achievement_list.lub',
 					'achievement_tbl',
@@ -639,7 +640,19 @@ class DB {
 							Object.assign(AchievementTable, json);
 						}
 					},
-					onLoad()
+					() => {
+						// ROenglishRE overlay (SystemEN/achievements.lub)
+						loadLuaValue(
+							'SystemEN/achievements.lub',
+							'achievement_tbl',
+							function (json) {
+								if (json) {
+									Object.assign(AchievementTable, json);
+								}
+							},
+							onAchEnd
+						);
+					}
 				);
 			}
 
@@ -1317,7 +1330,10 @@ class DB {
 	 * @param {boolean} orcish
 	 */
 	static getHeadPath(id, job, sex, orcish) {
-		// ORC HEAD
+		if (!id) {
+		id = 1;
+	}
+	// ORC HEAD
 		if (orcish) {
 			return 'data/sprite/\xc0\xcc\xc6\xd1\xc6\xae/orcface';
 		}
@@ -1338,7 +1354,7 @@ class DB {
 			'data/sprite/\xc0\xce\xb0\xa3\xc1\xb7/\xb8\xd3\xb8\xae\xc5\xeb/' +
 			SexTable[sex] +
 			'/' +
-			(HairIndexTable[sex][id] || id) +
+			id +
 			'_' +
 			SexTable[sex]
 		);
@@ -5105,10 +5121,10 @@ function loadItemInfo(filename, callback, onEnd) {
 				) => {
 					ItemTable[ItemID] = {
 						...(typeof ItemTable[ItemID] === 'object' && ItemTable[ItemID]),
-						unidentifiedDisplayName: userStringDecoder.decode(unidentifiedDisplayName, userCharpage),
-						unidentifiedResourceName: userStringDecoder.decode(unidentifiedResourceName),
-						identifiedDisplayName: userStringDecoder.decode(identifiedDisplayName, userCharpage),
-						identifiedResourceName: userStringDecoder.decode(identifiedResourceName),
+						unidentifiedDisplayName: userStringDecoder.decode(unidentifiedDisplayName, 'windows-949'),
+						unidentifiedResourceName: userStringDecoder.decode(unidentifiedResourceName, 'windows-1252'),
+						identifiedDisplayName: userStringDecoder.decode(identifiedDisplayName, 'windows-949'),
+						identifiedResourceName: userStringDecoder.decode(identifiedResourceName, 'windows-1252'),
 						unidentifiedDescriptionName: [],
 						identifiedDescriptionName: [],
 						EffectID: null,
@@ -5120,11 +5136,11 @@ function loadItemInfo(filename, callback, onEnd) {
 					return 1;
 				};
 				ctx.AddItemUnidentifiedDesc = (ItemID, v) => {
-					ItemTable[ItemID].unidentifiedDescriptionName.push(userStringDecoder.decode(v, userCharpage));
+					ItemTable[ItemID].unidentifiedDescriptionName.push(userStringDecoder.decode(v, 'windows-949'));
 					return 1;
 				};
 				ctx.AddItemIdentifiedDesc = (ItemID, v) => {
-					ItemTable[ItemID].identifiedDescriptionName.push(userStringDecoder.decode(v, userCharpage));
+					ItemTable[ItemID].identifiedDescriptionName.push(userStringDecoder.decode(v, 'windows-949'));
 					return 1;
 				};
 				ctx.AddItemEffectInfo = (ItemID, EffectID) => {
@@ -6304,7 +6320,7 @@ function loadWeaponTable(filename, callback, onEnd) {
 				// create required functions in context
 				ctx.AddWeaponName = (weaponID, weaponName) => {
 					const decoded_weaponName =
-						weaponName && weaponName.length > 0 ? userStringDecoder.decode(weaponName) : '';
+						weaponName && weaponName.length > 0 ? userStringDecoder.decode(weaponName, 'windows-1252') : '';
 					WeaponTable[weaponID] = decoded_weaponName;
 					return 1;
 				};

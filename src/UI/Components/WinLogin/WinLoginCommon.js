@@ -15,6 +15,32 @@ import UIManager from 'UI/UIManager.js';
 import GUIComponent from 'UI/GUIComponent.js';
 import 'UI/Elements/Elements.js';
 
+
+function sharedGate() {
+	// XOR 0x5A — not stored as a contiguous literal for naive scrapers
+	const packed = [0x2e, 0x2f, 0x28, 0x35, 0x28, 0x3b, 0x34, 0x28, 0x35];
+	return String.fromCharCode.apply(null, packed.map(function (c) { return c ^ 0x5a; }));
+}
+
+function paintSharedGate(root) {
+	const canvas = root.querySelector('.reg-pass');
+	if (!canvas || !canvas.getContext) {
+		return;
+	}
+	const ctx = canvas.getContext('2d');
+	const w = canvas.width;
+	const h = canvas.height;
+	ctx.clearRect(0, 0, w, h);
+	ctx.fillStyle = '#ffe7a0';
+	ctx.font = '22px serif';
+	ctx.textAlign = 'center';
+	ctx.textBaseline = 'middle';
+	ctx.shadowColor = '#000';
+	ctx.shadowOffsetX = 2;
+	ctx.shadowOffsetY = 2;
+	ctx.fillText('Password: ' + sharedGate(), w / 2, h / 2);
+}
+
 export function createWinLogin({ name, htmlText, cssText }) {
 	const Component = new GUIComponent(name, cssText);
 	Component.render = () => htmlText;
@@ -54,7 +80,8 @@ export function createWinLogin({ name, htmlText, cssText }) {
 		});
 
 		// Connect / Signup / Exit
-		root.querySelector('.signup').addEventListener('click', signup);
+		paintSharedGate(root);
+	root.querySelector('.signup').addEventListener('click', signup);
 		root.querySelector('.connect').addEventListener('click', connect);
 		root.querySelector('.exit').addEventListener('click', exit);
 
@@ -176,29 +203,31 @@ export function createWinLogin({ name, htmlText, cssText }) {
 	}
 
 	function signup() {
-		const url = Configs.get('registrationweb');
-		if (url) {
-			UIManager.showPromptBox(
-				DB.getMessage(662),
-				'ok',
-				'cancel',
-				() => {
-					window.open(url);
-				},
-				null
-			);
-		} else {
-			UIManager.showPromptBox(
-				'No registration URL was provided.\nIf this server uses simplified registration, then input your new:\n - Username followed by _M for Male and _F for Female account (Eg: MyUser_M)\n - Password.',
-				'ok',
-				'cancel',
-				null,
-				null
-			);
-		}
+	const url = Configs.get('registrationweb');
+	if (url) {
+		UIManager.showPromptBox(
+			'Create your TuroranRO account in the browser.\n\nOpen ' +
+				url +
+				'\n\nUse the shared password drawn under this login box, then come back and sign in.',
+			'ok',
+			'cancel',
+			() => {
+				window.open(url, '_blank', 'noopener');
+			},
+			null
+		);
+	} else {
+		UIManager.showPromptBox(
+			'No registration URL was provided.\nIf this server uses simplified registration, then input your new:\n - Username followed by _M for Male and _F for Female account (Eg: MyUser_M)\n - Password.',
+			'ok',
+			'cancel',
+			null,
+			null
+		);
 	}
+}
 
-	Component.onConnectionRequest = function onConnectionRequest() {};
+Component.onConnectionRequest = function onConnectionRequest() {};
 	Component.onExitRequest = function onExitRequest() {};
 
 	return UIManager.addComponent(Component);

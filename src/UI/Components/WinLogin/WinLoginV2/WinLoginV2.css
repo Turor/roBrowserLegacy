@@ -2,7 +2,8 @@
 	top: 60%;
 	left: calc(50% - 140px);
 	width: 301px;
-	height: 132px;
+	height: 210px;
+	overflow: visible;
 }
 
 #WinLogin {
@@ -82,4 +83,26 @@
 	-webkit-background-clip: text;
 	transition: background-color 5000sease-in-out 0s;
 	box-shadow: inset 0 0 20px 20px #ffffff00;
+}
+
+#WinLogin .registration-hint {
+	position: absolute;
+	top: 138px;
+	left: 0;
+	width: 301px;
+	margin: 0;
+	color: #ffe7a0;
+	font-size: 11px;
+	line-height: 1.45;
+	text-align: center;
+	text-shadow: 1px 1px 0 #000;
+	pointer-events: none;
+}
+
+#WinLogin .registration-hint .reg-pass {
+	display: block;
+	width: 301px;
+	height: 22px;
+	margin: 4px auto 0;
+	image-rendering: pixelated;
 }

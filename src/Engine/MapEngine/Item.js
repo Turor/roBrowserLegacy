@@ -411,6 +411,9 @@ function onCartSetList(pkt) {
  * @param {object} pkt - PACKET.ZC.NOTIFY_CARTITEM_COUNTINFO
  */
 function onCartSetInfo(pkt) {
+	if (Session.Entity) {
+		Session.Entity.hasCart = true;
+	}
 	CartItems.setCartInfo(pkt.curCount, pkt.maxCount, pkt.curWeight, pkt.maxWeight);
 }
 

@@ -179,8 +179,8 @@ Refine.render = () => htmlText;
 Refine.init = function init() {
 	const root = _root();
 
-	this._host.style.top = '200px';
-	this._host.style.left = '300px';
+	this._host.style.top = '80px';
+	this._host.style.left = '80px';
 
 	const titlebarBase = root.querySelector('.titlebar .base');
 	if (titlebarBase) {
@@ -423,6 +423,8 @@ function controlPhase(phase, shouldLoop, interval, callback) {
 			const container = _root().querySelector('.image-container');
 			if (container) {
 				container.style.backgroundImage = `url(${data})`;
+				container.style.backgroundRepeat = 'no-repeat';
+				container.style.backgroundSize = '262px 301px';
 			}
 			currentImageIndex++;
 

@@ -394,46 +394,38 @@ ${buttons}
             </p>    
         </div>    
   
-        <script src="Config.js"></script>    
-        <script>    
-            // Load optional Config.local.js for overrides (fails silently if not present)    
-            (function() {    
-                var script = document.createElement('script');    
-                script.src = 'Config.local.js';    
-                script.onerror = function() {    
-                    console.log('Config.local.js not found, using defaults from Config.js');    
-                };    
-                document.head.appendChild(script);    
-            })();    
-        </script>    
-        <script>    
-            function deepMerge(target, source) {    
-                for (var key in source) {    
-                    if (source.hasOwnProperty(key)) {    
-                        if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {    
-                            target[key] = deepMerge(target[key] || {}, source[key]);    
-                        } else {    
-                            target[key] = source[key];    
-                        }    
-                    }    
-                }    
-                return target;    
-            }    
-    
-            window.addEventListener("load", (event) => {    
-                // Merge Config.js defaults with Config.local.js overrides    
-                var config = deepMerge({}, window.ROConfigBase || {});    
-                if (window.ROConfigLocal) {    
-                    config = deepMerge(config, window.ROConfigLocal);    
-                }    
-                window.ROConfig = config;    
-    
-				var script = document.createElement('script');    
-				script.type = 'module';    
-				script.src = 'Online.js';    
-				document.getElementsByTagName('body')[0].appendChild(script);  
-            });    
-        </script>    
+        <script src="Config.js"></script>
+        <script src="Config.local.js"></script>
+        <script>
+            function deepMerge(target, source) {
+                for (var key in source) {
+                    if (source.hasOwnProperty(key)) {
+                        if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
+                            target[key] = deepMerge(target[key] || {}, source[key]);
+                        } else {
+                            target[key] = source[key];
+                        }
+                    }
+                }
+                return target;
+            }
+
+            (function boot() {
+                var config = deepMerge({}, window.ROConfigBase || {});
+                if (window.ROConfigLocal) {
+                    config = deepMerge(config, window.ROConfigLocal);
+                }
+                window.ROConfig = config;
+
+                var script = document.createElement('script');
+                script.type = 'module';
+                script.src = 'Online.js';
+                script.onerror = function () {
+                    console.error('Failed to load Online.js');
+                };
+                document.body.appendChild(script);
+            })();
+        </script>
     </body>    
 </html>    
 `;

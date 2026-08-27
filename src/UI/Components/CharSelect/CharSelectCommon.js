@@ -432,7 +432,7 @@ export function createCharSelect(config) {
 					UIManager.showMessageBox(DB.getMessage(1820), 'ok');
 					return;
 				case 5: // 5: Date of birth do not match.
-					UIManager.showMessageBox(DB.getMessage(1822), 'ok');
+					UIManager.showMessageBox('The confirmation word does not match. Type delete.', 'ok');
 					return;
 				case 7: // 7: Character Deletion has failed because you have entered an incorrect e-mail address.
 					UIManager.showMessageBox(DB.getMessage(301), 'ok');
@@ -487,7 +487,7 @@ export function createCharSelect(config) {
 					UIManager.showMessageBox(DB.getMessage(1820), 'ok');
 					return;
 				case 5: // 5: Date of birth do not match.
-					UIManager.showMessageBox(DB.getMessage(1822), 'ok');
+					UIManager.showMessageBox('The confirmation word does not match. Type delete.', 'ok');
 					return;
 				case 7: // 7: Character Deletion has failed because you have entered an incorrect e-mail address.
 					UIManager.showMessageBox(DB.getMessage(301), 'ok');

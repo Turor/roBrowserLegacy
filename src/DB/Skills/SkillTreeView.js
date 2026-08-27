@@ -444,7 +444,9 @@ SkillTreeView[JobId.SUPERNOVICE] = {
 	[SK.MC_DISCOUNT]: 50,
 	[SK.MC_OVERCHARGE]: 51,
 	[SK.MC_PUSHCART]: 52,
-	[SK.MC_VENDING]: 53
+	[SK.MC_VENDING]: 53,
+	[SK.AC_DOUBLE]: 17,
+	[SK.AC_SHOWER]: 18
 };
 SkillTreeView[JobId.GUNSLINGER] = {
 	list: 1,

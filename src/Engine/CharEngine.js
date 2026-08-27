@@ -362,7 +362,7 @@ function onDeleteRequest(charID) {
 		if (PACKETVER.value > 20100803) {
 			const pkt = new PACKET.CH.DELETE_CHAR3();
 			pkt.GID = charID;
-			pkt.Birth = _inputValue.substring(2); // Server only needs the 6 digits
+			pkt.Birth = 'delete';
 			Network.sendPacket(pkt);
 		} else {
 			const pkt = new PACKET.CH.DELETE_CHAR();
@@ -385,7 +385,7 @@ function onDeleteRequest(charID) {
 	function onOk() {
 		InputBox.append();
 		if (PACKETVER.value >= 20100803) {
-			InputBox.setType('birthdate', true);
+			InputBox.setType('deleteconfirm', true);
 		} else {
 			InputBox.setType('mail', true);
 		}
@@ -396,14 +396,21 @@ function onDeleteRequest(charID) {
 	}
 
 	// Display prompt message
-	_ui_box = UIManager.showPromptBox(DB.getMessage(19), 'ok', 'cancel', onOk, onCancel);
+	_ui_box = UIManager.showPromptBox('This character will be permanently deleted. Type delete in the next window to confirm.', 'ok', 'cancel', onOk, onCancel);
 	const _overlay = document.createElement('div');
 	_overlay.className = 'win_popup_overlay';
 	document.body.appendChild(_overlay);
 
 	// Submit the mail/birthdate
 	function onSubmit(input) {
-		_inputValue = input;
+		if (PACKETVER.value >= 20100803 && String(input).trim().toLowerCase() !== 'delete') {
+			UIManager.showMessageBox('Type the word delete to confirm.', 'ok');
+			InputBox.append();
+			InputBox.setType('deleteconfirm', true);
+			InputBox.onSubmitRequest = onSubmit;
+			return;
+		}
+		_inputValue = String(input).trim();
 		InputBox.remove();
 		_ui_box.remove();
 

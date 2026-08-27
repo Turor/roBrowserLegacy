@@ -711,25 +711,29 @@ export function createEquipment({
 			StatusConst.EffectState.CART5;
 
 		function updateAttachmentButtons() {
-			if (Session.Entity.effectState !== _lastState || _hasCart !== Session.Entity.hasCart) {
-				_lastState = Session.Entity.effectState;
-				_hasCart = Session.Entity.hasCart;
+			if (!Session.Entity) {
+				return;
+			}
 
-				const root = Component.getRoot();
-				const removeOpt = root.querySelector('.removeOption');
-				const cartBtn = root.querySelector('.cartitems');
+			const hasCart = !!Session.Entity.hasCart;
+			const state = Session.Entity.effectState;
+			if (state === _lastState && hasCart === _hasCart) {
+				return;
+			}
+			_lastState = state;
+			_hasCart = hasCart;
 
-				if (_lastState & HasAttachmentState || _hasCart) {
-					if (removeOpt) removeOpt.style.display = '';
-				} else {
-					if (removeOpt) removeOpt.style.display = 'none';
-				}
+			const root = Component.getRoot();
+			const removeOpt = root.querySelector('.removeOption');
+			const cartBtn = root.querySelector('.cartitems');
 
-				if (_lastState & HasCartState || _hasCart) {
-					if (cartBtn) cartBtn.style.display = '';
-				} else {
-					if (cartBtn) cartBtn.style.display = 'none';
-				}
+			// Must be 'block': stylesheet sets display:none, and display:'' would
+			// fall back to that rule so the cart / cart-off buttons never appear.
+			if (removeOpt) {
+				removeOpt.style.display = state & HasAttachmentState || hasCart ? 'block' : 'none';
+			}
+			if (cartBtn) {
+				cartBtn.style.display = state & HasCartState || hasCart ? 'block' : 'none';
 			}
 		}
 

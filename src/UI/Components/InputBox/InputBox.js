@@ -219,6 +219,16 @@ InputBox.setType = function setType(type, isPersistent, defaultVal, itemId = nul
 			}
 			break;
 
+		case 'deleteconfirm':
+			innerRoot.classList.remove('number');
+			if (textEl) {
+				textEl.textContent = 'Type delete to confirm';
+			}
+			if (input) {
+				input.type = 'text';
+			}
+			break;
+
 		case 'birthdate':
 			innerRoot.classList.remove('number');
 			if (textEl) {

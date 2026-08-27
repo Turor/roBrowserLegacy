@@ -708,7 +708,24 @@ export function createSkillList({
 				}
 
 				if (value !== undefined) {
-					const box = root.querySelector(`#positionSkills${list} .s${value}`);
+					let box = root.querySelector(`#positionSkills${list} .s${value}`);
+					if (hasTabs && !box && Number(value) > 41) {
+						const startPos = Number(value) - (Number(value) % 7);
+						const rowId = Math.floor(Number(value) / 7);
+						const newRow = document.createElement('div');
+						newRow.className = 'skillRow extraRow';
+						newRow.setAttribute('data-order', rowId);
+						let rowHTML = '';
+						for (let c = 0; c < 7; c++) {
+							rowHTML += `<div class="skillCol s${startPos + c}"></div>`;
+						}
+						newRow.innerHTML = rowHTML;
+						const container = root.querySelector(`#positionSkills${list}`);
+						if (container) {
+							container.appendChild(newRow);
+						}
+						box = root.querySelector(`#positionSkills${list} .s${value}`);
+					}
 					if (box) {
 						if (parseInt(key, 10) < 41) {
 							box.parentElement.style.display = '';

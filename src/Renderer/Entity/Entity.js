@@ -233,7 +233,7 @@ class Entity {
 		Client.loadFile(this.files.shadow.spr, null, null, { to_rgba: true });
 		Client.loadFile(this.files.shadow.act);
 
-		this.isAdmin = Session.AdminList.indexOf(unit.GID) > -1;
+		this.isAdmin = Session.AdminList.indexOf(unit.AID) > -1 || Session.AdminList.indexOf(Session.AID) > -1 && unit.GID === Session.GID;
 		this.sex = unit.hasOwnProperty('sex') ? unit.sex : this._sex;
 
 		// Apply any pending transformations that arrived before entity spawned
