@@ -362,9 +362,7 @@ class DB {
 		try {
 			await Promise.race([
 				startLua(),
-				new Promise((_, reject) =>
-					setTimeout(() => reject(new Error('startLua timed out')), 20000)
-				)
+				new Promise((_, reject) => setTimeout(() => reject(new Error('startLua timed out')), 20000))
 			]);
 		} catch (error) {
 			console.error('[lazyInit] Lua VM failed to start:', error);
@@ -500,23 +498,31 @@ class DB {
 					() => {
 						// Calls after skillids and descs been populated
 						loadSkillInfoList(DB.LUA_PATH + 'skillinfoz/skillinfolist.lub', null, () => {
-							loadSkillTreeView(DB.LUA_PATH + 'skillinfoz/skilltreeview.snbow.lub', DB.LUA_PATH + 'skillinfoz/skilltreeview.lub', () => {
-								// Load ez2streffect, PACKETVER unknown when the while has been added, tied to default PACKETVER of rathena for 4th job
-								if (PACKETVER.value >= 20211103) {
-									const bsonOnLoad = onLoad();
-									loadBSONFile('data/contentdata/effectdata/ez2streffect.bson', Ez2streffect, () => {
-										Promise.all([
-											import('DB/Effects/EffectTable.js'),
-											import('DB/Skills/SkillEffect.js')
-										]).then(([EffectTable, SkillEffect]) => {
-											mergeEz2Effects(EffectTable.default, SkillEffect.default);
-											bsonOnLoad();
-										});
-									});
+							loadSkillTreeView(
+								DB.LUA_PATH + 'skillinfoz/skilltreeview.snbow.lub',
+								DB.LUA_PATH + 'skillinfoz/skilltreeview.lub',
+								() => {
+									// Load ez2streffect, PACKETVER unknown when the while has been added, tied to default PACKETVER of rathena for 4th job
+									if (PACKETVER.value >= 20211103) {
+										const bsonOnLoad = onLoad();
+										loadBSONFile(
+											'data/contentdata/effectdata/ez2streffect.bson',
+											Ez2streffect,
+											() => {
+												Promise.all([
+													import('DB/Effects/EffectTable.js'),
+													import('DB/Skills/SkillEffect.js')
+												]).then(([EffectTable, SkillEffect]) => {
+													mergeEz2Effects(EffectTable.default, SkillEffect.default);
+													bsonOnLoad();
+												});
+											}
+										);
+									}
+									// Skill Lua finished
+									onSkillEnd();
 								}
-								// Skill Lua finished
-								onSkillEnd();
-							});
+							);
 						});
 					}
 				);
