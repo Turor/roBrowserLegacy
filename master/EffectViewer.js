@@ -160971,7 +160971,7 @@ var init_PacketStructure = __esmMin((() => {
 		this.AID = fp.readULong();
 		this.itemList = (function() {
 			let len = 22;
-			if (PacketVerManager_default.value >= 20150226) len = 47;
+			if (PacketVerManager_default.value >= 20150226) len = 62;
 			const count = (end - fp.tell()) / len | 0;
 			const out = new Array(count);
 			for (let i = 0; i < count; ++i) {
@@ -166631,7 +166631,7 @@ var init_PacketStructure = __esmMin((() => {
 	PACKET.ZC.EQUIPMENT_ITEMLIST5 = function PACKET_ZC_EQUIPMENT_ITEMLIST5(fp, end) {
 		const option = new Struct("short index", "short value", "char param");
 		this.ItemInfo = (function() {
-			const count = (end - fp.tell()) / 57 | 0;
+			const count = (end - fp.tell()) / 72 | 0;
 			const out = new Array(count);
 			for (let i = 0; i < count; ++i) {
 				out[i] = {};
@@ -166673,7 +166673,7 @@ var init_PacketStructure = __esmMin((() => {
 	PACKET.ZC.CART_EQUIPMENT_ITEMLIST5 = function PACKET_ZC_CART_EQUIPMENT_ITEMLIST5(fp, end) {
 		const option = new Struct("short index", "short value", "char param");
 		this.ItemInfo = (function() {
-			const count = (end - fp.tell()) / 57 | 0;
+			const count = (end - fp.tell()) / 72 | 0;
 			const out = new Array(count);
 			for (let i = 0; i < count; ++i) {
 				out[i] = {};
@@ -166716,7 +166716,7 @@ var init_PacketStructure = __esmMin((() => {
 		const option = new Struct("short index", "short value", "char param");
 		this.Name = fp.readString(NAME_LENGTH);
 		this.ItemInfo = (function() {
-			const count = (end - fp.tell()) / 57 | 0;
+			const count = (end - fp.tell()) / 72 | 0;
 			const out = new Array(count);
 			for (let i = 0; i < count; ++i) {
 				out[i] = {};
@@ -166852,7 +166852,7 @@ var init_PacketStructure = __esmMin((() => {
 		this.sex = fp.readUChar();
 		const option = new Struct("short index", "short value", "char param");
 		this.ItemInfo = (function() {
-			const count = (end - fp.tell()) / 57 | 0;
+			const count = (end - fp.tell()) / 72 | 0;
 			const out = new Array(count);
 			for (let i = 0; i < count; ++i) {
 				out[i] = {};
@@ -167668,7 +167668,7 @@ var init_PacketStructure = __esmMin((() => {
 		this.body2 = fp.readShort();
 		this.sex = fp.readUChar();
 		const option = new Struct("short index", "short value", "char param");
-		const item_size = 67;
+		const item_size = 82;
 		this.ItemInfo = (function() {
 			const count = (end - fp.tell()) / item_size | 0;
 			const out = new Array(count);
@@ -167784,7 +167784,7 @@ var init_PacketStructure = __esmMin((() => {
 	PACKET.ZC.SPLIT_SEND_ITEMLIST_EQUIP = function PACKET_ZC_SPLIT_SEND_ITEMLIST_EQUIP(fp, end) {
 		this.invType = fp.readUChar();
 		const option = new Struct("short index", "short value", "char param");
-		const item_size = PacketVerManager_default.value >= 20181121 ? 67 : 57;
+		const item_size = PacketVerManager_default.value >= 20181121 ? 82 : 72;
 		this.ItemInfo = (function() {
 			const count = (end - fp.tell()) / item_size | 0;
 			const out = new Array(count);
@@ -168040,7 +168040,7 @@ var init_PacketStructure = __esmMin((() => {
 		this.body2 = fp.readShort();
 		this.sex = fp.readUChar();
 		const option = new Struct("short index", "short value", "char param");
-		const item_size = 68;
+		const item_size = 83;
 		this.ItemInfo = (function() {
 			const count = (end - fp.tell()) / item_size | 0;
 			const out = new Array(count);
@@ -168086,7 +168086,7 @@ var init_PacketStructure = __esmMin((() => {
 	PACKET.ZC.SPLIT_SEND_ITEMLIST_EQUIP2 = function PACKET_ZC_SPLIT_SEND_ITEMLIST_EQUIP2(fp, end) {
 		this.invType = fp.readUChar();
 		const option = new Struct("short index", "short value", "char param");
-		const item_size = 68;
+		const item_size = 83;
 		this.ItemInfo = (function() {
 			const count = (end - fp.tell()) / item_size | 0;
 			const out = new Array(count);
@@ -168138,7 +168138,7 @@ var init_PacketStructure = __esmMin((() => {
 		this.AID = fp.readULong();
 		this.UniqueID = fp.readULong();
 		this.itemList = (function() {
-			const count = (end - fp.tell()) / 64;
+			const count = (end - fp.tell()) / 79;
 			const out = new Array(count);
 			const option = new Struct("short index", "short value", "char param");
 			for (let i = 0; i < count; ++i) {
@@ -168179,7 +168179,7 @@ var init_PacketStructure = __esmMin((() => {
 		const option = new Struct("short index", "short value", "char param");
 		this.AID = fp.readULong();
 		this.itemList = (function() {
-			const count = (end - fp.tell()) / 58 | 0;
+			const count = (end - fp.tell()) / 73 | 0;
 			const out = new Array(count);
 			for (let i = 0; i < count; ++i) {
 				out[i] = {};
