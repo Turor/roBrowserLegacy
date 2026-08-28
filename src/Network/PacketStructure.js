@@ -5999,6 +5999,7 @@ PACKET.ZC.PC_PURCHASE_MYITEMLIST = function PACKET_ZC_PC_PURCHASE_MYITEMLIST(fp,
 				out[i].Options[3] = fp.readStruct(option);
 				out[i].Options[4] = fp.readStruct(option);
 				out[i].Options[5] = fp.readStruct(option);
+				out[i].ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 			}
 		}
 		return out;
@@ -9803,6 +9804,7 @@ PACKET.ZC.PC_PURCHASE_ITEMLIST_FROMMC2 = function PACKET_ZC_PC_PURCHASE_ITEMLIST
 				out[i].Options[3] = fp.readStruct(option);
 				out[i].Options[4] = fp.readStruct(option);
 				out[i].Options[5] = fp.readStruct(option);
+				out[i].ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 			}
 			if (PACKETVER.value >= 20160921) {
 				out[i].location = fp.readULong();
@@ -12097,6 +12099,7 @@ PACKET.ZC.ACK_READ_RODEX = function PACKET_ZC_ACK_READ_RODEX(fp, end) {
 		Item.Options[3] = fp.readStruct(option);
 		Item.Options[4] = fp.readStruct(option);
 		Item.Options[5] = fp.readStruct(option);
+		Item.ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 		this.ItemList.push(Item);
 	}
 };
@@ -12133,6 +12136,7 @@ PACKET.ZC.ACK_READ_RODEX2 = function PACKET_ZC_ACK_READ_RODEX2(fp, end) {
 		Item.Options[3] = fp.readStruct(option);
 		Item.Options[4] = fp.readStruct(option);
 		Item.Options[5] = fp.readStruct(option);
+		Item.ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 		Item.RefiningLevel = fp.readUChar();
 		Item.grade = fp.readUChar();
 		this.ItemList.push(Item);
@@ -12200,6 +12204,7 @@ PACKET.ZC.ACK_ADD_ITEM_RODEX = function PACKET_ZC_ACK_ADD_ITEM_RODEX(fp, end) {
 	this.Options[3] = fp.readStruct(option);
 	this.Options[4] = fp.readStruct(option);
 	this.Options[5] = fp.readStruct(option);
+	this.ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 	this.weight = fp.readShort();
 	this.favorite = fp.readUChar();
 	this.location = fp.readULong();
@@ -12228,6 +12233,7 @@ PACKET.ZC.ACK_ADD_ITEM_RODEX2 = function PACKET_ZC_ACK_ADD_ITEM_RODEX2(fp, end) 
 	this.Options[3] = fp.readStruct(option);
 	this.Options[4] = fp.readStruct(option);
 	this.Options[5] = fp.readStruct(option);
+	this.ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 	this.weight = fp.readShort();
 	this.favorite = fp.readUChar();
 	this.location = fp.readULong();
@@ -12921,6 +12927,7 @@ PACKET.ZC.ADD_EXCHANGE_ITEM3 = function PACKET_ZC_ADD_EXCHANGE_ITEM3(fp, end) {
 	this.Options[3] = fp.readStruct(option);
 	this.Options[4] = fp.readStruct(option);
 	this.Options[5] = fp.readStruct(option);
+	this.ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 };
 PACKET.ZC.ADD_EXCHANGE_ITEM3.size = 45;
 
@@ -12947,6 +12954,7 @@ PACKET.ZC.ADD_ITEM_TO_STORE3 = function PACKET_ZC_ADD_ITEM_TO_STORE3(fp, end) {
 	this.Options[3] = fp.readStruct(option);
 	this.Options[4] = fp.readStruct(option);
 	this.Options[5] = fp.readStruct(option);
+	this.ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 };
 PACKET.ZC.ADD_ITEM_TO_STORE3.size = PACKETVER.value >= 20181121 ? 57 : 47;
 
@@ -12973,6 +12981,7 @@ PACKET.ZC.ADD_ITEM_TO_CART3 = function PACKET_ZC_ADD_ITEM_TO_CART3(fp, end) {
 	this.Options[3] = fp.readStruct(option);
 	this.Options[4] = fp.readStruct(option);
 	this.Options[5] = fp.readStruct(option);
+	this.ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 };
 PACKET.ZC.ADD_ITEM_TO_CART3.size = PACKETVER.value >= 20181121 ? 57 : 47;
 
@@ -13002,6 +13011,7 @@ PACKET.ZC.ITEM_PICKUP_ACK6 = function PACKET_ZC_ITEM_PICKUP_ACK6(fp, end) {
 	this.Options[3] = fp.readStruct(option);
 	this.Options[4] = fp.readStruct(option);
 	this.Options[5] = fp.readStruct(option);
+	this.ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 };
 PACKET.ZC.ITEM_PICKUP_ACK6.size = 56;
 
@@ -13035,6 +13045,7 @@ PACKET.ZC.EQUIPMENT_ITEMLIST5 = function PACKET_ZC_EQUIPMENT_ITEMLIST5(fp, end) 
 			out[i].Options[3] = fp.readStruct(option);
 			out[i].Options[4] = fp.readStruct(option);
 			out[i].Options[5] = fp.readStruct(option);
+			out[i].ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 			const flag = fp.readUChar();
 			out[i].IsIdentified = flag & 1;
 			out[i].IsDamaged = flag & 2;
@@ -13075,6 +13086,7 @@ PACKET.ZC.CART_EQUIPMENT_ITEMLIST5 = function PACKET_ZC_CART_EQUIPMENT_ITEMLIST5
 			out[i].Options[3] = fp.readStruct(option);
 			out[i].Options[4] = fp.readStruct(option);
 			out[i].Options[5] = fp.readStruct(option);
+			out[i].ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 			const flag = fp.readUChar();
 			out[i].IsIdentified = flag & 1;
 			out[i].IsDamaged = flag & 2;
@@ -13116,6 +13128,7 @@ PACKET.ZC.STORE_EQUIPMENT_ITEMLIST5 = function PACKET_ZC_STORE_EQUIPMENT_ITEMLIS
 			out[i].Options[3] = fp.readStruct(option);
 			out[i].Options[4] = fp.readStruct(option);
 			out[i].Options[5] = fp.readStruct(option);
+			out[i].ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 			const flag = fp.readUChar();
 			out[i].IsIdentified = flag & 1;
 			out[i].IsDamaged = flag & 2;
@@ -13252,6 +13265,7 @@ PACKET.ZC.EQUIPWIN_MICROSCOPE_V5 = function PACKET_ZC_EQUIPWIN_MICROSCOPE_V5(fp,
 			out[i].Options[3] = fp.readStruct(option);
 			out[i].Options[4] = fp.readStruct(option);
 			out[i].Options[5] = fp.readStruct(option);
+			out[i].ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 			const flag = fp.readUChar();
 			out[i].IsIdentified = flag & 1;
 			out[i].IsDamaged = flag & 2;
@@ -13319,6 +13333,7 @@ PACKET.ZC.ITEM_PICKUP_ACK7 = function PACKET_ZC_ITEM_PICKUP_ACK7(fp, end) {
 	this.Options[3] = fp.readStruct(option);
 	this.Options[4] = fp.readStruct(option);
 	this.Options[5] = fp.readStruct(option);
+	this.ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 	this.favorite = fp.readUChar();
 	this.look = fp.readUShort();
 };
@@ -13640,6 +13655,7 @@ PACKET.ZC.ADD_EXCHANGE_ITEM4 = function PACKET_ZC_ADD_EXCHANGE_ITEM4(fp, end) {
 	this.Options[3] = fp.readStruct(option);
 	this.Options[4] = fp.readStruct(option);
 	this.Options[5] = fp.readStruct(option);
+	this.ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 	this.location = fp.readULong();
 	this.viewSprite = fp.readUShort();
 };
@@ -14244,6 +14260,7 @@ PACKET.ZC.EQUIPWIN_MICROSCOPE_V6 = function PACKET_ZC_EQUIPWIN_MICROSCOPE_V6(fp,
 			out[i].Options[3] = fp.readStruct(option);
 			out[i].Options[4] = fp.readStruct(option);
 			out[i].Options[5] = fp.readStruct(option);
+			out[i].ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 			flag = fp.readUChar();
 			out[i].IsIdentified = flag & 1;
 			out[i].IsDamaged = flag & 2;
@@ -14363,6 +14380,7 @@ PACKET.ZC.SPLIT_SEND_ITEMLIST_EQUIP = function PACKET_ZC_SPLIT_SEND_ITEMLIST_EQU
 			out[i].Options[3] = fp.readStruct(option);
 			out[i].Options[4] = fp.readStruct(option);
 			out[i].Options[5] = fp.readStruct(option);
+			out[i].ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 			flag = fp.readUChar();
 			out[i].IsIdentified = flag & 1;
 			out[i].IsDamaged = flag & 2;
@@ -14668,6 +14686,7 @@ PACKET.ZC.EQUIPWIN_MICROSCOPE_V7 = function PACKET_ZC_EQUIPWIN_MICROSCOPE_V7(fp,
 			out[i].Options[3] = fp.readStruct(option);
 			out[i].Options[4] = fp.readStruct(option);
 			out[i].Options[5] = fp.readStruct(option);
+			out[i].ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 			out[i].RefiningLevel = fp.readUChar();
 			out[i].enchantgrade = fp.readUChar();
 			flag = fp.readUChar();
@@ -14711,6 +14730,7 @@ PACKET.ZC.SPLIT_SEND_ITEMLIST_EQUIP2 = function PACKET_ZC_SPLIT_SEND_ITEMLIST_EQ
 			out[i].Options[3] = fp.readStruct(option);
 			out[i].Options[4] = fp.readStruct(option);
 			out[i].Options[5] = fp.readStruct(option);
+			out[i].ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 			out[i].RefiningLevel = fp.readUChar();
 			out[i].enchantgrade = fp.readUChar();
 			flag = fp.readUChar();
@@ -14760,6 +14780,7 @@ PACKET.ZC.PC_PURCHASE_ITEMLIST_FROMMC3 = function PACKET_ZC_PC_PURCHASE_ITEMLIST
 			out[i].Options[3] = fp.readStruct(option);
 			out[i].Options[4] = fp.readStruct(option);
 			out[i].Options[5] = fp.readStruct(option);
+			out[i].ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 			out[i].location = fp.readULong();
 			out[i].viewSprite = fp.readUShort();
 			out[i].RefiningLevel = fp.readUChar();
@@ -14800,6 +14821,7 @@ PACKET.ZC.PC_PURCHASE_MYITEMLIST2 = function PACKET_ZC_PC_PURCHASE_MYITEMLIST2(f
 			out[i].Options[3] = fp.readStruct(option);
 			out[i].Options[4] = fp.readStruct(option);
 			out[i].Options[5] = fp.readStruct(option);
+			out[i].ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 			out[i].RefiningLevel = fp.readUChar();
 			out[i].grade = fp.readUChar();
 		}
@@ -14832,6 +14854,7 @@ PACKET.ZC.ITEM_PICKUP_ACK8 = function PACKET_ZC_ITEM_PICKUP_ACK8(fp, end) {
 	this.Options[3] = fp.readStruct(option);
 	this.Options[4] = fp.readStruct(option);
 	this.Options[5] = fp.readStruct(option);
+	this.ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 	this.favorite = fp.readUChar();
 	this.look = fp.readUShort();
 	this.RefiningLevel = fp.readUChar();
@@ -14859,6 +14882,7 @@ PACKET.ZC.ADD_EXCHANGE_ITEM5 = function PACKET_ZC_ADD_EXCHANGE_ITEM5(fp, end) {
 	this.Options[3] = fp.readStruct(option);
 	this.Options[4] = fp.readStruct(option);
 	this.Options[5] = fp.readStruct(option);
+	this.ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 	this.location = fp.readULong();
 	this.viewSprite = fp.readUShort();
 	this.RefiningLevel = fp.readUChar();
@@ -14883,6 +14907,7 @@ PACKET.ZC.CHANGE_ITEM_OPTION = function PACKET_ZC_CHANGE_ITEM_OPTION(fp, end) {
 	this.Options[3] = fp.readStruct(option);
 	this.Options[4] = fp.readStruct(option);
 	this.Options[5] = fp.readStruct(option);
+	this.ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 	this.refiningLevel = fp.readUChar();
 	this.enchantgrade = fp.readUChar();
 };
@@ -14909,6 +14934,7 @@ PACKET.ZC.ADD_ITEM_TO_STORE4 = function PACKET_ZC_ADD_ITEM_TO_STORE4(fp, end) {
 	this.Options[3] = fp.readStruct(option);
 	this.Options[4] = fp.readStruct(option);
 	this.Options[5] = fp.readStruct(option);
+	this.ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 	this.RefiningLevel = fp.readUChar();
 	this.grade = fp.readUChar();
 };
@@ -14935,6 +14961,7 @@ PACKET.ZC.ADD_ITEM_TO_CART4 = function PACKET_ZC_ADD_ITEM_TO_CART4(fp, end) {
 	this.Options[3] = fp.readStruct(option);
 	this.Options[4] = fp.readStruct(option);
 	this.Options[5] = fp.readStruct(option);
+	this.ForgeOptions = [fp.readStruct(option), fp.readStruct(option), fp.readStruct(option)];
 	this.RefiningLevel = fp.readUChar();
 	this.grade = fp.readUChar();
 };

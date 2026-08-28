@@ -2401,29 +2401,42 @@ class DB {
 	}
 
 	static getTuroranForgeOption(item) {
-		if (!item || !item.Options) {
+		if (!item) {
 			return null;
+		}
+		const lists = [];
+		if (item.ForgeOptions) {
+			lists.push(item.ForgeOptions);
+		}
+		if (item.Options) {
+			lists.push(item.Options);
 		}
 		let forge = null;
 		let lo = 0;
 		let hi = 0;
-		for (let i = 0; i < item.Options.length; i++) {
-			const opt = item.Options[i];
-			if (!opt) {
-				continue;
+		for (let L = 0; L < lists.length; L++) {
+			const arr = lists[L];
+			for (let i = 0; i < arr.length; i++) {
+				const opt = arr[i];
+				if (!opt) {
+					continue;
+				}
+				if (opt.index === DB.TURORAN_FORGE_OPT) {
+					forge = opt;
+				} else if (opt.index === DB.TURORAN_FORGE_OWNER_LO) {
+					lo = opt.value & 0xffff;
+				} else if (opt.index === DB.TURORAN_FORGE_OWNER_HI) {
+					hi = opt.value & 0xffff;
+				}
 			}
-			if (opt.index === DB.TURORAN_FORGE_OPT) {
-				forge = opt;
-			} else if (opt.index === DB.TURORAN_FORGE_OWNER_LO) {
-				lo = opt.value & 0xffff;
-			} else if (opt.index === DB.TURORAN_FORGE_OWNER_HI) {
-				hi = opt.value & 0xffff;
+			if (forge) {
+				break;
 			}
 		}
 		if (!forge) {
 			return null;
 		}
-		return { value: forge.value | 0, gid: (hi << 16) + lo };
+		return { value: forge.value | 0, gid: (hi << 16) >>> 0 };
 	}
 
 	static getItemName(item, options = {}) {

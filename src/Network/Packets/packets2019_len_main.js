@@ -3615,10 +3615,10 @@ function init(packetver) {
 	length_list[0x0a09] = 55;
 
 	// Packet: 0x0a0a
-	length_list[0x0a0a] = 57;
+	length_list[0x0a0a] = 72;
 
 	// Packet: 0x0a0b
-	length_list[0x0a0b] = 57;
+	length_list[0x0a0b] = 72;
 
 	// Packet: 0x0a0c
 	length_list[0x0a0c] = 66;
@@ -3750,7 +3750,7 @@ function init(packetver) {
 	length_list[0x0a36] = 7;
 
 	// Packet: 0x0a37
-	length_list[0x0a37] = 69;
+	length_list[0x0a37] = 84;
 
 	// Packet: 0x0a38
 	length_list[0x0a38] = 3;
@@ -3996,7 +3996,7 @@ function init(packetver) {
 	length_list[0x0a95] = 4;
 
 	// Packet: 0x0a96
-	length_list[0x0a96] = 61;
+	length_list[0x0a96] = 76;
 
 	// Packet: 0x0a97
 	length_list[0x0a97] = 8;
@@ -4369,7 +4369,7 @@ function init(packetver) {
 	length_list[0x0b12] = 2;
 
 	// Packet: 0x0b13
-	length_list[0x0b13] = 48;
+	length_list[0x0b13] = 63;
 
 	// Packet: 0x0b14
 	length_list[0x0b14] = 2;
