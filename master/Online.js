@@ -100492,6 +100492,27 @@ var init_ItemTable = __esmMin((() => {
 	};
 }));
 //#endregion
+//#region src/DB/Items/ItemType.js
+var ItemType_default;
+var init_ItemType = __esmMin((() => {
+	ItemType_default = {
+		HEALING: 0,
+		UNKNOWN: 1,
+		USABLE: 2,
+		ETC: 3,
+		ARMOR: 4,
+		WEAPON: 5,
+		CARD: 6,
+		PETEGG: 7,
+		PETARMOR: 8,
+		AMMO: 10,
+		DELAYCONSUME: 11,
+		SHADOWGEAR: 12,
+		CASH: 18,
+		SEARCH: 99
+	};
+}));
+//#endregion
 //#region src/DB/Items/HatTable.js
 var HatTable_default;
 var init_HatTable = __esmMin((() => {
@@ -216766,27 +216787,6 @@ var init_Elements = __esmMin((() => {
 	init_UIImage();
 }));
 //#endregion
-//#region src/DB/Items/ItemType.js
-var ItemType_default;
-var init_ItemType = __esmMin((() => {
-	ItemType_default = {
-		HEALING: 0,
-		UNKNOWN: 1,
-		USABLE: 2,
-		ETC: 3,
-		ARMOR: 4,
-		WEAPON: 5,
-		CARD: 6,
-		PETEGG: 7,
-		PETARMOR: 8,
-		AMMO: 10,
-		DELAYCONSUME: 11,
-		SHADOWGEAR: 12,
-		CASH: 18,
-		SEARCH: 99
-	};
-}));
-//#endregion
 //#region src/DB/Items/EquipmentLocation.js
 var EquipmentLocation_default;
 var init_EquipmentLocation = __esmMin((() => {
@@ -220137,7 +220137,7 @@ var init_ItemCompare = __esmMin((() => {
 					if (cardListParent) cardListParent.style.display = "none";
 					break;
 				}
-				const slotCount = it.slotCount || 0;
+				const slotCount = DB.getItemSlotCount(item);
 				if (cardListParent) cardListParent.style.display = "block";
 				if (cardList) cardList.innerHTML = "";
 				for (let i = 0; i < 4; ++i) addCard$1(cardList, item.slot && item.slot["card" + (i + 1)] || 0, i, slotCount);
@@ -236639,9 +236639,7 @@ function setSlotValue(item, slotNum, value) {
 	item.slot[getSlotKey(slotNum)] = value;
 }
 function getBaseSlotCount(item) {
-	const it = DB.getItemInfo(item.ITID);
-	const slotCount = it && it.slotCount ? parseInt(it.slotCount, 10) : 0;
-	return isNaN(slotCount) ? 0 : slotCount;
+	return DB.getItemSlotCount(item);
 }
 function getItemGrade(item) {
 	return item.enchantgrade || item.grade || 0;
@@ -242504,7 +242502,7 @@ var init_ItemInfo = __esmMin((() => {
 					if (cardListParent) cardListParent.style.display = "none";
 					break;
 				}
-				const slotCount = it.slotCount || 0;
+				const slotCount = DB.getItemSlotCount(item);
 				if (cardListParent) cardListParent.style.display = "block";
 				if (cardList) cardList.innerHTML = "";
 				for (let i = 0; i < 4; ++i) addCard(cardList, item.slot && item.slot["card" + (i + 1)] || 0, i, slotCount);
@@ -293287,6 +293285,33 @@ async function startLua() {
 	MER_AI = ma;
 	default_HO_AI = dha;
 	default_MER_AI = dma;
+	await installLuaSafeIndexes();
+}
+async function installLuaSafeIndexes() {
+	if (!lua) return;
+	await lua.doString(`
+		local function wrap_enum(tbl)
+			tbl = tbl or {}
+			return setmetatable(tbl, {
+				__index = function(t, k)
+					local v = { [1] = 0 }
+					rawset(t, k, v)
+					return v
+				end
+			})
+		end
+		local function wrap_ids(tbl)
+			tbl = tbl or {}
+			return setmetatable(tbl, {
+				__index = function()
+					return 0
+				end
+			})
+		end
+		EnumVAR = wrap_enum(EnumVAR)
+		jobtbl = wrap_ids(jobtbl)
+		JOBID = wrap_ids(JOBID)
+	`);
 }
 function loadFontFromClient(fontPath) {
 	console.log("Loading file \"" + fontPath + "SCDream4.otf\"...");
@@ -294494,7 +294519,9 @@ function loadEnchantListFile(basePath, onEnd) {
 				const baseName = decodeLuaString(itemDb);
 				const itemId = DB.getItemIdfromBase(baseName);
 				const item = itemId ? ItemTable_default[itemId] : null;
-				return item && item.slotCount ? Number(item.slotCount) : 0;
+				const n = item && item.slotCount ? Number(item.slotCount) : 0;
+				const extra = parseInt(Configs.get("extraEquipSlots"), 10) || 0;
+				return extra > 0 ? Math.min(4, n + extra) : n;
 			};
 			ctx.MAX_SLOT_NUM = 4;
 			ctx.MAX_MATERIAL_NUM = 10;
@@ -295214,21 +295241,25 @@ function loadSkillInfoList(filename, callback, onEnd) {
 * @param {function} onEnd - The function to invoke when loading is complete.
 * @return {void}
 */
-function loadSkillTreeView(filename, callback, onEnd) {
+function loadSkillTreeView(filename, fallback, onEnd) {
 	Client.loadFile(DB.LUA_PATH + "skillinfoz/jobinheritlist.lub", async function(file) {
 		try {
 			console.log(`Loading file "${DB.LUA_PATH}skillinfoz/jobinheritlist.lub"...`);
 			const buffer = file instanceof ArrayBuffer ? new Uint8Array(file) : file;
 			lua.mountFile("jobinheritlist.lub", buffer);
 			await lua.doFile("jobinheritlist.lub");
-			loadSkillTreeViewData(filename, callback, onEnd);
+			if (typeof fallback === "function") {
+				onEnd = fallback;
+				fallback = null;
+			}
+			loadSkillTreeViewData(filename, fallback, onEnd);
 		} catch (error) {
 			console.error("[loadSkillTreeView - jobinheritlist] Error: ", error);
 			onEnd();
 		}
 	}, onEnd);
 }
-function loadSkillTreeViewData(filename, callback, onEnd) {
+function loadSkillTreeViewData(filename, fallback, onEnd) {
 	Client.loadFile(filename, async function(file) {
 		try {
 			console.log("Loading file \"" + filename + "\"...");
@@ -295322,7 +295353,14 @@ function loadSkillTreeViewData(filename, callback, onEnd) {
 			lua.unmountFile("jobinheritlist.lub");
 			onEnd();
 		}
-	}, onEnd);
+	}, function() {
+		if (fallback && fallback !== filename) {
+			console.warn("[loadSkillTreeView] missing " + filename + ", falling back to " + fallback);
+			loadSkillTreeViewData(fallback, null, onEnd);
+			return;
+		}
+		onEnd();
+	});
 }
 /**
 * Load State Icon Info (StatusInfo) from Lua files
@@ -295486,6 +295524,7 @@ function loadLuaTable(file_list, table_name, callback, onEnd, contextFunc) {
 				const buffer = file instanceof ArrayBuffer ? new Uint8Array(file) : file;
 				lua.mountFile(id_filename, buffer);
 				await lua.doFile(id_filename);
+				await installLuaSafeIndexes();
 				loadValueTable();
 			} catch (hException) {
 				console.error(`(${id_filename}) error: `, hException);
@@ -295501,6 +295540,11 @@ function loadLuaTable(file_list, table_name, callback, onEnd, contextFunc) {
 					parseTable();
 				} catch (hException) {
 					console.error(`(${value_table_filename}) error: `, hException);
+					try {
+						parseTable();
+					} catch (e2) {
+						console.error(`(${value_table_filename}) parse error: `, e2);
+					}
 				}
 			});
 		}
@@ -295569,7 +295613,10 @@ function loadLuaValue(file_path, variable_name, callback, onEnd) {
 				};
 				lua.doStringSync(String.raw`
 							local function escape_str(str)
-								return str:gsub("\\", "\\\\"):gsub("\"", "\\\"")
+								str = str:gsub("\\", "\\\\"):gsub("\"", "\\\"")
+								str = str:gsub("\n", "\\n"):gsub("\r", "\\r"):gsub("\t", "\\t")
+								str = str:gsub("[%z\1-\8\11\12\14-\31]", function(c) return string.format("\\u%04x", string.byte(c)) end)
+								return str
 							end
 
 							local function to_json(value)
@@ -295697,6 +295744,7 @@ function loadPetInfo(filename, callback, onEnd) {
 			console.log("Loading file \"" + filename + "\"...");
 			const buffer = file instanceof ArrayBuffer ? new Uint8Array(file) : file;
 			lua.mountFile(filename, buffer);
+			await installLuaSafeIndexes();
 			await lua.doFile(filename);
 			const readLuaTable = (tableName) => {
 				const result = {};
@@ -295927,6 +295975,7 @@ var init_DBManager = __esmMin((() => {
 	init_PetIllustration();
 	init_PetAction();
 	init_ItemTable();
+	init_ItemType();
 	init_HatTable();
 	init_ShieldTable();
 	init_WeaponTable();
@@ -296071,7 +296120,13 @@ var init_DBManager = __esmMin((() => {
 		static index = 0;
 		static async lazyInit() {
 			console.log("Loading DB files...");
-			await startLua();
+			try {
+				await Promise.race([startLua(), new Promise((_, reject) => setTimeout(() => reject(/* @__PURE__ */ new Error("startLua timed out")), 2e4))]);
+			} catch (error) {
+				console.error("[lazyInit] Lua VM failed to start:", error);
+				DB.isLoaded = true;
+				return;
+			}
 			DB.index = 0;
 			DB.count = 0;
 			function onLoad() {
@@ -296130,7 +296185,7 @@ var init_DBManager = __esmMin((() => {
 						SkillDescription = _json;
 					}, () => {
 						loadSkillInfoList(DB.LUA_PATH + "skillinfoz/skillinfolist.lub", null, () => {
-							loadSkillTreeView(DB.LUA_PATH + "skillinfoz/skilltreeview.snbow.lub", null, () => {
+							loadSkillTreeView(DB.LUA_PATH + "skillinfoz/skilltreeview.snbow.lub", DB.LUA_PATH + "skillinfoz/skilltreeview.lub", () => {
 								if (PacketVerManager_default.value >= 20211103) {
 									const bsonOnLoad = onLoad();
 									loadBSONFile("data/contentdata/effectdata/ez2streffect.bson", Ez2streffect, () => {
@@ -297367,6 +297422,26 @@ var init_DBManager = __esmMin((() => {
 		* @param {boolean} is identify
 		* @return {string} path
 		*/
+		/**
+		* Effective card-slot count for display (name suffix, empty holes).
+		* Turoran: extraEquipSlots adds +N (cap 4) on equipment so the UI matches
+		* Hercules item_db, which itemInfo.lub still lists at official counts.
+		*
+		* @param {object} item inventory/equip item (needs ITID; type when 0-slot)
+		* @return {number}
+		*/
+		static getItemSlotCount(item) {
+			if (!item) return 0;
+			const it = DB.getItemInfo(item.ITID);
+			let n = parseInt(it && it.slotCount, 10);
+			if (isNaN(n) || n < 0) n = 0;
+			const extra = parseInt(Configs.get("extraEquipSlots"), 10) || 0;
+			if (extra > 0) {
+				const t = item.type;
+				if (t === ItemType_default.ARMOR || t === ItemType_default.WEAPON || t === ItemType_default.SHADOWGEAR || t === void 0 && n > 0) n = Math.min(4, n + extra);
+			}
+			return n;
+		}
 		static getItemPath(itemid, identify) {
 			const it = DB.getItemInfo(itemid);
 			return "data/sprite/¾ÆÀÌÅÛ/" + (identify ? it.identifiedResourceName : it.unidentifiedResourceName);
@@ -297493,7 +297568,8 @@ var init_DBManager = __esmMin((() => {
 			if (showprefix && showItemPrefix) str += prefix;
 			str += it.identifiedDisplayName;
 			if (showpostfix && showItemPostfix) str += postfix;
-			if (it.slotCount > 0 && showslots && showItemSlots) str += " [" + it.slotCount + "]";
+			const slotCount = DB.getItemSlotCount(item);
+			if (slotCount > 0 && showslots && showItemSlots) str += " [" + slotCount + "]";
 			if (item.Options && showItemOptions) {
 				const numOfOptions = item.Options.filter((Option) => Option?.index && Option?.index !== 0).length;
 				if (numOfOptions) str += " [" + numOfOptions + " Option]";
