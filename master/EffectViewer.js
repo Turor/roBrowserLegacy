@@ -220305,7 +220305,7 @@ var init_ItemCompare = __esmMin((() => {
 		}
 		if (item.Options && item.IsIdentified) {
 			if (optionContainer) optionContainer.innerHTML = "";
-			for (let i = 1; i <= 5; i++) if (item.Options[i].index > 0) {
+			for (let i = 1; i <= 5; i++) if (item.Options[i].index > 0 && item.Options[i].index !== DB.TURORAN_FORGE_OPT) {
 				const optionList = "<div class=\"optionlist\"><div class=\"border\">" + DB.getOptionName(item.Options[i].index).replace("%d", item.Options[i].value).replace("%%", "%") + "</div></div>";
 				if (optionContainer) optionContainer.insertAdjacentHTML("beforeend", optionList);
 			}
@@ -242622,7 +242622,7 @@ var init_ItemInfo = __esmMin((() => {
 		}
 		if (item.Options && item.IsIdentified) {
 			if (optionContainer) optionContainer.innerHTML = "";
-			for (let i = 1; i <= 5; i++) if (item.Options[i].index > 0) {
+			for (let i = 1; i <= 5; i++) if (item.Options[i].index > 0 && item.Options[i].index !== DB.TURORAN_FORGE_OPT) {
 				const optionList = "<div class=\"optionlist\"><div class=\"border\">" + DB.getOptionName(item.Options[i].index).replace("%d", item.Options[i].value).replace("%%", "%") + "</div></div>";
 				if (optionContainer) optionContainer.insertAdjacentHTML("beforeend", optionList);
 			}
@@ -297608,6 +297608,16 @@ var init_DBManager = __esmMin((() => {
 		* @param {boolean} [options.showItemOptions=true] - Whether to show the number of options on the item.
 		* @return {string} - The full name of the item with all applicable details.
 		*/
+		/** Turoran: forge metadata stored in item option 0x7FFE instead of CARD0_FORGE. */
+		static TURORAN_FORGE_OPT = 32766;
+		static getTuroranForgeOption(item) {
+			if (!item || !item.Options) return null;
+			for (let i = 0; i < item.Options.length; i++) {
+				const opt = item.Options[i];
+				if (opt && opt.index === DB.TURORAN_FORGE_OPT) return opt;
+			}
+			return null;
+		}
 		static getItemName(item, options = {}) {
 			const { showItemRefine = true, showItemGrade = true, showItemSlots = true, showItemPrefix = true, showItemPostfix = true, showItemOptions = true } = options;
 			const it = DB.getItemInfo(item.ITID);
@@ -297626,6 +297636,31 @@ var init_DBManager = __esmMin((() => {
 				"A"
 			][item.enchantgrade] + "] ";
 			let showslots = true;
+			const turoranForge = DB.getTuroranForgeOption(item);
+			if (turoranForge && (!item.slot || item.slot.card1 !== 255)) {
+				let very = "";
+				let elem = "";
+				const fv = turoranForge.value | 0;
+				if (fv >= 3840) very = MsgStringTable[461];
+				else if (fv >= 2560) very = MsgStringTable[460];
+				else if (fv >= 1024) very = MsgStringTable[459];
+				switch (Math.abs(fv % 10)) {
+					case 1:
+						elem = MsgStringTable[452];
+						break;
+					case 2:
+						elem = MsgStringTable[454];
+						break;
+					case 3:
+						elem = MsgStringTable[451];
+						break;
+					case 4:
+						elem = MsgStringTable[453];
+						break;
+					default: elem = "";
+				}
+				if (very || elem) str += (very ? very + " " : "") + (elem ? elem.replace(/^'s\s*/, "") + " " : "");
+			}
 			if (item.slot) {
 				let very = "";
 				let name = "";
@@ -297720,7 +297755,7 @@ var init_DBManager = __esmMin((() => {
 			const slotCount = DB.getItemSlotCount(item);
 			if (slotCount > 0 && showslots && showItemSlots) str += " [" + slotCount + "]";
 			if (item.Options && showItemOptions) {
-				const numOfOptions = item.Options.filter((Option) => Option?.index && Option?.index !== 0).length;
+				const numOfOptions = item.Options.filter((Option) => Option?.index && Option?.index !== 0 && Option?.index !== DB.TURORAN_FORGE_OPT).length;
 				if (numOfOptions) str += " [" + numOfOptions + " Option]";
 			}
 			return str;
@@ -297732,6 +297767,7 @@ var init_DBManager = __esmMin((() => {
 		* @return {string} item full name
 		*/
 		static getOptionName(id) {
+			if (id === DB.TURORAN_FORGE_OPT) return "";
 			if (!(id in ItemRandomOptionTable_default)) return "UNKNOWN RANDOM OPTION";
 			return ItemRandomOptionTable_default[id];
 		}
