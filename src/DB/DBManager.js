@@ -2328,7 +2328,6 @@ class DB {
 		return item;
 	}
 
-
 	/**
 	 * Effective card-slot count for display (name suffix, empty holes).
 	 * extraEquipSlots adds +N (cap 4) on equipment so the UI matches
