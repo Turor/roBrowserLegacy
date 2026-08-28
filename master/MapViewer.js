@@ -220342,7 +220342,7 @@ var init_ItemCompare = __esmMin((() => {
 		}
 		if (item.Options && item.IsIdentified) {
 			if (optionContainer) optionContainer.innerHTML = "";
-			for (let i = 1; i <= 5; i++) if (item.Options[i].index > 0 && item.Options[i].index !== DB.TURORAN_FORGE_OPT) {
+			for (let i = 1; i <= 5; i++) if (item.Options[i].index > 0 && !DB.isTuroranForgeMetaOption(item.Options[i].index)) {
 				const optionList = "<div class=\"optionlist\"><div class=\"border\">" + DB.getOptionName(item.Options[i].index).replace("%d", item.Options[i].value).replace("%%", "%") + "</div></div>";
 				if (optionContainer) optionContainer.insertAdjacentHTML("beforeend", optionList);
 			}
@@ -242659,7 +242659,7 @@ var init_ItemInfo = __esmMin((() => {
 		}
 		if (item.Options && item.IsIdentified) {
 			if (optionContainer) optionContainer.innerHTML = "";
-			for (let i = 1; i <= 5; i++) if (item.Options[i].index > 0 && item.Options[i].index !== DB.TURORAN_FORGE_OPT) {
+			for (let i = 1; i <= 5; i++) if (item.Options[i].index > 0 && !DB.isTuroranForgeMetaOption(item.Options[i].index)) {
 				const optionList = "<div class=\"optionlist\"><div class=\"border\">" + DB.getOptionName(item.Options[i].index).replace("%d", item.Options[i].value).replace("%%", "%") + "</div></div>";
 				if (optionContainer) optionContainer.insertAdjacentHTML("beforeend", optionList);
 			}
@@ -297645,15 +297645,30 @@ var init_DBManager = __esmMin((() => {
 		* @param {boolean} [options.showItemOptions=true] - Whether to show the number of options on the item.
 		* @return {string} - The full name of the item with all applicable details.
 		*/
-		/** Turoran: forge metadata stored in item option 0x7FFE instead of CARD0_FORGE. */
+		/** Turoran: forge metadata in item options, never in card slots. */
 		static TURORAN_FORGE_OPT = 32766;
+		static TURORAN_FORGE_OWNER_LO = 32765;
+		static TURORAN_FORGE_OWNER_HI = 32764;
+		static isTuroranForgeMetaOption(index) {
+			return index === DB.TURORAN_FORGE_OPT || index === DB.TURORAN_FORGE_OWNER_LO || index === DB.TURORAN_FORGE_OWNER_HI;
+		}
 		static getTuroranForgeOption(item) {
 			if (!item || !item.Options) return null;
+			let forge = null;
+			let lo = 0;
+			let hi = 0;
 			for (let i = 0; i < item.Options.length; i++) {
 				const opt = item.Options[i];
-				if (opt && opt.index === DB.TURORAN_FORGE_OPT) return opt;
+				if (!opt) continue;
+				if (opt.index === DB.TURORAN_FORGE_OPT) forge = opt;
+				else if (opt.index === DB.TURORAN_FORGE_OWNER_LO) lo = opt.value & 65535;
+				else if (opt.index === DB.TURORAN_FORGE_OWNER_HI) hi = opt.value & 65535;
 			}
-			return null;
+			if (!forge) return null;
+			return {
+				value: forge.value | 0,
+				gid: (hi << 16) + lo
+			};
 		}
 		static getItemName(item, options = {}) {
 			const { showItemRefine = true, showItemGrade = true, showItemSlots = true, showItemPrefix = true, showItemPostfix = true, showItemOptions = true } = options;
@@ -297676,6 +297691,7 @@ var init_DBManager = __esmMin((() => {
 			const turoranForge = DB.getTuroranForgeOption(item);
 			if (turoranForge && (!item.slot || item.slot.card1 !== 255)) {
 				let very = "";
+				let name = "";
 				let elem = "";
 				const fv = turoranForge.value | 0;
 				if (fv >= 3840) very = MsgStringTable[461];
@@ -297694,9 +297710,27 @@ var init_DBManager = __esmMin((() => {
 					case 4:
 						elem = MsgStringTable[453];
 						break;
-					default: elem = "";
+					default: elem = MsgStringTable[450];
 				}
-				if (very || elem) str += (very ? very + " " : "") + (elem ? elem.replace(/^'s\s*/, "") + " " : "");
+				const GID = turoranForge.gid | 0;
+				name = "<font color=\"red\" class=\"owner-" + GID + "\">Unknown</font>";
+				if (GID) {
+					if (DB.CNameTable[GID] && DB.CNameTable[GID] !== "Unknown") name = "<font color=\"#87cefa\" class=\"owner-" + GID + "\">" + DB.CNameTable[GID] + "</font>";
+					else {
+						DB.UpdateOwnerName[GID] = function(pkt) {
+							delete DB.UpdateOwnerName[pkt.GID];
+							setTimeout(() => {
+								const elements = document.querySelectorAll(".owner-" + pkt.GID);
+								for (let i = 0; i < elements.length; i++) {
+									elements[i].innerText = pkt.CName;
+									elements[i].style.color = "blue";
+								}
+							}, 1e3);
+						};
+						DB.getNameByGID(GID);
+					}
+				}
+				str += (very ? very + " " : "") + name + elem + " ";
 			}
 			if (item.slot) {
 				let very = "";
@@ -297792,7 +297826,7 @@ var init_DBManager = __esmMin((() => {
 			const slotCount = DB.getItemSlotCount(item);
 			if (slotCount > 0 && showslots && showItemSlots) str += " [" + slotCount + "]";
 			if (item.Options && showItemOptions) {
-				const numOfOptions = item.Options.filter((Option) => Option?.index && Option?.index !== 0 && Option?.index !== DB.TURORAN_FORGE_OPT).length;
+				const numOfOptions = item.Options.filter((Option) => Option?.index && Option?.index !== 0 && !DB.isTuroranForgeMetaOption(Option.index)).length;
 				if (numOfOptions) str += " [" + numOfOptions + " Option]";
 			}
 			return str;
@@ -297804,7 +297838,7 @@ var init_DBManager = __esmMin((() => {
 		* @return {string} item full name
 		*/
 		static getOptionName(id) {
-			if (id === DB.TURORAN_FORGE_OPT) return "";
+			if (DB.isTuroranForgeMetaOption(id)) return "";
 			if (!(id in ItemRandomOptionTable_default)) return "UNKNOWN RANDOM OPTION";
 			return ItemRandomOptionTable_default[id];
 		}
