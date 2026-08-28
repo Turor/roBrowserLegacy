@@ -221,7 +221,7 @@ ItemInfo.setItem = function setItem(item) {
 
 		//Loop to Show Options
 		for (let i = 1; i <= 5; i++) {
-			if (item.Options[i].index > 0 && item.Options[i].index !== DB.TURORAN_FORGE_OPT) {
+			if (item.Options[i].index > 0 && !DB.isTuroranForgeMetaOption(item.Options[i].index)) {
 				const randomOptionName = DB.getOptionName(item.Options[i].index);
 				const optionList =
 					'<div class="optionlist">' +
