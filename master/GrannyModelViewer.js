@@ -220312,7 +220312,7 @@ var init_ItemCompare = __esmMin((() => {
 		if (title) {
 			if (item.IsDamaged) title.classList.add("damaged");
 			else title.classList.remove("damaged");
-			title.textContent = itemName;
+			title.innerHTML = itemName;
 		}
 		if (item.Options && item.IsIdentified) {
 			if (optionContainer) optionContainer.innerHTML = "";
@@ -242629,7 +242629,7 @@ var init_ItemInfo = __esmMin((() => {
 		if (title) {
 			if (item.IsDamaged) title.classList.add("damaged");
 			else title.classList.remove("damaged");
-			title.textContent = itemName;
+			title.innerHTML = itemName;
 		}
 		if (item.Options && item.IsIdentified) {
 			if (optionContainer) optionContainer.innerHTML = "";
