@@ -359,16 +359,7 @@ class DB {
 	static index = 0;
 	static async lazyInit() {
 		console.log('Loading DB files...');
-		try {
-			await Promise.race([
-				startLua(),
-				new Promise((_, reject) => setTimeout(() => reject(new Error('startLua timed out')), 20000))
-			]);
-		} catch (error) {
-			console.error('[lazyInit] Lua VM failed to start:', error);
-			DB.isLoaded = true;
-			return;
-		}
+		await startLua();
 		// Callback
 		DB.index = 0;
 		DB.count = 0;
@@ -498,31 +489,23 @@ class DB {
 					() => {
 						// Calls after skillids and descs been populated
 						loadSkillInfoList(DB.LUA_PATH + 'skillinfoz/skillinfolist.lub', null, () => {
-							loadSkillTreeView(
-								DB.LUA_PATH + 'skillinfoz/skilltreeview.snbow.lub',
-								DB.LUA_PATH + 'skillinfoz/skilltreeview.lub',
-								() => {
-									// Load ez2streffect, PACKETVER unknown when the while has been added, tied to default PACKETVER of rathena for 4th job
-									if (PACKETVER.value >= 20211103) {
-										const bsonOnLoad = onLoad();
-										loadBSONFile(
-											'data/contentdata/effectdata/ez2streffect.bson',
-											Ez2streffect,
-											() => {
-												Promise.all([
-													import('DB/Effects/EffectTable.js'),
-													import('DB/Skills/SkillEffect.js')
-												]).then(([EffectTable, SkillEffect]) => {
-													mergeEz2Effects(EffectTable.default, SkillEffect.default);
-													bsonOnLoad();
-												});
-											}
-										);
-									}
-									// Skill Lua finished
-									onSkillEnd();
+							loadSkillTreeView(DB.LUA_PATH + 'skillinfoz/skilltreeview.snbow.lub', null, () => {
+								// Load ez2streffect, PACKETVER unknown when the while has been added, tied to default PACKETVER of rathena for 4th job
+								if (PACKETVER.value >= 20211103) {
+									const bsonOnLoad = onLoad();
+									loadBSONFile('data/contentdata/effectdata/ez2streffect.bson', Ez2streffect, () => {
+										Promise.all([
+											import('DB/Effects/EffectTable.js'),
+											import('DB/Skills/SkillEffect.js')
+										]).then(([EffectTable, SkillEffect]) => {
+											mergeEz2Effects(EffectTable.default, SkillEffect.default);
+											bsonOnLoad();
+										});
+									});
 								}
-							);
+								// Skill Lua finished
+								onSkillEnd();
+							});
 						});
 					}
 				);
@@ -2345,17 +2328,11 @@ class DB {
 		return item;
 	}
 
-	/**
-	 * Get back item path
-	 *
-	 * @param {number} item id
-	 * @param {boolean} is identify
-	 * @return {string} path
-	 */
+
 	/**
 	 * Effective card-slot count for display (name suffix, empty holes).
-	 * Turoran: extraEquipSlots adds +N (cap 4) on equipment so the UI matches
-	 * Hercules item_db, which itemInfo.lub still lists at official counts.
+	 * extraEquipSlots adds +N (cap 4) on equipment so the UI matches
+	 * Hercules item_db; itemInfo.lub still lists official counts.
 	 *
 	 * @param {object} item inventory/equip item (needs ITID; type when 0-slot)
 	 * @return {number}
@@ -2384,6 +2361,13 @@ class DB {
 		return n;
 	}
 
+	/**
+	 * Get back item path
+	 *
+	 * @param {number} item id
+	 * @param {boolean} is identify
+	 * @return {string} path
+	 */
 	static getItemPath(itemid, identify) {
 		const it = DB.getItemInfo(itemid);
 		return (
@@ -4056,36 +4040,6 @@ async function startLua() {
 	MER_AI = ma;
 	default_HO_AI = dha;
 	default_MER_AI = dma;
-	await installLuaSafeIndexes();
-}
-
-async function installLuaSafeIndexes() {
-	if (!lua) {
-		return;
-	}
-	await lua.doString(`
-		local function wrap_enum(tbl)
-			tbl = tbl or {}
-			return setmetatable(tbl, {
-				__index = function(t, k)
-					local v = { [1] = 0 }
-					rawset(t, k, v)
-					return v
-				end
-			})
-		end
-		local function wrap_ids(tbl)
-			tbl = tbl or {}
-			return setmetatable(tbl, {
-				__index = function()
-					return 0
-				end
-			})
-		end
-		EnumVAR = wrap_enum(EnumVAR)
-		jobtbl = wrap_ids(jobtbl)
-		JOBID = wrap_ids(JOBID)
-	`);
 }
 
 function loadFontFromClient(fontPath) {
@@ -6666,7 +6620,7 @@ function loadSkillInfoList(filename, callback, onEnd) {
  * @param {function} onEnd - The function to invoke when loading is complete.
  * @return {void}
  */
-function loadSkillTreeView(filename, fallback, onEnd) {
+function loadSkillTreeView(filename, callback, onEnd) {
 	// First load jobinheritlist.lub
 	Client.loadFile(
 		DB.LUA_PATH + 'skillinfoz/jobinheritlist.lub',
@@ -6680,11 +6634,7 @@ function loadSkillTreeView(filename, fallback, onEnd) {
 				await lua.doFile('jobinheritlist.lub');
 
 				// Now load skilltreeview.lub
-				if (typeof fallback === 'function') {
-					onEnd = fallback;
-					fallback = null;
-				}
-				loadSkillTreeViewData(filename, fallback, onEnd);
+				loadSkillTreeViewData(filename, callback, onEnd);
 			} catch (error) {
 				console.error('[loadSkillTreeView - jobinheritlist] Error: ', error);
 				onEnd();
@@ -6694,7 +6644,7 @@ function loadSkillTreeView(filename, fallback, onEnd) {
 	);
 }
 
-function loadSkillTreeViewData(filename, fallback, onEnd) {
+function loadSkillTreeViewData(filename, callback, onEnd) {
 	Client.loadFile(
 		filename,
 		async function (file) {
@@ -6848,14 +6798,7 @@ function loadSkillTreeViewData(filename, fallback, onEnd) {
 				onEnd();
 			}
 		},
-		function () {
-			if (fallback && fallback !== filename) {
-				console.warn('[loadSkillTreeView] missing ' + filename + ', falling back to ' + fallback);
-				loadSkillTreeViewData(fallback, null, onEnd);
-				return;
-			}
-			onEnd();
-		}
+		onEnd
 	);
 }
 
@@ -7075,7 +7018,6 @@ function loadLuaTable(file_list, table_name, callback, onEnd, contextFunc) {
 				lua.mountFile(id_filename, buffer);
 				// execute file
 				await lua.doFile(id_filename);
-				await installLuaSafeIndexes();
 				loadValueTable();
 			} catch (hException) {
 				console.error(`(${id_filename}) error: `, hException);
@@ -7095,11 +7037,6 @@ function loadLuaTable(file_list, table_name, callback, onEnd, contextFunc) {
 					parseTable();
 				} catch (hException) {
 					console.error(`(${value_table_filename}) error: `, hException);
-					try {
-						parseTable();
-					} catch (e2) {
-						console.error(`(${value_table_filename}) parse error: `, e2);
-					}
 				}
 			});
 		}
@@ -7203,10 +7140,7 @@ function loadLuaValue(file_path, variable_name, callback, onEnd) {
 				lua.doStringSync(
 					String.raw`
 							local function escape_str(str)
-								str = str:gsub("\\", "\\\\"):gsub("\"", "\\\"")
-								str = str:gsub("\n", "\\n"):gsub("\r", "\\r"):gsub("\t", "\\t")
-								str = str:gsub("[%z\1-\8\11\12\14-\31]", function(c) return string.format("\\u%04x", string.byte(c)) end)
-								return str
+								return str:gsub("\\", "\\\\"):gsub("\"", "\\\"")
 							end
 
 							local function to_json(value)
@@ -7375,7 +7309,6 @@ function loadPetInfo(filename, callback, onEnd) {
 				const buffer = file instanceof ArrayBuffer ? new Uint8Array(file) : file;
 
 				lua.mountFile(filename, buffer);
-				await installLuaSafeIndexes();
 				await lua.doFile(filename);
 
 				// Read Lua table
