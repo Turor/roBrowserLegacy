@@ -2388,7 +2388,7 @@ class DB {
 	 * @param {boolean} [options.showItemOptions=true] - Whether to show the number of options on the item.
 	 * @return {string} - The full name of the item with all applicable details.
 	 */
-	
+
 	/** Turoran: forge metadata stored in item option 0x7FFE instead of CARD0_FORGE. */
 	static TURORAN_FORGE_OPT = 0x7ffe;
 
