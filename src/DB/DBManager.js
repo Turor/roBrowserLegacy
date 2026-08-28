@@ -2388,6 +2388,23 @@ class DB {
 	 * @param {boolean} [options.showItemOptions=true] - Whether to show the number of options on the item.
 	 * @return {string} - The full name of the item with all applicable details.
 	 */
+	
+	/** Turoran: forge metadata stored in item option 0x7FFE instead of CARD0_FORGE. */
+	static TURORAN_FORGE_OPT = 0x7ffe;
+
+	static getTuroranForgeOption(item) {
+		if (!item || !item.Options) {
+			return null;
+		}
+		for (let i = 0; i < item.Options.length; i++) {
+			const opt = item.Options[i];
+			if (opt && opt.index === DB.TURORAN_FORGE_OPT) {
+				return opt;
+			}
+		}
+		return null;
+	}
+
 	static getItemName(item, options = {}) {
 		const {
 			showItemRefine = true,
@@ -2418,8 +2435,42 @@ class DB {
 			str += '[' + list[item.enchantgrade] + '] ';
 		}
 
-		//Hide slots for forged weapons
+		// Hide slots only for official CARD0_FORGE (0x00ff). Turoran forged
+		// weapons use option 0x7FFE and keep insertable slots.
 		let showslots = true;
+		const turoranForge = DB.getTuroranForgeOption(item);
+		if (turoranForge && (!item.slot || item.slot.card1 !== 0x00ff)) {
+			let very = '';
+			let elem = '';
+			const fv = turoranForge.value | 0;
+			if (fv >= 3840) {
+				very = MsgStringTable[461]; //Very Very Very Strong
+			} else if (fv >= 2560) {
+				very = MsgStringTable[460]; //Very Very Strong
+			} else if (fv >= 1024) {
+				very = MsgStringTable[459]; //Very Strong
+			}
+			switch (Math.abs(fv % 10)) {
+				case 1:
+					elem = MsgStringTable[452];
+					break; // Ice
+				case 2:
+					elem = MsgStringTable[454];
+					break; // Earth
+				case 3:
+					elem = MsgStringTable[451];
+					break; // Fire
+				case 4:
+					elem = MsgStringTable[453];
+					break; // Wind
+				default:
+					elem = '';
+					break;
+			}
+			if (very || elem) {
+				str += (very ? very + ' ' : '') + (elem ? elem.replace(/^'s\s*/, '') + ' ' : '');
+			}
+		}
 		if (item.slot) {
 			let very = '';
 			let name = '';
@@ -2544,7 +2595,9 @@ class DB {
 		}
 
 		if (item.Options && showItemOptions) {
-			const numOfOptions = item.Options.filter(Option => Option?.index && Option?.index !== 0).length;
+			const numOfOptions = item.Options.filter(
+				Option => Option?.index && Option?.index !== 0 && Option?.index !== DB.TURORAN_FORGE_OPT
+			).length;
 			if (numOfOptions) {
 				str += ' [' + numOfOptions + ' Option]';
 			}
@@ -2560,6 +2613,9 @@ class DB {
 	 * @return {string} item full name
 	 */
 	static getOptionName(id) {
+		if (id === DB.TURORAN_FORGE_OPT) {
+			return '';
+		}
 		if (!(id in RandomOption)) {
 			return 'UNKNOWN RANDOM OPTION';
 		}
