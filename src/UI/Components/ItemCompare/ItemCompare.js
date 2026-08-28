@@ -234,7 +234,7 @@ ItemCompare.setItem = function setItem(item) {
 				}
 				break;
 			}
-			const slotCount = it.slotCount || 0;
+			const slotCount = DB.getItemSlotCount(item);
 
 			if (cardListParent) {
 				cardListParent.style.display = 'block';

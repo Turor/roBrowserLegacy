@@ -158,9 +158,7 @@ function setSlotValue(item, slotNum, value) {
 }
 
 function getBaseSlotCount(item) {
-	const it = DB.getItemInfo(item.ITID);
-	const slotCount = it && it.slotCount ? parseInt(it.slotCount, 10) : 0;
-	return isNaN(slotCount) ? 0 : slotCount;
+	return DB.getItemSlotCount(item);
 }
 
 function getItemGrade(item) {
