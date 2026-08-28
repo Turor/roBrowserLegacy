@@ -426,7 +426,7 @@ class DB {
 					},
 					onLoad(),
 					function () {
-						loadPetInfo(DB.LUA_PATH + 'datainfo/petinfo.lub', null, function () {
+						loadPetInfo(DB.LUA_PATH + 'datainfo/petinfo.turoran.lub', null, function () {
 							tryLoadLuaAliases(
 								loadPetEvolution,
 								getSystemAliases('System/PetEvolutionCln.lub'),
@@ -448,7 +448,7 @@ class DB {
 			}
 
 			loadLuaTable(
-				[DB.LUA_PATH + 'datainfo/enumvar.lub', DB.LUA_PATH + 'datainfo/addrandomoptionnametable.lub'],
+				[DB.LUA_PATH + 'datainfo/enumvar.lub', DB.LUA_PATH + 'datainfo/addrandomoptionnametable.turoran.lub'],
 				'NameTable_VAR',
 				function (json) {
 					Object.assign(RandomOption, json);
