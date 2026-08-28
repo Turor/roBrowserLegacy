@@ -296481,14 +296481,14 @@ var init_DBManager = __esmMin((() => {
 				if (PacketVerManager_default.value >= 20141008) loadLuaTable([DB.LUA_PATH + "datainfo/npcidentity.lub", DB.LUA_PATH + "datainfo/jobname.lub"], "JobNameTable", function(json) {
 					Object.assign(MonsterTable_default, json);
 				}, onLoad(), function() {
-					loadPetInfo(DB.LUA_PATH + "datainfo/petinfo.lub", null, function() {
+					loadPetInfo(DB.LUA_PATH + "datainfo/petinfo.turoran.lub", null, function() {
 						tryLoadLuaAliases(loadPetEvolution, getSystemAliases("System/PetEvolutionCln.lub"), null, onLoad());
 					});
 				});
 				else loadLuaTable([DB.LUA_PATH + "datainfo/npcidentity.lub", DB.LUA_PATH + "datainfo/jobname.lub"], "JobNameTable", function(json) {
 					Object.assign(MonsterTable_default, json);
 				}, onLoad());
-				loadLuaTable([DB.LUA_PATH + "datainfo/enumvar.lub", DB.LUA_PATH + "datainfo/addrandomoptionnametable.lub"], "NameTable_VAR", function(json) {
+				loadLuaTable([DB.LUA_PATH + "datainfo/enumvar.lub", DB.LUA_PATH + "datainfo/addrandomoptionnametable.turoran.lub"], "NameTable_VAR", function(json) {
 					Object.assign(ItemRandomOptionTable_default, json);
 				}, onLoad());
 				loadItemDBTable(DB.LUA_PATH + "ItemDBNameTbl.lub", null, onLoad());
