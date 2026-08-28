@@ -157,7 +157,7 @@ ItemCompare.setItem = function setItem(item) {
 		} else {
 			title.classList.remove('damaged');
 		}
-		title.textContent = itemName;
+		title.innerHTML = itemName;
 	}
 
 	if (item.Options && item.IsIdentified) {
