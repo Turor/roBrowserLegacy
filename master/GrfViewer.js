@@ -67383,8 +67383,8 @@ function init$22(packetver) {
 	length_list$6[2567] = 9;
 	length_list$6[2568] = 26;
 	length_list$6[2569] = 55;
-	length_list$6[2570] = 57;
-	length_list$6[2571] = 57;
+	length_list$6[2570] = 72;
+	length_list$6[2571] = 72;
 	length_list$6[2572] = 66;
 	length_list$6[2573] = -1;
 	length_list$6[2574] = 14;
@@ -67428,7 +67428,7 @@ function init$22(packetver) {
 	length_list$6[2612] = 6;
 	length_list$6[2613] = 4;
 	length_list$6[2614] = 7;
-	length_list$6[2615] = 69;
+	length_list$6[2615] = 84;
 	length_list$6[2616] = 3;
 	length_list$6[2617] = 36;
 	length_list$6[2618] = 12;
@@ -67510,7 +67510,7 @@ function init$22(packetver) {
 	length_list$6[2707] = 3;
 	length_list$6[2708] = 2;
 	length_list$6[2709] = 4;
-	length_list$6[2710] = 61;
+	length_list$6[2710] = 76;
 	length_list$6[2711] = 8;
 	length_list$6[2712] = 10;
 	length_list$6[2713] = 4;
@@ -67634,7 +67634,7 @@ function init$22(packetver) {
 	length_list$6[2832] = 10;
 	length_list$6[2833] = 4;
 	length_list$6[2834] = 2;
-	length_list$6[2835] = 48;
+	length_list$6[2835] = 63;
 	length_list$6[2836] = 2;
 	length_list$6[2837] = 7;
 	length_list$6[2838] = 2;
@@ -161029,6 +161029,11 @@ var init_PacketStructure = __esmMin((() => {
 					out[i].Options[3] = fp.readStruct(option);
 					out[i].Options[4] = fp.readStruct(option);
 					out[i].Options[5] = fp.readStruct(option);
+					out[i].ForgeOptions = [
+						fp.readStruct(option),
+						fp.readStruct(option),
+						fp.readStruct(option)
+					];
 				}
 			}
 			return out;
@@ -164082,6 +164087,11 @@ var init_PacketStructure = __esmMin((() => {
 					out[i].Options[3] = fp.readStruct(option);
 					out[i].Options[4] = fp.readStruct(option);
 					out[i].Options[5] = fp.readStruct(option);
+					out[i].ForgeOptions = [
+						fp.readStruct(option),
+						fp.readStruct(option),
+						fp.readStruct(option)
+					];
 				}
 				if (PacketVerManager_default.value >= 20160921) {
 					out[i].location = fp.readULong();
@@ -165874,6 +165884,11 @@ var init_PacketStructure = __esmMin((() => {
 			Item.Options[3] = fp.readStruct(option);
 			Item.Options[4] = fp.readStruct(option);
 			Item.Options[5] = fp.readStruct(option);
+			Item.ForgeOptions = [
+				fp.readStruct(option),
+				fp.readStruct(option),
+				fp.readStruct(option)
+			];
 			this.ItemList.push(Item);
 		}
 	};
@@ -165908,6 +165923,11 @@ var init_PacketStructure = __esmMin((() => {
 			Item.Options[3] = fp.readStruct(option);
 			Item.Options[4] = fp.readStruct(option);
 			Item.Options[5] = fp.readStruct(option);
+			Item.ForgeOptions = [
+				fp.readStruct(option),
+				fp.readStruct(option),
+				fp.readStruct(option)
+			];
 			Item.RefiningLevel = fp.readUChar();
 			Item.grade = fp.readUChar();
 			this.ItemList.push(Item);
@@ -165960,6 +165980,11 @@ var init_PacketStructure = __esmMin((() => {
 		this.Options[3] = fp.readStruct(option);
 		this.Options[4] = fp.readStruct(option);
 		this.Options[5] = fp.readStruct(option);
+		this.ForgeOptions = [
+			fp.readStruct(option),
+			fp.readStruct(option),
+			fp.readStruct(option)
+		];
 		this.weight = fp.readShort();
 		this.favorite = fp.readUChar();
 		this.location = fp.readULong();
@@ -165985,6 +166010,11 @@ var init_PacketStructure = __esmMin((() => {
 		this.Options[3] = fp.readStruct(option);
 		this.Options[4] = fp.readStruct(option);
 		this.Options[5] = fp.readStruct(option);
+		this.ForgeOptions = [
+			fp.readStruct(option),
+			fp.readStruct(option),
+			fp.readStruct(option)
+		];
 		this.weight = fp.readShort();
 		this.favorite = fp.readUChar();
 		this.location = fp.readULong();
@@ -166539,6 +166569,11 @@ var init_PacketStructure = __esmMin((() => {
 		this.Options[3] = fp.readStruct(option);
 		this.Options[4] = fp.readStruct(option);
 		this.Options[5] = fp.readStruct(option);
+		this.ForgeOptions = [
+			fp.readStruct(option),
+			fp.readStruct(option),
+			fp.readStruct(option)
+		];
 	};
 	PACKET.ZC.ADD_EXCHANGE_ITEM3.size = 45;
 	PACKET.ZC.ADD_ITEM_TO_STORE3 = function PACKET_ZC_ADD_ITEM_TO_STORE3(fp, end) {
@@ -166561,6 +166596,11 @@ var init_PacketStructure = __esmMin((() => {
 		this.Options[3] = fp.readStruct(option);
 		this.Options[4] = fp.readStruct(option);
 		this.Options[5] = fp.readStruct(option);
+		this.ForgeOptions = [
+			fp.readStruct(option),
+			fp.readStruct(option),
+			fp.readStruct(option)
+		];
 	};
 	PACKET.ZC.ADD_ITEM_TO_STORE3.size = PacketVerManager_default.value >= 20181121 ? 57 : 47;
 	PACKET.ZC.ADD_ITEM_TO_CART3 = function PACKET_ZC_ADD_ITEM_TO_CART3(fp, end) {
@@ -166583,6 +166623,11 @@ var init_PacketStructure = __esmMin((() => {
 		this.Options[3] = fp.readStruct(option);
 		this.Options[4] = fp.readStruct(option);
 		this.Options[5] = fp.readStruct(option);
+		this.ForgeOptions = [
+			fp.readStruct(option),
+			fp.readStruct(option),
+			fp.readStruct(option)
+		];
 	};
 	PACKET.ZC.ADD_ITEM_TO_CART3.size = PacketVerManager_default.value >= 20181121 ? 57 : 47;
 	PACKET.ZC.ITEM_PICKUP_ACK6 = function PACKET_ZC_ITEM_PICKUP_ACK6(fp, end) {
@@ -166609,6 +166654,11 @@ var init_PacketStructure = __esmMin((() => {
 		this.Options[3] = fp.readStruct(option);
 		this.Options[4] = fp.readStruct(option);
 		this.Options[5] = fp.readStruct(option);
+		this.ForgeOptions = [
+			fp.readStruct(option),
+			fp.readStruct(option),
+			fp.readStruct(option)
+		];
 	};
 	PACKET.ZC.ITEM_PICKUP_ACK6.size = 56;
 	PACKET.ZC.EQUIPMENT_ITEMLIST5 = function PACKET_ZC_EQUIPMENT_ITEMLIST5(fp, end) {
@@ -166639,6 +166689,11 @@ var init_PacketStructure = __esmMin((() => {
 				out[i].Options[3] = fp.readStruct(option);
 				out[i].Options[4] = fp.readStruct(option);
 				out[i].Options[5] = fp.readStruct(option);
+				out[i].ForgeOptions = [
+					fp.readStruct(option),
+					fp.readStruct(option),
+					fp.readStruct(option)
+				];
 				const flag = fp.readUChar();
 				out[i].IsIdentified = flag & 1;
 				out[i].IsDamaged = flag & 2;
@@ -166676,6 +166731,11 @@ var init_PacketStructure = __esmMin((() => {
 				out[i].Options[3] = fp.readStruct(option);
 				out[i].Options[4] = fp.readStruct(option);
 				out[i].Options[5] = fp.readStruct(option);
+				out[i].ForgeOptions = [
+					fp.readStruct(option),
+					fp.readStruct(option),
+					fp.readStruct(option)
+				];
 				const flag = fp.readUChar();
 				out[i].IsIdentified = flag & 1;
 				out[i].IsDamaged = flag & 2;
@@ -166714,6 +166774,11 @@ var init_PacketStructure = __esmMin((() => {
 				out[i].Options[3] = fp.readStruct(option);
 				out[i].Options[4] = fp.readStruct(option);
 				out[i].Options[5] = fp.readStruct(option);
+				out[i].ForgeOptions = [
+					fp.readStruct(option),
+					fp.readStruct(option),
+					fp.readStruct(option)
+				];
 				const flag = fp.readUChar();
 				out[i].IsIdentified = flag & 1;
 				out[i].IsDamaged = flag & 2;
@@ -166845,6 +166910,11 @@ var init_PacketStructure = __esmMin((() => {
 				out[i].Options[3] = fp.readStruct(option);
 				out[i].Options[4] = fp.readStruct(option);
 				out[i].Options[5] = fp.readStruct(option);
+				out[i].ForgeOptions = [
+					fp.readStruct(option),
+					fp.readStruct(option),
+					fp.readStruct(option)
+				];
 				const flag = fp.readUChar();
 				out[i].IsIdentified = flag & 1;
 				out[i].IsDamaged = flag & 2;
@@ -166902,6 +166972,11 @@ var init_PacketStructure = __esmMin((() => {
 		this.Options[3] = fp.readStruct(option);
 		this.Options[4] = fp.readStruct(option);
 		this.Options[5] = fp.readStruct(option);
+		this.ForgeOptions = [
+			fp.readStruct(option),
+			fp.readStruct(option),
+			fp.readStruct(option)
+		];
 		this.favorite = fp.readUChar();
 		this.look = fp.readUShort();
 	};
@@ -167170,6 +167245,11 @@ var init_PacketStructure = __esmMin((() => {
 		this.Options[3] = fp.readStruct(option);
 		this.Options[4] = fp.readStruct(option);
 		this.Options[5] = fp.readStruct(option);
+		this.ForgeOptions = [
+			fp.readStruct(option),
+			fp.readStruct(option),
+			fp.readStruct(option)
+		];
 		this.location = fp.readULong();
 		this.viewSprite = fp.readUShort();
 	};
@@ -167649,6 +167729,11 @@ var init_PacketStructure = __esmMin((() => {
 				out[i].Options[3] = fp.readStruct(option);
 				out[i].Options[4] = fp.readStruct(option);
 				out[i].Options[5] = fp.readStruct(option);
+				out[i].ForgeOptions = [
+					fp.readStruct(option),
+					fp.readStruct(option),
+					fp.readStruct(option)
+				];
 				flag = fp.readUChar();
 				out[i].IsIdentified = flag & 1;
 				out[i].IsDamaged = flag & 2;
@@ -167760,6 +167845,11 @@ var init_PacketStructure = __esmMin((() => {
 				out[i].Options[3] = fp.readStruct(option);
 				out[i].Options[4] = fp.readStruct(option);
 				out[i].Options[5] = fp.readStruct(option);
+				out[i].ForgeOptions = [
+					fp.readStruct(option),
+					fp.readStruct(option),
+					fp.readStruct(option)
+				];
 				flag = fp.readUChar();
 				out[i].IsIdentified = flag & 1;
 				out[i].IsDamaged = flag & 2;
@@ -168010,6 +168100,11 @@ var init_PacketStructure = __esmMin((() => {
 				out[i].Options[3] = fp.readStruct(option);
 				out[i].Options[4] = fp.readStruct(option);
 				out[i].Options[5] = fp.readStruct(option);
+				out[i].ForgeOptions = [
+					fp.readStruct(option),
+					fp.readStruct(option),
+					fp.readStruct(option)
+				];
 				out[i].RefiningLevel = fp.readUChar();
 				out[i].enchantgrade = fp.readUChar();
 				flag = fp.readUChar();
@@ -168051,6 +168146,11 @@ var init_PacketStructure = __esmMin((() => {
 				out[i].Options[3] = fp.readStruct(option);
 				out[i].Options[4] = fp.readStruct(option);
 				out[i].Options[5] = fp.readStruct(option);
+				out[i].ForgeOptions = [
+					fp.readStruct(option),
+					fp.readStruct(option),
+					fp.readStruct(option)
+				];
 				out[i].RefiningLevel = fp.readUChar();
 				out[i].enchantgrade = fp.readUChar();
 				flag = fp.readUChar();
@@ -168094,6 +168194,11 @@ var init_PacketStructure = __esmMin((() => {
 				out[i].Options[3] = fp.readStruct(option);
 				out[i].Options[4] = fp.readStruct(option);
 				out[i].Options[5] = fp.readStruct(option);
+				out[i].ForgeOptions = [
+					fp.readStruct(option),
+					fp.readStruct(option),
+					fp.readStruct(option)
+				];
 				out[i].location = fp.readULong();
 				out[i].viewSprite = fp.readUShort();
 				out[i].RefiningLevel = fp.readUChar();
@@ -168129,6 +168234,11 @@ var init_PacketStructure = __esmMin((() => {
 				out[i].Options[3] = fp.readStruct(option);
 				out[i].Options[4] = fp.readStruct(option);
 				out[i].Options[5] = fp.readStruct(option);
+				out[i].ForgeOptions = [
+					fp.readStruct(option),
+					fp.readStruct(option),
+					fp.readStruct(option)
+				];
 				out[i].RefiningLevel = fp.readUChar();
 				out[i].grade = fp.readUChar();
 			}
@@ -168159,6 +168269,11 @@ var init_PacketStructure = __esmMin((() => {
 		this.Options[3] = fp.readStruct(option);
 		this.Options[4] = fp.readStruct(option);
 		this.Options[5] = fp.readStruct(option);
+		this.ForgeOptions = [
+			fp.readStruct(option),
+			fp.readStruct(option),
+			fp.readStruct(option)
+		];
 		this.favorite = fp.readUChar();
 		this.look = fp.readUShort();
 		this.RefiningLevel = fp.readUChar();
@@ -168183,6 +168298,11 @@ var init_PacketStructure = __esmMin((() => {
 		this.Options[3] = fp.readStruct(option);
 		this.Options[4] = fp.readStruct(option);
 		this.Options[5] = fp.readStruct(option);
+		this.ForgeOptions = [
+			fp.readStruct(option),
+			fp.readStruct(option),
+			fp.readStruct(option)
+		];
 		this.location = fp.readULong();
 		this.viewSprite = fp.readUShort();
 		this.RefiningLevel = fp.readUChar();
@@ -168204,6 +168324,11 @@ var init_PacketStructure = __esmMin((() => {
 		this.Options[3] = fp.readStruct(option);
 		this.Options[4] = fp.readStruct(option);
 		this.Options[5] = fp.readStruct(option);
+		this.ForgeOptions = [
+			fp.readStruct(option),
+			fp.readStruct(option),
+			fp.readStruct(option)
+		];
 		this.refiningLevel = fp.readUChar();
 		this.enchantgrade = fp.readUChar();
 	};
@@ -168227,6 +168352,11 @@ var init_PacketStructure = __esmMin((() => {
 		this.Options[3] = fp.readStruct(option);
 		this.Options[4] = fp.readStruct(option);
 		this.Options[5] = fp.readStruct(option);
+		this.ForgeOptions = [
+			fp.readStruct(option),
+			fp.readStruct(option),
+			fp.readStruct(option)
+		];
 		this.RefiningLevel = fp.readUChar();
 		this.grade = fp.readUChar();
 	};
@@ -168250,6 +168380,11 @@ var init_PacketStructure = __esmMin((() => {
 		this.Options[3] = fp.readStruct(option);
 		this.Options[4] = fp.readStruct(option);
 		this.Options[5] = fp.readStruct(option);
+		this.ForgeOptions = [
+			fp.readStruct(option),
+			fp.readStruct(option),
+			fp.readStruct(option)
+		];
 		this.RefiningLevel = fp.readUChar();
 		this.grade = fp.readUChar();
 	};
@@ -297649,21 +297784,27 @@ var init_DBManager = __esmMin((() => {
 			return index === DB.TURORAN_FORGE_OPT || index === DB.TURORAN_FORGE_OWNER_LO || index === DB.TURORAN_FORGE_OWNER_HI;
 		}
 		static getTuroranForgeOption(item) {
-			if (!item || !item.Options) return null;
+			if (!item) return null;
+			const lists = [];
+			if (item.ForgeOptions) lists.push(item.ForgeOptions);
+			if (item.Options) lists.push(item.Options);
 			let forge = null;
-			let lo = 0;
 			let hi = 0;
-			for (let i = 0; i < item.Options.length; i++) {
-				const opt = item.Options[i];
-				if (!opt) continue;
-				if (opt.index === DB.TURORAN_FORGE_OPT) forge = opt;
-				else if (opt.index === DB.TURORAN_FORGE_OWNER_LO) lo = opt.value & 65535;
-				else if (opt.index === DB.TURORAN_FORGE_OWNER_HI) hi = opt.value & 65535;
+			for (let L = 0; L < lists.length; L++) {
+				const arr = lists[L];
+				for (let i = 0; i < arr.length; i++) {
+					const opt = arr[i];
+					if (!opt) continue;
+					if (opt.index === DB.TURORAN_FORGE_OPT) forge = opt;
+					else if (opt.index === DB.TURORAN_FORGE_OWNER_LO) opt.value & 65535;
+					else if (opt.index === DB.TURORAN_FORGE_OWNER_HI) hi = opt.value & 65535;
+				}
+				if (forge) break;
 			}
 			if (!forge) return null;
 			return {
 				value: forge.value | 0,
-				gid: (hi << 16) + lo
+				gid: hi << 16 >>> 0
 			};
 		}
 		static getItemName(item, options = {}) {
