@@ -2396,9 +2396,7 @@ class DB {
 
 	static isTuroranForgeMetaOption(index) {
 		return (
-			index === DB.TURORAN_FORGE_OPT ||
-			index === DB.TURORAN_FORGE_OWNER_LO ||
-			index === DB.TURORAN_FORGE_OWNER_HI
+			index === DB.TURORAN_FORGE_OPT || index === DB.TURORAN_FORGE_OWNER_LO || index === DB.TURORAN_FORGE_OWNER_HI
 		);
 	}
 
