@@ -231019,6 +231019,29 @@ function _escapeHTML$2(text) {
 function _isNumeric(val) {
 	return !isNaN(parseFloat(val)) && isFinite(val);
 }
+function skillSpAtLevel(skillId, level) {
+	const amounts = SkillInfo[skillId] && SkillInfo[skillId].SpAmount;
+	if (!Array.isArray(amounts) || !amounts.length) return null;
+	const i = Math.max(0, Math.min(level || 1, amounts.length) - 1);
+	const n = Number(amounts[i]);
+	return Number.isNaN(n) ? null : n;
+}
+function getDisplayedSpCost(skill) {
+	const level = skill.selectedLevel || skill.level || 1;
+	const fromTable = skillSpAtLevel(skill.SKID, level);
+	if (skill.selectedLevel && fromTable != null) return fromTable;
+	if (skill.spcost) return skill.spcost;
+	return fromTable != null ? fromTable : 0;
+}
+function skillShowsSp(skill, sk) {
+	if (skill && Number.isInteger(skill.type) && !skill.type) return false;
+	if (skill && skill.type) return true;
+	return (sk && sk.SpAmount || []).some((n) => Number(n) > 0);
+}
+function consumeHtml(skill, sk) {
+	if (!skillShowsSp(skill, sk)) return "<div class=\"consume\">Passive</div>";
+	return `<div class="consume">Sp : <span class="spcost">${skill != null ? getDisplayedSpCost(skill) : Number((sk && sk.SpAmount || [0])[0] || 0)}</span></div>`;
+}
 function createSkillList({ name, htmlText, cssText, hasTabs = false, showDescOnMiniHover = false, touchDrag = false, guardMissingJob = false, readdSkillOnUpdate = false, listOnly = false, dragFrom = null, titlebarText = null, containerSelector = null, preferenceDefaults = {
 	x: 100,
 	y: 200,
@@ -231427,7 +231450,7 @@ function createSkillList({ name, htmlText, cssText, hasTabs = false, showDescOnM
 				element.className = `skill id${key} ${className}`;
 				element.setAttribute("data-index", key);
 				element.setAttribute("draggable", "true");
-				element.innerHTML = `<div class="name">${_escapeHTML$2(sk.SkillName).substr(0, 7)}...<br/></div><div class="icon"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" width="24" height="24" /></div><div class=selectable><span class="level" style="display: none">` + (sk.bSeperateLv ? `<button class="currentDown"></button><span class="current">0</span> / <span class="max">0</span><button class="currentUp"></button>` : "<span class=\"current\">0</span>") + "</span></div>";
+				element.innerHTML = `<div class="name">${_escapeHTML$2(sk.SkillName).substr(0, 7)}...<br/></div><div class="icon"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" width="24" height="24" /></div>` + consumeHtml(null, sk) + "<div class=selectable><span class=\"level\" style=\"display: none\">" + (sk.bSeperateLv ? `<button class="currentDown"></button><span class="current">0</span> / <span class="max">0</span><button class="currentUp"></button>` : "<span class=\"current\">0</span>") + "</span></div>";
 				const upBtn = element.querySelector(".level .currentUp");
 				if (upBtn) {
 					if (_rArrow) upBtn.style.backgroundImage = _rArrow;
@@ -231462,7 +231485,7 @@ function createSkillList({ name, htmlText, cssText, hasTabs = false, showDescOnM
 								const miniTr = document.createElement("tr");
 								miniTr.className = `skill id${key} disabled`;
 								miniTr.setAttribute("data-index", key);
-								miniTr.innerHTML = `<td class="icon"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" width="24" height="24" /></td><td class="levelupcontainer"></td><td class="selectable"><div class="name">${_escapeHTML$2(sk.SkillName)}<br/><span class="level">Lv : <span class="current">0</span></span></div></td><td class="selectable type"><div class="consume">Passive</div></td>`;
+								miniTr.innerHTML = `<td class="icon"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" width="24" height="24" /></td><td class="levelupcontainer"></td><td class="selectable"><div class="name">${_escapeHTML$2(sk.SkillName)}<br/><span class="level">Lv : <span class="current">0</span></span></div></td><td class="selectable type">${consumeHtml(null, sk)}</td>`;
 								miniBox.appendChild(miniTr);
 								Client.loadFile(`${DB.INTERFACE_PATH}item/${sk.Name}.bmp`, (data) => {
 									const img = miniTr.querySelector(".icon img");
@@ -231487,7 +231510,7 @@ function createSkillList({ name, htmlText, cssText, hasTabs = false, showDescOnM
 		element.className = `skill id${skill.SKID} ${className}`;
 		element.setAttribute("data-index", skill.SKID);
 		element.setAttribute("draggable", "true");
-		element.innerHTML = `<div class="name">${_escapeHTML$2(sk.SkillName).substr(0, 7)}...<br/></div><div class="icon"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" width="24" height="24" /></div><div class="levelupcontainer"></div><div class=selectable><span class="level">` + (sk.bSeperateLv ? `<button class="currentDown"></button><span class="current">${skill.level}</span> / <span class="max">${skill.level}</span><button class="currentUp"></button>` : `<span class="current">${skill.level}</span>`) + "</span></div>";
+		element.innerHTML = `<div class="name">${_escapeHTML$2(sk.SkillName).substr(0, 7)}...<br/></div><div class="icon"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" width="24" height="24" /></div><div class="levelupcontainer"></div>` + consumeHtml(skill, sk) + "<div class=selectable><span class=\"level\">" + (sk.bSeperateLv ? `<button class="currentDown"></button><span class="current">${skill.level}</span> / <span class="max">${skill.level}</span><button class="currentUp"></button>` : `<span class="current">${skill.level}</span>`) + "</span></div>";
 		const upBtn = element.querySelector(".level .currentUp");
 		if (upBtn) {
 			if (_rArrow) upBtn.style.backgroundImage = _rArrow;
@@ -231570,7 +231593,7 @@ function createSkillList({ name, htmlText, cssText, hasTabs = false, showDescOnM
 		tr.className = `skill id${skill.SKID} ${className}`;
 		tr.setAttribute("data-index", skill.SKID);
 		tr.setAttribute("draggable", "true");
-		tr.innerHTML = `<td class="icon"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" width="24" height="24" /></td><td class="levelupcontainer"></td><td class=selectable><div class="name">${_escapeHTML$2(sk.SkillName)}<br/><span class="level">` + (sk.bSeperateLv ? `<button class="currentDown"></button>Lv : <span class="current">${skill.level}</span> / <span class="max">${skill.level}</span><button class="currentUp"></button>` : `Lv : <span class="current">${skill.level}</span>`) + `</span></div></td><td class="selectable type"><div class="consume">${skill.type ? `Sp : <span class="spcost">${skill.spcost}</span>` : "Passive"}</div></td>`;
+		tr.innerHTML = `<td class="icon"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" width="24" height="24" /></td><td class="levelupcontainer"></td><td class=selectable><div class="name">${_escapeHTML$2(sk.SkillName)}<br/><span class="level">` + (sk.bSeperateLv ? `<button class="currentDown"></button>Lv : <span class="current">${skill.level}</span> / <span class="max">${skill.level}</span><button class="currentUp"></button>` : `Lv : <span class="current">${skill.level}</span>`) + `</span></div></td><td class="selectable type">${consumeHtml(skill, sk)}</td>`;
 		if (!skill.upgradable || !_points) levelup.style.display = "none";
 		tr.querySelector(".levelupcontainer").appendChild(levelup);
 		const upBtn = tr.querySelector(".level .currentUp");
@@ -231630,7 +231653,7 @@ function createSkillList({ name, htmlText, cssText, hasTabs = false, showDescOnM
 				if (current) current.textContent = skill.selectedLevel;
 			}
 			const spcost = element.querySelector(".spcost");
-			if (spcost) spcost.textContent = skill.spcost;
+			if (spcost) spcost.textContent = getDisplayedSpCost(skill);
 			element.classList.remove("active", "passive", "disabled");
 			element.classList.add(!skill.level ? "disabled" : skill.type ? "active" : "passive");
 			const levelupEl = element.querySelector(".levelup");
@@ -231901,6 +231924,12 @@ function createSkillList({ name, htmlText, cssText, hasTabs = false, showDescOnM
 			delete window._OBJ_DRAG_;
 		}
 	}
+	function syncSkillSpCost(skill, root) {
+		const cost = getDisplayedSpCost(skill);
+		root.querySelectorAll(`.skill.id${skill.SKID} .spcost`).forEach((el) => {
+			el.textContent = cost;
+		});
+	}
 	function skillLevelSelectUp(skill, root) {
 		const level = skill.selectedLevel ? skill.selectedLevel : skill.level;
 		if (level < skill.level) {
@@ -231909,6 +231938,7 @@ function createSkillList({ name, htmlText, cssText, hasTabs = false, showDescOnM
 				const current = element.querySelector(".level .current");
 				if (current) current.textContent = skill.selectedLevel;
 			});
+			syncSkillSpCost(skill, root);
 		}
 	}
 	function skillLevelSelectDown(skill, root) {
@@ -231919,6 +231949,7 @@ function createSkillList({ name, htmlText, cssText, hasTabs = false, showDescOnM
 				const current = element.querySelector(".level .current");
 				if (current) current.textContent = skill.selectedLevel;
 			});
+			syncSkillSpCost(skill, root);
 		}
 	}
 	Component.onUseSkill = function onUseItem() {};
@@ -231987,7 +232018,7 @@ var init_SkillListV2$2 = __esmMin((() => {
 //#region src/UI/Components/SkillList/SkillListV2/SkillListV2.css?raw
 var SkillListV2_default$1;
 var init_SkillListV2$1 = __esmMin((() => {
-	SkillListV2_default$1 = ":host {\r\n	top: 100px;\r\n	left: 100px;\r\n}\r\n\r\n#SkillListV2 {\r\n	position: absolute;\r\n	border-radius: 5px;\r\n	background: white;\r\n	line-height: 18px;\r\n	letter-spacing: 0px;\r\n	border: 1px solid #c1c6c2;\r\n}\r\n#SkillListV2 .border {\r\n	border: 1px solid #c1c6c2;\r\n	margin: 1px;\r\n	border-radius: 5px;\r\n}\r\n\r\n#SkillListV2 .titlebar {\r\n	height: 18px;\r\n	background-color: white;\r\n	background-repeat: repeat-x;\r\n	background-position: 0 -1px;\r\n	border-radius: 3px 3px 0px 0px;\r\n}\r\n#SkillListV2 .titlebar .base {\r\n	width: 11px;\r\n	height: 11px;\r\n	border: none;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	vertical-align: middle;\r\n}\r\n#SkillListV2 .titlebar .text {\r\n	text-shadow: 1px 1px white;\r\n	vertical-align: -2px;\r\n	white-space: nowrap;\r\n	/* chrome bug */\r\n	display: inline-block;\r\n	width: 60px;\r\n	height: 13px;\r\n	font-size: 11px;\r\n	font-weight: bold;\r\n}\r\n\r\n#SkillListV2 .titlebar .left {\r\n	margin-left: 3px;\r\n	float: left;\r\n	height: 18px;\r\n}\r\n#SkillListV2 .titlebar .right {\r\n	float: right;\r\n	margin-right: 3px;\r\n}\r\n#SkillListV2 .titlebar .clear {\r\n	clear: both;\r\n}\r\n\r\n#SkillListV2 .content {\r\n	position: relative;\r\n	padding: 5px;\r\n	border-top: 1px solid #c6c6c6;\r\n	width: 270px;\r\n	height: 200px;\r\n}\r\n#SkillListV2 .content table {\r\n	border: none;\r\n	border-spacing: 0px;\r\n	padding-top: 5px;\r\n}\r\n#SkillListV2 .content td,\r\n#SkillListV2 .content .name {\r\n	padding: 0px;\r\n}\r\n\r\n/* Mini Tab*/\r\n#SkillListV2 .tabs-mini {\r\n	position: relative;\r\n}\r\n#SkillListV2 .tabs-mini::before,\r\n#SkillListV2 .tabs-mini::after {\r\n	content: '';\r\n	display: table;\r\n}\r\n#SkillListV2 .tabs-mini::after {\r\n	clear: both;\r\n}\r\n#SkillListV2 .tab-switch-mini {\r\n	display: none;\r\n}\r\n#SkillListV2 .tab-label-mini {\r\n	writing-mode: vertical-lr;\r\n	text-orientation: upright;\r\n	left: -23px;\r\n	width: 18px;\r\n	position: relative;\r\n	margin: -3px 0;\r\n	border: 1px solid #c1c6c2;\r\n	background: #fff;\r\n	border-radius: 5px 0 0 5px;\r\n	cursor: pointer;\r\n}\r\n#SkillListV2 .tab-content-mini {\r\n	overflow-y: auto;\r\n	overflow-x: hidden;\r\n	width: 100%;\r\n	height: 100%;\r\n	position: absolute;\r\n	z-index: 1;\r\n	left: 0;\r\n	top: 0;\r\n	right: 0;\r\n	bottom: 0;\r\n	opacity: 0;\r\n}\r\n#SkillListV2 .tab-switch-mini:checked + .tab-label-mini {\r\n	width: 20px;\r\n	left: -25px;\r\n	z-index: 1;\r\n}\r\n#SkillListV2 .tab-switch-mini:checked + label + .tab-content-mini {\r\n	z-index: 2;\r\n	opacity: 1;\r\n}\r\n\r\n#SkillListV2 .levelup {\r\n	border: 0;\r\n	width: 24px;\r\n	height: 24px;\r\n	padding: 0;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n#SkillListV2 td.type {\r\n	vertical-align: bottom;\r\n}\r\n\r\n#SkillListV2 .content .icon {\r\n	padding-left: 15px;\r\n}\r\n#SkillListV2 .content .levelupcontainer {\r\n	padding-left: 5px;\r\n	padding-right: 5px;\r\n	width: 24px;\r\n}\r\n#SkillListV2 .content div.name {\r\n	line-height: 12px;\r\n	white-space: nowrap;\r\n	padding-left: 5px;\r\n	white-space: nowrap;\r\n	width: 120px;\r\n	padding-top: 4px;\r\n	height: 28px;\r\n}\r\n#SkillListV2 .disabled .icon,\r\n#SkillListV2 .disabled .name {\r\n	opacity: 0.5;\r\n}\r\n#SkillListV2 .disabled .consume,\r\n#SkillListV2 .disabled .level {\r\n	display: none;\r\n}\r\n#SkillListV2 .currentDown,\r\n#SkillListV2 .currentUp {\r\n	width: 11px;\r\n	height: 11px;\r\n	border: none;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	vertical-align: middle;\r\n}\r\n\r\n#SkillListV2 .selected.disabled .selectable {\r\n	background-color: #b5b5b5;\r\n}\r\n#SkillListV2 .selected.passive .selectable {\r\n	background-color: #73d5ee;\r\n}\r\n/*#SkillListV2 .selected.active .selectable { background-color:#739cee;}*/\r\n\r\n#SkillListV2 .footer {\r\n	width: 100%;\r\n	height: 27px;\r\n	background-repeat: repeat-x;\r\n	background-color: transparent;\r\n	position: relative;\r\n}\r\n#SkillListV2 .footer .text {\r\n	padding-top: 7px;\r\n	margin-left: 10px;\r\n}\r\n#SkillListV2 .footer .btn {\r\n	position: absolute;\r\n	top: 5px;\r\n	border: 0;\r\n	width: 42px;\r\n	height: 20px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n	display: none;\r\n}\r\n#SkillListV2 .footer .apply {\r\n	right: 70px;\r\n}\r\n#SkillListV2 .footer .reset {\r\n	right: 20px;\r\n}\r\n#SkillListV2 .footer .extend {\r\n	position: absolute;\r\n	right: 0px;\r\n	bottom: 1px;\r\n	width: 13px;\r\n	height: 13px;\r\n	border: none;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n\r\n#lvlup_job {\r\n	z-index: 51;\r\n	position: absolute;\r\n	right: 0px;\r\n	bottom: 0px;\r\n	width: 43px;\r\n	height: 43px;\r\n	border: none;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n}\r\n\r\n#SkillListV2 .tab-content {\r\n	overflow-y: auto;\r\n	padding: 5px;\r\n	border-top: 1px solid #c6c6c6;\r\n	width: calc(100% - 12px);\r\n	height: 375px;\r\n}\r\n\r\n/* skill tree with tabs */\r\n#SkillListV2 .skillCol .name,\r\n#SkillListV2 .skillCol .selectable {\r\n	position: relative;\r\n	text-align: center;\r\n	display: block;\r\n	width: 70px;\r\n	left: -23px;\r\n}\r\n#SkillListV2 .skillCol .skill {\r\n	position: relative;\r\n	top: -16px;\r\n}\r\n#SkillListV2 .skillRow {\r\n	display: flex;\r\n	padding-left: 40px;\r\n}\r\n#SkillListV2 .skillCol {\r\n	position: relative;\r\n	margin: 15px 17px;\r\n	border: 1px dashed #c0c0c0ff;\r\n	border-radius: 5px;\r\n	width: 28px;\r\n	height: 28px;\r\n	text-align: center;\r\n	white-space: nowrap;\r\n}\r\n#SkillListV2 .tabs {\r\n	position: relative;\r\n}\r\n#SkillListV2 .tabs::before,\r\n#SkillListV2 .tabs::after {\r\n	content: '';\r\n	display: table;\r\n}\r\n#SkillListV2 .tabs::after {\r\n	clear: both;\r\n}\r\n#SkillListV2 .tab-switch {\r\n	display: none;\r\n}\r\n#SkillListV2 .tab-label {\r\n	writing-mode: vertical-lr;\r\n	text-orientation: upright;\r\n	left: -23px;\r\n	width: 18px;\r\n	position: relative;\r\n	margin: -3px 0;\r\n	border: 1px solid #c1c6c2;\r\n	background: #fff;\r\n	border-radius: 5px 0 0 5px;\r\n	cursor: pointer;\r\n}\r\n#SkillListV2 .tab-content {\r\n	position: absolute;\r\n	z-index: 1;\r\n	left: 0;\r\n	top: 0;\r\n	opacity: 0;\r\n}\r\n#SkillListV2 .tab-switch:checked + .tab-label {\r\n	width: 20px;\r\n	left: -25px;\r\n	z-index: 1;\r\n}\r\n#SkillListV2 .tab-switch:checked + label + .tab-content {\r\n	z-index: 2;\r\n	opacity: 1;\r\n}\r\n#SkillListV2 .needleSkill {\r\n	background: pink !important;\r\n}\r\n#SkillListV2 .upgradable {\r\n	background: #c0cdff;\r\n}\r\n#SkillListV2 .counterSkill {\r\n	position: absolute;\r\n	left: 28px;\r\n	top: 18px;\r\n	color: #fff;\r\n	-webkit-text-stroke: 0.6px #2f2f2f;\r\n	font-weight: 1000;\r\n}\r\n";
+	SkillListV2_default$1 = ":host {\r\n	top: 100px;\r\n	left: 100px;\r\n}\r\n\r\n#SkillListV2 {\r\n	position: absolute;\r\n	border-radius: 5px;\r\n	background: white;\r\n	line-height: 18px;\r\n	letter-spacing: 0px;\r\n	border: 1px solid #c1c6c2;\r\n}\r\n#SkillListV2 .border {\r\n	border: 1px solid #c1c6c2;\r\n	margin: 1px;\r\n	border-radius: 5px;\r\n}\r\n\r\n#SkillListV2 .titlebar {\r\n	height: 18px;\r\n	background-color: white;\r\n	background-repeat: repeat-x;\r\n	background-position: 0 -1px;\r\n	border-radius: 3px 3px 0px 0px;\r\n}\r\n#SkillListV2 .titlebar .base {\r\n	width: 11px;\r\n	height: 11px;\r\n	border: none;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	vertical-align: middle;\r\n}\r\n#SkillListV2 .titlebar .text {\r\n	text-shadow: 1px 1px white;\r\n	vertical-align: -2px;\r\n	white-space: nowrap;\r\n	/* chrome bug */\r\n	display: inline-block;\r\n	width: 60px;\r\n	height: 13px;\r\n	font-size: 11px;\r\n	font-weight: bold;\r\n}\r\n\r\n#SkillListV2 .titlebar .left {\r\n	margin-left: 3px;\r\n	float: left;\r\n	height: 18px;\r\n}\r\n#SkillListV2 .titlebar .right {\r\n	float: right;\r\n	margin-right: 3px;\r\n}\r\n#SkillListV2 .titlebar .clear {\r\n	clear: both;\r\n}\r\n\r\n#SkillListV2 .content {\r\n	position: relative;\r\n	padding: 5px;\r\n	border-top: 1px solid #c6c6c6;\r\n	width: 270px;\r\n	height: 200px;\r\n}\r\n#SkillListV2 .content table {\r\n	border: none;\r\n	border-spacing: 0px;\r\n	padding-top: 5px;\r\n}\r\n#SkillListV2 .content td,\r\n#SkillListV2 .content .name {\r\n	padding: 0px;\r\n}\r\n\r\n/* Mini Tab*/\r\n#SkillListV2 .tabs-mini {\r\n	position: relative;\r\n}\r\n#SkillListV2 .tabs-mini::before,\r\n#SkillListV2 .tabs-mini::after {\r\n	content: '';\r\n	display: table;\r\n}\r\n#SkillListV2 .tabs-mini::after {\r\n	clear: both;\r\n}\r\n#SkillListV2 .tab-switch-mini {\r\n	display: none;\r\n}\r\n#SkillListV2 .tab-label-mini {\r\n	writing-mode: vertical-lr;\r\n	text-orientation: upright;\r\n	left: -23px;\r\n	width: 18px;\r\n	position: relative;\r\n	margin: -3px 0;\r\n	border: 1px solid #c1c6c2;\r\n	background: #fff;\r\n	border-radius: 5px 0 0 5px;\r\n	cursor: pointer;\r\n}\r\n#SkillListV2 .tab-content-mini {\r\n	overflow-y: auto;\r\n	overflow-x: hidden;\r\n	width: 100%;\r\n	height: 100%;\r\n	position: absolute;\r\n	z-index: 1;\r\n	left: 0;\r\n	top: 0;\r\n	right: 0;\r\n	bottom: 0;\r\n	opacity: 0;\r\n}\r\n#SkillListV2 .tab-switch-mini:checked + .tab-label-mini {\r\n	width: 20px;\r\n	left: -25px;\r\n	z-index: 1;\r\n}\r\n#SkillListV2 .tab-switch-mini:checked + label + .tab-content-mini {\r\n	z-index: 2;\r\n	opacity: 1;\r\n}\r\n\r\n#SkillListV2 .levelup {\r\n	border: 0;\r\n	width: 24px;\r\n	height: 24px;\r\n	padding: 0;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n#SkillListV2 td.type {\r\n	vertical-align: bottom;\r\n}\r\n\r\n#SkillListV2 .content .icon {\r\n	padding-left: 15px;\r\n}\r\n#SkillListV2 .content .levelupcontainer {\r\n	padding-left: 5px;\r\n	padding-right: 5px;\r\n	width: 24px;\r\n}\r\n#SkillListV2 .content div.name {\r\n	line-height: 12px;\r\n	white-space: nowrap;\r\n	padding-left: 5px;\r\n	white-space: nowrap;\r\n	width: 120px;\r\n	padding-top: 4px;\r\n	height: 28px;\r\n}\r\n#SkillListV2 .disabled .icon,\r\n#SkillListV2 .disabled .name {\r\n	opacity: 0.5;\r\n}\r\n#SkillListV2 .disabled .consume,\r\n#SkillListV2 .disabled .level {\r\n	display: none;\r\n}\r\n#SkillListV2 .skillCol .consume {\r\n	position: relative;\r\n	display: block;\r\n	width: 70px;\r\n	left: -23px;\r\n	font-size: 10px;\r\n	line-height: 11px;\r\n	color: #2244aa;\r\n	text-align: center;\r\n}\r\n#SkillListV2 .skillCol .disabled .consume {\r\n	display: block;\r\n	opacity: 0.75;\r\n}\r\n#SkillListV2 .currentDown,\r\n#SkillListV2 .currentUp {\r\n	width: 11px;\r\n	height: 11px;\r\n	border: none;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	vertical-align: middle;\r\n}\r\n\r\n#SkillListV2 .selected.disabled .selectable {\r\n	background-color: #b5b5b5;\r\n}\r\n#SkillListV2 .selected.passive .selectable {\r\n	background-color: #73d5ee;\r\n}\r\n/*#SkillListV2 .selected.active .selectable { background-color:#739cee;}*/\r\n\r\n#SkillListV2 .footer {\r\n	width: 100%;\r\n	height: 27px;\r\n	background-repeat: repeat-x;\r\n	background-color: transparent;\r\n	position: relative;\r\n}\r\n#SkillListV2 .footer .text {\r\n	padding-top: 7px;\r\n	margin-left: 10px;\r\n}\r\n#SkillListV2 .footer .btn {\r\n	position: absolute;\r\n	top: 5px;\r\n	border: 0;\r\n	width: 42px;\r\n	height: 20px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n	display: none;\r\n}\r\n#SkillListV2 .footer .apply {\r\n	right: 70px;\r\n}\r\n#SkillListV2 .footer .reset {\r\n	right: 20px;\r\n}\r\n#SkillListV2 .footer .extend {\r\n	position: absolute;\r\n	right: 0px;\r\n	bottom: 1px;\r\n	width: 13px;\r\n	height: 13px;\r\n	border: none;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n\r\n#lvlup_job {\r\n	z-index: 51;\r\n	position: absolute;\r\n	right: 0px;\r\n	bottom: 0px;\r\n	width: 43px;\r\n	height: 43px;\r\n	border: none;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n}\r\n\r\n#SkillListV2 .tab-content {\r\n	overflow-y: auto;\r\n	padding: 5px;\r\n	border-top: 1px solid #c6c6c6;\r\n	width: calc(100% - 12px);\r\n	height: 375px;\r\n}\r\n\r\n/* skill tree with tabs */\r\n#SkillListV2 .skillCol .name,\r\n#SkillListV2 .skillCol .selectable {\r\n	position: relative;\r\n	text-align: center;\r\n	display: block;\r\n	width: 70px;\r\n	left: -23px;\r\n}\r\n#SkillListV2 .skillCol .skill {\r\n	position: relative;\r\n	top: -16px;\r\n}\r\n#SkillListV2 .skillRow {\r\n	display: flex;\r\n	padding-left: 40px;\r\n}\r\n#SkillListV2 .skillCol {\r\n	position: relative;\r\n	margin: 15px 17px;\r\n	border: 1px dashed #c0c0c0ff;\r\n	border-radius: 5px;\r\n	width: 28px;\r\n	height: 28px;\r\n	text-align: center;\r\n	white-space: nowrap;\r\n}\r\n#SkillListV2 .tabs {\r\n	position: relative;\r\n}\r\n#SkillListV2 .tabs::before,\r\n#SkillListV2 .tabs::after {\r\n	content: '';\r\n	display: table;\r\n}\r\n#SkillListV2 .tabs::after {\r\n	clear: both;\r\n}\r\n#SkillListV2 .tab-switch {\r\n	display: none;\r\n}\r\n#SkillListV2 .tab-label {\r\n	writing-mode: vertical-lr;\r\n	text-orientation: upright;\r\n	left: -23px;\r\n	width: 18px;\r\n	position: relative;\r\n	margin: -3px 0;\r\n	border: 1px solid #c1c6c2;\r\n	background: #fff;\r\n	border-radius: 5px 0 0 5px;\r\n	cursor: pointer;\r\n}\r\n#SkillListV2 .tab-content {\r\n	position: absolute;\r\n	z-index: 1;\r\n	left: 0;\r\n	top: 0;\r\n	opacity: 0;\r\n}\r\n#SkillListV2 .tab-switch:checked + .tab-label {\r\n	width: 20px;\r\n	left: -25px;\r\n	z-index: 1;\r\n}\r\n#SkillListV2 .tab-switch:checked + label + .tab-content {\r\n	z-index: 2;\r\n	opacity: 1;\r\n}\r\n#SkillListV2 .needleSkill {\r\n	background: pink !important;\r\n}\r\n#SkillListV2 .upgradable {\r\n	background: #c0cdff;\r\n}\r\n#SkillListV2 .counterSkill {\r\n	position: absolute;\r\n	left: 28px;\r\n	top: 18px;\r\n	color: #fff;\r\n	-webkit-text-stroke: 0.6px #2f2f2f;\r\n	font-weight: 1000;\r\n}\r\n";
 }));
 //#endregion
 //#region src/UI/Components/SkillList/SkillListV2/SkillListV2.js
@@ -295448,6 +295479,46 @@ function loadWeaponTable(filename, callback, onEnd) {
 * @param {function} onEnd - The function to invoke when loading is complete.
 * @return {void}
 */
+/**
+* Official client table of per-level SP costs.
+* Format: SKILL_AEGIS_NAME#<lv1>#<lv2>#...#@
+*/
+function loadSkillSpAmountTable(onEnd) {
+	Client.loadFile("data/leveluseskillspamount.txt", function(buffer) {
+		try {
+			let data = buffer instanceof ArrayBuffer ? new Uint8Array(buffer) : buffer;
+			data = CodepageManager.decode(data);
+			const chunks = data.split("@");
+			for (let c = 0; c < chunks.length; c++) {
+				const parts = chunks[c].split("#").map((s) => s.replace(/^\s+|\s+$/g, "")).filter((s) => s !== "" && !s.startsWith("//"));
+				if (parts.length < 2) continue;
+				const name = parts[0];
+				const amounts = [];
+				for (let i = 1; i < parts.length; i++) {
+					const n = parseInt(parts[i], 10);
+					if (!Number.isNaN(n)) amounts.push(n);
+				}
+				if (!amounts.length) continue;
+				const skillId = SkillConst_default[name];
+				if (skillId == null) continue;
+				if (!SkillInfo[skillId]) SkillInfo[skillId] = {
+					Name: name,
+					SkillName: name,
+					MaxLv: amounts.length,
+					SpAmount: amounts,
+					bSeperateLv: false,
+					AttackRange: [],
+					NeedSkillList: {},
+					_NeedSkillList: []
+				};
+				else SkillInfo[skillId].SpAmount = amounts;
+			}
+		} catch (error) {
+			console.error("[loadSkillSpAmountTable] Error: ", error);
+		}
+		onEnd();
+	}, onEnd);
+}
 function loadSkillInfoList(filename, callback, onEnd) {
 	Client.loadFile(filename, async function(file) {
 		try {
@@ -295470,8 +295541,19 @@ function loadSkillInfoList(filename, callback, onEnd) {
 					`);
 			ctx.AddSkillInfo = (skillId, resName, skillName, maxLv, spAmount, bSeperateLv, attackRange, skillScale) => {
 				const toArray = (v) => {
+					if (v == null) return [];
+					if (typeof v === "string") return v === "" ? [] : v.split(",").map(Number);
 					if (Array.isArray(v)) return v;
-					if (typeof v === "object" && v !== null) return Object.keys(v).map(Number).sort((a, b) => a - b).map((k) => v[k]);
+					if (typeof v === "object") {
+						const keys = Object.keys(v).filter((k) => k !== "" && !Number.isNaN(Number(k)));
+						if (keys.length) return keys.map(Number).sort((a, b) => a - b).map((k) => v[k]);
+						const n = v.length;
+						if (typeof n === "number" && n > 0) {
+							const out = [];
+							for (let i = 1; i <= n; i++) out.push(v[i]);
+							return out;
+						}
+					}
 					return [];
 				};
 				SkillInfo[skillId] = {
@@ -295517,13 +295599,23 @@ function loadSkillInfoList(filename, callback, onEnd) {
 								return false, "Error: SKILL_INFO_LIST is nil or not a table"  
 							end  
 						
+							local function csv(t)
+								if type(t) ~= "table" then
+									return ""
+								end
+								local p = {}
+								for i = 1, #t do
+									p[i] = tostring(t[i] or 0)
+								end
+								return table.concat(p, ",")
+							end
 							for skillId, skillData in pairs(SKILL_INFO_LIST) do 
 								local resName = skillData[1] or "" 
 								local skillName = skillData.SkillName or ""  
 								local maxLv = skillData.MaxLv or 1  
-								local spAmount = skillData.SpAmount or {}  
+								local spAmount = csv(skillData.SpAmount or {})
 								local bSeperateLv = skillData.bSeperateLv or false  
-								local attackRange = skillData.AttackRange or {}  
+								local attackRange = csv(skillData.AttackRange or {})
 								local skillScale = skillData.SkillScale or {}  
 
 								result, msg = AddSkillInfo(skillId, resName, skillName, maxLv, spAmount, bSeperateLv, attackRange, skillScale)  
@@ -296512,17 +296604,19 @@ var init_DBManager = __esmMin((() => {
 						SkillDescription = _json;
 					}, () => {
 						loadSkillInfoList(DB.LUA_PATH + "skillinfoz/skillinfolist.turoran.lub", null, () => {
-							loadSkillTreeView(DB.LUA_PATH + "skillinfoz/skilltreeview.snbow.lub", null, () => {
-								if (PacketVerManager_default.value >= 20211103) {
-									const bsonOnLoad = onLoad();
-									loadBSONFile("data/contentdata/effectdata/ez2streffect.bson", Ez2streffect, () => {
-										Promise.all([__vitePreload(() => Promise.resolve().then(() => (init_EffectTable(), EffectTable_exports)), void 0, import.meta.url), __vitePreload(() => Promise.resolve().then(() => (init_SkillEffect(), SkillEffect_exports)), void 0, import.meta.url)]).then(([EffectTable, SkillEffect]) => {
-											mergeEz2Effects(EffectTable.default, SkillEffect.default);
-											bsonOnLoad();
+							loadSkillSpAmountTable(() => {
+								loadSkillTreeView(DB.LUA_PATH + "skillinfoz/skilltreeview.snbow.lub", null, () => {
+									if (PacketVerManager_default.value >= 20211103) {
+										const bsonOnLoad = onLoad();
+										loadBSONFile("data/contentdata/effectdata/ez2streffect.bson", Ez2streffect, () => {
+											Promise.all([__vitePreload(() => Promise.resolve().then(() => (init_EffectTable(), EffectTable_exports)), void 0, import.meta.url), __vitePreload(() => Promise.resolve().then(() => (init_SkillEffect(), SkillEffect_exports)), void 0, import.meta.url)]).then(([EffectTable, SkillEffect]) => {
+												mergeEz2Effects(EffectTable.default, SkillEffect.default);
+												bsonOnLoad();
+											});
 										});
-									});
-								}
-								onSkillEnd();
+									}
+									onSkillEnd();
+								});
 							});
 						});
 					});
@@ -298020,7 +298114,15 @@ var init_DBManager = __esmMin((() => {
 		* @param {number} skill id
 		*/
 		static getSkillDescription(id) {
-			return SkillDescription[id] || "...";
+			let desc = SkillDescription[id] || "...";
+			const info = SkillInfo[id];
+			const amounts = info && Array.isArray(info.SpAmount) ? info.SpAmount.map(Number) : [];
+			if (amounts.some((n) => n > 0) && !/SP Consumption|SP Cost|Sp :/i.test(desc)) {
+				const unique = [...new Set(amounts.filter((n) => !Number.isNaN(n)))];
+				const spLine = unique.length === 1 ? `SP Cost: ^777777${unique[0]}^000000` : `SP Cost: ^777777${amounts.join(" / ")}^000000`;
+				desc = `${desc.replace(/\s+$/, "")}\n${spLine}`;
+			}
+			return desc;
 		}
 		/**
 		* @param {string} filename
