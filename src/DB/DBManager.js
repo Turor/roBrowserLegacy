@@ -489,6 +489,7 @@ class DB {
 					() => {
 						// Calls after skillids and descs been populated
 						loadSkillInfoList(DB.LUA_PATH + 'skillinfoz/skillinfolist.turoran.lub', null, () => {
+							loadSkillSpAmountTable(() => {
 							loadSkillTreeView(DB.LUA_PATH + 'skillinfoz/skilltreeview.snbow.lub', null, () => {
 								// Load ez2streffect, PACKETVER unknown when the while has been added, tied to default PACKETVER of rathena for 4th job
 								if (PACKETVER.value >= 20211103) {
@@ -505,6 +506,7 @@ class DB {
 								}
 								// Skill Lua finished
 								onSkillEnd();
+							});
 							});
 						});
 					}
@@ -754,7 +756,6 @@ class DB {
 			);
 			// TODO: data/skillnametable.txt	- ?
 			// TODO: data/skilltreeview.txt	- Replaces DB/Skills/SkillTreeView.js
-			// TODO: data/leveluseskillspamount.txt	- Replaces DB/Skills/SkillInfo.js -> SkillInfo.SpAmount
 
 			// Quest
 			loadTable('data/questid2display.txt', '#', 6, parseQuestEntry, onLoad(), true);
@@ -2722,7 +2723,18 @@ class DB {
 	 * @param {number} skill id
 	 */
 	static getSkillDescription(id) {
-		return SkillDescription[id] || '...';
+		let desc = SkillDescription[id] || '...';
+		const info = SkillInfo[id];
+		const amounts = info && Array.isArray(info.SpAmount) ? info.SpAmount.map(Number) : [];
+		if (amounts.some(n => n > 0) && !/SP Consumption|SP Cost|Sp :/i.test(desc)) {
+			const unique = [...new Set(amounts.filter(n => !Number.isNaN(n)))];
+			const spLine =
+				unique.length === 1
+					? `SP Cost: ^777777${unique[0]}^000000`
+					: `SP Cost: ^777777${amounts.join(' / ')}^000000`;
+			desc = `${desc.replace(/\s+$/, '')}\n${spLine}`;
+		}
+		return desc;
 	}
 
 	/**
@@ -6568,6 +6580,65 @@ function loadWeaponTable(filename, callback, onEnd) {
  * @param {function} onEnd - The function to invoke when loading is complete.
  * @return {void}
  */
+/**
+ * Official client table of per-level SP costs.
+ * Format: SKILL_AEGIS_NAME#<lv1>#<lv2>#...#@
+ */
+function loadSkillSpAmountTable(onEnd) {
+	Client.loadFile(
+		'data/leveluseskillspamount.txt',
+		function (buffer) {
+			try {
+				let data = buffer instanceof ArrayBuffer ? new Uint8Array(buffer) : buffer;
+				data = TextEncoding.decode(data);
+				const chunks = data.split('@');
+				for (let c = 0; c < chunks.length; c++) {
+					const parts = chunks[c]
+						.split('#')
+						.map(s => s.replace(/^\s+|\s+$/g, ''))
+						.filter(s => s !== '' && !s.startsWith('//'));
+					if (parts.length < 2) {
+						continue;
+					}
+					const name = parts[0];
+					const amounts = [];
+					for (let i = 1; i < parts.length; i++) {
+						const n = parseInt(parts[i], 10);
+						if (!Number.isNaN(n)) {
+							amounts.push(n);
+						}
+					}
+					if (!amounts.length) {
+						continue;
+					}
+					const skillId = SKID[name];
+					if (skillId == null) {
+						continue;
+					}
+					if (!SkillInfo[skillId]) {
+						SkillInfo[skillId] = {
+							Name: name,
+							SkillName: name,
+							MaxLv: amounts.length,
+							SpAmount: amounts,
+							bSeperateLv: false,
+							AttackRange: [],
+							NeedSkillList: {},
+							_NeedSkillList: []
+						};
+					} else {
+						SkillInfo[skillId].SpAmount = amounts;
+					}
+				}
+			} catch (error) {
+				console.error('[loadSkillSpAmountTable] Error: ', error);
+			}
+			onEnd();
+		},
+		onEnd
+	);
+}
+
 function loadSkillInfoList(filename, callback, onEnd) {
 	Client.loadFile(
 		filename,
@@ -6612,14 +6683,31 @@ function loadSkillInfoList(filename, callback, onEnd) {
 				) => {
 					// Convert to format expected by SkillInfo.js
 					const toArray = v => {
+						if (v == null) {
+							return [];
+						}
+						if (typeof v === 'string') {
+							return v === '' ? [] : v.split(',').map(Number);
+						}
 						if (Array.isArray(v)) {
 							return v;
 						}
-						if (typeof v === 'object' && v !== null) {
-							return Object.keys(v)
-								.map(Number)
-								.sort((a, b) => a - b)
-								.map(k => v[k]);
+						if (typeof v === 'object') {
+							const keys = Object.keys(v).filter(k => k !== '' && !Number.isNaN(Number(k)));
+							if (keys.length) {
+								return keys
+									.map(Number)
+									.sort((a, b) => a - b)
+									.map(k => v[k]);
+							}
+							const n = v.length;
+							if (typeof n === 'number' && n > 0) {
+								const out = [];
+								for (let i = 1; i <= n; i++) {
+									out.push(v[i]);
+								}
+								return out;
+							}
 						}
 						return [];
 					};
@@ -6678,13 +6766,23 @@ function loadSkillInfoList(filename, callback, onEnd) {
 								return false, "Error: SKILL_INFO_LIST is nil or not a table"  
 							end  
 						
+							local function csv(t)
+								if type(t) ~= "table" then
+									return ""
+								end
+								local p = {}
+								for i = 1, #t do
+									p[i] = tostring(t[i] or 0)
+								end
+								return table.concat(p, ",")
+							end
 							for skillId, skillData in pairs(SKILL_INFO_LIST) do 
 								local resName = skillData[1] or "" 
 								local skillName = skillData.SkillName or ""  
 								local maxLv = skillData.MaxLv or 1  
-								local spAmount = skillData.SpAmount or {}  
+								local spAmount = csv(skillData.SpAmount or {})
 								local bSeperateLv = skillData.bSeperateLv or false  
-								local attackRange = skillData.AttackRange or {}  
+								local attackRange = csv(skillData.AttackRange or {})
 								local skillScale = skillData.SkillScale or {}  
 
 								result, msg = AddSkillInfo(skillId, resName, skillName, maxLv, spAmount, bSeperateLv, attackRange, skillScale)  

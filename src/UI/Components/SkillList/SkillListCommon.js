@@ -41,6 +41,50 @@ function _isNumeric(val) {
 	return !isNaN(parseFloat(val)) && isFinite(val);
 }
 
+function skillSpAtLevel(skillId, level) {
+	const amounts = SkillInfo[skillId] && SkillInfo[skillId].SpAmount;
+	if (!Array.isArray(amounts) || !amounts.length) {
+		return null;
+	}
+	const i = Math.max(0, Math.min(level || 1, amounts.length) - 1);
+	const n = Number(amounts[i]);
+	return Number.isNaN(n) ? null : n;
+}
+
+function getDisplayedSpCost(skill) {
+	const level = skill.selectedLevel || skill.level || 1;
+	const fromTable = skillSpAtLevel(skill.SKID, level);
+	if (skill.selectedLevel && fromTable != null) {
+		return fromTable;
+	}
+	if (skill.spcost) {
+		return skill.spcost;
+	}
+	return fromTable != null ? fromTable : 0;
+}
+
+function skillShowsSp(skill, sk) {
+	if (skill && Number.isInteger(skill.type) && !skill.type) {
+		return false;
+	}
+	if (skill && skill.type) {
+		return true;
+	}
+	const amounts = (sk && sk.SpAmount) || [];
+	return amounts.some(n => Number(n) > 0);
+}
+
+function consumeHtml(skill, sk) {
+	if (!skillShowsSp(skill, sk)) {
+		return '<div class="consume">Passive</div>';
+	}
+	const sp =
+		skill != null
+			? getDisplayedSpCost(skill)
+			: Number(((sk && sk.SpAmount) || [0])[0] || 0);
+	return `<div class="consume">Sp : <span class="spcost">${sp}</span></div>`;
+}
+
 export function createSkillList({
 	name,
 	htmlText,
@@ -624,6 +668,7 @@ export function createSkillList({
 				element.innerHTML =
 					`<div class="name">${_escapeHTML(sk.SkillName).substr(0, 7)}...<br/></div>` +
 					'<div class="icon"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" width="24" height="24" /></div>' +
+					consumeHtml(null, sk) +
 					'<div class=selectable>' +
 					'<span class="level" style="display: none">' +
 					(sk.bSeperateLv
@@ -687,7 +732,7 @@ export function createSkillList({
 									'<span class="level">Lv : <span class="current">0</span></span>' +
 									'</div></td>' +
 									'<td class="selectable type">' +
-									'<div class="consume">Passive</div></td>';
+									`${consumeHtml(null, sk)}</td>`;
 
 								miniBox.appendChild(miniTr);
 
@@ -724,6 +769,7 @@ export function createSkillList({
 			`<div class="name">${_escapeHTML(sk.SkillName).substr(0, 7)}...<br/></div>` +
 			'<div class="icon"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" width="24" height="24" /></div>' +
 			'<div class="levelupcontainer"></div>' +
+			consumeHtml(skill, sk) +
 			'<div class=selectable>' +
 			'<span class="level">' +
 			(sk.bSeperateLv
@@ -856,7 +902,7 @@ export function createSkillList({
 				: `Lv : <span class="current">${skill.level}</span>`) +
 			'</span></div></td>' +
 			'<td class="selectable type">' +
-			`<div class="consume">${skill.type ? `Sp : <span class="spcost">${skill.spcost}</span>` : 'Passive'}</div>` +
+			`${consumeHtml(skill, sk)}` +
 			'</td>';
 
 		if (!skill.upgradable || !_points) {
@@ -954,7 +1000,7 @@ export function createSkillList({
 			}
 			const spcost = element.querySelector('.spcost');
 			if (spcost) {
-				spcost.textContent = skill.spcost;
+				spcost.textContent = getDisplayedSpCost(skill);
 			}
 
 			element.classList.remove('active', 'passive', 'disabled');
@@ -1336,6 +1382,13 @@ export function createSkillList({
 		}
 	}
 
+	function syncSkillSpCost(skill, root) {
+		const cost = getDisplayedSpCost(skill);
+		root.querySelectorAll(`.skill.id${skill.SKID} .spcost`).forEach(el => {
+			el.textContent = cost;
+		});
+	}
+
 	function skillLevelSelectUp(skill, root) {
 		const level = skill.selectedLevel ? skill.selectedLevel : skill.level;
 		if (level < skill.level) {
@@ -1347,6 +1400,7 @@ export function createSkillList({
 					current.textContent = skill.selectedLevel;
 				}
 			});
+			syncSkillSpCost(skill, root);
 		}
 	}
 
@@ -1361,6 +1415,7 @@ export function createSkillList({
 					current.textContent = skill.selectedLevel;
 				}
 			});
+			syncSkillSpCost(skill, root);
 		}
 	}
 
