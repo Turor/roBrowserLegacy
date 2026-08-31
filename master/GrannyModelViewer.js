@@ -295927,7 +295927,23 @@ function loadLuaValue(file_path, variable_name, callback, onEnd) {
 				};
 				lua.doStringSync(String.raw`
 							local function escape_str(str)
-								return str:gsub("\\", "\\\\"):gsub("\"", "\\\"")
+								-- JSON forbids raw U+0000..U+001F in string literals.
+								-- Official navi_*.lub NPC strings contain newlines/tabs/etc.
+								return (str:gsub(".", function(c)
+									local b = string.byte(c)
+									if c == "\\" then
+										return "\\\\"
+									elseif c == "\"" then
+										return "\\\""
+									elseif b < 32 then
+										if c == "\n" then return "\\n"
+										elseif c == "\r" then return "\\r"
+										elseif c == "\t" then return "\\t"
+										else return string.format("\\u%04x", b)
+										end
+									end
+									return c
+								end))
 							end
 
 							local function to_json(value)
