@@ -2439,11 +2439,10 @@ class DB {
 		return { value: forge.value | 0, gid: ((hi << 16) | lo) >>> 0 };
 	}
 
-
 	static formatForgeOwnerName(GID, html) {
-		let name = "Unknown";
+		let name = 'Unknown';
 		if (GID) {
-			if (DB.CNameTable[GID] && DB.CNameTable[GID] !== "Unknown") {
+			if (DB.CNameTable[GID] && DB.CNameTable[GID] !== 'Unknown') {
 				name = DB.CNameTable[GID];
 			} else {
 				DB.getNameByGID(GID);
@@ -2452,9 +2451,9 @@ class DB {
 		if (!html) {
 			return name;
 		}
-		const known = !!(DB.CNameTable[GID] && DB.CNameTable[GID] !== "Unknown");
-		const color = known ? "#87cefa" : "red";
-		return '<font color="' + color + '" class="owner-' + GID + '">' + name + "</font>";
+		const known = !!(DB.CNameTable[GID] && DB.CNameTable[GID] !== 'Unknown');
+		const color = known ? '#87cefa' : 'red';
+		return '<font color="' + color + '" class="owner-' + GID + '">' + name + '</font>';
 	}
 
 	static itemHasNamedOwner(item) {
@@ -7684,7 +7683,7 @@ function onUpdateOwnerName(pkt) {
 	DB._resolveNameCallbacks(pkt.GID, pkt.CName);
 
 	const gidCb = DB.UpdateOwnerName[pkt.GID];
-	if (typeof gidCb === "function") {
+	if (typeof gidCb === 'function') {
 		gidCb(pkt);
 	}
 
@@ -7696,7 +7695,7 @@ function onUpdateOwnerName(pkt) {
 			continue;
 		}
 		const fn = DB.UpdateOwnerName[key];
-		if (typeof fn === "function") {
+		if (typeof fn === 'function') {
 			fn(pkt);
 		}
 	}
