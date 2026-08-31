@@ -220442,7 +220442,10 @@ var init_ItemCompare = __esmMin((() => {
 			const collection = root.querySelector(".collection");
 			if (collection) collection.style.backgroundImage = `url(${data})`;
 		});
-		const itemName = DB.getItemName(item, { showItemOptions: false });
+		const itemName = DB.getItemName(item, {
+			showItemOptions: false,
+			html: true
+		});
 		const title = root.querySelector(".title");
 		if (title) {
 			if (item.IsDamaged) title.classList.add("damaged");
@@ -221434,11 +221437,7 @@ var init_SwitchEquip = __esmMin((() => {
 		const root = SwitchEquip.getRoot();
 		for (const index in SwitchEquip._list) {
 			const item = SwitchEquip._list[index];
-			if (item.slot && [
-				255,
-				254,
-				65280
-			].includes(item.slot.card1)) {
+			if (DB.itemHasNamedOwner(item)) {
 				const nameEl = root.querySelector(`.item[data-index="${index}"] .itemName`);
 				if (nameEl) nameEl.textContent = _escapeHtml(DB.getItemName(item));
 			}
@@ -242048,11 +242047,7 @@ function createEquipment({ name, htmlText, cssText, entityRender = true, enchant
 		const root = Component.getRoot();
 		for (const index in _list) {
 			const item = _list[index];
-			if (item.slot && [
-				255,
-				254,
-				65280
-			].includes(item.slot.card1)) root.querySelectorAll(`.item[data-index="${index}"] .itemName`).forEach((nameEl) => {
+			if (DB.itemHasNamedOwner(item)) root.querySelectorAll(`.item[data-index="${index}"] .itemName`).forEach((nameEl) => {
 				nameEl.textContent = DB.getItemName(item);
 			});
 		}
@@ -242743,23 +242738,37 @@ var init_ItemInfo = __esmMin((() => {
 			CardIllustration_default.setCard(this.item);
 		});
 		this.draggable(".title");
+		DB.UpdateOwnerName.ItemInfo = ItemInfo.onUpdateOwnerName;
 	};
 	/**
 	* Bind component
 	*
 	* @param {object} item
 	*/
+	ItemInfo.onUpdateOwnerName = function onUpdateOwnerName() {
+		if (ItemInfo._boundItem) {
+			const title = ItemInfo.getRoot().querySelector(".title");
+			if (title) title.innerHTML = DB.getItemName(ItemInfo._boundItem, {
+				showItemOptions: false,
+				html: true
+			});
+		}
+	};
 	ItemInfo.setItem = function setItem(item) {
 		const it = DB.getItemInfo(item.ITID);
 		const root = ItemInfo.getRoot();
 		const cardList = root.querySelector(".cardlist .border");
 		const optionContainer = root.querySelector(".option-container");
 		this.item = it;
+		this._boundItem = item;
 		Client.loadFile(DB.INTERFACE_PATH + "collection/" + (item.IsIdentified ? it.identifiedResourceName : it.unidentifiedResourceName) + ".bmp", (data) => {
 			const collection = root.querySelector(".collection");
 			if (collection) collection.style.backgroundImage = `url(${data})`;
 		});
-		const itemName = DB.getItemName(item, { showItemOptions: false });
+		const itemName = DB.getItemName(item, {
+			showItemOptions: false,
+			html: true
+		});
 		const title = root.querySelector(".title");
 		if (title) {
 			if (item.IsDamaged) title.classList.add("damaged");
@@ -296248,7 +296257,14 @@ function loadCashShopBanner(filename, callback, onEnd) {
 function onUpdateOwnerName(pkt) {
 	DB.CNameTable[pkt.GID] = pkt.CName;
 	DB._resolveNameCallbacks(pkt.GID, pkt.CName);
-	DB.UpdateOwnerName[pkt.GID] = pkt;
+	const gidCb = DB.UpdateOwnerName[pkt.GID];
+	if (typeof gidCb === "function") gidCb(pkt);
+	for (const key in DB.UpdateOwnerName) {
+		if (!Object.prototype.hasOwnProperty.call(DB.UpdateOwnerName, key)) continue;
+		if (String(key) === String(pkt.GID)) continue;
+		const fn = DB.UpdateOwnerName[key];
+		if (typeof fn === "function") fn(pkt);
+	}
 }
 /**
 * Function to update MapTable with MapInfo values
@@ -297786,8 +297802,26 @@ var init_DBManager = __esmMin((() => {
 				gid: (hi << 16 | lo) >>> 0
 			};
 		}
+		static formatForgeOwnerName(GID, html) {
+			let name = "Unknown";
+			if (GID) {
+				if (DB.CNameTable[GID] && DB.CNameTable[GID] !== "Unknown") name = DB.CNameTable[GID];
+				else DB.getNameByGID(GID);
+			}
+			if (!html) return name;
+			return "<font color=\"" + (!!(DB.CNameTable[GID] && DB.CNameTable[GID] !== "Unknown") ? "#87cefa" : "red") + "\" class=\"owner-" + GID + "\">" + name + "</font>";
+		}
+		static itemHasNamedOwner(item) {
+			if (!item) return false;
+			if (item.slot && [
+				255,
+				254,
+				65280
+			].includes(item.slot.card1)) return true;
+			return !!DB.getTuroranForgeOption(item);
+		}
 		static getItemName(item, options = {}) {
-			const { showItemRefine = true, showItemGrade = true, showItemSlots = true, showItemPrefix = true, showItemPostfix = true, showItemOptions = true } = options;
+			const { showItemRefine = true, showItemGrade = true, showItemSlots = true, showItemPrefix = true, showItemPostfix = true, showItemOptions = true, html = false } = options;
 			const it = DB.getItemInfo(item.ITID);
 			let str = "";
 			let prefix = "";
@@ -297829,23 +297863,7 @@ var init_DBManager = __esmMin((() => {
 					default: elem = MsgStringTable[450];
 				}
 				const GID = turoranForge.gid | 0;
-				name = "<font color=\"red\" class=\"owner-" + GID + "\">Unknown</font>";
-				if (GID) {
-					if (DB.CNameTable[GID] && DB.CNameTable[GID] !== "Unknown") name = "<font color=\"#87cefa\" class=\"owner-" + GID + "\">" + DB.CNameTable[GID] + "</font>";
-					else {
-						DB.UpdateOwnerName[GID] = function(pkt) {
-							delete DB.UpdateOwnerName[pkt.GID];
-							setTimeout(() => {
-								const elements = document.querySelectorAll(".owner-" + pkt.GID);
-								for (let i = 0; i < elements.length; i++) {
-									elements[i].innerText = pkt.CName;
-									elements[i].style.color = "blue";
-								}
-							}, 1e3);
-						};
-						DB.getNameByGID(GID);
-					}
-				}
+				name = DB.formatForgeOwnerName(GID, html);
 				str += (very ? very + " " : "") + name + elem + " ";
 			}
 			if (item.slot) {
@@ -297874,21 +297892,7 @@ var init_DBManager = __esmMin((() => {
 							default: elem = MsgStringTable[450];
 						}
 						const GID = (item.slot.card4 << 16) + item.slot.card3;
-						name = "<font color=\"red\" class=\"owner-" + GID + "\">Unknown</font>";
-						if (DB.CNameTable[GID] && DB.CNameTable[GID] !== "Unknown") name = "<font color=\"#87cefa\" class=\"owner-" + GID + "\">" + DB.CNameTable[GID] + "</font>";
-						else {
-							DB.UpdateOwnerName[GID] = function(pkt) {
-								delete DB.UpdateOwnerName[pkt.GID];
-								setTimeout(() => {
-									const elements = document.querySelectorAll(".owner-" + pkt.GID);
-									for (let i = 0; i < elements.length; i++) {
-										elements[i].innerText = pkt.CName;
-										elements[i].style.color = "blue";
-									}
-								}, 1e3);
-							};
-							DB.getNameByGID(GID);
-						}
+						name = DB.formatForgeOwnerName(GID, html);
 						str += very + " " + name + elem + " ";
 						break;
 					}
@@ -316693,11 +316697,7 @@ function createPlayerViewEquip({ name, cssText, hasTabs, costumeRows, costumeTab
 	Component.onUpdateOwnerName = function() {
 		for (const index in _list) {
 			const item = _list[index];
-			if (item.slot && [
-				255,
-				254,
-				65280
-			].includes(item.slot.card1)) {
+			if (DB.itemHasNamedOwner(item)) {
 				const nameEl = _root.querySelector(".item[data-index=\"" + index + "\"] .itemName");
 				if (nameEl) nameEl.textContent = DB.getItemName(item);
 			}
