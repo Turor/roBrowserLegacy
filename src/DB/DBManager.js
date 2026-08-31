@@ -2436,7 +2436,7 @@ class DB {
 		if (!forge) {
 			return null;
 		}
-		return { value: forge.value | 0, gid: (hi << 16) >>> 0 };
+		return { value: forge.value | 0, gid: ((hi << 16) | lo) >>> 0 };
 	}
 
 	static getItemName(item, options = {}) {
