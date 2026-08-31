@@ -227,8 +227,7 @@ export function createSkillList({
 					SkillDescription.remove();
 					return;
 				}
-				SkillDescription.append();
-				SkillDescription.setSkill(skillID);
+				openSkillDescription(skillID);
 			}
 		});
 
@@ -253,8 +252,7 @@ export function createSkillList({
 					if (_preferences.skillInfo || (showDescOnMiniHover && _preferences.mini)) {
 						const skillID = _resolveSkillID(target);
 						if (SkillDescription.uid !== skillID) {
-							SkillDescription.append();
-							SkillDescription.setSkill(skillID);
+							openSkillDescription(skillID);
 						}
 					}
 					onNecessarySkills(target, root);
@@ -665,7 +663,6 @@ export function createSkillList({
 				element.innerHTML =
 					`<div class="name">${_escapeHTML(sk.SkillName).substr(0, 7)}...<br/></div>` +
 					'<div class="icon"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" width="24" height="24" /></div>' +
-					consumeHtml(null, sk) +
 					'<div class=selectable>' +
 					'<span class="level" style="display: none">' +
 					(sk.bSeperateLv
@@ -766,7 +763,6 @@ export function createSkillList({
 			`<div class="name">${_escapeHTML(sk.SkillName).substr(0, 7)}...<br/></div>` +
 			'<div class="icon"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" width="24" height="24" /></div>' +
 			'<div class="levelupcontainer"></div>' +
-			consumeHtml(skill, sk) +
 			'<div class=selectable>' +
 			'<span class="level">' +
 			(sk.bSeperateLv
@@ -1379,11 +1375,21 @@ export function createSkillList({
 		}
 	}
 
+	function openSkillDescription(skillID) {
+		const skill = getSkillById(skillID);
+		const level = skill ? skill.selectedLevel || skill.level || 1 : 1;
+		SkillDescription.append();
+		SkillDescription.setSkill(skillID, level);
+	}
+
 	function syncSkillSpCost(skill, root) {
 		const cost = getDisplayedSpCost(skill);
 		root.querySelectorAll(`.skill.id${skill.SKID} .spcost`).forEach(el => {
 			el.textContent = cost;
 		});
+		if (SkillDescription.uid === skill.SKID) {
+			SkillDescription.setSkill(skill.SKID, skill.selectedLevel || skill.level || 1);
+		}
 	}
 
 	function skillLevelSelectUp(skill, root) {

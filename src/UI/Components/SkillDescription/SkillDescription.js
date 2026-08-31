@@ -105,13 +105,13 @@ SkillDescription.init = function init() {
  *
  * @param {number} skill id
  */
-SkillDescription.setSkill = function setSkill(id) {
+SkillDescription.setSkill = function setSkill(id, level) {
 	this.uid = id;
 
 	const root = this.getRoot();
 	const content = root.querySelector('.content');
 	if (content) {
-		content.innerHTML = _formatROText(DB.getSkillDescription(id));
+		content.innerHTML = _formatROText(DB.getSkillDescription(id, level));
 	}
 
 	const hostWidth = this._host.getBoundingClientRect().width;

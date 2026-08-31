@@ -2726,17 +2726,16 @@ class DB {
 	 *
 	 * @param {number} skill id
 	 */
-	static getSkillDescription(id) {
+	static getSkillDescription(id, level) {
 		let desc = SkillDescription[id] || '...';
 		const info = SkillInfo[id];
 		const amounts = info && Array.isArray(info.SpAmount) ? info.SpAmount.map(Number) : [];
-		if (amounts.some(n => n > 0) && !/SP Consumption|SP Cost|Sp :/i.test(desc)) {
-			const unique = [...new Set(amounts.filter(n => !Number.isNaN(n)))];
-			const spLine =
-				unique.length === 1
-					? `SP Cost: ^777777${unique[0]}^000000`
-					: `SP Cost: ^777777${amounts.join(' / ')}^000000`;
-			desc = `${desc.replace(/\s+$/, '')}\n${spLine}`;
+		const lv = Math.max(1, level || 1);
+		const i = Math.min(lv, amounts.length || 1) - 1;
+		const sp = amounts.length ? amounts[i] : null;
+		if (sp != null && sp > 0) {
+			const spLine = `SP Cost (Lv ${lv}): ^777777${sp}^000000`;
+			desc = `${spLine}\n${desc.replace(/^\s+/, '')}`;
 		}
 		return desc;
 	}
