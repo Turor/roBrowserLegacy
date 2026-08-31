@@ -297553,6 +297553,7 @@ var init_DBManager = __esmMin((() => {
 			if (item.ForgeOptions) lists.push(item.ForgeOptions);
 			if (item.Options) lists.push(item.Options);
 			let forge = null;
+			let lo = 0;
 			let hi = 0;
 			for (let L = 0; L < lists.length; L++) {
 				const arr = lists[L];
@@ -297560,7 +297561,7 @@ var init_DBManager = __esmMin((() => {
 					const opt = arr[i];
 					if (!opt) continue;
 					if (opt.index === DB.TURORAN_FORGE_OPT) forge = opt;
-					else if (opt.index === DB.TURORAN_FORGE_OWNER_LO) opt.value & 65535;
+					else if (opt.index === DB.TURORAN_FORGE_OWNER_LO) lo = opt.value & 65535;
 					else if (opt.index === DB.TURORAN_FORGE_OWNER_HI) hi = opt.value & 65535;
 				}
 				if (forge) break;
@@ -297568,7 +297569,7 @@ var init_DBManager = __esmMin((() => {
 			if (!forge) return null;
 			return {
 				value: forge.value | 0,
-				gid: hi << 16 >>> 0
+				gid: (hi << 16 | lo) >>> 0
 			};
 		}
 		static getItemName(item, options = {}) {
