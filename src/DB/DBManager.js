@@ -2439,6 +2439,34 @@ class DB {
 		return { value: forge.value | 0, gid: ((hi << 16) | lo) >>> 0 };
 	}
 
+
+	static formatForgeOwnerName(GID, html) {
+		let name = "Unknown";
+		if (GID) {
+			if (DB.CNameTable[GID] && DB.CNameTable[GID] !== "Unknown") {
+				name = DB.CNameTable[GID];
+			} else {
+				DB.getNameByGID(GID);
+			}
+		}
+		if (!html) {
+			return name;
+		}
+		const known = !!(DB.CNameTable[GID] && DB.CNameTable[GID] !== "Unknown");
+		const color = known ? "#87cefa" : "red";
+		return '<font color="' + color + '" class="owner-' + GID + '">' + name + "</font>";
+	}
+
+	static itemHasNamedOwner(item) {
+		if (!item) {
+			return false;
+		}
+		if (item.slot && [0x00ff, 0x00fe, 0xff00].includes(item.slot.card1)) {
+			return true;
+		}
+		return !!DB.getTuroranForgeOption(item);
+	}
+
 	static getItemName(item, options = {}) {
 		const {
 			showItemRefine = true,
@@ -2446,7 +2474,8 @@ class DB {
 			showItemSlots = true,
 			showItemPrefix = true,
 			showItemPostfix = true,
-			showItemOptions = true
+			showItemOptions = true,
+			html = false
 		} = options;
 
 		const it = DB.getItemInfo(item.ITID);
@@ -2504,24 +2533,7 @@ class DB {
 			}
 
 			const GID = turoranForge.gid | 0;
-			name = '<font color="red" class="owner-' + GID + '">Unknown</font>';
-			if (GID) {
-				if (DB.CNameTable[GID] && DB.CNameTable[GID] !== 'Unknown') {
-					name = '<font color="#87cefa" class="owner-' + GID + '">' + DB.CNameTable[GID] + '</font>';
-				} else {
-					DB.UpdateOwnerName[GID] = function (pkt) {
-						delete DB.UpdateOwnerName[pkt.GID];
-						setTimeout(() => {
-							const elements = document.querySelectorAll('.owner-' + pkt.GID);
-							for (let i = 0; i < elements.length; i++) {
-								elements[i].innerText = pkt.CName;
-								elements[i].style.color = 'blue';
-							}
-						}, 1000);
-					};
-					DB.getNameByGID(GID);
-				}
-			}
+			name = DB.formatForgeOwnerName(GID, html);
 
 			str += (very ? very + ' ' : '') + name + elem + ' ';
 		}
@@ -2560,22 +2572,7 @@ class DB {
 					}
 
 					const GID = (item.slot.card4 << 16) + item.slot.card3;
-					name = '<font color="red" class="owner-' + GID + '">Unknown</font>';
-					if (DB.CNameTable[GID] && DB.CNameTable[GID] !== 'Unknown') {
-						name = '<font color="#87cefa" class="owner-' + GID + '">' + DB.CNameTable[GID] + '</font>';
-					} else {
-						DB.UpdateOwnerName[GID] = function (pkt) {
-							delete DB.UpdateOwnerName[pkt.GID];
-							setTimeout(() => {
-								const elements = document.querySelectorAll('.owner-' + pkt.GID);
-								for (let i = 0; i < elements.length; i++) {
-									elements[i].innerText = pkt.CName;
-									elements[i].style.color = 'blue';
-								}
-							}, 1000);
-						};
-						DB.getNameByGID(GID);
-					}
+					name = DB.formatForgeOwnerName(GID, html);
 
 					str += very + ' ' + name + elem + ' ';
 					break;
@@ -7685,7 +7682,24 @@ function loadCashShopBanner(filename, callback, onEnd) {
 function onUpdateOwnerName(pkt) {
 	DB.CNameTable[pkt.GID] = pkt.CName;
 	DB._resolveNameCallbacks(pkt.GID, pkt.CName);
-	DB.UpdateOwnerName[pkt.GID] = pkt;
+
+	const gidCb = DB.UpdateOwnerName[pkt.GID];
+	if (typeof gidCb === "function") {
+		gidCb(pkt);
+	}
+
+	for (const key in DB.UpdateOwnerName) {
+		if (!Object.prototype.hasOwnProperty.call(DB.UpdateOwnerName, key)) {
+			continue;
+		}
+		if (String(key) === String(pkt.GID)) {
+			continue;
+		}
+		const fn = DB.UpdateOwnerName[key];
+		if (typeof fn === "function") {
+			fn(pkt);
+		}
+	}
 }
 
 /**

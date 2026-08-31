@@ -147,7 +147,7 @@ ItemCompare.setItem = function setItem(item) {
 		}
 	);
 
-	const itemName = DB.getItemName(item, { showItemOptions: false });
+	const itemName = DB.getItemName(item, { showItemOptions: false, html: true });
 
 	// Damaged status
 	const title = root.querySelector('.title');

@@ -173,6 +173,7 @@ ItemInfo.init = function init() {
 	}
 
 	this.draggable('.title');
+	DB.UpdateOwnerName.ItemInfo = ItemInfo.onUpdateOwnerName;
 };
 
 /**
@@ -180,6 +181,15 @@ ItemInfo.init = function init() {
  *
  * @param {object} item
  */
+ItemInfo.onUpdateOwnerName = function onUpdateOwnerName() {
+	if (ItemInfo._boundItem) {
+		const title = ItemInfo.getRoot().querySelector('.title');
+		if (title) {
+			title.innerHTML = DB.getItemName(ItemInfo._boundItem, { showItemOptions: false, html: true });
+		}
+	}
+};
+
 ItemInfo.setItem = function setItem(item) {
 	const it = DB.getItemInfo(item.ITID);
 	const root = ItemInfo.getRoot();
@@ -187,6 +197,7 @@ ItemInfo.setItem = function setItem(item) {
 	const optionContainer = root.querySelector('.option-container');
 
 	this.item = it;
+	this._boundItem = item;
 	Client.loadFile(
 		DB.INTERFACE_PATH +
 			'collection/' +
@@ -200,7 +211,7 @@ ItemInfo.setItem = function setItem(item) {
 		}
 	);
 
-	const itemName = DB.getItemName(item, { showItemOptions: false });
+	const itemName = DB.getItemName(item, { showItemOptions: false, html: true });
 
 	// Damaged status
 	const title = root.querySelector('.title');

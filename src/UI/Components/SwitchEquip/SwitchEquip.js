@@ -504,7 +504,7 @@ SwitchEquip.onUpdateOwnerName = function () {
 	const root = SwitchEquip.getRoot();
 	for (const index in SwitchEquip._list) {
 		const item = SwitchEquip._list[index];
-		if (item.slot && [0x00ff, 0x00fe, 0xff00].includes(item.slot.card1)) {
+		if (DB.itemHasNamedOwner(item)) {
 			const nameEl = root.querySelector(`.item[data-index="${index}"] .itemName`);
 			if (nameEl) nameEl.textContent = _escapeHtml(DB.getItemName(item));
 		}

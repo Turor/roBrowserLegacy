@@ -945,7 +945,7 @@ export function createEquipment({
 		const root = Component.getRoot();
 		for (const index in _list) {
 			const item = _list[index];
-			if (item.slot && [0x00ff, 0x00fe, 0xff00].includes(item.slot.card1)) {
+			if (DB.itemHasNamedOwner(item)) {
 				root.querySelectorAll(`.item[data-index="${index}"] .itemName`).forEach(nameEl => {
 					nameEl.textContent = DB.getItemName(item);
 				});

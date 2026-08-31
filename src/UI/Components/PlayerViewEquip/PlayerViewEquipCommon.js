@@ -561,7 +561,7 @@ export function createPlayerViewEquip({ name, cssText, hasTabs, costumeRows, cos
 	Component.onUpdateOwnerName = function () {
 		for (const index in _list) {
 			const item = _list[index];
-			if (item.slot && [0x00ff, 0x00fe, 0xff00].includes(item.slot.card1)) {
+			if (DB.itemHasNamedOwner(item)) {
 				const nameEl = _root.querySelector('.item[data-index="' + index + '"] .itemName');
 				if (nameEl) {
 					nameEl.textContent = DB.getItemName(item);
