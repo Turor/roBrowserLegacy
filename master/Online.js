@@ -296278,7 +296278,7 @@ var init_DBManager = __esmMin((() => {
 							if (typeof value === "number" && value > 0) SkillConst_default[k] = value;
 						}
 					}
-					loadLuaTable([DB.LUA_PATH + "skillinfoz/skillid.lub", DB.LUA_PATH + "skillinfoz/skilldescript.turoran4.lub"], "SKILL_DESCRIPT", (_json) => {
+					loadLuaTable([DB.LUA_PATH + "skillinfoz/skillid.lub", DB.LUA_PATH + "skillinfoz/skilldescript.turoran5.lub"], "SKILL_DESCRIPT", (_json) => {
 						SkillDescription = _json;
 					}, () => {
 						loadSkillInfoList(DB.LUA_PATH + "skillinfoz/skillinfolist.turoran.lub", null, () => {
