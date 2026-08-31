@@ -297785,10 +297785,17 @@ var init_DBManager = __esmMin((() => {
 				}
 				if (forge) break;
 			}
-			if (!forge) return null;
+			const gid = (hi << 16 | lo) >>> 0;
+			if (!forge) {
+				if (gid) return {
+					value: 0,
+					gid
+				};
+				return null;
+			}
 			return {
 				value: forge.value | 0,
-				gid: (hi << 16 | lo) >>> 0
+				gid
 			};
 		}
 		static formatForgeOwnerName(GID, html) {
@@ -297886,7 +297893,12 @@ var init_DBManager = __esmMin((() => {
 						break;
 					}
 					case 254:
-						elem = MsgStringTable[450];
+						showslots = false;
+						if (!turoranForge) {
+							const GID = (item.slot.card4 << 16) + item.slot.card3 >>> 0;
+							name = DB.formatForgeOwnerName(GID, html);
+							str += name + MsgStringTable[450] + " ";
+						}
 						break;
 					case 65280: break;
 					default: {
