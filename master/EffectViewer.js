@@ -296481,10 +296481,10 @@ var init_DBManager = __esmMin((() => {
 							if (typeof value === "number" && value > 0) SkillConst_default[k] = value;
 						}
 					}
-					loadLuaTable([DB.LUA_PATH + "skillinfoz/skillid.lub", DB.LUA_PATH + "skillinfoz/skilldescript.lub"], "SKILL_DESCRIPT", (_json) => {
+					loadLuaTable([DB.LUA_PATH + "skillinfoz/skillid.lub", DB.LUA_PATH + "skillinfoz/skilldescript.turoran.lub"], "SKILL_DESCRIPT", (_json) => {
 						SkillDescription = _json;
 					}, () => {
-						loadSkillInfoList(DB.LUA_PATH + "skillinfoz/skillinfolist.lub", null, () => {
+						loadSkillInfoList(DB.LUA_PATH + "skillinfoz/skillinfolist.turoran.lub", null, () => {
 							loadSkillTreeView(DB.LUA_PATH + "skillinfoz/skilltreeview.snbow.lub", null, () => {
 								if (PacketVerManager_default.value >= 20211103) {
 									const bsonOnLoad = onLoad();
