@@ -2433,10 +2433,15 @@ class DB {
 				break;
 			}
 		}
+		const gid = ((hi << 16) | lo) >>> 0;
 		if (!forge) {
+			// Named produce (potions) may only have owner lo/hi in ForgeOptions.
+			if (gid) {
+				return { value: 0, gid };
+			}
 			return null;
 		}
-		return { value: forge.value | 0, gid: ((hi << 16) | lo) >>> 0 };
+		return { value: forge.value | 0, gid };
 	}
 
 	static formatForgeOwnerName(GID, html) {
@@ -2576,9 +2581,16 @@ class DB {
 					str += very + ' ' + name + elem + ' ';
 					break;
 				}
-				case 0x00fe: // CREATE
-					elem = MsgStringTable[450];
+				case 0x00fe: { // CREATE (alchemist / named produce)
+					showslots = false;
+					// Turoran forge[] already rendered "Name's " above.
+					if (!turoranForge) {
+						const GID = ((item.slot.card4 << 16) + item.slot.card3) >>> 0;
+						name = DB.formatForgeOwnerName(GID, html);
+						str += name + MsgStringTable[450] + ' ';
+					}
 					break;
+				}
 				case 0xff00: // PET
 					break;
 				// Show card prefix
