@@ -78,10 +78,7 @@ function consumeHtml(skill, sk) {
 	if (!skillShowsSp(skill, sk)) {
 		return '<div class="consume">Passive</div>';
 	}
-	const sp =
-		skill != null
-			? getDisplayedSpCost(skill)
-			: Number(((sk && sk.SpAmount) || [0])[0] || 0);
+	const sp = skill != null ? getDisplayedSpCost(skill) : Number(((sk && sk.SpAmount) || [0])[0] || 0);
 	return `<div class="consume">Sp : <span class="spcost">${sp}</span></div>`;
 }
 

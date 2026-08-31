@@ -490,23 +490,27 @@ class DB {
 						// Calls after skillids and descs been populated
 						loadSkillInfoList(DB.LUA_PATH + 'skillinfoz/skillinfolist.turoran.lub', null, () => {
 							loadSkillSpAmountTable(() => {
-							loadSkillTreeView(DB.LUA_PATH + 'skillinfoz/skilltreeview.snbow.lub', null, () => {
-								// Load ez2streffect, PACKETVER unknown when the while has been added, tied to default PACKETVER of rathena for 4th job
-								if (PACKETVER.value >= 20211103) {
-									const bsonOnLoad = onLoad();
-									loadBSONFile('data/contentdata/effectdata/ez2streffect.bson', Ez2streffect, () => {
-										Promise.all([
-											import('DB/Effects/EffectTable.js'),
-											import('DB/Skills/SkillEffect.js')
-										]).then(([EffectTable, SkillEffect]) => {
-											mergeEz2Effects(EffectTable.default, SkillEffect.default);
-											bsonOnLoad();
-										});
-									});
-								}
-								// Skill Lua finished
-								onSkillEnd();
-							});
+								loadSkillTreeView(DB.LUA_PATH + 'skillinfoz/skilltreeview.snbow.lub', null, () => {
+									// Load ez2streffect, PACKETVER unknown when the while has been added, tied to default PACKETVER of rathena for 4th job
+									if (PACKETVER.value >= 20211103) {
+										const bsonOnLoad = onLoad();
+										loadBSONFile(
+											'data/contentdata/effectdata/ez2streffect.bson',
+											Ez2streffect,
+											() => {
+												Promise.all([
+													import('DB/Effects/EffectTable.js'),
+													import('DB/Skills/SkillEffect.js')
+												]).then(([EffectTable, SkillEffect]) => {
+													mergeEz2Effects(EffectTable.default, SkillEffect.default);
+													bsonOnLoad();
+												});
+											}
+										);
+									}
+									// Skill Lua finished
+									onSkillEnd();
+								});
 							});
 						});
 					}
