@@ -2581,7 +2581,8 @@ class DB {
 					str += very + ' ' + name + elem + ' ';
 					break;
 				}
-				case 0x00fe: { // CREATE (alchemist / named produce)
+				case 0x00fe: {
+					// CREATE (alchemist / named produce)
 					showslots = false;
 					// Turoran forge[] already rendered "Name's " above.
 					if (!turoranForge) {
