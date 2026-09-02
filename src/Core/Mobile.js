@@ -157,6 +157,16 @@ const onTouchStart = (function onTouchStartClosure() {
 	}
 
 	return function (event) {
+		const target = event.target;
+		if (
+			target &&
+			target.closest &&
+			target.closest(
+				'input, textarea, select, button, a, label, [contenteditable="true"], .ok, .cancel, .connect, .exit, .make, .delete, .signup'
+			)
+		) {
+			return;
+		}
 		remoteAutoFocus();
 		_touches = event.touches;
 		event.preventDefault();
@@ -252,14 +262,7 @@ function onTouchMove(event) {
 }
 
 // Add full screen on mobile (sux to have the browser title bar)
-if (Math.max(screen.availHeight, screen.availWidth) <= 800) {
-	// Fullscreen on action
-	window.addEventListener('touchstart', () => {
-		if (!Context.isFullScreen()) {
-			Context.requestFullScreen();
-		}
-	});
-}
+// Do not requestFullscreen on every touch — iOS can drop the WebSocket.
 
 //Add mobile UI on touch
 function touchDevice() {

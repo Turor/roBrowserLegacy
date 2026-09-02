@@ -419,7 +419,7 @@ ${buttons}
 
                 var script = document.createElement('script');
                 script.type = 'module';
-                script.src = 'Online.js';
+                script.src = 'Online.js?v=' + Date.now();
                 script.onerror = function () {
                     console.error('Failed to load Online.js');
                 };
