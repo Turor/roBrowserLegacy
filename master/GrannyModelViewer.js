@@ -332577,7 +332577,11 @@ function onCharacterListChunk(pkt) {
 */
 function onConnectionAccepted$1(pkt) {
 	pkt.sex = SessionStorage_default.Sex;
-	Network.closeStaleSockets();
+	const ping = new PACKET.CZ.PING();
+	ping.AID = SessionStorage_default.AID;
+	Network.setPing(() => {
+		Network.sendPacket(ping);
+	});
 	SessionStorage_default.Playing = false;
 	SessionStorage_default.hasCart = false;
 	SessionStorage_default.Entity = null;
