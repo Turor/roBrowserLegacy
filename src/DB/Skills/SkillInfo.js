@@ -5963,7 +5963,7 @@ SkillInfo[SK.RG_BACKSTAP] = {
 	MaxLv: 10,
 	SpAmount: [16, 16, 16, 16, 16, 16, 16, 16, 16, 16],
 	bSeperateLv: false,
-	AttackRange: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+	AttackRange: [11, 11, 11, 11, 11, 11, 11, 11, 11, 11],
 	_NeedSkillList: [[SK.RG_STEALCOIN, 4]]
 };
 SkillInfo[SK.RG_TUNNELDRIVE] = {
