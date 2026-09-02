@@ -33,6 +33,7 @@ import ChatRoom from 'UI/Components/ChatRoom/ChatRoom.js';
 import Group from 'Engine/MapEngine/Group.js';
 import Friends from 'Engine/MapEngine/Friends.js';
 import Guild from 'Engine/MapEngine/Guild.js';
+import Clan from 'UI/Components/Clan/Clan.js';
 import HomunInformations from 'UI/Components/HomunInformations/HomunInformations.js';
 import MercenaryInformations from 'UI/Components/MercenaryInformations/MercenaryInformations.js';
 import CaptchaUpload from 'UI/Components/Captcha/CaptchaUpload.js';
@@ -545,6 +546,14 @@ const CommandStore = {
 			pkt.Config = 1;
 			pkt.Value = !Session.Entity.call_flag ? 1 : 0;
 			Network.sendPacket(pkt);
+			return;
+		}
+	},
+
+	clan: {
+		description: 'Toggles the clan information window.',
+		callback: function () {
+			Clan.toggle();
 			return;
 		}
 	},
