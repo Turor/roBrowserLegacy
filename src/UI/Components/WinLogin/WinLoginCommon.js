@@ -9,6 +9,7 @@
 import DB from 'DB/DBManager.js';
 import Client from 'Core/Client.js';
 import Configs from 'Core/Configs.js';
+import { PWA_VERSION } from 'Core/PwaVersion.js';
 import Preferences from 'Core/Preferences.js';
 import KEYS from 'Controls/KeyEventHandler.js';
 import UIManager from 'UI/UIManager.js';
@@ -85,6 +86,10 @@ export function createWinLogin({ name, htmlText, cssText }) {
 
 		// Connect / Signup / Exit
 		paintSharedGate(root);
+		const verEl = root.querySelector('.pwa-version');
+		if (verEl) {
+			verEl.textContent = 'PWA ' + PWA_VERSION;
+		}
 		root.querySelector('.signup').addEventListener('click', signup);
 		root.querySelector('.connect').addEventListener('click', connect);
 		root.querySelector('.exit').addEventListener('click', exit);

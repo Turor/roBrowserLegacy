@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { createRequire } from 'module';
+import { execSync } from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -13,6 +14,18 @@ const startTime = Date.now();
 const args = getArgs();
 
 const buildDate = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+function gitShort() {
+	try {
+		return execSync('git rev-parse --short HEAD', {
+			cwd: path.resolve(__dirname, '../../'),
+			encoding: 'utf8'
+		}).trim();
+	} catch {
+		return 'unknown';
+	}
+}
+const gitHash = gitShort();
+const pwaVersion = gitHash + ' ' + buildDate;
 const dist = './dist/';
 const platform = 'Web';
 
@@ -113,6 +126,9 @@ async function compile(appName, isMinify) {
 			root: projectRoot,
 			base: './',
 			logLevel: 'warn',
+			define: {
+				__TURORAN_PWA_VERSION__: JSON.stringify(pwaVersion)
+			},
 			resolve: {
 				alias: aliases
 			},
@@ -185,7 +201,7 @@ function createHTML(includeManifest = false, buildArgs = {}, isAllBuild = false)
     <head>    
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>    
         <meta charset="UTF-8">    
-        <title>roBrowser [${pkg.version} - ${buildDate}]</title>    
+        <title>TuroranRO [${pwaVersion}]</title>    
         <link rel="icon" type="image/png" href="./icon.png">    
     
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    

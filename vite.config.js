@@ -43,6 +43,9 @@ export default defineConfig({
 	plugins: [uiCssHmrPlugin()],
 	root: './',
 	base: './',
+	define: {
+		__TURORAN_PWA_VERSION__: JSON.stringify('dev')
+	},
 	resolve: {
 		alias: {
 			App: path.resolve(__dirname, './src/App'),
