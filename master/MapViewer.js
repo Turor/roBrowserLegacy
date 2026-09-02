@@ -205600,7 +205600,18 @@ function Socket$1(host, port, proxy) {
 		if (!self.connected) self.onComplete(false);
 	};
 	this.ws.onmessage = function OnMessage(event) {
-		self.onMessage(event.data);
+		const data = event.data;
+		if (data instanceof ArrayBuffer) {
+			self.onMessage(data);
+			return;
+		}
+		if (data && typeof data.arrayBuffer === "function") {
+			data.arrayBuffer().then(function(buf) {
+				self.onMessage(buf);
+			});
+			return;
+		}
+		self.onMessage(data);
 	};
 	this.ws.onclose = function OnClose() {
 		self.connected = false;
@@ -205615,7 +205626,7 @@ var init_WebSocket = __esmMin((() => {
 	* @param {ArrayBuffer} buffer
 	*/
 	Socket$1.prototype.send = function Send(buffer) {
-		if (this.connected) this.ws.send(buffer);
+		if (this.connected) this.ws.send(buffer instanceof ArrayBuffer ? new Uint8Array(buffer) : buffer);
 	};
 	/**
 	* Closing connection to server
@@ -205861,15 +205872,18 @@ function receive(buf) {
 */
 function onClose$9() {
 	const idx = _sockets.indexOf(this);
-	if (this === _socket) {
-		console.warn("[Network] Disconnect from server");
-		if (_socket.ping) clearInterval(_socket.ping);
-		if (_onDisconnect) _onDisconnect();
-		else __vitePreload(() => Promise.resolve().then(() => (init_UIManager(), UIManager_exports)).then((UIManager) => {
-			UIManager.default.showErrorBox("Disconnected from Server.");
-		}), void 0, import.meta.url);
+	const wasCurrent = this === _socket;
+	if (this.ping) {
+		clearInterval(this.ping);
+		this.ping = null;
 	}
 	if (idx !== -1) _sockets.splice(idx, 1);
+	if (!wasCurrent) return;
+	console.warn("[Network] Disconnect from server");
+	if (typeof _onDisconnect === "function") _onDisconnect();
+	else __vitePreload(() => Promise.resolve().then(() => (init_UIManager(), UIManager_exports)).then((UIManager) => {
+		UIManager.default.showErrorBox("Disconnected from Server.");
+	}), void 0, import.meta.url);
 }
 /**
 * Close connection with server
@@ -333058,6 +333072,9 @@ var init_CharEngine = __esmMin((() => {
 					UIManager.showErrorBox(DB.getMessage(1));
 					return;
 				}
+				Network.onDisconnect = function() {
+					UIManager.showErrorBox("Disconnected from Server.");
+				};
 				const pkt = new PACKET.CH.ENTER();
 				pkt.AID = SessionStorage_default.AID;
 				pkt.AuthCode = SessionStorage_default.AuthCode;
@@ -337782,7 +337799,7 @@ function onCharServerSelected(index) {
 	WinList_default.remove();
 	WinLoading.append();
 	SessionStorage_default.ServerName = _charServers[index].name;
-	Network.onDisconnect = null;
+	Network.onDisconnect = function() {};
 	CharEngine.init(_charServers[index]);
 }
 /**
@@ -337809,7 +337826,7 @@ function onConnectionAccepted(pkt) {
 	if (count === 1 && Configs.get("skipServerList")) {
 		WinLoading.append();
 		SessionStorage_default.ServerName = _charServers[0].name;
-		Network.onDisconnect = null;
+		Network.onDisconnect = function() {};
 		CharEngine.init(_charServers[0]);
 	} else {
 		WinList_default.onIndexSelected = onCharServerSelected;
@@ -337821,11 +337838,13 @@ function onConnectionAccepted(pkt) {
 		WinList_default.append();
 		WinList_default.setList(list);
 	}
-	const ping = new PACKET.CA.CONNECT_INFO_CHANGED();
-	ping.ID = _loginID;
-	Network.setPing(() => {
-		Network.sendPacket(ping);
-	});
+	if (!(count === 1 && Configs.get("skipServerList"))) {
+		const ping = new PACKET.CA.CONNECT_INFO_CHANGED();
+		ping.ID = _loginID;
+		Network.setPing(() => {
+			Network.sendPacket(ping);
+		});
+	}
 	if (PacketVerManager_default.value >= 20170315 && SessionStorage_default.WebToken) __vitePreload(() => Promise.resolve().then(() => (init_ShortCut(), ShortCut_exports)).then((ShortCut) => {
 		ShortCut.default.loadFromServer();
 	}), void 0, import.meta.url);
