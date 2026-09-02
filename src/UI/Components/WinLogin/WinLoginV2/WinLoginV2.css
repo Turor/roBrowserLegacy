@@ -2,7 +2,7 @@
 	top: 60%;
 	left: calc(50% - 140px);
 	width: 301px;
-	height: 210px;
+	height: 236px;
 	overflow: visible;
 }
 
@@ -110,7 +110,7 @@
 #WinLogin .pwa-version {
 	position: absolute;
 	left: 0;
-	top: 188px;
+	top: 210px;
 	width: 301px;
 	margin: 0;
 	color: #c8c8c8;

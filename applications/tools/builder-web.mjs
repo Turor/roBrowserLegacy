@@ -13,7 +13,35 @@ const pkg = JSON.parse(fs.readFileSync(new URL('../../package.json', import.meta
 const startTime = Date.now();
 const args = getArgs();
 
-const buildDate = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+function formatStamp(timeZone) {
+	const parts = Object.fromEntries(
+		new Intl.DateTimeFormat('en-CA', {
+			timeZone,
+			year: 'numeric',
+			month: '2-digit',
+			day: '2-digit',
+			hour: '2-digit',
+			minute: '2-digit',
+			hour12: false,
+			timeZoneName: 'short'
+		})
+			.formatToParts(new Date())
+			.map(p => [p.type, p.value])
+	);
+	return (
+		parts.year +
+		'-' +
+		parts.month +
+		'-' +
+		parts.day +
+		' ' +
+		parts.hour +
+		':' +
+		parts.minute +
+		' ' +
+		parts.timeZoneName
+	);
+}
 function gitShort() {
 	try {
 		return execSync('git rev-parse --short HEAD', {
@@ -25,7 +53,10 @@ function gitShort() {
 	}
 }
 const gitHash = gitShort();
-const pwaVersion = gitHash + ' ' + buildDate;
+const chicagoStamp = formatStamp('America/Chicago');
+const utcStamp = formatStamp('UTC');
+const pwaVersion = gitHash + ' ' + chicagoStamp + ' / ' + utcStamp;
+const buildDate = chicagoStamp;
 const dist = './dist/';
 const platform = 'Web';
 
