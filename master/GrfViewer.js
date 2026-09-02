@@ -108239,13 +108239,13 @@ var init_SkillInfo = __esmMin((() => {
 		],
 		bSeperateLv: false,
 		AttackRange: [
-			9,
-			9,
-			9,
-			9,
-			9,
-			9,
-			9
+			15,
+			15,
+			15,
+			15,
+			15,
+			15,
+			15
 		]
 	};
 	SkillInfo[SkillConst_default.TK_HPTIME] = {
@@ -336087,7 +336087,7 @@ var init_WinLogin$2 = __esmMin((() => {
 //#region src/Core/PwaVersion.js
 var PWA_VERSION;
 var init_PwaVersion = __esmMin((() => {
-	PWA_VERSION = "de92571 2026-09-02 17:17 CDT / 2026-09-02 22:17 UTC";
+	PWA_VERSION = "77479e3 2026-09-02 18:49 CDT / 2026-09-02 23:49 UTC";
 }));
 //#endregion
 //#region src/Engine/Replay/ReplayTypes.js
