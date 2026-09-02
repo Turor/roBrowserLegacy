@@ -84,6 +84,7 @@ class CharEngine {
 			}
 
 			Network.onDisconnect = function () {
+				Network.close();
 				UIManager.showErrorBox('Disconnected from Server.');
 			};
 
@@ -168,12 +169,9 @@ function onCharacterListChunk(pkt) {
 function onConnectionAccepted(pkt) {
 	pkt.sex = Session.Sex;
 
-	// Start sending ping
-	const ping = new PACKET.CZ.PING();
-	ping.AID = Session.AID;
-	Network.setPing(() => {
-		Network.sendPacket(ping);
-	});
+	// Do not send CZ.PING (map 0x0187) on the char socket — leftover
+	// login sockets are dropped here instead. MapEngine starts a real ping.
+	Network.closeStaleSockets();
 
 	Session.Playing = false;
 	Session.hasCart = false;

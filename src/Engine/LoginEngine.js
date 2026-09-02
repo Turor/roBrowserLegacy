@@ -370,6 +370,7 @@ function onCharServerSelected(index) {
 	WinLoading.append();
 
 	Session.ServerName = _charServers[index].name; // Save server name
+	Network.suppressDisconnect();
 	Network.onDisconnect = function () {};
 	CharEngine.init(_charServers[index]);
 }
@@ -409,6 +410,7 @@ function onConnectionAccepted(pkt) {
 	if (count === 1 && Configs.get('skipServerList')) {
 		WinLoading.append();
 		Session.ServerName = _charServers[0].name; // Save server name
+		Network.suppressDisconnect();
 		Network.onDisconnect = function () {};
 		CharEngine.init(_charServers[0]);
 	}

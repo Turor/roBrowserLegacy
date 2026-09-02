@@ -120,6 +120,7 @@ function connect(host, port, callback, isZone) {
 			}
 
 			socket.onMessage = receive;
+			socket.suppressDisconnect = false;
 			_sockets.push((_socket = socket));
 
 			// Map server encryption
@@ -365,12 +366,15 @@ function onClose() {
 		_sockets.splice(idx, 1);
 	}
 
-	// Login-server always closes after ACCEPT_LOGIN. If CharEngine has
-	// already taken _socket, ignore. If a handler was set (including a
-	// no-op during the login->char switch), call it and do not fall back
-	// to the error box — setting onDisconnect = null used to mean "ignore"
-	// in comments but actually showed Disconnected from Server.
-	if (!wasCurrent) {
+	if (wasCurrent) {
+		_socket = null;
+	}
+
+	// Login-server always closes after ACCEPT_LOGIN. Ignore that socket
+	// (and any other marked silent) even if it is still _socket — otherwise
+	// the char list can render while the UI shows Disconnected, and the
+	// char WebSocket stays open underneath.
+	if (!wasCurrent || this.suppressDisconnect) {
 		return;
 	}
 
@@ -418,19 +422,40 @@ function close() {
  *
  * @param callback
  */
+function closeStaleSockets() {
+	while (_sockets.length > 1) {
+		if (_socket !== _sockets[0]) {
+			_sockets[0].suppressDisconnect = true;
+			_sockets[0].close();
+			_sockets.splice(0, 1);
+		} else {
+			break;
+		}
+	}
+}
+
+/**
+ * Mark the current socket so its close does not show Disconnected.
+ * Used for the login server, which Hercules always closes after ACCEPT_LOGIN.
+ */
+function suppressDisconnect() {
+	if (_socket) {
+		_socket.suppressDisconnect = true;
+	}
+}
+
+/**
+ * Define a ping
+ *
+ * @param callback
+ */
 function setPing(callback) {
 	if (_socket) {
 		if (_socket.ping) {
 			clearInterval(_socket.ping);
 		}
 		_socket.ping = setInterval(callback, 10000);
-
-		while (_sockets.length > 1) {
-			if (_socket !== _sockets[0]) {
-				_sockets[0].close();
-				_sockets.splice(0, 1);
-			}
-		}
+		closeStaleSockets();
 	}
 }
 
@@ -496,6 +521,8 @@ const Network = (function network() {
 		sendPacket: sendPacket,
 		send: send,
 		setPing: setPing,
+		closeStaleSockets: closeStaleSockets,
+		suppressDisconnect: suppressDisconnect,
 		connect: connect,
 		hookPacket: hookPacket,
 		close: close,

@@ -130,7 +130,7 @@ export function createCharSelect(config) {
 			for (let i = 0; i < 15; i++) {
 				const slot = root.querySelector(`#slot${i}`);
 				if (slot) {
-					slot.addEventListener('mousedown', genericCanvasDown(i));
+					bindSlotSelect(slot, genericCanvasDown(i));
 				}
 			}
 
@@ -176,24 +176,24 @@ export function createCharSelect(config) {
 			root.querySelector('.finaldelete').addEventListener('click', suppress);
 		}
 
-		root.querySelector('.arrow.left').addEventListener('mousedown', genericArrowDown(-1));
-		root.querySelector('.arrow.right').addEventListener('mousedown', genericArrowDown(+1));
+		bindSlotSelect(root.querySelector('.arrow.left'), genericArrowDown(-1));
+		bindSlotSelect(root.querySelector('.arrow.right'), genericArrowDown(+1));
 
 		// Bind canvas
-		root.querySelector('.slot1').addEventListener('mousedown', genericCanvasDown(0));
-		root.querySelector('.slot2').addEventListener('mousedown', genericCanvasDown(1));
-		root.querySelector('.slot3').addEventListener('mousedown', genericCanvasDown(2));
+		bindSlotSelect(root.querySelector('.slot1'), genericCanvasDown(0));
+		bindSlotSelect(root.querySelector('.slot2'), genericCanvasDown(1));
+		bindSlotSelect(root.querySelector('.slot3'), genericCanvasDown(2));
 
 		if (pageBalls) {
-			root.querySelector('.make1').addEventListener('mousedown', e => {
+			bindSlotSelect(root.querySelector('.make1'), e => {
 				genericCanvasDown(0)(e);
 				create();
 			});
-			root.querySelector('.make2').addEventListener('mousedown', e => {
+			bindSlotSelect(root.querySelector('.make2'), e => {
 				genericCanvasDown(1)(e);
 				create();
 			});
-			root.querySelector('.make3').addEventListener('mousedown', e => {
+			bindSlotSelect(root.querySelector('.make3'), e => {
 				genericCanvasDown(2)(e);
 				create();
 			});
@@ -614,6 +614,14 @@ export function createCharSelect(config) {
 	if (deleteReservation) {
 		Component.onDeleteReqDelay = function onDeleteReqDelay() {};
 		Component.onCancelDeleteRequest = function onCancelDeleteRequest() {};
+	}
+
+	function bindSlotSelect(el, handler) {
+		if (!el) {
+			return;
+		}
+		el.addEventListener('mousedown', handler);
+		el.addEventListener('pointerdown', handler);
 	}
 
 	/**

@@ -167,6 +167,11 @@ const onTouchStart = (function onTouchStartClosure() {
 		) {
 			return;
 		}
+		// Login / char-select HTML must receive taps. Map camera gestures
+		// only apply once Session.Playing (on the map).
+		if (!Session.Playing) {
+			return;
+		}
 		remoteAutoFocus();
 		_touches = event.touches;
 		event.preventDefault();
