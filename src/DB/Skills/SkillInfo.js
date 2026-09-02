@@ -479,7 +479,7 @@ SkillInfo[SK.TK_JUMPKICK] = {
 	MaxLv: 7,
 	SpAmount: [70, 60, 50, 40, 30, 20, 10],
 	bSeperateLv: false,
-	AttackRange: [9, 9, 9, 9, 9, 9, 9]
+	AttackRange: [15, 15, 15, 15, 15, 15, 15]
 };
 SkillInfo[SK.TK_HPTIME] = {
 	Name: 'TK_HPTIME',
