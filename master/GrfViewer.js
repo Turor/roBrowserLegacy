@@ -307214,2541 +307214,6 @@ var init_Queue = __esmMin((() => {
 	};
 }));
 //#endregion
-//#region src/UI/Components/PincodeWindow/PincodeWindow.html?raw
-var PincodeWindow_default$2;
-var init_PincodeWindow$2 = __esmMin((() => {
-	PincodeWindow_default$2 = "<div id=\"Pincodewindow\">\r\n	<div class=\"titlebar\" data-background=\"basic_interface/titlebar_mid.bmp\">\r\n		<div class=\"left\">\r\n			<ui-button\r\n				class=\"base\"\r\n				bg=\"basic_interface/sys_base_off.bmp\"\r\n				hover=\"basic_interface/sys_base_on.bmp\"\r\n			></ui-button>\r\n			<span class=\"text\" data-text=\"1899\">Pincodewindow</span>\r\n		</div>\r\n		<div class=\"clear\"></div>\r\n	</div>\r\n	<div class=\"panel\" data-background=\"basic_interface/2ndpassword_bg.bmp\">\r\n		<span class=\"txtlabel text1\" data-text=\"1905\">Pincodewindow</span>\r\n		<span class=\"txtlabel text2\" data-text=\"1906\">Pincodewindow</span>\r\n		<ui-button\r\n			class=\"btn num1\"\r\n			bg=\"basic_interface/1-a.bmp\"\r\n			hover=\"basic_interface/1-b.bmp\"\r\n			down=\"basic_interface/1-c.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn num2\"\r\n			bg=\"basic_interface/2-a.bmp\"\r\n			hover=\"basic_interface/2-b.bmp\"\r\n			down=\"basic_interface/2-c.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn num3\"\r\n			bg=\"basic_interface/3-a.bmp\"\r\n			hover=\"basic_interface/3-b.bmp\"\r\n			down=\"basic_interface/3-c.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn num4\"\r\n			bg=\"basic_interface/4-a.bmp\"\r\n			hover=\"basic_interface/4-b.bmp\"\r\n			down=\"basic_interface/4-c.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn num5\"\r\n			bg=\"basic_interface/5-a.bmp\"\r\n			hover=\"basic_interface/5-b.bmp\"\r\n			down=\"basic_interface/5-c.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn num6\"\r\n			bg=\"basic_interface/6-a.bmp\"\r\n			hover=\"basic_interface/6-b.bmp\"\r\n			down=\"basic_interface/6-c.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn num7\"\r\n			bg=\"basic_interface/7-a.bmp\"\r\n			hover=\"basic_interface/7-b.bmp\"\r\n			down=\"basic_interface/7-c.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn num8\"\r\n			bg=\"basic_interface/8-a.bmp\"\r\n			hover=\"basic_interface/8-b.bmp\"\r\n			down=\"basic_interface/8-c.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn num9\"\r\n			bg=\"basic_interface/9-a.bmp\"\r\n			hover=\"basic_interface/9-b.bmp\"\r\n			down=\"basic_interface/9-c.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn num0\"\r\n			bg=\"basic_interface/0-a.bmp\"\r\n			hover=\"basic_interface/0-b.bmp\"\r\n			down=\"basic_interface/0-c.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"numReset\"\r\n			bg=\"basic_interface/reset-a.bmp\"\r\n			hover=\"basic_interface/reset-b.bmp\"\r\n			down=\"basic_interface/reset-c.bmp\"\r\n		></ui-button>\r\n		<span class=\"txtlabel pwd\" data-text=\"1012\">Pincodewindow</span>\r\n		<input class=\"pass\" type=\"password\" value=\"\" />\r\n		<span class=\"txtlabel newpwd\" data-text=\"1013\">Pincodewindow</span>\r\n		<input class=\"newpass\" type=\"password\" value=\"\" />\r\n		<span class=\"txtlabel checkpwd\" data-text=\"1014\">Pincodewindow</span>\r\n		<input class=\"checkpass\" type=\"password\" value=\"\" />\r\n		<ui-button class=\"btn2 ok\" bg=\"btn_big_ok.bmp\" hover=\"btn_big_ok_a.bmp\" down=\"btn_big_ok_b.bmp\"></ui-button>\r\n		<ui-button\r\n			class=\"btn2 change\"\r\n			bg=\"btn_big_change.bmp\"\r\n			hover=\"btn_big_change_a.bmp\"\r\n			down=\"btn_big_change_b.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn2 verify\"\r\n			bg=\"btn_big_next.bmp\"\r\n			hover=\"btn_big_next_a.bmp\"\r\n			down=\"btn_big_next_b.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn2 unused\"\r\n			bg=\"btn_big_unused.bmp\"\r\n			hover=\"btn_big_unused_a.bmp\"\r\n			down=\"btn_big_unused_b.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn2 cancel\"\r\n			bg=\"btn_big_cancel.bmp\"\r\n			hover=\"btn_big_cancel_a.bmp\"\r\n			down=\"btn_big_cancel_b.bmp\"\r\n		></ui-button>\r\n	</div>\r\n	<div class=\"footer\" data-background=\"basic_interface/btnbar_mid2.bmp\"></div>\r\n</div>\r\n";
-}));
-//#endregion
-//#region src/UI/Components/PincodeWindow/PincodeWindow.css?raw
-var PincodeWindow_default$1;
-var init_PincodeWindow$1 = __esmMin((() => {
-	PincodeWindow_default$1 = ":host {\r\n	width: 540px;\r\n	height: 365px;\r\n	top: 50%;\r\n	left: 50%;\r\n}\r\n\r\n#Pincodewindow {\r\n	position: absolute;\r\n	width: 540px;\r\n}\r\n\r\n#Pincodewindow .clear {\r\n	clear: both;\r\n}\r\n\r\n#Pincodewindow .titlebar {\r\n	width: 540px;\r\n	height: 17px;\r\n	background-color: white;\r\n	background-repeat: repeat-x;\r\n	border-radius: 3px 3px 0px 0px;\r\n}\r\n\r\n#Pincodewindow .titlebar .base {\r\n	width: 11px;\r\n	height: 11px;\r\n	border: none;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	vertical-align: middle;\r\n}\r\n\r\n#Pincodewindow .titlebar .text {\r\n	text-shadow: 1px 1px white;\r\n	vertical-align: -2px;\r\n	white-space: nowrap;\r\n	display: inline-block;\r\n	width: 32px;\r\n	height: 13px;\r\n	font-size: 11px;\r\n	font-weight: bold;\r\n}\r\n\r\n#Pincodewindow .titlebar .left {\r\n	margin-left: 3px;\r\n	float: left;\r\n}\r\n\r\n#Pincodewindow .titlebar .clear {\r\n	clear: both;\r\n}\r\n\r\n#Pincodewindow .panel {\r\n	background-color: white;\r\n	width: 540px;\r\n	height: 320px;\r\n}\r\n\r\n#Pincodewindow .panel .txtlabel {\r\n	position: absolute;\r\n	text-shadow: 1px 1px white;\r\n	white-space: nowrap;\r\n	width: 32px;\r\n	height: 13px;\r\n}\r\n\r\n#Pincodewindow .panel .txtlabel.text1 {\r\n	top: 27px;\r\n	left: 200px;\r\n}\r\n\r\n#Pincodewindow .panel .txtlabel.text2 {\r\n	top: 45px;\r\n	left: 200px;\r\n}\r\n\r\n#Pincodewindow .panel .txtlabel.pwd {\r\n	top: 75px;\r\n	left: 412px;\r\n}\r\n\r\n#Pincodewindow .panel .txtlabel.newpwd {\r\n	top: 115px;\r\n	left: 412px;\r\n}\r\n\r\n#Pincodewindow .panel .txtlabel.checkpwd {\r\n	top: 155px;\r\n	left: 412px;\r\n}\r\n\r\n#Pincodewindow .panel .pass {\r\n	top: 90px;\r\n	left: 412px;\r\n	position: absolute;\r\n	width: 100px;\r\n}\r\n\r\n#Pincodewindow .panel .newpass {\r\n	top: 130px;\r\n	left: 412px;\r\n	position: absolute;\r\n	width: 100px;\r\n}\r\n\r\n#Pincodewindow .panel .checkpass {\r\n	top: 170px;\r\n	left: 412px;\r\n	position: absolute;\r\n	width: 100px;\r\n}\r\n\r\n#Pincodewindow .panel .btn {\r\n	width: 60px;\r\n	height: 60px;\r\n	border: 0;\r\n	position: absolute;\r\n	background: none;\r\n}\r\n\r\n#Pincodewindow .panel .btn2 {\r\n	width: 100px;\r\n	height: 20px;\r\n	border: 0;\r\n	position: absolute;\r\n	background: none;\r\n}\r\n\r\n#Pincodewindow .panel .numReset {\r\n	position: absolute;\r\n	width: 119px;\r\n	height: 60px;\r\n	top: 257px;\r\n	left: 280px;\r\n	border: 0;\r\n	background: none;\r\n}\r\n\r\n#Pincodewindow .panel .btn.num1 {\r\n	top: 77px;\r\n	left: 220px;\r\n}\r\n\r\n#Pincodewindow .panel .btn.num2 {\r\n	top: 77px;\r\n	left: 280px;\r\n}\r\n\r\n#Pincodewindow .panel .btn.num3 {\r\n	top: 77px;\r\n	left: 340px;\r\n}\r\n\r\n#Pincodewindow .panel .btn.num4 {\r\n	top: 137px;\r\n	left: 220px;\r\n}\r\n\r\n#Pincodewindow .panel .btn.num5 {\r\n	top: 137px;\r\n	left: 280px;\r\n}\r\n\r\n#Pincodewindow .panel .btn.num6 {\r\n	top: 137px;\r\n	left: 340px;\r\n}\r\n\r\n#Pincodewindow .panel .btn.num7 {\r\n	top: 197px;\r\n	left: 220px;\r\n}\r\n\r\n#Pincodewindow .panel .btn.num8 {\r\n	top: 197px;\r\n	left: 280px;\r\n}\r\n\r\n#Pincodewindow .panel .btn.num9 {\r\n	top: 197px;\r\n	left: 340px;\r\n}\r\n\r\n#Pincodewindow .panel .btn.num0 {\r\n	top: 257px;\r\n	left: 220px;\r\n}\r\n\r\n#Pincodewindow .panel .btn2.ok {\r\n	top: 200px;\r\n	left: 412px;\r\n}\r\n\r\n#Pincodewindow .panel .btn2.verify {\r\n	top: 200px;\r\n	left: 412px;\r\n}\r\n\r\n#Pincodewindow .panel .btn2.next {\r\n	top: 200px;\r\n	left: 412px;\r\n}\r\n\r\n#Pincodewindow .panel .btn2.change {\r\n	top: 225px;\r\n	left: 412px;\r\n}\r\n\r\n#Pincodewindow .panel .btn2.unused {\r\n	top: 250px;\r\n	left: 412px;\r\n}\r\n\r\n#Pincodewindow .panel .btn2.cancel {\r\n	top: 275px;\r\n	left: 412px;\r\n}\r\n\r\n#Pincodewindow .footer {\r\n	width: 100%;\r\n	height: 27px;\r\n	background-repeat: repeat-x;\r\n	background-color: transparent;\r\n	position: relative;\r\n}\r\n";
-}));
-//#endregion
-//#region src/UI/Components/PincodeWindow/PincodeWindow.js
-function shuffleUsingKeypad(keypad) {
-	const root = PincodeWindow.getRoot();
-	if (!root || !keypad) return;
-	const originalPositions = {};
-	for (let loc = 0; loc < 10; loc++) {
-		const btn = root.querySelector(".btn.num" + loc);
-		if (!btn) continue;
-		originalPositions[loc] = {
-			top: btn.offsetTop,
-			left: btn.offsetLeft
-		};
-	}
-	for (let loc = 0; loc < 10; loc++) {
-		const d = keypad[loc];
-		const btn = root.querySelector(".btn.num" + d);
-		if (!btn || !originalPositions[loc]) continue;
-		btn.style.top = originalPositions[loc].top + "px";
-		btn.style.left = originalPositions[loc].left + "px";
-	}
-}
-function advanceVisualSeed() {
-	if (PincodeWindow._currentSeed !== void 0) {
-		const multiplier = parseInt("0x3498", 16);
-		const baseSeed = parseInt("0x881234", 16);
-		PincodeWindow._currentSeed[0] = baseSeed + PincodeWindow._currentSeed[0] * multiplier >>> 0;
-		shuffleUsingKeypad(generateKeypad(PincodeWindow._currentSeed[0]));
-	}
-}
-/**
-* Stop an event from propagating
-*/
-function stopPropagation$7(event) {
-	event.stopImmediatePropagation();
-	event.preventDefault();
-}
-function generateKeypad(_userseed) {
-	const tab = new Uint8Array([
-		0,
-		1,
-		2,
-		3,
-		4,
-		5,
-		6,
-		7,
-		8,
-		9
-	]);
-	const keypad = new Uint8Array([
-		0,
-		0,
-		0,
-		0,
-		0,
-		0,
-		0,
-		0,
-		0,
-		0
-	]);
-	const multiplier = parseInt("0x3498", 16);
-	const baseSeed = parseInt("0x881234", 16);
-	let pos = 0;
-	const userSeed = new Uint32Array([_userseed]);
-	for (let i = 1; i < 10; i++) {
-		userSeed[0] = baseSeed + userSeed[0] * multiplier >>> 0;
-		pos = userSeed[0] % (i + 1);
-		if (i != pos) {
-			tab[i] ^= tab[pos];
-			tab[pos] ^= tab[i];
-			tab[i] ^= tab[pos];
-		}
-	}
-	for (let i = 0; i < 10; i++) keypad[tab[i]] = i;
-	return keypad;
-}
-function encryptPincode(pincode) {
-	let intCode = 0;
-	let strCode = "";
-	let out = "";
-	intCode = Number.parseInt(pincode);
-	if (isNaN(intCode) === false && Number.isSafeInteger(intCode) === true) {
-		if (intCode >= 0 && intCode < 1e6 && pincode.length >= 4 && pincode.length <= 6) {
-			for (let ic = pincode.length - 1; ic > 0; ic--) if (intCode < Math.pow(10, ic)) strCode += "0";
-			strCode += intCode.toString();
-			for (let i = 0; i < strCode.length; i++) {
-				const x = Number(strCode[i]);
-				out += PincodeWindow._keypad[x].toString();
-			}
-		} else console.error("ERROR: PincodeWindow.encryptPincode(): Pincode length invalid.");
-	} else console.error("ERROR: PincodeWindow.encryptPincode(): Unsafe Int.");
-	return out;
-}
-function success() {
-	let passEnc = PincodeWindow._pass;
-	let newPassEnc = PincodeWindow._newpass;
-	if (PincodeWindow._keypad !== void 0) {
-		if (passEnc.length > 0) passEnc = encryptPincode(passEnc);
-		if (newPassEnc.length > 0) newPassEnc = encryptPincode(newPassEnc);
-	}
-	PincodeWindow._resetstate = 0;
-	switch (PincodeWindow.sel_input) {
-		case 2:
-			PincodeWindow.onPincodeReset(passEnc, newPassEnc);
-			break;
-		default: PincodeWindow.onPincodeCheckRequest(passEnc);
-	}
-	PincodeWindow.resetPins();
-}
-/**
-* Press "cancel" or ESCAPE key
-*/
-function cancel() {
-	UIManager.showPromptBox(DB.getMessage(17), "ok", "cancel", () => {
-		PincodeWindow.resetPins();
-		PincodeWindow.onExitRequest();
-	}, null);
-}
-function keyNum(num) {
-	switch (PincodeWindow.sel_input) {
-		case 1:
-			PincodeWindow._newpass += num;
-			break;
-		default:
-			PincodeWindow._pass += num;
-			break;
-		case 2: PincodeWindow._checkpass += num;
-	}
-}
-function render$3() {
-	const root = PincodeWindow.getRoot();
-	if (!root) return;
-	let str = "";
-	for (let x = 0; x < PincodeWindow._newpass.length; x++) str += "*";
-	const newpassEl = root.querySelector(".newpass");
-	if (newpassEl) newpassEl.value = str;
-	str = "";
-	for (let x = 0; x < PincodeWindow._checkpass.length; x++) str += "*";
-	const checkpassEl = root.querySelector(".checkpass");
-	if (checkpassEl) checkpassEl.value = str;
-	str = "";
-	for (let x = 0; x < PincodeWindow._pass.length; x++) str += "*";
-	const passEl = root.querySelector(".pass");
-	if (passEl) passEl.value = str;
-}
-var PincodeWindow, PincodeWindow_default;
-var init_PincodeWindow = __esmMin((() => {
-	init_DBManager();
-	init_Renderer();
-	init_UIManager();
-	init_GUIComponent();
-	init_PincodeWindow$2();
-	init_PincodeWindow$1();
-	init_Elements();
-	PincodeWindow = new GUIComponent("PincodeWindow", PincodeWindow_default$1);
-	/**
-	* Render HTML
-	*/
-	PincodeWindow.render = () => PincodeWindow_default$2;
-	PincodeWindow.resetUI = function resetUI() {
-		PincodeWindow._resetstate = 0;
-		PincodeWindow._keypad = void 0;
-		PincodeWindow._currentSeed = void 0;
-		PincodeWindow.init();
-	};
-	PincodeWindow.getResetState = function getResetState() {
-		return PincodeWindow._resetstate;
-	};
-	PincodeWindow.clearPin = function clearPin() {
-		switch (PincodeWindow.sel_input) {
-			case 1:
-				PincodeWindow._newpass = "";
-				break;
-			default:
-				PincodeWindow._pass = "";
-				break;
-			case 2: PincodeWindow._checkpass = "";
-		}
-	};
-	PincodeWindow.resetPins = function resetPins() {
-		PincodeWindow._pass = "";
-		PincodeWindow._checkpass = "";
-		PincodeWindow._newpass = "";
-	};
-	PincodeWindow.setUserSeed = function setUserSeed(value) {
-		PincodeWindow._keypad = generateKeypad(value);
-		PincodeWindow._currentSeed = new Uint32Array([value]);
-	};
-	/**
-	* Initialize UI
-	*/
-	PincodeWindow.init = function init() {
-		const root = this.getRoot();
-		this._host.style.top = (Renderer.height - 358) / 2 + "px";
-		this._host.style.left = (Renderer.width - 576) / 2 + "px";
-		root.querySelector(".pass").disabled = true;
-		root.querySelector(".newpass").disabled = true;
-		root.querySelector(".checkpass").disabled = true;
-		root.querySelector(".btn2.unused").style.display = "none";
-		const verifyBtn = root.querySelector(".btn2.verify");
-		verifyBtn.disabled = true;
-		verifyBtn.style.display = "none";
-		const changeBtn = root.querySelector(".btn2.change");
-		const okBtn = root.querySelector(".btn2.ok");
-		changeBtn.disabled = false;
-		okBtn.disabled = false;
-		okBtn.style.display = "";
-		root.querySelector(".panel").querySelectorAll(".btn, .btn2, .numReset").forEach((btn) => {
-			const clone = btn.cloneNode(true);
-			btn.parentNode.replaceChild(clone, btn);
-		});
-		const cancelBtn = root.querySelector(".btn2.cancel");
-		const okBtnNew = root.querySelector(".btn2.ok");
-		const changeBtnNew = root.querySelector(".btn2.change");
-		root.querySelector(".btn2.verify");
-		const numResetBtn = root.querySelector(".numReset");
-		for (let i = 0; i <= 9; i++) {
-			const numBtn = root.querySelector(".btn.num" + i);
-			if (numBtn) {
-				const num = String(i);
-				numBtn.addEventListener("click", () => keyNum(num));
-			}
-		}
-		cancelBtn.addEventListener("click", cancel);
-		okBtnNew.addEventListener("click", success);
-		changeBtnNew.addEventListener("click", PincodeWindow.userChangePin);
-		numResetBtn.addEventListener("click", () => {
-			PincodeWindow.clearPin();
-			advanceVisualSeed();
-		});
-		if (PincodeWindow._keypad !== void 0) shuffleUsingKeypad(PincodeWindow._keypad);
-		const baseBtn = root.querySelector(".titlebar .base");
-		if (baseBtn) baseBtn.addEventListener("mousedown", stopPropagation$7);
-		cancelBtn.addEventListener("mousedown", stopPropagation$7);
-		okBtnNew.addEventListener("mousedown", stopPropagation$7);
-		this.draggable(".titlebar");
-		PincodeWindow.resetPins();
-		PincodeWindow.selectInput(0);
-	};
-	/**
-	* Once append to body
-	*/
-	PincodeWindow.onAppend = function onAppend() {
-		if (!PincodeWindow._overlay) {
-			const overlay = document.createElement("div");
-			overlay.className = "win_popup_overlay";
-			document.body.appendChild(overlay);
-			PincodeWindow._overlay = overlay;
-		}
-		Renderer.render(render$3);
-		queueMicrotask(() => {
-			if (PincodeWindow._overlay && PincodeWindow._host) {
-				const hostZ = parseInt(PincodeWindow._host.style.zIndex, 10) || 100;
-				PincodeWindow._overlay.style.zIndex = String(hostZ - 1);
-			}
-		});
-	};
-	/**
-	* Stop rendering
-	*/
-	PincodeWindow.onRemove = function onRemove() {
-		Renderer.stop(render$3);
-		if (PincodeWindow._overlay) {
-			PincodeWindow._overlay.remove();
-			PincodeWindow._overlay = null;
-		}
-	};
-	PincodeWindow.selectInput = function selectInput(selection) {
-		PincodeWindow.sel_input = selection;
-		const root = PincodeWindow.getRoot();
-		if (!root) return;
-		const passEl = root.querySelector(".pass");
-		const newpassEl = root.querySelector(".newpass");
-		const checkpassEl = root.querySelector(".checkpass");
-		if (!passEl) return;
-		const active = "#87CEFA";
-		const inactive = "#D3D3D3";
-		switch (selection) {
-			case 1:
-				passEl.style.backgroundColor = inactive;
-				checkpassEl.style.backgroundColor = inactive;
-				newpassEl.style.backgroundColor = active;
-				break;
-			case 2:
-				newpassEl.style.backgroundColor = inactive;
-				passEl.style.backgroundColor = inactive;
-				checkpassEl.style.backgroundColor = active;
-				break;
-			default:
-				newpassEl.style.backgroundColor = inactive;
-				checkpassEl.style.backgroundColor = inactive;
-				passEl.style.backgroundColor = active;
-		}
-	};
-	/**
-	* Called by the parent when the result of the old pincode check is received from the server.
-	*/
-	PincodeWindow.onOldPincodeCheckResult = function onOldPincodeCheckResult(result) {
-		if (result === true) success();
-		else UIManager.showMessageBox(DB.getMessage(1892), "ok");
-	};
-	/**
-	* Called by the parent when we have received a pincode reset request from the server.
-	*/
-	PincodeWindow.onParentPincodeResetReq = function onParentPincodeResetReq() {
-		const root = PincodeWindow.getRoot();
-		if (!root) return;
-		if (PincodeWindow._resetstate === 3) {
-			if (typeof PincodeWindow.onPincodeReset === "function" && PincodeWindow._pass !== PincodeWindow._newpass && PincodeWindow._newpass.length > 3 && PincodeWindow._newpass.length < 7 && PincodeWindow._newpass === PincodeWindow._checkpass) success();
-			else UIManager.showMessageBox(DB.getMessage(1887), "ok");
-		} else if (PincodeWindow._resetstate === 2) {
-			if (PincodeWindow._newpass.length > 3 && PincodeWindow._newpass.length < 7 && PincodeWindow._pass !== PincodeWindow._newpass) {
-				PincodeWindow.selectInput(2);
-				PincodeWindow.clearPin();
-				PincodeWindow._resetstate = 3;
-				const verifyBtn = root.querySelector(".btn2.verify");
-				const okBtn = root.querySelector(".btn2.ok");
-				if (verifyBtn) {
-					verifyBtn.disabled = true;
-					verifyBtn.style.display = "none";
-				}
-				if (okBtn) {
-					okBtn.disabled = false;
-					okBtn.style.display = "";
-				}
-				advanceVisualSeed();
-			} else {
-				UIManager.showMessageBox(DB.getMessage(1887), "ok");
-				if (PincodeWindow._newpass.length < 4 || PincodeWindow._newpass.length > 6) PincodeWindow._newpass = "";
-			}
-		} else if (PincodeWindow._resetstate === 1) {
-			if (PincodeWindow._pass.length > 3 && PincodeWindow._pass.length < 7) {
-				PincodeWindow.selectInput(1);
-				PincodeWindow._resetstate = 2;
-				advanceVisualSeed();
-			} else {
-				UIManager.showMessageBox(DB.getMessage(1887), "ok");
-				PincodeWindow.clearPin();
-			}
-		} else {
-			const okBtn = root.querySelector(".btn2.ok");
-			const changeBtn = root.querySelector(".btn2.change");
-			const verifyBtn = root.querySelector(".btn2.verify");
-			if (okBtn) {
-				okBtn.disabled = true;
-				okBtn.style.display = "none";
-				const okClone = okBtn.cloneNode(true);
-				okBtn.parentNode.replaceChild(okClone, okBtn);
-				okClone.addEventListener("click", () => PincodeWindow.onParentPincodeResetReq());
-				okClone.addEventListener("mousedown", stopPropagation$7);
-			}
-			if (changeBtn) changeBtn.disabled = true;
-			if (verifyBtn) {
-				verifyBtn.disabled = false;
-				const verifyClone = verifyBtn.cloneNode(true);
-				verifyBtn.parentNode.replaceChild(verifyClone, verifyBtn);
-				verifyClone.addEventListener("click", () => PincodeWindow.onParentPincodeResetReq());
-				verifyClone.style.display = "";
-			}
-			PincodeWindow.selectInput(0);
-			PincodeWindow.clearPin();
-			PincodeWindow._resetstate = 1;
-			advanceVisualSeed();
-		}
-	};
-	/**
-	* Called by us when the user clicks on the change button in the UI.
-	*/
-	PincodeWindow.userChangePin = function userChangePin() {
-		const root = PincodeWindow.getRoot();
-		if (!root) return;
-		if (PincodeWindow._resetstate === 3) {
-			if (typeof PincodeWindow.onPincodeReset === "function" && PincodeWindow._pass !== PincodeWindow._newpass && PincodeWindow._newpass.length > 3 && PincodeWindow._newpass.length < 7 && PincodeWindow._newpass === PincodeWindow._checkpass) success();
-			else UIManager.showMessageBox(DB.getMessage(1887), "ok");
-		} else if (PincodeWindow._resetstate === 2) {
-			if (PincodeWindow._newpass.length > 3 && PincodeWindow._newpass.length < 7 && PincodeWindow._pass !== PincodeWindow._newpass) {
-				PincodeWindow.selectInput(2);
-				PincodeWindow._resetstate = 3;
-				const verifyBtn = root.querySelector(".btn2.verify");
-				const okBtn = root.querySelector(".btn2.ok");
-				if (verifyBtn) {
-					verifyBtn.disabled = true;
-					verifyBtn.style.display = "none";
-				}
-				if (okBtn) {
-					okBtn.disabled = false;
-					okBtn.style.display = "";
-				}
-				advanceVisualSeed();
-			} else {
-				UIManager.showMessageBox(DB.getMessage(1887), "ok");
-				if (PincodeWindow._newpass.length < 4 || PincodeWindow._newpass.length > 6) PincodeWindow._newpass = "";
-			}
-		} else if (PincodeWindow._resetstate === 1) {
-			if (PincodeWindow._pass.length > 3 && PincodeWindow._pass.length < 7) {
-				PincodeWindow.selectInput(1);
-				PincodeWindow._resetstate = 2;
-				advanceVisualSeed();
-			} else {
-				UIManager.showMessageBox(DB.getMessage(1887), "ok");
-				PincodeWindow.clearPin();
-			}
-		} else {
-			const okBtn = root.querySelector(".btn2.ok");
-			const changeBtn = root.querySelector(".btn2.change");
-			const verifyBtn = root.querySelector(".btn2.verify");
-			if (okBtn) {
-				okBtn.disabled = true;
-				okBtn.style.display = "none";
-				okBtn.replaceWith(okBtn.cloneNode(true));
-				root.querySelector(".btn2.ok").addEventListener("click", () => PincodeWindow.userChangePin());
-			}
-			if (changeBtn) changeBtn.disabled = true;
-			if (verifyBtn) {
-				verifyBtn.disabled = false;
-				verifyBtn.replaceWith(verifyBtn.cloneNode(true));
-				const newVerifyBtn = root.querySelector(".btn2.verify");
-				newVerifyBtn.addEventListener("click", () => PincodeWindow.userChangePin());
-				newVerifyBtn.style.display = "";
-			}
-			PincodeWindow.selectInput(0);
-			PincodeWindow.resetPins();
-			PincodeWindow._resetstate = 1;
-			advanceVisualSeed();
-			PincodeWindow.onUserPincodeResetReq();
-		}
-	};
-	/**
-	* Methods to define (overridden by CharEngine.js)
-	*/
-	PincodeWindow.onPincodeCheckRequest = function onPincodeCheckRequest() {
-		console.error("ERROR: PincodeWindow.onPincodeCheckRequest() not defined.");
-	};
-	PincodeWindow.onExitRequest = function onExitRequest() {
-		console.error("WARNING: PincodeWindow.onExitRequest() not defined.");
-		PincodeWindow.resetUI();
-	};
-	PincodeWindow.onPincodeReset = function onPincodeReset() {
-		console.error("ERROR: PincodeWindow.onPincodeReset() not defined.");
-	};
-	PincodeWindow.onUserPincodeResetReq = function onUserPincodeResetReq() {
-		console.error("ERROR: PincodeWindow.onUserPincodeResetReq() not defined.");
-	};
-	PincodeWindow.mouseMode = GUIComponent.MouseMode.STOP;
-	PincodeWindow.needFocus = true;
-	PincodeWindow_default = UIManager.addComponent(PincodeWindow);
-}));
-//#endregion
-//#region src/UI/Components/CharSelect/CharSelect/CharSelect.html?raw
-var CharSelect_default$2;
-var init_CharSelect$3 = __esmMin((() => {
-	CharSelect_default$2 = "<div id=\"charselect\">\r\n	<ui-image src=\"login_interface/win_select.bmp\"></ui-image>\r\n	<!-- BOX -->\r\n	<div class=\"box_select\"><ui-image src=\"login_interface/box_select.bmp\"></ui-image></div>\r\n	<canvas class=\"slot1\" width=\"126\" height=\"132\"></canvas>\r\n	<canvas class=\"slot2\" width=\"126\" height=\"132\"></canvas>\r\n	<canvas class=\"slot3\" width=\"126\" height=\"132\"></canvas>\r\n\r\n	<!-- Arrows -->\r\n	<ui-button class=\"arrow left\" bg=\"scroll1left.bmp\"></ui-button>\r\n	<ui-button class=\"arrow right\" bg=\"scroll1right.bmp\"></ui-button>\r\n\r\n	<!-- Slots infos -->\r\n	<div class=\"slotinfo\">\r\n		<span class=\"number\">0 / 27</span>\r\n		<span class=\"content\"></span>\r\n	</div>\r\n\r\n	<!-- Pages infos -->\r\n	<div class=\"pageinfo\"><span class=\"current\">1</span> / <span class=\"count\">9</span></div>\r\n\r\n	<!-- Characters infos -->\r\n	<div class=\"charinfo\">\r\n		<div class=\"name\"></div>\r\n		<div class=\"job\"></div>\r\n		<div class=\"lvl\"></div>\r\n		<div class=\"exp\"></div>\r\n		<div class=\"hp\"></div>\r\n		<div class=\"sp\"></div>\r\n		<div class=\"map\"></div>\r\n		<div class=\"str\"></div>\r\n		<div class=\"agi\"></div>\r\n		<div class=\"vit\"></div>\r\n		<div class=\"int\"></div>\r\n		<div class=\"dex\"></div>\r\n		<div class=\"luk\"></div>\r\n	</div>\r\n\r\n	<!-- Buttons -->\r\n	<div class=\"btns\">\r\n		<ui-button class=\"btn delete\" bg=\"btn_del.bmp\" hover=\"btn_del_a.bmp\" down=\"btn_del_b.bmp\"></ui-button>\r\n		<ui-button class=\"btn cancel\" bg=\"btn_cancel.bmp\" hover=\"btn_cancel_a.bmp\" down=\"btn_cancel_b.bmp\"></ui-button>\r\n		<ui-button class=\"btn ok\" bg=\"btn_ok.bmp\" hover=\"btn_ok_a.bmp\" down=\"btn_ok_b.bmp\"></ui-button>\r\n		<ui-button class=\"btn make\" bg=\"btn_make.bmp\" hover=\"btn_make_a.bmp\" down=\"btn_make_b.bmp\"></ui-button>\r\n	</div>\r\n</div>\r\n";
-}));
-//#endregion
-//#region src/UI/Components/CharSelect/CharSelect/CharSelect.css?raw
-var CharSelect_default$1;
-var init_CharSelect$2 = __esmMin((() => {
-	CharSelect_default$1 = ":host {\r\n	width: 576px;\r\n	height: 342px;\r\n}\r\n\r\n#charselect {\r\n	position: absolute;\r\n	width: 576px;\r\n	height: 342px;\r\n}\r\n\r\n/** Box **/\r\n#charselect .box_select {\r\n	position: absolute;\r\n	width: 139px;\r\n	height: 144px;\r\n	top: 40px;\r\n	margin-left: -5px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n#charselect canvas {\r\n	position: absolute;\r\n	top: 44px;\r\n}\r\n#charselect .slot1 {\r\n	left: 60px;\r\n}\r\n#charselect .slot2 {\r\n	left: 224px;\r\n}\r\n#charselect .slot3 {\r\n	left: 386px;\r\n}\r\n\r\n/** Arrow **/\r\n#charselect .arrow {\r\n	position: absolute;\r\n	top: 105px;\r\n	width: 13px;\r\n	height: 13px;\r\n}\r\n#charselect .arrow.left {\r\n	left: 40px;\r\n}\r\n#charselect .arrow.right {\r\n	right: 40px;\r\n}\r\n\r\n/** Slot info **/\r\n#charselect .slotinfo {\r\n	position: absolute;\r\n	top: 195px;\r\n	right: 10px;\r\n	height: 20px;\r\n	display: block;\r\n	border: 1px solid #c6cee7;\r\n	border-radius: 4px;\r\n	padding-left: 10px;\r\n	padding-right: 10px;\r\n}\r\n#charselect .slotinfo .number {\r\n	color: #58709e;\r\n	font-weight: bold;\r\n	margin-right: 10px;\r\n}\r\n#charselect .slotinfo .content {\r\n	color: #555;\r\n	top: 6px;\r\n	right: 8px;\r\n}\r\n\r\n/** Page info **/\r\n#charselect .pageinfo {\r\n	position: absolute;\r\n	left: 275px;\r\n	top: 185px;\r\n	font-weight: bold;\r\n	color: #646464;\r\n}\r\n#charselect .pageinfo .current {\r\n	color: #fe3b7d;\r\n}\r\n\r\n/** Characters infos **/\r\n#charselect .charinfo {\r\n	position: absolute;\r\n	width: 285px;\r\n	top: 204px;\r\n	left: 16px;\r\n}\r\n#charselect .charinfo div {\r\n	position: absolute;\r\n	width: 90px;\r\n	height: 13px;\r\n}\r\n#charselect .charinfo .name {\r\n	left: 52px;\r\n	top: 2px;\r\n	white-space: nowrap;\r\n}\r\n#charselect .charinfo .job {\r\n	left: 52px;\r\n	top: 18px;\r\n}\r\n#charselect .charinfo .lvl {\r\n	left: 52px;\r\n	top: 34px;\r\n}\r\n#charselect .charinfo .exp {\r\n	left: 52px;\r\n	top: 50px;\r\n}\r\n#charselect .charinfo .hp {\r\n	left: 52px;\r\n	top: 66px;\r\n}\r\n#charselect .charinfo .sp {\r\n	left: 52px;\r\n	top: 82px;\r\n}\r\n#charselect .charinfo .map {\r\n	left: 52px;\r\n	top: 98px;\r\n	width: 238px;\r\n}\r\n#charselect .charinfo .str {\r\n	left: 200px;\r\n	top: 2px;\r\n}\r\n#charselect .charinfo .agi {\r\n	left: 200px;\r\n	top: 18px;\r\n}\r\n#charselect .charinfo .vit {\r\n	left: 200px;\r\n	top: 34px;\r\n}\r\n#charselect .charinfo .int {\r\n	left: 200px;\r\n	top: 50px;\r\n}\r\n#charselect .charinfo .dex {\r\n	left: 200px;\r\n	top: 66px;\r\n}\r\n#charselect .charinfo .luk {\r\n	left: 200px;\r\n	top: 82px;\r\n}\r\n\r\n/** Buttons **/\r\n#charselect .btns {\r\n	position: absolute;\r\n	bottom: 4px;\r\n	width: 100%;\r\n	height: 20px;\r\n}\r\n#charselect .btn {\r\n	position: absolute;\r\n	width: 42px;\r\n	height: 20px;\r\n}\r\n\r\n#charselect .ok,\r\n#charselect .make {\r\n	right: 50px;\r\n}\r\n#charselect .cancel {\r\n	right: 4px;\r\n}\r\n#charselect .delete {\r\n	left: 4px;\r\n}\r\n";
-}));
-//#endregion
-//#region src/UI/Components/CharSelect/CharSelectCommon.js
-function createCharSelect(config) {
-	const { name, htmlText, cssText, gridLayout = false, hostHeight = 342, defaultMaxSlots = 27, deleteReservation = false, packetverGatedDelete = false, pageBalls = false } = config;
-	const Component = new GUIComponent(name, cssText);
-	Component.render = () => htmlText;
-	/**
-	* @var {Preferences} save where the cursor position is
-	*/
-	const _preferences = Preferences.get(name, { index: 0 }, 1);
-	/**
-	* @var {number} max slots
-	*/
-	let _maxSlots = defaultMaxSlots;
-	/**
-	* var {Array} list of characters
-	*/
-	const _list = [];
-	/**
-	* @var {Array} list of characters (index by slot)
-	*/
-	const _slots = [];
-	/**
-	* @var {Array} list of entities (index by slot)
-	*/
-	const _entitySlots = [];
-	/**
-	* @var {number} selector index
-	*/
-	let _index = 0;
-	/**
-	* @var {Array} canvas context
-	*/
-	const _ctx = [];
-	/**
-	* var {number} sex
-	*/
-	let _sex = 0;
-	/**
-	* var {boolean} disable input
-	*/
-	let _disable_UI = false;
-	/**
-	* Grid (V4) background/countdown state
-	*/
-	let img = 0;
-	let _curindex = 0;
-	let shouldRunBackgroundChange = false;
-	let countdownInterval;
-	let _bgInterval = null;
-	const render = gridLayout ? renderGrid : renderPaginated;
-	const moveCursorTo = gridLayout ? moveCursorToGrid : moveCursorToPaginated;
-	/**
-	* Initialize UI
-	*/
-	Component.init = function init() {
-		const root = this.getRoot();
-		if (gridLayout) {
-			root.querySelector(".ok").addEventListener("click", connect);
-			root.querySelector(".cancel").addEventListener("click", cancel);
-			root.querySelector(".delete").addEventListener("click", reserve);
-			root.querySelector(".canceldelete").addEventListener("click", removedelete);
-			root.querySelector(".finaldelete").addEventListener("click", suppress);
-			for (let i = 0; i < 15; i++) {
-				const slot = root.querySelector(`#slot${i}`);
-				if (slot) slot.addEventListener("mousedown", genericCanvasDown(i));
-			}
-			root.querySelectorAll("canvas").forEach((canvas) => {
-				canvas.addEventListener("dblclick", () => {
-					if (_slots[_index]) connect();
-					else create();
-				});
-				_ctx.push(canvas.getContext("2d"));
-			});
-			Client.loadFile(`${DB.INTERFACE_PATH}select_character_ver3/img_info.bmp`, (dataURI) => {
-				root.querySelector(".charinfo").style.backgroundImage = `url(${dataURI})`;
-			});
-			for (let i = 0; i < 15; i++) {
-				const slotCanvas = root.querySelector(`#slot${i}`);
-				if (slotCanvas) Client.loadFile(`${DB.INTERFACE_PATH}select_character_ver3/img_slot2_normal.bmp`, (dataURI) => {
-					slotCanvas.style.backgroundImage = `url(${dataURI})`;
-				});
-			}
-			return;
-		}
-		this.draggable();
-		root.querySelector(".ok").addEventListener("click", connect);
-		root.querySelector(".cancel").addEventListener("click", cancel);
-		root.querySelector(".make").addEventListener("click", create);
-		root.querySelector(".delete").addEventListener("click", deleteReservation ? reserve : suppress);
-		if (deleteReservation) {
-			root.querySelector(".canceldelete").addEventListener("click", removedelete);
-			root.querySelector(".finaldelete").addEventListener("click", suppress);
-		}
-		root.querySelector(".arrow.left").addEventListener("mousedown", genericArrowDown(-1));
-		root.querySelector(".arrow.right").addEventListener("mousedown", genericArrowDown(1));
-		root.querySelector(".slot1").addEventListener("mousedown", genericCanvasDown(0));
-		root.querySelector(".slot2").addEventListener("mousedown", genericCanvasDown(1));
-		root.querySelector(".slot3").addEventListener("mousedown", genericCanvasDown(2));
-		if (pageBalls) {
-			root.querySelector(".make1").addEventListener("mousedown", (e) => {
-				genericCanvasDown(0)(e);
-				create();
-			});
-			root.querySelector(".make2").addEventListener("mousedown", (e) => {
-				genericCanvasDown(1)(e);
-				create();
-			});
-			root.querySelector(".make3").addEventListener("mousedown", (e) => {
-				genericCanvasDown(2)(e);
-				create();
-			});
-		}
-		root.querySelectorAll("canvas").forEach((canvas) => {
-			canvas.addEventListener("dblclick", () => {
-				if (_slots[_index]) connect();
-				else create();
-			});
-			_ctx.push(canvas.getContext("2d"));
-		});
-	};
-	/**
-	* Once append to body
-	*/
-	Component.onAppend = function onAppend() {
-		if (gridLayout) {
-			Component.updateCharSlot();
-			startCountdownInterval();
-			moveCursorTo(_index);
-			_bgInterval = setInterval(changeBackgroundEverySecond, 250);
-			Renderer.render(render);
-			return;
-		}
-		const root = this.getRoot();
-		this._host.style.top = `${(Renderer.height - hostHeight) / 2}px`;
-		this._host.style.left = `${(Renderer.width - 576) / 2}px`;
-		_index = _preferences.index;
-		root.querySelector(".slotinfo .number").textContent = `${_list.length} / ${_maxSlots}`;
-		if (!pageBalls) root.querySelector(".pageinfo .count").textContent = _maxSlots / 3;
-		moveCursorTo(_index);
-		Renderer.render(render);
-	};
-	/**
-	* Stop rendering
-	*/
-	Component.onRemove = function onRemove() {
-		if (gridLayout) {
-			if (_bgInterval) {
-				clearInterval(_bgInterval);
-				_bgInterval = null;
-			}
-			stopCountdownInterval();
-			_preferences.index = _index;
-			_preferences.save();
-			Renderer.stop();
-			return;
-		}
-		const root = this.getRoot();
-		_preferences.index = _index;
-		_preferences.save();
-		if (deleteReservation) root.querySelectorAll(".timedelete").forEach((el) => {
-			el.style.display = "none";
-			el.textContent = "";
-		});
-		Renderer.stop();
-	};
-	/**
-	* Bind Key events
-	*
-	* @param {object} event
-	*/
-	Component.onKeyDown = function onKeyDown(event) {
-		if (this._host.style.display === "none") return true;
-		switch (event.which) {
-			case KEYS.ESCAPE:
-				cancel();
-				break;
-			case KEYS.LEFT:
-				if (gridLayout) moveCursorTo(_index - 1 > _list.length - 1 ? _list.length - 1 : _index - 1 < 0 ? 0 : _index - 1);
-				else moveCursorTo(_index - 1);
-				break;
-			case KEYS.RIGHT:
-				if (gridLayout) moveCursorTo(_index + 1 > _list.length - 1 ? _list.length - 1 : _index + 1 < 0 ? 0 : _index + 1);
-				else moveCursorTo(_index + 1);
-				break;
-			case KEYS.SUPR:
-				if (_slots[_index]) suppress();
-				break;
-			case KEYS.ENTER:
-				if (_slots[_index]) connect();
-				else create();
-				break;
-			default: return true;
-		}
-		event.stopImmediatePropagation();
-		return false;
-	};
-	/**
-	* Add players to window
-	*
-	* @param {object} pkt - packet structure
-	*/
-	Component.setInfo = function setInfo(pkt) {
-		if (gridLayout) {
-			Component.clearAllSlots();
-			_maxSlots = Math.floor(pkt.TotalSlotNum + pkt.PremiumStartSlot || 15);
-			_sex = pkt.sex;
-			if (pkt.charInfo) for (let i = 0, count = pkt.charInfo.length; i < count; ++i) Component.addCharacter(pkt.charInfo[i]);
-			moveCursorTo(_index);
-			return;
-		}
-		const root = this.getRoot();
-		_maxSlots = Math.floor(pkt.TotalSlotNum + pkt.PremiumStartSlot || 9);
-		_sex = pkt.sex;
-		_slots.length = 0;
-		_entitySlots.length = 0;
-		_list.length = 0;
-		if (pkt.charInfo) for (let i = 0, count = pkt.charInfo.length; i < count; ++i) {
-			Component.addCharacter(pkt.charInfo[i]);
-			_maxSlots = Math.max(_maxSlots, Math.floor(pkt.charInfo[i].CharNum / 3 + 1) * 3);
-		}
-		root.querySelector(".slotinfo .number").textContent = `${_list.length} / ${_maxSlots}`;
-		if (!pageBalls) root.querySelector(".pageinfo .count").textContent = _maxSlots / 3;
-		moveCursorTo(_index);
-	};
-	/**
-	* Answer from server to delete a character
-	*
-	* @param {number} error id
-	*/
-	Component.deleteAnswer = function deleteAnswer(error) {
-		this.on("keydown");
-		if (gridLayout) switch (error) {
-			case -1:
-			case -2: return;
-			case 1: {
-				delete _slots[_index];
-				delete _entitySlots[_index];
-				if (_preferences.index === _index) _preferences.index = 0;
-				let i = 0;
-				let count = _list.length;
-				while (i < count) if (_list[i].CharNum === _index) {
-					_list.splice(i, 1);
-					--count;
-				} else i++;
-				Component.updateCharSlot(_index);
-				moveCursorTo(_index);
-				return;
-			}
-			default:
-			case 0:
-			case 2:
-			case 6:
-				UIManager.showMessageBox(DB.getMessage(1821), "ok");
-				return;
-			case 3:
-				UIManager.showMessageBox(DB.getMessage(1817), "ok");
-				return;
-			case 4:
-				UIManager.showMessageBox(DB.getMessage(1820), "ok");
-				return;
-			case 5:
-				UIManager.showMessageBox("The confirmation word does not match. Type delete.", "ok");
-				return;
-			case 7:
-				UIManager.showMessageBox(DB.getMessage(301), "ok");
-				return;
-		}
-		if (deleteReservation && (!packetverGatedDelete || PacketVerManager_default.value >= 20100803)) {
-			const root = this.getRoot();
-			switch (error) {
-				case -1:
-				case -2: return;
-				case 1: {
-					delete _slots[_index];
-					delete _entitySlots[_index];
-					let i = 0;
-					let count = _list.length;
-					while (i < count) if (_list[i].CharNum === _index) {
-						_list.splice(i, 1);
-						--count;
-					} else i++;
-					moveCursorTo(_index);
-					root.querySelector(".slotinfo .number").textContent = `${_list.length} / ${_maxSlots}`;
-					return;
-				}
-				default:
-				case 0:
-				case 2:
-				case 6:
-					UIManager.showMessageBox(DB.getMessage(1821), "ok");
-					return;
-				case 3:
-					UIManager.showMessageBox(DB.getMessage(1817), "ok");
-					return;
-				case 4:
-					UIManager.showMessageBox(DB.getMessage(1820), "ok");
-					return;
-				case 5:
-					UIManager.showMessageBox("The confirmation word does not match. Type delete.", "ok");
-					return;
-				case 7:
-					UIManager.showMessageBox(DB.getMessage(301), "ok");
-					return;
-			}
-		} else switch (error) {
-			case -2: return;
-			case -1: {
-				const root = this.getRoot();
-				delete _slots[_index];
-				delete _entitySlots[_index];
-				let i = 0;
-				let count = _list.length;
-				while (i < count) if (_list[i].CharNum === _index) {
-					_list.splice(i, 1);
-					--count;
-				} else i++;
-				moveCursorTo(_index);
-				root.querySelector(".slotinfo .number").textContent = `${_list.length} / ${_maxSlots}`;
-				return;
-			}
-			default:
-			case 0: UIManager.showMessageBox(DB.getMessage(301), "ok");
-		}
-	};
-	/**
-	* Adding a Character to the list
-	*
-	* @param {object} character data
-	*/
-	Component.addCharacter = function addCharacter(character) {
-		if (!("sex" in character) || character.sex === 99) character.sex = _sex;
-		if (gridLayout) {
-			_list.push(character);
-			_slots[character.CharNum] = character;
-			_entitySlots[character.CharNum] = new Entity();
-			_entitySlots[character.CharNum].set(character);
-			_entitySlots[character.CharNum].effectState = _entitySlots[character.CharNum]._effectState & ~StatusState_default.EffectState.INVISIBLE;
-			_entitySlots[character.CharNum].hideShadow = true;
-			Component.updateCharSlot(character.CharNum);
-			return;
-		}
-		if (deleteReservation && character.DeleteDate) {
-			const now = Math.floor(Date.now() / 1e3);
-			character.DeleteDate = PacketVerManager_default.value > 2013e4 && PacketVerManager_default.value <= 20141022 || PacketVerManager_default.value >= 20150513 ? character.DeleteDate + now : character.DeleteDate;
-		}
-		_list.push(character);
-		_slots[character.CharNum] = character;
-		_entitySlots[character.CharNum] = new Entity();
-		_entitySlots[character.CharNum].set(character);
-		_entitySlots[character.CharNum].effectState = _entitySlots[character.CharNum]._effectState & ~StatusState_default.EffectState.INVISIBLE;
-		if (deleteReservation && (!packetverGatedDelete || PacketVerManager_default.value >= 20100803)) {
-			if (_slots[character.CharNum].DeleteDate && Math.floor(_index / 3) === Math.floor(character.CharNum / 3)) {
-				const root = Component.getRoot();
-				const slotNum = (character.CharNum + _maxSlots) % _maxSlots + 1;
-				const countdown = root.querySelector(`.timedelete.slot${slotNum}`);
-				const entity = _entitySlots[character.CharNum];
-				if (countdown) {
-					countdown.dataset.datetime = _slots[character.CharNum].DeleteDate;
-					countdown.textContent = formatDatetime(_slots[character.CharNum].DeleteDate);
-					countdown.style.display = "block";
-				}
-				entity.setAction({
-					action: entity.ACTION.SIT,
-					frame: 0,
-					play: true,
-					repeat: true
-				});
-			}
-		}
-	};
-	/**
-	* Disable or Enable the UI.
-	*
-	* @param {boolean}
-	*/
-	Component.setUIEnabled = function setUIEnabled(value) {
-		_disable_UI = !value;
-	};
-	/**
-	* Callback to use
-	*/
-	Component.onExitRequest = function onExitRequest() {};
-	Component.onDeleteRequest = function onDeleteRequest() {};
-	Component.onCreateRequest = function onCreateRequest() {};
-	Component.onConnectRequest = function onConnectRequest() {};
-	if (deleteReservation) {
-		Component.onDeleteReqDelay = function onDeleteReqDelay() {};
-		Component.onCancelDeleteRequest = function onCancelDeleteRequest() {};
-	}
-	/**
-	* Generic method to handle mousedown on arrow
-	*
-	* @param {number} value to move
-	*/
-	function genericArrowDown(value) {
-		return (event) => {
-			moveCursorTo((_index + _maxSlots + value) % _maxSlots);
-			event.stopImmediatePropagation();
-			return false;
-		};
-	}
-	/**
-	* Generic method to handle mousedown on canvas
-	*
-	* @param {number} value to move
-	*/
-	function genericCanvasDown(value) {
-		return (event) => {
-			if (gridLayout) moveCursorTo(value);
-			else moveCursorTo(Math.floor(_index / 3) * 3 + value);
-			event.stopImmediatePropagation();
-			return false;
-		};
-	}
-	/**
-	* Press "cancel" or ESCAPE key
-	*/
-	function cancel() {
-		if (_disable_UI === false) {
-			if (gridLayout) {
-				UIManager.showPromptBox(DB.getMessage(17), "ok", "cancel", () => {
-					Component.onExitRequest();
-					Component.clearAllSlots();
-				}, null);
-				stopCountdownInterval();
-			} else UIManager.showPromptBox(DB.getMessage(17), "ok", "cancel", () => {
-				Component.onExitRequest();
-			}, null);
-		}
-	}
-	/**
-	* Jumping to Character creation window
-	*/
-	function create() {
-		if (_disable_UI === false) Component.onCreateRequest(_index);
-	}
-	/**
-	* Select Player, connect
-	*/
-	function connect() {
-		if (_disable_UI === false) {
-			if (gridLayout) {
-				if (_slots[_index] && !_slots[_index].DeleteDate) {
-					_preferences.index = _index;
-					_preferences.save();
-					Component.onConnectRequest(_slots[_index]);
-					stopCountdownInterval();
-				}
-			} else if (_slots[_index]) {
-				_preferences.index = _index;
-				_preferences.save();
-				Component.onConnectRequest(_slots[_index]);
-			}
-		}
-	}
-	/**
-	* Request to delete a character
-	*/
-	function reserve() {
-		if (_disable_UI === false) {
-			if (_slots[_index]) {
-				Component.off("keydown");
-				Component.onDeleteReqDelay(_slots[_index].GID);
-			}
-		}
-	}
-	/**
-	* Delete a character
-	*/
-	function suppress() {
-		if (_disable_UI === false) {
-			if (_slots[_index]) {
-				Component.off("keydown");
-				Component.onDeleteRequest(_slots[_index].GID);
-			}
-		}
-	}
-	if (deleteReservation)
- /**
-	* Result of Request in Deleting the Character
-	*
-	* @param {object} pkt - packet structure
-	*/
-	Component.reqdeleteAnswer = gridLayout ? function reqdeleteAnswer(pkt) {
-		this.on("keydown");
-		const deleteReservedDate = pkt.DeleteReservedDate;
-		const result = typeof pkt.Result === "undefined" ? -1 : pkt.Result;
-		const info = _slots[_index];
-		switch (result) {
-			case 0: return;
-			case 1:
-				info.DeleteDate = deleteReservedDate + Math.floor(Date.now() / 1e3);
-				requestdelete(_index, deleteReservedDate);
-				break;
-			case 3: return;
-			case 4:
-				UIManager.showMessageBox(DB.getMessage(1818), "ok");
-				break;
-			case 5:
-				UIManager.showMessageBox(DB.getMessage(1819), "ok");
-				break;
-			default: return;
-		}
-	} : function reqdeleteAnswer(pkt) {
-		this.on("keydown");
-		const now = Math.floor(Date.now() / 1e3);
-		const result = typeof pkt.Result === "undefined" ? -1 : pkt.Result;
-		const info = _slots[_index];
-		switch (result) {
-			case 0: return;
-			case 1: {
-				const timer = PacketVerManager_default.value > 2013e4 && PacketVerManager_default.value <= 20141022 || PacketVerManager_default.value >= 20150513 ? pkt.DeleteReservedDate + now : pkt.DeleteReservedDate;
-				info.DeleteDate = timer;
-				requestdelete(_index, timer);
-				break;
-			}
-			case 3: return;
-			case 4:
-				UIManager.showMessageBox(DB.getMessage(1818), "ok");
-				break;
-			case 5:
-				UIManager.showMessageBox(DB.getMessage(1819), "ok");
-				break;
-			default: return;
-		}
-	};
-	/**
-	* When successfully requested for character deletion
-	* Update UI and add timer
-	*/
-	function requestdelete(index, timer) {
-		const root = Component.getRoot();
-		if (gridLayout) {
-			_entitySlots[index].action = 2;
-			const countdown = root.querySelector(`.timedelete.slot${index}`);
-			if (countdown) {
-				countdown.dataset.duration = timer;
-				countdown.classList.remove("hidden");
-				countdown.style.display = "block";
-			}
-			root.querySelector(".delete").style.display = "none";
-			root.querySelector(".canceldelete").style.display = "block";
-			root.querySelector(".finaldelete").style.display = "block";
-			return;
-		}
-		const entity = _entitySlots[index];
-		let action;
-		const countdown = root.querySelector(`.timedelete.slot${index % 3 + 1}`);
-		if (countdown) {
-			countdown.dataset.datetime = timer;
-			countdown.textContent = formatDatetime(timer);
-			countdown.style.display = "block";
-			if (Math.floor(Date.now() / 1e3) > timer) {
-				countdown.classList.remove("waitdelete");
-				countdown.classList.add("candelete");
-				action = entity.ACTION.DIE;
-			} else {
-				countdown.classList.remove("candelete");
-				countdown.classList.add("waitdelete");
-				action = entity.ACTION.SIT;
-			}
-		}
-		entity.action = action;
-		root.querySelector(".delete").style.display = "none";
-		root.querySelector(".canceldelete").style.display = "block";
-		if (Math.floor(Date.now() / 1e3) > timer) root.querySelector(".finaldelete").style.display = "block";
-		else root.querySelector(".finaldelete").style.display = "none";
-	}
-	/**
-	* Cancel reservation of character for deletion
-	* Update UI and remove timer
-	*/
-	function removedelete() {
-		if (_slots[_index]) {
-			const root = Component.getRoot();
-			_slots[_index].DeleteDate = 0;
-			if (gridLayout) {
-				_entitySlots[_index].action = 0;
-				render();
-				const countdown = root.querySelector(`.timedelete.slot${_index}`);
-				if (countdown) {
-					countdown.dataset.duration = 0;
-					countdown.classList.add("hidden");
-					countdown.style.display = "none";
-				}
-				root.querySelector(".canceldelete").style.display = "none";
-				root.querySelector(".finaldelete").style.display = "none";
-				root.querySelector(".delete").style.display = "block";
-				Component.onCancelDeleteRequest(_slots[_index].GID);
-				return;
-			}
-			_entitySlots[_index].action = _entitySlots[_index].ACTION.READYFIGHT;
-			render();
-			const countdown = root.querySelector(`.timedelete.slot${_index % 3 + 1}`);
-			countdown.dataset.datetime = 0;
-			countdown.textContent = formatDatetime("");
-			countdown.style.display = "none";
-			root.querySelector(".canceldelete").style.display = "none";
-			root.querySelector(".finaldelete").style.display = "none";
-			root.querySelector(".delete").style.display = "block";
-			Component.onCancelDeleteRequest(_slots[_index].GID);
-		}
-	}
-	/**
-	* Draw a page selection ball (V3)
-	*/
-	function drawBall(btnContainer, index, sel) {
-		const btn = document.createElement("button");
-		btn.className = `btn_pageinfo btn_pageinfo${index}`;
-		btn.style.border = "0";
-		btn.style.width = "8px";
-		btn.style.height = "8px";
-		btn.style.backgroundColor = "transparent";
-		btn.style.backgroundRepeat = "no-repeat";
-		btn.style.cursor = "pointer";
-		const imgEl = document.createElement("img");
-		imgEl.width = 8;
-		const imagePath = sel ? "select_character/page_ball_fill.bmp" : "select_character/page_ball_empty.bmp";
-		Client.loadFile(DB.INTERFACE_PATH + imagePath, (data) => {
-			btn.style.backgroundImage = `url("${data}")`;
-		});
-		btn.addEventListener("click", () => {
-			moveCursorTo((index - 1) * 3);
-		});
-		btnContainer.appendChild(btn);
-		btnContainer.appendChild(imgEl);
-	}
-	/**
-	* Format delay date time (V2 / V3)
-	*/
-	function formatDatetime(epoch) {
-		const datetime = /* @__PURE__ */ new Date(0);
-		datetime.setSeconds(epoch);
-		const month = datetime.getMonth() + 1;
-		const day = datetime.getDate();
-		const hours = datetime.getHours();
-		const minutes = datetime.getMinutes();
-		const seconds = datetime.getSeconds();
-		return DB.getMessage(2097).replace("%d", `${month}`).replace("%d", `${day}`).replace("%d", `${hours}`).replace("%d", `${minutes}`).replace("%d", `${seconds}`);
-	}
-	/**
-	* Move cursor, update window value (V1 / V2 / V3)
-	*
-	* @param {number} index
-	*/
-	function moveCursorToPaginated(index) {
-		const root = Component.getRoot();
-		const charinfo = root.querySelector(".charinfo");
-		let entity = _entitySlots[_index];
-		let info = _slots[_index];
-		let action;
-		if (entity) {
-			if (deleteReservation && info.DeleteDate && (!packetverGatedDelete || PacketVerManager_default.value >= 20100803)) action = entity.ACTION.SIT;
-			else action = entity.ACTION.IDLE;
-			entity.setAction({
-				action,
-				frame: 0,
-				play: true,
-				repeat: true
-			});
-		}
-		_index = (index + _maxSlots) % _maxSlots;
-		const boxSelect = root.querySelector(".box_select");
-		boxSelect.classList.remove("slot1", "slot2", "slot3");
-		boxSelect.classList.add(`slot${_index % 3 + 1}`);
-		if (pageBalls) {
-			const pagebtn = root.querySelector(".pageinfo .pagebtn");
-			pagebtn.textContent = "";
-			for (let i = 1; i <= _maxSlots / 3; i++) drawBall(pagebtn, i, Math.floor(_index / 3) + 1 === i);
-			root.querySelector(".pageinfo").style.left = `${288 - _maxSlots / 3 * 8}px`;
-			let mix = (index + 1) % 3 === 0 ? index + 1 - 3 : index + 1 - (index + 1) % 3;
-			mix = mix >= _maxSlots ? 0 : mix;
-			for (let i = 1; i <= 3; i++) {
-				root.querySelector(`.make${i}`).style.display = "none";
-				if (!_entitySlots[mix + (i - 1)]) root.querySelector(`.make${i}`).style.display = "block";
-			}
-		} else root.querySelector(".pageinfo .current").textContent = Math.floor(_index / 3) + 1;
-		if (deleteReservation) for (let i = 0; i < 3; i++) {
-			const tmpIndex = _index - _index % 3 + i;
-			info = _slots[tmpIndex];
-			entity = _entitySlots[tmpIndex];
-			const countdown = root.querySelector(`.timedelete.slot${tmpIndex % 3 + 1}`);
-			if (info && entity) {
-				if (info.DeleteDate && (!packetverGatedDelete || PacketVerManager_default.value >= 20100803)) {
-					countdown.dataset.datetime = info.DeleteDate;
-					countdown.textContent = formatDatetime(info.DeleteDate);
-					countdown.style.display = "block";
-					if (Math.floor(Date.now() / 1e3) > info.DeleteDate) {
-						countdown.classList.remove("waitdelete");
-						countdown.classList.add("candelete");
-					} else {
-						countdown.classList.remove("candelete");
-						countdown.classList.add("waitdelete");
-					}
-					entity.action = entity.ACTION.SIT;
-				} else {
-					countdown.dataset.datetime = 0;
-					countdown.textContent = formatDatetime("");
-					countdown.style.display = "none";
-					entity.action = entity.ACTION.IDLE;
-				}
-			} else {
-				countdown.dataset.datetime = 0;
-				countdown.textContent = formatDatetime("");
-				countdown.style.display = "none";
-			}
-		}
-		entity = _entitySlots[_index];
-		if (!entity) {
-			charinfo.querySelectorAll("div").forEach((div) => {
-				div.textContent = "";
-			});
-			root.querySelector(".make").style.display = "block";
-			root.querySelector(".delete").style.display = "none";
-			if (deleteReservation) {
-				root.querySelector(".canceldelete").style.display = "none";
-				root.querySelector(".finaldelete").style.display = "none";
-			}
-			root.querySelector(".ok").style.display = "none";
-			return;
-		}
-		info = _slots[_index];
-		if (deleteReservation && info.DeleteDate && (!packetverGatedDelete || PacketVerManager_default.value >= 20100803)) {
-			root.querySelector(".delete").style.display = "none";
-			root.querySelector(".canceldelete").style.display = "block";
-			if (Math.floor(Date.now() / 1e3) > info.DeleteDate) {
-				root.querySelector(".finaldelete").style.display = "block";
-				action = entity.ACTION.DIE;
-			} else {
-				root.querySelector(".finaldelete").style.display = "none";
-				action = entity.ACTION.SIT;
-			}
-			root.querySelector(".make").style.display = "none";
-			root.querySelector(".ok").style.display = "block";
-		} else {
-			if (deleteReservation) {
-				if (!packetverGatedDelete || PacketVerManager_default.value >= 20100803) {
-					root.querySelector(".delete").style.display = "block";
-					root.querySelector(".canceldelete").style.display = "none";
-					root.querySelector(".finaldelete").style.display = "none";
-				} else {
-					root.querySelector(".delete").style.display = "none";
-					root.querySelector(".canceldelete").style.display = "none";
-					root.querySelector(".finaldelete").style.display = "block";
-				}
-				root.querySelector(".make").style.display = "none";
-			} else {
-				root.querySelector(".make").style.display = "none";
-				root.querySelector(".delete").style.display = "block";
-			}
-			root.querySelector(".ok").style.display = "block";
-			action = entity.ACTION.READYFIGHT;
-		}
-		entity.setAction({
-			action,
-			frame: 0,
-			play: true,
-			repeat: true
-		});
-		charinfo.querySelector(".name").textContent = info.name;
-		charinfo.querySelector(".job").textContent = MonsterTable_default[info.job] || "";
-		charinfo.querySelector(".lvl").textContent = info.level;
-		charinfo.querySelector(".exp").textContent = info.exp;
-		charinfo.querySelector(".hp").textContent = info.hp;
-		charinfo.querySelector(".sp").textContent = info.sp;
-		charinfo.querySelector(".map").textContent = DB.getMapName(info.lastMap, "") || "";
-		charinfo.querySelector(".str").textContent = info.Str;
-		charinfo.querySelector(".agi").textContent = info.Agi;
-		charinfo.querySelector(".vit").textContent = info.Vit;
-		charinfo.querySelector(".int").textContent = info.Int;
-		charinfo.querySelector(".dex").textContent = info.Dex;
-		charinfo.querySelector(".luk").textContent = info.Luk;
-	}
-	/**
-	* Render sprites to canvas (V1 / V2 / V3)
-	*/
-	function renderPaginated() {
-		Camera.direction = 4;
-		const idx = Math.floor(_index / 3) * 3;
-		const count = _ctx.length;
-		for (let i = 0; i < count; ++i) {
-			_ctx[i].clearRect(0, 0, _ctx[i].canvas.width, _ctx[i].canvas.height);
-			if (_entitySlots[idx + i]) {
-				SpriteRenderer.bind2DContext(_ctx[i], 63, 130);
-				_entitySlots[idx + i].renderEntity();
-			}
-		}
-	}
-	/**
-	* Format delay duration (V4)
-	*/
-	function formatDuration(seconds) {
-		const hours = Math.floor(seconds / 3600);
-		const minutes = Math.floor(seconds % 3600 / 60);
-		const remainingSeconds = seconds % 60;
-		const replacer = DB.getMessage(3349).includes("%d") ? "%d" : "%02d";
-		return DB.getMessage(3349).replace(replacer, hours.toString().padStart(2, "0")).replace(replacer, minutes.toString().padStart(2, "0")).replace(replacer, remainingSeconds.toString().padStart(2, "0"));
-	}
-	/**
-	* Countdown for delay in deletion (V4)
-	*/
-	function updateAllVisibleCountdowns() {
-		Component.getRoot().querySelectorAll(".timedelete:not(.hidden)").forEach((countdownDiv) => {
-			const deleteReservedDuration = parseInt(countdownDiv.dataset.duration, 10);
-			const updatedDuration = Math.max(0, deleteReservedDuration - 1);
-			countdownDiv.textContent = formatDuration(updatedDuration);
-			if (updatedDuration > 0) countdownDiv.style.color = "red";
-			else countdownDiv.style.color = "blue";
-			countdownDiv.dataset.duration = updatedDuration.toString();
-		});
-	}
-	/**
-	* Start the countdown update interval only when in grid UI
-	*/
-	function startCountdownInterval() {
-		if (!countdownInterval) countdownInterval = setInterval(updateAllVisibleCountdowns, 1e3);
-	}
-	/**
-	* Stop the countdown update interval
-	*/
-	function stopCountdownInterval() {
-		if (countdownInterval) {
-			clearInterval(countdownInterval);
-			countdownInterval = null;
-		}
-	}
-	/**
-	* Move cursor, update window value (V4)
-	*
-	* @param {number} index
-	*/
-	function moveCursorToGrid(index) {
-		const root = Component.getRoot();
-		const charinfo = root.querySelector(".charinfo");
-		const prevIndex = _index;
-		let entity = _slots[_index];
-		shouldRunBackgroundChange = false;
-		if (entity) Client.loadFile(`${DB.INTERFACE_PATH}select_character_ver3/img_slot_normal.bmp`, (dataURI) => {
-			const prevSlot = root.querySelector(`#slot${prevIndex}`);
-			if (prevSlot) prevSlot.style.backgroundImage = `url(${dataURI})`;
-		});
-		const slotIndex = _index = index > _maxSlots ? _maxSlots : index < 0 ? 0 : index;
-		entity = _slots[_index];
-		if (!entity) {
-			charinfo.querySelectorAll("div").forEach((div) => {
-				div.textContent = "";
-			});
-			root.querySelector(".delete").style.display = "none";
-			root.querySelector(".canceldelete").style.display = "none";
-			root.querySelector(".finaldelete").style.display = "none";
-			root.querySelector(".ok").style.display = "none";
-			const countdown = root.querySelector(`.timedelete.slot${_index}`);
-			if (countdown) {
-				countdown.dataset.duration = 0;
-				countdown.classList.add("hidden");
-				countdown.style.display = "none";
-			}
-			return;
-		} else {
-			_curindex = slotIndex;
-			shouldRunBackgroundChange = true;
-		}
-		if (shouldRunBackgroundChange === true) changeBackgroundEverySecond();
-		const info = _slots[_index];
-		if (info.DeleteDate) {
-			root.querySelector(".delete").style.display = "none";
-			root.querySelector(".canceldelete").style.display = "block";
-			root.querySelector(".finaldelete").style.display = "block";
-		} else {
-			root.querySelector(".canceldelete").style.display = "none";
-			root.querySelector(".finaldelete").style.display = "none";
-			root.querySelector(".delete").style.display = "block";
-		}
-		root.querySelector(".ok").style.display = "block";
-		charinfo.querySelector(".map").textContent = DB.getMapName(info.lastMap, "") || "";
-		charinfo.querySelector(".job").textContent = MonsterTable_default[info.job] || "";
-		charinfo.querySelector(".lvl").textContent = info.level;
-		charinfo.querySelector(".exp").textContent = info.exp;
-		charinfo.querySelector(".hp").textContent = info.hp;
-		charinfo.querySelector(".sp").textContent = info.sp;
-		charinfo.querySelector(".str").textContent = info.Str;
-		charinfo.querySelector(".agi").textContent = info.Agi;
-		charinfo.querySelector(".vit").textContent = info.Vit;
-		charinfo.querySelector(".int").textContent = info.Int;
-		charinfo.querySelector(".dex").textContent = info.Dex;
-		charinfo.querySelector(".luk").textContent = info.Luk;
-	}
-	function changeBackgroundEverySecond() {
-		const backgroundchange = Component.getRoot().querySelector(`#slot${_curindex}`);
-		if (backgroundchange && shouldRunBackgroundChange === true) {
-			Client.loadFile(`${DB.INTERFACE_PATH}select_character_ver3/img_slot_select${img}.bmp`, (dataURI) => {
-				backgroundchange.style.backgroundImage = `url(${dataURI})`;
-				backgroundchange.style.width = "157px";
-				backgroundchange.style.height = "197px";
-				backgroundchange.style.backgroundSize = "contain";
-				backgroundchange.style.backgroundRepeat = "no-repeat";
-			});
-			img = (img + 1) % 8;
-		}
-	}
-	Component.updateCharSlot = function updateCharSlot(slotId) {
-		const root = this.getRoot();
-		let start = 0;
-		let loopMax = Math.max(_maxSlots, _slots.length);
-		if (typeof slotId !== "undefined") {
-			start = slotId;
-			loopMax = slotId + 1;
-		}
-		const charCanvases = root.querySelectorAll(".char_canvas");
-		const jobIcons = root.querySelectorAll(".job_icon");
-		for (let i = start; i < loopMax; ++i) {
-			if (charCanvases[i]) charCanvases[i].querySelector(".name").innerHTML = _slots[i] ? _slots[i].name : "";
-			if (!_slots[i]) {
-				if (jobIcons[i]) jobIcons[i].style.backgroundImage = "";
-				const slotCanvas = root.querySelector(`#slot${i}`);
-				if (slotCanvas) Client.loadFile(`${DB.INTERFACE_PATH}select_character_ver3/img_slot2_normal.bmp`, (dataURI) => {
-					slotCanvas.style.backgroundImage = `url(${dataURI})`;
-				});
-				const countdown = root.querySelector(`.timedelete.slot${i}`);
-				if (countdown) {
-					countdown.dataset.duration = 0;
-					countdown.classList.add("hidden");
-					countdown.style.display = "none";
-				}
-			} else {
-				const slotCanvas = root.querySelector(`#slot${i}`);
-				if (slotCanvas) Client.loadFile(`${DB.INTERFACE_PATH}select_character_ver3/img_slot_normal.bmp`, (dataURI) => {
-					slotCanvas.style.backgroundImage = `url(${dataURI})`;
-				});
-				if (jobIcons[i]) {
-					const slotJobIcon = jobIcons[i];
-					Client.loadFile(`${DB.INTERFACE_PATH}renewalparty/icon_jobs_${_slots[i].job}.bmp`, (dataURI) => {
-						slotJobIcon.style.backgroundImage = `url(${dataURI})`;
-					});
-				}
-				if (_slots[i].DeleteDate) {
-					const countdown = root.querySelector(`.timedelete.slot${i}`);
-					if (countdown) {
-						countdown.dataset.duration = _slots[i].DeleteDate;
-						countdown.classList.remove("hidden");
-						countdown.style.display = "block";
-					}
-				}
-			}
-		}
-	};
-	Component.clearAllSlots = function clearAllSlots() {
-		_slots.length = 0;
-		_entitySlots.length = 0;
-		_list.length = 0;
-		Component.updateCharSlot();
-	};
-	/**
-	* Render sprites to canvas (V4)
-	*/
-	function renderGrid() {
-		Camera.direction = 4;
-		const idx = Math.floor(_index / _maxSlots) * _maxSlots;
-		const count = _ctx.length;
-		for (let i = 0; i < count; ++i) {
-			_ctx[i].clearRect(0, 0, _ctx[i].canvas.width, _ctx[i].canvas.height);
-			if (_entitySlots[idx + i]) {
-				SpriteRenderer.bind2DContext(_ctx[i], 78, 157);
-				if (_slots[idx + i] && _slots[idx + i].DeleteDate) _entitySlots[idx + i].action = 2;
-				_entitySlots[idx + i].renderEntity();
-			}
-		}
-	}
-	/**
-	* Create component and export it
-	*/
-	return UIManager.addComponent(Component);
-}
-var init_CharSelectCommon = __esmMin((() => {
-	init_DBManager();
-	init_MonsterTable();
-	init_Preferences$1();
-	init_Client();
-	init_KeyEventHandler();
-	init_Renderer();
-	init_Entity$1();
-	init_SpriteRenderer();
-	init_StatusState();
-	init_Camera();
-	init_UIManager();
-	init_GUIComponent();
-	init_Elements();
-	init_PacketVerManager();
-}));
-//#endregion
-//#region src/UI/Components/CharSelect/CharSelect/CharSelect.js
-var CharSelect_default;
-var init_CharSelect$1 = __esmMin((() => {
-	init_CharSelect$3();
-	init_CharSelect$2();
-	init_CharSelectCommon();
-	CharSelect_default = createCharSelect({
-		name: "CharSelect",
-		htmlText: CharSelect_default$2,
-		cssText: CharSelect_default$1,
-		hostHeight: 342
-	});
-}));
-//#endregion
-//#region src/UI/Components/CharSelect/CharSelectV2/CharSelectV2.html?raw
-var CharSelectV2_default$2;
-var init_CharSelectV2$2 = __esmMin((() => {
-	CharSelectV2_default$2 = "<div id=\"CharSelectV2\">\r\n	<ui-image src=\"login_interface/win_select2.bmp\"></ui-image>\r\n	<!-- BOX -->\r\n	<div class=\"box_select\"><ui-image src=\"login_interface/box_select.bmp\"></ui-image></div>\r\n	<canvas class=\"slot1\" width=\"126\" height=\"132\"></canvas>\r\n	<canvas class=\"slot2\" width=\"126\" height=\"132\"></canvas>\r\n	<canvas class=\"slot3\" width=\"126\" height=\"132\"></canvas>\r\n	<div class=\"timedelete slot1 hidden\"></div>\r\n	<div class=\"timedelete slot2 hidden\"></div>\r\n	<div class=\"timedelete slot3 hidden\"></div>\r\n\r\n	<!-- Arrows -->\r\n	<ui-button class=\"arrow left\" bg=\"scroll1left.bmp\"></ui-button>\r\n	<ui-button class=\"arrow right\" bg=\"scroll1right.bmp\"></ui-button>\r\n\r\n	<!-- Slots infos -->\r\n	<div class=\"slotinfo\">\r\n		<span class=\"number\">0 / 27</span>\r\n		<span class=\"content\"></span>\r\n	</div>\r\n\r\n	<!-- Pages infos -->\r\n	<div class=\"pageinfo\"><span class=\"current\">1</span> / <span class=\"count\">9</span></div>\r\n\r\n	<!-- Characters infos -->\r\n	<div class=\"charinfo\">\r\n		<div class=\"name\"></div>\r\n		<div class=\"job\"></div>\r\n		<div class=\"lvl\"></div>\r\n		<div class=\"exp\"></div>\r\n		<div class=\"hp\"></div>\r\n		<div class=\"sp\"></div>\r\n		<div class=\"map\"></div>\r\n		<div class=\"str\"></div>\r\n		<div class=\"agi\"></div>\r\n		<div class=\"vit\"></div>\r\n		<div class=\"int\"></div>\r\n		<div class=\"dex\"></div>\r\n		<div class=\"luk\"></div>\r\n	</div>\r\n\r\n	<!-- Buttons -->\r\n	<div class=\"btns\">\r\n		<ui-button\r\n			class=\"btn delete\"\r\n			bg=\"btn_del_res.bmp\"\r\n			hover=\"btn_del_res_a.bmp\"\r\n			down=\"btn_del_res_b.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn canceldelete\"\r\n			bg=\"btn_cancel_res.bmp\"\r\n			hover=\"btn_cancel_res_a.bmp\"\r\n			down=\"btn_cancel_res_b.bmp\"\r\n		></ui-button>\r\n		<ui-button class=\"btn finaldelete\" bg=\"btn_del.bmp\" hover=\"btn_del_a.bmp\" down=\"btn_del_b.bmp\"></ui-button>\r\n		<ui-button class=\"btn cancel\" bg=\"btn_cancel.bmp\" hover=\"btn_cancel_a.bmp\" down=\"btn_cancel_b.bmp\"></ui-button>\r\n		<ui-button class=\"btn ok\" bg=\"btn_ok.bmp\" hover=\"btn_ok_a.bmp\" down=\"btn_ok_b.bmp\"></ui-button>\r\n		<ui-button class=\"btn make\" bg=\"btn_make.bmp\" hover=\"btn_make_a.bmp\" down=\"btn_make_b.bmp\"></ui-button>\r\n	</div>\r\n</div>\r\n";
-}));
-//#endregion
-//#region src/UI/Components/CharSelect/CharSelectV2/CharSelectV2.css?raw
-var CharSelectV2_default$1;
-var init_CharSelectV2$1 = __esmMin((() => {
-	CharSelectV2_default$1 = ":host {\r\n	width: 576px;\r\n	height: 358px;\r\n}\r\n\r\n#CharSelectV2 {\r\n	position: absolute;\r\n	width: 576px;\r\n	height: 358px;\r\n}\r\n\r\n/** Box **/\r\n#CharSelectV2 .box_select {\r\n	position: absolute;\r\n	width: 139px;\r\n	height: 144px;\r\n	top: 40px;\r\n	margin-left: -5px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n#CharSelectV2 canvas {\r\n	position: absolute;\r\n	top: 44px;\r\n}\r\n#CharSelectV2 .slot1 {\r\n	left: 60px;\r\n}\r\n#CharSelectV2 .slot2 {\r\n	left: 224px;\r\n}\r\n#CharSelectV2 .slot3 {\r\n	left: 386px;\r\n}\r\n\r\n/** Arrow **/\r\n#CharSelectV2 .arrow {\r\n	position: absolute;\r\n	top: 105px;\r\n	width: 13px;\r\n	height: 13px;\r\n}\r\n#CharSelectV2 .arrow.left {\r\n	left: 40px;\r\n}\r\n#CharSelectV2 .arrow.right {\r\n	right: 40px;\r\n}\r\n\r\n/** Slot info **/\r\n#CharSelectV2 .slotinfo {\r\n	position: absolute;\r\n	top: 195px;\r\n	right: 10px;\r\n	height: 20px;\r\n	display: block;\r\n	border: 1px solid #c6cee7;\r\n	border-radius: 4px;\r\n	padding-left: 10px;\r\n	padding-right: 10px;\r\n}\r\n#CharSelectV2 .slotinfo .number {\r\n	color: #58709e;\r\n	font-weight: bold;\r\n	margin-right: 10px;\r\n}\r\n#CharSelectV2 .slotinfo .content {\r\n	color: #555;\r\n	top: 6px;\r\n	right: 8px;\r\n}\r\n\r\n/** Page info **/\r\n#CharSelectV2 .pageinfo {\r\n	position: absolute;\r\n	left: 275px;\r\n	top: 185px;\r\n	font-weight: bold;\r\n	color: #646464;\r\n}\r\n#CharSelectV2 .pageinfo .current {\r\n	color: #fe3b7d;\r\n}\r\n\r\n/** Characters infos **/\r\n#CharSelectV2 .charinfo {\r\n	position: absolute;\r\n	width: 285px;\r\n	top: 204px;\r\n	left: 16px;\r\n}\r\n#CharSelectV2 .charinfo div {\r\n	position: absolute;\r\n	width: 90px;\r\n	height: 13px;\r\n}\r\n#CharSelectV2 .charinfo .name {\r\n	left: 52px;\r\n	top: 2px;\r\n	white-space: nowrap;\r\n}\r\n#CharSelectV2 .charinfo .job {\r\n	left: 52px;\r\n	top: 18px;\r\n}\r\n#CharSelectV2 .charinfo .lvl {\r\n	left: 52px;\r\n	top: 34px;\r\n}\r\n#CharSelectV2 .charinfo .exp {\r\n	left: 52px;\r\n	top: 50px;\r\n}\r\n#CharSelectV2 .charinfo .hp {\r\n	left: 52px;\r\n	top: 66px;\r\n}\r\n#CharSelectV2 .charinfo .sp {\r\n	left: 52px;\r\n	top: 82px;\r\n}\r\n#CharSelectV2 .charinfo .map {\r\n	left: 52px;\r\n	top: 98px;\r\n	width: 238px;\r\n}\r\n#CharSelectV2 .charinfo .str {\r\n	left: 200px;\r\n	top: 2px;\r\n}\r\n#CharSelectV2 .charinfo .agi {\r\n	left: 200px;\r\n	top: 18px;\r\n}\r\n#CharSelectV2 .charinfo .vit {\r\n	left: 200px;\r\n	top: 34px;\r\n}\r\n#CharSelectV2 .charinfo .int {\r\n	left: 200px;\r\n	top: 50px;\r\n}\r\n#CharSelectV2 .charinfo .dex {\r\n	left: 200px;\r\n	top: 66px;\r\n}\r\n#CharSelectV2 .charinfo .luk {\r\n	left: 200px;\r\n	top: 82px;\r\n}\r\n\r\n/** Buttons **/\r\n#CharSelectV2 .btns {\r\n	position: absolute;\r\n	bottom: 4px;\r\n	width: 100%;\r\n	height: 20px;\r\n}\r\n#CharSelectV2 .btn {\r\n	position: absolute;\r\n	width: 42px;\r\n	height: 20px;\r\n}\r\n\r\n#CharSelectV2 .ok,\r\n#CharSelectV2 .make {\r\n	right: 50px;\r\n}\r\n#CharSelectV2 .cancel {\r\n	right: 4px;\r\n}\r\n#CharSelectV2 .delete {\r\n	left: 4px;\r\n	width: 67px;\r\n}\r\n#CharSelectV2 .canceldelete {\r\n	left: 50px;\r\n	width: 67px;\r\n}\r\n#CharSelectV2 .finaldelete {\r\n	left: 4px;\r\n}\r\n#CharSelectV2 .timedelete {\r\n	position: absolute;\r\n	height: 20px;\r\n	width: 120px;\r\n	top: 75px;\r\n}\r\n#CharSelectV2 .timedelete.waitdelete {\r\n	color: blue;\r\n}\r\n#CharSelectV2 .timedelete.candelete {\r\n	color: red;\r\n}\r\n#CharSelectV2 .timedelete.slot1 {\r\n	left: 63px;\r\n}\r\n#CharSelectV2 .timedelete.slot2 {\r\n	left: 227px;\r\n}\r\n#CharSelectV2 .timedelete.slot3 {\r\n	left: 389px;\r\n}\r\n";
-}));
-//#endregion
-//#region src/UI/Components/CharSelect/CharSelectV2/CharSelectV2.js
-var CharSelectV2_default;
-var init_CharSelectV2 = __esmMin((() => {
-	init_CharSelectV2$2();
-	init_CharSelectV2$1();
-	init_CharSelectCommon();
-	CharSelectV2_default = createCharSelect({
-		name: "CharSelectV2",
-		htmlText: CharSelectV2_default$2,
-		cssText: CharSelectV2_default$1,
-		hostHeight: 358,
-		deleteReservation: true,
-		packetverGatedDelete: true
-	});
-}));
-//#endregion
-//#region src/UI/Components/CharSelect/CharSelectV3/CharSelectV3.html?raw
-var CharSelectV3_default$2;
-var init_CharSelectV3$2 = __esmMin((() => {
-	CharSelectV3_default$2 = "<div id=\"CharSelectV3\">\r\n	<ui-image src=\"select_character/bg_select_character.bmp\"></ui-image>\r\n	<!-- BOX -->\r\n	<div class=\"box_select\"><ui-image src=\"select_character/select_mark.bmp\"></ui-image></div>\r\n	<canvas class=\"slot1\" width=\"133\" height=\"132\"></canvas>\r\n	<canvas class=\"slot2\" width=\"133\" height=\"132\"></canvas>\r\n	<canvas class=\"slot3\" width=\"133\" height=\"132\"></canvas>\r\n	<div class=\"timedelete slot1 hidden\"></div>\r\n	<div class=\"timedelete slot2 hidden\"></div>\r\n	<div class=\"timedelete slot3 hidden\"></div>\r\n	<ui-button\r\n		class=\"make1\"\r\n		bg=\"select_character/btn_add_out.bmp\"\r\n		hover=\"select_character/btn_add_over.bmp\"\r\n		down=\"select_character/btn_add_press.bmp\"\r\n	></ui-button>\r\n	<ui-button\r\n		class=\"make2\"\r\n		bg=\"select_character/btn_add_out.bmp\"\r\n		hover=\"select_character/btn_add_over.bmp\"\r\n		down=\"select_character/btn_add_press.bmp\"\r\n	></ui-button>\r\n	<ui-button\r\n		class=\"make3\"\r\n		bg=\"select_character/btn_add_out.bmp\"\r\n		hover=\"select_character/btn_add_over.bmp\"\r\n		down=\"select_character/btn_add_press.bmp\"\r\n	></ui-button>\r\n\r\n	<!-- Arrows -->\r\n	<ui-button\r\n		class=\"arrow left\"\r\n		bg=\"select_character/chr_arrow_l_out.bmp\"\r\n		hover=\"select_character/chr_arrow_l_over.bmp\"\r\n		down=\"select_character/chr_arrow_l_press.bmp\"\r\n	></ui-button>\r\n	<ui-button\r\n		class=\"arrow right\"\r\n		bg=\"select_character/chr_arrow_r_out.bmp\"\r\n		hover=\"select_character/chr_arrow_r_over.bmp\"\r\n		down=\"select_character/chr_arrow_r_press.bmp\"\r\n	></ui-button>\r\n\r\n	<!-- Slots infos -->\r\n	<div class=\"slotinfo\">\r\n		<span class=\"number\">0 / 27</span>\r\n		<span class=\"content\"></span>\r\n	</div>\r\n	<!-- Pages infos -->\r\n	<div class=\"pageinfo\">\r\n		<div class=\"pagebtn\"></div>\r\n	</div>\r\n	<!-- Characters infos -->\r\n	<div class=\"charinfo\">\r\n		<div class=\"name\"></div>\r\n		<div class=\"job\"></div>\r\n		<div class=\"lvl\"></div>\r\n		<div class=\"exp\"></div>\r\n		<div class=\"hp\"></div>\r\n		<div class=\"sp\"></div>\r\n		<div class=\"map\"></div>\r\n		<div class=\"str\"></div>\r\n		<div class=\"agi\"></div>\r\n		<div class=\"vit\"></div>\r\n		<div class=\"int\"></div>\r\n		<div class=\"dex\"></div>\r\n		<div class=\"luk\"></div>\r\n	</div>\r\n	<!-- Buttons -->\r\n	<div class=\"btns\">\r\n		<ui-button\r\n			class=\"btn delete\"\r\n			bg=\"btn_del_res.bmp\"\r\n			hover=\"btn_del_res_a.bmp\"\r\n			down=\"btn_del_res_b.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn canceldelete\"\r\n			bg=\"btn_cancel_res.bmp\"\r\n			hover=\"btn_cancel_res_a.bmp\"\r\n			down=\"btn_cancel_res_b.bmp\"\r\n		></ui-button>\r\n		<ui-button class=\"btn finaldelete\" bg=\"btn_del.bmp\" hover=\"btn_del_a.bmp\" down=\"btn_del_b.bmp\"></ui-button>\r\n		<ui-button class=\"btn cancel\" bg=\"btn_cancel.bmp\" hover=\"btn_cancel_a.bmp\" down=\"btn_cancel_b.bmp\"></ui-button>\r\n		<ui-button class=\"btn ok\" bg=\"btn_ok.bmp\" hover=\"btn_ok_a.bmp\" down=\"btn_ok_b.bmp\"></ui-button>\r\n		<ui-button class=\"btn make\" bg=\"btn_make.bmp\" hover=\"btn_make_a.bmp\" down=\"btn_make_b.bmp\"></ui-button>\r\n	</div>\r\n</div>\r\n";
-}));
-//#endregion
-//#region src/UI/Components/CharSelect/CharSelectV3/CharSelectV3.css?raw
-var CharSelectV3_default$1;
-var init_CharSelectV3$1 = __esmMin((() => {
-	CharSelectV3_default$1 = ":host {\r\n	width: 576px;\r\n	height: 358px;\r\n}\r\n\r\n#CharSelectV3 {\r\n	position: absolute;\r\n	width: 576px;\r\n	height: 358px;\r\n}\r\n\r\n/** Box **/\r\n#CharSelectV3 .box_select {\r\n	position: absolute;\r\n	width: 134px;\r\n	height: 144px;\r\n	top: 30px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n#CharSelectV3 canvas {\r\n	position: absolute;\r\n	top: 35px;\r\n}\r\n#CharSelectV3 .slot1 {\r\n	left: 57px;\r\n}\r\n#CharSelectV3 .slot2 {\r\n	left: 220px;\r\n}\r\n#CharSelectV3 .slot3 {\r\n	left: 386px;\r\n}\r\n\r\n#CharSelectV3 .make1 {\r\n	position: absolute;\r\n	top: 84px;\r\n	left: 107px;\r\n	width: 32px;\r\n	height: 32px;\r\n}\r\n#CharSelectV3 .make2 {\r\n	position: absolute;\r\n	top: 84px;\r\n	left: 270px;\r\n	width: 32px;\r\n	height: 32px;\r\n}\r\n#CharSelectV3 .make3 {\r\n	position: absolute;\r\n	top: 84px;\r\n	left: 436px;\r\n	width: 32px;\r\n	height: 32px;\r\n}\r\n\r\n/** Arrow **/\r\n#CharSelectV3 .arrow {\r\n	position: absolute;\r\n	top: 95px;\r\n	width: 14px;\r\n	height: 20px;\r\n}\r\n#CharSelectV3 .arrow.left {\r\n	left: 40px;\r\n}\r\n#CharSelectV3 .arrow.right {\r\n	right: 40px;\r\n}\r\n\r\n/** Slot info **/\r\n#CharSelectV3 .slotinfo {\r\n	position: absolute;\r\n	top: 180px;\r\n	right: 40px;\r\n	height: 20px;\r\n	display: block;\r\n	padding-left: 10px;\r\n	padding-right: 10px;\r\n}\r\n#CharSelectV3 .slotinfo .number {\r\n	/*color: #58709e;\r\n    font-weight: bold;*/\r\n	margin-right: 10px;\r\n}\r\n#CharSelectV3 .slotinfo .content {\r\n	color: #555;\r\n	top: 6px;\r\n	right: 8px;\r\n}\r\n\r\n/** Page info **/\r\n#CharSelectV3 .pageinfo {\r\n	position: absolute;\r\n	top: 180px;\r\n}\r\n\r\n#CharSelectV3 .pageinfo .pagebtn .btn_pageinfo {\r\n	border: 0;\r\n	width: 8px;\r\n	height: 8px;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n}\r\n\r\n/** Characters infos **/\r\n#CharSelectV3 .charinfo {\r\n	position: absolute;\r\n	width: 285px;\r\n	top: 204px;\r\n	left: 16px;\r\n}\r\n#CharSelectV3 .charinfo div {\r\n	position: absolute;\r\n	width: 90px;\r\n	height: 13px;\r\n}\r\n#CharSelectV3 .charinfo .name {\r\n	left: 95px;\r\n	top: -4px;\r\n	white-space: nowrap;\r\n}\r\n#CharSelectV3 .charinfo .job {\r\n	left: 95px;\r\n	top: 12px;\r\n}\r\n#CharSelectV3 .charinfo .lvl {\r\n	left: 95px;\r\n	top: 30px;\r\n}\r\n#CharSelectV3 .charinfo .exp {\r\n	left: 95px;\r\n	top: 47px;\r\n}\r\n#CharSelectV3 .charinfo .hp {\r\n	left: 95px;\r\n	top: 64px;\r\n}\r\n#CharSelectV3 .charinfo .sp {\r\n	left: 95px;\r\n	top: 81px;\r\n}\r\n#CharSelectV3 .charinfo .map {\r\n	left: 95px;\r\n	top: 104px;\r\n	width: 238px;\r\n}\r\n#CharSelectV3 .charinfo .str {\r\n	left: 250px;\r\n	top: -4px;\r\n}\r\n#CharSelectV3 .charinfo .agi {\r\n	left: 250px;\r\n	top: 12px;\r\n}\r\n#CharSelectV3 .charinfo .vit {\r\n	left: 250px;\r\n	top: 30px;\r\n}\r\n#CharSelectV3 .charinfo .int {\r\n	left: 250px;\r\n	top: 47px;\r\n}\r\n#CharSelectV3 .charinfo .dex {\r\n	left: 250px;\r\n	top: 64px;\r\n}\r\n#CharSelectV3 .charinfo .luk {\r\n	left: 250px;\r\n	top: 81px;\r\n}\r\n\r\n/** Buttons **/\r\n#CharSelectV3 .btns {\r\n	position: absolute;\r\n	bottom: 4px;\r\n	width: 100%;\r\n	height: 20px;\r\n}\r\n#CharSelectV3 .btn {\r\n	position: absolute;\r\n	width: 42px;\r\n	height: 20px;\r\n}\r\n\r\n#CharSelectV3 .ok,\r\n#CharSelectV3 .make {\r\n	right: 50px;\r\n}\r\n#CharSelectV3 .cancel {\r\n	right: 4px;\r\n}\r\n#CharSelectV3 .delete {\r\n	left: 4px;\r\n	width: 67px;\r\n}\r\n#CharSelectV3 .canceldelete {\r\n	left: 50px;\r\n	width: 67px;\r\n}\r\n#CharSelectV3 .finaldelete {\r\n	left: 4px;\r\n}\r\n#CharSelectV3 .timedelete {\r\n	position: absolute;\r\n	height: 20px;\r\n	width: 120px;\r\n	top: 75px;\r\n}\r\n#CharSelectV3 .timedelete.waitdelete {\r\n	color: blue;\r\n}\r\n#CharSelectV3 .timedelete.candelete {\r\n	color: red;\r\n}\r\n#CharSelectV3 .timedelete.slot1 {\r\n	left: 63px;\r\n}\r\n#CharSelectV3 .timedelete.slot2 {\r\n	left: 227px;\r\n}\r\n#CharSelectV3 .timedelete.slot3 {\r\n	left: 389px;\r\n}\r\n";
-}));
-//#endregion
-//#region src/UI/Components/CharSelect/CharSelectV3/CharSelectV3.js
-var CharSelectV3_default;
-var init_CharSelectV3 = __esmMin((() => {
-	init_CharSelectV3$2();
-	init_CharSelectV3$1();
-	init_CharSelectCommon();
-	CharSelectV3_default = createCharSelect({
-		name: "CharSelectV3",
-		htmlText: CharSelectV3_default$2,
-		cssText: CharSelectV3_default$1,
-		hostHeight: 358,
-		deleteReservation: true,
-		pageBalls: true
-	});
-}));
-//#endregion
-//#region src/UI/Components/CharSelect/CharSelectV4/CharSelectV4.html?raw
-var CharSelectV4_default$2;
-var init_CharSelectV4$2 = __esmMin((() => {
-	CharSelectV4_default$2 = "<div id=\"CharSelectV4\">\r\n	<div class=\"char_select_container\">\r\n		<!--Cancel Button-->\r\n		<ui-button\r\n			class=\"btn cancel\"\r\n			bg=\"select_character_ver3/bt_close2_normal.bmp\"\r\n			hover=\"select_character_ver3/bt_close2_over.bmp\"\r\n			down=\"select_character_ver3/bt_close2_press.bmp\"\r\n		></ui-button>\r\n		<!-- BOX -->\r\n		<div class=\"char_list\">\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot0\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot0 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot1\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot1 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot2\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot2 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot3\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot3 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot4\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot4 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot5\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot5 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot6\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot6 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot7\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot7 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot8\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot8 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot9\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot9 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot10\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot10 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot11\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot11 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot12\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot12 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot13\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot13 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot14\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot14 hidden\"></div>\r\n			</div>\r\n		</div>\r\n\r\n		<!-- Characters infos -->\r\n		<div class=\"charinfo\">\r\n			<div class=\"job\"></div>\r\n			<div class=\"lvl\"></div>\r\n			<div class=\"exp\"></div>\r\n			<div class=\"hp\"></div>\r\n			<div class=\"sp\"></div>\r\n			<div class=\"map\"></div>\r\n			<div class=\"str\"></div>\r\n			<div class=\"agi\"></div>\r\n			<div class=\"vit\"></div>\r\n			<div class=\"int\"></div>\r\n			<div class=\"dex\"></div>\r\n			<div class=\"luk\"></div>\r\n			<ui-button\r\n				class=\"btn delete\"\r\n				bg=\"select_character_ver3/bt_info_normal.bmp\"\r\n				hover=\"select_character_ver3/bt_info_over.bmp\"\r\n				down=\"select_character_ver3/bt_info_press.bmp\"\r\n			>\r\n				<ui-text msg=\"3339\"></ui-text>\r\n			</ui-button>\r\n			<ui-button\r\n				class=\"btn canceldelete\"\r\n				bg=\"select_character_ver3/bt_info_normal.bmp\"\r\n				hover=\"select_character_ver3/bt_info_over.bmp\"\r\n				down=\"select_character_ver3/bt_info_press.bmp\"\r\n			>\r\n				<ui-text msg=\"3340\"></ui-text>\r\n			</ui-button>\r\n			<ui-button\r\n				class=\"btn finaldelete\"\r\n				bg=\"select_character_ver3/bt_info_normal.bmp\"\r\n				hover=\"select_character_ver3/bt_info_over.bmp\"\r\n				down=\"select_character_ver3/bt_info_press.bmp\"\r\n			>\r\n				<ui-text msg=\"3342\"></ui-text>\r\n			</ui-button>\r\n			<ui-button\r\n				class=\"btn ok\"\r\n				bg=\"select_character_ver3/bt_gamestart_off.bmp\"\r\n				hover=\"select_character_ver3/bt_gamestart_over.bmp\"\r\n				down=\"select_character_ver3/bt_gamestart_press.bmp\"\r\n			>\r\n				<ui-text msg=\"3341\"></ui-text>\r\n			</ui-button>\r\n			<!-- Pages infos -->\r\n			<div class=\"pageinfo\"><span class=\"current\">1</span> / <span class=\"count\">9</span></div>\r\n		</div>\r\n	</div>\r\n</div>\r\n";
-}));
-//#endregion
-//#region src/UI/Components/CharSelect/CharSelectV4/CharSelectV4.css?raw
-var CharSelectV4_default$1;
-var init_CharSelectV4$1 = __esmMin((() => {
-	CharSelectV4_default$1 = ":host {\r\n	top: 0;\r\n	left: 0;\r\n	min-width: 100%;\r\n	min-height: 100%;\r\n}\r\n\r\n#CharSelectV4 {\r\n	position: absolute;\r\n	min-width: 100%;\r\n	min-height: 100%;\r\n	top: 0;\r\n	left: 0;\r\n	display: flex;\r\n	justify-content: center;\r\n	align-items: center;\r\n	flex-direction: column;\r\n}\r\n\r\n#CharSelectV4 .char_select_container {\r\n	position: absolute;\r\n	display: flex;\r\n	flex-direction: row;\r\n	background-color: rgba(0, 0, 0, 0.1);\r\n	border-radius: 5px;\r\n	padding-top: 20px;\r\n	padding-left: 5px;\r\n}\r\n\r\n/** Box **/\r\n#CharSelectV4 .char_list {\r\n	flex: 1;\r\n	max-width: 800px;\r\n	min-width: 157px;\r\n	height: 595px;\r\n	max-height: 80vh;\r\n	display: flex;\r\n	flex-direction: row;\r\n	flex-wrap: wrap;\r\n	overflow-y: auto;\r\n}\r\n\r\n#CharSelectV4 .box_select {\r\n	position: absolute;\r\n	width: 157px;\r\n	height: 159px;\r\n	top: 40px;\r\n	margin-left: -5px;\r\n}\r\n#CharSelectV4 .char_canvas {\r\n	width: 157px;\r\n	height: 195px;\r\n	position: relative;\r\n	z-index: 10;\r\n}\r\n#CharSelectV4 .char_canvas .name {\r\n	position: absolute;\r\n	bottom: 17px;\r\n	width: 100%;\r\n	text-align: center;\r\n	font-weight: bold;\r\n	color: #15154a;\r\n}\r\n\r\n#CharSelectV4 .char_canvas .job_icon {\r\n	position: absolute;\r\n	top: 15px;\r\n	right: 12px;\r\n	width: 25px;\r\n	height: 25px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n\r\n/** Slot info **/\r\n#CharSelectV4 .slotinfo {\r\n	position: absolute;\r\n	top: 195px;\r\n	right: 10px;\r\n	height: 20px;\r\n	display: block;\r\n	border: 1px solid #c6cee7;\r\n	border-radius: 4px;\r\n	padding-left: 10px;\r\n	padding-right: 10px;\r\n}\r\n#CharSelectV4 .slotinfo .number {\r\n	color: #58709e;\r\n	font-weight: bold;\r\n	margin-right: 10px;\r\n}\r\n#CharSelectV4 .slotinfo .content {\r\n	color: #555;\r\n	top: 6px;\r\n	right: 8px;\r\n}\r\n\r\n/** Page info **/\r\n#CharSelectV4 .pageinfo {\r\n	position: absolute;\r\n	left: 275px;\r\n	top: 185px;\r\n	font-weight: bold;\r\n	color: #646464;\r\n}\r\n#CharSelectV4 .pageinfo .current {\r\n	color: #fe3b7d;\r\n}\r\n\r\n/** Characters infos **/\r\n#CharSelectV4 .charinfo {\r\n	height: 585px;\r\n	max-height: 80vh;\r\n	width: 185px;\r\n	background-repeat: no-repeat;\r\n	margin-top: 10px;\r\n	margin-left: 10px;\r\n	position: relative;\r\n}\r\n#CharSelectV4 .charinfo div {\r\n	position: absolute;\r\n	width: 90px;\r\n	height: 13px;\r\n}\r\n#CharSelectV4 .charinfo .name {\r\n	left: 52px;\r\n	top: 2px;\r\n	white-space: nowrap;\r\n}\r\n#CharSelectV4 .charinfo .job {\r\n	left: 60px;\r\n	top: 105px;\r\n}\r\n#CharSelectV4 .charinfo .lvl {\r\n	left: 60px;\r\n	top: 123px;\r\n}\r\n#CharSelectV4 .charinfo .exp {\r\n	left: 60px;\r\n	top: 140px;\r\n}\r\n#CharSelectV4 .charinfo .hp {\r\n	left: 60px;\r\n	top: 157px;\r\n}\r\n#CharSelectV4 .charinfo .sp {\r\n	left: 60px;\r\n	top: 174px;\r\n}\r\n#CharSelectV4 .charinfo .map {\r\n	left: 60px;\r\n	top: 89px;\r\n	white-space: nowrap;\r\n	overflow: hidden;\r\n	text-overflow: ellipsis;\r\n}\r\n#CharSelectV4 .charinfo .str {\r\n	left: 60px;\r\n	top: 191px;\r\n}\r\n#CharSelectV4 .charinfo .agi {\r\n	left: 60px;\r\n	top: 208px;\r\n}\r\n#CharSelectV4 .charinfo .vit {\r\n	left: 60px;\r\n	top: 225px;\r\n}\r\n#CharSelectV4 .charinfo .int {\r\n	left: 60px;\r\n	top: 242px;\r\n}\r\n#CharSelectV4 .charinfo .dex {\r\n	left: 60px;\r\n	top: 259px;\r\n}\r\n#CharSelectV4 .charinfo .luk {\r\n	left: 60px;\r\n	top: 276px;\r\n}\r\n\r\n/** Buttons **/\r\n#CharSelectV4 .btn.delete {\r\n	position: absolute;\r\n	width: 131px;\r\n	height: 24px;\r\n}\r\n\r\n#CharSelectV4 .btn.canceldelete {\r\n	position: absolute;\r\n	width: 131px;\r\n	height: 24px;\r\n}\r\n\r\n#CharSelectV4 .btn.finaldelete {\r\n	position: absolute;\r\n	width: 131px;\r\n	height: 24px;\r\n}\r\n\r\n#CharSelectV4 .btn.delete,\r\n#CharSelectV4 .btn.canceldelete,\r\n#CharSelectV4 .btn.finaldelete {\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n	border: 0;\r\n	text-align: center;\r\n	line-height: 24px;\r\n}\r\n\r\n#CharSelectV4 .btn.ok {\r\n	position: absolute;\r\n	width: 165px;\r\n	height: 110px;\r\n	color: white;\r\n	padding-top: 20px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n	border: 0;\r\n	text-align: center;\r\n}\r\n\r\n#CharSelectV4 .btn.ok:hover {\r\n	text-shadow: #000 1px 1px;\r\n}\r\n\r\n#CharSelectV4 .ok,\r\n#CharSelectV4 .make {\r\n	right: 15px;\r\n	top: 380px;\r\n}\r\n#CharSelectV4 .cancel {\r\n	position: absolute;\r\n	top: 5px;\r\n	right: 5px;\r\n	width: 17px;\r\n	height: 18px;\r\n}\r\n#CharSelectV4 .delete {\r\n	right: 33px;\r\n	top: 300px;\r\n}\r\n\r\n#CharSelectV4 .canceldelete {\r\n	right: 33px;\r\n	top: 300px;\r\n}\r\n\r\n#CharSelectV4 .finaldelete {\r\n	right: 33px;\r\n	top: 330px;\r\n}\r\n\r\n#CharSelectV4 .timedelete {\r\n	position: relative;\r\n	height: 20px;\r\n	width: 100px;\r\n	top: -150px;\r\n	left: 55px;\r\n}\r\n\r\n#CharSelectV4 .hidden {\r\n	display: none;\r\n}\r\n";
-}));
-//#endregion
-//#region src/UI/Components/CharSelect/CharSelectV4/CharSelectV4.js
-var CharSelectV4_default;
-var init_CharSelectV4 = __esmMin((() => {
-	init_CharSelectV4$2();
-	init_CharSelectV4$1();
-	init_CharSelectCommon();
-	CharSelectV4_default = createCharSelect({
-		name: "CharSelectV4",
-		htmlText: CharSelectV4_default$2,
-		cssText: CharSelectV4_default$1,
-		gridLayout: true,
-		deleteReservation: true,
-		defaultMaxSlots: 15
-	});
-}));
-//#endregion
-//#region src/UI/Components/CharSelect/CharSelect.js
-var publicName$3, versionInfo$3, Controller$2;
-var init_CharSelect = __esmMin((() => {
-	init_CharSelect$1();
-	init_CharSelectV2();
-	init_CharSelectV3();
-	init_CharSelectV4();
-	init_UIVersionManager();
-	publicName$3 = "CharSelect";
-	versionInfo$3 = {
-		default: CharSelect_default,
-		common: {
-			20180124: CharSelectV4_default,
-			20141016: CharSelectV3_default,
-			20100803: CharSelectV2_default,
-			20100728: CharSelect_default,
-			20100720: CharSelectV2_default
-		},
-		re: {},
-		prere: {}
-	};
-	Controller$2 = UIVersionManager.getUIController(publicName$3, versionInfo$3);
-}));
-//#endregion
-//#region src/UI/Components/CharCreate/CharCreate/CharCreate.html?raw
-var CharCreate_default$2;
-var init_CharCreate$3 = __esmMin((() => {
-	CharCreate_default$2 = "<div id=\"charcreate\">\r\n	<ui-image src=\"login_interface/win_make.bmp\"></ui-image>\r\n	<div class=\"chargen\">\r\n		<ui-button class=\"left\" bg=\"scroll1left.bmp\"></ui-button>\r\n		<ui-button class=\"up\" bg=\"scroll0up.bmp\"></ui-button>\r\n		<ui-button class=\"right\" bg=\"scroll1right.bmp\"></ui-button>\r\n		<canvas width=\"65\" height=\"110\"></canvas>\r\n	</div>\r\n	<input type=\"text\" data-background=\"login_interface/name-edit.bmp\" value=\"\" />\r\n\r\n	<div class=\"graph\">\r\n		<ui-button class=\"str\" bg=\"login_interface/arw-str0.bmp\" down=\"login_interface/arw-str1.bmp\"></ui-button>\r\n		<ui-button class=\"agi\" bg=\"login_interface/arw-agi0.bmp\" down=\"login_interface/arw-agi1.bmp\"></ui-button>\r\n		<ui-button class=\"vit\" bg=\"login_interface/arw-vit0.bmp\" down=\"login_interface/arw-vit1.bmp\"></ui-button>\r\n		<ui-button class=\"int\" bg=\"login_interface/arw-int0.bmp\" down=\"login_interface/arw-int1.bmp\"></ui-button>\r\n		<ui-button class=\"dex\" bg=\"login_interface/arw-dex0.bmp\" down=\"login_interface/arw-dex1.bmp\"></ui-button>\r\n		<ui-button class=\"luk\" bg=\"login_interface/arw-luk0.bmp\" down=\"login_interface/arw-luk1.bmp\"></ui-button>\r\n		<canvas width=\"158\" height=\"158\"></canvas>\r\n	</div>\r\n\r\n	<div class=\"info\">\r\n		<div class=\"str\">5</div>\r\n		<div class=\"agi\">5</div>\r\n		<div class=\"vit\">5</div>\r\n		<div class=\"int\">5</div>\r\n		<div class=\"dex\">5</div>\r\n		<div class=\"luk\">5</div>\r\n	</div>\r\n\r\n	<div class=\"btns\">\r\n		<ui-button class=\"btn cancel\" bg=\"btn_cancel.bmp\" hover=\"btn_cancel_a.bmp\" down=\"btn_cancel_b.bmp\"></ui-button>\r\n		<ui-button class=\"btn make\" bg=\"btn_make.bmp\" hover=\"btn_make_a.bmp\" down=\"btn_make_b.bmp\"></ui-button>\r\n	</div>\r\n</div>\r\n";
-}));
-//#endregion
-//#region src/UI/Components/CharCreate/CharCreate/CharCreate.css?raw
-var CharCreate_default$1;
-var init_CharCreate$2 = __esmMin((() => {
-	CharCreate_default$1 = ":host {\r\n	width: 576px;\r\n	height: 342px;\r\n}\r\n\r\n#charcreate {\r\n	position: absolute;\r\n	width: 576px;\r\n	height: 342px;\r\n}\r\n\r\n/** Name **/\r\n#charcreate input {\r\n	position: absolute;\r\n	top: 244px;\r\n	left: 62px;\r\n	width: 97px;\r\n	height: 14px;\r\n	padding-top: 2px;\r\n	padding-left: 3px;\r\n	background-color: transparent;\r\n	border: 0;\r\n}\r\n\r\n/** Chargen **/\r\n#charcreate .chargen ui-button {\r\n	position: absolute;\r\n	width: 13px;\r\n	height: 13px;\r\n}\r\n#charcreate .chargen .left {\r\n	top: 135px;\r\n	left: 47px;\r\n}\r\n#charcreate .chargen .up {\r\n	top: 105px;\r\n	left: 87px;\r\n}\r\n#charcreate .chargen .right {\r\n	top: 135px;\r\n	left: 127px;\r\n}\r\n#charcreate .chargen canvas {\r\n	position: absolute;\r\n	top: 120px;\r\n	left: 62px;\r\n}\r\n\r\n/** Graph buttons **/\r\n#charcreate .graph ui-button {\r\n	position: absolute;\r\n	width: 36px;\r\n	height: 36px;\r\n}\r\n#charcreate .graph .str {\r\n	top: 50px;\r\n	left: 270px;\r\n}\r\n#charcreate .graph .int {\r\n	top: 243px;\r\n	left: 270px;\r\n}\r\n#charcreate .graph .vit {\r\n	top: 104px;\r\n	left: 348px;\r\n}\r\n#charcreate .graph .dex {\r\n	top: 190px;\r\n	left: 191px;\r\n}\r\n#charcreate .graph .agi {\r\n	top: 103px;\r\n	left: 191px;\r\n}\r\n#charcreate .graph .luk {\r\n	top: 190px;\r\n	left: 348px;\r\n}\r\n#charcreate .graph canvas {\r\n	position: absolute;\r\n	left: 209px;\r\n	top: 86px;\r\n}\r\n\r\n/** Stats infos **/\r\n#charcreate .info {\r\n	position: absolute;\r\n	top: 40px;\r\n	left: 480px;\r\n}\r\n#charcreate .info div {\r\n	position: absolute;\r\n	left: 0px;\r\n}\r\n#charcreate .info .str {\r\n	top: 0px;\r\n}\r\n#charcreate .info .agi {\r\n	top: 16px;\r\n}\r\n#charcreate .info .vit {\r\n	top: 32px;\r\n}\r\n#charcreate .info .int {\r\n	top: 48px;\r\n}\r\n#charcreate .info .dex {\r\n	top: 64px;\r\n}\r\n#charcreate .info .luk {\r\n	top: 80px;\r\n}\r\n\r\n/** Buttons **/\r\n#charcreate .btns {\r\n	position: absolute;\r\n	bottom: 4px;\r\n	width: 100%;\r\n	height: 20px;\r\n}\r\n#charcreate .btn {\r\n	position: absolute;\r\n	width: 42px;\r\n	height: 20px;\r\n}\r\n#charcreate .make {\r\n	right: 50px;\r\n}\r\n#charcreate .cancel {\r\n	right: 4px;\r\n}\r\n\r\n#charcreate .btns ui-button {\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n	border: 0;\r\n	display: flex;\r\n	align-items: center;\r\n	justify-content: center;\r\n}\r\n";
-}));
-//#endregion
-//#region src/UI/Components/CharCreate/CharCreateCommon.js
-function createCharCreate(config) {
-	const { name, htmlText, cssText, hostHeight = 342, hostWidth = 576, hasStats = false, hasRace = false, gridHairstyle = false, chargenCanvasSelector = ".content canvas", graphCanvasSelector = ".graph canvas", statButtonsSelector = ".graph ui-button", hairArrows = [], humanCanvasSelector = "#canvas_human", doramCanvasSelector = "#canvas_doram", modelCanvasSelector = "#canvas_model", nameInputSelector = "input", nameInputEvent = "mousedown", cancelSelectors = [".cancel"], makeSelector = ".make" } = config;
-	const Component = new GUIComponent(name, cssText);
-	Component.render = () => htmlText;
-	/**
-	* @var {number} account sex
-	*/
-	let _accountSex = 0;
-	/**
-	* Legacy (V0/V2) state
-	*/
-	let _graph;
-	const _chargen = {
-		entity: new Entity(),
-		ctx: null,
-		render: false,
-		tick: 0
-	};
-	/**
-	* Race (V3/V4) state
-	*/
-	const _human = {
-		entity: new Entity(),
-		ctx: null,
-		render: false,
-		tick: 0
-	};
-	const _doram = {
-		entity: new Entity(),
-		ctx: null,
-		render: false,
-		tick: 0
-	};
-	const _model = {
-		entity: new Entity(),
-		ctx: null,
-		render: false,
-		tick: 0
-	};
-	/**
-	* Grid stylist (V4) state
-	*/
-	let _race = "human";
-	let _gender = "male";
-	let _prevhead = 1;
-	let _curhead = 1;
-	let _prevcolor = 0;
-	let _curcolor = 0;
-	const render = hasRace ? renderRace : renderLegacy;
-	/**
-	* Initialize UI
-	*/
-	Component.init = function init() {
-		const root = this.getRoot();
-		if (hasRace) {
-			_human.ctx = root.querySelector(humanCanvasSelector).getContext("2d");
-			_doram.ctx = root.querySelector(doramCanvasSelector).getContext("2d");
-			_model.ctx = root.querySelector(modelCanvasSelector).getContext("2d");
-		} else {
-			_chargen.ctx = root.querySelector(chargenCanvasSelector).getContext("2d");
-			if (hasStats) _graph = root.querySelector(graphCanvasSelector).getContext("2d");
-		}
-		this.draggable();
-		if (hasRace) {
-			root.querySelectorAll("input[type=\"radio\"]").forEach((input) => {
-				input.classList.add("event_add_cursor");
-			});
-			root.querySelectorAll("label").forEach((label) => {
-				label.classList.add("event_add_cursor");
-			});
-			if (gridHairstyle) initRaceGrid(root);
-			else initRaceCap(root);
-		} else {
-			hairArrows.forEach(({ selector, type, value }) => {
-				root.querySelector(selector).addEventListener("mousedown", updateCharacterGeneric(type, value));
-			});
-			if (hasStats) root.querySelectorAll(statButtonsSelector).forEach((btn) => {
-				btn.addEventListener("mousedown", function(event) {
-					updateStats.call(this, event);
-				});
-			});
-		}
-		const input = root.querySelector(nameInputSelector);
-		input.addEventListener(nameInputEvent, (event) => {
-			input.focus();
-			event.stopImmediatePropagation();
-		});
-		cancelSelectors.forEach((selector) => {
-			root.querySelector(selector).addEventListener("click", cancel);
-		});
-		root.querySelector(makeSelector).addEventListener("click", create);
-		if (hasRace) applyRaceMessages(root);
-	};
-	/**
-	* Setter for AccountSex
-	*
-	* @param {number} sex
-	*/
-	Component.setAccountSex = function setAccountSex(sex) {
-		_accountSex = sex;
-	};
-	/**
-	* Once add to HTML, start rendering
-	*/
-	Component.onAppend = function onAppend() {
-		this._host.style.top = `${(Renderer.height - hostHeight) / 2}px`;
-		this._host.style.left = `${(Renderer.width - hostWidth) / 2}px`;
-		if (hasRace) {
-			_human.render = true;
-			_human.entity.set({
-				sex: _accountSex,
-				job: RACE.HUMAN,
-				head: 1,
-				action: 0,
-				direction: 5
-			});
-			_doram.render = true;
-			_doram.entity.set({
-				sex: _accountSex,
-				job: RACE.DORAM,
-				head: 1,
-				action: 0,
-				direction: 5
-			});
-			_model.render = true;
-			_model.entity.set({
-				sex: GENDER.MALE,
-				job: RACE.HUMAN,
-				head: 1,
-				headpalette: 0,
-				action: 0,
-				direction: 4
-			});
-		} else {
-			_chargen.render = true;
-			_chargen.entity.set({
-				sex: _accountSex,
-				job: 0,
-				head: 2,
-				action: 0
-			});
-		}
-		const input = this.getRoot().querySelector(nameInputSelector);
-		input.value = "";
-		input.focus();
-		if (hasRace) {
-			if (gridHairstyle) {
-				_race = "human";
-				_gender = "male";
-				updateRace();
-				cleanup();
-			} else setDefault();
-		}
-		Renderer.render(render);
-		if (hasStats) updateGraphic();
-	};
-	/**
-	* Remove component from HTML
-	* Stop rendering
-	*/
-	Component.onRemove = function onRemove() {
-		Renderer.stop(render);
-	};
-	/**
-	* Key Handler
-	*
-	* @param {object} event
-	* @return {boolean}
-	*/
-	Component.onKeyDown = function onKeyDown(event) {
-		if ((event.which === KEYS.ESCAPE || event.key === "Escape") && this._host.style.display !== "none") {
-			event.stopImmediatePropagation();
-			cancel();
-			return false;
-		}
-		return true;
-	};
-	/**
-	* Generic function to get a direct proxy to updateCharacterLegacy
-	*
-	* @param {string} type
-	* @param {number} value
-	*/
-	function updateCharacterGeneric(type, value) {
-		return (event) => {
-			updateCharacterLegacy(type, value);
-			event.stopImmediatePropagation();
-			return false;
-		};
-	}
-	/**
-	* Send back informations to send the packet
-	*/
-	function create() {
-		const root = Component.getRoot();
-		const charname = root.querySelector(nameInputSelector).value;
-		let str = 1;
-		let agi = 1;
-		let vit = 1;
-		let int = 1;
-		let dex = 1;
-		let luk = 1;
-		if (hasStats) {
-			str = parseInt(root.querySelector(".info .str").textContent, 10);
-			agi = parseInt(root.querySelector(".info .agi").textContent, 10);
-			vit = parseInt(root.querySelector(".info .vit").textContent, 10);
-			int = parseInt(root.querySelector(".info .int").textContent, 10);
-			dex = parseInt(root.querySelector(".info .dex").textContent, 10);
-			luk = parseInt(root.querySelector(".info .luk").textContent, 10);
-		}
-		if (hasRace) Component.onCharCreationRequest(charname, str, agi, vit, int, dex, luk, _model.entity.head, _model.entity.headpalette, _model.entity.job, _model.entity.sex);
-		else Component.onCharCreationRequest(charname, str, agi, vit, int, dex, luk, _chargen.entity.head, _chargen.entity.headpalette);
-	}
-	/**
-	* Exit the window
-	*/
-	function cancel() {
-		if (hasRace) {
-			if (gridHairstyle) cleanup();
-			else setDefault();
-		}
-		Component.onExitRequest();
-	}
-	/**
-	* Update character hairstyle and haircolor
-	*
-	* @param {string} type (head or headpalette)
-	* @param {number} increment (-1 or +1)
-	*/
-	function updateCharacterLegacy(type, increment) {
-		switch (type) {
-			case "head": {
-				let head = _chargen.entity.head + increment;
-				if (head < 2) head = 26;
-				if (head > 26) head = 2;
-				_chargen.entity.head = head;
-				break;
-			}
-			case "headpalette":
-				_chargen.entity.headpalette += increment;
-				_chargen.entity.headpalette %= 10;
-		}
-		render();
-	}
-	/**
-	* Update the stats and polygon
-	*/
-	function updateStats() {
-		const root = Component.getRoot();
-		if (root.querySelector(`.info .${this.className}`).textContent === "9") return;
-		const group = {
-			str: "int",
-			int: "str",
-			vit: "dex",
-			dex: "vit",
-			luk: "agi",
-			agi: "luk"
-		};
-		root.querySelector(`.info .${this.className}`).textContent++;
-		root.querySelector(`.info .${group[this.className]}`).textContent--;
-		updateGraphic();
-	}
-	/**
-	* Update the polygon
-	*/
-	function updateGraphic() {
-		const root = Component.getRoot();
-		const ctx = _graph;
-		const width = ctx.canvas.width;
-		const height = ctx.canvas.height;
-		let i;
-		const x = width / 2;
-		const y = height / 2;
-		const list = [
-			"dex",
-			"agi",
-			"str",
-			"vit",
-			"luk",
-			"int"
-		];
-		ctx.clearRect(0, 0, width, height);
-		ctx.save();
-		ctx.fillStyle = "#7b94ce";
-		ctx.translate(x, y);
-		ctx.beginPath();
-		ctx.moveTo(0, Math.floor(y / 10 * (parseInt(root.querySelector(`.info .${list[5]}`).textContent) + 1)));
-		for (i = 0; i < 6; i++) {
-			ctx.rotate(60 * Math.PI / 180);
-			ctx.lineTo(0, Math.floor(y / 10 * (parseInt(root.querySelector(`.info .${list[i]}`).textContent) + 1)));
-		}
-		ctx.closePath();
-		ctx.fill();
-		ctx.restore();
-	}
-	/**
-	* Rendering the Character (single canvas, camera rotation)
-	*/
-	function renderLegacy(tick) {
-		if (_chargen.tick + 500 < tick) {
-			Camera.direction++;
-			Camera.direction %= 8;
-			_chargen.tick = tick;
-		}
-		SpriteRenderer.bind2DContext(_chargen.ctx, 32, 115);
-		_chargen.ctx.clearRect(0, 0, _chargen.ctx.canvas.width, _chargen.ctx.canvas.height);
-		_chargen.entity.renderEntity();
-	}
-	/**
-	* Msgstring Texts
-	*/
-	function applyRaceMessages(root) {
-		if (gridHairstyle) {
-			root.querySelector(".title").textContent = DB.getMessage(3355);
-			root.querySelector(".human_title").textContent = DB.getMessage(3016);
-			root.querySelector(".human_desc").textContent = DB.getMessage(3020);
-			root.querySelector(".doram_title").textContent = DB.getMessage(3018);
-			root.querySelector(".doram_desc").textContent = DB.getMessage(3021);
-			root.querySelector(".hair_style_title").textContent = DB.getMessage(3346);
-			root.querySelector(".hair_color_title").textContent = DB.getMessage(3347);
-			root.querySelector(".return").textContent = DB.getMessage(3351);
-			root.querySelector(".make").textContent = DB.getMessage(3345);
-		} else {
-			root.querySelector(".race_select .human .title").textContent = DB.getMessage(3016);
-			root.querySelector(".race_select .human .desc").textContent = DB.getMessage(3020);
-			root.querySelector(".race_select .human .jobs").textContent = DB.getMessage(3017);
-			root.querySelector(".race_select .doram .title").textContent = DB.getMessage(3018);
-			root.querySelector(".race_select .doram .desc").textContent = DB.getMessage(3021);
-			root.querySelector(".race_select .doram .jobs").textContent = DB.getMessage(3019);
-		}
-	}
-	/**
-	* Rendering the Characters (three canvases, action animation)
-	*/
-	function renderRace(tick) {
-		const root = Component.getRoot();
-		const humanSelected = gridHairstyle ? _race === "human" : _model.entity.job === RACE.HUMAN;
-		const doramSelected = gridHairstyle ? _race === "doram" : _model.entity.job === RACE.DORAM;
-		if (humanSelected) {
-			if (_human.tick + 500 < tick) {
-				_human.entity.set({
-					action: 1,
-					direction: 5
-				});
-				_human.tick = tick;
-			}
-		}
-		SpriteRenderer.bind2DContext(_human.ctx, 32, 115);
-		_human.ctx.clearRect(0, 0, _human.ctx.canvas.width, _human.ctx.canvas.height);
-		_human.entity.renderEntity();
-		if (doramSelected) {
-			if (_doram.tick + 500 < tick) {
-				_doram.entity.set({
-					action: 1,
-					direction: 5
-				});
-				_doram.tick = tick;
-			}
-		}
-		SpriteRenderer.bind2DContext(_doram.ctx, 32, 115);
-		_doram.ctx.clearRect(0, 0, _doram.ctx.canvas.width, _doram.ctx.canvas.height);
-		_doram.entity.renderEntity();
-		SpriteRenderer.bind2DContext(_model.ctx, 32, 115);
-		_model.ctx.clearRect(0, 0, _model.ctx.canvas.width, _model.ctx.canvas.height);
-		_model.entity.renderEntity();
-		root.querySelector(nameInputSelector).focus();
-		if (gridHairstyle) {
-			Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/img_${_race}_on.bmp`, (dataURI) => {
-				root.querySelector(`.${_race}_label`).style.backgroundImage = `url(${dataURI})`;
-			});
-			Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/bt_${_gender}_on.bmp`, (dataURI) => {
-				root.querySelector(`#${_gender}_container`).style.backgroundImage = `url(${dataURI})`;
-			});
-			Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/color0${parseInt(_curcolor) + 1}_on.bmp`, (dataURI) => {
-				const el = root.querySelector(`.cstyle0${_curcolor}`);
-				if (el) el.style.backgroundImage = `url(${dataURI})`;
-			});
-			Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/bt_hairstyle_normal.bmp`, (dataURI) => {
-				const el = root.querySelector(`.style${_prevhead}`);
-				if (el) el.style.backgroundImage = `url(${dataURI})`;
-			});
-			Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/bt_hairstyle_select.bmp`, (dataURI) => {
-				const el = root.querySelector(`.style${_curhead}`);
-				if (el) el.style.backgroundImage = `url(${dataURI})`;
-			});
-		}
-	}
-	function initRaceCap(root) {
-		root.querySelector(".race_select #human").addEventListener("click", () => {
-			updateCharacterCap(TYPE.RACE, RACE.HUMAN);
-		});
-		root.querySelector(".race_select #doram").addEventListener("click", () => {
-			updateCharacterCap(TYPE.RACE, RACE.DORAM);
-		});
-		root.querySelector("#style .rot_left").addEventListener("click", () => {
-			updateCharacterCap(TYPE.DIRECTION, DIRECTION.LEFT);
-		});
-		root.querySelector("#style .rot_right").addEventListener("click", () => {
-			updateCharacterCap(TYPE.DIRECTION, DIRECTION.RIGHT);
-		});
-		root.querySelector("#style .gender .button.male").addEventListener("click", () => {
-			updateCharacterCap(TYPE.GENDER, GENDER.MALE);
-		});
-		root.querySelector("#style .gender .button.female").addEventListener("click", () => {
-			updateCharacterCap(TYPE.GENDER, GENDER.FEMALE);
-		});
-		root.querySelector("#style .hairstyle .left").addEventListener("click", () => {
-			updateCharacterCap(TYPE.HEAD, VALUE.DECREASE);
-		});
-		root.querySelector("#style .hairstyle .right").addEventListener("click", () => {
-			updateCharacterCap(TYPE.HEAD, VALUE.INCREASE);
-		});
-		root.querySelector("#style .haircolor .left").addEventListener("click", () => {
-			updateCharacterCap(TYPE.HEADPALETTE, VALUE.DECREASE);
-		});
-		root.querySelector("#style .haircolor .right").addEventListener("click", () => {
-			updateCharacterCap(TYPE.HEADPALETTE, VALUE.INCREASE);
-		});
-	}
-	function setDefault() {
-		updateCharacterCap(TYPE.DEFAULT, 0);
-	}
-	/**
-	* Update character hairstyle and haircolor
-	*
-	* @param {number} type
-	* @param {number} value
-	*/
-	function updateCharacterCap(type, value) {
-		const root = Component.getRoot();
-		switch (type) {
-			case TYPE.GENDER:
-				_model.entity.sex = value;
-				if (_model.entity.sex == GENDER.MALE) {
-					Client.loadFile(`${DB.INTERFACE_PATH}make_character/btn_gender_m_press.bmp`, (dataURI) => {
-						root.querySelector("#male_container").style.backgroundImage = `url(${dataURI})`;
-					});
-					Client.loadFile(`${DB.INTERFACE_PATH}make_character/btn_gender_f_out.bmp`, (dataURI) => {
-						root.querySelector("#female_container").style.backgroundImage = `url(${dataURI})`;
-					});
-				} else {
-					Client.loadFile(`${DB.INTERFACE_PATH}make_character/btn_gender_m_out.bmp`, (dataURI) => {
-						root.querySelector("#male_container").style.backgroundImage = `url(${dataURI})`;
-					});
-					Client.loadFile(`${DB.INTERFACE_PATH}make_character/btn_gender_f_press.bmp`, (dataURI) => {
-						root.querySelector("#female_container").style.backgroundImage = `url(${dataURI})`;
-					});
-				}
-				break;
-			case TYPE.RACE:
-				_model.entity.job = value;
-				_model.entity.head = 1;
-				if (_model.entity.job === RACE.HUMAN) {
-					Client.loadFile(RACE_MARK, (dataURI) => {
-						root.querySelector(".race_select .human label").style.backgroundImage = `url(${dataURI})`;
-					});
-					root.querySelector(".race_select .doram label").style.backgroundImage = "none";
-				} else {
-					root.querySelector(".race_select .human label").style.backgroundImage = "none";
-					Client.loadFile(RACE_MARK, (dataURI) => {
-						root.querySelector(".race_select .doram label").style.backgroundImage = `url(${dataURI})`;
-					});
-				}
-				break;
-			case TYPE.DIRECTION:
-				_model.entity.direction += value;
-				break;
-			case TYPE.HEAD: {
-				let headval = _model.entity.head + value;
-				if (headval > CAP[_model.entity.job].HEAD.MAX) headval = CAP[_model.entity.job].HEAD.MIN;
-				if (headval < CAP[_model.entity.job].HEAD.MIN) headval = CAP[_model.entity.job].HEAD.MAX;
-				_model.entity.head = headval;
-				break;
-			}
-			case TYPE.HEADPALETTE: {
-				let headpaletteval = _model.entity.headpalette + value;
-				if (headpaletteval > CAP[_model.entity.job].HEADPALETTE.MAX) headpaletteval = CAP[_model.entity.job].HEADPALETTE.MIN;
-				if (headpaletteval < CAP[_model.entity.job].HEADPALETTE.MIN) headpaletteval = CAP[_model.entity.job].HEADPALETTE.MAX;
-				_model.entity.headpalette = headpaletteval;
-				break;
-			}
-			case TYPE.DEFAULT:
-				updateCharacterCap(TYPE.RACE, RACE.HUMAN);
-				updateCharacterCap(TYPE.GENDER, GENDER.MALE);
-				_model.entity.headpalette = 0;
-		}
-	}
-	function initRaceGrid(root) {
-		_race = "human";
-		_gender = "male";
-		_prevhead = 1;
-		_curhead = 1;
-		_prevcolor = 0;
-		_curcolor = 0;
-		root.querySelector(".gender .male_button").addEventListener("mousedown", updateCharacterGenericGrid("gender", 1));
-		root.querySelector(".gender .female_button").addEventListener("mousedown", updateCharacterGenericGrid("gender", 0));
-		root.querySelector("#style .rot_left").addEventListener("mousedown", updateCharacterGenericGrid("direction", 0));
-		root.querySelector("#style .rot_right").addEventListener("mousedown", updateCharacterGenericGrid("direction", 1));
-		root.querySelectorAll(".race").forEach((el) => {
-			el.addEventListener("click", updateRace);
-		});
-		root.addEventListener("click", (event) => {
-			const hstyleBtn = event.target.closest(".hstyle_button");
-			if (hstyleBtn) {
-				updateHStyle(hstyleBtn);
-				return;
-			}
-			const hcolorBtn = event.target.closest(".hcolor_button");
-			if (hcolorBtn) updateHColor(hcolorBtn);
-		});
-	}
-	/**
-	* Update model hairstyle
-	*/
-	function updateHStyle(target) {
-		const root = Component.getRoot();
-		const type = "head";
-		const value = parseInt(target.getAttribute("for"));
-		_prevhead = _model.entity.head;
-		Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/bt_hairstyle_normal.bmp`, (dataURI) => {
-			const el = root.querySelector(`.style${_prevhead}`);
-			if (el) el.style.backgroundImage = `url(${dataURI})`;
-		});
-		_curhead = value;
-		updateCharacterGrid(type, value);
-	}
-	/**
-	* Update model haircolor
-	*/
-	function updateHColor(target) {
-		const root = Component.getRoot();
-		const type = "headpalette";
-		const value = parseInt(target.getAttribute("for"));
-		_prevcolor = _model.entity.headpalette;
-		Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/color0${parseInt(_prevcolor) + 1}_off.bmp`, (dataURI) => {
-			const el = root.querySelector(`.cstyle0${_prevcolor}`);
-			if (el) el.style.backgroundImage = `url(${dataURI})`;
-		});
-		_curcolor = value;
-		updateCharacterGrid(type, value);
-	}
-	/**
-	* Update model race
-	*/
-	function updateRace() {
-		const root = Component.getRoot();
-		const select = root.querySelector(".race:checked");
-		const type = "race";
-		let value = 0;
-		if (select && select.id === "human_race") {
-			Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/img_human_on.bmp`, (dataURI) => {
-				root.querySelector(".human_label").style.backgroundImage = `url(${dataURI})`;
-			});
-			Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/img_doram_off.bmp`, (dataURI) => {
-				root.querySelector(".doram_label").style.backgroundImage = `url(${dataURI})`;
-			});
-			value = 0;
-		}
-		if (select && select.id === "doram_race") {
-			Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/img_human_off.bmp`, (dataURI) => {
-				root.querySelector(".human_label").style.backgroundImage = `url(${dataURI})`;
-			});
-			Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/img_doram_on.bmp`, (dataURI) => {
-				root.querySelector(".doram_label").style.backgroundImage = `url(${dataURI})`;
-			});
-			value = 4218;
-		}
-		for (let i = 1; i <= 24; i++) Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/bt_hairstyle_normal.bmp`, (dataURI) => {
-			const el = root.querySelector(`.style${i}`);
-			if (el) el.style.backgroundImage = `url(${dataURI})`;
-		});
-		_prevhead = 1;
-		_curhead = 1;
-		updateHstyleList(type, value);
-		updateCharacterGrid(type, value);
-	}
-	/**
-	* Generic function to get a direct proxy to updateCharacterGrid
-	*
-	* @param {string} type
-	* @param {number} value
-	*/
-	function updateCharacterGenericGrid(type, value) {
-		return () => {
-			if (type === "gender") updateHstyleList(type, value);
-			updateCharacterGrid(type, value);
-		};
-	}
-	function updateHstyleList(type, value) {
-		const root = Component.getRoot();
-		switch (type) {
-			case "gender":
-				if (value === 1) _gender = "male";
-				else _gender = "female";
-				break;
-			case "race": if (value === 0) _race = "human";
-			else _race = "doram";
-		}
-		Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/bt_male_off.bmp`, (dataURI) => {
-			root.querySelector("#male_container").style.backgroundImage = `url(${dataURI})`;
-		});
-		Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/bt_female_off.bmp`, (dataURI) => {
-			root.querySelector("#female_container").style.backgroundImage = `url(${dataURI})`;
-		});
-		Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/bt_${_gender}_on.bmp`, (dataURI) => {
-			root.querySelector(`#${_gender}_container`).style.backgroundImage = `url(${dataURI})`;
-		});
-		root.querySelectorAll(".hair-style").forEach((el) => {
-			el.style.display = "none";
-		});
-		const hairStyleEl = root.querySelector(`#${_race}_${_gender}`);
-		if (hairStyleEl) hairStyleEl.style.display = "block";
-	}
-	function cleanup() {
-		const root = Component.getRoot();
-		_race = "human";
-		_gender = "male";
-		_prevhead = 1;
-		_curhead = 1;
-		_prevcolor = 0;
-		_curcolor = 0;
-		const humanRace = root.querySelector("#human_race");
-		if (humanRace) humanRace.checked = true;
-		const maleInput = root.querySelector("#male");
-		if (maleInput) maleInput.checked = true;
-		root.querySelectorAll(".hstyle").forEach((el) => {
-			el.checked = false;
-		});
-		const defaultHstyle = root.querySelector("[id=\"1_human_male\"]");
-		if (defaultHstyle) defaultHstyle.checked = true;
-		const defaultColor = root.querySelector("[id=\"0_color\"]");
-		if (defaultColor) defaultColor.checked = true;
-		for (let i = 0; i <= 8; i++) Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/color0${i + 1}_off.bmp`, (dataURI) => {
-			const el = root.querySelector(`.cstyle0${i}`);
-			if (el) el.style.backgroundImage = `url(${dataURI})`;
-		});
-		updateCharacterGrid("default", 0);
-	}
-	/**
-	* Update character hairstyle and haircolor
-	*
-	* @param {string} type
-	* @param {number} increment
-	*/
-	function updateCharacterGrid(type, increment) {
-		switch (type) {
-			case "gender":
-				_model.entity.sex = increment;
-				break;
-			case "race":
-				_model.entity.job = increment;
-				_model.entity.head = 1;
-				break;
-			case "direction":
-				if (increment === 0) _model.entity.direction = _model.entity.direction + 1;
-				else _model.entity.direction = _model.entity.direction - 1;
-				break;
-			case "head":
-				_prevhead = _model.entity.head;
-				_model.entity.head = increment;
-				break;
-			case "headpalette":
-				_model.entity.headpalette = increment;
-				break;
-			case "default":
-				_model.entity.sex = 1;
-				_model.entity.job = 0;
-				_model.entity.head = 1;
-				_model.entity.headpalette = 0;
-		}
-	}
-	/**
-	* Callback to define
-	*/
-	Component.onExitRequest = function OnExitRequest() {};
-	/**
-	* Abstract callback to define
-	*/
-	Component.onCharCreationRequest = function OnCharCreationRequest() {};
-	/**
-	* Create component and export it
-	*/
-	return UIManager.addComponent(Component);
-}
-var TYPE, GENDER, RACE, DIRECTION, VALUE, CAP, RACE_MARK;
-var init_CharCreateCommon = __esmMin((() => {
-	init_DBManager();
-	init_Renderer();
-	init_KeyEventHandler();
-	init_Entity$1();
-	init_SpriteRenderer();
-	init_Camera();
-	init_Client();
-	init_UIManager();
-	init_GUIComponent();
-	init_Elements();
-	TYPE = {
-		RACE: 1,
-		GENDER: 2,
-		HEAD: 3,
-		HEADPALETTE: 4,
-		DIRECTION: 5,
-		DEFAULT: -1
-	};
-	GENDER = {
-		FEMALE: 0,
-		MALE: 1
-	};
-	RACE = {
-		HUMAN: 0,
-		DORAM: 4218
-	};
-	DIRECTION = {
-		LEFT: 1,
-		RIGHT: -1
-	};
-	VALUE = {
-		INCREASE: 1,
-		DECREASE: -1
-	};
-	CAP = {
-		[RACE.HUMAN]: {
-			HEAD: {
-				MIN: 1,
-				MAX: 29
-			},
-			HEADPALETTE: {
-				MIN: 0,
-				MAX: 8
-			}
-		},
-		[RACE.DORAM]: {
-			HEAD: {
-				MIN: 1,
-				MAX: 6
-			},
-			HEADPALETTE: {
-				MIN: 0,
-				MAX: 7
-			}
-		}
-	};
-	RACE_MARK = `${DB.INTERFACE_PATH}make_character/select_mark_cha_create.bmp`;
-}));
-//#endregion
-//#region src/UI/Components/CharCreate/CharCreate/CharCreate.js
-var CharCreate_default;
-var init_CharCreate$1 = __esmMin((() => {
-	init_CharCreate$3();
-	init_CharCreate$2();
-	init_CharCreateCommon();
-	CharCreate_default = createCharCreate({
-		name: "CharCreate",
-		htmlText: CharCreate_default$2,
-		cssText: CharCreate_default$1,
-		hostHeight: 342,
-		hostWidth: 576,
-		hasStats: true,
-		chargenCanvasSelector: ".chargen canvas",
-		graphCanvasSelector: ".graph canvas",
-		statButtonsSelector: ".graph ui-button",
-		hairArrows: [
-			{
-				selector: ".chargen .left",
-				type: "head",
-				value: -1
-			},
-			{
-				selector: ".chargen .right",
-				type: "head",
-				value: 1
-			},
-			{
-				selector: ".chargen .up",
-				type: "headpalette",
-				value: 1
-			}
-		],
-		nameInputSelector: "input",
-		cancelSelectors: [".cancel"],
-		makeSelector: ".make"
-	});
-}));
-//#endregion
-//#region src/UI/Components/CharCreate/CharCreatev2/CharCreatev2.html?raw
-var CharCreatev2_default$2;
-var init_CharCreatev2$2 = __esmMin((() => {
-	CharCreatev2_default$2 = "<div id=\"charcreate_v2\">\r\n	<div class=\"header\">\r\n		<div class=\"corner left\"><ui-image src=\"basic_interface/titlebar_left.bmp\"></ui-image></div>\r\n		<div class=\"center\"><ui-image src=\"basic_interface/titlebar_mid.bmp\"></ui-image></div>\r\n		<div class=\"corner right\"><ui-image src=\"basic_interface/titlebar_right.bmp\"></ui-image></div>\r\n\r\n		<div class=\"title\"><ui-text msg=\"2368\"></ui-text></div>\r\n	</div>\r\n\r\n	<div class=\"content\">\r\n		<ui-image src=\"login_interface/win_make2.bmp\"></ui-image>\r\n		<canvas width=\"65\" height=\"110\"></canvas>\r\n\r\n		<input type=\"text\" data-background=\"login_interface/name-edit.bmp\" value=\"\" />\r\n\r\n		<ui-button class=\"styleleft\" bg=\"scroll1left.bmp\"></ui-button>\r\n		<ui-button class=\"styleright\" bg=\"scroll1right.bmp\"></ui-button>\r\n\r\n		<ui-button class=\"colorleft\" bg=\"scroll1left.bmp\"></ui-button>\r\n		<ui-button class=\"colorright\" bg=\"scroll1right.bmp\"></ui-button>\r\n	</div>\r\n\r\n	<div class=\"footer\">\r\n		<div class=\"corner left\"><ui-image src=\"basic_interface/btnbar_left2.bmp\"></ui-image></div>\r\n		<div class=\"center\"><ui-image src=\"basic_interface/btnbar_mid2.bmp\"></ui-image></div>\r\n		<div class=\"corner right\"><ui-image src=\"basic_interface/btnbar_right2.bmp\"></ui-image></div>\r\n\r\n		<div class=\"btns\">\r\n			<ui-button\r\n				class=\"btn cancel\"\r\n				bg=\"btn_cancel.bmp\"\r\n				hover=\"btn_cancel_a.bmp\"\r\n				down=\"btn_cancel_b.bmp\"\r\n			></ui-button>\r\n			<ui-button class=\"btn make\" bg=\"btn_make.bmp\" hover=\"btn_make_a.bmp\" down=\"btn_make_b.bmp\"></ui-button>\r\n		</div>\r\n	</div>\r\n</div>\r\n";
-}));
-//#endregion
-//#region src/UI/Components/CharCreate/CharCreatev2/CharCreatev2.css?raw
-var CharCreatev2_default$1;
-var init_CharCreatev2$1 = __esmMin((() => {
-	CharCreatev2_default$1 = ":host {\r\n	width: 150px;\r\n	height: 286px;\r\n}\r\n\r\n#charcreate_v2 {\r\n	position: absolute;\r\n	width: 150px;\r\n	height: 286px;\r\n}\r\n\r\n#charcreate_v2 .header {\r\n	width: 150px;\r\n	height: 17px;\r\n}\r\n#charcreate_v2 .header .corner {\r\n	position: absolute;\r\n	width: 12px;\r\n	height: 17px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n#charcreate_v2 .header .corner.left {\r\n	top: 0px;\r\n	left: 0px;\r\n}\r\n#charcreate_v2 .header .corner.right {\r\n	top: 0px;\r\n	right: 0px;\r\n}\r\n#charcreate_v2 .header .center {\r\n	position: absolute;\r\n	top: 0px;\r\n	left: 12px;\r\n	width: 128px;\r\n	height: 17px;\r\n}\r\n#charcreate_v2 .header .title {\r\n	position: absolute;\r\n	top: 2px;\r\n	left: 12px;\r\n	font-size: 13px;\r\n}\r\n\r\n#charcreate_v2 .content {\r\n	width: 150px;\r\n	height: 240px;\r\n}\r\n\r\n#charcreate_v2 .footer {\r\n	width: 150px;\r\n	height: 29px;\r\n}\r\n#charcreate_v2 .footer .corner {\r\n	position: absolute;\r\n	width: 21px;\r\n	height: 29px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n#charcreate_v2 .footer .corner.left {\r\n	bottom: 0px;\r\n	left: 0px;\r\n}\r\n#charcreate_v2 .footer .corner.right {\r\n	bottom: 0px;\r\n	right: 0px;\r\n}\r\n#charcreate_v2 .footer .center {\r\n	position: absolute;\r\n	bottom: 0px;\r\n	left: 21px;\r\n	width: 118px;\r\n	height: 29px;\r\n}\r\n\r\n/** Name **/\r\n#charcreate_v2 .content input {\r\n	position: absolute;\r\n	top: 142px;\r\n	left: 40px;\r\n	width: 96px;\r\n	height: 18px;\r\n	padding-top: 2px;\r\n	padding-left: 3px;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	border: 0;\r\n}\r\n\r\n/** Chargen **/\r\n#charcreate_v2 .content ui-button {\r\n	position: absolute;\r\n	width: 13px;\r\n	height: 13px;\r\n}\r\n\r\n#charcreate_v2 .content .styleleft {\r\n	top: 190px;\r\n	left: 15px;\r\n}\r\n#charcreate_v2 .content .styleright {\r\n	top: 190px;\r\n	left: 125px;\r\n}\r\n#charcreate_v2 .content .colorleft {\r\n	top: 230px;\r\n	left: 15px;\r\n}\r\n#charcreate_v2 .content .colorright {\r\n	top: 230px;\r\n	left: 125px;\r\n}\r\n\r\n#charcreate_v2 .content canvas {\r\n	position: absolute;\r\n	top: 25px;\r\n	left: 40px;\r\n}\r\n\r\n/** Buttons **/\r\n#charcreate_v2 .footer .btns {\r\n	position: absolute;\r\n	bottom: 4px;\r\n	width: 100%;\r\n	height: 20px;\r\n}\r\n#charcreate_v2 .footer .btn {\r\n	position: absolute;\r\n	width: 42px;\r\n	height: 20px;\r\n}\r\n#charcreate_v2 .footer .make {\r\n	right: 50px;\r\n}\r\n#charcreate_v2 .footer .cancel {\r\n	right: 4px;\r\n}\r\n\r\n#charcreate_v2 .btns ui-button {\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n	border: 0;\r\n	display: flex;\r\n	align-items: center;\r\n	justify-content: center;\r\n}\r\n";
-}));
-//#endregion
-//#region src/UI/Components/CharCreate/CharCreatev2/CharCreatev2.js
-var CharCreatev2_default;
-var init_CharCreatev2 = __esmMin((() => {
-	init_CharCreatev2$2();
-	init_CharCreatev2$1();
-	init_CharCreateCommon();
-	CharCreatev2_default = createCharCreate({
-		name: "CharCreatev2",
-		htmlText: CharCreatev2_default$2,
-		cssText: CharCreatev2_default$1,
-		hostHeight: 286,
-		hostWidth: 150,
-		chargenCanvasSelector: ".content canvas",
-		hairArrows: [
-			{
-				selector: ".content .styleleft",
-				type: "head",
-				value: -1
-			},
-			{
-				selector: ".content .styleright",
-				type: "head",
-				value: 1
-			},
-			{
-				selector: ".content .colorleft",
-				type: "headpalette",
-				value: -1
-			},
-			{
-				selector: ".content .colorright",
-				type: "headpalette",
-				value: 1
-			}
-		],
-		nameInputSelector: "input",
-		cancelSelectors: [".cancel"],
-		makeSelector: ".make"
-	});
-}));
-//#endregion
-//#region src/UI/Components/CharCreate/CharCreatev3/CharCreatev3.html?raw
-var CharCreatev3_default$2;
-var init_CharCreatev3$2 = __esmMin((() => {
-	CharCreatev3_default$2 = "<div id=\"charcreate_v3\">\r\n	<ui-image src=\"make_character/bg_create_character.bmp\"></ui-image>\r\n	<ui-button\r\n		class=\"button close\"\r\n		bg=\"basic_interface/sys_close_off.bmp\"\r\n		hover=\"basic_interface/sys_close_on.bmp\"\r\n	></ui-button>\r\n\r\n	<div class=\"race_select\">\r\n		<div class=\"race human\">\r\n			<input type=\"radio\" name=\"race\" id=\"human\" checked class=\"radio\" />\r\n			<label\r\n				for=\"human\"\r\n				class=\"label\"\r\n				data-background=\"make_character/img_human_off.bmp\"\r\n				data-hover=\"make_character/img_human_on.bmp\"\r\n				data-down=\"make_character/img_human_on.bmp\"\r\n			>\r\n				<div class=\"title\"></div>\r\n				<div class=\"desc\"></div>\r\n				<div class=\"jobs\"></div>\r\n				<div class=\"chargen\">\r\n					<canvas id=\"canvas_human\" width=\"65\" height=\"110\" style=\"pointer-events: none\"></canvas>\r\n				</div>\r\n			</label>\r\n		</div>\r\n\r\n		<div class=\"race doram\">\r\n			<input type=\"radio\" name=\"race\" id=\"doram\" class=\"radio\" />\r\n			<label\r\n				for=\"doram\"\r\n				class=\"label\"\r\n				data-background=\"make_character/img_doram_off.bmp\"\r\n				data-hover=\"make_character/img_doram_on.bmp\"\r\n				data-down=\"make_character/img_doram_on.bmp\"\r\n			>\r\n				<div class=\"title\"></div>\r\n				<div class=\"desc\"></div>\r\n				<div class=\"jobs\"></div>\r\n				<div class=\"chargen\">\r\n					<canvas id=\"canvas_doram\" width=\"65\" height=\"110\" style=\"pointer-events: none\"></canvas>\r\n				</div>\r\n			</label>\r\n		</div>\r\n	</div>\r\n	<div id=\"style\">\r\n		<div class=\"model\">\r\n			<canvas id=\"canvas_model\" width=\"65\" height=\"110\" style=\"pointer-events: none\"></canvas>\r\n		</div>\r\n\r\n		<ui-button\r\n			class=\"rot_left\"\r\n			bg=\"make_character/chr_arrow_rotate_l_out.bmp\"\r\n			hover=\"make_character/chr_arrow_rotate_l_over.bmp\"\r\n			down=\"make_character/chr_arrow_rotate_l_press.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"rot_right\"\r\n			bg=\"make_character/chr_arrow_rotate_r_out.bmp\"\r\n			hover=\"make_character/chr_arrow_rotate_r_over.bmp\"\r\n			down=\"make_character/chr_arrow_rotate_r_press.bmp\"\r\n		></ui-button>\r\n\r\n		<input type=\"text\" id=\"char_name\" maxlength=\"24\" />\r\n\r\n		<div class=\"category gender\">\r\n			<div\r\n				id=\"male_container\"\r\n				class=\"button container left\"\r\n				data-background=\"make_character/btn_gender_m_press.bmp\"\r\n			>\r\n				<input type=\"radio\" name=\"gender\" id=\"male\" checked class=\"gender_button radio\" />\r\n				<label\r\n					for=\"male\"\r\n					class=\"button male\"\r\n					data-hover=\"make_character/btn_gender_m_over.bmp\"\r\n					data-down=\"make_character/btn_gender_m_press.bmp\"\r\n				>\r\n				</label>\r\n			</div>\r\n			<div\r\n				id=\"female_container\"\r\n				class=\"button container right\"\r\n				data-background=\"make_character/btn_gender_f_out.bmp\"\r\n			>\r\n				<input type=\"radio\" name=\"gender\" id=\"female\" class=\"gender_button radio\" />\r\n				<label\r\n					for=\"female\"\r\n					class=\"button female\"\r\n					data-hover=\"make_character/btn_gender_f_over.bmp\"\r\n					data-down=\"make_character/btn_gender_f_press.bmp\"\r\n				>\r\n				</label>\r\n			</div>\r\n		</div>\r\n\r\n		<div class=\"category hairstyle\">\r\n			<ui-button\r\n				class=\"button left\"\r\n				bg=\"make_character/arrow_box_l_out.bmp\"\r\n				hover=\"make_character/arrow_box_l_over.bmp\"\r\n				down=\"make_character/arrow_box_l_press.bmp\"\r\n			></ui-button>\r\n			<ui-button\r\n				class=\"button right\"\r\n				bg=\"make_character/arrow_box_r_out.bmp\"\r\n				hover=\"make_character/arrow_box_r_over.bmp\"\r\n				down=\"make_character/arrow_box_r_press.bmp\"\r\n			></ui-button>\r\n		</div>\r\n\r\n		<div class=\"category haircolor\">\r\n			<ui-button\r\n				class=\"button left\"\r\n				bg=\"make_character/arrow_box_l_out.bmp\"\r\n				hover=\"make_character/arrow_box_l_over.bmp\"\r\n				down=\"make_character/arrow_box_l_press.bmp\"\r\n			></ui-button>\r\n			<ui-button\r\n				class=\"button right\"\r\n				bg=\"make_character/arrow_box_r_out.bmp\"\r\n				hover=\"make_character/arrow_box_r_over.bmp\"\r\n				down=\"make_character/arrow_box_r_press.bmp\"\r\n			></ui-button>\r\n		</div>\r\n	</div>\r\n\r\n	<ui-button\r\n		class=\"button make\"\r\n		bg=\"make_character/btn_create_out.bmp\"\r\n		hover=\"make_character/btn_create_over.bmp\"\r\n		down=\"make_character/btn_create_press.bmp\"\r\n	></ui-button>\r\n</div>\r\n";
-}));
-//#endregion
-//#region src/UI/Components/CharCreate/CharCreatev3/CharCreatev3.css?raw
-var CharCreatev3_default$1;
-var init_CharCreatev3$1 = __esmMin((() => {
-	CharCreatev3_default$1 = ":host {\r\n	width: 576px;\r\n	height: 358px;\r\n}\r\n\r\n#charcreate_v3 {\r\n	position: absolute;\r\n	width: 576px;\r\n	height: 358px;\r\n}\r\n\r\n#charcreate_v3 .radio {\r\n	display: none;\r\n}\r\n\r\n#charcreate_v3 .title {\r\n	position: absolute;\r\n	left: 45px;\r\n	top: 15px;\r\n	height: 20px;\r\n	width: 200px;\r\n}\r\n\r\n/** Race **/\r\n#charcreate_v3 .race_select .label {\r\n	position: absolute;\r\n	width: 358px;\r\n	height: 138px;\r\n	outline: none;\r\n	background-repeat: no-repeat;\r\n}\r\n#charcreate_v3 .race_select .title {\r\n	position: absolute;\r\n	color: white;\r\n	top: 14px;\r\n	left: 34px;\r\n	height: 20px;\r\n	width: 45px;\r\n}\r\n#charcreate_v3 .race_select .desc {\r\n	position: absolute;\r\n	top: 22px;\r\n	left: 90px;\r\n	height: 60px;\r\n	width: 248px;\r\n	font-size: 14px;\r\n	line-height: 20px;\r\n}\r\n#charcreate_v3 .race_select .jobs {\r\n	position: absolute;\r\n	top: 102px;\r\n	left: 120px;\r\n	height: 26px;\r\n	width: 226px;\r\n}\r\n#charcreate_v3 .race_select .chargen canvas {\r\n	position: absolute;\r\n	top: 16px;\r\n	left: 16px;\r\n}\r\n\r\n#charcreate_v3 .race_select .human .label {\r\n	top: 32px;\r\n	left: 20px;\r\n}\r\n#charcreate_v3 .race_select .doram .label {\r\n	top: 177px;\r\n	left: 20px;\r\n}\r\n\r\n/* Style */\r\n#charcreate_v3 #style {\r\n	position: relative;\r\n	left: 395px;\r\n	top: 30px;\r\n	width: 200px;\r\n	height: 270px;\r\n}\r\n#charcreate_v3 #style .button {\r\n	position: absolute;\r\n	height: 20px;\r\n	width: 38px;\r\n}\r\n\r\n/** Style Model **/\r\n#charcreate_v3 #style .model {\r\n	position: absolute;\r\n	top: 15px;\r\n	left: 30px;\r\n	width: 100px;\r\n}\r\n#charcreate_v3 #style .model canvas {\r\n	position: relative;\r\n	top: -5px;\r\n	left: 17px;\r\n}\r\n\r\n/** Char Name **/\r\n#charcreate_v3 #char_name {\r\n	position: absolute;\r\n	height: 16px;\r\n	width: 110px;\r\n	top: 134px;\r\n	left: 43px;\r\n	border: 0px;\r\n	background-color: transparent;\r\n}\r\n\r\n/** Buttons **/\r\n#charcreate_v3 #style .rot_left {\r\n	position: absolute;\r\n	top: 70px;\r\n	left: 30px;\r\n	height: 20px;\r\n	width: 20px;\r\n}\r\n#charcreate_v3 #style .rot_right {\r\n	position: absolute;\r\n	top: 70px;\r\n	left: 110px;\r\n	height: 20px;\r\n	width: 20px;\r\n}\r\n\r\n#charcreate_v3 #style .category {\r\n	position: absolute;\r\n	left: 80px;\r\n	height: 20px;\r\n	width: 78px;\r\n}\r\n#charcreate_v3 #style .category .button {\r\n	position: absolute;\r\n	top: 0px;\r\n	height: 20px;\r\n	width: 38px;\r\n	white-space: nowrap;\r\n	border: 0;\r\n}\r\n#charcreate_v3 #style .category .button.left {\r\n	left: 0px;\r\n}\r\n#charcreate_v3 #style .category .button.right {\r\n	left: 40px;\r\n}\r\n\r\n#charcreate_v3 #style .gender {\r\n	top: 164px;\r\n}\r\n#charcreate_v3 #style .gender .container .gender_button {\r\n	display: none;\r\n}\r\n#charcreate_v3 #style .hairstyle {\r\n	top: 186px;\r\n}\r\n#charcreate_v3 #style .haircolor {\r\n	top: 208px;\r\n}\r\n\r\n#charcreate_v3 .button.make {\r\n	position: absolute;\r\n	top: 280px;\r\n	left: 445px;\r\n	width: 68px;\r\n	height: 20px;\r\n}\r\n#charcreate_v3 .button.close {\r\n	position: absolute;\r\n	top: 3px;\r\n	right: 3px;\r\n	width: 11px;\r\n	height: 11px;\r\n}\r\n\r\n#charcreate_v3 ui-button {\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n	border: 0;\r\n	display: flex;\r\n	align-items: center;\r\n	justify-content: center;\r\n}\r\n";
-}));
-//#endregion
-//#region src/UI/Components/CharCreate/CharCreatev3/CharCreatev3.js
-var CharCreatev3_default;
-var init_CharCreatev3 = __esmMin((() => {
-	init_CharCreatev3$2();
-	init_CharCreatev3$1();
-	init_CharCreateCommon();
-	CharCreatev3_default = createCharCreate({
-		name: "CharCreatev3",
-		htmlText: CharCreatev3_default$2,
-		cssText: CharCreatev3_default$1,
-		hostHeight: 342,
-		hostWidth: 576,
-		hasRace: true,
-		humanCanvasSelector: "#canvas_human",
-		doramCanvasSelector: "#canvas_doram",
-		modelCanvasSelector: "#canvas_model",
-		nameInputSelector: "#char_name",
-		nameInputEvent: "click",
-		cancelSelectors: [".button.close"],
-		makeSelector: ".button.make"
-	});
-}));
-//#endregion
-//#region src/UI/Components/CharCreate/CharCreatev4/CharCreatev4.html?raw
-var CharCreatev4_default$2;
-var init_CharCreatev4$2 = __esmMin((() => {
-	CharCreatev4_default$2 = "<div id=\"charcreate_v4\">\r\n	<ui-image src=\"make_character_ver2/bg_makebg.bmp\"></ui-image>\r\n	<div class=\"title\"></div>\r\n	<div>\r\n		<div class=\"human\">\r\n			<input type=\"radio\" name=\"race\" id=\"human_race\" checked class=\"race\" />\r\n			<label for=\"human_race\" class=\"human_label\">\r\n				<div class=\"human_title\"></div>\r\n				<div class=\"human_desc\"></div>\r\n				<div class=\"chargen\">\r\n					<canvas id=\"human\" width=\"65\" height=\"110\" style=\"pointer-events: none\"></canvas>\r\n				</div>\r\n			</label>\r\n		</div>\r\n\r\n		<div class=\"doram\">\r\n			<input type=\"radio\" name=\"race\" id=\"doram_race\" class=\"race\" />\r\n			<label for=\"doram_race\" class=\"doram_label\">\r\n				<div class=\"doram_title\"></div>\r\n				<div class=\"doram_desc\"></div>\r\n				<div class=\"chargen_doram\">\r\n					<canvas id=\"doram\" width=\"65\" height=\"110\" style=\"pointer-events: none\"></canvas>\r\n				</div>\r\n			</label>\r\n		</div>\r\n	</div>\r\n	<div id=\"style\">\r\n		<div class=\"gender\">\r\n			<div id=\"male_container\" data-background=\"make_character_ver2/bt_male_on.bmp\">\r\n				<input type=\"radio\" name=\"gender\" id=\"male\" checked class=\"gender_button\" />\r\n				<label for=\"male\" class=\"male_button\"> </label>\r\n			</div>\r\n			<div id=\"female_container\" data-background=\"make_character_ver2/bt_female_off.bmp\">\r\n				<input type=\"radio\" name=\"gender\" id=\"female\" class=\"gender_button\" />\r\n				<label for=\"female\" class=\"female_button\"> </label>\r\n			</div>\r\n		</div>\r\n		<div class=\"model\">\r\n			<canvas id=\"style_model\" width=\"65\" height=\"110\" style=\"pointer-events: none\"></canvas>\r\n		</div>\r\n		<ui-button\r\n			class=\"rot_left\"\r\n			bg=\"make_character_ver2/bt_leftturn_normal.bmp\"\r\n			hover=\"make_character_ver2/bt_leftturn_over.bmp\"\r\n			down=\"make_character_ver2/bt_leftturn_press.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"rot_right\"\r\n			bg=\"make_character_ver2/bt_rightturn_normal.bmp\"\r\n			hover=\"make_character_ver2/bt_rightturn_over.bmp\"\r\n			down=\"make_character_ver2/bt_rightturn_press.bmp\"\r\n		></ui-button>\r\n		<input type=\"text\" id=\"char_name\" maxlength=\"24\" />\r\n	</div>\r\n\r\n	<div id=\"hair_setting\">\r\n		<div class=\"hair_style_title\"></div>\r\n		<div class=\"hair_styles\">\r\n			<div id=\"human_male\" class=\"hair-style\">\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style1\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"1_human_male\" checked class=\"hstyle\" />\r\n						<label for=\"1_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle01.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style2\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"2_human_male\" class=\"hstyle\" />\r\n						<label for=\"2_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle02.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style3\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"3_human_male\" class=\"hstyle\" />\r\n						<label for=\"3_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle03.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style4\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"4_human_male\" class=\"hstyle\" />\r\n						<label for=\"4_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle04.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style5\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"5_human_male\" class=\"hstyle\" />\r\n						<label for=\"5_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle05.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style6\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"6_human_male\" class=\"hstyle\" />\r\n						<label for=\"6_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle06.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style7\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"7_human_male\" class=\"hstyle\" />\r\n						<label for=\"7_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle07.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style8\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"8_human_male\" class=\"hstyle\" />\r\n						<label for=\"8_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle08.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style9\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"9_human_male\" class=\"hstyle\" />\r\n						<label for=\"9_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle09.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style10\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"10_human_male\" class=\"hstyle\" />\r\n						<label for=\"10_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle10.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style11\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"11_human_male\" class=\"hstyle\" />\r\n						<label for=\"11_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle11.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style12\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"12_human_male\" class=\"hstyle\" />\r\n						<label for=\"12_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle12.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style13\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"13_human_male\" class=\"hstyle\" />\r\n						<label for=\"13_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle13.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style14\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"14_human_male\" class=\"hstyle\" />\r\n						<label for=\"14_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle14.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style15\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"15_human_male\" class=\"hstyle\" />\r\n						<label for=\"15_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle15.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style16\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"16_human_male\" class=\"hstyle\" />\r\n						<label for=\"16_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle16.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style17\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"17_human_male\" class=\"hstyle\" />\r\n						<label for=\"17_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle17.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style18\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"18_human_male\" class=\"hstyle\" />\r\n						<label for=\"18_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle18.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style19\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"19_human_male\" class=\"hstyle\" />\r\n						<label for=\"19_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle19.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style20\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"20_human_male\" class=\"hstyle\" />\r\n						<label for=\"20_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle20.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style21\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"21_human_male\" class=\"hstyle\" />\r\n						<label for=\"21_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle21.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style22\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"22_human_male\" class=\"hstyle\" />\r\n						<label for=\"22_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle22.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style23\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"23_human_male\" class=\"hstyle\" />\r\n						<label for=\"23_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle23.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style24\"></div>\r\n				</div>\r\n			</div>\r\n			<div id=\"human_female\" class=\"hair-style\">\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style1\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"1_human_female\" checked class=\"hstyle\" />\r\n						<label for=\"1_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl01.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style2\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"2_human_female\" class=\"hstyle\" />\r\n						<label for=\"2_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl02.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style3\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"3_human_female\" class=\"hstyle\" />\r\n						<label for=\"3_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl03.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style4\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"4_human_female\" class=\"hstyle\" />\r\n						<label for=\"4_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl04.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style5\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"5_human_female\" class=\"hstyle\" />\r\n						<label for=\"5_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl05.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style6\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"6_human_female\" class=\"hstyle\" />\r\n						<label for=\"6_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl06.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style7\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"7_human_female\" class=\"hstyle\" />\r\n						<label for=\"7_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl07.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style8\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"8_human_female\" class=\"hstyle\" />\r\n						<label for=\"8_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl08.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style9\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"9_human_female\" class=\"hstyle\" />\r\n						<label for=\"9_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl09.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style10\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"10_human_female\" class=\"hstyle\" />\r\n						<label for=\"10_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl10.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style11\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"11_human_female\" class=\"hstyle\" />\r\n						<label for=\"11_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl11.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style12\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"12_human_female\" class=\"hstyle\" />\r\n						<label for=\"12_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl12.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style13\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"13_human_female\" class=\"hstyle\" />\r\n						<label for=\"13_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl13.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style14\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"14_human_female\" class=\"hstyle\" />\r\n						<label for=\"14_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl14.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style15\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"15_human_female\" class=\"hstyle\" />\r\n						<label for=\"15_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl15.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style16\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"16_human_female\" class=\"hstyle\" />\r\n						<label for=\"16_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl16.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style17\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"17_human_female\" class=\"hstyle\" />\r\n						<label for=\"17_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl17.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style18\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"18_human_female\" class=\"hstyle\" />\r\n						<label for=\"18_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl18.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style19\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"19_human_female\" class=\"hstyle\" />\r\n						<label for=\"19_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl19.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style20\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"20_human_female\" class=\"hstyle\" />\r\n						<label for=\"20_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl20.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style21\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"21_human_female\" class=\"hstyle\" />\r\n						<label for=\"21_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl21.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style22\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"22_human_female\" class=\"hstyle\" />\r\n						<label for=\"22_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl22.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style23\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"23_human_female\" class=\"hstyle\" />\r\n						<label for=\"23_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl23.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style24\"></div>\r\n				</div>\r\n			</div>\r\n			<div id=\"doram_male\" class=\"hair-style\">\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style1\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"1_doram_male\" checked class=\"hstyle\" />\r\n						<label for=\"1_doram_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_doramboy01.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style2\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"2_doram_male\" class=\"hstyle\" />\r\n						<label for=\"2_doram_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_doramboy02.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style3\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"3_doram_male\" class=\"hstyle\" />\r\n						<label for=\"3_doram_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_doramboy03.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style4\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"4_doram_male\" class=\"hstyle\" />\r\n						<label for=\"4_doram_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_doramboy04.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style5\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"5_doram_male\" class=\"hstyle\" />\r\n						<label for=\"5_doram_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_doramboy05.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style6\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"6_doram_male\" class=\"hstyle\" />\r\n						<label for=\"6_doram_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_doramboy06.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style7\"></div>\r\n					<div class=\"styleCol style8\"></div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style9\"></div>\r\n					<div class=\"styleCol style10\"></div>\r\n					<div class=\"styleCol style11\"></div>\r\n					<div class=\"styleCol style12\"></div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style13\"></div>\r\n					<div class=\"styleCol style14\"></div>\r\n					<div class=\"styleCol style15\"></div>\r\n					<div class=\"styleCol style16\"></div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style17\"></div>\r\n					<div class=\"styleCol style18\"></div>\r\n					<div class=\"styleCol style19\"></div>\r\n					<div class=\"styleCol style20\"></div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style21\"></div>\r\n					<div class=\"styleCol style22\"></div>\r\n					<div class=\"styleCol style23\"></div>\r\n					<div class=\"styleCol style24\"></div>\r\n				</div>\r\n			</div>\r\n			<div id=\"doram_female\" class=\"hair-style\">\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style1\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"1_doram_female\" checked class=\"hstyle\" />\r\n						<label for=\"1_doram_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_doramgirl01.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style2\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"2_doram_female\" class=\"hstyle\" />\r\n						<label for=\"2_doram_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_doramgirl02.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style3\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"3_doram_female\" class=\"hstyle\" />\r\n						<label for=\"3_doram_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_doramgirl03.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style4\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"4_doram_female\" class=\"hstyle\" />\r\n						<label for=\"4_doram_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_doramgirl04.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style5\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"5_doram_female\" class=\"hstyle\" />\r\n						<label for=\"5_doram_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_doramgirl05.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style6\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"6_doram_female\" class=\"hstyle\" />\r\n						<label for=\"6_doram_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_doramgirl06.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style7\"></div>\r\n					<div class=\"styleCol style8\"></div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style9\"></div>\r\n					<div class=\"styleCol style10\"></div>\r\n					<div class=\"styleCol style11\"></div>\r\n					<div class=\"styleCol style12\"></div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style13\"></div>\r\n					<div class=\"styleCol style14\"></div>\r\n					<div class=\"styleCol style15\"></div>\r\n					<div class=\"styleCol style16\"></div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style17\"></div>\r\n					<div class=\"styleCol style18\"></div>\r\n					<div class=\"styleCol style19\"></div>\r\n					<div class=\"styleCol style20\"></div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style21\"></div>\r\n					<div class=\"styleCol style22\"></div>\r\n					<div class=\"styleCol style23\"></div>\r\n					<div class=\"styleCol style24\"></div>\r\n				</div>\r\n			</div>\r\n		</div>\r\n		<div class=\"hair_color_title\"></div>\r\n		<div class=\"hair_colors\">\r\n			<div class=\"haircolor_row\">\r\n				<div class=\"colorCol cstyle00\">\r\n					<input type=\"radio\" name=\"hcolor\" id=\"0_color\" checked class=\"hcolor\" />\r\n					<label for=\"0_color\" class=\"hcolor_button\"> </label>\r\n				</div>\r\n				<div class=\"colorCol cstyle01\">\r\n					<input type=\"radio\" name=\"hcolor\" id=\"1_color\" class=\"hcolor\" />\r\n					<label for=\"1_color\" class=\"hcolor_button\"> </label>\r\n				</div>\r\n				<div class=\"colorCol cstyle02\">\r\n					<input type=\"radio\" name=\"hcolor\" id=\"2_color\" class=\"hcolor\" />\r\n					<label for=\"2_color\" class=\"hcolor_button\"> </label>\r\n				</div>\r\n				<div class=\"colorCol cstyle03\">\r\n					<input type=\"radio\" name=\"hcolor\" id=\"3_color\" class=\"hcolor\" />\r\n					<label for=\"3_color\" class=\"hcolor_button\"> </label>\r\n				</div>\r\n				<div class=\"colorCol cstyle04\">\r\n					<input type=\"radio\" name=\"hcolor\" id=\"4_color\" class=\"hcolor\" />\r\n					<label for=\"4_color\" class=\"hcolor_button\"> </label>\r\n				</div>\r\n			</div>\r\n			<div class=\"haircolor_row\">\r\n				<div class=\"colorCol cstyle05\">\r\n					<input type=\"radio\" name=\"hcolor\" id=\"5_color\" class=\"hcolor\" />\r\n					<label for=\"5_color\" class=\"hcolor_button\"> </label>\r\n				</div>\r\n				<div class=\"colorCol cstyle06\">\r\n					<input type=\"radio\" name=\"hcolor\" id=\"6_color\" class=\"hcolor\" />\r\n					<label for=\"6_color\" class=\"hcolor_button\"> </label>\r\n				</div>\r\n				<div class=\"colorCol cstyle07\">\r\n					<input type=\"radio\" name=\"hcolor\" id=\"7_color\" class=\"hcolor\" />\r\n					<label for=\"7_color\" class=\"hcolor_button\"> </label>\r\n				</div>\r\n				<div class=\"colorCol cstyle08\">\r\n					<input type=\"radio\" name=\"hcolor\" id=\"8_color\" class=\"hcolor\" />\r\n					<label for=\"8_color\" class=\"hcolor_button\"> </label>\r\n				</div>\r\n			</div>\r\n		</div>\r\n	</div>\r\n\r\n	<div class=\"btns\">\r\n		<ui-button\r\n			class=\"btn cancel\"\r\n			bg=\"make_character_ver2/bt_close_normal.bmp\"\r\n			hover=\"make_character_ver2/bt_close_over.bmp\"\r\n			down=\"make_character_ver2/bt_close_press.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn make\"\r\n			bg=\"make_character_ver2/bt_make_normal.bmp\"\r\n			hover=\"make_character_ver2/bt_make_over.bmp\"\r\n			down=\"make_character_ver2/bt_make_press.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn return\"\r\n			bg=\"make_character_ver2/bt_make_normal.bmp\"\r\n			hover=\"make_character_ver2/bt_make_over.bmp\"\r\n			down=\"make_character_ver2/bt_make_press.bmp\"\r\n		></ui-button>\r\n	</div>\r\n</div>\r\n";
-}));
-//#endregion
-//#region src/UI/Components/CharCreate/CharCreatev4/CharCreatev4.css?raw
-var CharCreatev4_default$1;
-var init_CharCreatev4$1 = __esmMin((() => {
-	CharCreatev4_default$1 = ":host {\r\n	width: 794px;\r\n	height: 422px;\r\n}\r\n\r\n#charcreate_v4 {\r\n	position: absolute;\r\n	width: 794px;\r\n	height: 422px;\r\n}\r\n\r\n#charcreate_v4 .title {\r\n	position: absolute;\r\n	left: 45px;\r\n	top: 15px;\r\n	height: 20px;\r\n	width: 200px;\r\n}\r\n\r\n#charcreate_v4 .human::before,\r\n#charcreate_v4 .doram::before,\r\n#charcreate_v4 .human::after,\r\n#charcreate_v4 .doram::after {\r\n	content: '';\r\n	display: table;\r\n}\r\n#charcreate_v4 .human::after,\r\n#charcreate_v4 .doram::after {\r\n	clear: both;\r\n}\r\n#charcreate_v4 .race {\r\n	display: none;\r\n}\r\n\r\n/** Human Race **/\r\n#charcreate_v4 .human_label {\r\n	position: absolute;\r\n	width: 370px;\r\n	height: 170px;\r\n	top: 35px;\r\n	left: 20px;\r\n	outline: none;\r\n	background-repeat: no-repeat;\r\n}\r\n#charcreate_v4 .human_title {\r\n	position: absolute;\r\n	color: white;\r\n	top: 22px;\r\n	left: 45px;\r\n	height: 20px;\r\n	width: 50px;\r\n}\r\n#charcreate_v4 .human_desc {\r\n	position: relative;\r\n	top: 22px;\r\n	left: 110px;\r\n	height: 60px;\r\n	width: 220px;\r\n}\r\n/** Human Chargen **/\r\n#charcreate_v4 .human .chargen canvas {\r\n	position: absolute;\r\n	top: 40px;\r\n	left: 25px;\r\n}\r\n\r\n/** Doram Race **/\r\n#charcreate_v4 .doram_label {\r\n	position: absolute;\r\n	width: 370px;\r\n	height: 170px;\r\n	top: 210px;\r\n	left: 20px;\r\n	outline: none;\r\n	background-repeat: no-repeat;\r\n}\r\n#charcreate_v4 .doram_title {\r\n	position: absolute;\r\n	color: white;\r\n	top: 22px;\r\n	left: 45px;\r\n	height: 20px;\r\n	width: 50px;\r\n}\r\n#charcreate_v4 .doram_desc {\r\n	position: relative;\r\n	top: 22px;\r\n	left: 110px;\r\n	height: 60px;\r\n	width: 220px;\r\n}\r\n/** Doram Chargen **/\r\n#charcreate_v4 .doram .chargen_doram canvas {\r\n	position: absolute;\r\n	top: 40px;\r\n	left: 25px;\r\n}\r\n\r\n/* Style */\r\n#charcreate_v4 #style {\r\n	position: relative;\r\n	left: 395px;\r\n	top: 30px;\r\n	width: 200px;\r\n	height: 270px;\r\n}\r\n#charcreate_v4 .gender_button {\r\n	display: none;\r\n}\r\n\r\n#charcreate_v4 #style .gender {\r\n	position: absolute;\r\n	top: 25px;\r\n	left: 40px;\r\n	height: 26px;\r\n	width: 130px;\r\n}\r\n#charcreate_v4 #male_container {\r\n	position: relative;\r\n	height: 25px;\r\n	width: 62px;\r\n	white-space: nowrap;\r\n}\r\n#charcreate_v4 #female_container {\r\n	position: relative;\r\n	left: 61px;\r\n	top: -25px;\r\n	height: 25px;\r\n	width: 62px;\r\n	white-space: nowrap;\r\n}\r\n\r\n#charcreate_v4 #style .male_button {\r\n	position: absolute;\r\n	height: 25px;\r\n	width: 62px;\r\n}\r\n#charcreate_v4 #style .female_button {\r\n	position: absolute;\r\n	height: 25px;\r\n	width: 62px;\r\n}\r\n\r\n/** Style Model **/\r\n#charcreate_v4 .model {\r\n	position: relative;\r\n	top: 115px;\r\n	left: 55px;\r\n	width: 100px;\r\n}\r\n#charcreate_v4 .model canvas {\r\n	position: relative;\r\n	top: -5px;\r\n	left: 17px;\r\n}\r\n\r\n/** Buttons **/\r\n#charcreate_v4 #style .rot_left {\r\n	position: relative;\r\n	top: 40px;\r\n	left: 30px;\r\n	height: 23px;\r\n	width: 22px;\r\n}\r\n#charcreate_v4 #style .rot_right {\r\n	position: relative;\r\n	top: 40px;\r\n	left: 130px;\r\n	height: 23px;\r\n	width: 22px;\r\n}\r\n\r\n/** Char Name **/\r\n#charcreate_v4 #char_name {\r\n	position: relative;\r\n	height: 20px;\r\n	width: 140px;\r\n	top: 115px;\r\n	left: -20px;\r\n	border-width: 0px;\r\n}\r\n\r\n/** Hair Settings **/\r\n#charcreate_v4 #hair_setting {\r\n	position: absolute;\r\n	top: 35px;\r\n	left: 600px;\r\n	height: 380px;\r\n	width: 185px;\r\n}\r\n\r\n#charcreate_v4 .hair_style_title {\r\n	position: relative;\r\n	height: 15px;\r\n	width: 60px;\r\n	top: 10px;\r\n	left: 10px;\r\n}\r\n\r\n#charcreate_v4 .hairstyle_row {\r\n	position: relative;\r\n	display: flex;\r\n	top: 10px;\r\n	left: 10px;\r\n}\r\n#charcreate_v4 .styleCol {\r\n	position: relative;\r\n	width: 36px;\r\n	height: 37px;\r\n	white-space: nowrap;\r\n}\r\n\r\n#charcreate_v4 .hstyle {\r\n	display: none;\r\n}\r\n#charcreate_v4 .hstyle_button {\r\n	position: absolute;\r\n	width: 36px;\r\n	height: 37px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n#charcreate_v4 .hair-styles {\r\n	position: relative;\r\n	width: 100px;\r\n	height: 100px;\r\n}\r\n#charcreate_v4 .hair-style {\r\n	position: absolute;\r\n	height: 225px;\r\n	top: 12px;\r\n	left: -2px;\r\n	display: none;\r\n}\r\n\r\n#charcreate_v4 .hair_color_title {\r\n	position: relative;\r\n	height: 20px;\r\n	width: 60px;\r\n	top: 230px;\r\n	left: 10px;\r\n}\r\n\r\n#charcreate_v4 .hair_colors {\r\n	position: absolute;\r\n	top: 265px;\r\n	left: 15px;\r\n}\r\n#charcreate_v4 .haircolor_row {\r\n	position: relative;\r\n	display: flex;\r\n}\r\n#charcreate_v4 .colorCol {\r\n	position: relative;\r\n	width: 22px;\r\n	height: 22px;\r\n	white-space: nowrap;\r\n	margin: 2px 2px;\r\n}\r\n#charcreate_v4 .hcolor {\r\n	display: none;\r\n}\r\n#charcreate_v4 .hcolor_button {\r\n	position: absolute;\r\n	width: 22px;\r\n	height: 22px;\r\n}\r\n\r\n#charcreate_v4 .btns {\r\n	position: absolute;\r\n	bottom: 4px;\r\n	width: 100%;\r\n	height: 20px;\r\n}\r\n#charcreate_v4 .btn {\r\n	position: absolute;\r\n	width: 42px;\r\n	height: 20px;\r\n}\r\n#charcreate_v4 .make {\r\n	right: 25px;\r\n	top: -20px;\r\n	height: 27px;\r\n	width: 152px;\r\n}\r\n#charcreate_v4 .cancel {\r\n	right: -15px;\r\n	top: -389px;\r\n}\r\n#charcreate_v4 .return {\r\n	width: 152px;\r\n	height: 27px;\r\n	top: -20px;\r\n	left: 25px;\r\n}\r\n\r\n#charcreate_v4 .btns ui-button {\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n	border: 0;\r\n	display: flex;\r\n	align-items: center;\r\n	justify-content: center;\r\n}\r\n";
-}));
-//#endregion
-//#region src/UI/Components/CharCreate/CharCreatev4/CharCreatev4.js
-var CharCreatev4_default;
-var init_CharCreatev4 = __esmMin((() => {
-	init_CharCreatev4$2();
-	init_CharCreatev4$1();
-	init_CharCreateCommon();
-	CharCreatev4_default = createCharCreate({
-		name: "CharCreatev4",
-		htmlText: CharCreatev4_default$2,
-		cssText: CharCreatev4_default$1,
-		hostHeight: 342,
-		hostWidth: 576,
-		hasRace: true,
-		gridHairstyle: true,
-		humanCanvasSelector: "#human",
-		doramCanvasSelector: "#doram",
-		modelCanvasSelector: "#style_model",
-		nameInputSelector: "#char_name",
-		nameInputEvent: "mousedown",
-		cancelSelectors: [".cancel", ".return"],
-		makeSelector: ".make"
-	});
-}));
-//#endregion
-//#region src/UI/Components/CharCreate/CharCreate.js
-var publicName$2, versionInfo$2, Controller$1;
-var init_CharCreate = __esmMin((() => {
-	init_CharCreate$1();
-	init_CharCreatev2();
-	init_CharCreatev3();
-	init_CharCreatev4();
-	init_UIVersionManager();
-	publicName$2 = "CharCreate";
-	versionInfo$2 = {
-		default: CharCreate_default,
-		common: {
-			20180124: CharCreatev4_default,
-			20151001: CharCreatev3_default,
-			20120307: CharCreatev2_default
-		},
-		re: {},
-		prere: {}
-	};
-	Controller$1 = UIVersionManager.getUIController(publicName$2, versionInfo$2);
-}));
-//#endregion
-//#region src/Renderer/Entity/Player.js
-var Player;
-var init_Player = __esmMin((() => {
-	init_Entity$1();
-	Player = class extends Entity {};
-}));
-//#endregion
 //#region src/UI/Components/MobileUI/MobileUI.html?raw
 var MobileUI_default$2;
 var init_MobileUI$2 = __esmMin((() => {
@@ -310107,7 +307572,7 @@ function startAutoTarget() {
 /**
 * Stop event propagation
 */
-function stopPropagation$6(event) {
+function stopPropagation$7(event) {
 	if (event && typeof event.preventDefault === "function") event.preventDefault();
 	event.stopImmediatePropagation();
 	return false;
@@ -310380,11 +307845,11 @@ var init_MobileUI = __esmMin((() => {
 		const root = MobileUI.getRoot();
 		bindButton(root, "#toggleUIButton", (e) => {
 			toggleButtons();
-			stopPropagation$6(e);
+			stopPropagation$7(e);
 		});
 		bindButton(root, "#fullscreenButton", (e) => {
 			toggleFullScreen();
-			stopPropagation$6(e);
+			stopPropagation$7(e);
 		});
 		const fKeyMap = [
 			["#f1Button", 112],
@@ -310435,48 +307900,48 @@ var init_MobileUI = __esmMin((() => {
 		].forEach(([selector, keyCode]) => {
 			bindButton(root, selector, (e) => {
 				logKeyPress(keyCode);
-				stopPropagation$6(e);
+				stopPropagation$7(e);
 			});
 		});
 		bindButton(root, "#f10Button", (e) => {
 			logKeyPress(121);
-			stopPropagation$6(e);
+			stopPropagation$7(e);
 		});
 		bindButton(root, "#f12Button", (e) => {
 			logKeyPress(123);
-			stopPropagation$6(e);
+			stopPropagation$7(e);
 		});
 		bindButton(root, "#insButton", (e) => {
 			logKeyPress(45);
-			stopPropagation$6(e);
+			stopPropagation$7(e);
 		});
 		bindButton(root, "#toggleStatusButton", (e) => {
 			toggleStatus();
-			stopPropagation$6(e);
+			stopPropagation$7(e);
 		});
 		bindButton(root, "#toggleTargetingButton", (e) => {
 			toggleTouchTargeting();
-			stopPropagation$6(e);
+			stopPropagation$7(e);
 		});
 		bindButton(root, "#toggleAutoFollowButton", (e) => {
 			toggleAutoFollow();
-			stopPropagation$6(e);
+			stopPropagation$7(e);
 		});
 		bindButton(root, "#toggleAutoTargetButton", (e) => {
 			toggleAutoTargeting();
-			stopPropagation$6(e);
+			stopPropagation$7(e);
 		});
 		bindButton(root, "#attackButton", (e) => {
 			attackTargeted();
-			stopPropagation$6(e);
+			stopPropagation$7(e);
 		});
 		bindButton(root, "#pickupButton", (e) => {
 			pickUpItem();
-			stopPropagation$6(e);
+			stopPropagation$7(e);
 		});
 		bindButton(root, "#switchshorcutButton", (e) => {
 			switchSkillButtons();
-			stopPropagation$6(e);
+			stopPropagation$7(e);
 		});
 		root.querySelectorAll(".buttons").forEach((btn) => {
 			btn.addEventListener("mousedown", (e) => e.target.classList.add("pressed"));
@@ -314135,7 +311600,7 @@ function onCart(num) {
 	pkt.num = num;
 	Network.sendPacket(pkt);
 	ChangeCart._host.style.display = "none";
-	Renderer.stop(render$2);
+	Renderer.stop(render$3);
 }
 function updateList(blvl) {
 	if (SessionStorage_default.Entity.hasCart == false) return;
@@ -314173,7 +311638,7 @@ function drawActionToCanvas$3(ctx, act, spr, actionId, x, y) {
 /**
 * Rendering the Carts
 */
-function render$2(tick) {
+function render$3(tick) {
 	ChangeCart.getRoot().querySelectorAll(".canvas").forEach((el) => {
 		if (el.offsetParent === null) return;
 		const id = el.getAttribute("data-id");
@@ -314219,7 +311684,7 @@ var init_ChangeCart = __esmMin((() => {
 		this._host.style.left = (Renderer.width - 400) / 2 + "px";
 		root.querySelector(".titlebar .close").addEventListener("click", () => {
 			ChangeCart._host.style.display = "none";
-			Renderer.stop(render$2);
+			Renderer.stop(render$3);
 		});
 		this.draggable(".titlebar");
 		carts.forEach((el) => {
@@ -314250,8 +311715,8 @@ var init_ChangeCart = __esmMin((() => {
 		if (SessionStorage_default.Entity) SessionStorage_default.Entity.dialog.set(msg);
 		ChangeCart.ui.show();
 		updateList(SessionStorage_default.Entity.clevel);
-		Renderer.stop(render$2);
-		Renderer.render(render$2);
+		Renderer.stop(render$3);
+		Renderer.render(render$3);
 	};
 	ChangeCart.onLevelUp = function onLevelUp(blvl) {
 		updateList(blvl);
@@ -314261,13 +311726,13 @@ var init_ChangeCart = __esmMin((() => {
 	* Stop rendering
 	*/
 	ChangeCart.onRemove = function onRemove() {
-		Renderer.stop(render$2);
+		Renderer.stop(render$3);
 	};
 	ChangeCart.onKeyDown = function onKeyDown(event) {
 		if (this._host.style.display === "none") return true;
 		if (event.which === KEYS.ESCAPE || event.key === "Escape") {
 			this._host.style.display = "none";
-			Renderer.stop(render$2);
+			Renderer.stop(render$3);
 			event.stopImmediatePropagation();
 			return false;
 		}
@@ -314314,7 +311779,7 @@ function onCartSelected(type) {
 	pkt.type = type;
 	Network.sendPacket(pkt);
 	CartDecoration._host.style.display = "none";
-	Renderer.stop(render$1);
+	Renderer.stop(render$2);
 }
 /**
 * Pick layers from action file
@@ -314336,7 +311801,7 @@ function drawActionToCanvas$2(ctx, act, spr, actionId, x, y) {
 /**
 * Render loop
 */
-function render$1() {
+function render$2() {
 	CartDecoration.getRoot().querySelectorAll(".canvas").forEach((el) => {
 		if (el.offsetParent === null) return;
 		const id = parseInt(el.getAttribute("data-id"), 10);
@@ -314383,7 +311848,7 @@ var init_CartDecoration = __esmMin((() => {
 		this._host.style.left = (Renderer.width - 255) / 2 + "px";
 		root.querySelector(".titlebar .close").addEventListener("click", () => {
 			CartDecoration._host.style.display = "none";
-			Renderer.stop(render$1);
+			Renderer.stop(render$2);
 		});
 		this.draggable(".titlebar");
 		root.querySelectorAll(".cart").forEach((el) => {
@@ -314416,19 +311881,19 @@ var init_CartDecoration = __esmMin((() => {
 			if (el) el.style.display = "";
 		}
 		CartDecoration.ui.show();
-		Renderer.stop(render$1);
-		Renderer.render(render$1);
+		Renderer.stop(render$2);
+		Renderer.render(render$2);
 	};
 	/**
 	* Remove component
 	*/
 	CartDecoration.onRemove = function onRemove() {
-		Renderer.stop(render$1);
+		Renderer.stop(render$2);
 	};
 	CartDecoration.onKeyDown = function onKeyDown(event) {
 		if ((event.which === KEYS.ESCAPE || event.key === "Escape") && this._host.style.display !== "none") {
 			this._host.style.display = "none";
-			Renderer.stop(render$1);
+			Renderer.stop(render$2);
 		}
 	};
 	CartDecoration.mouseMode = GUIComponent.MouseMode.STOP;
@@ -315571,7 +313036,7 @@ function onItemInfo$8(event) {
 /**
 * Stop event propagation
 */
-function stopPropagation$5(event) {
+function stopPropagation$6(event) {
 	event.stopImmediatePropagation();
 	event.preventDefault();
 	return false;
@@ -315670,7 +313135,7 @@ var init_CashShop$1 = __esmMin((() => {
 	CashShop.init = function init() {
 		const root = _root$6();
 		root.querySelectorAll(".titlebar .base").forEach((btn) => {
-			btn.addEventListener("mousedown", stopPropagation$5);
+			btn.addEventListener("mousedown", stopPropagation$6);
 		});
 		const closeBtn = root.querySelector(".titlebar .close");
 		if (closeBtn) closeBtn.addEventListener("click", () => {
@@ -315742,7 +313207,7 @@ var init_CashShop$1 = __esmMin((() => {
 		});
 		const cartBody = root.querySelector(".panel-cart-body");
 		if (cartBody) {
-			cartBody.addEventListener("dragover", stopPropagation$5);
+			cartBody.addEventListener("dragover", stopPropagation$6);
 			cartBody.addEventListener("drop", onDropToCart);
 		}
 		const panelItems = root.querySelector(".panel-content .panel-items");
@@ -315760,7 +313225,7 @@ var init_CashShop$1 = __esmMin((() => {
 				if (item) onItemInfo$8.call(item, e);
 			});
 		}
-		container.addEventListener("dragover", stopPropagation$5);
+		container.addEventListener("dragover", stopPropagation$6);
 		const cartListItems = root.querySelector("#cart-list .items");
 		if (cartListItems && cartListItems.children.length > 0) onResetCartListCashShop();
 		CashShop.loadCashShopBanner();
@@ -316936,7 +314401,7 @@ function onItemOut$4() {
 /**
 * Stop event propagation
 */
-function stopPropagation$4(event) {
+function stopPropagation$5(event) {
 	event.stopImmediatePropagation();
 	event.preventDefault();
 }
@@ -317106,8 +314571,8 @@ var init_LaphineSys = __esmMin((() => {
 		root.querySelector(".cancel").addEventListener("click", onRequestLaphineClose);
 		const availableMatList = root.querySelector(".available_mat_list");
 		const leftPanel = root.querySelector(".left_panel");
-		availableMatList.addEventListener("dragover", stopPropagation$4);
-		leftPanel.addEventListener("dragover", stopPropagation$4);
+		availableMatList.addEventListener("dragover", stopPropagation$5);
+		leftPanel.addEventListener("dragover", stopPropagation$5);
 		availableMatList.addEventListener("dragstart", (e) => {
 			const item = e.target.closest(".item");
 			if (item) onItemDragStart$3.call(item, e);
@@ -317504,7 +314969,7 @@ function onItemOut$3() {
 /**
 * Stop event propagation
 */
-function stopPropagation$3(event) {
+function stopPropagation$4(event) {
 	event.stopImmediatePropagation();
 	event.preventDefault();
 }
@@ -317675,8 +315140,8 @@ var init_LaphineUpg = __esmMin((() => {
 		root.querySelector(".cancel").addEventListener("click", onRequestLaphineUpgClose);
 		const availableMatList = root.querySelector(".available_mat_list");
 		const leftPanel = root.querySelector(".left_panel");
-		availableMatList.addEventListener("dragover", stopPropagation$3);
-		leftPanel.addEventListener("dragover", stopPropagation$3);
+		availableMatList.addEventListener("dragover", stopPropagation$4);
+		leftPanel.addEventListener("dragover", stopPropagation$4);
 		availableMatList.addEventListener("dragstart", (e) => {
 			const item = e.target.closest(".item");
 			if (item) onItemDragStart$2.call(item, e);
@@ -319519,7 +316984,7 @@ var init_PlayerViewEquipV2 = __esmMin((() => {
 }));
 //#endregion
 //#region src/UI/Components/PlayerViewEquip/PlayerViewEquip.js
-var publicName$1, versionInfo$1, PlayerViewEquipController, _selectUIVersion;
+var publicName$3, versionInfo$3, PlayerViewEquipController, _selectUIVersion;
 var init_PlayerViewEquip = __esmMin((() => {
 	init_PlayerViewEquipV0();
 	init_PlayerViewEquipV1();
@@ -319527,8 +316992,8 @@ var init_PlayerViewEquip = __esmMin((() => {
 	init_UIVersionManager();
 	init_DBManager();
 	init_KeyEventHandler();
-	publicName$1 = "PlayerViewEquip";
-	versionInfo$1 = {
+	publicName$3 = "PlayerViewEquip";
+	versionInfo$3 = {
 		default: PlayerViewEquipV0_default,
 		common: {
 			20150225: PlayerViewEquipV2_default,
@@ -319537,7 +317002,7 @@ var init_PlayerViewEquip = __esmMin((() => {
 		re: {},
 		prere: {}
 	};
-	PlayerViewEquipController = UIVersionManager.getUIController(publicName$1, versionInfo$1);
+	PlayerViewEquipController = UIVersionManager.getUIController(publicName$3, versionInfo$3);
 	_selectUIVersion = PlayerViewEquipController.selectUIVersion;
 	PlayerViewEquipController.selectUIVersion = function() {
 		_selectUIVersion();
@@ -323887,7 +321352,7 @@ function onDrop$3(event) {
 /**
 * Stop event propagation
 */
-function stopPropagation$2(event) {
+function stopPropagation$3(event) {
 	event.preventDefault();
 	event.stopImmediatePropagation();
 }
@@ -323953,7 +321418,7 @@ var init_MakeItemSelection = __esmMin((() => {
 		});
 		const materials = root.querySelector(".materials");
 		materials.addEventListener("drop", onDrop$3);
-		materials.addEventListener("dragover", stopPropagation$2);
+		materials.addEventListener("dragover", stopPropagation$3);
 		root.querySelectorAll(".materials .item").forEach((el) => el.remove());
 		materials.style.display = "none";
 	};
@@ -324318,7 +321783,7 @@ function onDrop$2(event) {
 /**
 * Stop event propagation
 */
-function stopPropagation$1(event) {
+function stopPropagation$2(event) {
 	event.preventDefault();
 	event.stopImmediatePropagation();
 }
@@ -324394,7 +321859,7 @@ var init_ConvertItems = __esmMin((() => {
 		resizeHeight$1(_preferences$6.height);
 		const mainEl = root.querySelector("#ConvertItems");
 		mainEl.addEventListener("drop", onDrop$2);
-		mainEl.addEventListener("dragover", stopPropagation$1);
+		mainEl.addEventListener("dragover", stopPropagation$2);
 		const content = root.querySelector(".container .content");
 		content.addEventListener("wheel", onScroll$2);
 		content.addEventListener("mouseover", (e) => {
@@ -324693,7 +322158,7 @@ function onDrop$1(event) {
 /**
 * Stop event propagation
 */
-function stopPropagation(event) {
+function stopPropagation$1(event) {
 	event.preventDefault();
 	event.stopImmediatePropagation();
 }
@@ -324769,7 +322234,7 @@ var init_ItemListWindowSelection = __esmMin((() => {
 		resizeHeight(_preferences$5.height);
 		const mainEl = root.querySelector("#ItemListWindowSelection");
 		mainEl.addEventListener("drop", onDrop$1);
-		mainEl.addEventListener("dragover", stopPropagation);
+		mainEl.addEventListener("dragover", stopPropagation$1);
 		const content = root.querySelector(".container .content");
 		content.addEventListener("wheel", onScroll$1);
 		content.addEventListener("mouseover", (e) => {
@@ -326572,7 +324037,7 @@ function _setElementClass(el, value, label) {
 /**
 * Rendering the Character
 */
-function render() {
+function render$1() {
 	SpriteRenderer.bind2DContext(_model.ctx, Math.floor(_model.ctx.canvas.width / 2), _model.ctx.canvas.height);
 	_model.ctx.clearRect(0, 0, _model.ctx.canvas.width, _model.ctx.canvas.height);
 	_model.entity.renderEntity();
@@ -326687,14 +324152,14 @@ var init_Sense = __esmMin((() => {
 		_setElementClass(root.querySelector("#element_holy"), pkt.propertyTable.saint, DB.getMessage(420));
 		_setElementClass(root.querySelector("#element_undead"), pkt.propertyTable.undead, DB.getMessage(423));
 		this._host.style.display = "";
-		Renderer.render(render);
+		Renderer.render(render$1);
 	};
 	/**
 	* Remove component from HTML
 	* Stop rendering
 	*/
 	Sense.onRemove = function onRemove() {
-		Renderer.stop(render);
+		Renderer.stop(render$1);
 	};
 	Sense_default = UIManager.addComponent(Sense);
 }));
@@ -331583,7 +329048,6 @@ var init_Achievement = __esmMin((() => {
 }));
 //#endregion
 //#region src/Engine/MapEngine.js
-var MapEngine_exports = /* @__PURE__ */ __exportAll({ default: () => MapEngine });
 /**
 * Pong from server
 * TODO: check the time ?
@@ -332546,6 +330010,2541 @@ var init_MapEngine = __esmMin((() => {
 	_walkLastTick = 0;
 }));
 //#endregion
+//#region src/UI/Components/PincodeWindow/PincodeWindow.html?raw
+var PincodeWindow_default$2;
+var init_PincodeWindow$2 = __esmMin((() => {
+	PincodeWindow_default$2 = "<div id=\"Pincodewindow\">\r\n	<div class=\"titlebar\" data-background=\"basic_interface/titlebar_mid.bmp\">\r\n		<div class=\"left\">\r\n			<ui-button\r\n				class=\"base\"\r\n				bg=\"basic_interface/sys_base_off.bmp\"\r\n				hover=\"basic_interface/sys_base_on.bmp\"\r\n			></ui-button>\r\n			<span class=\"text\" data-text=\"1899\">Pincodewindow</span>\r\n		</div>\r\n		<div class=\"clear\"></div>\r\n	</div>\r\n	<div class=\"panel\" data-background=\"basic_interface/2ndpassword_bg.bmp\">\r\n		<span class=\"txtlabel text1\" data-text=\"1905\">Pincodewindow</span>\r\n		<span class=\"txtlabel text2\" data-text=\"1906\">Pincodewindow</span>\r\n		<ui-button\r\n			class=\"btn num1\"\r\n			bg=\"basic_interface/1-a.bmp\"\r\n			hover=\"basic_interface/1-b.bmp\"\r\n			down=\"basic_interface/1-c.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn num2\"\r\n			bg=\"basic_interface/2-a.bmp\"\r\n			hover=\"basic_interface/2-b.bmp\"\r\n			down=\"basic_interface/2-c.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn num3\"\r\n			bg=\"basic_interface/3-a.bmp\"\r\n			hover=\"basic_interface/3-b.bmp\"\r\n			down=\"basic_interface/3-c.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn num4\"\r\n			bg=\"basic_interface/4-a.bmp\"\r\n			hover=\"basic_interface/4-b.bmp\"\r\n			down=\"basic_interface/4-c.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn num5\"\r\n			bg=\"basic_interface/5-a.bmp\"\r\n			hover=\"basic_interface/5-b.bmp\"\r\n			down=\"basic_interface/5-c.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn num6\"\r\n			bg=\"basic_interface/6-a.bmp\"\r\n			hover=\"basic_interface/6-b.bmp\"\r\n			down=\"basic_interface/6-c.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn num7\"\r\n			bg=\"basic_interface/7-a.bmp\"\r\n			hover=\"basic_interface/7-b.bmp\"\r\n			down=\"basic_interface/7-c.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn num8\"\r\n			bg=\"basic_interface/8-a.bmp\"\r\n			hover=\"basic_interface/8-b.bmp\"\r\n			down=\"basic_interface/8-c.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn num9\"\r\n			bg=\"basic_interface/9-a.bmp\"\r\n			hover=\"basic_interface/9-b.bmp\"\r\n			down=\"basic_interface/9-c.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn num0\"\r\n			bg=\"basic_interface/0-a.bmp\"\r\n			hover=\"basic_interface/0-b.bmp\"\r\n			down=\"basic_interface/0-c.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"numReset\"\r\n			bg=\"basic_interface/reset-a.bmp\"\r\n			hover=\"basic_interface/reset-b.bmp\"\r\n			down=\"basic_interface/reset-c.bmp\"\r\n		></ui-button>\r\n		<span class=\"txtlabel pwd\" data-text=\"1012\">Pincodewindow</span>\r\n		<input class=\"pass\" type=\"password\" value=\"\" />\r\n		<span class=\"txtlabel newpwd\" data-text=\"1013\">Pincodewindow</span>\r\n		<input class=\"newpass\" type=\"password\" value=\"\" />\r\n		<span class=\"txtlabel checkpwd\" data-text=\"1014\">Pincodewindow</span>\r\n		<input class=\"checkpass\" type=\"password\" value=\"\" />\r\n		<ui-button class=\"btn2 ok\" bg=\"btn_big_ok.bmp\" hover=\"btn_big_ok_a.bmp\" down=\"btn_big_ok_b.bmp\"></ui-button>\r\n		<ui-button\r\n			class=\"btn2 change\"\r\n			bg=\"btn_big_change.bmp\"\r\n			hover=\"btn_big_change_a.bmp\"\r\n			down=\"btn_big_change_b.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn2 verify\"\r\n			bg=\"btn_big_next.bmp\"\r\n			hover=\"btn_big_next_a.bmp\"\r\n			down=\"btn_big_next_b.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn2 unused\"\r\n			bg=\"btn_big_unused.bmp\"\r\n			hover=\"btn_big_unused_a.bmp\"\r\n			down=\"btn_big_unused_b.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn2 cancel\"\r\n			bg=\"btn_big_cancel.bmp\"\r\n			hover=\"btn_big_cancel_a.bmp\"\r\n			down=\"btn_big_cancel_b.bmp\"\r\n		></ui-button>\r\n	</div>\r\n	<div class=\"footer\" data-background=\"basic_interface/btnbar_mid2.bmp\"></div>\r\n</div>\r\n";
+}));
+//#endregion
+//#region src/UI/Components/PincodeWindow/PincodeWindow.css?raw
+var PincodeWindow_default$1;
+var init_PincodeWindow$1 = __esmMin((() => {
+	PincodeWindow_default$1 = ":host {\r\n	width: 540px;\r\n	height: 365px;\r\n	top: 50%;\r\n	left: 50%;\r\n}\r\n\r\n#Pincodewindow {\r\n	position: absolute;\r\n	width: 540px;\r\n}\r\n\r\n#Pincodewindow .clear {\r\n	clear: both;\r\n}\r\n\r\n#Pincodewindow .titlebar {\r\n	width: 540px;\r\n	height: 17px;\r\n	background-color: white;\r\n	background-repeat: repeat-x;\r\n	border-radius: 3px 3px 0px 0px;\r\n}\r\n\r\n#Pincodewindow .titlebar .base {\r\n	width: 11px;\r\n	height: 11px;\r\n	border: none;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	vertical-align: middle;\r\n}\r\n\r\n#Pincodewindow .titlebar .text {\r\n	text-shadow: 1px 1px white;\r\n	vertical-align: -2px;\r\n	white-space: nowrap;\r\n	display: inline-block;\r\n	width: 32px;\r\n	height: 13px;\r\n	font-size: 11px;\r\n	font-weight: bold;\r\n}\r\n\r\n#Pincodewindow .titlebar .left {\r\n	margin-left: 3px;\r\n	float: left;\r\n}\r\n\r\n#Pincodewindow .titlebar .clear {\r\n	clear: both;\r\n}\r\n\r\n#Pincodewindow .panel {\r\n	background-color: white;\r\n	width: 540px;\r\n	height: 320px;\r\n}\r\n\r\n#Pincodewindow .panel .txtlabel {\r\n	position: absolute;\r\n	text-shadow: 1px 1px white;\r\n	white-space: nowrap;\r\n	width: 32px;\r\n	height: 13px;\r\n}\r\n\r\n#Pincodewindow .panel .txtlabel.text1 {\r\n	top: 27px;\r\n	left: 200px;\r\n}\r\n\r\n#Pincodewindow .panel .txtlabel.text2 {\r\n	top: 45px;\r\n	left: 200px;\r\n}\r\n\r\n#Pincodewindow .panel .txtlabel.pwd {\r\n	top: 75px;\r\n	left: 412px;\r\n}\r\n\r\n#Pincodewindow .panel .txtlabel.newpwd {\r\n	top: 115px;\r\n	left: 412px;\r\n}\r\n\r\n#Pincodewindow .panel .txtlabel.checkpwd {\r\n	top: 155px;\r\n	left: 412px;\r\n}\r\n\r\n#Pincodewindow .panel .pass {\r\n	top: 90px;\r\n	left: 412px;\r\n	position: absolute;\r\n	width: 100px;\r\n}\r\n\r\n#Pincodewindow .panel .newpass {\r\n	top: 130px;\r\n	left: 412px;\r\n	position: absolute;\r\n	width: 100px;\r\n}\r\n\r\n#Pincodewindow .panel .checkpass {\r\n	top: 170px;\r\n	left: 412px;\r\n	position: absolute;\r\n	width: 100px;\r\n}\r\n\r\n#Pincodewindow .panel .btn {\r\n	width: 60px;\r\n	height: 60px;\r\n	border: 0;\r\n	position: absolute;\r\n	background: none;\r\n}\r\n\r\n#Pincodewindow .panel .btn2 {\r\n	width: 100px;\r\n	height: 20px;\r\n	border: 0;\r\n	position: absolute;\r\n	background: none;\r\n}\r\n\r\n#Pincodewindow .panel .numReset {\r\n	position: absolute;\r\n	width: 119px;\r\n	height: 60px;\r\n	top: 257px;\r\n	left: 280px;\r\n	border: 0;\r\n	background: none;\r\n}\r\n\r\n#Pincodewindow .panel .btn.num1 {\r\n	top: 77px;\r\n	left: 220px;\r\n}\r\n\r\n#Pincodewindow .panel .btn.num2 {\r\n	top: 77px;\r\n	left: 280px;\r\n}\r\n\r\n#Pincodewindow .panel .btn.num3 {\r\n	top: 77px;\r\n	left: 340px;\r\n}\r\n\r\n#Pincodewindow .panel .btn.num4 {\r\n	top: 137px;\r\n	left: 220px;\r\n}\r\n\r\n#Pincodewindow .panel .btn.num5 {\r\n	top: 137px;\r\n	left: 280px;\r\n}\r\n\r\n#Pincodewindow .panel .btn.num6 {\r\n	top: 137px;\r\n	left: 340px;\r\n}\r\n\r\n#Pincodewindow .panel .btn.num7 {\r\n	top: 197px;\r\n	left: 220px;\r\n}\r\n\r\n#Pincodewindow .panel .btn.num8 {\r\n	top: 197px;\r\n	left: 280px;\r\n}\r\n\r\n#Pincodewindow .panel .btn.num9 {\r\n	top: 197px;\r\n	left: 340px;\r\n}\r\n\r\n#Pincodewindow .panel .btn.num0 {\r\n	top: 257px;\r\n	left: 220px;\r\n}\r\n\r\n#Pincodewindow .panel .btn2.ok {\r\n	top: 200px;\r\n	left: 412px;\r\n}\r\n\r\n#Pincodewindow .panel .btn2.verify {\r\n	top: 200px;\r\n	left: 412px;\r\n}\r\n\r\n#Pincodewindow .panel .btn2.next {\r\n	top: 200px;\r\n	left: 412px;\r\n}\r\n\r\n#Pincodewindow .panel .btn2.change {\r\n	top: 225px;\r\n	left: 412px;\r\n}\r\n\r\n#Pincodewindow .panel .btn2.unused {\r\n	top: 250px;\r\n	left: 412px;\r\n}\r\n\r\n#Pincodewindow .panel .btn2.cancel {\r\n	top: 275px;\r\n	left: 412px;\r\n}\r\n\r\n#Pincodewindow .footer {\r\n	width: 100%;\r\n	height: 27px;\r\n	background-repeat: repeat-x;\r\n	background-color: transparent;\r\n	position: relative;\r\n}\r\n";
+}));
+//#endregion
+//#region src/UI/Components/PincodeWindow/PincodeWindow.js
+function shuffleUsingKeypad(keypad) {
+	const root = PincodeWindow.getRoot();
+	if (!root || !keypad) return;
+	const originalPositions = {};
+	for (let loc = 0; loc < 10; loc++) {
+		const btn = root.querySelector(".btn.num" + loc);
+		if (!btn) continue;
+		originalPositions[loc] = {
+			top: btn.offsetTop,
+			left: btn.offsetLeft
+		};
+	}
+	for (let loc = 0; loc < 10; loc++) {
+		const d = keypad[loc];
+		const btn = root.querySelector(".btn.num" + d);
+		if (!btn || !originalPositions[loc]) continue;
+		btn.style.top = originalPositions[loc].top + "px";
+		btn.style.left = originalPositions[loc].left + "px";
+	}
+}
+function advanceVisualSeed() {
+	if (PincodeWindow._currentSeed !== void 0) {
+		const multiplier = parseInt("0x3498", 16);
+		const baseSeed = parseInt("0x881234", 16);
+		PincodeWindow._currentSeed[0] = baseSeed + PincodeWindow._currentSeed[0] * multiplier >>> 0;
+		shuffleUsingKeypad(generateKeypad(PincodeWindow._currentSeed[0]));
+	}
+}
+/**
+* Stop an event from propagating
+*/
+function stopPropagation(event) {
+	event.stopImmediatePropagation();
+	event.preventDefault();
+}
+function generateKeypad(_userseed) {
+	const tab = new Uint8Array([
+		0,
+		1,
+		2,
+		3,
+		4,
+		5,
+		6,
+		7,
+		8,
+		9
+	]);
+	const keypad = new Uint8Array([
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0
+	]);
+	const multiplier = parseInt("0x3498", 16);
+	const baseSeed = parseInt("0x881234", 16);
+	let pos = 0;
+	const userSeed = new Uint32Array([_userseed]);
+	for (let i = 1; i < 10; i++) {
+		userSeed[0] = baseSeed + userSeed[0] * multiplier >>> 0;
+		pos = userSeed[0] % (i + 1);
+		if (i != pos) {
+			tab[i] ^= tab[pos];
+			tab[pos] ^= tab[i];
+			tab[i] ^= tab[pos];
+		}
+	}
+	for (let i = 0; i < 10; i++) keypad[tab[i]] = i;
+	return keypad;
+}
+function encryptPincode(pincode) {
+	let intCode = 0;
+	let strCode = "";
+	let out = "";
+	intCode = Number.parseInt(pincode);
+	if (isNaN(intCode) === false && Number.isSafeInteger(intCode) === true) {
+		if (intCode >= 0 && intCode < 1e6 && pincode.length >= 4 && pincode.length <= 6) {
+			for (let ic = pincode.length - 1; ic > 0; ic--) if (intCode < Math.pow(10, ic)) strCode += "0";
+			strCode += intCode.toString();
+			for (let i = 0; i < strCode.length; i++) {
+				const x = Number(strCode[i]);
+				out += PincodeWindow._keypad[x].toString();
+			}
+		} else console.error("ERROR: PincodeWindow.encryptPincode(): Pincode length invalid.");
+	} else console.error("ERROR: PincodeWindow.encryptPincode(): Unsafe Int.");
+	return out;
+}
+function success() {
+	let passEnc = PincodeWindow._pass;
+	let newPassEnc = PincodeWindow._newpass;
+	if (PincodeWindow._keypad !== void 0) {
+		if (passEnc.length > 0) passEnc = encryptPincode(passEnc);
+		if (newPassEnc.length > 0) newPassEnc = encryptPincode(newPassEnc);
+	}
+	PincodeWindow._resetstate = 0;
+	switch (PincodeWindow.sel_input) {
+		case 2:
+			PincodeWindow.onPincodeReset(passEnc, newPassEnc);
+			break;
+		default: PincodeWindow.onPincodeCheckRequest(passEnc);
+	}
+	PincodeWindow.resetPins();
+}
+/**
+* Press "cancel" or ESCAPE key
+*/
+function cancel() {
+	UIManager.showPromptBox(DB.getMessage(17), "ok", "cancel", () => {
+		PincodeWindow.resetPins();
+		PincodeWindow.onExitRequest();
+	}, null);
+}
+function keyNum(num) {
+	switch (PincodeWindow.sel_input) {
+		case 1:
+			PincodeWindow._newpass += num;
+			break;
+		default:
+			PincodeWindow._pass += num;
+			break;
+		case 2: PincodeWindow._checkpass += num;
+	}
+}
+function render() {
+	const root = PincodeWindow.getRoot();
+	if (!root) return;
+	let str = "";
+	for (let x = 0; x < PincodeWindow._newpass.length; x++) str += "*";
+	const newpassEl = root.querySelector(".newpass");
+	if (newpassEl) newpassEl.value = str;
+	str = "";
+	for (let x = 0; x < PincodeWindow._checkpass.length; x++) str += "*";
+	const checkpassEl = root.querySelector(".checkpass");
+	if (checkpassEl) checkpassEl.value = str;
+	str = "";
+	for (let x = 0; x < PincodeWindow._pass.length; x++) str += "*";
+	const passEl = root.querySelector(".pass");
+	if (passEl) passEl.value = str;
+}
+var PincodeWindow, PincodeWindow_default;
+var init_PincodeWindow = __esmMin((() => {
+	init_DBManager();
+	init_Renderer();
+	init_UIManager();
+	init_GUIComponent();
+	init_PincodeWindow$2();
+	init_PincodeWindow$1();
+	init_Elements();
+	PincodeWindow = new GUIComponent("PincodeWindow", PincodeWindow_default$1);
+	/**
+	* Render HTML
+	*/
+	PincodeWindow.render = () => PincodeWindow_default$2;
+	PincodeWindow.resetUI = function resetUI() {
+		PincodeWindow._resetstate = 0;
+		PincodeWindow._keypad = void 0;
+		PincodeWindow._currentSeed = void 0;
+		PincodeWindow.init();
+	};
+	PincodeWindow.getResetState = function getResetState() {
+		return PincodeWindow._resetstate;
+	};
+	PincodeWindow.clearPin = function clearPin() {
+		switch (PincodeWindow.sel_input) {
+			case 1:
+				PincodeWindow._newpass = "";
+				break;
+			default:
+				PincodeWindow._pass = "";
+				break;
+			case 2: PincodeWindow._checkpass = "";
+		}
+	};
+	PincodeWindow.resetPins = function resetPins() {
+		PincodeWindow._pass = "";
+		PincodeWindow._checkpass = "";
+		PincodeWindow._newpass = "";
+	};
+	PincodeWindow.setUserSeed = function setUserSeed(value) {
+		PincodeWindow._keypad = generateKeypad(value);
+		PincodeWindow._currentSeed = new Uint32Array([value]);
+	};
+	/**
+	* Initialize UI
+	*/
+	PincodeWindow.init = function init() {
+		const root = this.getRoot();
+		this._host.style.top = (Renderer.height - 358) / 2 + "px";
+		this._host.style.left = (Renderer.width - 576) / 2 + "px";
+		root.querySelector(".pass").disabled = true;
+		root.querySelector(".newpass").disabled = true;
+		root.querySelector(".checkpass").disabled = true;
+		root.querySelector(".btn2.unused").style.display = "none";
+		const verifyBtn = root.querySelector(".btn2.verify");
+		verifyBtn.disabled = true;
+		verifyBtn.style.display = "none";
+		const changeBtn = root.querySelector(".btn2.change");
+		const okBtn = root.querySelector(".btn2.ok");
+		changeBtn.disabled = false;
+		okBtn.disabled = false;
+		okBtn.style.display = "";
+		root.querySelector(".panel").querySelectorAll(".btn, .btn2, .numReset").forEach((btn) => {
+			const clone = btn.cloneNode(true);
+			btn.parentNode.replaceChild(clone, btn);
+		});
+		const cancelBtn = root.querySelector(".btn2.cancel");
+		const okBtnNew = root.querySelector(".btn2.ok");
+		const changeBtnNew = root.querySelector(".btn2.change");
+		root.querySelector(".btn2.verify");
+		const numResetBtn = root.querySelector(".numReset");
+		for (let i = 0; i <= 9; i++) {
+			const numBtn = root.querySelector(".btn.num" + i);
+			if (numBtn) {
+				const num = String(i);
+				numBtn.addEventListener("click", () => keyNum(num));
+			}
+		}
+		cancelBtn.addEventListener("click", cancel);
+		okBtnNew.addEventListener("click", success);
+		changeBtnNew.addEventListener("click", PincodeWindow.userChangePin);
+		numResetBtn.addEventListener("click", () => {
+			PincodeWindow.clearPin();
+			advanceVisualSeed();
+		});
+		if (PincodeWindow._keypad !== void 0) shuffleUsingKeypad(PincodeWindow._keypad);
+		const baseBtn = root.querySelector(".titlebar .base");
+		if (baseBtn) baseBtn.addEventListener("mousedown", stopPropagation);
+		cancelBtn.addEventListener("mousedown", stopPropagation);
+		okBtnNew.addEventListener("mousedown", stopPropagation);
+		this.draggable(".titlebar");
+		PincodeWindow.resetPins();
+		PincodeWindow.selectInput(0);
+	};
+	/**
+	* Once append to body
+	*/
+	PincodeWindow.onAppend = function onAppend() {
+		if (!PincodeWindow._overlay) {
+			const overlay = document.createElement("div");
+			overlay.className = "win_popup_overlay";
+			document.body.appendChild(overlay);
+			PincodeWindow._overlay = overlay;
+		}
+		Renderer.render(render);
+		queueMicrotask(() => {
+			if (PincodeWindow._overlay && PincodeWindow._host) {
+				const hostZ = parseInt(PincodeWindow._host.style.zIndex, 10) || 100;
+				PincodeWindow._overlay.style.zIndex = String(hostZ - 1);
+			}
+		});
+	};
+	/**
+	* Stop rendering
+	*/
+	PincodeWindow.onRemove = function onRemove() {
+		Renderer.stop(render);
+		if (PincodeWindow._overlay) {
+			PincodeWindow._overlay.remove();
+			PincodeWindow._overlay = null;
+		}
+	};
+	PincodeWindow.selectInput = function selectInput(selection) {
+		PincodeWindow.sel_input = selection;
+		const root = PincodeWindow.getRoot();
+		if (!root) return;
+		const passEl = root.querySelector(".pass");
+		const newpassEl = root.querySelector(".newpass");
+		const checkpassEl = root.querySelector(".checkpass");
+		if (!passEl) return;
+		const active = "#87CEFA";
+		const inactive = "#D3D3D3";
+		switch (selection) {
+			case 1:
+				passEl.style.backgroundColor = inactive;
+				checkpassEl.style.backgroundColor = inactive;
+				newpassEl.style.backgroundColor = active;
+				break;
+			case 2:
+				newpassEl.style.backgroundColor = inactive;
+				passEl.style.backgroundColor = inactive;
+				checkpassEl.style.backgroundColor = active;
+				break;
+			default:
+				newpassEl.style.backgroundColor = inactive;
+				checkpassEl.style.backgroundColor = inactive;
+				passEl.style.backgroundColor = active;
+		}
+	};
+	/**
+	* Called by the parent when the result of the old pincode check is received from the server.
+	*/
+	PincodeWindow.onOldPincodeCheckResult = function onOldPincodeCheckResult(result) {
+		if (result === true) success();
+		else UIManager.showMessageBox(DB.getMessage(1892), "ok");
+	};
+	/**
+	* Called by the parent when we have received a pincode reset request from the server.
+	*/
+	PincodeWindow.onParentPincodeResetReq = function onParentPincodeResetReq() {
+		const root = PincodeWindow.getRoot();
+		if (!root) return;
+		if (PincodeWindow._resetstate === 3) {
+			if (typeof PincodeWindow.onPincodeReset === "function" && PincodeWindow._pass !== PincodeWindow._newpass && PincodeWindow._newpass.length > 3 && PincodeWindow._newpass.length < 7 && PincodeWindow._newpass === PincodeWindow._checkpass) success();
+			else UIManager.showMessageBox(DB.getMessage(1887), "ok");
+		} else if (PincodeWindow._resetstate === 2) {
+			if (PincodeWindow._newpass.length > 3 && PincodeWindow._newpass.length < 7 && PincodeWindow._pass !== PincodeWindow._newpass) {
+				PincodeWindow.selectInput(2);
+				PincodeWindow.clearPin();
+				PincodeWindow._resetstate = 3;
+				const verifyBtn = root.querySelector(".btn2.verify");
+				const okBtn = root.querySelector(".btn2.ok");
+				if (verifyBtn) {
+					verifyBtn.disabled = true;
+					verifyBtn.style.display = "none";
+				}
+				if (okBtn) {
+					okBtn.disabled = false;
+					okBtn.style.display = "";
+				}
+				advanceVisualSeed();
+			} else {
+				UIManager.showMessageBox(DB.getMessage(1887), "ok");
+				if (PincodeWindow._newpass.length < 4 || PincodeWindow._newpass.length > 6) PincodeWindow._newpass = "";
+			}
+		} else if (PincodeWindow._resetstate === 1) {
+			if (PincodeWindow._pass.length > 3 && PincodeWindow._pass.length < 7) {
+				PincodeWindow.selectInput(1);
+				PincodeWindow._resetstate = 2;
+				advanceVisualSeed();
+			} else {
+				UIManager.showMessageBox(DB.getMessage(1887), "ok");
+				PincodeWindow.clearPin();
+			}
+		} else {
+			const okBtn = root.querySelector(".btn2.ok");
+			const changeBtn = root.querySelector(".btn2.change");
+			const verifyBtn = root.querySelector(".btn2.verify");
+			if (okBtn) {
+				okBtn.disabled = true;
+				okBtn.style.display = "none";
+				const okClone = okBtn.cloneNode(true);
+				okBtn.parentNode.replaceChild(okClone, okBtn);
+				okClone.addEventListener("click", () => PincodeWindow.onParentPincodeResetReq());
+				okClone.addEventListener("mousedown", stopPropagation);
+			}
+			if (changeBtn) changeBtn.disabled = true;
+			if (verifyBtn) {
+				verifyBtn.disabled = false;
+				const verifyClone = verifyBtn.cloneNode(true);
+				verifyBtn.parentNode.replaceChild(verifyClone, verifyBtn);
+				verifyClone.addEventListener("click", () => PincodeWindow.onParentPincodeResetReq());
+				verifyClone.style.display = "";
+			}
+			PincodeWindow.selectInput(0);
+			PincodeWindow.clearPin();
+			PincodeWindow._resetstate = 1;
+			advanceVisualSeed();
+		}
+	};
+	/**
+	* Called by us when the user clicks on the change button in the UI.
+	*/
+	PincodeWindow.userChangePin = function userChangePin() {
+		const root = PincodeWindow.getRoot();
+		if (!root) return;
+		if (PincodeWindow._resetstate === 3) {
+			if (typeof PincodeWindow.onPincodeReset === "function" && PincodeWindow._pass !== PincodeWindow._newpass && PincodeWindow._newpass.length > 3 && PincodeWindow._newpass.length < 7 && PincodeWindow._newpass === PincodeWindow._checkpass) success();
+			else UIManager.showMessageBox(DB.getMessage(1887), "ok");
+		} else if (PincodeWindow._resetstate === 2) {
+			if (PincodeWindow._newpass.length > 3 && PincodeWindow._newpass.length < 7 && PincodeWindow._pass !== PincodeWindow._newpass) {
+				PincodeWindow.selectInput(2);
+				PincodeWindow._resetstate = 3;
+				const verifyBtn = root.querySelector(".btn2.verify");
+				const okBtn = root.querySelector(".btn2.ok");
+				if (verifyBtn) {
+					verifyBtn.disabled = true;
+					verifyBtn.style.display = "none";
+				}
+				if (okBtn) {
+					okBtn.disabled = false;
+					okBtn.style.display = "";
+				}
+				advanceVisualSeed();
+			} else {
+				UIManager.showMessageBox(DB.getMessage(1887), "ok");
+				if (PincodeWindow._newpass.length < 4 || PincodeWindow._newpass.length > 6) PincodeWindow._newpass = "";
+			}
+		} else if (PincodeWindow._resetstate === 1) {
+			if (PincodeWindow._pass.length > 3 && PincodeWindow._pass.length < 7) {
+				PincodeWindow.selectInput(1);
+				PincodeWindow._resetstate = 2;
+				advanceVisualSeed();
+			} else {
+				UIManager.showMessageBox(DB.getMessage(1887), "ok");
+				PincodeWindow.clearPin();
+			}
+		} else {
+			const okBtn = root.querySelector(".btn2.ok");
+			const changeBtn = root.querySelector(".btn2.change");
+			const verifyBtn = root.querySelector(".btn2.verify");
+			if (okBtn) {
+				okBtn.disabled = true;
+				okBtn.style.display = "none";
+				okBtn.replaceWith(okBtn.cloneNode(true));
+				root.querySelector(".btn2.ok").addEventListener("click", () => PincodeWindow.userChangePin());
+			}
+			if (changeBtn) changeBtn.disabled = true;
+			if (verifyBtn) {
+				verifyBtn.disabled = false;
+				verifyBtn.replaceWith(verifyBtn.cloneNode(true));
+				const newVerifyBtn = root.querySelector(".btn2.verify");
+				newVerifyBtn.addEventListener("click", () => PincodeWindow.userChangePin());
+				newVerifyBtn.style.display = "";
+			}
+			PincodeWindow.selectInput(0);
+			PincodeWindow.resetPins();
+			PincodeWindow._resetstate = 1;
+			advanceVisualSeed();
+			PincodeWindow.onUserPincodeResetReq();
+		}
+	};
+	/**
+	* Methods to define (overridden by CharEngine.js)
+	*/
+	PincodeWindow.onPincodeCheckRequest = function onPincodeCheckRequest() {
+		console.error("ERROR: PincodeWindow.onPincodeCheckRequest() not defined.");
+	};
+	PincodeWindow.onExitRequest = function onExitRequest() {
+		console.error("WARNING: PincodeWindow.onExitRequest() not defined.");
+		PincodeWindow.resetUI();
+	};
+	PincodeWindow.onPincodeReset = function onPincodeReset() {
+		console.error("ERROR: PincodeWindow.onPincodeReset() not defined.");
+	};
+	PincodeWindow.onUserPincodeResetReq = function onUserPincodeResetReq() {
+		console.error("ERROR: PincodeWindow.onUserPincodeResetReq() not defined.");
+	};
+	PincodeWindow.mouseMode = GUIComponent.MouseMode.STOP;
+	PincodeWindow.needFocus = true;
+	PincodeWindow_default = UIManager.addComponent(PincodeWindow);
+}));
+//#endregion
+//#region src/UI/Components/CharSelect/CharSelect/CharSelect.html?raw
+var CharSelect_default$2;
+var init_CharSelect$3 = __esmMin((() => {
+	CharSelect_default$2 = "<div id=\"charselect\">\r\n	<ui-image src=\"login_interface/win_select.bmp\"></ui-image>\r\n	<!-- BOX -->\r\n	<div class=\"box_select\"><ui-image src=\"login_interface/box_select.bmp\"></ui-image></div>\r\n	<canvas class=\"slot1\" width=\"126\" height=\"132\"></canvas>\r\n	<canvas class=\"slot2\" width=\"126\" height=\"132\"></canvas>\r\n	<canvas class=\"slot3\" width=\"126\" height=\"132\"></canvas>\r\n\r\n	<!-- Arrows -->\r\n	<ui-button class=\"arrow left\" bg=\"scroll1left.bmp\"></ui-button>\r\n	<ui-button class=\"arrow right\" bg=\"scroll1right.bmp\"></ui-button>\r\n\r\n	<!-- Slots infos -->\r\n	<div class=\"slotinfo\">\r\n		<span class=\"number\">0 / 27</span>\r\n		<span class=\"content\"></span>\r\n	</div>\r\n\r\n	<!-- Pages infos -->\r\n	<div class=\"pageinfo\"><span class=\"current\">1</span> / <span class=\"count\">9</span></div>\r\n\r\n	<!-- Characters infos -->\r\n	<div class=\"charinfo\">\r\n		<div class=\"name\"></div>\r\n		<div class=\"job\"></div>\r\n		<div class=\"lvl\"></div>\r\n		<div class=\"exp\"></div>\r\n		<div class=\"hp\"></div>\r\n		<div class=\"sp\"></div>\r\n		<div class=\"map\"></div>\r\n		<div class=\"str\"></div>\r\n		<div class=\"agi\"></div>\r\n		<div class=\"vit\"></div>\r\n		<div class=\"int\"></div>\r\n		<div class=\"dex\"></div>\r\n		<div class=\"luk\"></div>\r\n	</div>\r\n\r\n	<!-- Buttons -->\r\n	<div class=\"btns\">\r\n		<ui-button class=\"btn delete\" bg=\"btn_del.bmp\" hover=\"btn_del_a.bmp\" down=\"btn_del_b.bmp\"></ui-button>\r\n		<ui-button class=\"btn cancel\" bg=\"btn_cancel.bmp\" hover=\"btn_cancel_a.bmp\" down=\"btn_cancel_b.bmp\"></ui-button>\r\n		<ui-button class=\"btn ok\" bg=\"btn_ok.bmp\" hover=\"btn_ok_a.bmp\" down=\"btn_ok_b.bmp\"></ui-button>\r\n		<ui-button class=\"btn make\" bg=\"btn_make.bmp\" hover=\"btn_make_a.bmp\" down=\"btn_make_b.bmp\"></ui-button>\r\n	</div>\r\n</div>\r\n";
+}));
+//#endregion
+//#region src/UI/Components/CharSelect/CharSelect/CharSelect.css?raw
+var CharSelect_default$1;
+var init_CharSelect$2 = __esmMin((() => {
+	CharSelect_default$1 = ":host {\r\n	width: 576px;\r\n	height: 342px;\r\n}\r\n\r\n#charselect {\r\n	position: absolute;\r\n	width: 576px;\r\n	height: 342px;\r\n}\r\n\r\n/** Box **/\r\n#charselect .box_select {\r\n	position: absolute;\r\n	width: 139px;\r\n	height: 144px;\r\n	top: 40px;\r\n	margin-left: -5px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n#charselect canvas {\r\n	position: absolute;\r\n	top: 44px;\r\n}\r\n#charselect .slot1 {\r\n	left: 60px;\r\n}\r\n#charselect .slot2 {\r\n	left: 224px;\r\n}\r\n#charselect .slot3 {\r\n	left: 386px;\r\n}\r\n\r\n/** Arrow **/\r\n#charselect .arrow {\r\n	position: absolute;\r\n	top: 105px;\r\n	width: 13px;\r\n	height: 13px;\r\n}\r\n#charselect .arrow.left {\r\n	left: 40px;\r\n}\r\n#charselect .arrow.right {\r\n	right: 40px;\r\n}\r\n\r\n/** Slot info **/\r\n#charselect .slotinfo {\r\n	position: absolute;\r\n	top: 195px;\r\n	right: 10px;\r\n	height: 20px;\r\n	display: block;\r\n	border: 1px solid #c6cee7;\r\n	border-radius: 4px;\r\n	padding-left: 10px;\r\n	padding-right: 10px;\r\n}\r\n#charselect .slotinfo .number {\r\n	color: #58709e;\r\n	font-weight: bold;\r\n	margin-right: 10px;\r\n}\r\n#charselect .slotinfo .content {\r\n	color: #555;\r\n	top: 6px;\r\n	right: 8px;\r\n}\r\n\r\n/** Page info **/\r\n#charselect .pageinfo {\r\n	position: absolute;\r\n	left: 275px;\r\n	top: 185px;\r\n	font-weight: bold;\r\n	color: #646464;\r\n}\r\n#charselect .pageinfo .current {\r\n	color: #fe3b7d;\r\n}\r\n\r\n/** Characters infos **/\r\n#charselect .charinfo {\r\n	position: absolute;\r\n	width: 285px;\r\n	top: 204px;\r\n	left: 16px;\r\n}\r\n#charselect .charinfo div {\r\n	position: absolute;\r\n	width: 90px;\r\n	height: 13px;\r\n}\r\n#charselect .charinfo .name {\r\n	left: 52px;\r\n	top: 2px;\r\n	white-space: nowrap;\r\n}\r\n#charselect .charinfo .job {\r\n	left: 52px;\r\n	top: 18px;\r\n}\r\n#charselect .charinfo .lvl {\r\n	left: 52px;\r\n	top: 34px;\r\n}\r\n#charselect .charinfo .exp {\r\n	left: 52px;\r\n	top: 50px;\r\n}\r\n#charselect .charinfo .hp {\r\n	left: 52px;\r\n	top: 66px;\r\n}\r\n#charselect .charinfo .sp {\r\n	left: 52px;\r\n	top: 82px;\r\n}\r\n#charselect .charinfo .map {\r\n	left: 52px;\r\n	top: 98px;\r\n	width: 238px;\r\n}\r\n#charselect .charinfo .str {\r\n	left: 200px;\r\n	top: 2px;\r\n}\r\n#charselect .charinfo .agi {\r\n	left: 200px;\r\n	top: 18px;\r\n}\r\n#charselect .charinfo .vit {\r\n	left: 200px;\r\n	top: 34px;\r\n}\r\n#charselect .charinfo .int {\r\n	left: 200px;\r\n	top: 50px;\r\n}\r\n#charselect .charinfo .dex {\r\n	left: 200px;\r\n	top: 66px;\r\n}\r\n#charselect .charinfo .luk {\r\n	left: 200px;\r\n	top: 82px;\r\n}\r\n\r\n/** Buttons **/\r\n#charselect .btns {\r\n	position: absolute;\r\n	bottom: 4px;\r\n	width: 100%;\r\n	height: 20px;\r\n}\r\n#charselect .btn {\r\n	position: absolute;\r\n	width: 42px;\r\n	height: 20px;\r\n}\r\n\r\n#charselect .ok,\r\n#charselect .make {\r\n	right: 50px;\r\n}\r\n#charselect .cancel {\r\n	right: 4px;\r\n}\r\n#charselect .delete {\r\n	left: 4px;\r\n}\r\n";
+}));
+//#endregion
+//#region src/UI/Components/CharSelect/CharSelectCommon.js
+function createCharSelect(config) {
+	const { name, htmlText, cssText, gridLayout = false, hostHeight = 342, defaultMaxSlots = 27, deleteReservation = false, packetverGatedDelete = false, pageBalls = false } = config;
+	const Component = new GUIComponent(name, cssText);
+	Component.render = () => htmlText;
+	/**
+	* @var {Preferences} save where the cursor position is
+	*/
+	const _preferences = Preferences.get(name, { index: 0 }, 1);
+	/**
+	* @var {number} max slots
+	*/
+	let _maxSlots = defaultMaxSlots;
+	/**
+	* var {Array} list of characters
+	*/
+	const _list = [];
+	/**
+	* @var {Array} list of characters (index by slot)
+	*/
+	const _slots = [];
+	/**
+	* @var {Array} list of entities (index by slot)
+	*/
+	const _entitySlots = [];
+	/**
+	* @var {number} selector index
+	*/
+	let _index = 0;
+	/**
+	* @var {Array} canvas context
+	*/
+	const _ctx = [];
+	/**
+	* var {number} sex
+	*/
+	let _sex = 0;
+	/**
+	* var {boolean} disable input
+	*/
+	let _disable_UI = false;
+	/**
+	* Grid (V4) background/countdown state
+	*/
+	let img = 0;
+	let _curindex = 0;
+	let shouldRunBackgroundChange = false;
+	let countdownInterval;
+	let _bgInterval = null;
+	const render = gridLayout ? renderGrid : renderPaginated;
+	const moveCursorTo = gridLayout ? moveCursorToGrid : moveCursorToPaginated;
+	/**
+	* Initialize UI
+	*/
+	Component.init = function init() {
+		const root = this.getRoot();
+		if (gridLayout) {
+			root.querySelector(".ok").addEventListener("click", connect);
+			root.querySelector(".cancel").addEventListener("click", cancel);
+			root.querySelector(".delete").addEventListener("click", reserve);
+			root.querySelector(".canceldelete").addEventListener("click", removedelete);
+			root.querySelector(".finaldelete").addEventListener("click", suppress);
+			for (let i = 0; i < 15; i++) {
+				const slot = root.querySelector(`#slot${i}`);
+				if (slot) slot.addEventListener("mousedown", genericCanvasDown(i));
+			}
+			root.querySelectorAll("canvas").forEach((canvas) => {
+				canvas.addEventListener("dblclick", () => {
+					if (_slots[_index]) connect();
+					else create();
+				});
+				_ctx.push(canvas.getContext("2d"));
+			});
+			Client.loadFile(`${DB.INTERFACE_PATH}select_character_ver3/img_info.bmp`, (dataURI) => {
+				root.querySelector(".charinfo").style.backgroundImage = `url(${dataURI})`;
+			});
+			for (let i = 0; i < 15; i++) {
+				const slotCanvas = root.querySelector(`#slot${i}`);
+				if (slotCanvas) Client.loadFile(`${DB.INTERFACE_PATH}select_character_ver3/img_slot2_normal.bmp`, (dataURI) => {
+					slotCanvas.style.backgroundImage = `url(${dataURI})`;
+				});
+			}
+			return;
+		}
+		this.draggable();
+		root.querySelector(".ok").addEventListener("click", connect);
+		root.querySelector(".cancel").addEventListener("click", cancel);
+		root.querySelector(".make").addEventListener("click", create);
+		root.querySelector(".delete").addEventListener("click", deleteReservation ? reserve : suppress);
+		if (deleteReservation) {
+			root.querySelector(".canceldelete").addEventListener("click", removedelete);
+			root.querySelector(".finaldelete").addEventListener("click", suppress);
+		}
+		root.querySelector(".arrow.left").addEventListener("mousedown", genericArrowDown(-1));
+		root.querySelector(".arrow.right").addEventListener("mousedown", genericArrowDown(1));
+		root.querySelector(".slot1").addEventListener("mousedown", genericCanvasDown(0));
+		root.querySelector(".slot2").addEventListener("mousedown", genericCanvasDown(1));
+		root.querySelector(".slot3").addEventListener("mousedown", genericCanvasDown(2));
+		if (pageBalls) {
+			root.querySelector(".make1").addEventListener("mousedown", (e) => {
+				genericCanvasDown(0)(e);
+				create();
+			});
+			root.querySelector(".make2").addEventListener("mousedown", (e) => {
+				genericCanvasDown(1)(e);
+				create();
+			});
+			root.querySelector(".make3").addEventListener("mousedown", (e) => {
+				genericCanvasDown(2)(e);
+				create();
+			});
+		}
+		root.querySelectorAll("canvas").forEach((canvas) => {
+			canvas.addEventListener("dblclick", () => {
+				if (_slots[_index]) connect();
+				else create();
+			});
+			_ctx.push(canvas.getContext("2d"));
+		});
+	};
+	/**
+	* Once append to body
+	*/
+	Component.onAppend = function onAppend() {
+		if (gridLayout) {
+			Component.updateCharSlot();
+			startCountdownInterval();
+			moveCursorTo(_index);
+			_bgInterval = setInterval(changeBackgroundEverySecond, 250);
+			Renderer.render(render);
+			return;
+		}
+		const root = this.getRoot();
+		this._host.style.top = `${(Renderer.height - hostHeight) / 2}px`;
+		this._host.style.left = `${(Renderer.width - 576) / 2}px`;
+		_index = _preferences.index;
+		root.querySelector(".slotinfo .number").textContent = `${_list.length} / ${_maxSlots}`;
+		if (!pageBalls) root.querySelector(".pageinfo .count").textContent = _maxSlots / 3;
+		moveCursorTo(_index);
+		Renderer.render(render);
+	};
+	/**
+	* Stop rendering
+	*/
+	Component.onRemove = function onRemove() {
+		if (gridLayout) {
+			if (_bgInterval) {
+				clearInterval(_bgInterval);
+				_bgInterval = null;
+			}
+			stopCountdownInterval();
+			_preferences.index = _index;
+			_preferences.save();
+			Renderer.stop();
+			return;
+		}
+		const root = this.getRoot();
+		_preferences.index = _index;
+		_preferences.save();
+		if (deleteReservation) root.querySelectorAll(".timedelete").forEach((el) => {
+			el.style.display = "none";
+			el.textContent = "";
+		});
+		Renderer.stop();
+	};
+	/**
+	* Bind Key events
+	*
+	* @param {object} event
+	*/
+	Component.onKeyDown = function onKeyDown(event) {
+		if (this._host.style.display === "none") return true;
+		switch (event.which) {
+			case KEYS.ESCAPE:
+				cancel();
+				break;
+			case KEYS.LEFT:
+				if (gridLayout) moveCursorTo(_index - 1 > _list.length - 1 ? _list.length - 1 : _index - 1 < 0 ? 0 : _index - 1);
+				else moveCursorTo(_index - 1);
+				break;
+			case KEYS.RIGHT:
+				if (gridLayout) moveCursorTo(_index + 1 > _list.length - 1 ? _list.length - 1 : _index + 1 < 0 ? 0 : _index + 1);
+				else moveCursorTo(_index + 1);
+				break;
+			case KEYS.SUPR:
+				if (_slots[_index]) suppress();
+				break;
+			case KEYS.ENTER:
+				if (_slots[_index]) connect();
+				else create();
+				break;
+			default: return true;
+		}
+		event.stopImmediatePropagation();
+		return false;
+	};
+	/**
+	* Add players to window
+	*
+	* @param {object} pkt - packet structure
+	*/
+	Component.setInfo = function setInfo(pkt) {
+		if (gridLayout) {
+			Component.clearAllSlots();
+			_maxSlots = Math.floor(pkt.TotalSlotNum + pkt.PremiumStartSlot || 15);
+			_sex = pkt.sex;
+			if (pkt.charInfo) for (let i = 0, count = pkt.charInfo.length; i < count; ++i) Component.addCharacter(pkt.charInfo[i]);
+			moveCursorTo(_index);
+			return;
+		}
+		const root = this.getRoot();
+		_maxSlots = Math.floor(pkt.TotalSlotNum + pkt.PremiumStartSlot || 9);
+		_sex = pkt.sex;
+		_slots.length = 0;
+		_entitySlots.length = 0;
+		_list.length = 0;
+		if (pkt.charInfo) for (let i = 0, count = pkt.charInfo.length; i < count; ++i) {
+			Component.addCharacter(pkt.charInfo[i]);
+			_maxSlots = Math.max(_maxSlots, Math.floor(pkt.charInfo[i].CharNum / 3 + 1) * 3);
+		}
+		root.querySelector(".slotinfo .number").textContent = `${_list.length} / ${_maxSlots}`;
+		if (!pageBalls) root.querySelector(".pageinfo .count").textContent = _maxSlots / 3;
+		moveCursorTo(_index);
+	};
+	/**
+	* Answer from server to delete a character
+	*
+	* @param {number} error id
+	*/
+	Component.deleteAnswer = function deleteAnswer(error) {
+		this.on("keydown");
+		if (gridLayout) switch (error) {
+			case -1:
+			case -2: return;
+			case 1: {
+				delete _slots[_index];
+				delete _entitySlots[_index];
+				if (_preferences.index === _index) _preferences.index = 0;
+				let i = 0;
+				let count = _list.length;
+				while (i < count) if (_list[i].CharNum === _index) {
+					_list.splice(i, 1);
+					--count;
+				} else i++;
+				Component.updateCharSlot(_index);
+				moveCursorTo(_index);
+				return;
+			}
+			default:
+			case 0:
+			case 2:
+			case 6:
+				UIManager.showMessageBox(DB.getMessage(1821), "ok");
+				return;
+			case 3:
+				UIManager.showMessageBox(DB.getMessage(1817), "ok");
+				return;
+			case 4:
+				UIManager.showMessageBox(DB.getMessage(1820), "ok");
+				return;
+			case 5:
+				UIManager.showMessageBox("The confirmation word does not match. Type delete.", "ok");
+				return;
+			case 7:
+				UIManager.showMessageBox(DB.getMessage(301), "ok");
+				return;
+		}
+		if (deleteReservation && (!packetverGatedDelete || PacketVerManager_default.value >= 20100803)) {
+			const root = this.getRoot();
+			switch (error) {
+				case -1:
+				case -2: return;
+				case 1: {
+					delete _slots[_index];
+					delete _entitySlots[_index];
+					let i = 0;
+					let count = _list.length;
+					while (i < count) if (_list[i].CharNum === _index) {
+						_list.splice(i, 1);
+						--count;
+					} else i++;
+					moveCursorTo(_index);
+					root.querySelector(".slotinfo .number").textContent = `${_list.length} / ${_maxSlots}`;
+					return;
+				}
+				default:
+				case 0:
+				case 2:
+				case 6:
+					UIManager.showMessageBox(DB.getMessage(1821), "ok");
+					return;
+				case 3:
+					UIManager.showMessageBox(DB.getMessage(1817), "ok");
+					return;
+				case 4:
+					UIManager.showMessageBox(DB.getMessage(1820), "ok");
+					return;
+				case 5:
+					UIManager.showMessageBox("The confirmation word does not match. Type delete.", "ok");
+					return;
+				case 7:
+					UIManager.showMessageBox(DB.getMessage(301), "ok");
+					return;
+			}
+		} else switch (error) {
+			case -2: return;
+			case -1: {
+				const root = this.getRoot();
+				delete _slots[_index];
+				delete _entitySlots[_index];
+				let i = 0;
+				let count = _list.length;
+				while (i < count) if (_list[i].CharNum === _index) {
+					_list.splice(i, 1);
+					--count;
+				} else i++;
+				moveCursorTo(_index);
+				root.querySelector(".slotinfo .number").textContent = `${_list.length} / ${_maxSlots}`;
+				return;
+			}
+			default:
+			case 0: UIManager.showMessageBox(DB.getMessage(301), "ok");
+		}
+	};
+	/**
+	* Adding a Character to the list
+	*
+	* @param {object} character data
+	*/
+	Component.addCharacter = function addCharacter(character) {
+		if (!("sex" in character) || character.sex === 99) character.sex = _sex;
+		if (gridLayout) {
+			_list.push(character);
+			_slots[character.CharNum] = character;
+			_entitySlots[character.CharNum] = new Entity();
+			_entitySlots[character.CharNum].set(character);
+			_entitySlots[character.CharNum].effectState = _entitySlots[character.CharNum]._effectState & ~StatusState_default.EffectState.INVISIBLE;
+			_entitySlots[character.CharNum].hideShadow = true;
+			Component.updateCharSlot(character.CharNum);
+			return;
+		}
+		if (deleteReservation && character.DeleteDate) {
+			const now = Math.floor(Date.now() / 1e3);
+			character.DeleteDate = PacketVerManager_default.value > 2013e4 && PacketVerManager_default.value <= 20141022 || PacketVerManager_default.value >= 20150513 ? character.DeleteDate + now : character.DeleteDate;
+		}
+		_list.push(character);
+		_slots[character.CharNum] = character;
+		_entitySlots[character.CharNum] = new Entity();
+		_entitySlots[character.CharNum].set(character);
+		_entitySlots[character.CharNum].effectState = _entitySlots[character.CharNum]._effectState & ~StatusState_default.EffectState.INVISIBLE;
+		if (deleteReservation && (!packetverGatedDelete || PacketVerManager_default.value >= 20100803)) {
+			if (_slots[character.CharNum].DeleteDate && Math.floor(_index / 3) === Math.floor(character.CharNum / 3)) {
+				const root = Component.getRoot();
+				const slotNum = (character.CharNum + _maxSlots) % _maxSlots + 1;
+				const countdown = root.querySelector(`.timedelete.slot${slotNum}`);
+				const entity = _entitySlots[character.CharNum];
+				if (countdown) {
+					countdown.dataset.datetime = _slots[character.CharNum].DeleteDate;
+					countdown.textContent = formatDatetime(_slots[character.CharNum].DeleteDate);
+					countdown.style.display = "block";
+				}
+				entity.setAction({
+					action: entity.ACTION.SIT,
+					frame: 0,
+					play: true,
+					repeat: true
+				});
+			}
+		}
+	};
+	/**
+	* Disable or Enable the UI.
+	*
+	* @param {boolean}
+	*/
+	Component.setUIEnabled = function setUIEnabled(value) {
+		_disable_UI = !value;
+	};
+	/**
+	* Callback to use
+	*/
+	Component.onExitRequest = function onExitRequest() {};
+	Component.onDeleteRequest = function onDeleteRequest() {};
+	Component.onCreateRequest = function onCreateRequest() {};
+	Component.onConnectRequest = function onConnectRequest() {};
+	if (deleteReservation) {
+		Component.onDeleteReqDelay = function onDeleteReqDelay() {};
+		Component.onCancelDeleteRequest = function onCancelDeleteRequest() {};
+	}
+	/**
+	* Generic method to handle mousedown on arrow
+	*
+	* @param {number} value to move
+	*/
+	function genericArrowDown(value) {
+		return (event) => {
+			moveCursorTo((_index + _maxSlots + value) % _maxSlots);
+			event.stopImmediatePropagation();
+			return false;
+		};
+	}
+	/**
+	* Generic method to handle mousedown on canvas
+	*
+	* @param {number} value to move
+	*/
+	function genericCanvasDown(value) {
+		return (event) => {
+			if (gridLayout) moveCursorTo(value);
+			else moveCursorTo(Math.floor(_index / 3) * 3 + value);
+			event.stopImmediatePropagation();
+			return false;
+		};
+	}
+	/**
+	* Press "cancel" or ESCAPE key
+	*/
+	function cancel() {
+		if (_disable_UI === false) {
+			if (gridLayout) {
+				UIManager.showPromptBox(DB.getMessage(17), "ok", "cancel", () => {
+					Component.onExitRequest();
+					Component.clearAllSlots();
+				}, null);
+				stopCountdownInterval();
+			} else UIManager.showPromptBox(DB.getMessage(17), "ok", "cancel", () => {
+				Component.onExitRequest();
+			}, null);
+		}
+	}
+	/**
+	* Jumping to Character creation window
+	*/
+	function create() {
+		if (_disable_UI === false) Component.onCreateRequest(_index);
+	}
+	/**
+	* Select Player, connect
+	*/
+	function connect() {
+		if (_disable_UI === false) {
+			if (gridLayout) {
+				if (_slots[_index] && !_slots[_index].DeleteDate) {
+					_preferences.index = _index;
+					_preferences.save();
+					Component.onConnectRequest(_slots[_index]);
+					stopCountdownInterval();
+				}
+			} else if (_slots[_index]) {
+				_preferences.index = _index;
+				_preferences.save();
+				Component.onConnectRequest(_slots[_index]);
+			}
+		}
+	}
+	/**
+	* Request to delete a character
+	*/
+	function reserve() {
+		if (_disable_UI === false) {
+			if (_slots[_index]) {
+				Component.off("keydown");
+				Component.onDeleteReqDelay(_slots[_index].GID);
+			}
+		}
+	}
+	/**
+	* Delete a character
+	*/
+	function suppress() {
+		if (_disable_UI === false) {
+			if (_slots[_index]) {
+				Component.off("keydown");
+				Component.onDeleteRequest(_slots[_index].GID);
+			}
+		}
+	}
+	if (deleteReservation)
+ /**
+	* Result of Request in Deleting the Character
+	*
+	* @param {object} pkt - packet structure
+	*/
+	Component.reqdeleteAnswer = gridLayout ? function reqdeleteAnswer(pkt) {
+		this.on("keydown");
+		const deleteReservedDate = pkt.DeleteReservedDate;
+		const result = typeof pkt.Result === "undefined" ? -1 : pkt.Result;
+		const info = _slots[_index];
+		switch (result) {
+			case 0: return;
+			case 1:
+				info.DeleteDate = deleteReservedDate + Math.floor(Date.now() / 1e3);
+				requestdelete(_index, deleteReservedDate);
+				break;
+			case 3: return;
+			case 4:
+				UIManager.showMessageBox(DB.getMessage(1818), "ok");
+				break;
+			case 5:
+				UIManager.showMessageBox(DB.getMessage(1819), "ok");
+				break;
+			default: return;
+		}
+	} : function reqdeleteAnswer(pkt) {
+		this.on("keydown");
+		const now = Math.floor(Date.now() / 1e3);
+		const result = typeof pkt.Result === "undefined" ? -1 : pkt.Result;
+		const info = _slots[_index];
+		switch (result) {
+			case 0: return;
+			case 1: {
+				const timer = PacketVerManager_default.value > 2013e4 && PacketVerManager_default.value <= 20141022 || PacketVerManager_default.value >= 20150513 ? pkt.DeleteReservedDate + now : pkt.DeleteReservedDate;
+				info.DeleteDate = timer;
+				requestdelete(_index, timer);
+				break;
+			}
+			case 3: return;
+			case 4:
+				UIManager.showMessageBox(DB.getMessage(1818), "ok");
+				break;
+			case 5:
+				UIManager.showMessageBox(DB.getMessage(1819), "ok");
+				break;
+			default: return;
+		}
+	};
+	/**
+	* When successfully requested for character deletion
+	* Update UI and add timer
+	*/
+	function requestdelete(index, timer) {
+		const root = Component.getRoot();
+		if (gridLayout) {
+			_entitySlots[index].action = 2;
+			const countdown = root.querySelector(`.timedelete.slot${index}`);
+			if (countdown) {
+				countdown.dataset.duration = timer;
+				countdown.classList.remove("hidden");
+				countdown.style.display = "block";
+			}
+			root.querySelector(".delete").style.display = "none";
+			root.querySelector(".canceldelete").style.display = "block";
+			root.querySelector(".finaldelete").style.display = "block";
+			return;
+		}
+		const entity = _entitySlots[index];
+		let action;
+		const countdown = root.querySelector(`.timedelete.slot${index % 3 + 1}`);
+		if (countdown) {
+			countdown.dataset.datetime = timer;
+			countdown.textContent = formatDatetime(timer);
+			countdown.style.display = "block";
+			if (Math.floor(Date.now() / 1e3) > timer) {
+				countdown.classList.remove("waitdelete");
+				countdown.classList.add("candelete");
+				action = entity.ACTION.DIE;
+			} else {
+				countdown.classList.remove("candelete");
+				countdown.classList.add("waitdelete");
+				action = entity.ACTION.SIT;
+			}
+		}
+		entity.action = action;
+		root.querySelector(".delete").style.display = "none";
+		root.querySelector(".canceldelete").style.display = "block";
+		if (Math.floor(Date.now() / 1e3) > timer) root.querySelector(".finaldelete").style.display = "block";
+		else root.querySelector(".finaldelete").style.display = "none";
+	}
+	/**
+	* Cancel reservation of character for deletion
+	* Update UI and remove timer
+	*/
+	function removedelete() {
+		if (_slots[_index]) {
+			const root = Component.getRoot();
+			_slots[_index].DeleteDate = 0;
+			if (gridLayout) {
+				_entitySlots[_index].action = 0;
+				render();
+				const countdown = root.querySelector(`.timedelete.slot${_index}`);
+				if (countdown) {
+					countdown.dataset.duration = 0;
+					countdown.classList.add("hidden");
+					countdown.style.display = "none";
+				}
+				root.querySelector(".canceldelete").style.display = "none";
+				root.querySelector(".finaldelete").style.display = "none";
+				root.querySelector(".delete").style.display = "block";
+				Component.onCancelDeleteRequest(_slots[_index].GID);
+				return;
+			}
+			_entitySlots[_index].action = _entitySlots[_index].ACTION.READYFIGHT;
+			render();
+			const countdown = root.querySelector(`.timedelete.slot${_index % 3 + 1}`);
+			countdown.dataset.datetime = 0;
+			countdown.textContent = formatDatetime("");
+			countdown.style.display = "none";
+			root.querySelector(".canceldelete").style.display = "none";
+			root.querySelector(".finaldelete").style.display = "none";
+			root.querySelector(".delete").style.display = "block";
+			Component.onCancelDeleteRequest(_slots[_index].GID);
+		}
+	}
+	/**
+	* Draw a page selection ball (V3)
+	*/
+	function drawBall(btnContainer, index, sel) {
+		const btn = document.createElement("button");
+		btn.className = `btn_pageinfo btn_pageinfo${index}`;
+		btn.style.border = "0";
+		btn.style.width = "8px";
+		btn.style.height = "8px";
+		btn.style.backgroundColor = "transparent";
+		btn.style.backgroundRepeat = "no-repeat";
+		btn.style.cursor = "pointer";
+		const imgEl = document.createElement("img");
+		imgEl.width = 8;
+		const imagePath = sel ? "select_character/page_ball_fill.bmp" : "select_character/page_ball_empty.bmp";
+		Client.loadFile(DB.INTERFACE_PATH + imagePath, (data) => {
+			btn.style.backgroundImage = `url("${data}")`;
+		});
+		btn.addEventListener("click", () => {
+			moveCursorTo((index - 1) * 3);
+		});
+		btnContainer.appendChild(btn);
+		btnContainer.appendChild(imgEl);
+	}
+	/**
+	* Format delay date time (V2 / V3)
+	*/
+	function formatDatetime(epoch) {
+		const datetime = /* @__PURE__ */ new Date(0);
+		datetime.setSeconds(epoch);
+		const month = datetime.getMonth() + 1;
+		const day = datetime.getDate();
+		const hours = datetime.getHours();
+		const minutes = datetime.getMinutes();
+		const seconds = datetime.getSeconds();
+		return DB.getMessage(2097).replace("%d", `${month}`).replace("%d", `${day}`).replace("%d", `${hours}`).replace("%d", `${minutes}`).replace("%d", `${seconds}`);
+	}
+	/**
+	* Move cursor, update window value (V1 / V2 / V3)
+	*
+	* @param {number} index
+	*/
+	function moveCursorToPaginated(index) {
+		const root = Component.getRoot();
+		const charinfo = root.querySelector(".charinfo");
+		let entity = _entitySlots[_index];
+		let info = _slots[_index];
+		let action;
+		if (entity) {
+			if (deleteReservation && info.DeleteDate && (!packetverGatedDelete || PacketVerManager_default.value >= 20100803)) action = entity.ACTION.SIT;
+			else action = entity.ACTION.IDLE;
+			entity.setAction({
+				action,
+				frame: 0,
+				play: true,
+				repeat: true
+			});
+		}
+		_index = (index + _maxSlots) % _maxSlots;
+		const boxSelect = root.querySelector(".box_select");
+		boxSelect.classList.remove("slot1", "slot2", "slot3");
+		boxSelect.classList.add(`slot${_index % 3 + 1}`);
+		if (pageBalls) {
+			const pagebtn = root.querySelector(".pageinfo .pagebtn");
+			pagebtn.textContent = "";
+			for (let i = 1; i <= _maxSlots / 3; i++) drawBall(pagebtn, i, Math.floor(_index / 3) + 1 === i);
+			root.querySelector(".pageinfo").style.left = `${288 - _maxSlots / 3 * 8}px`;
+			let mix = (index + 1) % 3 === 0 ? index + 1 - 3 : index + 1 - (index + 1) % 3;
+			mix = mix >= _maxSlots ? 0 : mix;
+			for (let i = 1; i <= 3; i++) {
+				root.querySelector(`.make${i}`).style.display = "none";
+				if (!_entitySlots[mix + (i - 1)]) root.querySelector(`.make${i}`).style.display = "block";
+			}
+		} else root.querySelector(".pageinfo .current").textContent = Math.floor(_index / 3) + 1;
+		if (deleteReservation) for (let i = 0; i < 3; i++) {
+			const tmpIndex = _index - _index % 3 + i;
+			info = _slots[tmpIndex];
+			entity = _entitySlots[tmpIndex];
+			const countdown = root.querySelector(`.timedelete.slot${tmpIndex % 3 + 1}`);
+			if (info && entity) {
+				if (info.DeleteDate && (!packetverGatedDelete || PacketVerManager_default.value >= 20100803)) {
+					countdown.dataset.datetime = info.DeleteDate;
+					countdown.textContent = formatDatetime(info.DeleteDate);
+					countdown.style.display = "block";
+					if (Math.floor(Date.now() / 1e3) > info.DeleteDate) {
+						countdown.classList.remove("waitdelete");
+						countdown.classList.add("candelete");
+					} else {
+						countdown.classList.remove("candelete");
+						countdown.classList.add("waitdelete");
+					}
+					entity.action = entity.ACTION.SIT;
+				} else {
+					countdown.dataset.datetime = 0;
+					countdown.textContent = formatDatetime("");
+					countdown.style.display = "none";
+					entity.action = entity.ACTION.IDLE;
+				}
+			} else {
+				countdown.dataset.datetime = 0;
+				countdown.textContent = formatDatetime("");
+				countdown.style.display = "none";
+			}
+		}
+		entity = _entitySlots[_index];
+		if (!entity) {
+			charinfo.querySelectorAll("div").forEach((div) => {
+				div.textContent = "";
+			});
+			root.querySelector(".make").style.display = "block";
+			root.querySelector(".delete").style.display = "none";
+			if (deleteReservation) {
+				root.querySelector(".canceldelete").style.display = "none";
+				root.querySelector(".finaldelete").style.display = "none";
+			}
+			root.querySelector(".ok").style.display = "none";
+			return;
+		}
+		info = _slots[_index];
+		if (deleteReservation && info.DeleteDate && (!packetverGatedDelete || PacketVerManager_default.value >= 20100803)) {
+			root.querySelector(".delete").style.display = "none";
+			root.querySelector(".canceldelete").style.display = "block";
+			if (Math.floor(Date.now() / 1e3) > info.DeleteDate) {
+				root.querySelector(".finaldelete").style.display = "block";
+				action = entity.ACTION.DIE;
+			} else {
+				root.querySelector(".finaldelete").style.display = "none";
+				action = entity.ACTION.SIT;
+			}
+			root.querySelector(".make").style.display = "none";
+			root.querySelector(".ok").style.display = "block";
+		} else {
+			if (deleteReservation) {
+				if (!packetverGatedDelete || PacketVerManager_default.value >= 20100803) {
+					root.querySelector(".delete").style.display = "block";
+					root.querySelector(".canceldelete").style.display = "none";
+					root.querySelector(".finaldelete").style.display = "none";
+				} else {
+					root.querySelector(".delete").style.display = "none";
+					root.querySelector(".canceldelete").style.display = "none";
+					root.querySelector(".finaldelete").style.display = "block";
+				}
+				root.querySelector(".make").style.display = "none";
+			} else {
+				root.querySelector(".make").style.display = "none";
+				root.querySelector(".delete").style.display = "block";
+			}
+			root.querySelector(".ok").style.display = "block";
+			action = entity.ACTION.READYFIGHT;
+		}
+		entity.setAction({
+			action,
+			frame: 0,
+			play: true,
+			repeat: true
+		});
+		charinfo.querySelector(".name").textContent = info.name;
+		charinfo.querySelector(".job").textContent = MonsterTable_default[info.job] || "";
+		charinfo.querySelector(".lvl").textContent = info.level;
+		charinfo.querySelector(".exp").textContent = info.exp;
+		charinfo.querySelector(".hp").textContent = info.hp;
+		charinfo.querySelector(".sp").textContent = info.sp;
+		charinfo.querySelector(".map").textContent = DB.getMapName(info.lastMap, "") || "";
+		charinfo.querySelector(".str").textContent = info.Str;
+		charinfo.querySelector(".agi").textContent = info.Agi;
+		charinfo.querySelector(".vit").textContent = info.Vit;
+		charinfo.querySelector(".int").textContent = info.Int;
+		charinfo.querySelector(".dex").textContent = info.Dex;
+		charinfo.querySelector(".luk").textContent = info.Luk;
+	}
+	/**
+	* Render sprites to canvas (V1 / V2 / V3)
+	*/
+	function renderPaginated() {
+		Camera.direction = 4;
+		const idx = Math.floor(_index / 3) * 3;
+		const count = _ctx.length;
+		for (let i = 0; i < count; ++i) {
+			_ctx[i].clearRect(0, 0, _ctx[i].canvas.width, _ctx[i].canvas.height);
+			if (_entitySlots[idx + i]) {
+				SpriteRenderer.bind2DContext(_ctx[i], 63, 130);
+				_entitySlots[idx + i].renderEntity();
+			}
+		}
+	}
+	/**
+	* Format delay duration (V4)
+	*/
+	function formatDuration(seconds) {
+		const hours = Math.floor(seconds / 3600);
+		const minutes = Math.floor(seconds % 3600 / 60);
+		const remainingSeconds = seconds % 60;
+		const replacer = DB.getMessage(3349).includes("%d") ? "%d" : "%02d";
+		return DB.getMessage(3349).replace(replacer, hours.toString().padStart(2, "0")).replace(replacer, minutes.toString().padStart(2, "0")).replace(replacer, remainingSeconds.toString().padStart(2, "0"));
+	}
+	/**
+	* Countdown for delay in deletion (V4)
+	*/
+	function updateAllVisibleCountdowns() {
+		Component.getRoot().querySelectorAll(".timedelete:not(.hidden)").forEach((countdownDiv) => {
+			const deleteReservedDuration = parseInt(countdownDiv.dataset.duration, 10);
+			const updatedDuration = Math.max(0, deleteReservedDuration - 1);
+			countdownDiv.textContent = formatDuration(updatedDuration);
+			if (updatedDuration > 0) countdownDiv.style.color = "red";
+			else countdownDiv.style.color = "blue";
+			countdownDiv.dataset.duration = updatedDuration.toString();
+		});
+	}
+	/**
+	* Start the countdown update interval only when in grid UI
+	*/
+	function startCountdownInterval() {
+		if (!countdownInterval) countdownInterval = setInterval(updateAllVisibleCountdowns, 1e3);
+	}
+	/**
+	* Stop the countdown update interval
+	*/
+	function stopCountdownInterval() {
+		if (countdownInterval) {
+			clearInterval(countdownInterval);
+			countdownInterval = null;
+		}
+	}
+	/**
+	* Move cursor, update window value (V4)
+	*
+	* @param {number} index
+	*/
+	function moveCursorToGrid(index) {
+		const root = Component.getRoot();
+		const charinfo = root.querySelector(".charinfo");
+		const prevIndex = _index;
+		let entity = _slots[_index];
+		shouldRunBackgroundChange = false;
+		if (entity) Client.loadFile(`${DB.INTERFACE_PATH}select_character_ver3/img_slot_normal.bmp`, (dataURI) => {
+			const prevSlot = root.querySelector(`#slot${prevIndex}`);
+			if (prevSlot) prevSlot.style.backgroundImage = `url(${dataURI})`;
+		});
+		const slotIndex = _index = index > _maxSlots ? _maxSlots : index < 0 ? 0 : index;
+		entity = _slots[_index];
+		if (!entity) {
+			charinfo.querySelectorAll("div").forEach((div) => {
+				div.textContent = "";
+			});
+			root.querySelector(".delete").style.display = "none";
+			root.querySelector(".canceldelete").style.display = "none";
+			root.querySelector(".finaldelete").style.display = "none";
+			root.querySelector(".ok").style.display = "none";
+			const countdown = root.querySelector(`.timedelete.slot${_index}`);
+			if (countdown) {
+				countdown.dataset.duration = 0;
+				countdown.classList.add("hidden");
+				countdown.style.display = "none";
+			}
+			return;
+		} else {
+			_curindex = slotIndex;
+			shouldRunBackgroundChange = true;
+		}
+		if (shouldRunBackgroundChange === true) changeBackgroundEverySecond();
+		const info = _slots[_index];
+		if (info.DeleteDate) {
+			root.querySelector(".delete").style.display = "none";
+			root.querySelector(".canceldelete").style.display = "block";
+			root.querySelector(".finaldelete").style.display = "block";
+		} else {
+			root.querySelector(".canceldelete").style.display = "none";
+			root.querySelector(".finaldelete").style.display = "none";
+			root.querySelector(".delete").style.display = "block";
+		}
+		root.querySelector(".ok").style.display = "block";
+		charinfo.querySelector(".map").textContent = DB.getMapName(info.lastMap, "") || "";
+		charinfo.querySelector(".job").textContent = MonsterTable_default[info.job] || "";
+		charinfo.querySelector(".lvl").textContent = info.level;
+		charinfo.querySelector(".exp").textContent = info.exp;
+		charinfo.querySelector(".hp").textContent = info.hp;
+		charinfo.querySelector(".sp").textContent = info.sp;
+		charinfo.querySelector(".str").textContent = info.Str;
+		charinfo.querySelector(".agi").textContent = info.Agi;
+		charinfo.querySelector(".vit").textContent = info.Vit;
+		charinfo.querySelector(".int").textContent = info.Int;
+		charinfo.querySelector(".dex").textContent = info.Dex;
+		charinfo.querySelector(".luk").textContent = info.Luk;
+	}
+	function changeBackgroundEverySecond() {
+		const backgroundchange = Component.getRoot().querySelector(`#slot${_curindex}`);
+		if (backgroundchange && shouldRunBackgroundChange === true) {
+			Client.loadFile(`${DB.INTERFACE_PATH}select_character_ver3/img_slot_select${img}.bmp`, (dataURI) => {
+				backgroundchange.style.backgroundImage = `url(${dataURI})`;
+				backgroundchange.style.width = "157px";
+				backgroundchange.style.height = "197px";
+				backgroundchange.style.backgroundSize = "contain";
+				backgroundchange.style.backgroundRepeat = "no-repeat";
+			});
+			img = (img + 1) % 8;
+		}
+	}
+	Component.updateCharSlot = function updateCharSlot(slotId) {
+		const root = this.getRoot();
+		let start = 0;
+		let loopMax = Math.max(_maxSlots, _slots.length);
+		if (typeof slotId !== "undefined") {
+			start = slotId;
+			loopMax = slotId + 1;
+		}
+		const charCanvases = root.querySelectorAll(".char_canvas");
+		const jobIcons = root.querySelectorAll(".job_icon");
+		for (let i = start; i < loopMax; ++i) {
+			if (charCanvases[i]) charCanvases[i].querySelector(".name").innerHTML = _slots[i] ? _slots[i].name : "";
+			if (!_slots[i]) {
+				if (jobIcons[i]) jobIcons[i].style.backgroundImage = "";
+				const slotCanvas = root.querySelector(`#slot${i}`);
+				if (slotCanvas) Client.loadFile(`${DB.INTERFACE_PATH}select_character_ver3/img_slot2_normal.bmp`, (dataURI) => {
+					slotCanvas.style.backgroundImage = `url(${dataURI})`;
+				});
+				const countdown = root.querySelector(`.timedelete.slot${i}`);
+				if (countdown) {
+					countdown.dataset.duration = 0;
+					countdown.classList.add("hidden");
+					countdown.style.display = "none";
+				}
+			} else {
+				const slotCanvas = root.querySelector(`#slot${i}`);
+				if (slotCanvas) Client.loadFile(`${DB.INTERFACE_PATH}select_character_ver3/img_slot_normal.bmp`, (dataURI) => {
+					slotCanvas.style.backgroundImage = `url(${dataURI})`;
+				});
+				if (jobIcons[i]) {
+					const slotJobIcon = jobIcons[i];
+					Client.loadFile(`${DB.INTERFACE_PATH}renewalparty/icon_jobs_${_slots[i].job}.bmp`, (dataURI) => {
+						slotJobIcon.style.backgroundImage = `url(${dataURI})`;
+					});
+				}
+				if (_slots[i].DeleteDate) {
+					const countdown = root.querySelector(`.timedelete.slot${i}`);
+					if (countdown) {
+						countdown.dataset.duration = _slots[i].DeleteDate;
+						countdown.classList.remove("hidden");
+						countdown.style.display = "block";
+					}
+				}
+			}
+		}
+	};
+	Component.clearAllSlots = function clearAllSlots() {
+		_slots.length = 0;
+		_entitySlots.length = 0;
+		_list.length = 0;
+		Component.updateCharSlot();
+	};
+	/**
+	* Render sprites to canvas (V4)
+	*/
+	function renderGrid() {
+		Camera.direction = 4;
+		const idx = Math.floor(_index / _maxSlots) * _maxSlots;
+		const count = _ctx.length;
+		for (let i = 0; i < count; ++i) {
+			_ctx[i].clearRect(0, 0, _ctx[i].canvas.width, _ctx[i].canvas.height);
+			if (_entitySlots[idx + i]) {
+				SpriteRenderer.bind2DContext(_ctx[i], 78, 157);
+				if (_slots[idx + i] && _slots[idx + i].DeleteDate) _entitySlots[idx + i].action = 2;
+				_entitySlots[idx + i].renderEntity();
+			}
+		}
+	}
+	/**
+	* Create component and export it
+	*/
+	return UIManager.addComponent(Component);
+}
+var init_CharSelectCommon = __esmMin((() => {
+	init_DBManager();
+	init_MonsterTable();
+	init_Preferences$1();
+	init_Client();
+	init_KeyEventHandler();
+	init_Renderer();
+	init_Entity$1();
+	init_SpriteRenderer();
+	init_StatusState();
+	init_Camera();
+	init_UIManager();
+	init_GUIComponent();
+	init_Elements();
+	init_PacketVerManager();
+}));
+//#endregion
+//#region src/UI/Components/CharSelect/CharSelect/CharSelect.js
+var CharSelect_default;
+var init_CharSelect$1 = __esmMin((() => {
+	init_CharSelect$3();
+	init_CharSelect$2();
+	init_CharSelectCommon();
+	CharSelect_default = createCharSelect({
+		name: "CharSelect",
+		htmlText: CharSelect_default$2,
+		cssText: CharSelect_default$1,
+		hostHeight: 342
+	});
+}));
+//#endregion
+//#region src/UI/Components/CharSelect/CharSelectV2/CharSelectV2.html?raw
+var CharSelectV2_default$2;
+var init_CharSelectV2$2 = __esmMin((() => {
+	CharSelectV2_default$2 = "<div id=\"CharSelectV2\">\r\n	<ui-image src=\"login_interface/win_select2.bmp\"></ui-image>\r\n	<!-- BOX -->\r\n	<div class=\"box_select\"><ui-image src=\"login_interface/box_select.bmp\"></ui-image></div>\r\n	<canvas class=\"slot1\" width=\"126\" height=\"132\"></canvas>\r\n	<canvas class=\"slot2\" width=\"126\" height=\"132\"></canvas>\r\n	<canvas class=\"slot3\" width=\"126\" height=\"132\"></canvas>\r\n	<div class=\"timedelete slot1 hidden\"></div>\r\n	<div class=\"timedelete slot2 hidden\"></div>\r\n	<div class=\"timedelete slot3 hidden\"></div>\r\n\r\n	<!-- Arrows -->\r\n	<ui-button class=\"arrow left\" bg=\"scroll1left.bmp\"></ui-button>\r\n	<ui-button class=\"arrow right\" bg=\"scroll1right.bmp\"></ui-button>\r\n\r\n	<!-- Slots infos -->\r\n	<div class=\"slotinfo\">\r\n		<span class=\"number\">0 / 27</span>\r\n		<span class=\"content\"></span>\r\n	</div>\r\n\r\n	<!-- Pages infos -->\r\n	<div class=\"pageinfo\"><span class=\"current\">1</span> / <span class=\"count\">9</span></div>\r\n\r\n	<!-- Characters infos -->\r\n	<div class=\"charinfo\">\r\n		<div class=\"name\"></div>\r\n		<div class=\"job\"></div>\r\n		<div class=\"lvl\"></div>\r\n		<div class=\"exp\"></div>\r\n		<div class=\"hp\"></div>\r\n		<div class=\"sp\"></div>\r\n		<div class=\"map\"></div>\r\n		<div class=\"str\"></div>\r\n		<div class=\"agi\"></div>\r\n		<div class=\"vit\"></div>\r\n		<div class=\"int\"></div>\r\n		<div class=\"dex\"></div>\r\n		<div class=\"luk\"></div>\r\n	</div>\r\n\r\n	<!-- Buttons -->\r\n	<div class=\"btns\">\r\n		<ui-button\r\n			class=\"btn delete\"\r\n			bg=\"btn_del_res.bmp\"\r\n			hover=\"btn_del_res_a.bmp\"\r\n			down=\"btn_del_res_b.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn canceldelete\"\r\n			bg=\"btn_cancel_res.bmp\"\r\n			hover=\"btn_cancel_res_a.bmp\"\r\n			down=\"btn_cancel_res_b.bmp\"\r\n		></ui-button>\r\n		<ui-button class=\"btn finaldelete\" bg=\"btn_del.bmp\" hover=\"btn_del_a.bmp\" down=\"btn_del_b.bmp\"></ui-button>\r\n		<ui-button class=\"btn cancel\" bg=\"btn_cancel.bmp\" hover=\"btn_cancel_a.bmp\" down=\"btn_cancel_b.bmp\"></ui-button>\r\n		<ui-button class=\"btn ok\" bg=\"btn_ok.bmp\" hover=\"btn_ok_a.bmp\" down=\"btn_ok_b.bmp\"></ui-button>\r\n		<ui-button class=\"btn make\" bg=\"btn_make.bmp\" hover=\"btn_make_a.bmp\" down=\"btn_make_b.bmp\"></ui-button>\r\n	</div>\r\n</div>\r\n";
+}));
+//#endregion
+//#region src/UI/Components/CharSelect/CharSelectV2/CharSelectV2.css?raw
+var CharSelectV2_default$1;
+var init_CharSelectV2$1 = __esmMin((() => {
+	CharSelectV2_default$1 = ":host {\r\n	width: 576px;\r\n	height: 358px;\r\n}\r\n\r\n#CharSelectV2 {\r\n	position: absolute;\r\n	width: 576px;\r\n	height: 358px;\r\n}\r\n\r\n/** Box **/\r\n#CharSelectV2 .box_select {\r\n	position: absolute;\r\n	width: 139px;\r\n	height: 144px;\r\n	top: 40px;\r\n	margin-left: -5px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n#CharSelectV2 canvas {\r\n	position: absolute;\r\n	top: 44px;\r\n}\r\n#CharSelectV2 .slot1 {\r\n	left: 60px;\r\n}\r\n#CharSelectV2 .slot2 {\r\n	left: 224px;\r\n}\r\n#CharSelectV2 .slot3 {\r\n	left: 386px;\r\n}\r\n\r\n/** Arrow **/\r\n#CharSelectV2 .arrow {\r\n	position: absolute;\r\n	top: 105px;\r\n	width: 13px;\r\n	height: 13px;\r\n}\r\n#CharSelectV2 .arrow.left {\r\n	left: 40px;\r\n}\r\n#CharSelectV2 .arrow.right {\r\n	right: 40px;\r\n}\r\n\r\n/** Slot info **/\r\n#CharSelectV2 .slotinfo {\r\n	position: absolute;\r\n	top: 195px;\r\n	right: 10px;\r\n	height: 20px;\r\n	display: block;\r\n	border: 1px solid #c6cee7;\r\n	border-radius: 4px;\r\n	padding-left: 10px;\r\n	padding-right: 10px;\r\n}\r\n#CharSelectV2 .slotinfo .number {\r\n	color: #58709e;\r\n	font-weight: bold;\r\n	margin-right: 10px;\r\n}\r\n#CharSelectV2 .slotinfo .content {\r\n	color: #555;\r\n	top: 6px;\r\n	right: 8px;\r\n}\r\n\r\n/** Page info **/\r\n#CharSelectV2 .pageinfo {\r\n	position: absolute;\r\n	left: 275px;\r\n	top: 185px;\r\n	font-weight: bold;\r\n	color: #646464;\r\n}\r\n#CharSelectV2 .pageinfo .current {\r\n	color: #fe3b7d;\r\n}\r\n\r\n/** Characters infos **/\r\n#CharSelectV2 .charinfo {\r\n	position: absolute;\r\n	width: 285px;\r\n	top: 204px;\r\n	left: 16px;\r\n}\r\n#CharSelectV2 .charinfo div {\r\n	position: absolute;\r\n	width: 90px;\r\n	height: 13px;\r\n}\r\n#CharSelectV2 .charinfo .name {\r\n	left: 52px;\r\n	top: 2px;\r\n	white-space: nowrap;\r\n}\r\n#CharSelectV2 .charinfo .job {\r\n	left: 52px;\r\n	top: 18px;\r\n}\r\n#CharSelectV2 .charinfo .lvl {\r\n	left: 52px;\r\n	top: 34px;\r\n}\r\n#CharSelectV2 .charinfo .exp {\r\n	left: 52px;\r\n	top: 50px;\r\n}\r\n#CharSelectV2 .charinfo .hp {\r\n	left: 52px;\r\n	top: 66px;\r\n}\r\n#CharSelectV2 .charinfo .sp {\r\n	left: 52px;\r\n	top: 82px;\r\n}\r\n#CharSelectV2 .charinfo .map {\r\n	left: 52px;\r\n	top: 98px;\r\n	width: 238px;\r\n}\r\n#CharSelectV2 .charinfo .str {\r\n	left: 200px;\r\n	top: 2px;\r\n}\r\n#CharSelectV2 .charinfo .agi {\r\n	left: 200px;\r\n	top: 18px;\r\n}\r\n#CharSelectV2 .charinfo .vit {\r\n	left: 200px;\r\n	top: 34px;\r\n}\r\n#CharSelectV2 .charinfo .int {\r\n	left: 200px;\r\n	top: 50px;\r\n}\r\n#CharSelectV2 .charinfo .dex {\r\n	left: 200px;\r\n	top: 66px;\r\n}\r\n#CharSelectV2 .charinfo .luk {\r\n	left: 200px;\r\n	top: 82px;\r\n}\r\n\r\n/** Buttons **/\r\n#CharSelectV2 .btns {\r\n	position: absolute;\r\n	bottom: 4px;\r\n	width: 100%;\r\n	height: 20px;\r\n}\r\n#CharSelectV2 .btn {\r\n	position: absolute;\r\n	width: 42px;\r\n	height: 20px;\r\n}\r\n\r\n#CharSelectV2 .ok,\r\n#CharSelectV2 .make {\r\n	right: 50px;\r\n}\r\n#CharSelectV2 .cancel {\r\n	right: 4px;\r\n}\r\n#CharSelectV2 .delete {\r\n	left: 4px;\r\n	width: 67px;\r\n}\r\n#CharSelectV2 .canceldelete {\r\n	left: 50px;\r\n	width: 67px;\r\n}\r\n#CharSelectV2 .finaldelete {\r\n	left: 4px;\r\n}\r\n#CharSelectV2 .timedelete {\r\n	position: absolute;\r\n	height: 20px;\r\n	width: 120px;\r\n	top: 75px;\r\n}\r\n#CharSelectV2 .timedelete.waitdelete {\r\n	color: blue;\r\n}\r\n#CharSelectV2 .timedelete.candelete {\r\n	color: red;\r\n}\r\n#CharSelectV2 .timedelete.slot1 {\r\n	left: 63px;\r\n}\r\n#CharSelectV2 .timedelete.slot2 {\r\n	left: 227px;\r\n}\r\n#CharSelectV2 .timedelete.slot3 {\r\n	left: 389px;\r\n}\r\n";
+}));
+//#endregion
+//#region src/UI/Components/CharSelect/CharSelectV2/CharSelectV2.js
+var CharSelectV2_default;
+var init_CharSelectV2 = __esmMin((() => {
+	init_CharSelectV2$2();
+	init_CharSelectV2$1();
+	init_CharSelectCommon();
+	CharSelectV2_default = createCharSelect({
+		name: "CharSelectV2",
+		htmlText: CharSelectV2_default$2,
+		cssText: CharSelectV2_default$1,
+		hostHeight: 358,
+		deleteReservation: true,
+		packetverGatedDelete: true
+	});
+}));
+//#endregion
+//#region src/UI/Components/CharSelect/CharSelectV3/CharSelectV3.html?raw
+var CharSelectV3_default$2;
+var init_CharSelectV3$2 = __esmMin((() => {
+	CharSelectV3_default$2 = "<div id=\"CharSelectV3\">\r\n	<ui-image src=\"select_character/bg_select_character.bmp\"></ui-image>\r\n	<!-- BOX -->\r\n	<div class=\"box_select\"><ui-image src=\"select_character/select_mark.bmp\"></ui-image></div>\r\n	<canvas class=\"slot1\" width=\"133\" height=\"132\"></canvas>\r\n	<canvas class=\"slot2\" width=\"133\" height=\"132\"></canvas>\r\n	<canvas class=\"slot3\" width=\"133\" height=\"132\"></canvas>\r\n	<div class=\"timedelete slot1 hidden\"></div>\r\n	<div class=\"timedelete slot2 hidden\"></div>\r\n	<div class=\"timedelete slot3 hidden\"></div>\r\n	<ui-button\r\n		class=\"make1\"\r\n		bg=\"select_character/btn_add_out.bmp\"\r\n		hover=\"select_character/btn_add_over.bmp\"\r\n		down=\"select_character/btn_add_press.bmp\"\r\n	></ui-button>\r\n	<ui-button\r\n		class=\"make2\"\r\n		bg=\"select_character/btn_add_out.bmp\"\r\n		hover=\"select_character/btn_add_over.bmp\"\r\n		down=\"select_character/btn_add_press.bmp\"\r\n	></ui-button>\r\n	<ui-button\r\n		class=\"make3\"\r\n		bg=\"select_character/btn_add_out.bmp\"\r\n		hover=\"select_character/btn_add_over.bmp\"\r\n		down=\"select_character/btn_add_press.bmp\"\r\n	></ui-button>\r\n\r\n	<!-- Arrows -->\r\n	<ui-button\r\n		class=\"arrow left\"\r\n		bg=\"select_character/chr_arrow_l_out.bmp\"\r\n		hover=\"select_character/chr_arrow_l_over.bmp\"\r\n		down=\"select_character/chr_arrow_l_press.bmp\"\r\n	></ui-button>\r\n	<ui-button\r\n		class=\"arrow right\"\r\n		bg=\"select_character/chr_arrow_r_out.bmp\"\r\n		hover=\"select_character/chr_arrow_r_over.bmp\"\r\n		down=\"select_character/chr_arrow_r_press.bmp\"\r\n	></ui-button>\r\n\r\n	<!-- Slots infos -->\r\n	<div class=\"slotinfo\">\r\n		<span class=\"number\">0 / 27</span>\r\n		<span class=\"content\"></span>\r\n	</div>\r\n	<!-- Pages infos -->\r\n	<div class=\"pageinfo\">\r\n		<div class=\"pagebtn\"></div>\r\n	</div>\r\n	<!-- Characters infos -->\r\n	<div class=\"charinfo\">\r\n		<div class=\"name\"></div>\r\n		<div class=\"job\"></div>\r\n		<div class=\"lvl\"></div>\r\n		<div class=\"exp\"></div>\r\n		<div class=\"hp\"></div>\r\n		<div class=\"sp\"></div>\r\n		<div class=\"map\"></div>\r\n		<div class=\"str\"></div>\r\n		<div class=\"agi\"></div>\r\n		<div class=\"vit\"></div>\r\n		<div class=\"int\"></div>\r\n		<div class=\"dex\"></div>\r\n		<div class=\"luk\"></div>\r\n	</div>\r\n	<!-- Buttons -->\r\n	<div class=\"btns\">\r\n		<ui-button\r\n			class=\"btn delete\"\r\n			bg=\"btn_del_res.bmp\"\r\n			hover=\"btn_del_res_a.bmp\"\r\n			down=\"btn_del_res_b.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn canceldelete\"\r\n			bg=\"btn_cancel_res.bmp\"\r\n			hover=\"btn_cancel_res_a.bmp\"\r\n			down=\"btn_cancel_res_b.bmp\"\r\n		></ui-button>\r\n		<ui-button class=\"btn finaldelete\" bg=\"btn_del.bmp\" hover=\"btn_del_a.bmp\" down=\"btn_del_b.bmp\"></ui-button>\r\n		<ui-button class=\"btn cancel\" bg=\"btn_cancel.bmp\" hover=\"btn_cancel_a.bmp\" down=\"btn_cancel_b.bmp\"></ui-button>\r\n		<ui-button class=\"btn ok\" bg=\"btn_ok.bmp\" hover=\"btn_ok_a.bmp\" down=\"btn_ok_b.bmp\"></ui-button>\r\n		<ui-button class=\"btn make\" bg=\"btn_make.bmp\" hover=\"btn_make_a.bmp\" down=\"btn_make_b.bmp\"></ui-button>\r\n	</div>\r\n</div>\r\n";
+}));
+//#endregion
+//#region src/UI/Components/CharSelect/CharSelectV3/CharSelectV3.css?raw
+var CharSelectV3_default$1;
+var init_CharSelectV3$1 = __esmMin((() => {
+	CharSelectV3_default$1 = ":host {\r\n	width: 576px;\r\n	height: 358px;\r\n}\r\n\r\n#CharSelectV3 {\r\n	position: absolute;\r\n	width: 576px;\r\n	height: 358px;\r\n}\r\n\r\n/** Box **/\r\n#CharSelectV3 .box_select {\r\n	position: absolute;\r\n	width: 134px;\r\n	height: 144px;\r\n	top: 30px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n#CharSelectV3 canvas {\r\n	position: absolute;\r\n	top: 35px;\r\n}\r\n#CharSelectV3 .slot1 {\r\n	left: 57px;\r\n}\r\n#CharSelectV3 .slot2 {\r\n	left: 220px;\r\n}\r\n#CharSelectV3 .slot3 {\r\n	left: 386px;\r\n}\r\n\r\n#CharSelectV3 .make1 {\r\n	position: absolute;\r\n	top: 84px;\r\n	left: 107px;\r\n	width: 32px;\r\n	height: 32px;\r\n}\r\n#CharSelectV3 .make2 {\r\n	position: absolute;\r\n	top: 84px;\r\n	left: 270px;\r\n	width: 32px;\r\n	height: 32px;\r\n}\r\n#CharSelectV3 .make3 {\r\n	position: absolute;\r\n	top: 84px;\r\n	left: 436px;\r\n	width: 32px;\r\n	height: 32px;\r\n}\r\n\r\n/** Arrow **/\r\n#CharSelectV3 .arrow {\r\n	position: absolute;\r\n	top: 95px;\r\n	width: 14px;\r\n	height: 20px;\r\n}\r\n#CharSelectV3 .arrow.left {\r\n	left: 40px;\r\n}\r\n#CharSelectV3 .arrow.right {\r\n	right: 40px;\r\n}\r\n\r\n/** Slot info **/\r\n#CharSelectV3 .slotinfo {\r\n	position: absolute;\r\n	top: 180px;\r\n	right: 40px;\r\n	height: 20px;\r\n	display: block;\r\n	padding-left: 10px;\r\n	padding-right: 10px;\r\n}\r\n#CharSelectV3 .slotinfo .number {\r\n	/*color: #58709e;\r\n    font-weight: bold;*/\r\n	margin-right: 10px;\r\n}\r\n#CharSelectV3 .slotinfo .content {\r\n	color: #555;\r\n	top: 6px;\r\n	right: 8px;\r\n}\r\n\r\n/** Page info **/\r\n#CharSelectV3 .pageinfo {\r\n	position: absolute;\r\n	top: 180px;\r\n}\r\n\r\n#CharSelectV3 .pageinfo .pagebtn .btn_pageinfo {\r\n	border: 0;\r\n	width: 8px;\r\n	height: 8px;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n}\r\n\r\n/** Characters infos **/\r\n#CharSelectV3 .charinfo {\r\n	position: absolute;\r\n	width: 285px;\r\n	top: 204px;\r\n	left: 16px;\r\n}\r\n#CharSelectV3 .charinfo div {\r\n	position: absolute;\r\n	width: 90px;\r\n	height: 13px;\r\n}\r\n#CharSelectV3 .charinfo .name {\r\n	left: 95px;\r\n	top: -4px;\r\n	white-space: nowrap;\r\n}\r\n#CharSelectV3 .charinfo .job {\r\n	left: 95px;\r\n	top: 12px;\r\n}\r\n#CharSelectV3 .charinfo .lvl {\r\n	left: 95px;\r\n	top: 30px;\r\n}\r\n#CharSelectV3 .charinfo .exp {\r\n	left: 95px;\r\n	top: 47px;\r\n}\r\n#CharSelectV3 .charinfo .hp {\r\n	left: 95px;\r\n	top: 64px;\r\n}\r\n#CharSelectV3 .charinfo .sp {\r\n	left: 95px;\r\n	top: 81px;\r\n}\r\n#CharSelectV3 .charinfo .map {\r\n	left: 95px;\r\n	top: 104px;\r\n	width: 238px;\r\n}\r\n#CharSelectV3 .charinfo .str {\r\n	left: 250px;\r\n	top: -4px;\r\n}\r\n#CharSelectV3 .charinfo .agi {\r\n	left: 250px;\r\n	top: 12px;\r\n}\r\n#CharSelectV3 .charinfo .vit {\r\n	left: 250px;\r\n	top: 30px;\r\n}\r\n#CharSelectV3 .charinfo .int {\r\n	left: 250px;\r\n	top: 47px;\r\n}\r\n#CharSelectV3 .charinfo .dex {\r\n	left: 250px;\r\n	top: 64px;\r\n}\r\n#CharSelectV3 .charinfo .luk {\r\n	left: 250px;\r\n	top: 81px;\r\n}\r\n\r\n/** Buttons **/\r\n#CharSelectV3 .btns {\r\n	position: absolute;\r\n	bottom: 4px;\r\n	width: 100%;\r\n	height: 20px;\r\n}\r\n#CharSelectV3 .btn {\r\n	position: absolute;\r\n	width: 42px;\r\n	height: 20px;\r\n}\r\n\r\n#CharSelectV3 .ok,\r\n#CharSelectV3 .make {\r\n	right: 50px;\r\n}\r\n#CharSelectV3 .cancel {\r\n	right: 4px;\r\n}\r\n#CharSelectV3 .delete {\r\n	left: 4px;\r\n	width: 67px;\r\n}\r\n#CharSelectV3 .canceldelete {\r\n	left: 50px;\r\n	width: 67px;\r\n}\r\n#CharSelectV3 .finaldelete {\r\n	left: 4px;\r\n}\r\n#CharSelectV3 .timedelete {\r\n	position: absolute;\r\n	height: 20px;\r\n	width: 120px;\r\n	top: 75px;\r\n}\r\n#CharSelectV3 .timedelete.waitdelete {\r\n	color: blue;\r\n}\r\n#CharSelectV3 .timedelete.candelete {\r\n	color: red;\r\n}\r\n#CharSelectV3 .timedelete.slot1 {\r\n	left: 63px;\r\n}\r\n#CharSelectV3 .timedelete.slot2 {\r\n	left: 227px;\r\n}\r\n#CharSelectV3 .timedelete.slot3 {\r\n	left: 389px;\r\n}\r\n";
+}));
+//#endregion
+//#region src/UI/Components/CharSelect/CharSelectV3/CharSelectV3.js
+var CharSelectV3_default;
+var init_CharSelectV3 = __esmMin((() => {
+	init_CharSelectV3$2();
+	init_CharSelectV3$1();
+	init_CharSelectCommon();
+	CharSelectV3_default = createCharSelect({
+		name: "CharSelectV3",
+		htmlText: CharSelectV3_default$2,
+		cssText: CharSelectV3_default$1,
+		hostHeight: 358,
+		deleteReservation: true,
+		pageBalls: true
+	});
+}));
+//#endregion
+//#region src/UI/Components/CharSelect/CharSelectV4/CharSelectV4.html?raw
+var CharSelectV4_default$2;
+var init_CharSelectV4$2 = __esmMin((() => {
+	CharSelectV4_default$2 = "<div id=\"CharSelectV4\">\r\n	<div class=\"char_select_container\">\r\n		<!--Cancel Button-->\r\n		<ui-button\r\n			class=\"btn cancel\"\r\n			bg=\"select_character_ver3/bt_close2_normal.bmp\"\r\n			hover=\"select_character_ver3/bt_close2_over.bmp\"\r\n			down=\"select_character_ver3/bt_close2_press.bmp\"\r\n		></ui-button>\r\n		<!-- BOX -->\r\n		<div class=\"char_list\">\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot0\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot0 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot1\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot1 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot2\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot2 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot3\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot3 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot4\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot4 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot5\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot5 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot6\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot6 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot7\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot7 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot8\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot8 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot9\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot9 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot10\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot10 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot11\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot11 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot12\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot12 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot13\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot13 hidden\"></div>\r\n			</div>\r\n\r\n			<div class=\"char_canvas\">\r\n				<canvas id=\"slot14\" width=\"157\" height=\"195\"></canvas>\r\n				<div class=\"name\"></div>\r\n				<div class=\"job_icon\"></div>\r\n				<div class=\"timedelete slot14 hidden\"></div>\r\n			</div>\r\n		</div>\r\n\r\n		<!-- Characters infos -->\r\n		<div class=\"charinfo\">\r\n			<div class=\"job\"></div>\r\n			<div class=\"lvl\"></div>\r\n			<div class=\"exp\"></div>\r\n			<div class=\"hp\"></div>\r\n			<div class=\"sp\"></div>\r\n			<div class=\"map\"></div>\r\n			<div class=\"str\"></div>\r\n			<div class=\"agi\"></div>\r\n			<div class=\"vit\"></div>\r\n			<div class=\"int\"></div>\r\n			<div class=\"dex\"></div>\r\n			<div class=\"luk\"></div>\r\n			<ui-button\r\n				class=\"btn delete\"\r\n				bg=\"select_character_ver3/bt_info_normal.bmp\"\r\n				hover=\"select_character_ver3/bt_info_over.bmp\"\r\n				down=\"select_character_ver3/bt_info_press.bmp\"\r\n			>\r\n				<ui-text msg=\"3339\"></ui-text>\r\n			</ui-button>\r\n			<ui-button\r\n				class=\"btn canceldelete\"\r\n				bg=\"select_character_ver3/bt_info_normal.bmp\"\r\n				hover=\"select_character_ver3/bt_info_over.bmp\"\r\n				down=\"select_character_ver3/bt_info_press.bmp\"\r\n			>\r\n				<ui-text msg=\"3340\"></ui-text>\r\n			</ui-button>\r\n			<ui-button\r\n				class=\"btn finaldelete\"\r\n				bg=\"select_character_ver3/bt_info_normal.bmp\"\r\n				hover=\"select_character_ver3/bt_info_over.bmp\"\r\n				down=\"select_character_ver3/bt_info_press.bmp\"\r\n			>\r\n				<ui-text msg=\"3342\"></ui-text>\r\n			</ui-button>\r\n			<ui-button\r\n				class=\"btn ok\"\r\n				bg=\"select_character_ver3/bt_gamestart_off.bmp\"\r\n				hover=\"select_character_ver3/bt_gamestart_over.bmp\"\r\n				down=\"select_character_ver3/bt_gamestart_press.bmp\"\r\n			>\r\n				<ui-text msg=\"3341\"></ui-text>\r\n			</ui-button>\r\n			<!-- Pages infos -->\r\n			<div class=\"pageinfo\"><span class=\"current\">1</span> / <span class=\"count\">9</span></div>\r\n		</div>\r\n	</div>\r\n</div>\r\n";
+}));
+//#endregion
+//#region src/UI/Components/CharSelect/CharSelectV4/CharSelectV4.css?raw
+var CharSelectV4_default$1;
+var init_CharSelectV4$1 = __esmMin((() => {
+	CharSelectV4_default$1 = ":host {\r\n	top: 0;\r\n	left: 0;\r\n	min-width: 100%;\r\n	min-height: 100%;\r\n}\r\n\r\n#CharSelectV4 {\r\n	position: absolute;\r\n	min-width: 100%;\r\n	min-height: 100%;\r\n	top: 0;\r\n	left: 0;\r\n	display: flex;\r\n	justify-content: center;\r\n	align-items: center;\r\n	flex-direction: column;\r\n}\r\n\r\n#CharSelectV4 .char_select_container {\r\n	position: absolute;\r\n	display: flex;\r\n	flex-direction: row;\r\n	background-color: rgba(0, 0, 0, 0.1);\r\n	border-radius: 5px;\r\n	padding-top: 20px;\r\n	padding-left: 5px;\r\n}\r\n\r\n/** Box **/\r\n#CharSelectV4 .char_list {\r\n	flex: 1;\r\n	max-width: 800px;\r\n	min-width: 157px;\r\n	height: 595px;\r\n	max-height: 80vh;\r\n	display: flex;\r\n	flex-direction: row;\r\n	flex-wrap: wrap;\r\n	overflow-y: auto;\r\n}\r\n\r\n#CharSelectV4 .box_select {\r\n	position: absolute;\r\n	width: 157px;\r\n	height: 159px;\r\n	top: 40px;\r\n	margin-left: -5px;\r\n}\r\n#CharSelectV4 .char_canvas {\r\n	width: 157px;\r\n	height: 195px;\r\n	position: relative;\r\n	z-index: 10;\r\n}\r\n#CharSelectV4 .char_canvas .name {\r\n	position: absolute;\r\n	bottom: 17px;\r\n	width: 100%;\r\n	text-align: center;\r\n	font-weight: bold;\r\n	color: #15154a;\r\n}\r\n\r\n#CharSelectV4 .char_canvas .job_icon {\r\n	position: absolute;\r\n	top: 15px;\r\n	right: 12px;\r\n	width: 25px;\r\n	height: 25px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n\r\n/** Slot info **/\r\n#CharSelectV4 .slotinfo {\r\n	position: absolute;\r\n	top: 195px;\r\n	right: 10px;\r\n	height: 20px;\r\n	display: block;\r\n	border: 1px solid #c6cee7;\r\n	border-radius: 4px;\r\n	padding-left: 10px;\r\n	padding-right: 10px;\r\n}\r\n#CharSelectV4 .slotinfo .number {\r\n	color: #58709e;\r\n	font-weight: bold;\r\n	margin-right: 10px;\r\n}\r\n#CharSelectV4 .slotinfo .content {\r\n	color: #555;\r\n	top: 6px;\r\n	right: 8px;\r\n}\r\n\r\n/** Page info **/\r\n#CharSelectV4 .pageinfo {\r\n	position: absolute;\r\n	left: 275px;\r\n	top: 185px;\r\n	font-weight: bold;\r\n	color: #646464;\r\n}\r\n#CharSelectV4 .pageinfo .current {\r\n	color: #fe3b7d;\r\n}\r\n\r\n/** Characters infos **/\r\n#CharSelectV4 .charinfo {\r\n	height: 585px;\r\n	max-height: 80vh;\r\n	width: 185px;\r\n	background-repeat: no-repeat;\r\n	margin-top: 10px;\r\n	margin-left: 10px;\r\n	position: relative;\r\n}\r\n#CharSelectV4 .charinfo div {\r\n	position: absolute;\r\n	width: 90px;\r\n	height: 13px;\r\n}\r\n#CharSelectV4 .charinfo .name {\r\n	left: 52px;\r\n	top: 2px;\r\n	white-space: nowrap;\r\n}\r\n#CharSelectV4 .charinfo .job {\r\n	left: 60px;\r\n	top: 105px;\r\n}\r\n#CharSelectV4 .charinfo .lvl {\r\n	left: 60px;\r\n	top: 123px;\r\n}\r\n#CharSelectV4 .charinfo .exp {\r\n	left: 60px;\r\n	top: 140px;\r\n}\r\n#CharSelectV4 .charinfo .hp {\r\n	left: 60px;\r\n	top: 157px;\r\n}\r\n#CharSelectV4 .charinfo .sp {\r\n	left: 60px;\r\n	top: 174px;\r\n}\r\n#CharSelectV4 .charinfo .map {\r\n	left: 60px;\r\n	top: 89px;\r\n	white-space: nowrap;\r\n	overflow: hidden;\r\n	text-overflow: ellipsis;\r\n}\r\n#CharSelectV4 .charinfo .str {\r\n	left: 60px;\r\n	top: 191px;\r\n}\r\n#CharSelectV4 .charinfo .agi {\r\n	left: 60px;\r\n	top: 208px;\r\n}\r\n#CharSelectV4 .charinfo .vit {\r\n	left: 60px;\r\n	top: 225px;\r\n}\r\n#CharSelectV4 .charinfo .int {\r\n	left: 60px;\r\n	top: 242px;\r\n}\r\n#CharSelectV4 .charinfo .dex {\r\n	left: 60px;\r\n	top: 259px;\r\n}\r\n#CharSelectV4 .charinfo .luk {\r\n	left: 60px;\r\n	top: 276px;\r\n}\r\n\r\n/** Buttons **/\r\n#CharSelectV4 .btn.delete {\r\n	position: absolute;\r\n	width: 131px;\r\n	height: 24px;\r\n}\r\n\r\n#CharSelectV4 .btn.canceldelete {\r\n	position: absolute;\r\n	width: 131px;\r\n	height: 24px;\r\n}\r\n\r\n#CharSelectV4 .btn.finaldelete {\r\n	position: absolute;\r\n	width: 131px;\r\n	height: 24px;\r\n}\r\n\r\n#CharSelectV4 .btn.delete,\r\n#CharSelectV4 .btn.canceldelete,\r\n#CharSelectV4 .btn.finaldelete {\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n	border: 0;\r\n	text-align: center;\r\n	line-height: 24px;\r\n}\r\n\r\n#CharSelectV4 .btn.ok {\r\n	position: absolute;\r\n	width: 165px;\r\n	height: 110px;\r\n	color: white;\r\n	padding-top: 20px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n	border: 0;\r\n	text-align: center;\r\n}\r\n\r\n#CharSelectV4 .btn.ok:hover {\r\n	text-shadow: #000 1px 1px;\r\n}\r\n\r\n#CharSelectV4 .ok,\r\n#CharSelectV4 .make {\r\n	right: 15px;\r\n	top: 380px;\r\n}\r\n#CharSelectV4 .cancel {\r\n	position: absolute;\r\n	top: 5px;\r\n	right: 5px;\r\n	width: 17px;\r\n	height: 18px;\r\n}\r\n#CharSelectV4 .delete {\r\n	right: 33px;\r\n	top: 300px;\r\n}\r\n\r\n#CharSelectV4 .canceldelete {\r\n	right: 33px;\r\n	top: 300px;\r\n}\r\n\r\n#CharSelectV4 .finaldelete {\r\n	right: 33px;\r\n	top: 330px;\r\n}\r\n\r\n#CharSelectV4 .timedelete {\r\n	position: relative;\r\n	height: 20px;\r\n	width: 100px;\r\n	top: -150px;\r\n	left: 55px;\r\n}\r\n\r\n#CharSelectV4 .hidden {\r\n	display: none;\r\n}\r\n";
+}));
+//#endregion
+//#region src/UI/Components/CharSelect/CharSelectV4/CharSelectV4.js
+var CharSelectV4_default;
+var init_CharSelectV4 = __esmMin((() => {
+	init_CharSelectV4$2();
+	init_CharSelectV4$1();
+	init_CharSelectCommon();
+	CharSelectV4_default = createCharSelect({
+		name: "CharSelectV4",
+		htmlText: CharSelectV4_default$2,
+		cssText: CharSelectV4_default$1,
+		gridLayout: true,
+		deleteReservation: true,
+		defaultMaxSlots: 15
+	});
+}));
+//#endregion
+//#region src/UI/Components/CharSelect/CharSelect.js
+var publicName$2, versionInfo$2, Controller$2;
+var init_CharSelect = __esmMin((() => {
+	init_CharSelect$1();
+	init_CharSelectV2();
+	init_CharSelectV3();
+	init_CharSelectV4();
+	init_UIVersionManager();
+	publicName$2 = "CharSelect";
+	versionInfo$2 = {
+		default: CharSelect_default,
+		common: {
+			20180124: CharSelectV4_default,
+			20141016: CharSelectV3_default,
+			20100803: CharSelectV2_default,
+			20100728: CharSelect_default,
+			20100720: CharSelectV2_default
+		},
+		re: {},
+		prere: {}
+	};
+	Controller$2 = UIVersionManager.getUIController(publicName$2, versionInfo$2);
+}));
+//#endregion
+//#region src/UI/Components/CharCreate/CharCreate/CharCreate.html?raw
+var CharCreate_default$2;
+var init_CharCreate$3 = __esmMin((() => {
+	CharCreate_default$2 = "<div id=\"charcreate\">\r\n	<ui-image src=\"login_interface/win_make.bmp\"></ui-image>\r\n	<div class=\"chargen\">\r\n		<ui-button class=\"left\" bg=\"scroll1left.bmp\"></ui-button>\r\n		<ui-button class=\"up\" bg=\"scroll0up.bmp\"></ui-button>\r\n		<ui-button class=\"right\" bg=\"scroll1right.bmp\"></ui-button>\r\n		<canvas width=\"65\" height=\"110\"></canvas>\r\n	</div>\r\n	<input type=\"text\" data-background=\"login_interface/name-edit.bmp\" value=\"\" />\r\n\r\n	<div class=\"graph\">\r\n		<ui-button class=\"str\" bg=\"login_interface/arw-str0.bmp\" down=\"login_interface/arw-str1.bmp\"></ui-button>\r\n		<ui-button class=\"agi\" bg=\"login_interface/arw-agi0.bmp\" down=\"login_interface/arw-agi1.bmp\"></ui-button>\r\n		<ui-button class=\"vit\" bg=\"login_interface/arw-vit0.bmp\" down=\"login_interface/arw-vit1.bmp\"></ui-button>\r\n		<ui-button class=\"int\" bg=\"login_interface/arw-int0.bmp\" down=\"login_interface/arw-int1.bmp\"></ui-button>\r\n		<ui-button class=\"dex\" bg=\"login_interface/arw-dex0.bmp\" down=\"login_interface/arw-dex1.bmp\"></ui-button>\r\n		<ui-button class=\"luk\" bg=\"login_interface/arw-luk0.bmp\" down=\"login_interface/arw-luk1.bmp\"></ui-button>\r\n		<canvas width=\"158\" height=\"158\"></canvas>\r\n	</div>\r\n\r\n	<div class=\"info\">\r\n		<div class=\"str\">5</div>\r\n		<div class=\"agi\">5</div>\r\n		<div class=\"vit\">5</div>\r\n		<div class=\"int\">5</div>\r\n		<div class=\"dex\">5</div>\r\n		<div class=\"luk\">5</div>\r\n	</div>\r\n\r\n	<div class=\"btns\">\r\n		<ui-button class=\"btn cancel\" bg=\"btn_cancel.bmp\" hover=\"btn_cancel_a.bmp\" down=\"btn_cancel_b.bmp\"></ui-button>\r\n		<ui-button class=\"btn make\" bg=\"btn_make.bmp\" hover=\"btn_make_a.bmp\" down=\"btn_make_b.bmp\"></ui-button>\r\n	</div>\r\n</div>\r\n";
+}));
+//#endregion
+//#region src/UI/Components/CharCreate/CharCreate/CharCreate.css?raw
+var CharCreate_default$1;
+var init_CharCreate$2 = __esmMin((() => {
+	CharCreate_default$1 = ":host {\r\n	width: 576px;\r\n	height: 342px;\r\n}\r\n\r\n#charcreate {\r\n	position: absolute;\r\n	width: 576px;\r\n	height: 342px;\r\n}\r\n\r\n/** Name **/\r\n#charcreate input {\r\n	position: absolute;\r\n	top: 244px;\r\n	left: 62px;\r\n	width: 97px;\r\n	height: 14px;\r\n	padding-top: 2px;\r\n	padding-left: 3px;\r\n	background-color: transparent;\r\n	border: 0;\r\n}\r\n\r\n/** Chargen **/\r\n#charcreate .chargen ui-button {\r\n	position: absolute;\r\n	width: 13px;\r\n	height: 13px;\r\n}\r\n#charcreate .chargen .left {\r\n	top: 135px;\r\n	left: 47px;\r\n}\r\n#charcreate .chargen .up {\r\n	top: 105px;\r\n	left: 87px;\r\n}\r\n#charcreate .chargen .right {\r\n	top: 135px;\r\n	left: 127px;\r\n}\r\n#charcreate .chargen canvas {\r\n	position: absolute;\r\n	top: 120px;\r\n	left: 62px;\r\n}\r\n\r\n/** Graph buttons **/\r\n#charcreate .graph ui-button {\r\n	position: absolute;\r\n	width: 36px;\r\n	height: 36px;\r\n}\r\n#charcreate .graph .str {\r\n	top: 50px;\r\n	left: 270px;\r\n}\r\n#charcreate .graph .int {\r\n	top: 243px;\r\n	left: 270px;\r\n}\r\n#charcreate .graph .vit {\r\n	top: 104px;\r\n	left: 348px;\r\n}\r\n#charcreate .graph .dex {\r\n	top: 190px;\r\n	left: 191px;\r\n}\r\n#charcreate .graph .agi {\r\n	top: 103px;\r\n	left: 191px;\r\n}\r\n#charcreate .graph .luk {\r\n	top: 190px;\r\n	left: 348px;\r\n}\r\n#charcreate .graph canvas {\r\n	position: absolute;\r\n	left: 209px;\r\n	top: 86px;\r\n}\r\n\r\n/** Stats infos **/\r\n#charcreate .info {\r\n	position: absolute;\r\n	top: 40px;\r\n	left: 480px;\r\n}\r\n#charcreate .info div {\r\n	position: absolute;\r\n	left: 0px;\r\n}\r\n#charcreate .info .str {\r\n	top: 0px;\r\n}\r\n#charcreate .info .agi {\r\n	top: 16px;\r\n}\r\n#charcreate .info .vit {\r\n	top: 32px;\r\n}\r\n#charcreate .info .int {\r\n	top: 48px;\r\n}\r\n#charcreate .info .dex {\r\n	top: 64px;\r\n}\r\n#charcreate .info .luk {\r\n	top: 80px;\r\n}\r\n\r\n/** Buttons **/\r\n#charcreate .btns {\r\n	position: absolute;\r\n	bottom: 4px;\r\n	width: 100%;\r\n	height: 20px;\r\n}\r\n#charcreate .btn {\r\n	position: absolute;\r\n	width: 42px;\r\n	height: 20px;\r\n}\r\n#charcreate .make {\r\n	right: 50px;\r\n}\r\n#charcreate .cancel {\r\n	right: 4px;\r\n}\r\n\r\n#charcreate .btns ui-button {\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n	border: 0;\r\n	display: flex;\r\n	align-items: center;\r\n	justify-content: center;\r\n}\r\n";
+}));
+//#endregion
+//#region src/UI/Components/CharCreate/CharCreateCommon.js
+function createCharCreate(config) {
+	const { name, htmlText, cssText, hostHeight = 342, hostWidth = 576, hasStats = false, hasRace = false, gridHairstyle = false, chargenCanvasSelector = ".content canvas", graphCanvasSelector = ".graph canvas", statButtonsSelector = ".graph ui-button", hairArrows = [], humanCanvasSelector = "#canvas_human", doramCanvasSelector = "#canvas_doram", modelCanvasSelector = "#canvas_model", nameInputSelector = "input", nameInputEvent = "mousedown", cancelSelectors = [".cancel"], makeSelector = ".make" } = config;
+	const Component = new GUIComponent(name, cssText);
+	Component.render = () => htmlText;
+	/**
+	* @var {number} account sex
+	*/
+	let _accountSex = 0;
+	/**
+	* Legacy (V0/V2) state
+	*/
+	let _graph;
+	const _chargen = {
+		entity: new Entity(),
+		ctx: null,
+		render: false,
+		tick: 0
+	};
+	/**
+	* Race (V3/V4) state
+	*/
+	const _human = {
+		entity: new Entity(),
+		ctx: null,
+		render: false,
+		tick: 0
+	};
+	const _doram = {
+		entity: new Entity(),
+		ctx: null,
+		render: false,
+		tick: 0
+	};
+	const _model = {
+		entity: new Entity(),
+		ctx: null,
+		render: false,
+		tick: 0
+	};
+	/**
+	* Grid stylist (V4) state
+	*/
+	let _race = "human";
+	let _gender = "male";
+	let _prevhead = 1;
+	let _curhead = 1;
+	let _prevcolor = 0;
+	let _curcolor = 0;
+	const render = hasRace ? renderRace : renderLegacy;
+	/**
+	* Initialize UI
+	*/
+	Component.init = function init() {
+		const root = this.getRoot();
+		if (hasRace) {
+			_human.ctx = root.querySelector(humanCanvasSelector).getContext("2d");
+			_doram.ctx = root.querySelector(doramCanvasSelector).getContext("2d");
+			_model.ctx = root.querySelector(modelCanvasSelector).getContext("2d");
+		} else {
+			_chargen.ctx = root.querySelector(chargenCanvasSelector).getContext("2d");
+			if (hasStats) _graph = root.querySelector(graphCanvasSelector).getContext("2d");
+		}
+		this.draggable();
+		if (hasRace) {
+			root.querySelectorAll("input[type=\"radio\"]").forEach((input) => {
+				input.classList.add("event_add_cursor");
+			});
+			root.querySelectorAll("label").forEach((label) => {
+				label.classList.add("event_add_cursor");
+			});
+			if (gridHairstyle) initRaceGrid(root);
+			else initRaceCap(root);
+		} else {
+			hairArrows.forEach(({ selector, type, value }) => {
+				root.querySelector(selector).addEventListener("mousedown", updateCharacterGeneric(type, value));
+			});
+			if (hasStats) root.querySelectorAll(statButtonsSelector).forEach((btn) => {
+				btn.addEventListener("mousedown", function(event) {
+					updateStats.call(this, event);
+				});
+			});
+		}
+		const input = root.querySelector(nameInputSelector);
+		input.addEventListener(nameInputEvent, (event) => {
+			input.focus();
+			event.stopImmediatePropagation();
+		});
+		cancelSelectors.forEach((selector) => {
+			root.querySelector(selector).addEventListener("click", cancel);
+		});
+		root.querySelector(makeSelector).addEventListener("click", create);
+		if (hasRace) applyRaceMessages(root);
+	};
+	/**
+	* Setter for AccountSex
+	*
+	* @param {number} sex
+	*/
+	Component.setAccountSex = function setAccountSex(sex) {
+		_accountSex = sex;
+	};
+	/**
+	* Once add to HTML, start rendering
+	*/
+	Component.onAppend = function onAppend() {
+		this._host.style.top = `${(Renderer.height - hostHeight) / 2}px`;
+		this._host.style.left = `${(Renderer.width - hostWidth) / 2}px`;
+		if (hasRace) {
+			_human.render = true;
+			_human.entity.set({
+				sex: _accountSex,
+				job: RACE.HUMAN,
+				head: 1,
+				action: 0,
+				direction: 5
+			});
+			_doram.render = true;
+			_doram.entity.set({
+				sex: _accountSex,
+				job: RACE.DORAM,
+				head: 1,
+				action: 0,
+				direction: 5
+			});
+			_model.render = true;
+			_model.entity.set({
+				sex: GENDER.MALE,
+				job: RACE.HUMAN,
+				head: 1,
+				headpalette: 0,
+				action: 0,
+				direction: 4
+			});
+		} else {
+			_chargen.render = true;
+			_chargen.entity.set({
+				sex: _accountSex,
+				job: 0,
+				head: 2,
+				action: 0
+			});
+		}
+		const input = this.getRoot().querySelector(nameInputSelector);
+		input.value = "";
+		input.focus();
+		if (hasRace) {
+			if (gridHairstyle) {
+				_race = "human";
+				_gender = "male";
+				updateRace();
+				cleanup();
+			} else setDefault();
+		}
+		Renderer.render(render);
+		if (hasStats) updateGraphic();
+	};
+	/**
+	* Remove component from HTML
+	* Stop rendering
+	*/
+	Component.onRemove = function onRemove() {
+		Renderer.stop(render);
+	};
+	/**
+	* Key Handler
+	*
+	* @param {object} event
+	* @return {boolean}
+	*/
+	Component.onKeyDown = function onKeyDown(event) {
+		if ((event.which === KEYS.ESCAPE || event.key === "Escape") && this._host.style.display !== "none") {
+			event.stopImmediatePropagation();
+			cancel();
+			return false;
+		}
+		return true;
+	};
+	/**
+	* Generic function to get a direct proxy to updateCharacterLegacy
+	*
+	* @param {string} type
+	* @param {number} value
+	*/
+	function updateCharacterGeneric(type, value) {
+		return (event) => {
+			updateCharacterLegacy(type, value);
+			event.stopImmediatePropagation();
+			return false;
+		};
+	}
+	/**
+	* Send back informations to send the packet
+	*/
+	function create() {
+		const root = Component.getRoot();
+		const charname = root.querySelector(nameInputSelector).value;
+		let str = 1;
+		let agi = 1;
+		let vit = 1;
+		let int = 1;
+		let dex = 1;
+		let luk = 1;
+		if (hasStats) {
+			str = parseInt(root.querySelector(".info .str").textContent, 10);
+			agi = parseInt(root.querySelector(".info .agi").textContent, 10);
+			vit = parseInt(root.querySelector(".info .vit").textContent, 10);
+			int = parseInt(root.querySelector(".info .int").textContent, 10);
+			dex = parseInt(root.querySelector(".info .dex").textContent, 10);
+			luk = parseInt(root.querySelector(".info .luk").textContent, 10);
+		}
+		if (hasRace) Component.onCharCreationRequest(charname, str, agi, vit, int, dex, luk, _model.entity.head, _model.entity.headpalette, _model.entity.job, _model.entity.sex);
+		else Component.onCharCreationRequest(charname, str, agi, vit, int, dex, luk, _chargen.entity.head, _chargen.entity.headpalette);
+	}
+	/**
+	* Exit the window
+	*/
+	function cancel() {
+		if (hasRace) {
+			if (gridHairstyle) cleanup();
+			else setDefault();
+		}
+		Component.onExitRequest();
+	}
+	/**
+	* Update character hairstyle and haircolor
+	*
+	* @param {string} type (head or headpalette)
+	* @param {number} increment (-1 or +1)
+	*/
+	function updateCharacterLegacy(type, increment) {
+		switch (type) {
+			case "head": {
+				let head = _chargen.entity.head + increment;
+				if (head < 2) head = 26;
+				if (head > 26) head = 2;
+				_chargen.entity.head = head;
+				break;
+			}
+			case "headpalette":
+				_chargen.entity.headpalette += increment;
+				_chargen.entity.headpalette %= 10;
+		}
+		render();
+	}
+	/**
+	* Update the stats and polygon
+	*/
+	function updateStats() {
+		const root = Component.getRoot();
+		if (root.querySelector(`.info .${this.className}`).textContent === "9") return;
+		const group = {
+			str: "int",
+			int: "str",
+			vit: "dex",
+			dex: "vit",
+			luk: "agi",
+			agi: "luk"
+		};
+		root.querySelector(`.info .${this.className}`).textContent++;
+		root.querySelector(`.info .${group[this.className]}`).textContent--;
+		updateGraphic();
+	}
+	/**
+	* Update the polygon
+	*/
+	function updateGraphic() {
+		const root = Component.getRoot();
+		const ctx = _graph;
+		const width = ctx.canvas.width;
+		const height = ctx.canvas.height;
+		let i;
+		const x = width / 2;
+		const y = height / 2;
+		const list = [
+			"dex",
+			"agi",
+			"str",
+			"vit",
+			"luk",
+			"int"
+		];
+		ctx.clearRect(0, 0, width, height);
+		ctx.save();
+		ctx.fillStyle = "#7b94ce";
+		ctx.translate(x, y);
+		ctx.beginPath();
+		ctx.moveTo(0, Math.floor(y / 10 * (parseInt(root.querySelector(`.info .${list[5]}`).textContent) + 1)));
+		for (i = 0; i < 6; i++) {
+			ctx.rotate(60 * Math.PI / 180);
+			ctx.lineTo(0, Math.floor(y / 10 * (parseInt(root.querySelector(`.info .${list[i]}`).textContent) + 1)));
+		}
+		ctx.closePath();
+		ctx.fill();
+		ctx.restore();
+	}
+	/**
+	* Rendering the Character (single canvas, camera rotation)
+	*/
+	function renderLegacy(tick) {
+		if (_chargen.tick + 500 < tick) {
+			Camera.direction++;
+			Camera.direction %= 8;
+			_chargen.tick = tick;
+		}
+		SpriteRenderer.bind2DContext(_chargen.ctx, 32, 115);
+		_chargen.ctx.clearRect(0, 0, _chargen.ctx.canvas.width, _chargen.ctx.canvas.height);
+		_chargen.entity.renderEntity();
+	}
+	/**
+	* Msgstring Texts
+	*/
+	function applyRaceMessages(root) {
+		if (gridHairstyle) {
+			root.querySelector(".title").textContent = DB.getMessage(3355);
+			root.querySelector(".human_title").textContent = DB.getMessage(3016);
+			root.querySelector(".human_desc").textContent = DB.getMessage(3020);
+			root.querySelector(".doram_title").textContent = DB.getMessage(3018);
+			root.querySelector(".doram_desc").textContent = DB.getMessage(3021);
+			root.querySelector(".hair_style_title").textContent = DB.getMessage(3346);
+			root.querySelector(".hair_color_title").textContent = DB.getMessage(3347);
+			root.querySelector(".return").textContent = DB.getMessage(3351);
+			root.querySelector(".make").textContent = DB.getMessage(3345);
+		} else {
+			root.querySelector(".race_select .human .title").textContent = DB.getMessage(3016);
+			root.querySelector(".race_select .human .desc").textContent = DB.getMessage(3020);
+			root.querySelector(".race_select .human .jobs").textContent = DB.getMessage(3017);
+			root.querySelector(".race_select .doram .title").textContent = DB.getMessage(3018);
+			root.querySelector(".race_select .doram .desc").textContent = DB.getMessage(3021);
+			root.querySelector(".race_select .doram .jobs").textContent = DB.getMessage(3019);
+		}
+	}
+	/**
+	* Rendering the Characters (three canvases, action animation)
+	*/
+	function renderRace(tick) {
+		const root = Component.getRoot();
+		const humanSelected = gridHairstyle ? _race === "human" : _model.entity.job === RACE.HUMAN;
+		const doramSelected = gridHairstyle ? _race === "doram" : _model.entity.job === RACE.DORAM;
+		if (humanSelected) {
+			if (_human.tick + 500 < tick) {
+				_human.entity.set({
+					action: 1,
+					direction: 5
+				});
+				_human.tick = tick;
+			}
+		}
+		SpriteRenderer.bind2DContext(_human.ctx, 32, 115);
+		_human.ctx.clearRect(0, 0, _human.ctx.canvas.width, _human.ctx.canvas.height);
+		_human.entity.renderEntity();
+		if (doramSelected) {
+			if (_doram.tick + 500 < tick) {
+				_doram.entity.set({
+					action: 1,
+					direction: 5
+				});
+				_doram.tick = tick;
+			}
+		}
+		SpriteRenderer.bind2DContext(_doram.ctx, 32, 115);
+		_doram.ctx.clearRect(0, 0, _doram.ctx.canvas.width, _doram.ctx.canvas.height);
+		_doram.entity.renderEntity();
+		SpriteRenderer.bind2DContext(_model.ctx, 32, 115);
+		_model.ctx.clearRect(0, 0, _model.ctx.canvas.width, _model.ctx.canvas.height);
+		_model.entity.renderEntity();
+		root.querySelector(nameInputSelector).focus();
+		if (gridHairstyle) {
+			Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/img_${_race}_on.bmp`, (dataURI) => {
+				root.querySelector(`.${_race}_label`).style.backgroundImage = `url(${dataURI})`;
+			});
+			Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/bt_${_gender}_on.bmp`, (dataURI) => {
+				root.querySelector(`#${_gender}_container`).style.backgroundImage = `url(${dataURI})`;
+			});
+			Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/color0${parseInt(_curcolor) + 1}_on.bmp`, (dataURI) => {
+				const el = root.querySelector(`.cstyle0${_curcolor}`);
+				if (el) el.style.backgroundImage = `url(${dataURI})`;
+			});
+			Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/bt_hairstyle_normal.bmp`, (dataURI) => {
+				const el = root.querySelector(`.style${_prevhead}`);
+				if (el) el.style.backgroundImage = `url(${dataURI})`;
+			});
+			Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/bt_hairstyle_select.bmp`, (dataURI) => {
+				const el = root.querySelector(`.style${_curhead}`);
+				if (el) el.style.backgroundImage = `url(${dataURI})`;
+			});
+		}
+	}
+	function initRaceCap(root) {
+		root.querySelector(".race_select #human").addEventListener("click", () => {
+			updateCharacterCap(TYPE.RACE, RACE.HUMAN);
+		});
+		root.querySelector(".race_select #doram").addEventListener("click", () => {
+			updateCharacterCap(TYPE.RACE, RACE.DORAM);
+		});
+		root.querySelector("#style .rot_left").addEventListener("click", () => {
+			updateCharacterCap(TYPE.DIRECTION, DIRECTION.LEFT);
+		});
+		root.querySelector("#style .rot_right").addEventListener("click", () => {
+			updateCharacterCap(TYPE.DIRECTION, DIRECTION.RIGHT);
+		});
+		root.querySelector("#style .gender .button.male").addEventListener("click", () => {
+			updateCharacterCap(TYPE.GENDER, GENDER.MALE);
+		});
+		root.querySelector("#style .gender .button.female").addEventListener("click", () => {
+			updateCharacterCap(TYPE.GENDER, GENDER.FEMALE);
+		});
+		root.querySelector("#style .hairstyle .left").addEventListener("click", () => {
+			updateCharacterCap(TYPE.HEAD, VALUE.DECREASE);
+		});
+		root.querySelector("#style .hairstyle .right").addEventListener("click", () => {
+			updateCharacterCap(TYPE.HEAD, VALUE.INCREASE);
+		});
+		root.querySelector("#style .haircolor .left").addEventListener("click", () => {
+			updateCharacterCap(TYPE.HEADPALETTE, VALUE.DECREASE);
+		});
+		root.querySelector("#style .haircolor .right").addEventListener("click", () => {
+			updateCharacterCap(TYPE.HEADPALETTE, VALUE.INCREASE);
+		});
+	}
+	function setDefault() {
+		updateCharacterCap(TYPE.DEFAULT, 0);
+	}
+	/**
+	* Update character hairstyle and haircolor
+	*
+	* @param {number} type
+	* @param {number} value
+	*/
+	function updateCharacterCap(type, value) {
+		const root = Component.getRoot();
+		switch (type) {
+			case TYPE.GENDER:
+				_model.entity.sex = value;
+				if (_model.entity.sex == GENDER.MALE) {
+					Client.loadFile(`${DB.INTERFACE_PATH}make_character/btn_gender_m_press.bmp`, (dataURI) => {
+						root.querySelector("#male_container").style.backgroundImage = `url(${dataURI})`;
+					});
+					Client.loadFile(`${DB.INTERFACE_PATH}make_character/btn_gender_f_out.bmp`, (dataURI) => {
+						root.querySelector("#female_container").style.backgroundImage = `url(${dataURI})`;
+					});
+				} else {
+					Client.loadFile(`${DB.INTERFACE_PATH}make_character/btn_gender_m_out.bmp`, (dataURI) => {
+						root.querySelector("#male_container").style.backgroundImage = `url(${dataURI})`;
+					});
+					Client.loadFile(`${DB.INTERFACE_PATH}make_character/btn_gender_f_press.bmp`, (dataURI) => {
+						root.querySelector("#female_container").style.backgroundImage = `url(${dataURI})`;
+					});
+				}
+				break;
+			case TYPE.RACE:
+				_model.entity.job = value;
+				_model.entity.head = 1;
+				if (_model.entity.job === RACE.HUMAN) {
+					Client.loadFile(RACE_MARK, (dataURI) => {
+						root.querySelector(".race_select .human label").style.backgroundImage = `url(${dataURI})`;
+					});
+					root.querySelector(".race_select .doram label").style.backgroundImage = "none";
+				} else {
+					root.querySelector(".race_select .human label").style.backgroundImage = "none";
+					Client.loadFile(RACE_MARK, (dataURI) => {
+						root.querySelector(".race_select .doram label").style.backgroundImage = `url(${dataURI})`;
+					});
+				}
+				break;
+			case TYPE.DIRECTION:
+				_model.entity.direction += value;
+				break;
+			case TYPE.HEAD: {
+				let headval = _model.entity.head + value;
+				if (headval > CAP[_model.entity.job].HEAD.MAX) headval = CAP[_model.entity.job].HEAD.MIN;
+				if (headval < CAP[_model.entity.job].HEAD.MIN) headval = CAP[_model.entity.job].HEAD.MAX;
+				_model.entity.head = headval;
+				break;
+			}
+			case TYPE.HEADPALETTE: {
+				let headpaletteval = _model.entity.headpalette + value;
+				if (headpaletteval > CAP[_model.entity.job].HEADPALETTE.MAX) headpaletteval = CAP[_model.entity.job].HEADPALETTE.MIN;
+				if (headpaletteval < CAP[_model.entity.job].HEADPALETTE.MIN) headpaletteval = CAP[_model.entity.job].HEADPALETTE.MAX;
+				_model.entity.headpalette = headpaletteval;
+				break;
+			}
+			case TYPE.DEFAULT:
+				updateCharacterCap(TYPE.RACE, RACE.HUMAN);
+				updateCharacterCap(TYPE.GENDER, GENDER.MALE);
+				_model.entity.headpalette = 0;
+		}
+	}
+	function initRaceGrid(root) {
+		_race = "human";
+		_gender = "male";
+		_prevhead = 1;
+		_curhead = 1;
+		_prevcolor = 0;
+		_curcolor = 0;
+		root.querySelector(".gender .male_button").addEventListener("mousedown", updateCharacterGenericGrid("gender", 1));
+		root.querySelector(".gender .female_button").addEventListener("mousedown", updateCharacterGenericGrid("gender", 0));
+		root.querySelector("#style .rot_left").addEventListener("mousedown", updateCharacterGenericGrid("direction", 0));
+		root.querySelector("#style .rot_right").addEventListener("mousedown", updateCharacterGenericGrid("direction", 1));
+		root.querySelectorAll(".race").forEach((el) => {
+			el.addEventListener("click", updateRace);
+		});
+		root.addEventListener("click", (event) => {
+			const hstyleBtn = event.target.closest(".hstyle_button");
+			if (hstyleBtn) {
+				updateHStyle(hstyleBtn);
+				return;
+			}
+			const hcolorBtn = event.target.closest(".hcolor_button");
+			if (hcolorBtn) updateHColor(hcolorBtn);
+		});
+	}
+	/**
+	* Update model hairstyle
+	*/
+	function updateHStyle(target) {
+		const root = Component.getRoot();
+		const type = "head";
+		const value = parseInt(target.getAttribute("for"));
+		_prevhead = _model.entity.head;
+		Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/bt_hairstyle_normal.bmp`, (dataURI) => {
+			const el = root.querySelector(`.style${_prevhead}`);
+			if (el) el.style.backgroundImage = `url(${dataURI})`;
+		});
+		_curhead = value;
+		updateCharacterGrid(type, value);
+	}
+	/**
+	* Update model haircolor
+	*/
+	function updateHColor(target) {
+		const root = Component.getRoot();
+		const type = "headpalette";
+		const value = parseInt(target.getAttribute("for"));
+		_prevcolor = _model.entity.headpalette;
+		Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/color0${parseInt(_prevcolor) + 1}_off.bmp`, (dataURI) => {
+			const el = root.querySelector(`.cstyle0${_prevcolor}`);
+			if (el) el.style.backgroundImage = `url(${dataURI})`;
+		});
+		_curcolor = value;
+		updateCharacterGrid(type, value);
+	}
+	/**
+	* Update model race
+	*/
+	function updateRace() {
+		const root = Component.getRoot();
+		const select = root.querySelector(".race:checked");
+		const type = "race";
+		let value = 0;
+		if (select && select.id === "human_race") {
+			Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/img_human_on.bmp`, (dataURI) => {
+				root.querySelector(".human_label").style.backgroundImage = `url(${dataURI})`;
+			});
+			Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/img_doram_off.bmp`, (dataURI) => {
+				root.querySelector(".doram_label").style.backgroundImage = `url(${dataURI})`;
+			});
+			value = 0;
+		}
+		if (select && select.id === "doram_race") {
+			Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/img_human_off.bmp`, (dataURI) => {
+				root.querySelector(".human_label").style.backgroundImage = `url(${dataURI})`;
+			});
+			Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/img_doram_on.bmp`, (dataURI) => {
+				root.querySelector(".doram_label").style.backgroundImage = `url(${dataURI})`;
+			});
+			value = 4218;
+		}
+		for (let i = 1; i <= 24; i++) Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/bt_hairstyle_normal.bmp`, (dataURI) => {
+			const el = root.querySelector(`.style${i}`);
+			if (el) el.style.backgroundImage = `url(${dataURI})`;
+		});
+		_prevhead = 1;
+		_curhead = 1;
+		updateHstyleList(type, value);
+		updateCharacterGrid(type, value);
+	}
+	/**
+	* Generic function to get a direct proxy to updateCharacterGrid
+	*
+	* @param {string} type
+	* @param {number} value
+	*/
+	function updateCharacterGenericGrid(type, value) {
+		return () => {
+			if (type === "gender") updateHstyleList(type, value);
+			updateCharacterGrid(type, value);
+		};
+	}
+	function updateHstyleList(type, value) {
+		const root = Component.getRoot();
+		switch (type) {
+			case "gender":
+				if (value === 1) _gender = "male";
+				else _gender = "female";
+				break;
+			case "race": if (value === 0) _race = "human";
+			else _race = "doram";
+		}
+		Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/bt_male_off.bmp`, (dataURI) => {
+			root.querySelector("#male_container").style.backgroundImage = `url(${dataURI})`;
+		});
+		Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/bt_female_off.bmp`, (dataURI) => {
+			root.querySelector("#female_container").style.backgroundImage = `url(${dataURI})`;
+		});
+		Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/bt_${_gender}_on.bmp`, (dataURI) => {
+			root.querySelector(`#${_gender}_container`).style.backgroundImage = `url(${dataURI})`;
+		});
+		root.querySelectorAll(".hair-style").forEach((el) => {
+			el.style.display = "none";
+		});
+		const hairStyleEl = root.querySelector(`#${_race}_${_gender}`);
+		if (hairStyleEl) hairStyleEl.style.display = "block";
+	}
+	function cleanup() {
+		const root = Component.getRoot();
+		_race = "human";
+		_gender = "male";
+		_prevhead = 1;
+		_curhead = 1;
+		_prevcolor = 0;
+		_curcolor = 0;
+		const humanRace = root.querySelector("#human_race");
+		if (humanRace) humanRace.checked = true;
+		const maleInput = root.querySelector("#male");
+		if (maleInput) maleInput.checked = true;
+		root.querySelectorAll(".hstyle").forEach((el) => {
+			el.checked = false;
+		});
+		const defaultHstyle = root.querySelector("[id=\"1_human_male\"]");
+		if (defaultHstyle) defaultHstyle.checked = true;
+		const defaultColor = root.querySelector("[id=\"0_color\"]");
+		if (defaultColor) defaultColor.checked = true;
+		for (let i = 0; i <= 8; i++) Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/color0${i + 1}_off.bmp`, (dataURI) => {
+			const el = root.querySelector(`.cstyle0${i}`);
+			if (el) el.style.backgroundImage = `url(${dataURI})`;
+		});
+		updateCharacterGrid("default", 0);
+	}
+	/**
+	* Update character hairstyle and haircolor
+	*
+	* @param {string} type
+	* @param {number} increment
+	*/
+	function updateCharacterGrid(type, increment) {
+		switch (type) {
+			case "gender":
+				_model.entity.sex = increment;
+				break;
+			case "race":
+				_model.entity.job = increment;
+				_model.entity.head = 1;
+				break;
+			case "direction":
+				if (increment === 0) _model.entity.direction = _model.entity.direction + 1;
+				else _model.entity.direction = _model.entity.direction - 1;
+				break;
+			case "head":
+				_prevhead = _model.entity.head;
+				_model.entity.head = increment;
+				break;
+			case "headpalette":
+				_model.entity.headpalette = increment;
+				break;
+			case "default":
+				_model.entity.sex = 1;
+				_model.entity.job = 0;
+				_model.entity.head = 1;
+				_model.entity.headpalette = 0;
+		}
+	}
+	/**
+	* Callback to define
+	*/
+	Component.onExitRequest = function OnExitRequest() {};
+	/**
+	* Abstract callback to define
+	*/
+	Component.onCharCreationRequest = function OnCharCreationRequest() {};
+	/**
+	* Create component and export it
+	*/
+	return UIManager.addComponent(Component);
+}
+var TYPE, GENDER, RACE, DIRECTION, VALUE, CAP, RACE_MARK;
+var init_CharCreateCommon = __esmMin((() => {
+	init_DBManager();
+	init_Renderer();
+	init_KeyEventHandler();
+	init_Entity$1();
+	init_SpriteRenderer();
+	init_Camera();
+	init_Client();
+	init_UIManager();
+	init_GUIComponent();
+	init_Elements();
+	TYPE = {
+		RACE: 1,
+		GENDER: 2,
+		HEAD: 3,
+		HEADPALETTE: 4,
+		DIRECTION: 5,
+		DEFAULT: -1
+	};
+	GENDER = {
+		FEMALE: 0,
+		MALE: 1
+	};
+	RACE = {
+		HUMAN: 0,
+		DORAM: 4218
+	};
+	DIRECTION = {
+		LEFT: 1,
+		RIGHT: -1
+	};
+	VALUE = {
+		INCREASE: 1,
+		DECREASE: -1
+	};
+	CAP = {
+		[RACE.HUMAN]: {
+			HEAD: {
+				MIN: 1,
+				MAX: 29
+			},
+			HEADPALETTE: {
+				MIN: 0,
+				MAX: 8
+			}
+		},
+		[RACE.DORAM]: {
+			HEAD: {
+				MIN: 1,
+				MAX: 6
+			},
+			HEADPALETTE: {
+				MIN: 0,
+				MAX: 7
+			}
+		}
+	};
+	RACE_MARK = `${DB.INTERFACE_PATH}make_character/select_mark_cha_create.bmp`;
+}));
+//#endregion
+//#region src/UI/Components/CharCreate/CharCreate/CharCreate.js
+var CharCreate_default;
+var init_CharCreate$1 = __esmMin((() => {
+	init_CharCreate$3();
+	init_CharCreate$2();
+	init_CharCreateCommon();
+	CharCreate_default = createCharCreate({
+		name: "CharCreate",
+		htmlText: CharCreate_default$2,
+		cssText: CharCreate_default$1,
+		hostHeight: 342,
+		hostWidth: 576,
+		hasStats: true,
+		chargenCanvasSelector: ".chargen canvas",
+		graphCanvasSelector: ".graph canvas",
+		statButtonsSelector: ".graph ui-button",
+		hairArrows: [
+			{
+				selector: ".chargen .left",
+				type: "head",
+				value: -1
+			},
+			{
+				selector: ".chargen .right",
+				type: "head",
+				value: 1
+			},
+			{
+				selector: ".chargen .up",
+				type: "headpalette",
+				value: 1
+			}
+		],
+		nameInputSelector: "input",
+		cancelSelectors: [".cancel"],
+		makeSelector: ".make"
+	});
+}));
+//#endregion
+//#region src/UI/Components/CharCreate/CharCreatev2/CharCreatev2.html?raw
+var CharCreatev2_default$2;
+var init_CharCreatev2$2 = __esmMin((() => {
+	CharCreatev2_default$2 = "<div id=\"charcreate_v2\">\r\n	<div class=\"header\">\r\n		<div class=\"corner left\"><ui-image src=\"basic_interface/titlebar_left.bmp\"></ui-image></div>\r\n		<div class=\"center\"><ui-image src=\"basic_interface/titlebar_mid.bmp\"></ui-image></div>\r\n		<div class=\"corner right\"><ui-image src=\"basic_interface/titlebar_right.bmp\"></ui-image></div>\r\n\r\n		<div class=\"title\"><ui-text msg=\"2368\"></ui-text></div>\r\n	</div>\r\n\r\n	<div class=\"content\">\r\n		<ui-image src=\"login_interface/win_make2.bmp\"></ui-image>\r\n		<canvas width=\"65\" height=\"110\"></canvas>\r\n\r\n		<input type=\"text\" data-background=\"login_interface/name-edit.bmp\" value=\"\" />\r\n\r\n		<ui-button class=\"styleleft\" bg=\"scroll1left.bmp\"></ui-button>\r\n		<ui-button class=\"styleright\" bg=\"scroll1right.bmp\"></ui-button>\r\n\r\n		<ui-button class=\"colorleft\" bg=\"scroll1left.bmp\"></ui-button>\r\n		<ui-button class=\"colorright\" bg=\"scroll1right.bmp\"></ui-button>\r\n	</div>\r\n\r\n	<div class=\"footer\">\r\n		<div class=\"corner left\"><ui-image src=\"basic_interface/btnbar_left2.bmp\"></ui-image></div>\r\n		<div class=\"center\"><ui-image src=\"basic_interface/btnbar_mid2.bmp\"></ui-image></div>\r\n		<div class=\"corner right\"><ui-image src=\"basic_interface/btnbar_right2.bmp\"></ui-image></div>\r\n\r\n		<div class=\"btns\">\r\n			<ui-button\r\n				class=\"btn cancel\"\r\n				bg=\"btn_cancel.bmp\"\r\n				hover=\"btn_cancel_a.bmp\"\r\n				down=\"btn_cancel_b.bmp\"\r\n			></ui-button>\r\n			<ui-button class=\"btn make\" bg=\"btn_make.bmp\" hover=\"btn_make_a.bmp\" down=\"btn_make_b.bmp\"></ui-button>\r\n		</div>\r\n	</div>\r\n</div>\r\n";
+}));
+//#endregion
+//#region src/UI/Components/CharCreate/CharCreatev2/CharCreatev2.css?raw
+var CharCreatev2_default$1;
+var init_CharCreatev2$1 = __esmMin((() => {
+	CharCreatev2_default$1 = ":host {\r\n	width: 150px;\r\n	height: 286px;\r\n}\r\n\r\n#charcreate_v2 {\r\n	position: absolute;\r\n	width: 150px;\r\n	height: 286px;\r\n}\r\n\r\n#charcreate_v2 .header {\r\n	width: 150px;\r\n	height: 17px;\r\n}\r\n#charcreate_v2 .header .corner {\r\n	position: absolute;\r\n	width: 12px;\r\n	height: 17px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n#charcreate_v2 .header .corner.left {\r\n	top: 0px;\r\n	left: 0px;\r\n}\r\n#charcreate_v2 .header .corner.right {\r\n	top: 0px;\r\n	right: 0px;\r\n}\r\n#charcreate_v2 .header .center {\r\n	position: absolute;\r\n	top: 0px;\r\n	left: 12px;\r\n	width: 128px;\r\n	height: 17px;\r\n}\r\n#charcreate_v2 .header .title {\r\n	position: absolute;\r\n	top: 2px;\r\n	left: 12px;\r\n	font-size: 13px;\r\n}\r\n\r\n#charcreate_v2 .content {\r\n	width: 150px;\r\n	height: 240px;\r\n}\r\n\r\n#charcreate_v2 .footer {\r\n	width: 150px;\r\n	height: 29px;\r\n}\r\n#charcreate_v2 .footer .corner {\r\n	position: absolute;\r\n	width: 21px;\r\n	height: 29px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n#charcreate_v2 .footer .corner.left {\r\n	bottom: 0px;\r\n	left: 0px;\r\n}\r\n#charcreate_v2 .footer .corner.right {\r\n	bottom: 0px;\r\n	right: 0px;\r\n}\r\n#charcreate_v2 .footer .center {\r\n	position: absolute;\r\n	bottom: 0px;\r\n	left: 21px;\r\n	width: 118px;\r\n	height: 29px;\r\n}\r\n\r\n/** Name **/\r\n#charcreate_v2 .content input {\r\n	position: absolute;\r\n	top: 142px;\r\n	left: 40px;\r\n	width: 96px;\r\n	height: 18px;\r\n	padding-top: 2px;\r\n	padding-left: 3px;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	border: 0;\r\n}\r\n\r\n/** Chargen **/\r\n#charcreate_v2 .content ui-button {\r\n	position: absolute;\r\n	width: 13px;\r\n	height: 13px;\r\n}\r\n\r\n#charcreate_v2 .content .styleleft {\r\n	top: 190px;\r\n	left: 15px;\r\n}\r\n#charcreate_v2 .content .styleright {\r\n	top: 190px;\r\n	left: 125px;\r\n}\r\n#charcreate_v2 .content .colorleft {\r\n	top: 230px;\r\n	left: 15px;\r\n}\r\n#charcreate_v2 .content .colorright {\r\n	top: 230px;\r\n	left: 125px;\r\n}\r\n\r\n#charcreate_v2 .content canvas {\r\n	position: absolute;\r\n	top: 25px;\r\n	left: 40px;\r\n}\r\n\r\n/** Buttons **/\r\n#charcreate_v2 .footer .btns {\r\n	position: absolute;\r\n	bottom: 4px;\r\n	width: 100%;\r\n	height: 20px;\r\n}\r\n#charcreate_v2 .footer .btn {\r\n	position: absolute;\r\n	width: 42px;\r\n	height: 20px;\r\n}\r\n#charcreate_v2 .footer .make {\r\n	right: 50px;\r\n}\r\n#charcreate_v2 .footer .cancel {\r\n	right: 4px;\r\n}\r\n\r\n#charcreate_v2 .btns ui-button {\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n	border: 0;\r\n	display: flex;\r\n	align-items: center;\r\n	justify-content: center;\r\n}\r\n";
+}));
+//#endregion
+//#region src/UI/Components/CharCreate/CharCreatev2/CharCreatev2.js
+var CharCreatev2_default;
+var init_CharCreatev2 = __esmMin((() => {
+	init_CharCreatev2$2();
+	init_CharCreatev2$1();
+	init_CharCreateCommon();
+	CharCreatev2_default = createCharCreate({
+		name: "CharCreatev2",
+		htmlText: CharCreatev2_default$2,
+		cssText: CharCreatev2_default$1,
+		hostHeight: 286,
+		hostWidth: 150,
+		chargenCanvasSelector: ".content canvas",
+		hairArrows: [
+			{
+				selector: ".content .styleleft",
+				type: "head",
+				value: -1
+			},
+			{
+				selector: ".content .styleright",
+				type: "head",
+				value: 1
+			},
+			{
+				selector: ".content .colorleft",
+				type: "headpalette",
+				value: -1
+			},
+			{
+				selector: ".content .colorright",
+				type: "headpalette",
+				value: 1
+			}
+		],
+		nameInputSelector: "input",
+		cancelSelectors: [".cancel"],
+		makeSelector: ".make"
+	});
+}));
+//#endregion
+//#region src/UI/Components/CharCreate/CharCreatev3/CharCreatev3.html?raw
+var CharCreatev3_default$2;
+var init_CharCreatev3$2 = __esmMin((() => {
+	CharCreatev3_default$2 = "<div id=\"charcreate_v3\">\r\n	<ui-image src=\"make_character/bg_create_character.bmp\"></ui-image>\r\n	<ui-button\r\n		class=\"button close\"\r\n		bg=\"basic_interface/sys_close_off.bmp\"\r\n		hover=\"basic_interface/sys_close_on.bmp\"\r\n	></ui-button>\r\n\r\n	<div class=\"race_select\">\r\n		<div class=\"race human\">\r\n			<input type=\"radio\" name=\"race\" id=\"human\" checked class=\"radio\" />\r\n			<label\r\n				for=\"human\"\r\n				class=\"label\"\r\n				data-background=\"make_character/img_human_off.bmp\"\r\n				data-hover=\"make_character/img_human_on.bmp\"\r\n				data-down=\"make_character/img_human_on.bmp\"\r\n			>\r\n				<div class=\"title\"></div>\r\n				<div class=\"desc\"></div>\r\n				<div class=\"jobs\"></div>\r\n				<div class=\"chargen\">\r\n					<canvas id=\"canvas_human\" width=\"65\" height=\"110\" style=\"pointer-events: none\"></canvas>\r\n				</div>\r\n			</label>\r\n		</div>\r\n\r\n		<div class=\"race doram\">\r\n			<input type=\"radio\" name=\"race\" id=\"doram\" class=\"radio\" />\r\n			<label\r\n				for=\"doram\"\r\n				class=\"label\"\r\n				data-background=\"make_character/img_doram_off.bmp\"\r\n				data-hover=\"make_character/img_doram_on.bmp\"\r\n				data-down=\"make_character/img_doram_on.bmp\"\r\n			>\r\n				<div class=\"title\"></div>\r\n				<div class=\"desc\"></div>\r\n				<div class=\"jobs\"></div>\r\n				<div class=\"chargen\">\r\n					<canvas id=\"canvas_doram\" width=\"65\" height=\"110\" style=\"pointer-events: none\"></canvas>\r\n				</div>\r\n			</label>\r\n		</div>\r\n	</div>\r\n	<div id=\"style\">\r\n		<div class=\"model\">\r\n			<canvas id=\"canvas_model\" width=\"65\" height=\"110\" style=\"pointer-events: none\"></canvas>\r\n		</div>\r\n\r\n		<ui-button\r\n			class=\"rot_left\"\r\n			bg=\"make_character/chr_arrow_rotate_l_out.bmp\"\r\n			hover=\"make_character/chr_arrow_rotate_l_over.bmp\"\r\n			down=\"make_character/chr_arrow_rotate_l_press.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"rot_right\"\r\n			bg=\"make_character/chr_arrow_rotate_r_out.bmp\"\r\n			hover=\"make_character/chr_arrow_rotate_r_over.bmp\"\r\n			down=\"make_character/chr_arrow_rotate_r_press.bmp\"\r\n		></ui-button>\r\n\r\n		<input type=\"text\" id=\"char_name\" maxlength=\"24\" />\r\n\r\n		<div class=\"category gender\">\r\n			<div\r\n				id=\"male_container\"\r\n				class=\"button container left\"\r\n				data-background=\"make_character/btn_gender_m_press.bmp\"\r\n			>\r\n				<input type=\"radio\" name=\"gender\" id=\"male\" checked class=\"gender_button radio\" />\r\n				<label\r\n					for=\"male\"\r\n					class=\"button male\"\r\n					data-hover=\"make_character/btn_gender_m_over.bmp\"\r\n					data-down=\"make_character/btn_gender_m_press.bmp\"\r\n				>\r\n				</label>\r\n			</div>\r\n			<div\r\n				id=\"female_container\"\r\n				class=\"button container right\"\r\n				data-background=\"make_character/btn_gender_f_out.bmp\"\r\n			>\r\n				<input type=\"radio\" name=\"gender\" id=\"female\" class=\"gender_button radio\" />\r\n				<label\r\n					for=\"female\"\r\n					class=\"button female\"\r\n					data-hover=\"make_character/btn_gender_f_over.bmp\"\r\n					data-down=\"make_character/btn_gender_f_press.bmp\"\r\n				>\r\n				</label>\r\n			</div>\r\n		</div>\r\n\r\n		<div class=\"category hairstyle\">\r\n			<ui-button\r\n				class=\"button left\"\r\n				bg=\"make_character/arrow_box_l_out.bmp\"\r\n				hover=\"make_character/arrow_box_l_over.bmp\"\r\n				down=\"make_character/arrow_box_l_press.bmp\"\r\n			></ui-button>\r\n			<ui-button\r\n				class=\"button right\"\r\n				bg=\"make_character/arrow_box_r_out.bmp\"\r\n				hover=\"make_character/arrow_box_r_over.bmp\"\r\n				down=\"make_character/arrow_box_r_press.bmp\"\r\n			></ui-button>\r\n		</div>\r\n\r\n		<div class=\"category haircolor\">\r\n			<ui-button\r\n				class=\"button left\"\r\n				bg=\"make_character/arrow_box_l_out.bmp\"\r\n				hover=\"make_character/arrow_box_l_over.bmp\"\r\n				down=\"make_character/arrow_box_l_press.bmp\"\r\n			></ui-button>\r\n			<ui-button\r\n				class=\"button right\"\r\n				bg=\"make_character/arrow_box_r_out.bmp\"\r\n				hover=\"make_character/arrow_box_r_over.bmp\"\r\n				down=\"make_character/arrow_box_r_press.bmp\"\r\n			></ui-button>\r\n		</div>\r\n	</div>\r\n\r\n	<ui-button\r\n		class=\"button make\"\r\n		bg=\"make_character/btn_create_out.bmp\"\r\n		hover=\"make_character/btn_create_over.bmp\"\r\n		down=\"make_character/btn_create_press.bmp\"\r\n	></ui-button>\r\n</div>\r\n";
+}));
+//#endregion
+//#region src/UI/Components/CharCreate/CharCreatev3/CharCreatev3.css?raw
+var CharCreatev3_default$1;
+var init_CharCreatev3$1 = __esmMin((() => {
+	CharCreatev3_default$1 = ":host {\r\n	width: 576px;\r\n	height: 358px;\r\n}\r\n\r\n#charcreate_v3 {\r\n	position: absolute;\r\n	width: 576px;\r\n	height: 358px;\r\n}\r\n\r\n#charcreate_v3 .radio {\r\n	display: none;\r\n}\r\n\r\n#charcreate_v3 .title {\r\n	position: absolute;\r\n	left: 45px;\r\n	top: 15px;\r\n	height: 20px;\r\n	width: 200px;\r\n}\r\n\r\n/** Race **/\r\n#charcreate_v3 .race_select .label {\r\n	position: absolute;\r\n	width: 358px;\r\n	height: 138px;\r\n	outline: none;\r\n	background-repeat: no-repeat;\r\n}\r\n#charcreate_v3 .race_select .title {\r\n	position: absolute;\r\n	color: white;\r\n	top: 14px;\r\n	left: 34px;\r\n	height: 20px;\r\n	width: 45px;\r\n}\r\n#charcreate_v3 .race_select .desc {\r\n	position: absolute;\r\n	top: 22px;\r\n	left: 90px;\r\n	height: 60px;\r\n	width: 248px;\r\n	font-size: 14px;\r\n	line-height: 20px;\r\n}\r\n#charcreate_v3 .race_select .jobs {\r\n	position: absolute;\r\n	top: 102px;\r\n	left: 120px;\r\n	height: 26px;\r\n	width: 226px;\r\n}\r\n#charcreate_v3 .race_select .chargen canvas {\r\n	position: absolute;\r\n	top: 16px;\r\n	left: 16px;\r\n}\r\n\r\n#charcreate_v3 .race_select .human .label {\r\n	top: 32px;\r\n	left: 20px;\r\n}\r\n#charcreate_v3 .race_select .doram .label {\r\n	top: 177px;\r\n	left: 20px;\r\n}\r\n\r\n/* Style */\r\n#charcreate_v3 #style {\r\n	position: relative;\r\n	left: 395px;\r\n	top: 30px;\r\n	width: 200px;\r\n	height: 270px;\r\n}\r\n#charcreate_v3 #style .button {\r\n	position: absolute;\r\n	height: 20px;\r\n	width: 38px;\r\n}\r\n\r\n/** Style Model **/\r\n#charcreate_v3 #style .model {\r\n	position: absolute;\r\n	top: 15px;\r\n	left: 30px;\r\n	width: 100px;\r\n}\r\n#charcreate_v3 #style .model canvas {\r\n	position: relative;\r\n	top: -5px;\r\n	left: 17px;\r\n}\r\n\r\n/** Char Name **/\r\n#charcreate_v3 #char_name {\r\n	position: absolute;\r\n	height: 16px;\r\n	width: 110px;\r\n	top: 134px;\r\n	left: 43px;\r\n	border: 0px;\r\n	background-color: transparent;\r\n}\r\n\r\n/** Buttons **/\r\n#charcreate_v3 #style .rot_left {\r\n	position: absolute;\r\n	top: 70px;\r\n	left: 30px;\r\n	height: 20px;\r\n	width: 20px;\r\n}\r\n#charcreate_v3 #style .rot_right {\r\n	position: absolute;\r\n	top: 70px;\r\n	left: 110px;\r\n	height: 20px;\r\n	width: 20px;\r\n}\r\n\r\n#charcreate_v3 #style .category {\r\n	position: absolute;\r\n	left: 80px;\r\n	height: 20px;\r\n	width: 78px;\r\n}\r\n#charcreate_v3 #style .category .button {\r\n	position: absolute;\r\n	top: 0px;\r\n	height: 20px;\r\n	width: 38px;\r\n	white-space: nowrap;\r\n	border: 0;\r\n}\r\n#charcreate_v3 #style .category .button.left {\r\n	left: 0px;\r\n}\r\n#charcreate_v3 #style .category .button.right {\r\n	left: 40px;\r\n}\r\n\r\n#charcreate_v3 #style .gender {\r\n	top: 164px;\r\n}\r\n#charcreate_v3 #style .gender .container .gender_button {\r\n	display: none;\r\n}\r\n#charcreate_v3 #style .hairstyle {\r\n	top: 186px;\r\n}\r\n#charcreate_v3 #style .haircolor {\r\n	top: 208px;\r\n}\r\n\r\n#charcreate_v3 .button.make {\r\n	position: absolute;\r\n	top: 280px;\r\n	left: 445px;\r\n	width: 68px;\r\n	height: 20px;\r\n}\r\n#charcreate_v3 .button.close {\r\n	position: absolute;\r\n	top: 3px;\r\n	right: 3px;\r\n	width: 11px;\r\n	height: 11px;\r\n}\r\n\r\n#charcreate_v3 ui-button {\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n	border: 0;\r\n	display: flex;\r\n	align-items: center;\r\n	justify-content: center;\r\n}\r\n";
+}));
+//#endregion
+//#region src/UI/Components/CharCreate/CharCreatev3/CharCreatev3.js
+var CharCreatev3_default;
+var init_CharCreatev3 = __esmMin((() => {
+	init_CharCreatev3$2();
+	init_CharCreatev3$1();
+	init_CharCreateCommon();
+	CharCreatev3_default = createCharCreate({
+		name: "CharCreatev3",
+		htmlText: CharCreatev3_default$2,
+		cssText: CharCreatev3_default$1,
+		hostHeight: 342,
+		hostWidth: 576,
+		hasRace: true,
+		humanCanvasSelector: "#canvas_human",
+		doramCanvasSelector: "#canvas_doram",
+		modelCanvasSelector: "#canvas_model",
+		nameInputSelector: "#char_name",
+		nameInputEvent: "click",
+		cancelSelectors: [".button.close"],
+		makeSelector: ".button.make"
+	});
+}));
+//#endregion
+//#region src/UI/Components/CharCreate/CharCreatev4/CharCreatev4.html?raw
+var CharCreatev4_default$2;
+var init_CharCreatev4$2 = __esmMin((() => {
+	CharCreatev4_default$2 = "<div id=\"charcreate_v4\">\r\n	<ui-image src=\"make_character_ver2/bg_makebg.bmp\"></ui-image>\r\n	<div class=\"title\"></div>\r\n	<div>\r\n		<div class=\"human\">\r\n			<input type=\"radio\" name=\"race\" id=\"human_race\" checked class=\"race\" />\r\n			<label for=\"human_race\" class=\"human_label\">\r\n				<div class=\"human_title\"></div>\r\n				<div class=\"human_desc\"></div>\r\n				<div class=\"chargen\">\r\n					<canvas id=\"human\" width=\"65\" height=\"110\" style=\"pointer-events: none\"></canvas>\r\n				</div>\r\n			</label>\r\n		</div>\r\n\r\n		<div class=\"doram\">\r\n			<input type=\"radio\" name=\"race\" id=\"doram_race\" class=\"race\" />\r\n			<label for=\"doram_race\" class=\"doram_label\">\r\n				<div class=\"doram_title\"></div>\r\n				<div class=\"doram_desc\"></div>\r\n				<div class=\"chargen_doram\">\r\n					<canvas id=\"doram\" width=\"65\" height=\"110\" style=\"pointer-events: none\"></canvas>\r\n				</div>\r\n			</label>\r\n		</div>\r\n	</div>\r\n	<div id=\"style\">\r\n		<div class=\"gender\">\r\n			<div id=\"male_container\" data-background=\"make_character_ver2/bt_male_on.bmp\">\r\n				<input type=\"radio\" name=\"gender\" id=\"male\" checked class=\"gender_button\" />\r\n				<label for=\"male\" class=\"male_button\"> </label>\r\n			</div>\r\n			<div id=\"female_container\" data-background=\"make_character_ver2/bt_female_off.bmp\">\r\n				<input type=\"radio\" name=\"gender\" id=\"female\" class=\"gender_button\" />\r\n				<label for=\"female\" class=\"female_button\"> </label>\r\n			</div>\r\n		</div>\r\n		<div class=\"model\">\r\n			<canvas id=\"style_model\" width=\"65\" height=\"110\" style=\"pointer-events: none\"></canvas>\r\n		</div>\r\n		<ui-button\r\n			class=\"rot_left\"\r\n			bg=\"make_character_ver2/bt_leftturn_normal.bmp\"\r\n			hover=\"make_character_ver2/bt_leftturn_over.bmp\"\r\n			down=\"make_character_ver2/bt_leftturn_press.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"rot_right\"\r\n			bg=\"make_character_ver2/bt_rightturn_normal.bmp\"\r\n			hover=\"make_character_ver2/bt_rightturn_over.bmp\"\r\n			down=\"make_character_ver2/bt_rightturn_press.bmp\"\r\n		></ui-button>\r\n		<input type=\"text\" id=\"char_name\" maxlength=\"24\" />\r\n	</div>\r\n\r\n	<div id=\"hair_setting\">\r\n		<div class=\"hair_style_title\"></div>\r\n		<div class=\"hair_styles\">\r\n			<div id=\"human_male\" class=\"hair-style\">\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style1\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"1_human_male\" checked class=\"hstyle\" />\r\n						<label for=\"1_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle01.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style2\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"2_human_male\" class=\"hstyle\" />\r\n						<label for=\"2_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle02.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style3\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"3_human_male\" class=\"hstyle\" />\r\n						<label for=\"3_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle03.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style4\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"4_human_male\" class=\"hstyle\" />\r\n						<label for=\"4_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle04.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style5\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"5_human_male\" class=\"hstyle\" />\r\n						<label for=\"5_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle05.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style6\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"6_human_male\" class=\"hstyle\" />\r\n						<label for=\"6_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle06.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style7\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"7_human_male\" class=\"hstyle\" />\r\n						<label for=\"7_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle07.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style8\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"8_human_male\" class=\"hstyle\" />\r\n						<label for=\"8_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle08.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style9\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"9_human_male\" class=\"hstyle\" />\r\n						<label for=\"9_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle09.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style10\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"10_human_male\" class=\"hstyle\" />\r\n						<label for=\"10_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle10.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style11\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"11_human_male\" class=\"hstyle\" />\r\n						<label for=\"11_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle11.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style12\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"12_human_male\" class=\"hstyle\" />\r\n						<label for=\"12_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle12.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style13\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"13_human_male\" class=\"hstyle\" />\r\n						<label for=\"13_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle13.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style14\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"14_human_male\" class=\"hstyle\" />\r\n						<label for=\"14_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle14.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style15\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"15_human_male\" class=\"hstyle\" />\r\n						<label for=\"15_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle15.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style16\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"16_human_male\" class=\"hstyle\" />\r\n						<label for=\"16_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle16.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style17\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"17_human_male\" class=\"hstyle\" />\r\n						<label for=\"17_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle17.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style18\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"18_human_male\" class=\"hstyle\" />\r\n						<label for=\"18_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle18.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style19\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"19_human_male\" class=\"hstyle\" />\r\n						<label for=\"19_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle19.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style20\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"20_human_male\" class=\"hstyle\" />\r\n						<label for=\"20_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle20.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style21\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"21_human_male\" class=\"hstyle\" />\r\n						<label for=\"21_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle21.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style22\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"22_human_male\" class=\"hstyle\" />\r\n						<label for=\"22_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle22.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style23\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"23_human_male\" class=\"hstyle\" />\r\n						<label for=\"23_human_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle23.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style24\"></div>\r\n				</div>\r\n			</div>\r\n			<div id=\"human_female\" class=\"hair-style\">\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style1\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"1_human_female\" checked class=\"hstyle\" />\r\n						<label for=\"1_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl01.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style2\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"2_human_female\" class=\"hstyle\" />\r\n						<label for=\"2_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl02.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style3\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"3_human_female\" class=\"hstyle\" />\r\n						<label for=\"3_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl03.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style4\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"4_human_female\" class=\"hstyle\" />\r\n						<label for=\"4_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl04.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style5\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"5_human_female\" class=\"hstyle\" />\r\n						<label for=\"5_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl05.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style6\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"6_human_female\" class=\"hstyle\" />\r\n						<label for=\"6_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl06.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style7\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"7_human_female\" class=\"hstyle\" />\r\n						<label for=\"7_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl07.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style8\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"8_human_female\" class=\"hstyle\" />\r\n						<label for=\"8_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl08.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style9\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"9_human_female\" class=\"hstyle\" />\r\n						<label for=\"9_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl09.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style10\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"10_human_female\" class=\"hstyle\" />\r\n						<label for=\"10_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl10.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style11\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"11_human_female\" class=\"hstyle\" />\r\n						<label for=\"11_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl11.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style12\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"12_human_female\" class=\"hstyle\" />\r\n						<label for=\"12_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl12.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style13\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"13_human_female\" class=\"hstyle\" />\r\n						<label for=\"13_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl13.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style14\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"14_human_female\" class=\"hstyle\" />\r\n						<label for=\"14_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl14.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style15\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"15_human_female\" class=\"hstyle\" />\r\n						<label for=\"15_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl15.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style16\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"16_human_female\" class=\"hstyle\" />\r\n						<label for=\"16_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl16.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style17\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"17_human_female\" class=\"hstyle\" />\r\n						<label for=\"17_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl17.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style18\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"18_human_female\" class=\"hstyle\" />\r\n						<label for=\"18_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl18.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style19\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"19_human_female\" class=\"hstyle\" />\r\n						<label for=\"19_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl19.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style20\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"20_human_female\" class=\"hstyle\" />\r\n						<label for=\"20_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl20.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style21\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"21_human_female\" class=\"hstyle\" />\r\n						<label for=\"21_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl21.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style22\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"22_human_female\" class=\"hstyle\" />\r\n						<label for=\"22_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl22.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style23\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"23_human_female\" class=\"hstyle\" />\r\n						<label for=\"23_human_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_girl23.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style24\"></div>\r\n				</div>\r\n			</div>\r\n			<div id=\"doram_male\" class=\"hair-style\">\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style1\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"1_doram_male\" checked class=\"hstyle\" />\r\n						<label for=\"1_doram_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_doramboy01.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style2\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"2_doram_male\" class=\"hstyle\" />\r\n						<label for=\"2_doram_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_doramboy02.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style3\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"3_doram_male\" class=\"hstyle\" />\r\n						<label for=\"3_doram_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_doramboy03.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style4\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"4_doram_male\" class=\"hstyle\" />\r\n						<label for=\"4_doram_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_doramboy04.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style5\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"5_doram_male\" class=\"hstyle\" />\r\n						<label for=\"5_doram_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_doramboy05.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style6\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"6_doram_male\" class=\"hstyle\" />\r\n						<label for=\"6_doram_male\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_doramboy06.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style7\"></div>\r\n					<div class=\"styleCol style8\"></div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style9\"></div>\r\n					<div class=\"styleCol style10\"></div>\r\n					<div class=\"styleCol style11\"></div>\r\n					<div class=\"styleCol style12\"></div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style13\"></div>\r\n					<div class=\"styleCol style14\"></div>\r\n					<div class=\"styleCol style15\"></div>\r\n					<div class=\"styleCol style16\"></div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style17\"></div>\r\n					<div class=\"styleCol style18\"></div>\r\n					<div class=\"styleCol style19\"></div>\r\n					<div class=\"styleCol style20\"></div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style21\"></div>\r\n					<div class=\"styleCol style22\"></div>\r\n					<div class=\"styleCol style23\"></div>\r\n					<div class=\"styleCol style24\"></div>\r\n				</div>\r\n			</div>\r\n			<div id=\"doram_female\" class=\"hair-style\">\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style1\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"1_doram_female\" checked class=\"hstyle\" />\r\n						<label for=\"1_doram_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_doramgirl01.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style2\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"2_doram_female\" class=\"hstyle\" />\r\n						<label for=\"2_doram_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_doramgirl02.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style3\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"3_doram_female\" class=\"hstyle\" />\r\n						<label for=\"3_doram_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_doramgirl03.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style4\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"4_doram_female\" class=\"hstyle\" />\r\n						<label for=\"4_doram_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_doramgirl04.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style5\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"5_doram_female\" class=\"hstyle\" />\r\n						<label for=\"5_doram_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_doramgirl05.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style6\">\r\n						<input type=\"radio\" name=\"hstyle\" id=\"6_doram_female\" class=\"hstyle\" />\r\n						<label for=\"6_doram_female\" class=\"hstyle_button\">\r\n							<ui-image src=\"make_character_ver2/img_hairstyle_doramgirl06.bmp\"></ui-image>\r\n						</label>\r\n					</div>\r\n					<div class=\"styleCol style7\"></div>\r\n					<div class=\"styleCol style8\"></div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style9\"></div>\r\n					<div class=\"styleCol style10\"></div>\r\n					<div class=\"styleCol style11\"></div>\r\n					<div class=\"styleCol style12\"></div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style13\"></div>\r\n					<div class=\"styleCol style14\"></div>\r\n					<div class=\"styleCol style15\"></div>\r\n					<div class=\"styleCol style16\"></div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style17\"></div>\r\n					<div class=\"styleCol style18\"></div>\r\n					<div class=\"styleCol style19\"></div>\r\n					<div class=\"styleCol style20\"></div>\r\n				</div>\r\n				<div class=\"hairstyle_row\">\r\n					<div class=\"styleCol style21\"></div>\r\n					<div class=\"styleCol style22\"></div>\r\n					<div class=\"styleCol style23\"></div>\r\n					<div class=\"styleCol style24\"></div>\r\n				</div>\r\n			</div>\r\n		</div>\r\n		<div class=\"hair_color_title\"></div>\r\n		<div class=\"hair_colors\">\r\n			<div class=\"haircolor_row\">\r\n				<div class=\"colorCol cstyle00\">\r\n					<input type=\"radio\" name=\"hcolor\" id=\"0_color\" checked class=\"hcolor\" />\r\n					<label for=\"0_color\" class=\"hcolor_button\"> </label>\r\n				</div>\r\n				<div class=\"colorCol cstyle01\">\r\n					<input type=\"radio\" name=\"hcolor\" id=\"1_color\" class=\"hcolor\" />\r\n					<label for=\"1_color\" class=\"hcolor_button\"> </label>\r\n				</div>\r\n				<div class=\"colorCol cstyle02\">\r\n					<input type=\"radio\" name=\"hcolor\" id=\"2_color\" class=\"hcolor\" />\r\n					<label for=\"2_color\" class=\"hcolor_button\"> </label>\r\n				</div>\r\n				<div class=\"colorCol cstyle03\">\r\n					<input type=\"radio\" name=\"hcolor\" id=\"3_color\" class=\"hcolor\" />\r\n					<label for=\"3_color\" class=\"hcolor_button\"> </label>\r\n				</div>\r\n				<div class=\"colorCol cstyle04\">\r\n					<input type=\"radio\" name=\"hcolor\" id=\"4_color\" class=\"hcolor\" />\r\n					<label for=\"4_color\" class=\"hcolor_button\"> </label>\r\n				</div>\r\n			</div>\r\n			<div class=\"haircolor_row\">\r\n				<div class=\"colorCol cstyle05\">\r\n					<input type=\"radio\" name=\"hcolor\" id=\"5_color\" class=\"hcolor\" />\r\n					<label for=\"5_color\" class=\"hcolor_button\"> </label>\r\n				</div>\r\n				<div class=\"colorCol cstyle06\">\r\n					<input type=\"radio\" name=\"hcolor\" id=\"6_color\" class=\"hcolor\" />\r\n					<label for=\"6_color\" class=\"hcolor_button\"> </label>\r\n				</div>\r\n				<div class=\"colorCol cstyle07\">\r\n					<input type=\"radio\" name=\"hcolor\" id=\"7_color\" class=\"hcolor\" />\r\n					<label for=\"7_color\" class=\"hcolor_button\"> </label>\r\n				</div>\r\n				<div class=\"colorCol cstyle08\">\r\n					<input type=\"radio\" name=\"hcolor\" id=\"8_color\" class=\"hcolor\" />\r\n					<label for=\"8_color\" class=\"hcolor_button\"> </label>\r\n				</div>\r\n			</div>\r\n		</div>\r\n	</div>\r\n\r\n	<div class=\"btns\">\r\n		<ui-button\r\n			class=\"btn cancel\"\r\n			bg=\"make_character_ver2/bt_close_normal.bmp\"\r\n			hover=\"make_character_ver2/bt_close_over.bmp\"\r\n			down=\"make_character_ver2/bt_close_press.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn make\"\r\n			bg=\"make_character_ver2/bt_make_normal.bmp\"\r\n			hover=\"make_character_ver2/bt_make_over.bmp\"\r\n			down=\"make_character_ver2/bt_make_press.bmp\"\r\n		></ui-button>\r\n		<ui-button\r\n			class=\"btn return\"\r\n			bg=\"make_character_ver2/bt_make_normal.bmp\"\r\n			hover=\"make_character_ver2/bt_make_over.bmp\"\r\n			down=\"make_character_ver2/bt_make_press.bmp\"\r\n		></ui-button>\r\n	</div>\r\n</div>\r\n";
+}));
+//#endregion
+//#region src/UI/Components/CharCreate/CharCreatev4/CharCreatev4.css?raw
+var CharCreatev4_default$1;
+var init_CharCreatev4$1 = __esmMin((() => {
+	CharCreatev4_default$1 = ":host {\r\n	width: 794px;\r\n	height: 422px;\r\n}\r\n\r\n#charcreate_v4 {\r\n	position: absolute;\r\n	width: 794px;\r\n	height: 422px;\r\n}\r\n\r\n#charcreate_v4 .title {\r\n	position: absolute;\r\n	left: 45px;\r\n	top: 15px;\r\n	height: 20px;\r\n	width: 200px;\r\n}\r\n\r\n#charcreate_v4 .human::before,\r\n#charcreate_v4 .doram::before,\r\n#charcreate_v4 .human::after,\r\n#charcreate_v4 .doram::after {\r\n	content: '';\r\n	display: table;\r\n}\r\n#charcreate_v4 .human::after,\r\n#charcreate_v4 .doram::after {\r\n	clear: both;\r\n}\r\n#charcreate_v4 .race {\r\n	display: none;\r\n}\r\n\r\n/** Human Race **/\r\n#charcreate_v4 .human_label {\r\n	position: absolute;\r\n	width: 370px;\r\n	height: 170px;\r\n	top: 35px;\r\n	left: 20px;\r\n	outline: none;\r\n	background-repeat: no-repeat;\r\n}\r\n#charcreate_v4 .human_title {\r\n	position: absolute;\r\n	color: white;\r\n	top: 22px;\r\n	left: 45px;\r\n	height: 20px;\r\n	width: 50px;\r\n}\r\n#charcreate_v4 .human_desc {\r\n	position: relative;\r\n	top: 22px;\r\n	left: 110px;\r\n	height: 60px;\r\n	width: 220px;\r\n}\r\n/** Human Chargen **/\r\n#charcreate_v4 .human .chargen canvas {\r\n	position: absolute;\r\n	top: 40px;\r\n	left: 25px;\r\n}\r\n\r\n/** Doram Race **/\r\n#charcreate_v4 .doram_label {\r\n	position: absolute;\r\n	width: 370px;\r\n	height: 170px;\r\n	top: 210px;\r\n	left: 20px;\r\n	outline: none;\r\n	background-repeat: no-repeat;\r\n}\r\n#charcreate_v4 .doram_title {\r\n	position: absolute;\r\n	color: white;\r\n	top: 22px;\r\n	left: 45px;\r\n	height: 20px;\r\n	width: 50px;\r\n}\r\n#charcreate_v4 .doram_desc {\r\n	position: relative;\r\n	top: 22px;\r\n	left: 110px;\r\n	height: 60px;\r\n	width: 220px;\r\n}\r\n/** Doram Chargen **/\r\n#charcreate_v4 .doram .chargen_doram canvas {\r\n	position: absolute;\r\n	top: 40px;\r\n	left: 25px;\r\n}\r\n\r\n/* Style */\r\n#charcreate_v4 #style {\r\n	position: relative;\r\n	left: 395px;\r\n	top: 30px;\r\n	width: 200px;\r\n	height: 270px;\r\n}\r\n#charcreate_v4 .gender_button {\r\n	display: none;\r\n}\r\n\r\n#charcreate_v4 #style .gender {\r\n	position: absolute;\r\n	top: 25px;\r\n	left: 40px;\r\n	height: 26px;\r\n	width: 130px;\r\n}\r\n#charcreate_v4 #male_container {\r\n	position: relative;\r\n	height: 25px;\r\n	width: 62px;\r\n	white-space: nowrap;\r\n}\r\n#charcreate_v4 #female_container {\r\n	position: relative;\r\n	left: 61px;\r\n	top: -25px;\r\n	height: 25px;\r\n	width: 62px;\r\n	white-space: nowrap;\r\n}\r\n\r\n#charcreate_v4 #style .male_button {\r\n	position: absolute;\r\n	height: 25px;\r\n	width: 62px;\r\n}\r\n#charcreate_v4 #style .female_button {\r\n	position: absolute;\r\n	height: 25px;\r\n	width: 62px;\r\n}\r\n\r\n/** Style Model **/\r\n#charcreate_v4 .model {\r\n	position: relative;\r\n	top: 115px;\r\n	left: 55px;\r\n	width: 100px;\r\n}\r\n#charcreate_v4 .model canvas {\r\n	position: relative;\r\n	top: -5px;\r\n	left: 17px;\r\n}\r\n\r\n/** Buttons **/\r\n#charcreate_v4 #style .rot_left {\r\n	position: relative;\r\n	top: 40px;\r\n	left: 30px;\r\n	height: 23px;\r\n	width: 22px;\r\n}\r\n#charcreate_v4 #style .rot_right {\r\n	position: relative;\r\n	top: 40px;\r\n	left: 130px;\r\n	height: 23px;\r\n	width: 22px;\r\n}\r\n\r\n/** Char Name **/\r\n#charcreate_v4 #char_name {\r\n	position: relative;\r\n	height: 20px;\r\n	width: 140px;\r\n	top: 115px;\r\n	left: -20px;\r\n	border-width: 0px;\r\n}\r\n\r\n/** Hair Settings **/\r\n#charcreate_v4 #hair_setting {\r\n	position: absolute;\r\n	top: 35px;\r\n	left: 600px;\r\n	height: 380px;\r\n	width: 185px;\r\n}\r\n\r\n#charcreate_v4 .hair_style_title {\r\n	position: relative;\r\n	height: 15px;\r\n	width: 60px;\r\n	top: 10px;\r\n	left: 10px;\r\n}\r\n\r\n#charcreate_v4 .hairstyle_row {\r\n	position: relative;\r\n	display: flex;\r\n	top: 10px;\r\n	left: 10px;\r\n}\r\n#charcreate_v4 .styleCol {\r\n	position: relative;\r\n	width: 36px;\r\n	height: 37px;\r\n	white-space: nowrap;\r\n}\r\n\r\n#charcreate_v4 .hstyle {\r\n	display: none;\r\n}\r\n#charcreate_v4 .hstyle_button {\r\n	position: absolute;\r\n	width: 36px;\r\n	height: 37px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n#charcreate_v4 .hair-styles {\r\n	position: relative;\r\n	width: 100px;\r\n	height: 100px;\r\n}\r\n#charcreate_v4 .hair-style {\r\n	position: absolute;\r\n	height: 225px;\r\n	top: 12px;\r\n	left: -2px;\r\n	display: none;\r\n}\r\n\r\n#charcreate_v4 .hair_color_title {\r\n	position: relative;\r\n	height: 20px;\r\n	width: 60px;\r\n	top: 230px;\r\n	left: 10px;\r\n}\r\n\r\n#charcreate_v4 .hair_colors {\r\n	position: absolute;\r\n	top: 265px;\r\n	left: 15px;\r\n}\r\n#charcreate_v4 .haircolor_row {\r\n	position: relative;\r\n	display: flex;\r\n}\r\n#charcreate_v4 .colorCol {\r\n	position: relative;\r\n	width: 22px;\r\n	height: 22px;\r\n	white-space: nowrap;\r\n	margin: 2px 2px;\r\n}\r\n#charcreate_v4 .hcolor {\r\n	display: none;\r\n}\r\n#charcreate_v4 .hcolor_button {\r\n	position: absolute;\r\n	width: 22px;\r\n	height: 22px;\r\n}\r\n\r\n#charcreate_v4 .btns {\r\n	position: absolute;\r\n	bottom: 4px;\r\n	width: 100%;\r\n	height: 20px;\r\n}\r\n#charcreate_v4 .btn {\r\n	position: absolute;\r\n	width: 42px;\r\n	height: 20px;\r\n}\r\n#charcreate_v4 .make {\r\n	right: 25px;\r\n	top: -20px;\r\n	height: 27px;\r\n	width: 152px;\r\n}\r\n#charcreate_v4 .cancel {\r\n	right: -15px;\r\n	top: -389px;\r\n}\r\n#charcreate_v4 .return {\r\n	width: 152px;\r\n	height: 27px;\r\n	top: -20px;\r\n	left: 25px;\r\n}\r\n\r\n#charcreate_v4 .btns ui-button {\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n	border: 0;\r\n	display: flex;\r\n	align-items: center;\r\n	justify-content: center;\r\n}\r\n";
+}));
+//#endregion
+//#region src/UI/Components/CharCreate/CharCreatev4/CharCreatev4.js
+var CharCreatev4_default;
+var init_CharCreatev4 = __esmMin((() => {
+	init_CharCreatev4$2();
+	init_CharCreatev4$1();
+	init_CharCreateCommon();
+	CharCreatev4_default = createCharCreate({
+		name: "CharCreatev4",
+		htmlText: CharCreatev4_default$2,
+		cssText: CharCreatev4_default$1,
+		hostHeight: 342,
+		hostWidth: 576,
+		hasRace: true,
+		gridHairstyle: true,
+		humanCanvasSelector: "#human",
+		doramCanvasSelector: "#doram",
+		modelCanvasSelector: "#style_model",
+		nameInputSelector: "#char_name",
+		nameInputEvent: "mousedown",
+		cancelSelectors: [".cancel", ".return"],
+		makeSelector: ".make"
+	});
+}));
+//#endregion
+//#region src/UI/Components/CharCreate/CharCreate.js
+var publicName$1, versionInfo$1, Controller$1;
+var init_CharCreate = __esmMin((() => {
+	init_CharCreate$1();
+	init_CharCreatev2();
+	init_CharCreatev3();
+	init_CharCreatev4();
+	init_UIVersionManager();
+	publicName$1 = "CharCreate";
+	versionInfo$1 = {
+		default: CharCreate_default,
+		common: {
+			20180124: CharCreatev4_default,
+			20151001: CharCreatev3_default,
+			20120307: CharCreatev2_default
+		},
+		re: {},
+		prere: {}
+	};
+	Controller$1 = UIVersionManager.getUIController(publicName$1, versionInfo$1);
+}));
+//#endregion
+//#region src/Renderer/Entity/Player.js
+var Player;
+var init_Player = __esmMin((() => {
+	init_Entity$1();
+	Player = class extends Entity {};
+}));
+//#endregion
 //#region src/Engine/CharEngine.js
 var CharEngine_exports = /* @__PURE__ */ __exportAll({ default: () => CharEngine });
 /**
@@ -333063,13 +333062,9 @@ function onReceiveMapInfo(pkt) {
 	DB.startedLazyInit = false;
 	retryCount = 0;
 	SessionStorage_default.GID = pkt.GID;
-	__vitePreload(() => Promise.resolve().then(() => (init_MapEngine(), MapEngine_exports)).then((mod) => {
-		const MapEngine = mod.default;
-		MapEngine.needsUIVerUpdate = _needsMapUiUpdate;
-		MapEngine.init(pkt.addr.ip, pkt.addr.port, pkt.mapName);
-	}), void 0, import.meta.url);
+	MapEngine.init(pkt.addr.ip, pkt.addr.port, pkt.mapName);
 }
-var _server$1, _creationSlot, _needsMapUiUpdate, _pincodeAttempts, _inAuthPincodeReset, _resettingPincode, _creatingPincode, CharEngine, retryCount;
+var _server$1, _creationSlot, _pincodeAttempts, _inAuthPincodeReset, _resettingPincode, _creatingPincode, CharEngine, retryCount;
 var init_CharEngine = __esmMin((() => {
 	init_DBManager();
 	init_Configs();
@@ -333077,6 +333072,7 @@ var init_CharEngine = __esmMin((() => {
 	init_SoundManager();
 	init_BGM();
 	init_SessionStorage();
+	init_MapEngine();
 	init_NetworkManager();
 	init_PacketVerManager();
 	init_PacketStructure();
@@ -333091,7 +333087,6 @@ var init_CharEngine = __esmMin((() => {
 	init_preload_helper();
 	_server$1 = null;
 	_creationSlot = 0;
-	_needsMapUiUpdate = false;
 	_pincodeAttempts = 0;
 	_inAuthPincodeReset = false;
 	_resettingPincode = false;
@@ -333099,7 +333094,7 @@ var init_CharEngine = __esmMin((() => {
 	CharEngine = class CharEngine {
 		static init(server) {
 			BGM.play("01.mp3");
-			_needsMapUiUpdate = _server$1 !== server;
+			MapEngine.needsUIVerUpdate = _server$1 !== server;
 			_server$1 = server;
 			const forceAddress = Configs.get("forceUseAddress");
 			const server_info = Configs.getServer();
