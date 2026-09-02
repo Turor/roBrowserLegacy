@@ -211,8 +211,8 @@ var init_iconv_lite = __esmMin((() => {
 				var arr = new Arr(_byteLength(b64, validLen, placeHoldersLen));
 				var curByte = 0;
 				var len2 = placeHoldersLen > 0 ? validLen - 4 : validLen;
-				var i2;
-				for (i2 = 0; i2 < len2; i2 += 4) {
+				var i2 = 0;
+				for (; i2 < len2; i2 += 4) {
 					tmp = revLookup[b64.charCodeAt(i2)] << 18 | revLookup[b64.charCodeAt(i2 + 1)] << 12 | revLookup[b64.charCodeAt(i2 + 2)] << 6 | revLookup[b64.charCodeAt(i2 + 3)];
 					arr[curByte++] = tmp >> 16 & 255;
 					arr[curByte++] = tmp >> 8 & 255;
@@ -763,8 +763,8 @@ var init_iconv_lite = __esmMin((() => {
 				}
 				const strLen = string.length;
 				if (length > strLen / 2) length = strLen / 2;
-				let i;
-				for (i = 0; i < length; ++i) {
+				let i = 0;
+				for (; i < length; ++i) {
 					const parsed = parseInt(string.substr(i * 2, 2), 16);
 					if (numberIsNaN(parsed)) return i;
 					buf[offset + i] = parsed;
@@ -1545,8 +1545,8 @@ var init_iconv_lite = __esmMin((() => {
 				return base64.toByteArray(base64clean(str));
 			}
 			function blitBuffer(src, dst, offset, length) {
-				let i;
-				for (i = 0; i < length; ++i) {
+				let i = 0;
+				for (; i < length; ++i) {
 					if (i + offset >= dst.length || i >= src.length) break;
 					dst[i + offset] = src[i];
 				}
@@ -78843,8 +78843,8 @@ var init_Action = __esmMin((() => {
 			const layers = new Array(count);
 			let layer;
 			const version = this.version;
-			let i;
-			for (i = 0; i < count; ++i) {
+			let i = 0;
+			for (; i < count; ++i) {
 				layer = layers[i] = {
 					pos: [fp.readLong(), fp.readLong()],
 					index: fp.readLong(),
@@ -147724,8 +147724,8 @@ var init_bson = __esmMin((() => {
 		getNumBitsAbs() {
 			if (this.isNegative()) return this.eq(Long.MIN_VALUE) ? 64 : this.neg().getNumBitsAbs();
 			const val = this.high !== 0 ? this.high : this.low;
-			let bit;
-			for (bit = 31; bit > 0; bit--) if ((val & 1 << bit) !== 0) break;
+			let bit = 31;
+			for (; bit > 0; bit--) if ((val & 1 << bit) !== 0) break;
 			return this.high !== 0 ? bit + 33 : bit + 1;
 		}
 		greaterThan(other) {
@@ -245542,6 +245542,137 @@ var init_Guild = __esmMin((() => {
 	})();
 }));
 //#endregion
+//#region src/UI/Components/Clan/Clan.html?raw
+var Clan_default$2;
+var init_Clan$3 = __esmMin((() => {
+	Clan_default$2 = "<div id=\"Clan\">\r\n	<div class=\"titlebar\">\r\n		<ui-image src=\"basic_interface/titlebar_mid.bmp\"></ui-image>\r\n		<div class=\"right\">\r\n			<ui-button\r\n				class=\"base close\"\r\n				bg=\"basic_interface/sys_close_off.bmp\"\r\n				hover=\"basic_interface/sys_close_on.bmp\"\r\n			></ui-button>\r\n		</div>\r\n		<div class=\"clear\"></div>\r\n	</div>\r\n\r\n	<div class=\"tabs\">\r\n		<button class=\"info active\"><ui-text msg=\"2355\">Clan Info</ui-text></button>\r\n	</div>\r\n\r\n	<div class=\"panel\">\r\n		<div class=\"content info\">\r\n			<div class=\"name\"><ui-text msg=\"2357\">Clan Name</ui-text> : <span class=\"value\"></span></div>\r\n			<div class=\"level\"><ui-text msg=\"2356\">Clan level</ui-text> : <span class=\"value\"></span></div>\r\n			<div class=\"master\"><ui-text msg=\"2362\">Master Name</ui-text> : <span class=\"value\"></span></div>\r\n			<div class=\"members\">\r\n				<ui-text msg=\"2363\">The number of members</ui-text> :\r\n				<span class=\"maxMember\">0</span>\r\n				<ui-button bg=\"basic_interface/grp_online.bmp\"></ui-button>\r\n				<span class=\"online\"></span>\r\n			</div>\r\n			<div class=\"territory\"><ui-text msg=\"2364\">Managed Territory</ui-text> : <span class=\"value\"></span></div>\r\n			<div class=\"clan_illust\"></div>\r\n			<div class=\"emblem\"><ui-text msg=\"2358\">Clan mark</ui-text></div>\r\n			<div class=\"emblem_container\"></div>\r\n			<div class=\"ally\"><ui-text msg=\"2359\">Ally Clan</ui-text></div>\r\n			<div class=\"ally_list\"></div>\r\n			<div class=\"hostile\"><ui-text msg=\"2360\">Hostile Clan</ui-text></div>\r\n			<div class=\"hostile_list\"></div>\r\n		</div>\r\n	</div>\r\n\r\n	<div class=\"footer\">\r\n		<ui-image src=\"basic_interface/btnbar_mid2.bmp\"></ui-image>\r\n		<ui-button class=\"btn_ok\" bg=\"btn_ok.bmp\" hover=\"btn_ok_a.bmp\" down=\"btn_ok_b.bmp\"></ui-button>\r\n	</div>\r\n</div>\r\n";
+}));
+//#endregion
+//#region src/UI/Components/Clan/Clan.css?raw
+var Clan_default$1;
+var init_Clan$2 = __esmMin((() => {
+	Clan_default$1 = ":host {\r\n	top: 150px;\r\n	left: 150px;\r\n	width: 400px;\r\n	height: 317px;\r\n}\r\n\r\n#Clan {\r\n	position: absolute;\r\n	width: 400px;\r\n	height: 317px;\r\n}\r\n\r\n#Clan .titlebar {\r\n	width: 100%;\r\n	height: 17px;\r\n	background-color: white;\r\n	background-repeat: repeat-x;\r\n	border-radius: 3px 3px 0px 0px;\r\n}\r\n\r\n#Clan .titlebar .base {\r\n	width: 11px;\r\n	height: 11px;\r\n	border: none;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	vertical-align: middle;\r\n}\r\n\r\n#Clan .titlebar .right {\r\n	float: right;\r\n	margin-right: 3px;\r\n}\r\n\r\n#Clan .titlebar .clear {\r\n	clear: both;\r\n}\r\n\r\n#Clan .panel {\r\n	background-color: white;\r\n	padding-right: 2px;\r\n}\r\n\r\n#Clan .content {\r\n	position: relative;\r\n	box-sizing: border-box;\r\n	overflow-y: auto;\r\n	padding: 2px;\r\n	border-top: 1px solid #c6c6c6;\r\n	height: 250px;\r\n}\r\n\r\n#Clan .tabs {\r\n	height: 23px;\r\n	background-color: #b5b6b5;\r\n	white-space: nowrap;\r\n}\r\n\r\n#Clan .tabs button.active {\r\n	background-color: #fff;\r\n}\r\n\r\n#Clan .tabs button {\r\n	width: 64px;\r\n	height: 23px;\r\n	margin-left: 1px;\r\n	margin-right: 1px;\r\n	margin-top: 1px;\r\n	padding: 0;\r\n	overflow: hidden;\r\n	text-overflow: ellipsis;\r\n	white-space: nowrap;\r\n	background-color: #cecece;\r\n	border: 0px;\r\n	padding: 3px;\r\n}\r\n\r\n#Clan .footer {\r\n	width: 100%;\r\n	height: 27px;\r\n	background-repeat: repeat-x;\r\n	background-color: transparent;\r\n	position: relative;\r\n	border-radius: 0px 0px 3px 3px;\r\n}\r\n\r\n#Clan .footer .btn_ok {\r\n	display: none;\r\n	position: absolute;\r\n	bottom: 4px;\r\n	right: 4px;\r\n	width: 42px;\r\n	height: 20px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n	border: none;\r\n}\r\n\r\n/*\r\n * Clan Info CSS\r\n */\r\n#Clan .content.info .exp,\r\n#Clan .content.info .emblem,\r\n#Clan .content.info .tax,\r\n#Clan .content.info .ally,\r\n#Clan .content.info .ally_list,\r\n#Clan .content.info .hostile,\r\n#Clan .content.info .hostile_list {\r\n	position: absolute;\r\n	left: 201px;\r\n}\r\n\r\n#Clan .content.info .name {\r\n	position: absolute;\r\n	left: 9px;\r\n	top: 13px;\r\n}\r\n\r\n#Clan .content.info .level {\r\n	position: absolute;\r\n	left: 9px;\r\n	top: 28px;\r\n}\r\n\r\n#Clan .content.info .master {\r\n	position: absolute;\r\n	left: 9px;\r\n	top: 45px;\r\n}\r\n\r\n#Clan .content.info .members {\r\n	position: absolute;\r\n	left: 9px;\r\n	top: 61px;\r\n}\r\n\r\n#Clan .content.info .territory {\r\n	position: absolute;\r\n	left: 9px;\r\n	top: 77px;\r\n}\r\n\r\n#Clan .content.info .clan_illust {\r\n	position: absolute;\r\n	left: 9px;\r\n	top: 99px;\r\n	width: 180px;\r\n	height: 134px;\r\n	background-repeat: no-repeat;\r\n}\r\n\r\n#Clan .content.info .members ui-button {\r\n	margin-left: 5px;\r\n	vertical-align: -4px;\r\n	border: none;\r\n	width: 15px;\r\n	height: 15px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n\r\n#Clan .content.info .emblem {\r\n	position: absolute;\r\n	left: 201px;\r\n	top: 37px;\r\n}\r\n\r\n#Clan .content.info .ally {\r\n	position: absolute;\r\n	left: 201px;\r\n	top: 99px;\r\n}\r\n\r\n#Clan .content.info .ally_list {\r\n	position: absolute;\r\n	left: 201px;\r\n	top: 114px;\r\n	white-space: pre;\r\n	width: 168px;\r\n	height: 48px;\r\n	background: #cecece;\r\n}\r\n\r\n#Clan .content.info .hostile {\r\n	position: absolute;\r\n	left: 201px;\r\n	top: 173px;\r\n}\r\n\r\n#Clan .content.info .hostile_list {\r\n	position: absolute;\r\n	left: 201px;\r\n	top: 188px;\r\n	white-space: pre;\r\n	width: 168px;\r\n	height: 48px;\r\n	background: #cecece;\r\n}\r\n\r\n#Clan .content.info .ally_list div,\r\n#Clan .content.info .hostile_list div {\r\n	padding: 2px;\r\n}\r\n\r\n#Clan .content.info .ally_list div.active,\r\n#Clan .content.info .hostile_list div.active {\r\n	background-color: #739eef;\r\n	padding: 2px;\r\n}\r\n\r\n#Clan .content.info .emblem_container {\r\n	width: 24px;\r\n	height: 24px;\r\n	position: absolute;\r\n	top: 29px;\r\n	left: 300px;\r\n	background-color: #709ce7;\r\n	background-repeat: no-repeat;\r\n}\r\n\r\n#Clan .content.info .emblem_edit {\r\n	position: absolute;\r\n	top: 34px;\r\n	left: 330px;\r\n	width: 42px;\r\n	height: 20px;\r\n	border: none;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	overflow: hidden;\r\n}\r\n\r\n#Clan .content.info .emblem_edit input {\r\n	opacity: 0;\r\n}\r\n";
+}));
+//#endregion
+//#region src/UI/Components/Clan/Clan.js
+var Clan, _preferences$23, Clan_default;
+var init_Clan$1 = __esmMin((() => {
+	init_KeyEventHandler();
+	init_SessionStorage();
+	init_Preferences$1();
+	init_DBManager();
+	init_Client();
+	init_Elements();
+	init_GUIComponent();
+	init_UIManager();
+	init_Clan$3();
+	init_Clan$2();
+	Clan = new GUIComponent("Clan", Clan_default$1);
+	_preferences$23 = Preferences.get("Clan", {
+		x: 150,
+		y: 150
+	}, 1);
+	Clan.render = () => Clan_default$2;
+	Clan.init = function init() {
+		this.draggable(".titlebar");
+		const closeBtn = this.getRoot().querySelector(".close");
+		if (closeBtn) {
+			closeBtn.addEventListener("mousedown", (e) => e.stopImmediatePropagation());
+			closeBtn.addEventListener("click", () => Clan.toggle());
+		}
+		this.ui.hide();
+	};
+	Clan.onAppend = function onAppend() {
+		this._host.style.left = `${_preferences$23.x}px`;
+		this._host.style.top = `${_preferences$23.y}px`;
+	};
+	Clan.onRemove = function onRemove() {
+		_preferences$23.x = parseInt(this._host.style.left, 10);
+		_preferences$23.y = parseInt(this._host.style.top, 10);
+		_preferences$23.save();
+	};
+	Clan.onShortCut = function onShortCut(key) {
+		if (key.cmd === "TOGGLE") this.toggle();
+	};
+	Clan.onKeyDown = function onKeyDown(event) {
+		if ((event.which === KEYS.ESCAPE || event.key === "Escape") && this.ui.is(":visible")) this.toggle();
+	};
+	Clan.toggle = function toggle() {
+		if (!SessionStorage_default.hasClan) return;
+		if (this.ui.is(":visible")) this.hide();
+		else this.show();
+	};
+	Clan.show = function show() {
+		this.focus();
+		if (this.ui.is(":visible")) return;
+		this.ui.show();
+	};
+	Clan.hide = function hide() {
+		this.ui.hide();
+	};
+	Clan.setData = function setData(clan) {
+		const root = this.getRoot();
+		if (!root) return;
+		const info = root.querySelector(".content.info");
+		if (!info) return;
+		info.querySelector(".name .value").textContent = clan.name;
+		info.querySelector(".level .value").textContent = clan.level;
+		info.querySelector(".master .value").textContent = clan.master;
+		info.querySelector(".members .online").textContent = clan.membersOnline;
+		info.querySelector(".members .maxMember").textContent = clan.membersTotal;
+		const territory = (clan.territory || "").replace(".gat", "");
+		info.querySelector(".territory .value").textContent = territory.charAt(0).toUpperCase() + territory.slice(1);
+	};
+	Clan.setMembersCount = function setMembersCount(members) {
+		const root = this.getRoot();
+		if (!root) return;
+		const info = root.querySelector(".content.info");
+		if (!info) return;
+		info.querySelector(".members .online").textContent = members.membersOnline;
+		info.querySelector(".members .maxMember").textContent = members.membersTotal;
+	};
+	Clan.setIllust = function setIllust(id) {
+		const root = this.getRoot();
+		if (!root) return;
+		Client.loadFile(`${DB.INTERFACE_PATH}clan_system/clan_illust${id.toString().padStart(2, "0")}.bmp`, (data) => {
+			const el = root.querySelector(".clan_illust");
+			if (el) el.style.backgroundImage = "url(" + data + ")";
+		});
+	};
+	Clan.setEmblem = function setEmblem(id) {
+		const root = this.getRoot();
+		if (!root) return;
+		Client.loadFile(`${DB.INTERFACE_PATH}clan_system/clan_emblem${id.toString().padStart(2, "0")}.bmp`, (data) => {
+			const el = root.querySelector(".emblem_container");
+			if (el) el.style.backgroundImage = "url(" + data + ")";
+		});
+	};
+	Clan.setRelations = function setRelations(type, clans) {
+		const root = this.getRoot();
+		if (!root) return;
+		const list = root.querySelector(`.${type === 0 ? "ally" : "hostile"}_list`);
+		if (!list) return;
+		list.innerHTML = "";
+		for (let i = 0; i < clans.length; i++) this.addRelation(type, clans[i]);
+	};
+	Clan.addRelation = function addRelation(type, clan) {
+		const root = this.getRoot();
+		if (!root) return;
+		const list = root.querySelector(`.${type === 0 ? "ally" : "hostile"}_list`);
+		if (!list) return;
+		const div = document.createElement("div");
+		div.dataset.clanId = clan;
+		div.textContent = clan;
+		list.appendChild(div);
+	};
+	Clan.leave = function leave() {
+		SessionStorage_default.hasClan = false;
+		this.ui.hide();
+	};
+	Clan.mouseMode = GUIComponent.MouseMode.STOP;
+	Clan_default = UIManager.addComponent(Clan);
+}));
+//#endregion
 //#region src/UI/Components/SkillListMH/SkillListMH.js
 /**
 * Build a Homunculus/Mercenary skill window on top of the shared SkillList
@@ -245979,7 +246110,7 @@ var init_HomunInformations$1 = __esmMin((() => {
 * Checks if homun should be fed or not
 */
 function autoFeedCheck() {
-	if (_preferences$23.autoFeed != 1) return;
+	if (_preferences$22.autoFeed != 1) return;
 	const player = SessionStorage_default.Entity;
 	if (!player) return;
 	if (player.life.hp <= 0) return;
@@ -245994,11 +246125,11 @@ function autoFeedCheck() {
 * Toggle AutoFeed
 */
 function homunToggleAutoFeed() {
-	HomunInformations.setFeedConfig(_preferences$23.autoFeed == 1 ? 0 : 1);
+	HomunInformations.setFeedConfig(_preferences$22.autoFeed == 1 ? 0 : 1);
 	if (PacketVerManager_default.value < 20170920) return;
-	HomunInformations.onConfigUpdate(3, _preferences$23.autoFeed ? 1 : 0);
+	HomunInformations.onConfigUpdate(3, _preferences$22.autoFeed ? 1 : 0);
 }
-var autoFeedInterval, autoFeedIntervalMs, autoFeedPercent, HomunInformations, _preferences$23, HomunInformations_default;
+var autoFeedInterval, autoFeedIntervalMs, autoFeedPercent, HomunInformations, _preferences$22, HomunInformations_default;
 var init_HomunInformations = __esmMin((() => {
 	init_DBManager();
 	init_Client();
@@ -246021,7 +246152,7 @@ var init_HomunInformations = __esmMin((() => {
 	HomunInformations = new GUIComponent("HomunInformations", HomunInformations_default$1);
 	HomunInformations.render = () => HomunInformations_default$2;
 	HomunInformations.captureKeyEvents = true;
-	_preferences$23 = Preferences.get("HomunInformations", {
+	_preferences$22 = Preferences.get("HomunInformations", {
 		x: 100,
 		y: 200,
 		show: false,
@@ -246061,7 +246192,7 @@ var init_HomunInformations = __esmMin((() => {
 		if (autoFeedBtn) autoFeedBtn.addEventListener("click", () => {
 			homunToggleAutoFeed();
 		});
-		if (!_preferences$23.show) this._host.style.display = "none";
+		if (!_preferences$22.show) this._host.style.display = "none";
 		const skillBtn = root.querySelector(".skill");
 		if (skillBtn) skillBtn.addEventListener("mousedown", () => {
 			SkillListMH_default.homunculus.toggle();
@@ -246071,7 +246202,7 @@ var init_HomunInformations = __esmMin((() => {
 	};
 	HomunInformations.onAppend = function onAppend() {
 		const root = HomunInformations.getRoot();
-		Client.loadFile(DB.INTERFACE_PATH + `checkbox_${_preferences$23.autoFeed ? "1" : "0"}.bmp`, (data) => {
+		Client.loadFile(DB.INTERFACE_PATH + `checkbox_${_preferences$22.autoFeed ? "1" : "0"}.bmp`, (data) => {
 			const el = root.querySelector(".homun_auto_feed");
 			if (el) el.style.backgroundImage = `url(${data})`;
 		});
@@ -246082,8 +246213,8 @@ var init_HomunInformations = __esmMin((() => {
 				if (feeding) feeding.style.display = "none";
 			}
 		}
-		this._host.style.top = `${Math.min(Math.max(0, _preferences$23.y), Renderer.height - this._host.getBoundingClientRect().height)}px`;
-		this._host.style.left = `${Math.min(Math.max(0, _preferences$23.x), Renderer.width - this._host.getBoundingClientRect().width)}px`;
+		this._host.style.top = `${Math.min(Math.max(0, _preferences$22.y), Renderer.height - this._host.getBoundingClientRect().height)}px`;
+		this._host.style.left = `${Math.min(Math.max(0, _preferences$22.x), Renderer.width - this._host.getBoundingClientRect().width)}px`;
 	};
 	HomunInformations.startAutoFeed = function startAutoFeed() {
 		window.clearInterval(autoFeedInterval);
@@ -246097,10 +246228,10 @@ var init_HomunInformations = __esmMin((() => {
 	* Once remove from body, save user preferences
 	*/
 	HomunInformations.onRemove = function onRemove() {
-		_preferences$23.show = this._host.style.display !== "none";
-		_preferences$23.y = parseInt(this._host.style.top, 10);
-		_preferences$23.x = parseInt(this._host.style.left, 10);
-		_preferences$23.save();
+		_preferences$22.show = this._host.style.display !== "none";
+		_preferences$22.y = parseInt(this._host.style.top, 10);
+		_preferences$22.x = parseInt(this._host.style.left, 10);
+		_preferences$22.save();
 		HomunInformations.stopAutoFeed();
 		this.stopAI();
 	};
@@ -246341,10 +246472,10 @@ var init_HomunInformations = __esmMin((() => {
 		this.startAI();
 	};
 	HomunInformations.setFeedConfig = function setFeedConfig(flag) {
-		_preferences$23.autoFeed = flag;
-		_preferences$23.save();
+		_preferences$22.autoFeed = flag;
+		_preferences$22.save();
 		const root = HomunInformations.getRoot();
-		if (root) Client.loadFile(DB.INTERFACE_PATH + `checkbox_${_preferences$23.autoFeed ? "1" : "0"}.bmp`, (data) => {
+		if (root) Client.loadFile(DB.INTERFACE_PATH + `checkbox_${_preferences$22.autoFeed ? "1" : "0"}.bmp`, (data) => {
 			const el = root.querySelector(".homun_auto_feed");
 			if (el) el.style.backgroundImage = `url(${data})`;
 		});
@@ -246376,7 +246507,7 @@ var init_MercenaryInformations$1 = __esmMin((() => {
 }));
 //#endregion
 //#region src/UI/Components/MercenaryInformations/MercenaryInformations.js
-var MercenaryInformations, _preferences$22, MercenaryInformations_default;
+var MercenaryInformations, _preferences$21, MercenaryInformations_default;
 var init_MercenaryInformations = __esmMin((() => {
 	init_DBManager();
 	init_Client();
@@ -246394,7 +246525,7 @@ var init_MercenaryInformations = __esmMin((() => {
 	init_MercenaryInformations$1();
 	MercenaryInformations = new GUIComponent("MercenaryInformations", MercenaryInformations_default$1);
 	MercenaryInformations.render = () => MercenaryInformations_default$2;
-	_preferences$22 = Preferences.get("MercenaryInformations", {
+	_preferences$21 = Preferences.get("MercenaryInformations", {
 		x: 100,
 		y: 100,
 		show: false,
@@ -246423,7 +246554,7 @@ var init_MercenaryInformations = __esmMin((() => {
 		if (dismissBtn) dismissBtn.addEventListener("click", () => {
 			MercenaryInformations.reqDeleteMercenary();
 		});
-		if (!_preferences$22.show) this._host.style.display = "none";
+		if (!_preferences$21.show) this._host.style.display = "none";
 		const skillBtn = root.querySelector(".skill");
 		if (skillBtn) skillBtn.addEventListener("mousedown", () => {
 			SkillListMH_default.mercenary.toggle();
@@ -246435,18 +246566,18 @@ var init_MercenaryInformations = __esmMin((() => {
 	* Once append to body
 	*/
 	MercenaryInformations.onAppend = function onAppend() {
-		if (!_preferences$22.show) this._host.style.display = "none";
-		this._host.style.top = `${Math.min(Math.max(0, _preferences$22.y), Renderer.height - this._host.getBoundingClientRect().height)}px`;
-		this._host.style.left = `${Math.min(Math.max(0, _preferences$22.x), Renderer.width - this._host.getBoundingClientRect().width)}px`;
+		if (!_preferences$21.show) this._host.style.display = "none";
+		this._host.style.top = `${Math.min(Math.max(0, _preferences$21.y), Renderer.height - this._host.getBoundingClientRect().height)}px`;
+		this._host.style.left = `${Math.min(Math.max(0, _preferences$21.x), Renderer.width - this._host.getBoundingClientRect().width)}px`;
 	};
 	/**
 	* Once remove from body
 	*/
 	MercenaryInformations.onRemove = function onRemove() {
-		_preferences$22.show = this._host.style.display !== "none";
-		_preferences$22.y = parseInt(this._host.style.top, 10);
-		_preferences$22.x = parseInt(this._host.style.left, 10);
-		_preferences$22.save();
+		_preferences$21.show = this._host.style.display !== "none";
+		_preferences$21.y = parseInt(this._host.style.top, 10);
+		_preferences$21.x = parseInt(this._host.style.left, 10);
+		_preferences$21.save();
 		this.stopAI();
 	};
 	/**
@@ -246672,7 +246803,7 @@ var init_CaptchaUpload$1 = __esmMin((() => {
 }));
 //#endregion
 //#region src/UI/Components/Captcha/CaptchaUpload.js
-var CaptchaUpload, _preferences$21, CaptchaUpload_default;
+var CaptchaUpload, _preferences$20, CaptchaUpload_default;
 var init_CaptchaUpload = __esmMin((() => {
 	init_UIManager();
 	init_GUIComponent();
@@ -246683,7 +246814,7 @@ var init_CaptchaUpload = __esmMin((() => {
 	init_CaptchaUpload$2();
 	init_CaptchaUpload$1();
 	CaptchaUpload = new GUIComponent("CaptchaUpload", CaptchaUpload_default$1);
-	_preferences$21 = Preferences.get("CaptchaUpload", {
+	_preferences$20 = Preferences.get("CaptchaUpload", {
 		x: 230,
 		y: 295
 	}, 2);
@@ -246754,16 +246885,16 @@ var init_CaptchaUpload = __esmMin((() => {
 	* Append to DOM
 	*/
 	CaptchaUpload.onAppend = function onAppend() {
-		this._host.style.top = `${Math.min(Math.max(0, _preferences$21.y), Renderer.height - this._host.offsetHeight)}px`;
-		this._host.style.left = `${Math.min(Math.max(0, _preferences$21.x), Renderer.width - this._host.offsetWidth)}px`;
+		this._host.style.top = `${Math.min(Math.max(0, _preferences$20.y), Renderer.height - this._host.offsetHeight)}px`;
+		this._host.style.left = `${Math.min(Math.max(0, _preferences$20.x), Renderer.width - this._host.offsetWidth)}px`;
 	};
 	/**
 	* Remove data from UI
 	*/
 	CaptchaUpload.onRemove = function onRemove() {
-		_preferences$21.y = parseInt(this._host.style.top, 10);
-		_preferences$21.x = parseInt(this._host.style.left, 10);
-		_preferences$21.save();
+		_preferences$20.y = parseInt(this._host.style.top, 10);
+		_preferences$20.x = parseInt(this._host.style.left, 10);
+		_preferences$20.save();
 		const root = this.getRoot();
 		const previewBox = root.querySelector(".preview_box");
 		if (previewBox) previewBox.innerHTML = "";
@@ -246801,7 +246932,7 @@ var init_CaptchaSelector$1 = __esmMin((() => {
 }));
 //#endregion
 //#region src/UI/Components/Captcha/CaptchaSelector.js
-var CaptchaSelector, _preferences$20, _aidList, _aidInformation, _range, _active$2, CaptchaSelector_default;
+var CaptchaSelector, _preferences$19, _aidList, _aidInformation, _range, _active$2, CaptchaSelector_default;
 var init_CaptchaSelector = __esmMin((() => {
 	init_UIManager();
 	init_GUIComponent();
@@ -246815,7 +246946,7 @@ var init_CaptchaSelector = __esmMin((() => {
 	init_CaptchaSelector$2();
 	init_CaptchaSelector$1();
 	CaptchaSelector = new GUIComponent("CaptchaSelector", CaptchaSelector_default$1);
-	_preferences$20 = Preferences.get("CaptchaSelector", {
+	_preferences$19 = Preferences.get("CaptchaSelector", {
 		x: 230,
 		y: 295
 	}, 2);
@@ -246878,16 +247009,16 @@ var init_CaptchaSelector = __esmMin((() => {
 	* Append to DOM
 	*/
 	CaptchaSelector.onAppend = function onAppend() {
-		this._host.style.top = `${Math.min(Math.max(0, _preferences$20.y), Renderer.height - this._host.offsetHeight)}px`;
-		this._host.style.left = `${Math.min(Math.max(0, _preferences$20.x), Renderer.width - this._host.offsetWidth)}px`;
+		this._host.style.top = `${Math.min(Math.max(0, _preferences$19.y), Renderer.height - this._host.offsetHeight)}px`;
+		this._host.style.left = `${Math.min(Math.max(0, _preferences$19.x), Renderer.width - this._host.offsetWidth)}px`;
 	};
 	/**
 	* Remove data from UI
 	*/
 	CaptchaSelector.onRemove = function onRemove() {
-		_preferences$20.y = parseInt(this._host.style.top, 10);
-		_preferences$20.x = parseInt(this._host.style.left, 10);
-		_preferences$20.save();
+		_preferences$19.y = parseInt(this._host.style.top, 10);
+		_preferences$19.x = parseInt(this._host.style.left, 10);
+		_preferences$19.save();
 		const charInfo = this.getRoot().querySelector(".character_info");
 		if (charInfo) charInfo.style.display = "none";
 		this.cleanUIList();
@@ -248116,6 +248247,7 @@ var init_ProcessCommand = __esmMin((() => {
 	init_Group();
 	init_Friends();
 	init_Guild();
+	init_Clan$1();
 	init_HomunInformations();
 	init_MercenaryInformations();
 	init_CaptchaUpload();
@@ -248526,6 +248658,12 @@ var init_ProcessCommand = __esmMin((() => {
 				pkt.Config = 1;
 				pkt.Value = !SessionStorage_default.Entity.call_flag ? 1 : 0;
 				Network.sendPacket(pkt);
+			}
+		},
+		clan: {
+			description: "Toggles the clan information window.",
+			callback: function() {
+				Clan_default.toggle();
 			}
 		},
 		cl: {
@@ -250467,8 +250605,8 @@ function rebuildMeshAtFrame(self, gl, frame) {
 	}
 	const buffer = new Float32Array(total);
 	let offset = 0;
-	let i;
-	for (i = 0; i < objects.length; i++) {
+	let i = 0;
+	for (; i < objects.length; i++) {
 		const obj = objects[i];
 		const length = obj.mesh.length;
 		infos[i] = {
@@ -253596,8 +253734,8 @@ function loadCloudTexture(gl, i) {
 * Set up cloud data
 */
 function setUpCloudData() {
-	let i;
-	for (i = 0; i < MAX_CLOUDS; i++) {
+	let i = 0;
+	for (; i < MAX_CLOUDS; i++) {
 		if (!_clouds[i]) _clouds[i] = {
 			position: vec3$7.create(),
 			direction: vec3$7.create(),
@@ -254293,8 +254431,8 @@ function onResize$3(event) {
 		h = Math.min(Math.max(h, 1), _rowCount);
 		if (h === lastHeight) return;
 		host.style.height = `${h * 34}px`;
-		_preferences$19.size = h;
-		_preferences$19.save();
+		_preferences$18.size = h;
+		_preferences$18.save();
 		lastHeight = h;
 	}
 	const _Interval = setInterval(resizing, 30);
@@ -254474,8 +254612,8 @@ function clickElement(index) {
 */
 function onClose$5() {
 	ShortCut._host.style.height = "0px";
-	_preferences$19.size = 0;
-	_preferences$19.save();
+	_preferences$18.size = 0;
+	_preferences$18.save();
 }
 /**
 * Hook Inventory, get informations when there is a change
@@ -254650,7 +254788,7 @@ function haveHotkeysChanged(currentData) {
 	if (!_lastServerHotkeys) return true;
 	return JSON.stringify(currentData) !== JSON.stringify(_lastServerHotkeys);
 }
-var ShortCut, _list$1, _rowCount, _lastServerHotkeys, _activeAnimations, _preferences$19, ShortCut_default;
+var ShortCut, _list$1, _rowCount, _lastServerHotkeys, _activeAnimations, _preferences$18, ShortCut_default;
 var init_ShortCut = __esmMin((() => {
 	init_DBManager();
 	init_ItemType();
@@ -254681,7 +254819,7 @@ var init_ShortCut = __esmMin((() => {
 	_rowCount = 0;
 	_lastServerHotkeys = null;
 	_activeAnimations = /* @__PURE__ */ new Map();
-	_preferences$19 = Preferences.get("ShortCut", {
+	_preferences$18 = Preferences.get("ShortCut", {
 		x: 480,
 		y: 0,
 		size: 1,
@@ -254747,14 +254885,14 @@ var init_ShortCut = __esmMin((() => {
 	* Append to body
 	*/
 	ShortCut.onAppend = function onAppend() {
-		this._host.style.height = `${34 * _preferences$19.size}px`;
+		this._host.style.height = `${34 * _preferences$18.size}px`;
 		const rect = this._host.getBoundingClientRect();
-		this._host.style.top = `${Math.min(Math.max(0, _preferences$19.y), Renderer.height - rect.height)}px`;
-		this._host.style.left = `${Math.min(Math.max(0, _preferences$19.x), Renderer.width - rect.width)}px`;
-		this.magnet.TOP = _preferences$19.magnet_top;
-		this.magnet.BOTTOM = _preferences$19.magnet_bottom;
-		this.magnet.LEFT = _preferences$19.magnet_left;
-		this.magnet.RIGHT = _preferences$19.magnet_right;
+		this._host.style.top = `${Math.min(Math.max(0, _preferences$18.y), Renderer.height - rect.height)}px`;
+		this._host.style.left = `${Math.min(Math.max(0, _preferences$18.x), Renderer.width - rect.width)}px`;
+		this.magnet.TOP = _preferences$18.magnet_top;
+		this.magnet.BOTTOM = _preferences$18.magnet_bottom;
+		this.magnet.LEFT = _preferences$18.magnet_left;
+		this.magnet.RIGHT = _preferences$18.magnet_right;
 		Controller$4.getUI().onUpdateSkill = onUpdateSkill;
 		updateEmptySlotTooltips();
 	};
@@ -254766,14 +254904,14 @@ var init_ShortCut = __esmMin((() => {
 		if (tooltip) tooltip.classList.remove("show");
 		for (const [index, animationId] of _activeAnimations.entries()) cancelAnimationFrame(animationId);
 		_activeAnimations.clear();
-		_preferences$19.y = parseInt(this._host.style.top, 10);
-		_preferences$19.x = parseInt(this._host.style.left, 10);
-		_preferences$19.size = Math.floor(parseInt(this._host.style.height, 10) / 34);
-		_preferences$19.magnet_top = this.magnet.TOP;
-		_preferences$19.magnet_bottom = this.magnet.BOTTOM;
-		_preferences$19.magnet_left = this.magnet.LEFT;
-		_preferences$19.magnet_right = this.magnet.RIGHT;
-		_preferences$19.save();
+		_preferences$18.y = parseInt(this._host.style.top, 10);
+		_preferences$18.x = parseInt(this._host.style.left, 10);
+		_preferences$18.size = Math.floor(parseInt(this._host.style.height, 10) / 34);
+		_preferences$18.magnet_top = this.magnet.TOP;
+		_preferences$18.magnet_bottom = this.magnet.BOTTOM;
+		_preferences$18.magnet_left = this.magnet.LEFT;
+		_preferences$18.magnet_right = this.magnet.RIGHT;
+		_preferences$18.save();
 	};
 	/**
 	* Request to clean the list
@@ -254798,9 +254936,9 @@ var init_ShortCut = __esmMin((() => {
 				clickElement(parseInt(key.cmd.match(/\d+$/).toString(), 10));
 				break;
 			case "EXTEND":
-				_preferences$19.size = (_preferences$19.size + 1) % (_rowCount + 1);
-				_preferences$19.save();
-				this._host.style.height = `${_preferences$19.size * 34}px`;
+				_preferences$18.size = (_preferences$18.size + 1) % (_rowCount + 1);
+				_preferences$18.save();
+				this._host.style.height = `${_preferences$18.size * 34}px`;
 		}
 	};
 	ShortCut.useSkill = function useSkill(id, level) {
@@ -299030,7 +299168,7 @@ var init_PetInformations$1 = __esmMin((() => {
 }));
 //#endregion
 //#region src/UI/Components/PetInformations/PetInformations.js
-var PetInformations, _preferences$18, petAutoFeeding, PetInformations_default;
+var PetInformations, _preferences$17, petAutoFeeding, PetInformations_default;
 var init_PetInformations = __esmMin((() => {
 	init_DBManager();
 	init_Client();
@@ -299045,7 +299183,7 @@ var init_PetInformations = __esmMin((() => {
 	PetInformations = new GUIComponent("PetInformations", PetInformations_default$1);
 	PetInformations.render = () => PetInformations_default$2;
 	PetInformations.captureKeyEvents = true;
-	_preferences$18 = Preferences.get("PetInformations", {
+	_preferences$17 = Preferences.get("PetInformations", {
 		x: 100,
 		y: 200,
 		show: true
@@ -299107,17 +299245,17 @@ var init_PetInformations = __esmMin((() => {
 			const feeding = root.querySelector(".feeding");
 			if (feeding) feeding.style.display = "none";
 		}
-		this._host.style.top = `${Math.min(Math.max(0, _preferences$18.y), Renderer.height - this._host.getBoundingClientRect().height)}px`;
-		this._host.style.left = `${Math.min(Math.max(0, _preferences$18.x), Renderer.width - this._host.getBoundingClientRect().width)}px`;
+		this._host.style.top = `${Math.min(Math.max(0, _preferences$17.y), Renderer.height - this._host.getBoundingClientRect().height)}px`;
+		this._host.style.left = `${Math.min(Math.max(0, _preferences$17.x), Renderer.width - this._host.getBoundingClientRect().width)}px`;
 	};
 	/**
 	* Once remove from body, save user preferences
 	*/
 	PetInformations.onRemove = function onRemove() {
-		_preferences$18.show = this._host.style.display !== "none";
-		_preferences$18.y = parseInt(this._host.style.top, 10);
-		_preferences$18.x = parseInt(this._host.style.left, 10);
-		_preferences$18.save();
+		_preferences$17.show = this._host.style.display !== "none";
+		_preferences$17.y = parseInt(this._host.style.top, 10);
+		_preferences$17.x = parseInt(this._host.style.left, 10);
+		_preferences$17.save();
 	};
 	/**
 	* Process shortcut
@@ -308510,7 +308648,7 @@ function isFreeCell$2(x, y) {
 	});
 	return free;
 }
-var vec2, mat2, direction, rotate, targetPos, movementTimer, MobileUI, _preferences$17, showButtons, C_AUTOTARGET_DELAY, C_TOUCH_CLICK_GUARD, centerX, centerY, maxDistance, normalizedX, normalizedY, _joystickBase, _joystickThumb, MobileUI_default;
+var vec2, mat2, direction, rotate, targetPos, movementTimer, MobileUI, _preferences$16, showButtons, C_AUTOTARGET_DELAY, C_TOUCH_CLICK_GUARD, centerX, centerY, maxDistance, normalizedX, normalizedY, _joystickBase, _joystickThumb, MobileUI_default;
 var init_MobileUI = __esmMin((() => {
 	init_Context();
 	init_UIManager();
@@ -308538,7 +308676,7 @@ var init_MobileUI = __esmMin((() => {
 	movementTimer = null;
 	MobileUI = new GUIComponent("MobileUI", MobileUI_default$1);
 	MobileUI.render = () => MobileUI_default$2;
-	_preferences$17 = Preferences.get("MobileUI", {
+	_preferences$16 = Preferences.get("MobileUI", {
 		x: 0,
 		y: 0,
 		zIndex: 1e3,
@@ -308711,12 +308849,12 @@ var init_MobileUI = __esmMin((() => {
 	* Removes MobileUI
 	*/
 	MobileUI.onRemove = function onRemove() {
-		_preferences$17.y = 0;
-		_preferences$17.x = 0;
-		_preferences$17.zIndex = 1e3;
-		_preferences$17.width = Renderer.width;
-		_preferences$17.height = Renderer.height;
-		_preferences$17.save();
+		_preferences$16.y = 0;
+		_preferences$16.x = 0;
+		_preferences$16.zIndex = 1e3;
+		_preferences$16.width = Renderer.width;
+		_preferences$16.height = Renderer.height;
+		_preferences$16.save();
 		if (SessionStorage_default.AutoTargeting) toggleAutoTargeting();
 	};
 	/**
@@ -309623,8 +309761,8 @@ var init_html2canvas = __esmMin((() => {
 						"Right",
 						"Bottom",
 						"Left"
-					], s;
-					for (s = 0; s < 4; s += 1) borders.push({
+					], s = 0;
+					for (; s < 4; s += 1) borders.push({
 						width: getCSSInt(el, "border" + sides[s] + "Width"),
 						color: getCSS(el, "border" + sides[s] + "Color")
 					});
@@ -309636,8 +309774,8 @@ var init_html2canvas = __esmMin((() => {
 						"TopRight",
 						"BottomRight",
 						"BottomLeft"
-					], s;
-					for (s = 0; s < 4; s += 1) borders.push(getCSS(el, "border" + sides[s] + "Radius"));
+					], s = 0;
+					for (; s < 4; s += 1) borders.push(getCSS(el, "border" + sides[s] + "Radius"));
 					return borders;
 				})(el);
 				for (borderSide = 0; borderSide < 4; borderSide += 1) {
@@ -309980,8 +310118,8 @@ var init_html2canvas = __esmMin((() => {
 			if (support.svgRendering) (function(body) {
 				let img = new Image(), size = docSize(), html = "";
 				function parseDOM(el) {
-					let children = _html2canvas.Util.Children(el), len = children.length, attr, a, alen, elm, i;
-					for (i = 0; i < len; i += 1) {
+					let children = _html2canvas.Util.Children(el), len = children.length, attr, a, alen, elm, i = 0;
+					for (; i < len; i += 1) {
 						elm = children[i];
 						if (elm.nodeType === 3) html += elm.nodeValue.replace(/\</g, "&lt;").replace(/\>/g, "&gt;");
 						else if (elm.nodeType === 1) {
@@ -311213,7 +311351,7 @@ function onItemOut$9() {
 	const overlay = Vending.getRoot().querySelector(".overlay");
 	if (overlay) overlay.style.display = "none";
 }
-var Vending, _preferences$16, _input$1, _output$1, _slots, _type$3, transferItem$1, Vending_default;
+var Vending, _preferences$15, _input$1, _output$1, _slots, _type$3, transferItem$1, Vending_default;
 var init_Vending = __esmMin((() => {
 	init_DBManager();
 	init_NetworkManager();
@@ -311243,7 +311381,7 @@ var init_Vending = __esmMin((() => {
 		VENDING_STORE: 0,
 		BUYING_STORE: 1
 	};
-	_preferences$16 = Preferences.get("Vending", {
+	_preferences$15 = Preferences.get("Vending", {
 		inputWindow: {
 			x: 100,
 			y: 100,
@@ -311356,12 +311494,12 @@ var init_Vending = __esmMin((() => {
 		const outputWin = root.querySelector(".OutputWindow");
 		const inputContent = inputWin.querySelector(".content");
 		const outputContent = outputWin.querySelector(".content");
-		inputWin.style.top = `${Math.min(Math.max(0, _preferences$16.inputWindow.y), Renderer.height - inputContent.offsetHeight)}px`;
-		inputWin.style.left = `${Math.min(Math.max(0, _preferences$16.inputWindow.x), Renderer.width - inputContent.offsetWidth)}px`;
-		outputWin.style.top = `${Math.min(Math.max(0, _preferences$16.outputWindow.y), Renderer.height - outputContent.offsetHeight)}px`;
-		outputWin.style.left = `${Math.min(Math.max(0, _preferences$16.outputWindow.x), Renderer.width - outputContent.offsetWidth)}px`;
-		resize$1(inputContent, _preferences$16.inputWindow.height);
-		resize$1(outputContent, _preferences$16.outputWindow.height);
+		inputWin.style.top = `${Math.min(Math.max(0, _preferences$15.inputWindow.y), Renderer.height - inputContent.offsetHeight)}px`;
+		inputWin.style.left = `${Math.min(Math.max(0, _preferences$15.inputWindow.x), Renderer.width - inputContent.offsetWidth)}px`;
+		outputWin.style.top = `${Math.min(Math.max(0, _preferences$15.outputWindow.y), Renderer.height - outputContent.offsetHeight)}px`;
+		outputWin.style.left = `${Math.min(Math.max(0, _preferences$15.outputWindow.x), Renderer.width - outputContent.offsetWidth)}px`;
+		resize$1(inputContent, _preferences$15.inputWindow.height);
+		resize$1(outputContent, _preferences$15.outputWindow.height);
 		this._host.style.display = "none";
 	};
 	Vending.setType = function setType(type) {
@@ -311397,13 +311535,13 @@ var init_Vending = __esmMin((() => {
 		const outputWin = root.querySelector(".OutputWindow");
 		_input$1.length = 0;
 		_output$1.length = 0;
-		_preferences$16.inputWindow.x = parseInt(inputWin.style.left, 10);
-		_preferences$16.inputWindow.y = parseInt(inputWin.style.top, 10);
-		_preferences$16.inputWindow.height = inputWin.querySelector(".content").offsetHeight / 32 | 0;
-		_preferences$16.outputWindow.x = parseInt(outputWin.style.left, 10);
-		_preferences$16.outputWindow.y = parseInt(outputWin.style.top, 10);
-		_preferences$16.outputWindow.height = outputWin.querySelector(".content").offsetHeight / 32 | 0;
-		_preferences$16.save();
+		_preferences$15.inputWindow.x = parseInt(inputWin.style.left, 10);
+		_preferences$15.inputWindow.y = parseInt(inputWin.style.top, 10);
+		_preferences$15.inputWindow.height = inputWin.querySelector(".content").offsetHeight / 32 | 0;
+		_preferences$15.outputWindow.x = parseInt(outputWin.style.left, 10);
+		_preferences$15.outputWindow.y = parseInt(outputWin.style.top, 10);
+		_preferences$15.outputWindow.height = outputWin.querySelector(".content").offsetHeight / 32 | 0;
+		_preferences$15.save();
 		root.querySelectorAll(".content").forEach((el) => {
 			el.innerHTML = "";
 		});
@@ -311673,7 +311811,7 @@ function onItemUsed(event, itemEl) {
 	event.stopImmediatePropagation();
 	event.preventDefault();
 }
-var VendingShop, _realSize, _type$2, _preferences$15, VendingShop_default;
+var VendingShop, _realSize, _type$2, _preferences$14, VendingShop_default;
 var init_VendingShop = __esmMin((() => {
 	init_DBManager();
 	init_NetworkManager();
@@ -311705,7 +311843,7 @@ var init_VendingShop = __esmMin((() => {
 	*/
 	VendingShop.list = [];
 	_realSize = 0;
-	_preferences$15 = Preferences.get("VendingShop", {
+	_preferences$14 = Preferences.get("VendingShop", {
 		x: 200,
 		y: 200,
 		width: 8,
@@ -311759,11 +311897,11 @@ var init_VendingShop = __esmMin((() => {
 	* Apply preferences once append to body
 	*/
 	VendingShop.onAppend = function onAppend() {
-		this.resize(_preferences$15.width, _preferences$15.height);
+		this.resize(_preferences$14.width, _preferences$14.height);
 		const hostRect = this._host.getBoundingClientRect();
-		this._host.style.top = `${Math.min(Math.max(0, _preferences$15.y), Renderer.height - hostRect.height)}px`;
-		this._host.style.left = `${Math.min(Math.max(0, _preferences$15.x), Renderer.width - hostRect.width)}px`;
-		_realSize = _preferences$15.reduce ? 0 : hostRect.height;
+		this._host.style.top = `${Math.min(Math.max(0, _preferences$14.y), Renderer.height - hostRect.height)}px`;
+		this._host.style.left = `${Math.min(Math.max(0, _preferences$14.x), Renderer.width - hostRect.width)}px`;
+		_realSize = _preferences$14.reduce ? 0 : hostRect.height;
 		const messageText = DB.getMessage(226);
 		const titleShop = Vending_default._shopname.length > 25 ? `${Vending_default._shopname.substring(0, 25)}...` : Vending_default._shopname;
 		const shopnameEl = this.getRoot().querySelector(".text.shopname");
@@ -311786,12 +311924,12 @@ var init_VendingShop = __esmMin((() => {
 		this.list.length = 0;
 		const itemInfoEl = document.querySelector(".ItemInfo");
 		if (itemInfoEl) itemInfoEl.remove();
-		_preferences$15.reduce = !!_realSize;
-		_preferences$15.y = parseInt(this._host.style.top, 10);
-		_preferences$15.x = parseInt(this._host.style.left, 10);
-		_preferences$15.width = Math.floor((this._host.getBoundingClientRect().width - 25) / 32);
-		_preferences$15.height = Math.floor((this._host.getBoundingClientRect().height - 20) / 32);
-		_preferences$15.save();
+		_preferences$14.reduce = !!_realSize;
+		_preferences$14.y = parseInt(this._host.style.top, 10);
+		_preferences$14.x = parseInt(this._host.style.left, 10);
+		_preferences$14.width = Math.floor((this._host.getBoundingClientRect().width - 25) / 32);
+		_preferences$14.height = Math.floor((this._host.getBoundingClientRect().height - 20) / 32);
+		_preferences$14.save();
 		this._host.style.display = "none";
 	};
 	/**
@@ -312086,7 +312224,7 @@ function formatUnixDate(unixTimestamp) {
 	const d = /* @__PURE__ */ new Date(unixTimestamp * 1e3);
 	return String(d.getMonth() + 1).padStart(2, "0") + "/" + String(d.getDate()).padStart(2, "0") + " - " + String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0") + ":" + String(d.getSeconds()).padStart(2, "0");
 }
-var VendingReport, VendingReportTable, _preferences$14, VendingReport_default;
+var VendingReport, VendingReportTable, _preferences$13, VendingReport_default;
 var init_VendingReport = __esmMin((() => {
 	init_DBManager();
 	init_Client();
@@ -312112,7 +312250,7 @@ var init_VendingReport = __esmMin((() => {
 	VendingReport._startHeight = 0;
 	VendingReport._boundResizeDrag = null;
 	VendingReport._boundResizeStop = null;
-	_preferences$14 = Preferences.get("VendingReport", {
+	_preferences$13 = Preferences.get("VendingReport", {
 		x: 200,
 		y: 200,
 		width: 400,
@@ -312174,9 +312312,9 @@ var init_VendingReport = __esmMin((() => {
 	VendingReport.onRemove = function OnRemove() {
 		VendingReport.reset();
 		ItemInfo_default.remove();
-		_preferences$14.y = parseInt(this._host.style.top, 10) || 0;
-		_preferences$14.x = parseInt(this._host.style.left, 10) || 0;
-		_preferences$14.save();
+		_preferences$13.y = parseInt(this._host.style.top, 10) || 0;
+		_preferences$13.x = parseInt(this._host.style.left, 10) || 0;
+		_preferences$13.save();
 		this._host.style.display = "none";
 	};
 	VendingReport.reset = function reset() {
@@ -312696,7 +312834,7 @@ function refreshList(contentEl) {
 		index++;
 	}
 }
-var Emoticons, _page, EMOTICONS_PER_PAGE, TOTAL_PAGES, EMOTICONS_COUNT, _action$1, _sprite$1, _entity$1, _preferences$13, Emoticons_default;
+var Emoticons, _page, EMOTICONS_PER_PAGE, TOTAL_PAGES, EMOTICONS_COUNT, _action$1, _sprite$1, _entity$1, _preferences$12, Emoticons_default;
 var init_Emoticons = __esmMin((() => {
 	init_Emotions();
 	init_Client();
@@ -312720,7 +312858,7 @@ var init_Emoticons = __esmMin((() => {
 	TOTAL_PAGES = 0;
 	EMOTICONS_COUNT = Object.keys(Emotions_default.order).length;
 	_entity$1 = new Entity();
-	_preferences$13 = Preferences.get("Emoticons", {
+	_preferences$12 = Preferences.get("Emoticons", {
 		x: 600,
 		y: 200,
 		show: false
@@ -312766,18 +312904,18 @@ var init_Emoticons = __esmMin((() => {
 	* Appending to html
 	*/
 	Emoticons.onAppend = function onAppend() {
-		if (!_preferences$13.show) this._host.style.display = "none";
-		this._host.style.top = Math.min(Math.max(0, _preferences$13.y), Renderer.height - this._host.offsetHeight) + "px";
-		this._host.style.left = Math.min(Math.max(0, _preferences$13.x), Renderer.width - this._host.offsetWidth) + "px";
+		if (!_preferences$12.show) this._host.style.display = "none";
+		this._host.style.top = Math.min(Math.max(0, _preferences$12.y), Renderer.height - this._host.offsetHeight) + "px";
+		this._host.style.left = Math.min(Math.max(0, _preferences$12.x), Renderer.width - this._host.offsetWidth) + "px";
 	};
 	/**
 	* Once removed from DOM, save preferences
 	*/
 	Emoticons.onRemove = function onRemove() {
-		_preferences$13.show = this._host.style.display !== "none";
-		_preferences$13.y = parseInt(this._host.style.top, 10) || 0;
-		_preferences$13.x = parseInt(this._host.style.left, 10) || 0;
-		_preferences$13.save();
+		_preferences$12.show = this._host.style.display !== "none";
+		_preferences$12.y = parseInt(this._host.style.top, 10) || 0;
+		_preferences$12.x = parseInt(this._host.style.left, 10) || 0;
+		_preferences$12.save();
 	};
 	/**
 	* Update page
@@ -312888,7 +313026,7 @@ function onDropText(event) {
 	if (data.type === "item") return;
 	event.currentTarget.value = data;
 }
-var ShortCuts, _MACRO_INIT, _FLAG_INIT, _preferences$12, ShortCuts_default;
+var ShortCuts, _MACRO_INIT, _FLAG_INIT, _preferences$11, ShortCuts_default;
 var init_ShortCuts = __esmMin((() => {
 	init_Preferences$1();
 	init_Renderer();
@@ -312932,7 +313070,7 @@ var init_ShortCuts = __esmMin((() => {
 	* Store ShortCuts items
 	*/
 	ShortCuts.list = [];
-	_preferences$12 = Preferences.get("ShortCuts", {
+	_preferences$11 = Preferences.get("ShortCuts", {
 		x: 0,
 		y: 172,
 		width: 7,
@@ -312998,10 +313136,10 @@ var init_ShortCuts = __esmMin((() => {
 	* Apply preferences once append to body
 	*/
 	ShortCuts.onAppend = function onAppend() {
-		if (!_preferences$12.show) this._host.style.display = "none";
+		if (!_preferences$11.show) this._host.style.display = "none";
 		const rect = this._host.getBoundingClientRect();
-		this._host.style.top = `${Math.min(Math.max(0, _preferences$12.y), Renderer.height - rect.height)}px`;
-		this._host.style.left = `${Math.min(Math.max(0, _preferences$12.x), Renderer.width - rect.width)}px`;
+		this._host.style.top = `${Math.min(Math.max(0, _preferences$11.y), Renderer.height - rect.height)}px`;
+		this._host.style.left = `${Math.min(Math.max(0, _preferences$11.x), Renderer.width - rect.width)}px`;
 	};
 	/**
 	* Remove ShortCuts from window (and so clean up items)
@@ -313011,18 +313149,18 @@ var init_ShortCuts = __esmMin((() => {
 		if (content) content.innerHTML = "";
 		this.list.length = 0;
 		document.querySelectorAll(".ItemInfo").forEach((el) => el.remove());
-		_preferences$12.show = this._host.style.display !== "none";
-		_preferences$12.reduce = false;
-		_preferences$12.y = parseInt(this._host.style.top, 10);
-		_preferences$12.x = parseInt(this._host.style.left, 10);
+		_preferences$11.show = this._host.style.display !== "none";
+		_preferences$11.reduce = false;
+		_preferences$11.y = parseInt(this._host.style.top, 10);
+		_preferences$11.x = parseInt(this._host.style.left, 10);
 		const hostRect = this._host.getBoundingClientRect();
-		_preferences$12.width = Math.floor((hostRect.width - 25) / 32);
-		_preferences$12.height = Math.floor((hostRect.height - 20) / 32);
-		_preferences$12.magnet_top = this.magnet.TOP;
-		_preferences$12.magnet_bottom = this.magnet.BOTTOM;
-		_preferences$12.magnet_left = this.magnet.LEFT;
-		_preferences$12.magnet_right = this.magnet.RIGHT;
-		_preferences$12.save();
+		_preferences$11.width = Math.floor((hostRect.width - 25) / 32);
+		_preferences$11.height = Math.floor((hostRect.height - 20) / 32);
+		_preferences$11.magnet_top = this.magnet.TOP;
+		_preferences$11.magnet_bottom = this.magnet.BOTTOM;
+		_preferences$11.magnet_left = this.magnet.LEFT;
+		_preferences$11.magnet_right = this.magnet.RIGHT;
+		_preferences$11.save();
 	};
 	/**
 	* Process shortcut
@@ -313758,7 +313896,7 @@ function stopPropagation$6(event) {
 	event.preventDefault();
 	return false;
 }
-var CashShop, _preferences$11, CashShop_default;
+var CashShop, _preferences$10, CashShop_default;
 var init_CashShop$1 = __esmMin((() => {
 	init_DBManager();
 	init_Client();
@@ -313781,7 +313919,7 @@ var init_CashShop$1 = __esmMin((() => {
 	* Store cash shop items
 	*/
 	CashShop.list = [];
-	_preferences$11 = Preferences.get("CashShop", {
+	_preferences$10 = Preferences.get("CashShop", {
 		x: 80,
 		y: 100,
 		magnet_top: false,
@@ -313950,25 +314088,25 @@ var init_CashShop$1 = __esmMin((() => {
 	CashShop.onAppend = function OnAppend() {
 		const hostHeight = this._host.offsetHeight || 540;
 		const hostWidth = this._host.offsetWidth || 723;
-		this._host.style.top = `${Math.min(Math.max(0, _preferences$11.y), Renderer.height - hostHeight)}px`;
-		this._host.style.left = `${Math.min(Math.max(0, _preferences$11.x), Renderer.width - hostWidth)}px`;
-		this.magnet.TOP = _preferences$11.magnet_top;
-		this.magnet.BOTTOM = _preferences$11.magnet_bottom;
-		this.magnet.LEFT = _preferences$11.magnet_left;
-		this.magnet.RIGHT = _preferences$11.magnet_right;
+		this._host.style.top = `${Math.min(Math.max(0, _preferences$10.y), Renderer.height - hostHeight)}px`;
+		this._host.style.left = `${Math.min(Math.max(0, _preferences$10.x), Renderer.width - hostWidth)}px`;
+		this.magnet.TOP = _preferences$10.magnet_top;
+		this.magnet.BOTTOM = _preferences$10.magnet_bottom;
+		this.magnet.LEFT = _preferences$10.magnet_left;
+		this.magnet.RIGHT = _preferences$10.magnet_right;
 		CashShop.loadComponentCashShop();
 	};
 	/**
 	* Remove Cash shop
 	*/
 	CashShop.onRemove = function onRemove() {
-		_preferences$11.x = parseInt(this._host.style.left, 10) || 0;
-		_preferences$11.y = parseInt(this._host.style.top, 10) || 0;
-		_preferences$11.magnet_top = this.magnet.TOP;
-		_preferences$11.magnet_bottom = this.magnet.BOTTOM;
-		_preferences$11.magnet_left = this.magnet.LEFT;
-		_preferences$11.magnet_right = this.magnet.RIGHT;
-		_preferences$11.save();
+		_preferences$10.x = parseInt(this._host.style.left, 10) || 0;
+		_preferences$10.y = parseInt(this._host.style.top, 10) || 0;
+		_preferences$10.magnet_top = this.magnet.TOP;
+		_preferences$10.magnet_bottom = this.magnet.BOTTOM;
+		_preferences$10.magnet_left = this.magnet.LEFT;
+		_preferences$10.magnet_right = this.magnet.RIGHT;
+		_preferences$10.save();
 		CashShop.stopBannerRotation();
 		CashShop.csListItemSearchResult = [];
 		CashShop.cashShopBannerTable = [];
@@ -316052,7 +316190,7 @@ function addRouletteIcon() {
 		if (_iconBtn) _iconBtn.style.backgroundImage = `url(${data})`;
 	});
 }
-var Roulette, _preferences$10, _rouletteInfo, _isSpinning, _responseTimeout, _iconBtn, Roulette_default;
+var Roulette, _preferences$9, _rouletteInfo, _isSpinning, _responseTimeout, _iconBtn, Roulette_default;
 var init_Roulette$1 = __esmMin((() => {
 	init_DBManager();
 	init_Client();
@@ -316070,7 +316208,7 @@ var init_Roulette$1 = __esmMin((() => {
 	* Render HTML
 	*/
 	Roulette.render = () => Roulette_default$2;
-	_preferences$10 = Preferences.get("Roulette", {
+	_preferences$9 = Preferences.get("Roulette", {
 		x: 200,
 		y: 200,
 		show: false
@@ -316109,9 +316247,9 @@ var init_Roulette$1 = __esmMin((() => {
 	* Once append to the DOM
 	*/
 	Roulette.onAppend = function onAppend() {
-		this._host.style.top = Math.min(Math.max(0, _preferences$10.y), Renderer.height - this._host.offsetHeight) + "px";
-		this._host.style.left = Math.min(Math.max(0, _preferences$10.x), Renderer.width - this._host.offsetWidth) + "px";
-		if (!_preferences$10.show) this._host.style.display = "none";
+		this._host.style.top = Math.min(Math.max(0, _preferences$9.y), Renderer.height - this._host.offsetHeight) + "px";
+		this._host.style.left = Math.min(Math.max(0, _preferences$9.x), Renderer.width - this._host.offsetWidth) + "px";
+		if (!_preferences$9.show) this._host.style.display = "none";
 		if (ROConfig.enableRoulette === false) return;
 		if (PacketVerManager_default.value < 20141008) return;
 		addRouletteIcon();
@@ -316125,10 +316263,10 @@ var init_Roulette$1 = __esmMin((() => {
 			_iconBtn.remove();
 			_iconBtn = null;
 		}
-		_preferences$10.show = this._host.style.display !== "none";
-		_preferences$10.x = parseInt(this._host.style.left, 10);
-		_preferences$10.y = parseInt(this._host.style.top, 10);
-		_preferences$10.save();
+		_preferences$9.show = this._host.style.display !== "none";
+		_preferences$9.x = parseInt(this._host.style.left, 10);
+		_preferences$9.y = parseInt(this._host.style.top, 10);
+		_preferences$9.save();
 	};
 	/**
 	* Open Roulette Window
@@ -316509,7 +316647,7 @@ var init_CaptchaAnswer$1 = __esmMin((() => {
 }));
 //#endregion
 //#region src/UI/Components/Captcha/CaptchaAnswer.js
-var CaptchaAnswer, _preferences$9, timer, CaptchaAnswer_default;
+var CaptchaAnswer, _preferences$8, timer, CaptchaAnswer_default;
 var init_CaptchaAnswer = __esmMin((() => {
 	init_UIManager();
 	init_GUIComponent();
@@ -316520,7 +316658,7 @@ var init_CaptchaAnswer = __esmMin((() => {
 	init_CaptchaAnswer$2();
 	init_CaptchaAnswer$1();
 	CaptchaAnswer = new GUIComponent("CaptchaAnswer", CaptchaAnswer_default$1);
-	_preferences$9 = Preferences.get("CaptchaAnswer", {
+	_preferences$8 = Preferences.get("CaptchaAnswer", {
 		x: 230,
 		y: 295
 	}, 2);
@@ -316551,8 +316689,8 @@ var init_CaptchaAnswer = __esmMin((() => {
 	* Append to DOM
 	*/
 	CaptchaAnswer.onAppend = function onAppend() {
-		this._host.style.top = `${Math.min(Math.max(0, _preferences$9.y), Renderer.height - this._host.offsetHeight)}px`;
-		this._host.style.left = `${Math.min(Math.max(0, _preferences$9.x), Renderer.width - this._host.offsetWidth)}px`;
+		this._host.style.top = `${Math.min(Math.max(0, _preferences$8.y), Renderer.height - this._host.offsetHeight)}px`;
+		this._host.style.left = `${Math.min(Math.max(0, _preferences$8.x), Renderer.width - this._host.offsetWidth)}px`;
 	};
 	/**
 	* Set Image
@@ -316606,9 +316744,9 @@ var init_CaptchaAnswer = __esmMin((() => {
 	* Remove data from UI
 	*/
 	CaptchaAnswer.onRemove = function onRemove() {
-		_preferences$9.y = parseInt(this._host.style.top, 10);
-		_preferences$9.x = parseInt(this._host.style.left, 10);
-		_preferences$9.save();
+		_preferences$8.y = parseInt(this._host.style.top, 10);
+		_preferences$8.x = parseInt(this._host.style.left, 10);
+		_preferences$8.save();
 		const root = this.getRoot();
 		const imageContainer = root.querySelector(".image_container");
 		if (imageContainer) imageContainer.innerHTML = "";
@@ -316643,7 +316781,7 @@ var init_CaptchaPreview$1 = __esmMin((() => {
 }));
 //#endregion
 //#region src/UI/Components/Captcha/CaptchaPreview.js
-var CaptchaPreview, _preferences$8, CaptchaPreview_default;
+var CaptchaPreview, _preferences$7, CaptchaPreview_default;
 var init_CaptchaPreview = __esmMin((() => {
 	init_UIManager();
 	init_GUIComponent();
@@ -316653,7 +316791,7 @@ var init_CaptchaPreview = __esmMin((() => {
 	init_CaptchaPreview$2();
 	init_CaptchaPreview$1();
 	CaptchaPreview = new GUIComponent("CaptchaPreview", CaptchaPreview_default$1);
-	_preferences$8 = Preferences.get("CaptchaPreview", {
+	_preferences$7 = Preferences.get("CaptchaPreview", {
 		x: 230,
 		y: 295
 	}, 2);
@@ -316670,16 +316808,16 @@ var init_CaptchaPreview = __esmMin((() => {
 	* Append to DOM
 	*/
 	CaptchaPreview.onAppend = function onAppend() {
-		this._host.style.top = `${Math.min(Math.max(0, _preferences$8.y), Renderer.height - this._host.offsetHeight)}px`;
-		this._host.style.left = `${Math.min(Math.max(0, _preferences$8.x), Renderer.width - this._host.offsetWidth)}px`;
+		this._host.style.top = `${Math.min(Math.max(0, _preferences$7.y), Renderer.height - this._host.offsetHeight)}px`;
+		this._host.style.left = `${Math.min(Math.max(0, _preferences$7.x), Renderer.width - this._host.offsetWidth)}px`;
 	};
 	/**
 	* Remove data from UI
 	*/
 	CaptchaPreview.onRemove = function onRemove() {
-		_preferences$8.y = parseInt(this._host.style.top, 10);
-		_preferences$8.x = parseInt(this._host.style.left, 10);
-		_preferences$8.save();
+		_preferences$7.y = parseInt(this._host.style.top, 10);
+		_preferences$7.x = parseInt(this._host.style.left, 10);
+		_preferences$7.save();
 		const previewBox = this.getRoot().querySelector(".preview_box");
 		if (previewBox) previewBox.innerHTML = "";
 	};
@@ -316698,137 +316836,6 @@ var init_CaptchaPreview = __esmMin((() => {
 		}
 	};
 	CaptchaPreview_default = UIManager.addComponent(CaptchaPreview);
-}));
-//#endregion
-//#region src/UI/Components/Clan/Clan.html?raw
-var Clan_default$2;
-var init_Clan$3 = __esmMin((() => {
-	Clan_default$2 = "<div id=\"Clan\">\r\n	<div class=\"titlebar\">\r\n		<ui-image src=\"basic_interface/titlebar_mid.bmp\"></ui-image>\r\n		<div class=\"right\">\r\n			<ui-button\r\n				class=\"base close\"\r\n				bg=\"basic_interface/sys_close_off.bmp\"\r\n				hover=\"basic_interface/sys_close_on.bmp\"\r\n			></ui-button>\r\n		</div>\r\n		<div class=\"clear\"></div>\r\n	</div>\r\n\r\n	<div class=\"tabs\">\r\n		<button class=\"info active\"><ui-text msg=\"2355\">Clan Info</ui-text></button>\r\n	</div>\r\n\r\n	<div class=\"panel\">\r\n		<div class=\"content info\">\r\n			<div class=\"name\"><ui-text msg=\"2357\">Clan Name</ui-text> : <span class=\"value\"></span></div>\r\n			<div class=\"level\"><ui-text msg=\"2356\">Clan level</ui-text> : <span class=\"value\"></span></div>\r\n			<div class=\"master\"><ui-text msg=\"2362\">Master Name</ui-text> : <span class=\"value\"></span></div>\r\n			<div class=\"members\">\r\n				<ui-text msg=\"2363\">The number of members</ui-text> :\r\n				<span class=\"maxMember\">0</span>\r\n				<ui-button bg=\"basic_interface/grp_online.bmp\"></ui-button>\r\n				<span class=\"online\"></span>\r\n			</div>\r\n			<div class=\"territory\"><ui-text msg=\"2364\">Managed Territory</ui-text> : <span class=\"value\"></span></div>\r\n			<div class=\"clan_illust\"></div>\r\n			<div class=\"emblem\"><ui-text msg=\"2358\">Clan mark</ui-text></div>\r\n			<div class=\"emblem_container\"></div>\r\n			<div class=\"ally\"><ui-text msg=\"2359\">Ally Clan</ui-text></div>\r\n			<div class=\"ally_list\"></div>\r\n			<div class=\"hostile\"><ui-text msg=\"2360\">Hostile Clan</ui-text></div>\r\n			<div class=\"hostile_list\"></div>\r\n		</div>\r\n	</div>\r\n\r\n	<div class=\"footer\">\r\n		<ui-image src=\"basic_interface/btnbar_mid2.bmp\"></ui-image>\r\n		<ui-button class=\"btn_ok\" bg=\"btn_ok.bmp\" hover=\"btn_ok_a.bmp\" down=\"btn_ok_b.bmp\"></ui-button>\r\n	</div>\r\n</div>\r\n";
-}));
-//#endregion
-//#region src/UI/Components/Clan/Clan.css?raw
-var Clan_default$1;
-var init_Clan$2 = __esmMin((() => {
-	Clan_default$1 = ":host {\r\n	top: 150px;\r\n	left: 150px;\r\n	width: 400px;\r\n	height: 317px;\r\n}\r\n\r\n#Clan {\r\n	position: absolute;\r\n	width: 400px;\r\n	height: 317px;\r\n}\r\n\r\n#Clan .titlebar {\r\n	width: 100%;\r\n	height: 17px;\r\n	background-color: white;\r\n	background-repeat: repeat-x;\r\n	border-radius: 3px 3px 0px 0px;\r\n}\r\n\r\n#Clan .titlebar .base {\r\n	width: 11px;\r\n	height: 11px;\r\n	border: none;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	vertical-align: middle;\r\n}\r\n\r\n#Clan .titlebar .right {\r\n	float: right;\r\n	margin-right: 3px;\r\n}\r\n\r\n#Clan .titlebar .clear {\r\n	clear: both;\r\n}\r\n\r\n#Clan .panel {\r\n	background-color: white;\r\n	padding-right: 2px;\r\n}\r\n\r\n#Clan .content {\r\n	position: relative;\r\n	box-sizing: border-box;\r\n	overflow-y: auto;\r\n	padding: 2px;\r\n	border-top: 1px solid #c6c6c6;\r\n	height: 250px;\r\n}\r\n\r\n#Clan .tabs {\r\n	height: 23px;\r\n	background-color: #b5b6b5;\r\n	white-space: nowrap;\r\n}\r\n\r\n#Clan .tabs button.active {\r\n	background-color: #fff;\r\n}\r\n\r\n#Clan .tabs button {\r\n	width: 64px;\r\n	height: 23px;\r\n	margin-left: 1px;\r\n	margin-right: 1px;\r\n	margin-top: 1px;\r\n	padding: 0;\r\n	overflow: hidden;\r\n	text-overflow: ellipsis;\r\n	white-space: nowrap;\r\n	background-color: #cecece;\r\n	border: 0px;\r\n	padding: 3px;\r\n}\r\n\r\n#Clan .footer {\r\n	width: 100%;\r\n	height: 27px;\r\n	background-repeat: repeat-x;\r\n	background-color: transparent;\r\n	position: relative;\r\n	border-radius: 0px 0px 3px 3px;\r\n}\r\n\r\n#Clan .footer .btn_ok {\r\n	display: none;\r\n	position: absolute;\r\n	bottom: 4px;\r\n	right: 4px;\r\n	width: 42px;\r\n	height: 20px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n	border: none;\r\n}\r\n\r\n/*\r\n * Clan Info CSS\r\n */\r\n#Clan .content.info .exp,\r\n#Clan .content.info .emblem,\r\n#Clan .content.info .tax,\r\n#Clan .content.info .ally,\r\n#Clan .content.info .ally_list,\r\n#Clan .content.info .hostile,\r\n#Clan .content.info .hostile_list {\r\n	position: absolute;\r\n	left: 201px;\r\n}\r\n\r\n#Clan .content.info .name {\r\n	position: absolute;\r\n	left: 9px;\r\n	top: 13px;\r\n}\r\n\r\n#Clan .content.info .level {\r\n	position: absolute;\r\n	left: 9px;\r\n	top: 28px;\r\n}\r\n\r\n#Clan .content.info .master {\r\n	position: absolute;\r\n	left: 9px;\r\n	top: 45px;\r\n}\r\n\r\n#Clan .content.info .members {\r\n	position: absolute;\r\n	left: 9px;\r\n	top: 61px;\r\n}\r\n\r\n#Clan .content.info .territory {\r\n	position: absolute;\r\n	left: 9px;\r\n	top: 77px;\r\n}\r\n\r\n#Clan .content.info .clan_illust {\r\n	position: absolute;\r\n	left: 9px;\r\n	top: 99px;\r\n	width: 180px;\r\n	height: 134px;\r\n	background-repeat: no-repeat;\r\n}\r\n\r\n#Clan .content.info .members ui-button {\r\n	margin-left: 5px;\r\n	vertical-align: -4px;\r\n	border: none;\r\n	width: 15px;\r\n	height: 15px;\r\n	background-repeat: no-repeat;\r\n	background-color: transparent;\r\n}\r\n\r\n#Clan .content.info .emblem {\r\n	position: absolute;\r\n	left: 201px;\r\n	top: 37px;\r\n}\r\n\r\n#Clan .content.info .ally {\r\n	position: absolute;\r\n	left: 201px;\r\n	top: 99px;\r\n}\r\n\r\n#Clan .content.info .ally_list {\r\n	position: absolute;\r\n	left: 201px;\r\n	top: 114px;\r\n	white-space: pre;\r\n	width: 168px;\r\n	height: 48px;\r\n	background: #cecece;\r\n}\r\n\r\n#Clan .content.info .hostile {\r\n	position: absolute;\r\n	left: 201px;\r\n	top: 173px;\r\n}\r\n\r\n#Clan .content.info .hostile_list {\r\n	position: absolute;\r\n	left: 201px;\r\n	top: 188px;\r\n	white-space: pre;\r\n	width: 168px;\r\n	height: 48px;\r\n	background: #cecece;\r\n}\r\n\r\n#Clan .content.info .ally_list div,\r\n#Clan .content.info .hostile_list div {\r\n	padding: 2px;\r\n}\r\n\r\n#Clan .content.info .ally_list div.active,\r\n#Clan .content.info .hostile_list div.active {\r\n	background-color: #739eef;\r\n	padding: 2px;\r\n}\r\n\r\n#Clan .content.info .emblem_container {\r\n	width: 24px;\r\n	height: 24px;\r\n	position: absolute;\r\n	top: 29px;\r\n	left: 300px;\r\n	background-color: #709ce7;\r\n	background-repeat: no-repeat;\r\n}\r\n\r\n#Clan .content.info .emblem_edit {\r\n	position: absolute;\r\n	top: 34px;\r\n	left: 330px;\r\n	width: 42px;\r\n	height: 20px;\r\n	border: none;\r\n	background-color: transparent;\r\n	background-repeat: no-repeat;\r\n	overflow: hidden;\r\n}\r\n\r\n#Clan .content.info .emblem_edit input {\r\n	opacity: 0;\r\n}\r\n";
-}));
-//#endregion
-//#region src/UI/Components/Clan/Clan.js
-var Clan, _preferences$7, Clan_default;
-var init_Clan$1 = __esmMin((() => {
-	init_KeyEventHandler();
-	init_SessionStorage();
-	init_Preferences$1();
-	init_DBManager();
-	init_Client();
-	init_Elements();
-	init_GUIComponent();
-	init_UIManager();
-	init_Clan$3();
-	init_Clan$2();
-	Clan = new GUIComponent("Clan", Clan_default$1);
-	_preferences$7 = Preferences.get("Clan", {
-		x: 150,
-		y: 150
-	}, 1);
-	Clan.render = () => Clan_default$2;
-	Clan.init = function init() {
-		this.draggable(".titlebar");
-		const closeBtn = this.getRoot().querySelector(".close");
-		if (closeBtn) {
-			closeBtn.addEventListener("mousedown", (e) => e.stopImmediatePropagation());
-			closeBtn.addEventListener("click", () => Clan.toggle());
-		}
-		this.ui.hide();
-	};
-	Clan.onAppend = function onAppend() {
-		this._host.style.left = `${_preferences$7.x}px`;
-		this._host.style.top = `${_preferences$7.y}px`;
-	};
-	Clan.onRemove = function onRemove() {
-		_preferences$7.x = parseInt(this._host.style.left, 10);
-		_preferences$7.y = parseInt(this._host.style.top, 10);
-		_preferences$7.save();
-	};
-	Clan.onShortCut = function onShortCut(key) {
-		if (key.cmd === "TOGGLE") this.toggle();
-	};
-	Clan.onKeyDown = function onKeyDown(event) {
-		if ((event.which === KEYS.ESCAPE || event.key === "Escape") && this.ui.is(":visible")) this.toggle();
-	};
-	Clan.toggle = function toggle() {
-		if (!SessionStorage_default.hasClan) return;
-		if (this.ui.is(":visible")) this.hide();
-		else this.show();
-	};
-	Clan.show = function show() {
-		this.focus();
-		if (this.ui.is(":visible")) return;
-		this.ui.show();
-	};
-	Clan.hide = function hide() {
-		this.ui.hide();
-	};
-	Clan.setData = function setData(clan) {
-		const root = this.getRoot();
-		if (!root) return;
-		const info = root.querySelector(".content.info");
-		if (!info) return;
-		info.querySelector(".name .value").textContent = clan.name;
-		info.querySelector(".level .value").textContent = clan.level;
-		info.querySelector(".master .value").textContent = clan.master;
-		info.querySelector(".members .online").textContent = clan.membersOnline;
-		info.querySelector(".members .maxMember").textContent = clan.membersTotal;
-		const territory = (clan.territory || "").replace(".gat", "");
-		info.querySelector(".territory .value").textContent = territory.charAt(0).toUpperCase() + territory.slice(1);
-	};
-	Clan.setMembersCount = function setMembersCount(members) {
-		const root = this.getRoot();
-		if (!root) return;
-		const info = root.querySelector(".content.info");
-		if (!info) return;
-		info.querySelector(".members .online").textContent = members.membersOnline;
-		info.querySelector(".members .maxMember").textContent = members.membersTotal;
-	};
-	Clan.setIllust = function setIllust(id) {
-		const root = this.getRoot();
-		if (!root) return;
-		Client.loadFile(`${DB.INTERFACE_PATH}clan_system/clan_illust${id.toString().padStart(2, "0")}.bmp`, (data) => {
-			const el = root.querySelector(".clan_illust");
-			if (el) el.style.backgroundImage = "url(" + data + ")";
-		});
-	};
-	Clan.setEmblem = function setEmblem(id) {
-		const root = this.getRoot();
-		if (!root) return;
-		Client.loadFile(`${DB.INTERFACE_PATH}clan_system/clan_emblem${id.toString().padStart(2, "0")}.bmp`, (data) => {
-			const el = root.querySelector(".emblem_container");
-			if (el) el.style.backgroundImage = "url(" + data + ")";
-		});
-	};
-	Clan.setRelations = function setRelations(type, clans) {
-		const root = this.getRoot();
-		if (!root) return;
-		const list = root.querySelector(`.${type === 0 ? "ally" : "hostile"}_list`);
-		if (!list) return;
-		list.innerHTML = "";
-		for (let i = 0; i < clans.length; i++) this.addRelation(type, clans[i]);
-	};
-	Clan.addRelation = function addRelation(type, clan) {
-		const root = this.getRoot();
-		if (!root) return;
-		const list = root.querySelector(`.${type === 0 ? "ally" : "hostile"}_list`);
-		if (!list) return;
-		const div = document.createElement("div");
-		div.dataset.clanId = clan;
-		div.textContent = clan;
-		list.appendChild(div);
-	};
-	Clan.leave = function leave() {
-		SessionStorage_default.hasClan = false;
-		this.ui.hide();
-	};
-	Clan.mouseMode = GUIComponent.MouseMode.STOP;
-	Clan_default = UIManager.addComponent(Clan);
 }));
 //#endregion
 //#region src/Plugins/PluginManager.js
@@ -334162,13 +334169,13 @@ var init_spark_md5_min = __esmMin((() => {
 			x[3] = d + x[3] | 0;
 		}
 		function md5blk(s) {
-			var md5blks = [], i;
-			for (i = 0; i < 64; i += 4) md5blks[i >> 2] = s.charCodeAt(i) + (s.charCodeAt(i + 1) << 8) + (s.charCodeAt(i + 2) << 16) + (s.charCodeAt(i + 3) << 24);
+			var md5blks = [], i = 0;
+			for (; i < 64; i += 4) md5blks[i >> 2] = s.charCodeAt(i) + (s.charCodeAt(i + 1) << 8) + (s.charCodeAt(i + 2) << 16) + (s.charCodeAt(i + 3) << 24);
 			return md5blks;
 		}
 		function md5blk_array(a) {
-			var md5blks = [], i;
-			for (i = 0; i < 64; i += 4) md5blks[i >> 2] = a[i] + (a[i + 1] << 8) + (a[i + 2] << 16) + (a[i + 3] << 24);
+			var md5blks = [], i = 0;
+			for (; i < 64; i += 4) md5blks[i >> 2] = a[i] + (a[i + 1] << 8) + (a[i + 2] << 16) + (a[i + 3] << 24);
 			return md5blks;
 		}
 		function md51(s) {
@@ -334177,8 +334184,8 @@ var init_spark_md5_min = __esmMin((() => {
 				-271733879,
 				-1732584194,
 				271733878
-			], i, length, tail, tmp, lo, hi;
-			for (i = 64; i <= n; i += 64) md5cycle(state, md5blk(s.substring(i - 64, i)));
+			], i = 64, length, tail, tmp, lo, hi;
+			for (; i <= n; i += 64) md5cycle(state, md5blk(s.substring(i - 64, i)));
 			s = s.substring(i - 64);
 			length = s.length;
 			tail = [
@@ -334220,8 +334227,8 @@ var init_spark_md5_min = __esmMin((() => {
 				-271733879,
 				-1732584194,
 				271733878
-			], i, length, tail, tmp, lo, hi;
-			for (i = 64; i <= n; i += 64) md5cycle(state, md5blk_array(a.subarray(i - 64, i)));
+			], i = 64, length, tail, tmp, lo, hi;
+			for (; i <= n; i += 64) md5cycle(state, md5blk_array(a.subarray(i - 64, i)));
 			a = i - 64 < n ? a.subarray(i - 64) : /* @__PURE__ */ new Uint8Array(0);
 			length = a.length;
 			tail = [
@@ -334258,13 +334265,13 @@ var init_spark_md5_min = __esmMin((() => {
 			return state;
 		}
 		function rhex(n) {
-			var s = "", j;
-			for (j = 0; j < 4; j += 1) s += hex_chr[n >> j * 8 + 4 & 15] + hex_chr[n >> j * 8 & 15];
+			var s = "", j = 0;
+			for (; j < 4; j += 1) s += hex_chr[n >> j * 8 + 4 & 15] + hex_chr[n >> j * 8 & 15];
 			return s;
 		}
 		function hex(x) {
-			var i;
-			for (i = 0; i < x.length; i += 1) x[i] = rhex(x[i]);
+			var i = 0;
+			for (; i < x.length; i += 1) x[i] = rhex(x[i]);
 			return x.join("");
 		}
 		if (hex(md51("hello")) !== "5d41402abc4b2a76b9719d911017c592");
@@ -334291,8 +334298,8 @@ var init_spark_md5_min = __esmMin((() => {
 			return str;
 		}
 		function utf8Str2ArrayBuffer(str, returnUInt8Array) {
-			var length = str.length, buff = new ArrayBuffer(length), arr = new Uint8Array(buff), i;
-			for (i = 0; i < length; i += 1) arr[i] = str.charCodeAt(i);
+			var length = str.length, buff = new ArrayBuffer(length), arr = new Uint8Array(buff), i = 0;
+			for (; i < length; i += 1) arr[i] = str.charCodeAt(i);
 			return returnUInt8Array ? arr : buff;
 		}
 		function arrayBuffer2Utf8Str(buff) {
@@ -334305,8 +334312,8 @@ var init_spark_md5_min = __esmMin((() => {
 			return returnUInt8Array ? result : result.buffer;
 		}
 		function hexToBinaryString(hex) {
-			var bytes = [], length = hex.length, x;
-			for (x = 0; x < length - 1; x += 2) bytes.push(parseInt(hex.substr(x, 2), 16));
+			var bytes = [], length = hex.length, x = 0;
+			for (; x < length - 1; x += 2) bytes.push(parseInt(hex.substr(x, 2), 16));
 			return String.fromCharCode.apply(String, bytes);
 		}
 		function SparkMD5() {
@@ -334319,8 +334326,8 @@ var init_spark_md5_min = __esmMin((() => {
 		SparkMD5.prototype.appendBinary = function(contents) {
 			this._buff += contents;
 			this._length += contents.length;
-			var length = this._buff.length, i;
-			for (i = 64; i <= length; i += 64) md5cycle(this._hash, md5blk(this._buff.substring(i - 64, i)));
+			var length = this._buff.length, i = 64;
+			for (; i <= length; i += 64) md5cycle(this._hash, md5blk(this._buff.substring(i - 64, i)));
 			this._buff = this._buff.substring(i - 64);
 			return this;
 		};
@@ -334429,8 +334436,8 @@ var init_spark_md5_min = __esmMin((() => {
 				0,
 				0,
 				0
-			], i, ret;
-			for (i = 0; i < length; i += 1) tail[i >> 2] |= buff[i] << (i % 4 << 3);
+			], i = 0, ret;
+			for (; i < length; i += 1) tail[i >> 2] |= buff[i] << (i % 4 << 3);
 			this._finish(tail, length);
 			ret = hex(this._hash);
 			if (raw) ret = hexToBinaryString(ret);
@@ -336776,7 +336783,7 @@ var init_WinLogin$2 = __esmMin((() => {
 //#region src/Core/PwaVersion.js
 var PWA_VERSION;
 var init_PwaVersion = __esmMin((() => {
-	PWA_VERSION = "bed642c 2026-09-02 01:23 CDT / 2026-09-02 06:23 UTC";
+	PWA_VERSION = "1a8663f 2026-09-02 13:41 CDT / 2026-09-02 18:41 UTC";
 }));
 //#endregion
 //#region src/Engine/Replay/ReplayTypes.js
