@@ -120314,16 +120314,16 @@ var init_SkillInfo = __esmMin((() => {
 		],
 		bSeperateLv: false,
 		AttackRange: [
-			1,
-			1,
-			1,
-			1,
-			1,
-			1,
-			1,
-			1,
-			1,
-			1
+			11,
+			11,
+			11,
+			11,
+			11,
+			11,
+			11,
+			11,
+			11,
+			11
 		],
 		_NeedSkillList: [[SkillConst_default.RG_STEALCOIN, 4]]
 	};
@@ -296592,10 +296592,10 @@ var init_DBManager = __esmMin((() => {
 							if (typeof value === "number" && value > 0) SkillConst_default[k] = value;
 						}
 					}
-					loadLuaTable([DB.LUA_PATH + "skillinfoz/skillid.lub", DB.LUA_PATH + "skillinfoz/skilldescript.turoran6.lub"], "SKILL_DESCRIPT", (_json) => {
+					loadLuaTable([DB.LUA_PATH + "skillinfoz/skillid.lub", DB.LUA_PATH + "skillinfoz/skilldescript.turoran7.lub"], "SKILL_DESCRIPT", (_json) => {
 						SkillDescription = _json;
 					}, () => {
-						loadSkillInfoList(DB.LUA_PATH + "skillinfoz/skillinfolist.turoran.lub", null, () => {
+						loadSkillInfoList(DB.LUA_PATH + "skillinfoz/skillinfolist.turoran2.lub", null, () => {
 							loadSkillSpAmountTable(() => {
 								loadSkillTreeView(DB.LUA_PATH + "skillinfoz/skilltreeview.snbow.lub", null, () => {
 									if (PacketVerManager_default.value >= 20211103) {
