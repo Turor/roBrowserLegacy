@@ -15,6 +15,7 @@ import Events from 'Core/Events.js';
 import Sound from 'Audio/SoundManager.js';
 import BGM from 'Audio/BGM.js';
 import Session from 'Engine/SessionStorage.js';
+import MapEngine from 'Engine/MapEngine.js';
 import Network from 'Network/NetworkManager.js';
 import PACKETVER from 'Network/PacketVerManager.js';
 import PACKET from 'Network/PacketStructure.js';
@@ -38,7 +39,6 @@ let _server = null;
  * @type {number} where to create character ?
  */
 let _creationSlot = 0;
-let _needsMapUiUpdate = false;
 
 /**
  * @type {number} times attempted to provide pin code.
@@ -67,7 +67,7 @@ class CharEngine {
 	static init(server) {
 		BGM.play('01.mp3');
 
-		_needsMapUiUpdate = _server !== server;
+		MapEngine.needsUIVerUpdate = _server !== server;
 
 		// Storing variable
 		_server = server;
@@ -852,11 +852,7 @@ function onReceiveMapInfo(pkt) {
 	DB.startedLazyInit = false;
 	retryCount = 0;
 	Session.GID = pkt.GID;
-	import('Engine/MapEngine.js').then(mod => {
-		const MapEngine = mod.default;
-		MapEngine.needsUIVerUpdate = _needsMapUiUpdate;
-		MapEngine.init(pkt.addr.ip, pkt.addr.port, pkt.mapName);
-	});
+	MapEngine.init(pkt.addr.ip, pkt.addr.port, pkt.mapName);
 }
 
 // TODO: Add support for captcha, rename, changeslot and pincode.
