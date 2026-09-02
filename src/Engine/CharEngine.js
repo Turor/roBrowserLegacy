@@ -84,6 +84,10 @@ class CharEngine {
 				return;
 			}
 
+			Network.onDisconnect = function () {
+				UIManager.showErrorBox('Disconnected from Server.');
+			};
+
 			// Success, try to connect
 			const pkt = new PACKET.CH.ENTER();
 			pkt.AID = Session.AID;

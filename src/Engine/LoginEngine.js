@@ -370,7 +370,7 @@ function onCharServerSelected(index) {
 	WinLoading.append();
 
 	Session.ServerName = _charServers[index].name; // Save server name
-	Network.onDisconnect = null; // Let CharEngine handle its own disconnects
+	Network.onDisconnect = function () {};
 	CharEngine.init(_charServers[index]);
 }
 
@@ -409,7 +409,7 @@ function onConnectionAccepted(pkt) {
 	if (count === 1 && Configs.get('skipServerList')) {
 		WinLoading.append();
 		Session.ServerName = _charServers[0].name; // Save server name
-		Network.onDisconnect = null; // Let CharEngine handle its own disconnects
+		Network.onDisconnect = function () {};
 		CharEngine.init(_charServers[0]);
 	}
 
@@ -426,12 +426,16 @@ function onConnectionAccepted(pkt) {
 		WinList.setList(list);
 	}
 
-	// Set ping
-	const ping = new PACKET.CA.CONNECT_INFO_CHANGED();
-	ping.ID = _loginID;
-	Network.setPing(() => {
-		Network.sendPacket(ping);
-	});
+	// Login-server closes immediately after ACCEPT_LOGIN. Do not keep a
+	// login ping if we already handed off to CharEngine (skipServerList).
+	const stayingOnLogin = !(count === 1 && Configs.get('skipServerList'));
+	if (stayingOnLogin) {
+		const ping = new PACKET.CA.CONNECT_INFO_CHANGED();
+		ping.ID = _loginID;
+		Network.setPing(() => {
+			Network.sendPacket(ping);
+		});
+	}
 
 	if (PACKETVER.value >= 20170315 && Session.WebToken) {
 		import('UI/Components/ShortCut/ShortCut.js').then(ShortCut => {

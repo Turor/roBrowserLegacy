@@ -354,25 +354,34 @@ function receive(buf) {
  */
 function onClose() {
 	const idx = _sockets.indexOf(this);
+	const wasCurrent = this === _socket;
 
-	if (this === _socket) {
-		console.warn('[Network] Disconnect from server');
-
-		if (_socket.ping) {
-			clearInterval(_socket.ping);
-		}
-
-		if (_onDisconnect) {
-			_onDisconnect();
-		} else {
-			import('UI/UIManager.js').then(UIManager => {
-				UIManager.default.showErrorBox('Disconnected from Server.');
-			});
-		}
+	if (this.ping) {
+		clearInterval(this.ping);
+		this.ping = null;
 	}
 
 	if (idx !== -1) {
 		_sockets.splice(idx, 1);
+	}
+
+	// Login-server always closes after ACCEPT_LOGIN. If CharEngine has
+	// already taken _socket, ignore. If a handler was set (including a
+	// no-op during the login->char switch), call it and do not fall back
+	// to the error box — setting onDisconnect = null used to mean "ignore"
+	// in comments but actually showed Disconnected from Server.
+	if (!wasCurrent) {
+		return;
+	}
+
+	console.warn('[Network] Disconnect from server');
+
+	if (typeof _onDisconnect === 'function') {
+		_onDisconnect();
+	} else {
+		import('UI/UIManager.js').then(UIManager => {
+			UIManager.default.showErrorBox('Disconnected from Server.');
+		});
 	}
 }
 

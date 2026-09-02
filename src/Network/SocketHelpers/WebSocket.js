@@ -45,7 +45,19 @@ function Socket(host, port, proxy) {
 	};
 
 	this.ws.onmessage = function OnMessage(event) {
-		self.onMessage(event.data);
+		const data = event.data;
+		if (data instanceof ArrayBuffer) {
+			self.onMessage(data);
+			return;
+		}
+		// iOS Safari can deliver binary as Blob even with binaryType set.
+		if (data && typeof data.arrayBuffer === 'function') {
+			data.arrayBuffer().then(function (buf) {
+				self.onMessage(buf);
+			});
+			return;
+		}
+		self.onMessage(data);
 	};
 
 	this.ws.onclose = function OnClose() {
@@ -65,7 +77,7 @@ function Socket(host, port, proxy) {
  */
 Socket.prototype.send = function Send(buffer) {
 	if (this.connected) {
-		this.ws.send(buffer);
+		this.ws.send(buffer instanceof ArrayBuffer ? new Uint8Array(buffer) : buffer);
 	}
 };
 
