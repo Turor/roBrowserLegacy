@@ -205742,6 +205742,7 @@ function connect(host, port, callback, isZone) {
 			color = "green";
 			if (_socket && _socket.ping) clearInterval(_socket.ping);
 			socket.onMessage = receive;
+			socket.suppressDisconnect = false;
 			_sockets.push(_socket = socket);
 			if (isZone) PacketCrypt_default.init();
 		}
@@ -205878,7 +205879,8 @@ function onClose$9() {
 		this.ping = null;
 	}
 	if (idx !== -1) _sockets.splice(idx, 1);
-	if (!wasCurrent) return;
+	if (wasCurrent) _socket = null;
+	if (!wasCurrent || this.suppressDisconnect) return;
 	console.warn("[Network] Disconnect from server");
 	if (typeof _onDisconnect === "function") _onDisconnect();
 	else __vitePreload(() => Promise.resolve().then(() => (init_UIManager(), UIManager_exports)).then((UIManager) => {
@@ -205906,14 +205908,30 @@ function close() {
 *
 * @param callback
 */
+function closeStaleSockets() {
+	while (_sockets.length > 1) if (_socket !== _sockets[0]) {
+		_sockets[0].suppressDisconnect = true;
+		_sockets[0].close();
+		_sockets.splice(0, 1);
+	} else break;
+}
+/**
+* Mark the current socket so its close does not show Disconnected.
+* Used for the login server, which Hercules always closes after ACCEPT_LOGIN.
+*/
+function suppressDisconnect() {
+	if (_socket) _socket.suppressDisconnect = true;
+}
+/**
+* Define a ping
+*
+* @param callback
+*/
 function setPing(callback) {
 	if (_socket) {
 		if (_socket.ping) clearInterval(_socket.ping);
 		_socket.ping = setInterval(callback, 1e4);
-		while (_sockets.length > 1) if (_socket !== _sockets[0]) {
-			_sockets[0].close();
-			_sockets.splice(0, 1);
-		}
+		closeStaleSockets();
 	}
 }
 /**
@@ -205988,6 +206006,8 @@ var init_NetworkManager = __esmMin((() => {
 			sendPacket,
 			send,
 			setPing,
+			closeStaleSockets,
+			suppressDisconnect,
 			connect,
 			hookPacket,
 			close,
@@ -308110,6 +308130,7 @@ var init_Mobile = __esmMin((() => {
 		return function(event) {
 			const target = event.target;
 			if (target && target.closest && target.closest("input, textarea, select, button, a, label, [contenteditable=\"true\"], .ok, .cancel, .connect, .exit, .make, .delete, .signup")) return;
+			if (!SessionStorage_default.Playing) return;
 			remoteAutoFocus();
 			_touches = event.touches;
 			event.preventDefault();
@@ -330514,7 +330535,7 @@ function createCharSelect(config) {
 			root.querySelector(".finaldelete").addEventListener("click", suppress);
 			for (let i = 0; i < 15; i++) {
 				const slot = root.querySelector(`#slot${i}`);
-				if (slot) slot.addEventListener("mousedown", genericCanvasDown(i));
+				if (slot) bindSlotSelect(slot, genericCanvasDown(i));
 			}
 			root.querySelectorAll("canvas").forEach((canvas) => {
 				canvas.addEventListener("dblclick", () => {
@@ -330543,21 +330564,21 @@ function createCharSelect(config) {
 			root.querySelector(".canceldelete").addEventListener("click", removedelete);
 			root.querySelector(".finaldelete").addEventListener("click", suppress);
 		}
-		root.querySelector(".arrow.left").addEventListener("mousedown", genericArrowDown(-1));
-		root.querySelector(".arrow.right").addEventListener("mousedown", genericArrowDown(1));
-		root.querySelector(".slot1").addEventListener("mousedown", genericCanvasDown(0));
-		root.querySelector(".slot2").addEventListener("mousedown", genericCanvasDown(1));
-		root.querySelector(".slot3").addEventListener("mousedown", genericCanvasDown(2));
+		bindSlotSelect(root.querySelector(".arrow.left"), genericArrowDown(-1));
+		bindSlotSelect(root.querySelector(".arrow.right"), genericArrowDown(1));
+		bindSlotSelect(root.querySelector(".slot1"), genericCanvasDown(0));
+		bindSlotSelect(root.querySelector(".slot2"), genericCanvasDown(1));
+		bindSlotSelect(root.querySelector(".slot3"), genericCanvasDown(2));
 		if (pageBalls) {
-			root.querySelector(".make1").addEventListener("mousedown", (e) => {
+			bindSlotSelect(root.querySelector(".make1"), (e) => {
 				genericCanvasDown(0)(e);
 				create();
 			});
-			root.querySelector(".make2").addEventListener("mousedown", (e) => {
+			bindSlotSelect(root.querySelector(".make2"), (e) => {
 				genericCanvasDown(1)(e);
 				create();
 			});
-			root.querySelector(".make3").addEventListener("mousedown", (e) => {
+			bindSlotSelect(root.querySelector(".make3"), (e) => {
 				genericCanvasDown(2)(e);
 				create();
 			});
@@ -330838,6 +330859,11 @@ function createCharSelect(config) {
 	if (deleteReservation) {
 		Component.onDeleteReqDelay = function onDeleteReqDelay() {};
 		Component.onCancelDeleteRequest = function onCancelDeleteRequest() {};
+	}
+	function bindSlotSelect(el, handler) {
+		if (!el) return;
+		el.addEventListener("mousedown", handler);
+		el.addEventListener("pointerdown", handler);
 	}
 	/**
 	* Generic method to handle mousedown on arrow
@@ -332540,11 +332566,7 @@ function onCharacterListChunk(pkt) {
 */
 function onConnectionAccepted$1(pkt) {
 	pkt.sex = SessionStorage_default.Sex;
-	const ping = new PACKET.CZ.PING();
-	ping.AID = SessionStorage_default.AID;
-	Network.setPing(() => {
-		Network.sendPacket(ping);
-	});
+	Network.closeStaleSockets();
 	SessionStorage_default.Playing = false;
 	SessionStorage_default.hasCart = false;
 	SessionStorage_default.Entity = null;
@@ -333072,6 +333094,7 @@ var init_CharEngine = __esmMin((() => {
 					return;
 				}
 				Network.onDisconnect = function() {
+					Network.close();
 					UIManager.showErrorBox("Disconnected from Server.");
 				};
 				const pkt = new PACKET.CH.ENTER();
@@ -337798,6 +337821,7 @@ function onCharServerSelected(index) {
 	WinList_default.remove();
 	WinLoading.append();
 	SessionStorage_default.ServerName = _charServers[index].name;
+	Network.suppressDisconnect();
 	Network.onDisconnect = function() {};
 	CharEngine.init(_charServers[index]);
 }
@@ -337825,6 +337849,7 @@ function onConnectionAccepted(pkt) {
 	if (count === 1 && Configs.get("skipServerList")) {
 		WinLoading.append();
 		SessionStorage_default.ServerName = _charServers[0].name;
+		Network.suppressDisconnect();
 		Network.onDisconnect = function() {};
 		CharEngine.init(_charServers[0]);
 	} else {
