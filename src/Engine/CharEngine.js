@@ -169,9 +169,14 @@ function onCharacterListChunk(pkt) {
 function onConnectionAccepted(pkt) {
 	pkt.sex = Session.Sex;
 
-	// Do not send CZ.PING (map 0x0187) on the char socket — leftover
-	// login sockets are dropped here instead. MapEngine starts a real ping.
-	Network.closeStaleSockets();
+	// 0x0187 is the official char-server keep-alive (every ~12s). Without
+	// it Hercules stall_time (60s) closes the session and the UI shows
+	// Disconnected while the player is still on char select.
+	const ping = new PACKET.CZ.PING();
+	ping.AID = Session.AID;
+	Network.setPing(() => {
+		Network.sendPacket(ping);
+	});
 
 	Session.Playing = false;
 	Session.hasCart = false;
