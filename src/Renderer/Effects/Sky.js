@@ -196,6 +196,9 @@ function render(gl, modelView, projection, fog, tick) {
 		SpriteRenderer.zIndex = 0;
 		SpriteRenderer.color[3] = opacity;
 		SpriteRenderer.image.texture = _textures[cloud.sprite];
+		if (!SpriteRenderer.image.texture) {
+			continue;
+		}
 
 		// Calculate position
 		vec3.add(cloud.position, cloud.position, cloud.direction);

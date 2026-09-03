@@ -229,6 +229,9 @@ class CloudWeatherEffect {
 			SpriteRenderer.zIndex = zindex;
 			SpriteRenderer.color[3] = opacity;
 			SpriteRenderer.image.texture = this._textures[cloud.sprite];
+			if (!SpriteRenderer.image.texture) {
+				continue;
+			}
 
 			vec3.add(cloud.position, cloud.position, cloud.direction);
 			SpriteRenderer.position.set(cloud.position);
