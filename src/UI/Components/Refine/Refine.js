@@ -57,6 +57,7 @@ let refine_current_chance = 0;
 let refine_current_zeny = 0;
 let initialsuccess;
 let currentLoopHandle;
+let refineAnimGen = 0;
 Refine.imageLoopTimeout = 0;
 Refine.messageTimeOut = 0;
 Refine.hammer = 0;
@@ -321,7 +322,7 @@ Refine.onAppend = function onAppend() {
 		refineButton.style.display = 'block';
 	}
 
-	clearTimeout(Refine.imageLoopTimeout);
+	stopCurrentLoop();
 	controlPhase('waiting', true, 250);
 };
 
@@ -329,8 +330,7 @@ Refine.onAppend = function onAppend() {
  * Remove Refine Window (and so clean up items)
  */
 Refine.onRemove = function onRemove() {
-	clearTimeout(Refine.imageLoopTimeout);
-	clearTimeout(currentLoopHandle);
+	stopCurrentLoop();
 	onRemoveItem(true);
 	onHideContRefineButtons();
 	clearRefineStates();
@@ -368,6 +368,10 @@ function clearRefineStates() {
 function onOpenRefineUI() {
 	if (!Configs.get('enableRefineUI') || PACKETVER.value < 20161012) {
 		console.warn('Renewal Refine is enabled in your server. Please enable refine UI in your configs.');
+		return false;
+	}
+
+	if (Refine.isRefineOpen()) {
 		return false;
 	}
 
@@ -418,8 +422,19 @@ function controlPhase(phase, shouldLoop, interval, callback) {
 		return;
 	}
 
+	stopCurrentLoop();
+	const gen = refineAnimGen;
+
 	function showImages() {
+		if (gen !== refineAnimGen) {
+			return;
+		}
+
 		Client.loadFile(DB.INTERFACE_PATH + 'refining_renewal/' + imageArray[currentImageIndex], function (data) {
+			if (gen !== refineAnimGen) {
+				return;
+			}
+
 			const container = _root().querySelector('.image-container');
 			if (container) {
 				container.style.backgroundImage = `url(${data})`;
@@ -1259,6 +1274,7 @@ function startLoopingPhase(phase) {
  * Function to stop current stored on-going phase animation
  */
 function stopCurrentLoop() {
+	refineAnimGen++;
 	if (currentLoopHandle) {
 		clearTimeout(currentLoopHandle);
 		currentLoopHandle = null;
