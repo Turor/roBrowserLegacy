@@ -641,7 +641,7 @@ class DB {
 			const onQuestEnd = onLoad();
 			tryLoadLuaAliases(loadQuestInfo, getSystemAliases('System/OngoingQuestInfoList.lub'), null, () => {
 				// this is not official, its a translation file
-				loadQuestInfo('SystemEN/OngoingQuests.lub', null, onQuestEnd);
+				loadQuestInfo('SystemEN/OngoingQuests.reeng.lub', null, onQuestEnd);
 			});
 
 			// TODO: System/RecommendedQuests.lub
