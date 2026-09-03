@@ -1524,6 +1524,22 @@ const MapInfo = {
 		notifyEnter: true,
 		displayName: 'Poring War Market'
 	},
+	'poring_c01.rsw': {
+		backgroundBmp: 'noname_s2',
+		signName: {
+			mainTitle: 'Poring Arena'
+		},
+		notifyEnter: true,
+		displayName: 'Poring Arena'
+	},
+	'poring_c02.rsw': {
+		backgroundBmp: 'noname_s2',
+		signName: {
+			mainTitle: 'Poring Arena'
+		},
+		notifyEnter: true,
+		displayName: 'Poring Arena'
+	},
 	'ma_zif06.rsw': {
 		backgroundBmp: 'noname_s2',
 		signName: {

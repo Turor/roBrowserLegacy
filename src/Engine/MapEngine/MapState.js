@@ -54,6 +54,11 @@ function onMapProperty(pkt) {
 function onMapType(pkt) {
 	Session.mapState.type = pkt.type;
 	Session.mapState.isBattleField = pkt.type == MapType.BATTLEFIELD ? true : false;
+	if (pkt.type == MapType.PORINGBATTLE) {
+		Session.mapState.isPVP = true;
+	} else {
+		Session.mapState.isPVP = (Session.mapState.flag & MapFlag.PVP) != 0;
+	}
 }
 
 function onNotifyRanking(pkt) {
