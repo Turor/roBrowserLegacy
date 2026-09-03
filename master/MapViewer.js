@@ -248354,6 +248354,7 @@ var init_CloudWeatherEffect = __esmMin((() => {
 				SpriteRenderer.zIndex = zindex;
 				SpriteRenderer.color[3] = opacity;
 				SpriteRenderer.image.texture = this._textures[cloud.sprite];
+				if (!SpriteRenderer.image.texture) continue;
 				vec3$7.add(cloud.position, cloud.position, cloud.direction);
 				SpriteRenderer.position.set(cloud.position);
 				SpriteRenderer.runWithDepth(!overlay, false, !overlay, () => {
@@ -254050,6 +254051,7 @@ function render$6(gl, modelView, projection, fog, tick) {
 		SpriteRenderer.zIndex = 0;
 		SpriteRenderer.color[3] = opacity;
 		SpriteRenderer.image.texture = _textures[cloud.sprite];
+		if (!SpriteRenderer.image.texture) continue;
 		vec3$7.add(cloud.position, cloud.position, cloud.direction);
 		SpriteRenderer.position.set(cloud.position);
 		SpriteRenderer.runWithDepth(true, false, true, function() {
@@ -336068,7 +336070,7 @@ var init_WinLogin$2 = __esmMin((() => {
 //#region src/Core/PwaVersion.js
 var PWA_VERSION;
 var init_PwaVersion = __esmMin((() => {
-	PWA_VERSION = "d847cc4 2026-09-02 22:15 CDT / 2026-09-03 03:15 UTC";
+	PWA_VERSION = "bef61b3 2026-09-02 23:14 CDT / 2026-09-03 04:14 UTC";
 }));
 //#endregion
 //#region src/Engine/Replay/ReplayTypes.js
