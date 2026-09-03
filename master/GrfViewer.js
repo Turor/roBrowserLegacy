@@ -234926,6 +234926,7 @@ function onOpenRefineUI() {
 		console.warn("Renewal Refine is enabled in your server. Please enable refine UI in your configs.");
 		return false;
 	}
+	if (Refine.isRefineOpen()) return false;
 	Refine.append();
 	if (!(InventoryController.getUI().ui ? InventoryController.getUI().ui.is(":visible") : false)) InventoryController.getUI().toggle();
 	const refineRect = Refine._host.getBoundingClientRect();
@@ -234960,8 +234961,12 @@ function controlPhase$1(phase, shouldLoop, interval, callback) {
 		console.error("Invalid phase:", phase);
 		return;
 	}
+	stopCurrentLoop();
+	const gen = refineAnimGen;
 	function showImages() {
+		if (gen !== refineAnimGen) return;
 		Client.loadFile(DB.INTERFACE_PATH + "refining_renewal/" + imageArray[currentImageIndex], function(data) {
+			if (gen !== refineAnimGen) return;
 			const container = _root$11().querySelector(".image-container");
 			if (container) {
 				container.style.backgroundImage = `url(${data})`;
@@ -235437,6 +235442,7 @@ function startLoopingPhase(phase) {
 * Function to stop current stored on-going phase animation
 */
 function stopCurrentLoop() {
+	refineAnimGen++;
 	if (currentLoopHandle) {
 		clearTimeout(currentLoopHandle);
 		currentLoopHandle = null;
@@ -235651,7 +235657,7 @@ function onBroadcastRefineResult(pkt) {
 		Announce_default.set(message, "#FFB563");
 	}
 }
-var Refine, BSB_ITID, refiningMaterials, blacksmithBlessing, refine_item_index, refine_item_mat, refine_fee, refine_bsb, refine_result, refine_result_div, refine_can_cont, refine_no_mats, refine_no_zeny, refine_no_bsb, refine_item_broken, refine_new_mats, refine_ongoing, refine_current_chance, refine_current_zeny, initialsuccess, currentLoopHandle, itemMessageMapping, images$1, Refine_default;
+var Refine, BSB_ITID, refiningMaterials, blacksmithBlessing, refine_item_index, refine_item_mat, refine_fee, refine_bsb, refine_result, refine_result_div, refine_can_cont, refine_no_mats, refine_no_zeny, refine_no_bsb, refine_item_broken, refine_new_mats, refine_ongoing, refine_current_chance, refine_current_zeny, initialsuccess, currentLoopHandle, refineAnimGen, itemMessageMapping, images$1, Refine_default;
 var init_Refine = __esmMin((() => {
 	init_DBManager();
 	init_Configs();
@@ -235690,6 +235696,7 @@ var init_Refine = __esmMin((() => {
 	refine_ongoing = 0;
 	refine_current_chance = 0;
 	refine_current_zeny = 0;
+	refineAnimGen = 0;
 	Refine.imageLoopTimeout = 0;
 	Refine.messageTimeOut = 0;
 	Refine.hammer = 0;
@@ -235893,15 +235900,14 @@ var init_Refine = __esmMin((() => {
 		Refine.hammer = 0;
 		const refineButton = root.querySelector(".refine_button");
 		if (refineButton) refineButton.style.display = "block";
-		clearTimeout(Refine.imageLoopTimeout);
+		stopCurrentLoop();
 		controlPhase$1("waiting", true, 250);
 	};
 	/**
 	* Remove Refine Window (and so clean up items)
 	*/
 	Refine.onRemove = function onRemove() {
-		clearTimeout(Refine.imageLoopTimeout);
-		clearTimeout(currentLoopHandle);
+		stopCurrentLoop();
 		onRemoveItem$1(true);
 		onHideContRefineButtons();
 		clearRefineStates();
@@ -336103,7 +336109,7 @@ var init_WinLogin$2 = __esmMin((() => {
 //#region src/Core/PwaVersion.js
 var PWA_VERSION;
 var init_PwaVersion = __esmMin((() => {
-	PWA_VERSION = "bef61b3 2026-09-02 23:14 CDT / 2026-09-03 04:14 UTC";
+	PWA_VERSION = "9604b15 2026-09-03 00:08 CDT / 2026-09-03 05:08 UTC";
 }));
 //#endregion
 //#region src/Engine/Replay/ReplayTypes.js
