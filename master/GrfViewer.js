@@ -150661,6 +150661,18 @@ var init_MapTable = __esmMin((() => {
 			notifyEnter: true,
 			displayName: "Poring War Market"
 		},
+		"poring_c01.rsw": {
+			backgroundBmp: "noname_s2",
+			signName: { mainTitle: "Poring Arena" },
+			notifyEnter: true,
+			displayName: "Poring Arena"
+		},
+		"poring_c02.rsw": {
+			backgroundBmp: "noname_s2",
+			signName: { mainTitle: "Poring Arena" },
+			notifyEnter: true,
+			displayName: "Poring Arena"
+		},
 		"ma_zif06.rsw": {
 			backgroundBmp: "noname_s2",
 			signName: { mainTitle: "Jeepney" },
@@ -318093,6 +318105,8 @@ function onMapProperty(pkt) {
 function onMapType(pkt) {
 	SessionStorage_default.mapState.type = pkt.type;
 	SessionStorage_default.mapState.isBattleField = pkt.type == MapType.BATTLEFIELD ? true : false;
+	if (pkt.type == MapType.PORINGBATTLE) SessionStorage_default.mapState.isPVP = true;
+	else SessionStorage_default.mapState.isPVP = (SessionStorage_default.mapState.flag & MapFlag.PVP) != 0;
 }
 function onNotifyRanking(pkt) {
 	PvPCount_default.append();
@@ -336087,7 +336101,7 @@ var init_WinLogin$2 = __esmMin((() => {
 //#region src/Core/PwaVersion.js
 var PWA_VERSION;
 var init_PwaVersion = __esmMin((() => {
-	PWA_VERSION = "6f24cf1 2026-09-02 21:58 CDT / 2026-09-03 02:58 UTC";
+	PWA_VERSION = "d847cc4 2026-09-02 22:15 CDT / 2026-09-03 03:15 UTC";
 }));
 //#endregion
 //#region src/Engine/Replay/ReplayTypes.js
