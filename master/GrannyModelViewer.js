@@ -296835,7 +296835,7 @@ var init_DBManager = __esmMin((() => {
 				if (Configs.get("enableCheckAttendance") && PacketVerManager_default.value >= 20180307) loadAttendanceFile("System/CheckAttendance.lub", null, onLoad());
 				const onQuestEnd = onLoad();
 				tryLoadLuaAliases(loadQuestInfo, getSystemAliases("System/OngoingQuestInfoList.lub"), null, () => {
-					loadQuestInfo("SystemEN/OngoingQuests.lub", null, onQuestEnd);
+					loadQuestInfo("SystemEN/OngoingQuests.reeng.lub", null, onQuestEnd);
 				});
 				if (Configs.get("enableAchievements") && PacketVerManager_default.value >= 20150513) {
 					const onAchEnd = onLoad();
@@ -336065,7 +336065,7 @@ var init_WinLogin$2 = __esmMin((() => {
 //#region src/Core/PwaVersion.js
 var PWA_VERSION;
 var init_PwaVersion = __esmMin((() => {
-	PWA_VERSION = "77479e3 2026-09-02 18:49 CDT / 2026-09-02 23:49 UTC";
+	PWA_VERSION = "6f24cf1 2026-09-02 21:58 CDT / 2026-09-03 02:58 UTC";
 }));
 //#endregion
 //#region src/Engine/Replay/ReplayTypes.js
