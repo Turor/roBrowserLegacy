@@ -490,7 +490,7 @@ class DB {
 						// Calls after skillids and descs been populated
 						loadSkillInfoList(DB.LUA_PATH + 'skillinfoz/skillinfolist.turoran3.lub', null, () => {
 							loadSkillSpAmountTable(() => {
-								loadSkillTreeView(DB.LUA_PATH + 'skillinfoz/skilltreeview.snmastery.lub', null, () => {
+								loadSkillTreeView(DB.LUA_PATH + 'skillinfoz/skilltreeview.wsarmor.lub', null, () => {
 									// Load ez2streffect, PACKETVER unknown when the while has been added, tied to default PACKETVER of rathena for 4th job
 									if (PACKETVER.value >= 20211103) {
 										const bsonOnLoad = onLoad();
