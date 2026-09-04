@@ -106132,6 +106132,7 @@ var init_SkillConst = __esmMin((() => {
 		ST_PRESERVE: 475,
 		ST_FULLSTRIP: 476,
 		WS_WEAPONREFINE: 477,
+		WS_ARMORREFINE: 709,
 		CR_SLIMPITCHER: 478,
 		CR_FULLPROTECTION: 479,
 		PA_SHIELDCHAIN: 480,
@@ -109496,6 +109497,37 @@ var init_SkillInfo = __esmMin((() => {
 			1
 		],
 		_NeedSkillList: [[SkillConst_default.BS_WEAPONRESEARCH, 10]]
+	};
+	SkillInfo[SkillConst_default.WS_ARMORREFINE] = {
+		Name: "WS_WEAPONREFINE",
+		SkillName: "Upgrade Armor",
+		MaxLv: 10,
+		SpAmount: [
+			30,
+			30,
+			30,
+			30,
+			30,
+			30,
+			30,
+			30,
+			30,
+			30
+		],
+		bSeperateLv: false,
+		AttackRange: [
+			1,
+			1,
+			1,
+			1,
+			1,
+			1,
+			1,
+			1,
+			1,
+			1
+		],
+		_NeedSkillList: [[SkillConst_default.WS_WEAPONREFINE, 10]]
 	};
 	SkillInfo[SkillConst_default.CR_SLIMPITCHER] = {
 		Name: "CR_SLIMPITCHER",
@@ -137327,6 +137359,8 @@ var init_SkillTreeView = __esmMin((() => {
 	SkillTreeView[JobConst_default.SUPERNOVICE] = {
 		list: 1,
 		beforeJob: JobConst_default.NOVICE,
+		[SkillConst_default.AS_RIGHT]: 0,
+		[SkillConst_default.AS_LEFT]: 14,
 		[SkillConst_default.SM_SWORD]: 1,
 		[SkillConst_default.SM_BASH]: 2,
 		[SkillConst_default.SM_PROVOKE]: 3,
@@ -137447,7 +137481,8 @@ var init_SkillTreeView = __esmMin((() => {
 		[SkillConst_default.WS_CARTTERMINATION]: 28,
 		[SkillConst_default.WS_MELTDOWN]: 22,
 		[SkillConst_default.WS_OVERTHRUSTMAX]: 25,
-		[SkillConst_default.WS_WEAPONREFINE]: 23
+		[SkillConst_default.WS_WEAPONREFINE]: 23,
+		[SkillConst_default.WS_ARMORREFINE]: 24
 	};
 	SkillTreeView[JobConst_default.ASSASSIN_H] = {
 		list: 2,
@@ -213610,6 +213645,7 @@ var init_SkillEffect = __esmMin((() => {
 	};
 	SkillEffect[SkillConst_default.ST_FULLSTRIP] = { successEffectId: 495 };
 	SkillEffect[SkillConst_default.WS_WEAPONREFINE] = {};
+	SkillEffect[SkillConst_default.WS_ARMORREFINE] = {};
 	SkillEffect[SkillConst_default.CR_SLIMPITCHER] = {};
 	SkillEffect[SkillConst_default.CR_FULLPROTECTION] = { effectId: [300, 500] };
 	SkillEffect[SkillConst_default.PA_SHIELDCHAIN] = { beforeHitEffectId: "ef_shield_projectile" };
@@ -296581,12 +296617,12 @@ var init_DBManager = __esmMin((() => {
 							if (typeof value === "number" && value > 0) SkillConst_default[k] = value;
 						}
 					}
-					loadLuaTable([DB.LUA_PATH + "skillinfoz/skillid.lub", DB.LUA_PATH + "skillinfoz/skilldescript.turoran7.lub"], "SKILL_DESCRIPT", (_json) => {
+					loadLuaTable([DB.LUA_PATH + "skillinfoz/skillid.lub", DB.LUA_PATH + "skillinfoz/skilldescript.turoran8.lub"], "SKILL_DESCRIPT", (_json) => {
 						SkillDescription = _json;
 					}, () => {
-						loadSkillInfoList(DB.LUA_PATH + "skillinfoz/skillinfolist.turoran2.lub", null, () => {
+						loadSkillInfoList(DB.LUA_PATH + "skillinfoz/skillinfolist.turoran3.lub", null, () => {
 							loadSkillSpAmountTable(() => {
-								loadSkillTreeView(DB.LUA_PATH + "skillinfoz/skilltreeview.snbow.lub", null, () => {
+								loadSkillTreeView(DB.LUA_PATH + "skillinfoz/skilltreeview.wsarmor.lub", null, () => {
 									if (PacketVerManager_default.value >= 20211103) {
 										const bsonOnLoad = onLoad();
 										loadBSONFile("data/contentdata/effectdata/ez2streffect.bson", Ez2streffect, () => {
@@ -336805,7 +336841,7 @@ var init_WinLogin$2 = __esmMin((() => {
 //#region src/Core/PwaVersion.js
 var PWA_VERSION;
 var init_PwaVersion = __esmMin((() => {
-	PWA_VERSION = "9604b15 2026-09-03 00:08 CDT / 2026-09-03 05:08 UTC";
+	PWA_VERSION = "92a3d8f 2026-09-03 23:27 CDT / 2026-09-04 04:27 UTC";
 }));
 //#endregion
 //#region src/Engine/Replay/ReplayTypes.js
