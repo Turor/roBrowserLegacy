@@ -481,16 +481,16 @@ class DB {
 				}
 				// Load description - skillid.lub is re-executed harmlessly (Lua just repopulates globals)
 				loadLuaTable(
-					[DB.LUA_PATH + 'skillinfoz/skillid.lub', DB.LUA_PATH + 'skillinfoz/skilldescript.turoran7.lub'],
+					[DB.LUA_PATH + 'skillinfoz/skillid.lub', DB.LUA_PATH + 'skillinfoz/skilldescript.turoran8.lub'],
 					'SKILL_DESCRIPT',
 					_json => {
 						SkillDescription = _json;
 					},
 					() => {
 						// Calls after skillids and descs been populated
-						loadSkillInfoList(DB.LUA_PATH + 'skillinfoz/skillinfolist.turoran2.lub', null, () => {
+						loadSkillInfoList(DB.LUA_PATH + 'skillinfoz/skillinfolist.turoran3.lub', null, () => {
 							loadSkillSpAmountTable(() => {
-								loadSkillTreeView(DB.LUA_PATH + 'skillinfoz/skilltreeview.snbow.lub', null, () => {
+								loadSkillTreeView(DB.LUA_PATH + 'skillinfoz/skilltreeview.snmastery.lub', null, () => {
 									// Load ez2streffect, PACKETVER unknown when the while has been added, tied to default PACKETVER of rathena for 4th job
 									if (PACKETVER.value >= 20211103) {
 										const bsonOnLoad = onLoad();

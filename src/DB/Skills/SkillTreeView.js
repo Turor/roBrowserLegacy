@@ -396,6 +396,8 @@ SkillTreeView[JobId.DANCER] = {
 SkillTreeView[JobId.SUPERNOVICE] = {
 	list: 1,
 	beforeJob: JobId.NOVICE,
+	[SK.AS_RIGHT]: 0,
+	[SK.AS_LEFT]: 14,
 	[SK.SM_SWORD]: 1,
 	[SK.SM_BASH]: 2,
 	[SK.SM_PROVOKE]: 3,
@@ -516,7 +518,8 @@ SkillTreeView[JobId.BLACKSMITH_H] = {
 	[SK.WS_CARTTERMINATION]: 28,
 	[SK.WS_MELTDOWN]: 22,
 	[SK.WS_OVERTHRUSTMAX]: 25,
-	[SK.WS_WEAPONREFINE]: 23
+	[SK.WS_WEAPONREFINE]: 23,
+	[SK.WS_ARMORREFINE]: 24
 };
 SkillTreeView[JobId.ASSASSIN_H] = {
 	list: 2,
