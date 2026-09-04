@@ -1035,6 +1035,15 @@ SkillInfo[SK.WS_WEAPONREFINE] = {
 	AttackRange: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 	_NeedSkillList: [[SK.BS_WEAPONRESEARCH, 10]]
 };
+SkillInfo[SK.WS_ARMORREFINE] = {
+	Name: 'WS_WEAPONREFINE',
+	SkillName: 'Upgrade Armor',
+	MaxLv: 10,
+	SpAmount: [30, 30, 30, 30, 30, 30, 30, 30, 30, 30],
+	bSeperateLv: false,
+	AttackRange: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+	_NeedSkillList: [[SK.WS_WEAPONREFINE, 10]]
+};
 SkillInfo[SK.CR_SLIMPITCHER] = {
 	Name: 'CR_SLIMPITCHER',
 	SkillName: 'Aid Condensed Potion',
