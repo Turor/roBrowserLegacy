@@ -137482,7 +137482,7 @@ var init_SkillTreeView = __esmMin((() => {
 		[SkillConst_default.WS_MELTDOWN]: 22,
 		[SkillConst_default.WS_OVERTHRUSTMAX]: 25,
 		[SkillConst_default.WS_WEAPONREFINE]: 23,
-		[SkillConst_default.WS_ARMORREFINE]: 24
+		[SkillConst_default.WS_ARMORREFINE]: 30
 	};
 	SkillTreeView[JobConst_default.ASSASSIN_H] = {
 		list: 2,
@@ -295840,7 +295840,7 @@ function loadSkillInfoList(filename, callback, onEnd) {
 						if SKID then
 							__SKID_ORIGINAL = SKID 
 
-							SKID = setmetatable({}, {
+							SKID = setmetatable({ WS_ARMORREFINE = 709 }, {
 								__index = function(t, k)
 								local id = __SKID_ORIGINAL[k]
 								return id ~= nil and id or 0 
@@ -295987,7 +295987,7 @@ function loadSkillTreeViewData(filename, callback, onEnd) {
 						if SKID then
 							__SKID_ORIGINAL = SKID 
 
-							SKID = setmetatable({}, {
+							SKID = setmetatable({ WS_ARMORREFINE = 709 }, {
 								__index = function(t, k)
 								local id = __SKID_ORIGINAL[k]
 								return id ~= nil and id or 0 
@@ -296850,19 +296850,19 @@ var init_DBManager = __esmMin((() => {
 				loadWeaponTable(DB.LUA_PATH + "datainfo/weapontable.lub", null, onLoad());
 				if (PacketVerManager_default.value >= 20170208) loadTitleTable(DB.LUA_PATH + "datainfo/titletable.lub", null, onLoad());
 				const onSkillEnd = onLoad();
-				loadLuaValue(DB.LUA_PATH + "skillinfoz/skillid.lub", "SKID", (json) => {
+				loadLuaValue(DB.LUA_PATH + "skillinfoz/skillid.turoran.lub", "SKID", (json) => {
 					if (json && typeof json === "object") {
 						for (const k in json) if (Object.prototype.hasOwnProperty.call(json, k)) {
 							const value = json[k];
 							if (typeof value === "number" && value > 0) SkillConst_default[k] = value;
 						}
 					}
-					loadLuaTable([DB.LUA_PATH + "skillinfoz/skillid.lub", DB.LUA_PATH + "skillinfoz/skilldescript.turoran8.lub"], "SKILL_DESCRIPT", (_json) => {
+					loadLuaTable([DB.LUA_PATH + "skillinfoz/skillid.turoran.lub", DB.LUA_PATH + "skillinfoz/skilldescript.turoran8.lub"], "SKILL_DESCRIPT", (_json) => {
 						SkillDescription = _json;
 					}, () => {
 						loadSkillInfoList(DB.LUA_PATH + "skillinfoz/skillinfolist.turoran3.lub", null, () => {
 							loadSkillSpAmountTable(() => {
-								loadSkillTreeView(DB.LUA_PATH + "skillinfoz/skilltreeview.wsarmor.lub", null, () => {
+								loadSkillTreeView(DB.LUA_PATH + "skillinfoz/skilltreeview.wsarmor2.lub", null, () => {
 									if (PacketVerManager_default.value >= 20211103) {
 										const bsonOnLoad = onLoad();
 										loadBSONFile("data/contentdata/effectdata/ez2streffect.bson", Ez2streffect, () => {
@@ -336112,7 +336112,7 @@ var init_WinLogin$2 = __esmMin((() => {
 //#region src/Core/PwaVersion.js
 var PWA_VERSION;
 var init_PwaVersion = __esmMin((() => {
-	PWA_VERSION = "92a3d8f 2026-09-03 23:27 CDT / 2026-09-04 04:27 UTC";
+	PWA_VERSION = "cbd76d3 2026-09-04 00:14 CDT / 2026-09-04 05:14 UTC";
 }));
 //#endregion
 //#region src/Engine/Replay/ReplayTypes.js
