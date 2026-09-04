@@ -467,7 +467,7 @@ class DB {
 
 			// Skill - load skillid.lub to populate SKID, then load description
 			const onSkillEnd = onLoad();
-			loadLuaValue(DB.LUA_PATH + 'skillinfoz/skillid.lub', 'SKID', json => {
+			loadLuaValue(DB.LUA_PATH + 'skillinfoz/skillid.turoran.lub', 'SKID', json => {
 				if (json && typeof json === 'object') {
 					// Validate and merge entries into SKID
 					for (const k in json) {
@@ -481,7 +481,7 @@ class DB {
 				}
 				// Load description - skillid.lub is re-executed harmlessly (Lua just repopulates globals)
 				loadLuaTable(
-					[DB.LUA_PATH + 'skillinfoz/skillid.lub', DB.LUA_PATH + 'skillinfoz/skilldescript.turoran8.lub'],
+					[DB.LUA_PATH + 'skillinfoz/skillid.turoran.lub', DB.LUA_PATH + 'skillinfoz/skilldescript.turoran8.lub'],
 					'SKILL_DESCRIPT',
 					_json => {
 						SkillDescription = _json;
@@ -6747,7 +6747,7 @@ function loadSkillInfoList(filename, callback, onEnd) {
 						if SKID then
 							__SKID_ORIGINAL = SKID 
 
-							SKID = setmetatable({}, {
+							SKID = setmetatable({ WS_ARMORREFINE = 709 }, {
 								__index = function(t, k)
 								local id = __SKID_ORIGINAL[k]
 								return id ~= nil and id or 0 
@@ -6972,7 +6972,7 @@ function loadSkillTreeViewData(filename, callback, onEnd) {
 						if SKID then
 							__SKID_ORIGINAL = SKID 
 
-							SKID = setmetatable({}, {
+							SKID = setmetatable({ WS_ARMORREFINE = 709 }, {
 								__index = function(t, k)
 								local id = __SKID_ORIGINAL[k]
 								return id ~= nil and id or 0 
