@@ -514,6 +514,8 @@ function enableSkillRefineButton(material) {
 	refine_fee = 0;
 	refine_current_chance = material.chance;
 	refine_current_zeny = 0;
+	refine_can_cont = 1;
+	refine_result_div = 'success_refine_cont_enabled';
 
 	const refineEnabled = root.querySelector('.refine_enabled');
 	if (refineEnabled) {
@@ -524,6 +526,74 @@ function enableSkillRefineButton(material) {
 	if (numberEl) {
 		numberEl.textContent = material.chance;
 	}
+}
+
+function pickSkillRefineMaterial(materials) {
+	let chosen = materials[0];
+	for (let i = 0; i < materials.length; i++) {
+		const have = Inventory.getUI().getItemById(materials[i].itemId);
+		if (have && have.count > 0) {
+			chosen = materials[i];
+			const iconEl = _root().querySelector(`.material_${i} .icon`);
+			if (iconEl) {
+				iconEl.click();
+			}
+			break;
+		}
+	}
+	enableSkillRefineButton(chosen);
+}
+
+function prepareSkillRefineItem(item) {
+	const materials = skillRefineMaterialsFor(item);
+	onRefineUIUpdateMaterials({
+		itemIndex: item.index,
+		blacksmithBlessing: 0,
+		MaterialInfo: materials
+	});
+	pickSkillRefineMaterial(materials);
+}
+
+/**
+ * After a Whitesmith refine attempt, put the same item back in the ready
+ * state so another refine does not need the Back button.
+ */
+function rearmSkillRefineAfterAttempt() {
+	const root = _root();
+	const item = Inventory.getUI().getItemByIndex(refine_item_index);
+
+	Refine.hammer = 0;
+	onHideContRefineButtons();
+
+	if (!item) {
+		return false;
+	}
+
+	prepareSkillRefineItem(item);
+
+	const itemToRefineName = root.querySelector('.item_to_refine_name');
+	if (itemToRefineName) {
+		itemToRefineName.textContent = DB.getItemName(item);
+		itemToRefineName.style.display = 'block';
+	}
+
+	const refineButton = root.querySelector('.refine_button');
+	if (refineButton) {
+		refineButton.style.display = 'block';
+	}
+
+	const successEl = root.querySelector('.success');
+	if (successEl) {
+		successEl.innerHTML = initialsuccess;
+		const numberEl = successEl.querySelector('.number');
+		if (numberEl) {
+			numberEl.textContent = refine_current_chance;
+		}
+		successEl.style.display = 'block';
+	}
+
+	controlPhase('readyb', false, 250);
+	return true;
 }
 
 /**
@@ -615,27 +685,7 @@ Refine.onRequestItemRefine = function onRequestItemRefine(item) {
 			return;
 		}
 
-		const materials = skillRefineMaterialsFor(item);
-		onRefineUIUpdateMaterials({
-			itemIndex: item.index,
-			blacksmithBlessing: 0,
-			MaterialInfo: materials
-		});
-
-		let chosen = materials[0];
-		for (let i = 0; i < materials.length; i++) {
-			const have = Inventory.getUI().getItemById(materials[i].itemId);
-			if (have && have.count > 0) {
-				chosen = materials[i];
-				const iconEl = _root().querySelector(`.material_${i} .icon`);
-				if (iconEl) {
-					iconEl.click();
-				}
-				break;
-			}
-		}
-
-		enableSkillRefineButton(chosen);
+		prepareSkillRefineItem(item);
 		return;
 	}
 
@@ -1331,9 +1381,11 @@ function onAckWeaponRefine(pkt) {
 	if (pkt.msg === 2) {
 		showMessage(2970, 3, 'error');
 		refine_ongoing = 0;
+		rearmSkillRefineAfterAttempt();
 	} else if (pkt.msg === 3) {
 		showMessage(3243, 3, 'error');
 		refine_ongoing = 0;
+		rearmSkillRefineAfterAttempt();
 	}
 }
 
@@ -1368,6 +1420,12 @@ Refine.onRefineResult = function onRefineResult(pkt) {
 			case 0:
 				refine_can_cont = 1;
 				onAnimateResult('success', () => {
+					if (skillRefineMode) {
+						ChatBox.addText(DB.getMessage(498), ChatBox.TYPE.BLUE, ChatBox.FILTER.PUBLIC_LOG);
+						rearmSkillRefineAfterAttempt();
+						refine_ongoing = 0;
+						return;
+					}
 					onUpdateRefineUI('success');
 					startLoopingPhase('success_wait');
 				});
