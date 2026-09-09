@@ -30,6 +30,8 @@ import SkillListMH from 'UI/Components/SkillListMH/SkillListMH.js';
 import ItemSelection from 'UI/Components/ItemSelection/ItemSelection.js';
 import MakeArrowSelection from 'UI/Components/MakeArrowSelection/MakeArrowSelection.js';
 import RefineWeaponSelection from 'UI/Components/RefineWeaponSelection/RefineWeaponSelection.js';
+import Refine from 'UI/Components/Refine/Refine.js';
+import Configs from 'Core/Configs.js';
 import Inventory from 'UI/Components/Inventory/Inventory.js';
 import NpcMenu from 'UI/Components/NpcMenu/NpcMenu.js';
 import Sense from 'UI/Components/Sense/Sense.js';
@@ -510,6 +512,11 @@ function onMakingarrowList(pkt) {
  */
 function onRefineList(pkt) {
 	if (!pkt.itemList.length) {
+		return;
+	}
+
+	if (Configs.get('enableRefineUI') && PACKETVER.value >= 20161012) {
+		Refine.openSkillRefine(pkt.itemList);
 		return;
 	}
 
