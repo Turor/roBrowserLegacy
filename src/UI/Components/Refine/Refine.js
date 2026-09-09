@@ -446,7 +446,7 @@ Refine.openSkillRefine = function openSkillRefine(itemList) {
 	}
 
 	skillRefineMode = true;
-	skillAllowedIndexes = itemList.map(it => it.index);
+	skillAllowedIndexes = itemList.map(it => Number(it.index));
 
 	if (!Refine.isRefineOpen()) {
 		Refine.append();
@@ -468,34 +468,62 @@ function getWeaponLevelFromItem(item) {
 			return lv;
 		}
 	}
-	return 1;
+	return 0;
 }
 
-function skillRefineMaterialFor(item) {
+function chanceAt(table, refine) {
+	return table[Math.min(Math.max(refine, 0), table.length - 1)];
+}
+
+function skillRefineMaterialsFor(item) {
+	const refine = item.RefiningLevel || 0;
+
 	if (item.type === ItemType.ARMOR) {
-		const refine = item.RefiningLevel || 0;
-		const table = SKILL_REFINE_CHANCE.armor;
-		return {
-			itemId: ITEMID_ELUNIUM,
-			chance: table[Math.min(refine, table.length - 1)],
-			zeny: 0
-		};
+		return [
+			{
+				itemId: ITEMID_ELUNIUM,
+				chance: chanceAt(SKILL_REFINE_CHANCE.armor, refine),
+				zeny: 0
+			}
+		];
 	}
 
 	const wlv = getWeaponLevelFromItem(item);
-	const ores = {
-		1: ITEMID_PHRACON,
-		2: ITEMID_EMVERETARCON,
-		3: ITEMID_ORIDECON,
-		4: ITEMID_ORIDECON
-	};
-	const table = SKILL_REFINE_CHANCE[wlv] || SKILL_REFINE_CHANCE[1];
-	const refine = item.RefiningLevel || 0;
-	return {
-		itemId: ores[wlv] || ITEMID_PHRACON,
-		chance: table[Math.min(refine, table.length - 1)],
+	const ores = [
+		{ itemId: ITEMID_PHRACON, wlv: 1 },
+		{ itemId: ITEMID_EMVERETARCON, wlv: 2 },
+		{ itemId: ITEMID_ORIDECON, wlv: 3 }
+	];
+
+	if (wlv >= 1 && wlv <= 4) {
+		const id = wlv <= 2 ? ores[wlv - 1].itemId : ITEMID_ORIDECON;
+		const table = SKILL_REFINE_CHANCE[wlv] || SKILL_REFINE_CHANCE[3];
+		return [{ itemId: id, chance: chanceAt(table, refine), zeny: 0 }];
+	}
+
+	return ores.map(ore => ({
+		itemId: ore.itemId,
+		chance: chanceAt(SKILL_REFINE_CHANCE[ore.wlv], refine),
 		zeny: 0
-	};
+	}));
+}
+
+function enableSkillRefineButton(material) {
+	const root = _root();
+	refine_item_mat = material.itemId;
+	refine_fee = 0;
+	refine_current_chance = material.chance;
+	refine_current_zeny = 0;
+
+	const refineEnabled = root.querySelector('.refine_enabled');
+	if (refineEnabled) {
+		refineEnabled.style.display = 'block';
+	}
+
+	const numberEl = root.querySelector('.success .number');
+	if (numberEl) {
+		numberEl.textContent = material.chance;
+	}
 }
 
 /**
@@ -582,23 +610,32 @@ function onItemDrop(event) {
  */
 Refine.onRequestItemRefine = function onRequestItemRefine(item) {
 	if (skillRefineMode) {
-		if (skillAllowedIndexes.indexOf(item.index) === -1) {
+		if (item.type !== ItemType.WEAPON && item.type !== ItemType.ARMOR) {
 			showMessage(2970, 3, 'error');
 			return;
 		}
 
-		const material = skillRefineMaterialFor(item);
+		const materials = skillRefineMaterialsFor(item);
 		onRefineUIUpdateMaterials({
 			itemIndex: item.index,
 			blacksmithBlessing: 0,
-			MaterialInfo: [material]
+			MaterialInfo: materials
 		});
 
-		const root = _root();
-		const iconEl = root.querySelector('.material_0 .icon');
-		if (iconEl) {
-			iconEl.click();
+		let chosen = materials[0];
+		for (let i = 0; i < materials.length; i++) {
+			const have = Inventory.getUI().getItemById(materials[i].itemId);
+			if (have && have.count > 0) {
+				chosen = materials[i];
+				const iconEl = _root().querySelector(`.material_${i} .icon`);
+				if (iconEl) {
+					iconEl.click();
+				}
+				break;
+			}
 		}
+
+		enableSkillRefineButton(chosen);
 		return;
 	}
 
@@ -1237,7 +1274,7 @@ function onRequestRefine() {
 		return;
 	}
 
-	if (!material) {
+	if (!skillRefineMode && !material) {
 		return;
 	}
 

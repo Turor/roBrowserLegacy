@@ -7592,12 +7592,15 @@ PACKET.ZC.NOTIFY_CRAZYKILLER.size = 10;
 // 0x221
 PACKET.ZC.NOTIFY_WEAPONITEMLIST = function PACKET_ZC_NOTIFY_WEAPONITEMLIST(fp, end) {
 	this.itemList = (function () {
-		const count = ((end - fp.tell()) / 13) | 0;
+		// Hercules RE 20180704+ uses 32-bit itemId (15 bytes/entry); older clients are 13.
+		const longId = PACKETVER.value >= 20180704;
+		const size = longId ? 15 : 13;
+		const count = ((end - fp.tell()) / size) | 0;
 		const out = new Array(count);
 		for (let i = 0; i < count; ++i) {
 			out[i] = {};
 			out[i].index = fp.readShort();
-			out[i].ITID = fp.readUShort();
+			out[i].ITID = longId ? fp.readULong() : fp.readUShort();
 			out[i].RefiningLevel = fp.readUChar();
 			out[i].slot = {};
 			out[i].slot.card1 = fp.readUShort();
