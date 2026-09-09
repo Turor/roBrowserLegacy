@@ -254556,9 +254556,15 @@ var init_Damage = __esmMin((() => {
 				obj.color[1] = 0;
 				obj.color[2] = 0;
 			} else if (obj.type & Damage.TYPE.COMBO) {
-				obj.color[0] = .9;
-				obj.color[1] = .9;
-				obj.color[2] = .15;
+				if (obj.type & Damage.TYPE.CRIT) {
+					obj.color[0] = 1;
+					obj.color[1] = 0;
+					obj.color[2] = 0;
+				} else {
+					obj.color[0] = .9;
+					obj.color[1] = .9;
+					obj.color[2] = .15;
+				}
 				obj.delay = 3e3;
 			} else if (obj.type & Damage.TYPE.CRIT) {
 				obj.color[0] = .9;
@@ -319685,22 +319691,24 @@ function onEntityAction(pkt) {
 					case 13: type = Damage.TYPE.CRIT;
 					case 8:
 					case 9: {
-						if ((dstEntity.objecttype === Entity.TYPE_MOB || dstEntity.objecttype === Entity.TYPE_NPC_ABR || dstEntity.objecttype === Entity.TYPE_NPC_BIONIC) && pkt.damage > 0) {
-							if (pkt.damage > 1) Damage.add(pkt.damage / 2, dstEntity, Renderer.tick + pkt.attackMT, srcWeapon, Damage.TYPE.COMBO);
-							if (pkt.leftDamage) {
-								Damage.add(pkt.damage, dstEntity, Renderer.tick + pkt.attackMT + C_MULTIHIT_DELAY / 2, srcWeapon, Damage.TYPE.COMBO);
-								Damage.add(pkt.damage + pkt.leftDamage, dstEntity, Renderer.tick + pkt.attackMT + C_MULTIHIT_DELAY * 1.75, srcWeapon, Damage.TYPE.COMBO | Damage.TYPE.COMBO_FINAL);
-							} else Damage.add(pkt.damage, dstEntity, Renderer.tick + pkt.attackMT + C_MULTIHIT_DELAY, srcWeapon, Damage.TYPE.COMBO | Damage.TYPE.COMBO_FINAL);
-						}
-						let div = 1;
-						if (pkt.damage > 1) {
-							div = 2;
-							Damage.add(pkt.damage / div, target, Renderer.tick + pkt.attackMT, srcWeapon, type);
+						const hits = Math.max(1, pkt.count || 2);
+						const split = pkt.damage > 1 ? hits : 1;
+						const perHit = pkt.damage / split;
+						const comboType = pkt.action === 13 ? Damage.TYPE.COMBO | Damage.TYPE.CRIT : Damage.TYPE.COMBO;
+						const showCombo = (dstEntity.objecttype === Entity.TYPE_MOB || dstEntity.objecttype === Entity.TYPE_NPC_ABR || dstEntity.objecttype === Entity.TYPE_NPC_BIONIC) && pkt.damage > 0;
+						for (let i = 0; i < split; ++i) {
+							const startTick = Renderer.tick + pkt.attackMT + C_MULTIHIT_DELAY * i;
+							if (showCombo) {
+								const last = i + 1 === split && !pkt.leftDamage;
+								Damage.add(perHit * (i + 1), dstEntity, startTick, srcWeapon, comboType | (last ? Damage.TYPE.COMBO_FINAL : 0));
+							}
+							Damage.add(perHit, target, startTick, srcWeapon, type);
 						}
 						if (pkt.leftDamage) {
-							Damage.add(pkt.damage / div, target, Renderer.tick + pkt.attackMT + C_MULTIHIT_DELAY / 2, srcWeapon, type);
-							Damage.add(pkt.leftDamage, target, Renderer.tick + pkt.attackMT + C_MULTIHIT_DELAY * 1.75, srcWeapon, type);
-						} else Damage.add(pkt.damage / div, target, Renderer.tick + pkt.attackMT + C_MULTIHIT_DELAY, srcWeapon, type);
+							const leftTick = Renderer.tick + pkt.attackMT + C_MULTIHIT_DELAY * split;
+							if (showCombo) Damage.add(pkt.damage + pkt.leftDamage, dstEntity, leftTick, srcWeapon, comboType | Damage.TYPE.COMBO_FINAL);
+							Damage.add(pkt.leftDamage, target, leftTick, srcWeapon, type);
+						}
 						break;
 					}
 					case 11: dstEntity.attachments.add({
@@ -320222,11 +320230,18 @@ function onEntityUseSkillToAttack(pkt) {
 			onEntityWillBeHitSub(pkt, dstEntity);
 			const isCombo = target.objecttype !== Entity.TYPE_PC && pkt.count > 1;
 			const isBlueCombo = SkillBlueCombo.includes(pkt.SKID);
+			const isCrit = pkt.action === SkillAction$1.CRITICAL || pkt.action === SkillAction$1.MULTI_HIT_CRITICAL;
 			const addDamage = function(i, startTick) {
 				if (pkt.damage) EffectManager.spamSkillHit(pkt.SKID, pkt.targetID, startTick, pkt.AID);
 				if (!isCombo && isBlueCombo) Damage.add(pkt.damage / pkt.count, target, startTick, srcWeapon, Damage.TYPE.COMBO_B | (i + 1 === pkt.count ? Damage.TYPE.COMBO_FINAL : 0));
-				else Damage.add(pkt.damage / pkt.count, target, startTick, srcWeapon);
-				if (isCombo) Damage.add(pkt.damage / pkt.count * (i + 1), target, startTick, srcWeapon, (isBlueCombo ? Damage.TYPE.COMBO_B : Damage.TYPE.COMBO) | (i + 1 === pkt.count ? Damage.TYPE.COMBO_FINAL : 0));
+				else Damage.add(pkt.damage / pkt.count, target, startTick, srcWeapon, isCrit ? Damage.TYPE.CRIT : void 0);
+				if (isCombo) {
+					let comboType;
+					if (isBlueCombo) comboType = Damage.TYPE.COMBO_B;
+					else if (isCrit) comboType = Damage.TYPE.COMBO | Damage.TYPE.CRIT;
+					else comboType = Damage.TYPE.COMBO;
+					Damage.add(pkt.damage / pkt.count * (i + 1), target, startTick, srcWeapon, comboType | (i + 1 === pkt.count ? Damage.TYPE.COMBO_FINAL : 0));
+				}
 			};
 			for (let i = 0; i < pkt.count; ++i) {
 				EffectManager.spamSkillBeforeHit(pkt.SKID, pkt.targetID, Renderer.tick + C_MULTIHIT_DELAY * i, pkt.AID);
@@ -336351,7 +336366,7 @@ var init_WinLogin$2 = __esmMin((() => {
 //#region src/Core/PwaVersion.js
 var PWA_VERSION;
 var init_PwaVersion = __esmMin((() => {
-	PWA_VERSION = "f2c91f6 2026-09-09 00:21 CDT / 2026-09-09 05:21 UTC";
+	PWA_VERSION = "e71636d 2026-09-09 00:53 CDT / 2026-09-09 05:53 UTC";
 }));
 //#endregion
 //#region src/Engine/Replay/ReplayTypes.js
