@@ -336355,7 +336355,7 @@ var init_WinLogin$2 = __esmMin((() => {
 //#region src/Core/PwaVersion.js
 var PWA_VERSION;
 var init_PwaVersion = __esmMin((() => {
-	PWA_VERSION = "e71636d 2026-09-09 00:53 CDT / 2026-09-09 05:53 UTC";
+	PWA_VERSION = "d4fbdbd 2026-09-09 01:20 CDT / 2026-09-09 06:20 UTC";
 }));
 //#endregion
 //#region src/Engine/Replay/ReplayTypes.js
