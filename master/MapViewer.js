@@ -162338,12 +162338,14 @@ var init_PacketStructure = __esmMin((() => {
 	PACKET.ZC.NOTIFY_CRAZYKILLER.size = 10;
 	PACKET.ZC.NOTIFY_WEAPONITEMLIST = function PACKET_ZC_NOTIFY_WEAPONITEMLIST(fp, end) {
 		this.itemList = (function() {
-			const count = (end - fp.tell()) / 13 | 0;
+			const longId = PacketVerManager_default.value >= 20180704;
+			const size = longId ? 15 : 13;
+			const count = (end - fp.tell()) / size | 0;
 			const out = new Array(count);
 			for (let i = 0; i < count; ++i) {
 				out[i] = {};
 				out[i].index = fp.readShort();
-				out[i].ITID = fp.readUShort();
+				out[i].ITID = longId ? fp.readULong() : fp.readUShort();
 				out[i].RefiningLevel = fp.readUChar();
 				out[i].slot = {};
 				out[i].slot.card1 = fp.readUShort();
@@ -235001,32 +235003,54 @@ function getWeaponLevelFromItem(item) {
 		const lv = parseInt(match[1], 10);
 		if (lv >= 1 && lv <= 4) return lv;
 	}
-	return 1;
+	return 0;
 }
-function skillRefineMaterialFor(item) {
-	if (item.type === ItemType_default.ARMOR) {
-		const refine = item.RefiningLevel || 0;
-		const table = SKILL_REFINE_CHANCE.armor;
-		return {
-			itemId: ITEMID_ELUNIUM,
-			chance: table[Math.min(refine, table.length - 1)],
-			zeny: 0
-		};
-	}
-	const wlv = getWeaponLevelFromItem(item);
-	const ores = {
-		1: ITEMID_PHRACON,
-		2: ITEMID_EMVERETARCON,
-		3: ITEMID_ORIDECON,
-		4: ITEMID_ORIDECON
-	};
-	const table = SKILL_REFINE_CHANCE[wlv] || SKILL_REFINE_CHANCE[1];
+function chanceAt(table, refine) {
+	return table[Math.min(Math.max(refine, 0), table.length - 1)];
+}
+function skillRefineMaterialsFor(item) {
 	const refine = item.RefiningLevel || 0;
-	return {
-		itemId: ores[wlv] || ITEMID_PHRACON,
-		chance: table[Math.min(refine, table.length - 1)],
+	if (item.type === ItemType_default.ARMOR) return [{
+		itemId: ITEMID_ELUNIUM,
+		chance: chanceAt(SKILL_REFINE_CHANCE.armor, refine),
 		zeny: 0
-	};
+	}];
+	const wlv = getWeaponLevelFromItem(item);
+	const ores = [
+		{
+			itemId: ITEMID_PHRACON,
+			wlv: 1
+		},
+		{
+			itemId: ITEMID_EMVERETARCON,
+			wlv: 2
+		},
+		{
+			itemId: ITEMID_ORIDECON,
+			wlv: 3
+		}
+	];
+	if (wlv >= 1 && wlv <= 4) return [{
+		itemId: wlv <= 2 ? ores[wlv - 1].itemId : ITEMID_ORIDECON,
+		chance: chanceAt(SKILL_REFINE_CHANCE[wlv] || SKILL_REFINE_CHANCE[3], refine),
+		zeny: 0
+	}];
+	return ores.map((ore) => ({
+		itemId: ore.itemId,
+		chance: chanceAt(SKILL_REFINE_CHANCE[ore.wlv], refine),
+		zeny: 0
+	}));
+}
+function enableSkillRefineButton(material) {
+	const root = _root$11();
+	refine_item_mat = material.itemId;
+	refine_fee = 0;
+	refine_current_chance = material.chance;
+	refine_current_zeny = 0;
+	const refineEnabled = root.querySelector(".refine_enabled");
+	if (refineEnabled) refineEnabled.style.display = "block";
+	const numberEl = root.querySelector(".success .number");
+	if (numberEl) numberEl.textContent = material.chance;
 }
 /**
 * Function to control phases and image looping
@@ -235453,7 +235477,7 @@ function onRequestRefine() {
 	const item = InventoryController.getUI().getItemByIndex(refine_item_index);
 	const material = InventoryController.getUI().getItemById(refine_item_mat);
 	if (!item) return;
-	if (!material) return;
+	if (!skillRefineMode && !material) return;
 	if (!skillRefineMode && SessionStorage_default.zeny < refine_fee) {
 		showMessage$3(2968, 3, "error");
 		return;
@@ -235758,7 +235782,7 @@ function onBroadcastRefineResult(pkt) {
 		Announce_default.set(message, "#FFB563");
 	}
 }
-var Refine, BSB_ITID, ITEMID_PHRACON, ITEMID_EMVERETARCON, ITEMID_ORIDECON, ITEMID_ELUNIUM, SKILL_REFINE_CHANCE, skillRefineMode, skillAllowedIndexes, refiningMaterials, blacksmithBlessing, refine_item_index, refine_item_mat, refine_fee, refine_bsb, refine_result, refine_result_div, refine_can_cont, refine_no_mats, refine_no_zeny, refine_no_bsb, refine_item_broken, refine_new_mats, refine_ongoing, refine_current_chance, refine_current_zeny, initialsuccess, currentLoopHandle, refineAnimGen, itemMessageMapping, images$1, Refine_default;
+var Refine, BSB_ITID, ITEMID_PHRACON, ITEMID_EMVERETARCON, ITEMID_ORIDECON, ITEMID_ELUNIUM, SKILL_REFINE_CHANCE, skillRefineMode, refiningMaterials, blacksmithBlessing, refine_item_index, refine_item_mat, refine_fee, refine_bsb, refine_result, refine_result_div, refine_can_cont, refine_no_mats, refine_no_zeny, refine_no_bsb, refine_item_broken, refine_new_mats, refine_ongoing, refine_current_chance, refine_current_zeny, initialsuccess, currentLoopHandle, refineAnimGen, itemMessageMapping, images$1, Refine_default;
 var init_Refine = __esmMin((() => {
 	init_DBManager();
 	init_Configs();
@@ -235848,7 +235872,6 @@ var init_Refine = __esmMin((() => {
 		]
 	};
 	skillRefineMode = false;
-	skillAllowedIndexes = [];
 	refiningMaterials = [];
 	blacksmithBlessing = 0;
 	refine_item_index = 0;
@@ -236082,7 +236105,6 @@ var init_Refine = __esmMin((() => {
 		onHideContRefineButtons();
 		clearRefineStates();
 		skillRefineMode = false;
-		skillAllowedIndexes = [];
 	};
 	/**
 	* Open the Refine window for Whitesmith Upgrade Weapon / Upgrade Armor.
@@ -236093,7 +236115,7 @@ var init_Refine = __esmMin((() => {
 	Refine.openSkillRefine = function openSkillRefine(itemList) {
 		if (!itemList || !itemList.length) return;
 		skillRefineMode = true;
-		skillAllowedIndexes = itemList.map((it) => it.index);
+		itemList.map((it) => Number(it.index));
 		if (!Refine.isRefineOpen()) Refine.append();
 		if (!(InventoryController.getUI().ui ? InventoryController.getUI().ui.is(":visible") : false)) InventoryController.getUI().toggle();
 	};
@@ -236102,18 +236124,27 @@ var init_Refine = __esmMin((() => {
 	*/
 	Refine.onRequestItemRefine = function onRequestItemRefine(item) {
 		if (skillRefineMode) {
-			if (skillAllowedIndexes.indexOf(item.index) === -1) {
+			if (item.type !== ItemType_default.WEAPON && item.type !== ItemType_default.ARMOR) {
 				showMessage$3(2970, 3, "error");
 				return;
 			}
-			const material = skillRefineMaterialFor(item);
+			const materials = skillRefineMaterialsFor(item);
 			onRefineUIUpdateMaterials({
 				itemIndex: item.index,
 				blacksmithBlessing: 0,
-				MaterialInfo: [material]
+				MaterialInfo: materials
 			});
-			const iconEl = _root$11().querySelector(".material_0 .icon");
-			if (iconEl) iconEl.click();
+			let chosen = materials[0];
+			for (let i = 0; i < materials.length; i++) {
+				const have = InventoryController.getUI().getItemById(materials[i].itemId);
+				if (have && have.count > 0) {
+					chosen = materials[i];
+					const iconEl = _root$11().querySelector(`.material_${i} .icon`);
+					if (iconEl) iconEl.click();
+					break;
+				}
+			}
+			enableSkillRefineButton(chosen);
 			return;
 		}
 		const pkt = new PACKET.CZ.REFINING_SELECT_ITEM();
@@ -336279,7 +336310,7 @@ var init_WinLogin$2 = __esmMin((() => {
 //#region src/Core/PwaVersion.js
 var PWA_VERSION;
 var init_PwaVersion = __esmMin((() => {
-	PWA_VERSION = "bcceba1 2026-09-08 21:06 CDT / 2026-09-09 02:06 UTC";
+	PWA_VERSION = "354f5c0 2026-09-08 21:43 CDT / 2026-09-09 02:43 UTC";
 }));
 //#endregion
 //#region src/Engine/Replay/ReplayTypes.js
