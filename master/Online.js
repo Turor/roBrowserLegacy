@@ -234743,9 +234743,50 @@ function onOpenRefineUI() {
 * Handles sending request to server to close Refine UI
 */
 function onRefineClose() {
+	if (skillRefineMode) {
+		const pkt = new PACKET.CZ.REQ_WEAPONREFINE();
+		pkt.Index = 0;
+		Network.sendPacket(pkt);
+		Refine.remove();
+		return;
+	}
 	Refine.remove();
 	const pkt = new PACKET.CZ.CLOSE_REFINING_UI();
 	Network.sendPacket(pkt);
+}
+function getWeaponLevelFromItem(item) {
+	const it = DB.getItemInfo(item.ITID);
+	const match = (it && it.identifiedDescriptionName != null ? String(it.identifiedDescriptionName) : "").match(/Weapon\s*Level\s*:?\s*(\d)/i);
+	if (match) {
+		const lv = parseInt(match[1], 10);
+		if (lv >= 1 && lv <= 4) return lv;
+	}
+	return 1;
+}
+function skillRefineMaterialFor(item) {
+	if (item.type === ItemType_default.ARMOR) {
+		const refine = item.RefiningLevel || 0;
+		const table = SKILL_REFINE_CHANCE.armor;
+		return {
+			itemId: ITEMID_ELUNIUM,
+			chance: table[Math.min(refine, table.length - 1)],
+			zeny: 0
+		};
+	}
+	const wlv = getWeaponLevelFromItem(item);
+	const ores = {
+		1: ITEMID_PHRACON,
+		2: ITEMID_EMVERETARCON,
+		3: ITEMID_ORIDECON,
+		4: ITEMID_ORIDECON
+	};
+	const table = SKILL_REFINE_CHANCE[wlv] || SKILL_REFINE_CHANCE[1];
+	const refine = item.RefiningLevel || 0;
+	return {
+		itemId: ores[wlv] || ITEMID_PHRACON,
+		chance: table[Math.min(refine, table.length - 1)],
+		zeny: 0
+	};
 }
 /**
 * Function to control phases and image looping
@@ -235173,7 +235214,7 @@ function onRequestRefine() {
 	const material = InventoryController.getUI().getItemById(refine_item_mat);
 	if (!item) return;
 	if (!material) return;
-	if (SessionStorage_default.zeny < refine_fee) {
+	if (!skillRefineMode && SessionStorage_default.zeny < refine_fee) {
 		showMessage$3(2968, 3, "error");
 		return;
 	}
@@ -235186,11 +235227,31 @@ function onRequestRefine() {
 	const successEl = root.querySelector(".success");
 	if (successEl) successEl.style.display = "none";
 	refine_ongoing = 1;
+	if (skillRefineMode) {
+		const pkt = new PACKET.CZ.REQ_WEAPONREFINE();
+		pkt.Index = refine_item_index;
+		Network.sendPacket(pkt);
+		return;
+	}
 	const pkt = new PACKET.CZ.REQ_REFINING();
 	pkt.index = refine_item_index;
 	pkt.itemId = refine_item_mat;
 	pkt.blacksmithBlessing = refine_bsb;
 	Network.sendPacket(pkt);
+}
+/**
+* Upgrade Weapon / Armor result text (0 success, 2 already max, 3 missing ore).
+* Success/fail animation is driven by ZC.ACK_ITEMREFINING.
+*/
+function onAckWeaponRefine(pkt) {
+	if (!skillRefineMode || !pkt) return;
+	if (pkt.msg === 2) {
+		showMessage$3(2970, 3, "error");
+		refine_ongoing = 0;
+	} else if (pkt.msg === 3) {
+		showMessage$3(3243, 3, "error");
+		refine_ongoing = 0;
+	}
 }
 /**
 * Handles animation for failure and pass to UI if downgrade or fail
@@ -235457,7 +235518,7 @@ function onBroadcastRefineResult(pkt) {
 		Announce_default.set(message, "#FFB563");
 	}
 }
-var Refine, BSB_ITID, refiningMaterials, blacksmithBlessing, refine_item_index, refine_item_mat, refine_fee, refine_bsb, refine_result, refine_result_div, refine_can_cont, refine_no_mats, refine_no_zeny, refine_no_bsb, refine_item_broken, refine_new_mats, refine_ongoing, refine_current_chance, refine_current_zeny, initialsuccess, currentLoopHandle, refineAnimGen, itemMessageMapping, images$1, Refine_default;
+var Refine, BSB_ITID, ITEMID_PHRACON, ITEMID_EMVERETARCON, ITEMID_ORIDECON, ITEMID_ELUNIUM, SKILL_REFINE_CHANCE, skillRefineMode, skillAllowedIndexes, refiningMaterials, blacksmithBlessing, refine_item_index, refine_item_mat, refine_fee, refine_bsb, refine_result, refine_result_div, refine_can_cont, refine_no_mats, refine_no_zeny, refine_no_bsb, refine_item_broken, refine_new_mats, refine_ongoing, refine_current_chance, refine_current_zeny, initialsuccess, currentLoopHandle, refineAnimGen, itemMessageMapping, images$1, Refine_default;
 var init_Refine = __esmMin((() => {
 	init_DBManager();
 	init_Configs();
@@ -235474,11 +235535,80 @@ var init_Refine = __esmMin((() => {
 	init_Inventory();
 	init_ItemCompare();
 	init_ItemInfo();
+	init_ItemType();
 	init_Elements();
 	init_Refine$2();
 	init_Refine$1();
 	Refine = new GUIComponent("Refine", Refine_default$1);
 	BSB_ITID = 6635;
+	ITEMID_PHRACON = 1010;
+	ITEMID_EMVERETARCON = 1011;
+	ITEMID_ORIDECON = 984;
+	ITEMID_ELUNIUM = 985;
+	SKILL_REFINE_CHANCE = {
+		armor: [
+			100,
+			100,
+			100,
+			100,
+			90,
+			80,
+			70,
+			60,
+			50,
+			40
+		],
+		1: [
+			100,
+			100,
+			100,
+			100,
+			100,
+			100,
+			100,
+			90,
+			80,
+			70
+		],
+		2: [
+			100,
+			100,
+			100,
+			100,
+			100,
+			100,
+			90,
+			80,
+			70,
+			60
+		],
+		3: [
+			100,
+			100,
+			100,
+			100,
+			100,
+			90,
+			80,
+			70,
+			60,
+			50
+		],
+		4: [
+			100,
+			100,
+			100,
+			100,
+			90,
+			80,
+			70,
+			60,
+			50,
+			40
+		]
+	};
+	skillRefineMode = false;
+	skillAllowedIndexes = [];
 	refiningMaterials = [];
 	blacksmithBlessing = 0;
 	refine_item_index = 0;
@@ -235711,11 +235841,41 @@ var init_Refine = __esmMin((() => {
 		onRemoveItem$1(true);
 		onHideContRefineButtons();
 		clearRefineStates();
+		skillRefineMode = false;
+		skillAllowedIndexes = [];
+	};
+	/**
+	* Open the Refine window for Whitesmith Upgrade Weapon / Upgrade Armor.
+	* Server still uses ZC.NOTIFY_WEAPONITEMLIST + CZ.REQ_WEAPONREFINE.
+	*
+	* @param {Array} itemList PACKET.ZC.NOTIFY_WEAPONITEMLIST items
+	*/
+	Refine.openSkillRefine = function openSkillRefine(itemList) {
+		if (!itemList || !itemList.length) return;
+		skillRefineMode = true;
+		skillAllowedIndexes = itemList.map((it) => it.index);
+		if (!Refine.isRefineOpen()) Refine.append();
+		if (!(InventoryController.getUI().ui ? InventoryController.getUI().ui.is(":visible") : false)) InventoryController.getUI().toggle();
 	};
 	/**
 	* Handles sending the server packet request to refine an item
 	*/
 	Refine.onRequestItemRefine = function onRequestItemRefine(item) {
+		if (skillRefineMode) {
+			if (skillAllowedIndexes.indexOf(item.index) === -1) {
+				showMessage$3(2970, 3, "error");
+				return;
+			}
+			const material = skillRefineMaterialFor(item);
+			onRefineUIUpdateMaterials({
+				itemIndex: item.index,
+				blacksmithBlessing: 0,
+				MaterialInfo: [material]
+			});
+			const iconEl = _root$11().querySelector(".material_0 .icon");
+			if (iconEl) iconEl.click();
+			return;
+		}
 		const pkt = new PACKET.CZ.REFINING_SELECT_ITEM();
 		pkt.index = item.index;
 		Network.sendPacket(pkt);
@@ -235766,6 +235926,7 @@ var init_Refine = __esmMin((() => {
 	Network.hookPacket(PACKET.ZC.OPEN_REFINING_UI, onOpenRefineUI);
 	Network.hookPacket(PACKET.ZC.REFINING_MATERIAL_LIST, onRefineUIUpdateMaterials);
 	Network.hookPacket(PACKET.ZC.BROADCAST_ITEMREFINING_RESULT, onBroadcastRefineResult);
+	Network.hookPacket(PACKET.ZC.ACK_WEAPONREFINE, onAckWeaponRefine);
 	Refine_default = UIManager.addComponent(Refine);
 }));
 //#endregion
@@ -325308,6 +325469,10 @@ function onMakingarrowList(pkt) {
 */
 function onRefineList(pkt) {
 	if (!pkt.itemList.length) return;
+	if (Configs.get("enableRefineUI") && PacketVerManager_default.value >= 20161012) {
+		Refine_default.openSkillRefine(pkt.itemList);
+		return;
+	}
 	RefineWeaponSelection_default.append();
 	RefineWeaponSelection_default.setList(pkt.itemList);
 	RefineWeaponSelection_default.setTitle(DB.getMessage(910));
@@ -325538,6 +325703,8 @@ var init_Skill = __esmMin((() => {
 	init_ItemSelection();
 	init_MakeArrowSelection();
 	init_RefineWeaponSelection();
+	init_Refine();
+	init_Configs();
 	init_Inventory();
 	init_NpcMenu();
 	init_Sense();
@@ -336841,7 +337008,7 @@ var init_WinLogin$2 = __esmMin((() => {
 //#region src/Core/PwaVersion.js
 var PWA_VERSION;
 var init_PwaVersion = __esmMin((() => {
-	PWA_VERSION = "cbd76d3 2026-09-04 00:14 CDT / 2026-09-04 05:14 UTC";
+	PWA_VERSION = "bcceba1 2026-09-08 21:06 CDT / 2026-09-09 02:06 UTC";
 }));
 //#endregion
 //#region src/Engine/Replay/ReplayTypes.js
