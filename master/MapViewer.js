@@ -235047,10 +235047,62 @@ function enableSkillRefineButton(material) {
 	refine_fee = 0;
 	refine_current_chance = material.chance;
 	refine_current_zeny = 0;
+	refine_can_cont = 1;
+	refine_result_div = "success_refine_cont_enabled";
 	const refineEnabled = root.querySelector(".refine_enabled");
 	if (refineEnabled) refineEnabled.style.display = "block";
 	const numberEl = root.querySelector(".success .number");
 	if (numberEl) numberEl.textContent = material.chance;
+}
+function pickSkillRefineMaterial(materials) {
+	let chosen = materials[0];
+	for (let i = 0; i < materials.length; i++) {
+		const have = InventoryController.getUI().getItemById(materials[i].itemId);
+		if (have && have.count > 0) {
+			chosen = materials[i];
+			const iconEl = _root$11().querySelector(`.material_${i} .icon`);
+			if (iconEl) iconEl.click();
+			break;
+		}
+	}
+	enableSkillRefineButton(chosen);
+}
+function prepareSkillRefineItem(item) {
+	const materials = skillRefineMaterialsFor(item);
+	onRefineUIUpdateMaterials({
+		itemIndex: item.index,
+		blacksmithBlessing: 0,
+		MaterialInfo: materials
+	});
+	pickSkillRefineMaterial(materials);
+}
+/**
+* After a Whitesmith refine attempt, put the same item back in the ready
+* state so another refine does not need the Back button.
+*/
+function rearmSkillRefineAfterAttempt() {
+	const root = _root$11();
+	const item = InventoryController.getUI().getItemByIndex(refine_item_index);
+	Refine.hammer = 0;
+	onHideContRefineButtons();
+	if (!item) return false;
+	prepareSkillRefineItem(item);
+	const itemToRefineName = root.querySelector(".item_to_refine_name");
+	if (itemToRefineName) {
+		itemToRefineName.textContent = DB.getItemName(item);
+		itemToRefineName.style.display = "block";
+	}
+	const refineButton = root.querySelector(".refine_button");
+	if (refineButton) refineButton.style.display = "block";
+	const successEl = root.querySelector(".success");
+	if (successEl) {
+		successEl.innerHTML = initialsuccess;
+		const numberEl = successEl.querySelector(".number");
+		if (numberEl) numberEl.textContent = refine_current_chance;
+		successEl.style.display = "block";
+	}
+	controlPhase$1("readyb", false, 250);
+	return true;
 }
 /**
 * Function to control phases and image looping
@@ -235512,9 +235564,11 @@ function onAckWeaponRefine(pkt) {
 	if (pkt.msg === 2) {
 		showMessage$3(2970, 3, "error");
 		refine_ongoing = 0;
+		rearmSkillRefineAfterAttempt();
 	} else if (pkt.msg === 3) {
 		showMessage$3(3243, 3, "error");
 		refine_ongoing = 0;
+		rearmSkillRefineAfterAttempt();
 	}
 }
 /**
@@ -236128,23 +236182,7 @@ var init_Refine = __esmMin((() => {
 				showMessage$3(2970, 3, "error");
 				return;
 			}
-			const materials = skillRefineMaterialsFor(item);
-			onRefineUIUpdateMaterials({
-				itemIndex: item.index,
-				blacksmithBlessing: 0,
-				MaterialInfo: materials
-			});
-			let chosen = materials[0];
-			for (let i = 0; i < materials.length; i++) {
-				const have = InventoryController.getUI().getItemById(materials[i].itemId);
-				if (have && have.count > 0) {
-					chosen = materials[i];
-					const iconEl = _root$11().querySelector(`.material_${i} .icon`);
-					if (iconEl) iconEl.click();
-					break;
-				}
-			}
-			enableSkillRefineButton(chosen);
+			prepareSkillRefineItem(item);
 			return;
 		}
 		const pkt = new PACKET.CZ.REFINING_SELECT_ITEM();
@@ -236173,6 +236211,12 @@ var init_Refine = __esmMin((() => {
 				case 0:
 					refine_can_cont = 1;
 					onAnimateResult("success", () => {
+						if (skillRefineMode) {
+							ChatBox_default.addText(DB.getMessage(498), ChatBox_default.TYPE.BLUE, ChatBox_default.FILTER.PUBLIC_LOG);
+							rearmSkillRefineAfterAttempt();
+							refine_ongoing = 0;
+							return;
+						}
 						onUpdateRefineUI("success");
 						startLoopingPhase("success_wait");
 					});
@@ -336310,7 +336354,7 @@ var init_WinLogin$2 = __esmMin((() => {
 //#region src/Core/PwaVersion.js
 var PWA_VERSION;
 var init_PwaVersion = __esmMin((() => {
-	PWA_VERSION = "354f5c0 2026-09-08 21:43 CDT / 2026-09-09 02:43 UTC";
+	PWA_VERSION = "5052861 2026-09-09 00:17 CDT / 2026-09-09 05:17 UTC";
 }));
 //#endregion
 //#region src/Engine/Replay/ReplayTypes.js
