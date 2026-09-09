@@ -414,23 +414,28 @@ function onEntityMove(pkt) {
  *
  * @param {object} pkt - PACKET.ZC.STOPMOVE
  */
-function onEntityStopMove(pkt) {
-	const entity = EntityManager.get(pkt.AID);
-	if (entity) {
-		if (entity.action === entity.ACTION.WALK) {
-			entity.setAction({
-				action: entity.ACTION.IDLE,
-				frame: 0,
-				repeat: true,
-				play: true
-			});
-		}
-
-		entity.resetRoute();
-		entity.position[0] = pkt.xPos;
-		entity.position[1] = pkt.yPos;
-		entity.position[2] = Altitude.getCellHeight(pkt.xPos, pkt.yPos);
+function snapEntityPosition(entity, x, y) {
+	if (!entity) {
+		return;
 	}
+
+	entity.resetRoute();
+	entity.position[0] = x;
+	entity.position[1] = y;
+	entity.position[2] = Altitude.getCellHeight(x, y);
+
+	if (entity.action === entity.ACTION.WALK) {
+		entity.setAction({
+			action: entity.ACTION.IDLE,
+			frame: 0,
+			repeat: true,
+			play: true
+		});
+	}
+}
+
+function onEntityStopMove(pkt) {
+	snapEntityPosition(EntityManager.get(pkt.AID), pkt.xPos, pkt.yPos);
 }
 
 /**
@@ -439,12 +444,7 @@ function onEntityStopMove(pkt) {
  * @param {object} pkt - PACKET_ZC_HIGHJUMP
  */
 function onEntityJump(pkt) {
-	const entity = EntityManager.get(pkt.AID);
-	if (entity) {
-		entity.position[0] = pkt.xPos;
-		entity.position[1] = pkt.yPos;
-		entity.position[2] = Altitude.getCellHeight(pkt.xPos, pkt.yPos);
-	}
+	snapEntityPosition(EntityManager.get(pkt.AID), pkt.xPos, pkt.yPos);
 }
 
 /**
@@ -453,18 +453,7 @@ function onEntityJump(pkt) {
  * @param {object} pkt - PACKET.ZC.FASTMOVE
  */
 function onEntityFastMove(pkt) {
-	const entity = EntityManager.get(pkt.AID);
-	if (entity) {
-		entity.walkTo(entity.position[0], entity.position[1], pkt.targetXpos, pkt.targetYpos);
-
-		if (entity.walk.path.length) {
-			const speed = entity.walk.speed;
-			entity.walk.speed = 10;
-			entity.walk.onEnd = function onWalkEnd() {
-				entity.walk.speed = speed;
-			};
-		}
-	}
+	snapEntityPosition(EntityManager.get(pkt.AID), pkt.targetXpos, pkt.targetYpos);
 }
 
 /**
