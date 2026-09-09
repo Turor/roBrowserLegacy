@@ -676,78 +676,47 @@ function onEntityAction(pkt) {
 					case 8: // multi-hit damage
 					case 9: {
 						// multi-hit damage (endure)
-						// Display combo only if entity is mob and the attack don't miss
-						if (
+						const hits = Math.max(1, pkt.count || 2);
+						const split = pkt.damage > 1 ? hits : 1;
+						const perHit = pkt.damage / split;
+						const isCritMulti = pkt.action === 13;
+						const comboType = isCritMulti
+							? Damage.TYPE.COMBO | Damage.TYPE.CRIT
+							: Damage.TYPE.COMBO;
+						const showCombo =
 							(dstEntity.objecttype === Entity.TYPE_MOB ||
 								dstEntity.objecttype === Entity.TYPE_NPC_ABR ||
 								dstEntity.objecttype === Entity.TYPE_NPC_BIONIC) &&
-							pkt.damage > 0
-						) {
-							if (pkt.damage > 1) {
-								// Can't divide 1 damage
+							pkt.damage > 0;
+
+						for (let i = 0; i < split; ++i) {
+							const startTick = Renderer.tick + pkt.attackMT + C_MULTIHIT_DELAY * i;
+							if (showCombo) {
+								const last =
+									i + 1 === split && !pkt.leftDamage;
 								Damage.add(
-									pkt.damage / 2,
+									perHit * (i + 1),
 									dstEntity,
-									Renderer.tick + pkt.attackMT,
+									startTick,
 									srcWeapon,
-									Damage.TYPE.COMBO
+									comboType | (last ? Damage.TYPE.COMBO_FINAL : 0)
 								);
 							}
-							if (pkt.leftDamage) {
-								Damage.add(
-									pkt.damage,
-									dstEntity,
-									Renderer.tick + pkt.attackMT + C_MULTIHIT_DELAY / 2,
-									srcWeapon,
-									Damage.TYPE.COMBO
-								);
+							Damage.add(perHit, target, startTick, srcWeapon, type);
+						}
+						if (pkt.leftDamage) {
+							const leftTick =
+								Renderer.tick + pkt.attackMT + C_MULTIHIT_DELAY * split;
+							if (showCombo) {
 								Damage.add(
 									pkt.damage + pkt.leftDamage,
 									dstEntity,
-									Renderer.tick + pkt.attackMT + C_MULTIHIT_DELAY * 1.75,
+									leftTick,
 									srcWeapon,
-									Damage.TYPE.COMBO | Damage.TYPE.COMBO_FINAL
-								);
-							} else {
-								Damage.add(
-									pkt.damage,
-									dstEntity,
-									Renderer.tick + pkt.attackMT + C_MULTIHIT_DELAY,
-									srcWeapon,
-									Damage.TYPE.COMBO | Damage.TYPE.COMBO_FINAL
+									comboType | Damage.TYPE.COMBO_FINAL
 								);
 							}
-						}
-
-						let div = 1;
-						if (pkt.damage > 1) {
-							// Can't divide 1 damage
-							div = 2;
-							Damage.add(pkt.damage / div, target, Renderer.tick + pkt.attackMT, srcWeapon, type);
-						}
-						if (pkt.leftDamage) {
-							Damage.add(
-								pkt.damage / div,
-								target,
-								Renderer.tick + pkt.attackMT + C_MULTIHIT_DELAY / 2,
-								srcWeapon,
-								type
-							);
-							Damage.add(
-								pkt.leftDamage,
-								target,
-								Renderer.tick + pkt.attackMT + C_MULTIHIT_DELAY * 1.75,
-								srcWeapon,
-								type
-							);
-						} else {
-							Damage.add(
-								pkt.damage / div,
-								target,
-								Renderer.tick + pkt.attackMT + C_MULTIHIT_DELAY,
-								srcWeapon,
-								type
-							);
+							Damage.add(pkt.leftDamage, target, leftTick, srcWeapon, type);
 						}
 						break;
 					}
@@ -1579,6 +1548,9 @@ function onEntityUseSkillToAttack(pkt) {
 
 			const isCombo = target.objecttype !== Entity.TYPE_PC && pkt.count > 1;
 			const isBlueCombo = SkillBlueCombo.includes(pkt.SKID);
+			const isCrit =
+				pkt.action === SkillAction.CRITICAL ||
+				pkt.action === SkillAction.MULTI_HIT_CRITICAL;
 
 			const addDamage = function (i, startTick) {
 				if (pkt.damage) {
@@ -1596,19 +1568,32 @@ function onEntityUseSkillToAttack(pkt) {
 						Damage.TYPE.COMBO_B | (i + 1 === pkt.count ? Damage.TYPE.COMBO_FINAL : 0)
 					);
 				} else {
-					Damage.add(pkt.damage / pkt.count, target, startTick, srcWeapon); // Normal
+					Damage.add(
+						pkt.damage / pkt.count,
+						target,
+						startTick,
+						srcWeapon,
+						isCrit ? Damage.TYPE.CRIT : undefined
+					);
 				}
 
 				// Only display combo if the target is not entity and
 				// there are multiple attacks and actually hits
 				if (isCombo) {
+					let comboType;
+					if (isBlueCombo) {
+						comboType = Damage.TYPE.COMBO_B;
+					} else if (isCrit) {
+						comboType = Damage.TYPE.COMBO | Damage.TYPE.CRIT;
+					} else {
+						comboType = Damage.TYPE.COMBO;
+					}
 					Damage.add(
 						(pkt.damage / pkt.count) * (i + 1),
 						target,
 						startTick,
 						srcWeapon,
-						(isBlueCombo ? Damage.TYPE.COMBO_B : Damage.TYPE.COMBO) |
-							(i + 1 === pkt.count ? Damage.TYPE.COMBO_FINAL : 0)
+						comboType | (i + 1 === pkt.count ? Damage.TYPE.COMBO_FINAL : 0)
 					);
 				}
 			};

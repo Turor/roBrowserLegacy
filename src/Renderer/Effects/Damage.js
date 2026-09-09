@@ -356,10 +356,17 @@ class Damage {
 			obj.color[1] = 0.0;
 			obj.color[2] = 0.0;
 		} else if (obj.type & Damage.TYPE.COMBO) {
-			// yellow
-			obj.color[0] = 0.9;
-			obj.color[1] = 0.9;
-			obj.color[2] = 0.15;
+			if (obj.type & Damage.TYPE.CRIT) {
+				// red running total for multi-hit crits (sits above the target)
+				obj.color[0] = 1.0;
+				obj.color[1] = 0.0;
+				obj.color[2] = 0.0;
+			} else {
+				// yellow
+				obj.color[0] = 0.9;
+				obj.color[1] = 0.9;
+				obj.color[2] = 0.15;
+			}
 			obj.delay = 3000;
 		} else if (obj.type & Damage.TYPE.CRIT) {
 			// yellow
