@@ -17,7 +17,7 @@ permissions:
 jobs:
     build:
         name: 'Build and validate'
-        runs-on: [self-hosted, rtar-elastic, cores-2, mem-4096]
+        runs-on: [self-hosted, elastic, cores-2, mem-4096]
         timeout-minutes: 30
 
         steps:

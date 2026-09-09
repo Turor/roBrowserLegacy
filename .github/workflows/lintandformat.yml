@@ -15,7 +15,7 @@ permissions:
 jobs:
     quality:
         name: Lint + Format
-        runs-on: [self-hosted, rtar-elastic, cores-2, mem-4096]
+        runs-on: [self-hosted, elastic, cores-2, mem-4096]
 
         steps:
             - name: Checkout repository
