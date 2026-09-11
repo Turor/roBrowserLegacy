@@ -320300,7 +320300,7 @@ function snapEntityPosition(entity, x, y) {
 	entity.position[0] = x;
 	entity.position[1] = y;
 	entity.position[2] = Altitude.getCellHeight(x, y);
-	if (entity.action === entity.ACTION.WALK) entity.setAction({
+	entity.setAction({
 		action: entity.ACTION.IDLE,
 		frame: 0,
 		repeat: true,
@@ -337137,7 +337137,7 @@ var init_WinLogin$2 = __esmMin((() => {
 //#region src/Core/PwaVersion.js
 var PWA_VERSION;
 var init_PwaVersion = __esmMin((() => {
-	PWA_VERSION = "08d8e23 2026-09-11 17:55 CDT / 2026-09-11 22:55 UTC";
+	PWA_VERSION = "4cba0cc 2026-09-11 18:22 CDT / 2026-09-11 23:22 UTC";
 }));
 //#endregion
 //#region src/Engine/Replay/ReplayTypes.js
