@@ -300311,8 +300311,11 @@ var init_EntityControl = __esmMin((() => {
 					return true;
 				}
 				case Entity.TYPE_PC:
-					if (SessionStorage_default.captchaGetIdOnEntityClick) CaptchaSelector_default.addPlayer(this.GID);
-					return true;
+					if (SessionStorage_default.captchaGetIdOnEntityClick) {
+						CaptchaSelector_default.addPlayer(this.GID);
+						return true;
+					}
+					return false;
 			}
 			return false;
 		}
@@ -337137,7 +337140,7 @@ var init_WinLogin$2 = __esmMin((() => {
 //#region src/Core/PwaVersion.js
 var PWA_VERSION;
 var init_PwaVersion = __esmMin((() => {
-	PWA_VERSION = "4cba0cc 2026-09-11 18:22 CDT / 2026-09-11 23:22 UTC";
+	PWA_VERSION = "8ad5ca3 2026-09-11 18:48 CDT / 2026-09-11 23:48 UTC";
 }));
 //#endregion
 //#region src/Engine/Replay/ReplayTypes.js
