@@ -743,10 +743,15 @@ SkillInfo[SK.AL_HEAL] = {
 	bSeperateLv: true,
 	AttackRange: [9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
 	NeedSkillList: {
-		[JobId.CRUSADER]: [
-			[SK.CR_TRUST, 10],
-			[SK.AL_DEMONBANE, 5]
-		]
+		[JobId.CRUSADER]: [[SK.CR_TRUST, 10], [SK.AL_DEMONBANE, 5]],
+		[JobId.CRUSADER2]: [[SK.CR_TRUST, 10], [SK.AL_DEMONBANE, 5]],
+		[JobId.CRUSADER_H]: [[SK.CR_TRUST, 10], [SK.AL_DEMONBANE, 5]],
+		[JobId.CRUSADER2_H]: [[SK.CR_TRUST, 10], [SK.AL_DEMONBANE, 5]],
+		[JobId.CRUSADER_B]: [[SK.CR_TRUST, 10], [SK.AL_DEMONBANE, 5]],
+		[JobId.CRUSADER2_B]: [[SK.CR_TRUST, 10], [SK.AL_DEMONBANE, 5]],
+		[JobId.LION_CRUSADER]: [[SK.CR_TRUST, 10], [SK.AL_DEMONBANE, 5]],
+		[JobId.LION_CRUSADER_H]: [[SK.CR_TRUST, 10], [SK.AL_DEMONBANE, 5]],
+		[JobId.LION_CRUSADER_B]: [[SK.CR_TRUST, 10], [SK.AL_DEMONBANE, 5]],
 	}
 };
 SkillInfo[SK.SL_STAR] = {
@@ -1956,7 +1961,17 @@ SkillInfo[SK.AL_CURE] = {
 	bSeperateLv: false,
 	AttackRange: [9],
 	_NeedSkillList: [[SK.AL_HEAL, 2]],
-	NeedSkillList: { [JobId.CRUSADER]: [[SK.CR_TRUST, 5]] }
+	NeedSkillList: {
+		[JobId.CRUSADER]: [[SK.CR_TRUST, 5]],
+		[JobId.CRUSADER2]: [[SK.CR_TRUST, 5]],
+		[JobId.CRUSADER_H]: [[SK.CR_TRUST, 5]],
+		[JobId.CRUSADER2_H]: [[SK.CR_TRUST, 5]],
+		[JobId.CRUSADER_B]: [[SK.CR_TRUST, 5]],
+		[JobId.CRUSADER2_B]: [[SK.CR_TRUST, 5]],
+		[JobId.LION_CRUSADER]: [[SK.CR_TRUST, 5]],
+		[JobId.LION_CRUSADER_H]: [[SK.CR_TRUST, 5]],
+		[JobId.LION_CRUSADER_B]: [[SK.CR_TRUST, 5]],
+	}
 };
 SkillInfo[SK.MB_MUNAKBALL] = {
 	Name: 'MB_MUNAKBALL',
@@ -9019,7 +9034,17 @@ SkillInfo[SK.AL_DP] = {
 	SpAmount: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 	bSeperateLv: false,
 	AttackRange: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-	NeedSkillList: { [JobId.CRUSADER]: [[SK.AL_CURE, 1]] }
+	NeedSkillList: {
+		[JobId.CRUSADER]: [[SK.AL_CURE, 1]],
+		[JobId.CRUSADER2]: [[SK.AL_CURE, 1]],
+		[JobId.CRUSADER_H]: [[SK.AL_CURE, 1]],
+		[JobId.CRUSADER2_H]: [[SK.AL_CURE, 1]],
+		[JobId.CRUSADER_B]: [[SK.AL_CURE, 1]],
+		[JobId.CRUSADER2_B]: [[SK.AL_CURE, 1]],
+		[JobId.LION_CRUSADER]: [[SK.AL_CURE, 1]],
+		[JobId.LION_CRUSADER_H]: [[SK.AL_CURE, 1]],
+		[JobId.LION_CRUSADER_B]: [[SK.AL_CURE, 1]],
+	}
 };
 SkillInfo[SK.WL_MARSHOFABYSS] = {
 	Name: 'WL_MARSHOFABYSS',

@@ -1,3 +1,5 @@
+import JobId from 'DB/Jobs/JobConst.js';
+
 function getOwnedSkill(ownedSkills, skillId) {
 	return ownedSkills?.get?.(skillId) ?? ownedSkills?.[skillId] ?? null;
 }
@@ -31,6 +33,32 @@ function getJobLineage(jobId, skillTreeView) {
  * overrides. Aliased jobs in SkillTreeView share the same tree object, so an
  * alias can inherit the canonical job's override.
  */
+const crusaderFamilyJobs = new Set(
+	[
+		JobId.CRUSADER,
+		JobId.CRUSADER2,
+		JobId.CRUSADER_H,
+		JobId.CRUSADER2_H,
+		JobId.CRUSADER_B,
+		JobId.CRUSADER2_B,
+		JobId.LION_CRUSADER,
+		JobId.LION_CRUSADER_H,
+		JobId.LION_CRUSADER_B
+	].filter(id => id != null)
+);
+
+function lookupJobRequirements(jobRequirements, jobId) {
+	if (!jobRequirements) {
+		return undefined;
+	}
+	for (const key of [jobId, Number(jobId), String(jobId), String(Number(jobId))]) {
+		if (Object.hasOwn(jobRequirements, key)) {
+			return jobRequirements[key];
+		}
+	}
+	return undefined;
+}
+
 export function resolveSkillRequirements(skill, jobId, skillTreeView) {
 	if (!skill) {
 		return [];
@@ -41,8 +69,9 @@ export function resolveSkillRequirements(skill, jobId, skillTreeView) {
 		const requirementJobs = Object.keys(jobRequirements);
 
 		for (const lineageJobId of getJobLineage(jobId, skillTreeView)) {
-			if (Object.hasOwn(jobRequirements, lineageJobId)) {
-				return jobRequirements[lineageJobId];
+			const direct = lookupJobRequirements(jobRequirements, lineageJobId);
+			if (direct !== undefined) {
+				return direct;
 			}
 
 			const lineageTree = skillTreeView[lineageJobId];
@@ -55,6 +84,13 @@ export function resolveSkillRequirements(skill, jobId, skillTreeView) {
 			});
 			if (canonicalJobId !== undefined) {
 				return jobRequirements[canonicalJobId];
+			}
+		}
+
+		if (crusaderFamilyJobs.has(Number(jobId))) {
+			const crusaderReqs = lookupJobRequirements(jobRequirements, JobId.CRUSADER);
+			if (crusaderReqs !== undefined) {
+				return crusaderReqs;
 			}
 		}
 	}

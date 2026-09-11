@@ -1047,6 +1047,7 @@ SkillTreeView[JobId.WANDERER] = {
 SkillTreeView[JobId.CRUSADER_H] = {
 	list: 2,
 	beforeJob: JobId.CRUSADER,
+	[SK.AL_CURE]: 7,
 	[SK.PA_PRESSURE]: 17,
 	[SK.PA_SHIELDCHAIN]: 25,
 	[SK.PA_GOSPEL]: 30,
