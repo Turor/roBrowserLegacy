@@ -11098,7 +11098,7 @@ var init_Thread = __esmMin((() => {
 		static init = () => {
 			if (!_source) _source = new Worker(new URL(
 				/* @vite-ignore */
-				"" + new URL("ThreadEventHandler.js", import.meta.url).href,
+				new URL("ThreadEventHandler.js", import.meta.url).href,
 				"" + import.meta.url
 			), { type: "module" });
 			if (_source instanceof Worker) _source.addEventListener("message", Thread.receive, false);
@@ -77880,7 +77880,7 @@ var init_preload_helper = __esmMin((() => {
 					link.addEventListener("load", res);
 					link.addEventListener("error", () => rej(/* @__PURE__ */ new Error(`Unable to preload CSS for ${dep}`)));
 				});
-			}));
+			}).filter((p) => p !== void 0));
 		}
 		function handlePreloadError(err) {
 			const e = new Event("vite:preloadError", { cancelable: true });
@@ -108823,7 +108823,17 @@ var init_SkillInfo = __esmMin((() => {
 			9,
 			9
 		],
-		NeedSkillList: { [JobConst_default.CRUSADER]: [[SkillConst_default.CR_TRUST, 10], [SkillConst_default.AL_DEMONBANE, 5]] }
+		NeedSkillList: {
+			[JobConst_default.CRUSADER]: [[SkillConst_default.CR_TRUST, 10], [SkillConst_default.AL_DEMONBANE, 5]],
+			[JobConst_default.CRUSADER2]: [[SkillConst_default.CR_TRUST, 10], [SkillConst_default.AL_DEMONBANE, 5]],
+			[JobConst_default.CRUSADER_H]: [[SkillConst_default.CR_TRUST, 10], [SkillConst_default.AL_DEMONBANE, 5]],
+			[JobConst_default.CRUSADER2_H]: [[SkillConst_default.CR_TRUST, 10], [SkillConst_default.AL_DEMONBANE, 5]],
+			[JobConst_default.CRUSADER_B]: [[SkillConst_default.CR_TRUST, 10], [SkillConst_default.AL_DEMONBANE, 5]],
+			[JobConst_default.CRUSADER2_B]: [[SkillConst_default.CR_TRUST, 10], [SkillConst_default.AL_DEMONBANE, 5]],
+			[JobConst_default.LION_CRUSADER]: [[SkillConst_default.CR_TRUST, 10], [SkillConst_default.AL_DEMONBANE, 5]],
+			[JobConst_default.LION_CRUSADER_H]: [[SkillConst_default.CR_TRUST, 10], [SkillConst_default.AL_DEMONBANE, 5]],
+			[JobConst_default.LION_CRUSADER_B]: [[SkillConst_default.CR_TRUST, 10], [SkillConst_default.AL_DEMONBANE, 5]]
+		}
 	};
 	SkillInfo[SkillConst_default.SL_STAR] = {
 		Name: "SL_STAR",
@@ -111606,7 +111616,17 @@ var init_SkillInfo = __esmMin((() => {
 		bSeperateLv: false,
 		AttackRange: [9],
 		_NeedSkillList: [[SkillConst_default.AL_HEAL, 2]],
-		NeedSkillList: { [JobConst_default.CRUSADER]: [[SkillConst_default.CR_TRUST, 5]] }
+		NeedSkillList: {
+			[JobConst_default.CRUSADER]: [[SkillConst_default.CR_TRUST, 5]],
+			[JobConst_default.CRUSADER2]: [[SkillConst_default.CR_TRUST, 5]],
+			[JobConst_default.CRUSADER_H]: [[SkillConst_default.CR_TRUST, 5]],
+			[JobConst_default.CRUSADER2_H]: [[SkillConst_default.CR_TRUST, 5]],
+			[JobConst_default.CRUSADER_B]: [[SkillConst_default.CR_TRUST, 5]],
+			[JobConst_default.CRUSADER2_B]: [[SkillConst_default.CR_TRUST, 5]],
+			[JobConst_default.LION_CRUSADER]: [[SkillConst_default.CR_TRUST, 5]],
+			[JobConst_default.LION_CRUSADER_H]: [[SkillConst_default.CR_TRUST, 5]],
+			[JobConst_default.LION_CRUSADER_B]: [[SkillConst_default.CR_TRUST, 5]]
+		}
 	};
 	SkillInfo[SkillConst_default.MB_MUNAKBALL] = {
 		Name: "MB_MUNAKBALL",
@@ -127335,7 +127355,17 @@ var init_SkillInfo = __esmMin((() => {
 			1,
 			1
 		],
-		NeedSkillList: { [JobConst_default.CRUSADER]: [[SkillConst_default.AL_CURE, 1]] }
+		NeedSkillList: {
+			[JobConst_default.CRUSADER]: [[SkillConst_default.AL_CURE, 1]],
+			[JobConst_default.CRUSADER2]: [[SkillConst_default.AL_CURE, 1]],
+			[JobConst_default.CRUSADER_H]: [[SkillConst_default.AL_CURE, 1]],
+			[JobConst_default.CRUSADER2_H]: [[SkillConst_default.AL_CURE, 1]],
+			[JobConst_default.CRUSADER_B]: [[SkillConst_default.AL_CURE, 1]],
+			[JobConst_default.CRUSADER2_B]: [[SkillConst_default.AL_CURE, 1]],
+			[JobConst_default.LION_CRUSADER]: [[SkillConst_default.AL_CURE, 1]],
+			[JobConst_default.LION_CRUSADER_H]: [[SkillConst_default.AL_CURE, 1]],
+			[JobConst_default.LION_CRUSADER_B]: [[SkillConst_default.AL_CURE, 1]]
+		}
 	};
 	SkillInfo[SkillConst_default.WL_MARSHOFABYSS] = {
 		Name: "WL_MARSHOFABYSS",
@@ -138006,6 +138036,7 @@ var init_SkillTreeView = __esmMin((() => {
 	SkillTreeView[JobConst_default.CRUSADER_H] = {
 		list: 2,
 		beforeJob: JobConst_default.CRUSADER,
+		[SkillConst_default.AL_CURE]: 7,
 		[SkillConst_default.PA_PRESSURE]: 17,
 		[SkillConst_default.PA_SHIELDCHAIN]: 25,
 		[SkillConst_default.PA_GOSPEL]: 30,
@@ -222424,7 +222455,7 @@ function initializePathFindingWorker() {
 	if (!_pathFindingWorker) {
 		_pathFindingWorker = new Worker(new URL(
 			/* @vite-ignore */
-			"" + new URL("PathFindingWorker.js", import.meta.url).href,
+			new URL("PathFindingWorker.js", import.meta.url).href,
 			"" + import.meta.url
 		).href);
 		_pathFindingWorker.id = (/* @__PURE__ */ new Date()).getTime().toString();
@@ -231006,25 +231037,33 @@ function getJobLineage(jobId, skillTreeView) {
 	}
 	return lineage;
 }
-/**
-* Resolve the requirements that apply to a skill for the active character job.
-* Job-specific entries override the generic list, including explicit empty
-* overrides. Aliased jobs in SkillTreeView share the same tree object, so an
-* alias can inherit the canonical job's override.
-*/
+function lookupJobRequirements(jobRequirements, jobId) {
+	if (!jobRequirements) return;
+	for (const key of [
+		jobId,
+		Number(jobId),
+		String(jobId),
+		String(Number(jobId))
+	]) if (Object.hasOwn(jobRequirements, key)) return jobRequirements[key];
+}
 function resolveSkillRequirements(skill, jobId, skillTreeView) {
 	if (!skill) return [];
 	const jobRequirements = skill.NeedSkillList;
 	if (jobRequirements) {
 		const requirementJobs = Object.keys(jobRequirements);
 		for (const lineageJobId of getJobLineage(jobId, skillTreeView)) {
-			if (Object.hasOwn(jobRequirements, lineageJobId)) return jobRequirements[lineageJobId];
+			const direct = lookupJobRequirements(jobRequirements, lineageJobId);
+			if (direct !== void 0) return direct;
 			const lineageTree = skillTreeView[lineageJobId];
 			if (!lineageTree) continue;
 			const canonicalJobId = requirementJobs.find((requirementJobId) => {
 				return skillTreeView[requirementJobId] === lineageTree;
 			});
 			if (canonicalJobId !== void 0) return jobRequirements[canonicalJobId];
+		}
+		if (crusaderFamilyJobs.has(Number(jobId))) {
+			const crusaderReqs = lookupJobRequirements(jobRequirements, JobConst_default.CRUSADER);
+			if (crusaderReqs !== void 0) return crusaderReqs;
 		}
 	}
 	return skill._NeedSkillList ?? [];
@@ -231114,7 +231153,21 @@ function createSkillUpgradeOrder(options) {
 	for (const skillId of plan.keys()) if (!visit(skillId)) return null;
 	return order;
 }
-var init_SkillRequirements = __esmMin((() => {}));
+var crusaderFamilyJobs;
+var init_SkillRequirements = __esmMin((() => {
+	init_JobConst();
+	crusaderFamilyJobs = new Set([
+		JobConst_default.CRUSADER,
+		JobConst_default.CRUSADER2,
+		JobConst_default.CRUSADER_H,
+		JobConst_default.CRUSADER2_H,
+		JobConst_default.CRUSADER_B,
+		JobConst_default.CRUSADER2_B,
+		JobConst_default.LION_CRUSADER,
+		JobConst_default.LION_CRUSADER_H,
+		JobConst_default.LION_CRUSADER_B
+	].filter((id) => id != null));
+}));
 //#endregion
 //#region src/UI/Components/SkillList/SkillListCommon.js
 function _escapeHTML$2(text) {
@@ -297098,9 +297151,9 @@ var init_DBManager = __esmMin((() => {
 					loadLuaTable([DB.LUA_PATH + "skillinfoz/skillid.turoran.lub", DB.LUA_PATH + "skillinfoz/skilldescript.turoran8.lub"], "SKILL_DESCRIPT", (_json) => {
 						SkillDescription = _json;
 					}, () => {
-						loadSkillInfoList(DB.LUA_PATH + "skillinfoz/skillinfolist.turoran3.lub", null, () => {
+						loadSkillInfoList(DB.LUA_PATH + "skillinfoz/skillinfolist.turoran4.lub", null, () => {
 							loadSkillSpAmountTable(() => {
-								loadSkillTreeView(DB.LUA_PATH + "skillinfoz/skilltreeview.wsarmor2.lub", null, () => {
+								loadSkillTreeView(DB.LUA_PATH + "skillinfoz/skilltreeview.wsarmor3.lub", null, () => {
 									if (PacketVerManager_default.value >= 20211103) {
 										const bsonOnLoad = onLoad();
 										loadBSONFile("data/contentdata/effectdata/ez2streffect.bson", Ez2streffect, () => {
@@ -336388,7 +336441,7 @@ var init_WinLogin$2 = __esmMin((() => {
 //#region src/Core/PwaVersion.js
 var PWA_VERSION;
 var init_PwaVersion = __esmMin((() => {
-	PWA_VERSION = "00224e4 2026-09-09 01:48 CDT / 2026-09-09 06:48 UTC";
+	PWA_VERSION = "08d8e23 2026-09-11 17:55 CDT / 2026-09-11 22:55 UTC";
 }));
 //#endregion
 //#region src/Engine/Replay/ReplayTypes.js
