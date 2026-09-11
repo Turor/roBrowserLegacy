@@ -241,10 +241,14 @@ class EntityControl {
 				return true;
 			}
 			case Entity.TYPE_PC: {
+				// Captcha picker consumes the click. Otherwise return false so
+				// MapControl still calls onFocus(), which sends CZ.REQUEST_ACT
+				// for PvP/GvG auto-attacks (SHIFT / /ns still work off-PvP).
 				if (Session.captchaGetIdOnEntityClick) {
 					CaptchaSelector.addPlayer(this.GID);
+					return true;
 				}
-				return true;
+				return false;
 			}
 		}
 
