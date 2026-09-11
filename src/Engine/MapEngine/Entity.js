@@ -424,14 +424,12 @@ function snapEntityPosition(entity, x, y) {
 	entity.position[1] = y;
 	entity.position[2] = Altitude.getCellHeight(x, y);
 
-	if (entity.action === entity.ACTION.WALK) {
-		entity.setAction({
-			action: entity.ACTION.IDLE,
-			frame: 0,
-			repeat: true,
-			play: true
-		});
-	}
+	entity.setAction({
+		action: entity.ACTION.IDLE,
+		frame: 0,
+		repeat: true,
+		play: true
+	});
 }
 
 function onEntityStopMove(pkt) {
