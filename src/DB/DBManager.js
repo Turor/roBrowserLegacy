@@ -394,11 +394,16 @@ class DB {
 			if (Array.isArray(customII) && customII.length > 0) {
 				// add custom client info table
 				iteminfoNames = iteminfoNames.concat(customII);
-				tryLoadLuaAliases(loadItemInfo, iteminfoNames, null, onLoad(), true);
 			} else {
 				iteminfoNames = iteminfoNames.concat(getSystemAliases('System/itemInfo.lub'));
-				tryLoadLuaAliases(loadItemInfo, iteminfoNames, null, onLoad());
 			}
+			// Turoran: new filename so browser FileSystem cache of itemInfo.turoran.lua
+			// cannot hide the Id+30000 pre-re card entries.
+			const turoranDual = 'System/itemInfo.turoran.dual.lua';
+			if (!iteminfoNames.includes(turoranDual)) {
+				iteminfoNames.push(turoranDual);
+			}
+			tryLoadLuaAliases(loadItemInfo, iteminfoNames, null, onLoad(), true);
 
 			loadLuaTable(
 				[DB.LUA_PATH + 'datainfo/accessoryid.lub', DB.LUA_PATH + 'datainfo/accname.lub'],
@@ -2323,7 +2328,19 @@ class DB {
 	 * @return {object} item
 	 */
 	static getItemInfo(itemid) {
-		const item = ItemTable[itemid] || unknownItem;
+		let item = ItemTable[itemid];
+		if (!item && itemid > 30000) {
+			const base = ItemTable[itemid - 30000];
+			if (base) {
+				item = ItemTable[itemid] = {
+					...base,
+					identifiedDisplayName: String(base.identifiedDisplayName || '').replace(/ RE Card$/, ' Card'),
+					unidentifiedDisplayName: String(base.unidentifiedDisplayName || '').replace(/ RE Card$/, ' Card'),
+					_decoded: false
+				};
+			}
+		}
+		item = item || unknownItem;
 
 		if (!item._decoded) {
 			item.identifiedDescriptionName =
