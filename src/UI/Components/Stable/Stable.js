@@ -276,19 +276,25 @@ Stable.onAppend = function onAppend() {
 	});
 	Stable.applyTab();
 	Stable.renderLists();
+	Stable.requestLists();
 };
 
 Stable.onRemove = function onRemove() {
 	stopPetPreview();
 };
 
+Stable.requestLists = function requestLists() {
+	Network.sendPacket(new PACKET.CZ.TURORAN_STABLE_OPEN());
+};
+
 Stable.toggle = function toggle() {
-	if (!this._host || this._host.style.display === 'none' || !this._host.parentNode) {
-		const pkt = new PACKET.CZ.TURORAN_STABLE_OPEN();
-		Network.sendPacket(pkt);
+	const closed =
+		!this._host || this._host.style.display === 'none' || !this._host.parentNode;
+	if (closed) {
 		this.append();
 		this._host.style.display = '';
 		this.focus();
+		this.requestLists();
 	} else {
 		this._host.style.display = 'none';
 		stopPetPreview();
@@ -298,10 +304,6 @@ Stable.toggle = function toggle() {
 Stable.setHomunList = function setHomunList(pkt) {
 	_homun = { activeHomunId: pkt.activeHomunId, list: pkt.list || [] };
 	Stable.renderLists();
-	if (this._host && this._host.style.display === 'none') {
-		this._host.style.display = '';
-		this.focus();
-	}
 };
 
 Stable.setPetList = function setPetList(pkt) {
@@ -311,10 +313,6 @@ Stable.setPetList = function setPetList(pkt) {
 		closeSidePanel();
 	}
 	Stable.renderLists();
-	if (this._host && this._host.style.display === 'none') {
-		this._host.style.display = '';
-		this.focus();
-	}
 };
 
 Stable.onResult = function onResult(pkt) {

@@ -754,7 +754,6 @@ function onMapChange(pkt) {
 		if (Configs.get('enableCheckAttendance') && PACKETVER.value >= 20180307) {
 			CheckAttendance.append();
 		}
-		Stable.append();
 
 		// Reload plugins
 		PluginManager.init();

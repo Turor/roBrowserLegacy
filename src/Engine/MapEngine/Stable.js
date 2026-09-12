@@ -4,13 +4,11 @@ import Stable from 'UI/Components/Stable/Stable.js';
 
 function onHomunList(pkt) {
 	Stable.prepare();
-	Stable.append();
 	Stable.setHomunList(pkt);
 }
 
 function onPetList(pkt) {
 	Stable.prepare();
-	Stable.append();
 	Stable.setPetList(pkt);
 }
 
