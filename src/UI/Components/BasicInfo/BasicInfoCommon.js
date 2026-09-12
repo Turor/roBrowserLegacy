@@ -30,6 +30,7 @@ import Bank from 'UI/Components/Bank/Bank.js';
 import Escape from 'UI/Components/Escape/Escape.js';
 import WorldMap from 'UI/Components/WorldMap/WorldMap.js';
 import CheckAttendance from 'UI/Components/CheckAttendance/CheckAttendance.js';
+import Stable from 'UI/Components/Stable/Stable.js';
 import ChatRoomCreate from 'UI/Components/ChatRoomCreate/ChatRoomCreate.js';
 import Rodex from 'UI/Components/Rodex/Rodex.js';
 import WinStats from 'UI/Components/WinStats/WinStats.js';
@@ -150,6 +151,9 @@ export function createBasicInfo(config) {
 				if (Configs.get('enableCheckAttendance') && PACKETVER.value >= 20180307) {
 					CheckAttendance.toggle();
 				}
+				break;
+			case 'stable':
+				Stable.toggle();
 				break;
 			case 'achievment':
 				if (Configs.get('enableAchievements') && PACKETVER.value >= 20150513) {

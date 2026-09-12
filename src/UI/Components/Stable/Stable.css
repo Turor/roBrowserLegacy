@@ -1,0 +1,161 @@
+:host {
+	width: 420px;
+	height: 420px;
+}
+
+#TuroranStable {
+	position: absolute;
+	width: 420px;
+	height: 420px;
+	background: #f4ead0;
+	border: 2px solid #5a3b1a;
+	box-shadow: 2px 2px 0 #0004;
+	font-size: 11px;
+	color: #3a2410;
+}
+
+#TuroranStable .titlebar {
+	height: 20px;
+	background: #8a5a28;
+	color: #fff8e0;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 4px 0 8px;
+}
+
+#TuroranStable .titlebar .left {
+	pointer-events: none;
+}
+
+#TuroranStable .titlebar .close {
+	width: 14px;
+	height: 14px;
+	border: 0;
+	background: transparent;
+}
+
+#TuroranStable .beta {
+	background: #efe0a8;
+	color: #6a3a10;
+	padding: 6px 8px;
+	line-height: 1.3;
+	border-bottom: 1px solid #c9a66a;
+}
+
+#TuroranStable .tabs {
+	display: flex;
+	background: #e6d3a8;
+	border-bottom: 1px solid #c9a66a;
+}
+
+#TuroranStable .tab {
+	flex: 1;
+	height: 24px;
+	border: 0;
+	background: transparent;
+	font-weight: bold;
+	color: #5a3b1a;
+	cursor: pointer;
+}
+
+#TuroranStable .tab.active {
+	background: #f4ead0;
+	border-bottom: 2px solid #8a5a28;
+}
+
+#TuroranStable .hint {
+	padding: 6px 8px;
+	color: #6a4a28;
+	line-height: 1.3;
+}
+
+#TuroranStable .list {
+	height: 270px;
+	overflow-y: auto;
+	padding: 0 8px;
+}
+
+#TuroranStable .row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	background: #fff8e8;
+	border: 1px solid #d4b88a;
+	padding: 6px;
+	margin-bottom: 6px;
+}
+
+#TuroranStable .row.active {
+	border-color: #8a5a28;
+	background: #ffe9c0;
+}
+
+#TuroranStable .meta {
+	flex: 1;
+	min-width: 0;
+}
+
+#TuroranStable .meta .name {
+	font-weight: bold;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#TuroranStable .meta .sub {
+	color: #6a4a28;
+	margin-top: 2px;
+}
+
+#TuroranStable .row-actions {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+}
+
+#TuroranStable .row-actions button,
+#TuroranStable .actions .action {
+	border: 1px solid #8a5a28;
+	background: #e8c888;
+	color: #3a2410;
+	font-weight: bold;
+	font-size: 10px;
+	padding: 3px 6px;
+	cursor: pointer;
+}
+
+#TuroranStable .row-actions button:hover,
+#TuroranStable .actions .action:hover {
+	background: #f0d8a0;
+}
+
+#TuroranStable .empty {
+	padding: 20px 8px;
+	text-align: center;
+	color: #7a5a38;
+}
+
+#TuroranStable .actions {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-top: 1px solid #c9a66a;
+	background: #e6d3a8;
+}
+
+#TuroranStable .badge {
+	display: inline-block;
+	font-size: 9px;
+	padding: 1px 4px;
+	margin-left: 4px;
+	background: #8a5a28;
+	color: #fff8e0;
+}

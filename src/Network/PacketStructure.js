@@ -15876,6 +15876,88 @@ PACKET.CZ.SELECTCART.prototype.build = function () {
 	return pkt_buf;
 };
 
+
+// Turoran homunculus + pet stable (beta)
+PACKET.CZ.TURORAN_STABLE_OPEN = function PACKET_CZ_TURORAN_STABLE_OPEN() {};
+PACKET.CZ.TURORAN_STABLE_OPEN.prototype.build = function () {
+	const pkt_buf = new BinaryWriter(2);
+	pkt_buf.writeShort(0x0ef0);
+	return pkt_buf;
+};
+
+PACKET.CZ.TURORAN_STABLE_HOMUN = function PACKET_CZ_TURORAN_STABLE_HOMUN() {
+	this.homunId = 0;
+};
+PACKET.CZ.TURORAN_STABLE_HOMUN.prototype.build = function () {
+	const pkt_buf = new BinaryWriter(6);
+	pkt_buf.writeShort(0x0ef1);
+	pkt_buf.writeLong(this.homunId);
+	return pkt_buf;
+};
+
+PACKET.CZ.TURORAN_STABLE_PET = function PACKET_CZ_TURORAN_STABLE_PET() {
+	this.action = 0;
+	this.id = 0;
+};
+PACKET.CZ.TURORAN_STABLE_PET.prototype.build = function () {
+	const pkt_buf = new BinaryWriter(8);
+	pkt_buf.writeShort(0x0ef2);
+	pkt_buf.writeShort(this.action);
+	pkt_buf.writeLong(this.id);
+	return pkt_buf;
+};
+
+PACKET.ZC.TURORAN_STABLE_HOMUN_LIST = function PACKET_ZC_TURORAN_STABLE_HOMUN_LIST(fp, end) {
+	this.activeHomunId = fp.readLong();
+	this.count = fp.readUChar();
+	this.list = [];
+	for (let i = 0; i < this.count && fp.tell() < end; i++) {
+		this.list.push({
+			homunId: fp.readLong(),
+			classId: fp.readShort(),
+			prevClass: fp.readShort(),
+			level: fp.readShort(),
+			intimacy: fp.readLong(),
+			hunger: fp.readShort(),
+			vaporize: fp.readUChar(),
+			renameFlag: fp.readUChar(),
+			name: fp.readBinaryString(24)
+		});
+	}
+};
+PACKET.ZC.TURORAN_STABLE_HOMUN_LIST.size = -1;
+
+PACKET.ZC.TURORAN_STABLE_PET_LIST = function PACKET_ZC_TURORAN_STABLE_PET_LIST(fp, end) {
+	this.activePetId = fp.readLong();
+	this.count = fp.readUChar();
+	this.list = [];
+	for (let i = 0; i < this.count && fp.tell() < end; i++) {
+		this.list.push({
+			petId: fp.readLong(),
+			classId: fp.readLong(),
+			level: fp.readShort(),
+			intimate: fp.readShort(),
+			hungry: fp.readShort(),
+			eggId: fp.readLong(),
+			equip: fp.readLong(),
+			charId: fp.readLong(),
+			incubate: fp.readUChar(),
+			renameFlag: fp.readUChar(),
+			flags: fp.readUChar(),
+			name: fp.readBinaryString(24),
+			ownerName: fp.readBinaryString(24)
+		});
+	}
+};
+PACKET.ZC.TURORAN_STABLE_PET_LIST.size = -1;
+
+PACKET.ZC.TURORAN_STABLE_RESULT = function PACKET_ZC_TURORAN_STABLE_RESULT(fp, end) {
+	this.result = fp.readShort();
+	this.id = fp.readLong();
+};
+PACKET.ZC.TURORAN_STABLE_RESULT.size = 8;
+
+
 /**
  * Export
  */

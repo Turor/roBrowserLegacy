@@ -1,0 +1,31 @@
+<div id="TuroranStable">
+	<div class="titlebar">
+		<div class="left">Homunculus &amp; Pet Stable</div>
+		<div class="right">
+			<ui-button
+				class="base close"
+				bg="basic_interface/sys_close_off.bmp"
+				hover="basic_interface/sys_close_on.bmp"
+			></ui-button>
+		</div>
+	</div>
+	<div class="beta">Beta — cute pet eggs still work. Deposit an egg to share it with every character on this account.</div>
+	<div class="tabs">
+		<button class="tab active" data-tab="homun">Homunculus</button>
+		<button class="tab" data-tab="pets">Cute Pets</button>
+	</div>
+	<div class="panel panel-homun">
+		<div class="hint">One of each type per character. Store the active one, then Call Homunculus with an Embryo to raise another. Swap here anytime.</div>
+		<div class="list homun-list"></div>
+		<div class="actions">
+			<button class="action store-homun">Store current</button>
+		</div>
+	</div>
+	<div class="panel panel-pets" style="display:none">
+		<div class="hint">Account-wide. Summon without an egg. Legacy eggs on this character can be deposited. “To egg” restores the old egg item.</div>
+		<div class="list pet-list"></div>
+		<div class="actions">
+			<button class="action store-pet">Store current pet</button>
+		</div>
+	</div>
+</div>

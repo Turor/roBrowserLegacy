@@ -34,6 +34,7 @@ import ChatBox from 'UI/Components/ChatBox/ChatBox.js';
 import ChatBoxSettings from 'UI/Components/ChatBoxSettings/ChatBoxSettings.js';
 import StatusConst from 'DB/Status/StatusState.js';
 import CheckAttendance from 'UI/Components/CheckAttendance/CheckAttendance.js';
+import Stable from 'UI/Components/Stable/Stable.js';
 import WinStats from 'UI/Components/WinStats/WinStats.js';
 import Inventory from 'UI/Components/Inventory/Inventory.js';
 import Storage from 'UI/Components/Storage/Storage.js';
@@ -103,6 +104,7 @@ import GuildEngine from './MapEngine/Guild.js';
 import SkillEngine from './MapEngine/Skill.js';
 import ChatRoomEngine from './MapEngine/ChatRoom.js';
 import PetEngine from './MapEngine/Pet.js';
+import StableEngine from './MapEngine/Stable.js';
 import HomunEngine from './MapEngine/Homun.js';
 import MercenaryEngine from './MapEngine/Mercenary.js';
 import StoreEngine from './MapEngine/Store.js';
@@ -307,6 +309,7 @@ class MapEngine {
 			SkillEngine();
 			ChatRoomEngine();
 			PetEngine();
+	StableEngine();
 			HomunEngine();
 			MercenaryEngine();
 			StoreEngine();
@@ -407,6 +410,7 @@ class MapEngine {
 			if (Configs.get('enableCheckAttendance') && PACKETVER.value >= 20180307) {
 				CheckAttendance.prepare();
 			}
+			Stable.prepare();
 
 			if (PACKETVER.value >= 20200916) {
 				ItemReform.prepare();
@@ -750,6 +754,7 @@ function onMapChange(pkt) {
 		if (Configs.get('enableCheckAttendance') && PACKETVER.value >= 20180307) {
 			CheckAttendance.append();
 		}
+		Stable.append();
 
 		// Reload plugins
 		PluginManager.init();
