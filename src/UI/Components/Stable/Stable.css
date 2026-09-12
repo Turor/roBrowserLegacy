@@ -1,11 +1,11 @@
 :host {
-	width: 540px;
+	width: 640px;
 	height: 500px;
 }
 
 #TuroranStable {
 	position: absolute;
-	width: 540px;
+	width: 640px;
 	height: 500px;
 	display: flex;
 	flex-direction: column;
@@ -93,6 +93,66 @@
 	padding: 0 8px 6px;
 }
 
+#TuroranStable .pets-body {
+	flex: 1;
+	min-height: 0;
+	display: flex;
+	flex-direction: row;
+}
+
+#TuroranStable .pets-main {
+	flex: 1;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+#TuroranStable .pet-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(108px, 1fr));
+	gap: 8px;
+	align-content: start;
+}
+
+#TuroranStable .pet-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background: #fff8e8;
+	border: 1px solid #d4b88a;
+	padding: 6px 4px 4px;
+	cursor: pointer;
+}
+
+#TuroranStable .pet-card.selected,
+#TuroranStable .pet-card.active {
+	border-color: #8a5a28;
+	background: #ffe9c0;
+}
+
+#TuroranStable .pet-card canvas {
+	width: 96px;
+	height: 96px;
+	background: #efe3c0;
+	border: 1px solid #e0c890;
+	image-rendering: pixelated;
+}
+
+#TuroranStable .pet-card .card-name {
+	margin-top: 4px;
+	font-weight: bold;
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	text-align: center;
+}
+
+#TuroranStable .pet-card .card-sub {
+	color: #6a4a28;
+	font-size: 10px;
+}
+
 #TuroranStable .row {
 	display: flex;
 	align-items: center;
@@ -152,11 +212,11 @@
 	background: #f0d8a0;
 }
 
-#TuroranStable .empty,
-#TuroranStable .empty-detail {
+#TuroranStable .empty {
 	padding: 16px 8px;
 	text-align: center;
 	color: #7a5a38;
+	grid-column: 1 / -1;
 }
 
 #TuroranStable .actions {
@@ -177,33 +237,53 @@
 	color: #fff8e0;
 }
 
-#TuroranStable .pet-detail {
-	flex: 0 0 188px;
-	border-top: 1px solid #c9a66a;
+#TuroranStable .pet-side {
+	flex: 0 0 230px;
+	width: 230px;
+	border-left: 1px solid #c9a66a;
 	background: #fff6dc;
 	display: flex;
 	flex-direction: column;
 	min-height: 0;
+	padding: 6px 8px;
 }
 
-#TuroranStable .detail-main {
-	flex: 1;
+#TuroranStable .pet-side[hidden] {
+	display: none;
+}
+
+#TuroranStable .side-title {
 	display: flex;
-	flex-direction: row;
-	align-items: stretch;
-	min-height: 0;
-	padding: 6px 8px 0;
-	gap: 8px;
+	align-items: center;
+	justify-content: space-between;
+	font-weight: bold;
+	margin-bottom: 4px;
 }
 
-#TuroranStable .detail-stats {
-	flex: 1;
-	min-width: 0;
-	overflow-y: auto;
+#TuroranStable .side-close {
+	border: 0;
+	background: transparent;
+	font-size: 16px;
+	line-height: 1;
+	cursor: pointer;
+	color: #5a3b1a;
+}
+
+#TuroranStable .pet-sprite {
+	align-self: center;
+	width: 160px;
+	height: 170px;
+	background: #efe3c0;
+	border: 1px solid #d4b88a;
+	image-rendering: pixelated;
+	margin-bottom: 6px;
 }
 
 #TuroranStable .stats {
 	margin: 0;
+	flex: 1;
+	min-height: 0;
+	overflow-y: auto;
 }
 
 #TuroranStable .stats > div {
@@ -213,8 +293,8 @@
 }
 
 #TuroranStable .stats dt {
-	width: 72px;
-	flex: 0 0 72px;
+	width: 64px;
+	flex: 0 0 64px;
 	font-weight: bold;
 	color: #6a3a10;
 }
@@ -225,20 +305,30 @@
 	min-width: 0;
 }
 
-#TuroranStable .pet-sprite {
-	flex: 0 0 140px;
-	width: 140px;
-	height: 160px;
-	background: #efe3c0;
-	border: 1px solid #d4b88a;
-	image-rendering: pixelated;
+#TuroranStable .exp-row dd {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+#TuroranStable .exp-bar {
+	height: 8px;
+	background: #e0c890;
+	border: 1px solid #c9a66a;
+	position: relative;
+}
+
+#TuroranStable .exp-fill {
+	height: 100%;
+	width: 0;
+	background: #6aa84f;
 }
 
 #TuroranStable .detail-actions {
-	flex: 0 0 28px;
+	flex: 0 0 auto;
 	display: flex;
-	align-items: center;
+	flex-wrap: wrap;
 	justify-content: flex-end;
 	gap: 6px;
-	padding: 0 8px 4px;
+	padding-top: 6px;
 }

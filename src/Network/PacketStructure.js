@@ -15945,7 +15945,12 @@ PACKET.ZC.TURORAN_STABLE_PET_LIST = function PACKET_ZC_TURORAN_STABLE_PET_LIST(f
 			renameFlag: fp.readUChar(),
 			flags: fp.readUChar(),
 			name: fp.readBinaryString(24),
-			ownerName: fp.readBinaryString(24)
+			ownerName: fp.readBinaryString(24),
+			atk: fp.readShort(),
+			atk2: fp.readShort(),
+			aspd: fp.readShort(),
+			exp: fp.readLong(),
+			nextExp: fp.readLong()
 		});
 	}
 };

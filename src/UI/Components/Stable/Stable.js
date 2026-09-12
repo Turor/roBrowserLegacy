@@ -28,6 +28,7 @@ let _selectedPetId = 0;
 
 const _preview = {
 	entity: null,
+	cardEntity: null,
 	ctx: null,
 	running: false
 };
@@ -106,6 +107,16 @@ function sendPetAction(action, id) {
 	Network.sendPacket(pkt);
 }
 
+function getPreviewEntity() {
+	if (typeof Entity !== 'function') {
+		return null;
+	}
+	if (!_preview.entity) {
+		_preview.entity = new Entity();
+	}
+	return _preview.entity;
+}
+
 function stopPetPreview() {
 	if (_preview.running) {
 		Renderer.stop(renderPetPreview);
@@ -127,21 +138,17 @@ function renderPetPreview() {
 }
 
 function startPetPreview(classId) {
-	if (typeof Entity !== 'function') {
+	const entity = getPreviewEntity();
+	if (!entity) {
 		return;
 	}
-	if (!_preview.ctx) {
-		const root = Stable.getRoot();
-		const canvas = root?.querySelector('.pet-sprite');
-		if (!canvas) {
-			return;
-		}
-		_preview.ctx = canvas.getContext('2d');
+	const root = Stable.getRoot();
+	const canvas = root?.querySelector('.pet-sprite');
+	if (!canvas) {
+		return;
 	}
-	if (!_preview.entity) {
-		_preview.entity = new Entity();
-	}
-	_preview.entity.set({
+	_preview.ctx = canvas.getContext('2d');
+	entity.set({
 		objecttype: Entity.TYPE_PET,
 		job: classId,
 		action: 0,
@@ -151,6 +158,70 @@ function startPetPreview(classId) {
 		_preview.running = true;
 		Renderer.render(renderPetPreview);
 	}
+}
+
+const _stillQueue = [];
+let _stillBusy = false;
+
+function paintStill(canvas, classId) {
+	_stillQueue.push({ canvas, classId });
+	pumpStillQueue();
+}
+
+function pumpStillQueue() {
+	if (_stillBusy || !_stillQueue.length) {
+		return;
+	}
+	if (typeof Entity !== 'function') {
+		return;
+	}
+	if (!_preview.cardEntity) {
+		_preview.cardEntity = new Entity();
+	}
+	const item = _stillQueue.shift();
+	if (!item.canvas?.isConnected) {
+		pumpStillQueue();
+		return;
+	}
+	_stillBusy = true;
+	const entity = _preview.cardEntity;
+	entity.set({
+		objecttype: Entity.TYPE_PET,
+		job: item.classId,
+		action: 0,
+		direction: 0
+	});
+	const ctx = item.canvas.getContext('2d');
+	let frames = 0;
+	const paint = () => {
+		if (!item.canvas.isConnected) {
+			_stillBusy = false;
+			pumpStillQueue();
+			return;
+		}
+		SpriteRenderer.bind2DContext(ctx, Math.floor(item.canvas.width / 2), item.canvas.height - 4);
+		ctx.clearRect(0, 0, item.canvas.width, item.canvas.height);
+		entity.renderEntity();
+		frames++;
+		if (frames < 18) {
+			requestAnimationFrame(paint);
+		} else {
+			_stillBusy = false;
+			pumpStillQueue();
+		}
+	};
+	requestAnimationFrame(paint);
+}
+
+function closeSidePanel() {
+	const root = Stable.getRoot();
+	const side = root?.querySelector('.pet-side');
+	if (side) {
+		side.hidden = true;
+	}
+	_selectedPetId = 0;
+	stopPetPreview();
+	root?.querySelectorAll('.pet-card').forEach(el => el.classList.remove('selected'));
 }
 
 Stable.init = function init() {
@@ -174,10 +245,9 @@ Stable.init = function init() {
 	root.querySelector('.store-pet').addEventListener('click', () => {
 		sendPetAction(0, 0);
 	});
-	const canvas = root.querySelector('.pet-sprite');
-	if (canvas) {
-		_preview.ctx = canvas.getContext('2d');
-	}
+	root.querySelector('.side-close')?.addEventListener('click', () => {
+		closeSidePanel();
+	});
 	this.draggable(root.querySelector('.titlebar'));
 };
 
@@ -189,25 +259,21 @@ Stable.applyTab = function applyTab() {
 	});
 	root.querySelector('.panel-homun').style.display = tab === 'homun' ? '' : 'none';
 	root.querySelector('.panel-pets').style.display = tab === 'pets' ? '' : 'none';
-	if (tab === 'pets') {
-		const selected = _pets.list.find(row => row.petId === _selectedPetId) || _pets.list[0];
+	if (tab !== 'pets') {
+		stopPetPreview();
+	} else if (_selectedPetId) {
+		const selected = _pets.list.find(row => row.petId === _selectedPetId);
 		if (selected) {
 			Stable.showPetDetail(selected);
 		}
-	} else {
-		stopPetPreview();
 	}
 };
 
 Stable.onAppend = function onAppend() {
 	Object.assign(this._host.style, {
 		top: `${Math.min(Math.max(0, _preferences.y), Renderer.height - 500)}px`,
-		left: `${Math.min(Math.max(0, _preferences.x), Renderer.width - 540)}px`
+		left: `${Math.min(Math.max(0, _preferences.x), Renderer.width - 640)}px`
 	});
-	const canvas = this.getRoot().querySelector('.pet-sprite');
-	if (canvas) {
-		_preview.ctx = canvas.getContext('2d');
-	}
 	Stable.applyTab();
 	Stable.renderLists();
 };
@@ -242,6 +308,7 @@ Stable.setPetList = function setPetList(pkt) {
 	_pets = { activePetId: pkt.activePetId, list: pkt.list || [] };
 	if (_selectedPetId && !_pets.list.some(row => row.petId === _selectedPetId)) {
 		_selectedPetId = 0;
+		closeSidePanel();
 	}
 	Stable.renderLists();
 	if (this._host && this._host.style.display === 'none') {
@@ -273,24 +340,48 @@ Stable.showPetDetail = function showPetDetail(row) {
 		return;
 	}
 	_selectedPetId = row.petId;
-	const empty = root.querySelector('.empty-detail');
-	const stats = root.querySelector('.stats');
+	const side = root.querySelector('.pet-side');
+	if (side) {
+		side.hidden = false;
+	}
+	const nameEl = root.querySelector('.side-name');
+	if (nameEl) {
+		nameEl.textContent = row.name || 'Pet details';
+	}
+	root.querySelector('.d-name').textContent = row.name || '';
+	root.querySelector('.d-species').textContent = `${monsterName(row.classId)} (${row.classId})`;
+	root.querySelector('.d-level').textContent = String(row.level);
+	root.querySelector('.d-atk').textContent = `${row.atk ?? 0} ~ ${row.atk2 ?? 0}`;
+	root.querySelector('.d-aspd').textContent = String(row.aspd ?? '—');
+	root.querySelector('.d-hunger').textContent = `${hungerLabel(row.hungry)} (${row.hungry}/100)`;
+	root.querySelector('.d-intimacy').textContent = `${intimacyLabel(row.intimate, false)} (${row.intimate}/1000)`;
+	root.querySelector('.d-equip').textContent = itemName(row.equip);
+	root.querySelector('.d-status').textContent = petStatus(row);
+	root.querySelector('.d-rename').textContent = row.renameFlag ? 'Yes' : 'No';
+	root.querySelector('.d-owner').textContent = row.ownerName || '—';
+
+	const next = Number(row.nextExp) || 0;
+	const exp = Number(row.exp) || 0;
+	const fill = root.querySelector('.exp-fill');
+	const expText = root.querySelector('.d-exp');
+	if (next <= 0) {
+		if (fill) {
+			fill.style.width = '100%';
+		}
+		if (expText) {
+			expText.textContent = 'Max';
+		}
+	} else {
+		const pct = Math.max(0, Math.min(100, Math.floor((exp / next) * 100)));
+		if (fill) {
+			fill.style.width = `${pct}%`;
+		}
+		if (expText) {
+			expText.textContent = `${exp} / ${next} (${pct}%)`;
+		}
+	}
+
 	const actions = root.querySelector('.detail-actions');
-	if (empty) {
-		empty.hidden = true;
-	}
-	if (stats) {
-		stats.hidden = false;
-		root.querySelector('.d-name').textContent = row.name || '';
-		root.querySelector('.d-species').textContent = `${monsterName(row.classId)} (${row.classId})`;
-		root.querySelector('.d-level').textContent = String(row.level);
-		root.querySelector('.d-hunger').textContent = `${hungerLabel(row.hungry)} (${row.hungry}/100)`;
-		root.querySelector('.d-intimacy').textContent = `${intimacyLabel(row.intimate, false)} (${row.intimate}/1000)`;
-		root.querySelector('.d-equip').textContent = itemName(row.equip);
-		root.querySelector('.d-status').textContent = petStatus(row);
-		root.querySelector('.d-rename').textContent = row.renameFlag ? 'Yes' : 'No';
-		root.querySelector('.d-owner').textContent = row.ownerName || '—';
-	}
 	if (actions) {
 		actions.innerHTML = '';
 		const egg = (row.flags & 0x04) !== 0;
@@ -323,7 +414,7 @@ Stable.showPetDetail = function showPetDetail(row) {
 		}
 	}
 	startPetPreview(row.classId);
-	root.querySelectorAll('.pet-list .row').forEach(el => {
+	root.querySelectorAll('.pet-card').forEach(el => {
 		el.classList.toggle('selected', Number(el.dataset.petId) === row.petId);
 	});
 };
@@ -376,38 +467,28 @@ Stable.renderLists = function renderLists() {
 	if (!_pets.list.length) {
 		petList.innerHTML =
 			'<div class="empty">No pets in the account stable. Hatch or pick up an egg, then Deposit it here. Current pets can be Stored from this tab.</div>';
-		const empty = root.querySelector('.empty-detail');
-		const stats = root.querySelector('.stats');
-		const actions = root.querySelector('.detail-actions');
-		if (empty) {
-			empty.hidden = false;
-		}
-		if (stats) {
-			stats.hidden = true;
-		}
-		if (actions) {
-			actions.innerHTML = '';
-		}
-		stopPetPreview();
+		closeSidePanel();
 	} else {
 		petList.innerHTML = '';
 		_pets.list.forEach(row => {
 			const active = row.petId === _pets.activePetId;
 			const el = document.createElement('div');
-			el.className = 'row' + (active ? ' active' : '') + (row.petId === _selectedPetId ? ' selected' : '');
+			el.className = 'pet-card' + (active ? ' active' : '') + (row.petId === _selectedPetId ? ' selected' : '');
 			el.dataset.petId = String(row.petId);
 			el.innerHTML = `
-				<div class="meta">
-					<div class="name">${escapeHtml(row.name)} <span class="badge">${escapeHtml(monsterName(row.classId))}</span>${active ? '<span class="badge">Active</span>' : ''}</div>
-					<div class="sub">Lv ${row.level} · ${intimacyLabel(row.intimate, false)} · Hunger ${row.hungry} · ${escapeHtml(petStatus(row))}</div>
-				</div>
+				<canvas width="96" height="96"></canvas>
+				<div class="card-name">${escapeHtml(row.name)}</div>
+				<div class="card-sub">Lv ${row.level}${active ? ' · Out' : ''}</div>
 			`;
 			el.addEventListener('click', () => Stable.showPetDetail(row));
 			petList.appendChild(el);
+			paintStill(el.querySelector('canvas'), row.classId);
 		});
-		const selected = _pets.list.find(row => row.petId === _selectedPetId) || _pets.list[0];
-		if (selected && (_preferences.tab || 'homun') === 'pets') {
-			Stable.showPetDetail(selected);
+		if (_selectedPetId) {
+			const selected = _pets.list.find(row => row.petId === _selectedPetId);
+			if (selected) {
+				Stable.showPetDetail(selected);
+			}
 		}
 	}
 };
