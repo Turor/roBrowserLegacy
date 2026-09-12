@@ -801,8 +801,12 @@ class DB {
 		// so the client can tell them apart from the Renewal card at the original id.
 		const PRE_RE_CARD_OFFSET = 30000;
 		function mirrorPreReCardField(key, field, val) {
-			(ItemTable[key] || (ItemTable[key] = {}))[field] = val;
-			const preId = key + PRE_RE_CARD_OFFSET;
+			const id = Number(key);
+			(ItemTable[id] || (ItemTable[id] = {}))[field] = val;
+			if (!Number.isFinite(id) || id >= PRE_RE_CARD_OFFSET) {
+				return;
+			}
+			const preId = id + PRE_RE_CARD_OFFSET;
 			const pre = ItemTable[preId] || (ItemTable[preId] = {});
 			if (pre[field] == null) {
 				pre[field] = val;
@@ -2329,15 +2333,24 @@ class DB {
 	 */
 	static getItemInfo(itemid) {
 		let item = ItemTable[itemid];
-		if (!item && itemid > 30000) {
-			const base = ItemTable[itemid - 30000];
-			if (base) {
-				item = ItemTable[itemid] = {
-					...base,
-					identifiedDisplayName: String(base.identifiedDisplayName || '').replace(/ RE Card$/, ' Card'),
-					unidentifiedDisplayName: String(base.unidentifiedDisplayName || '').replace(/ RE Card$/, ' Card'),
-					_decoded: false
-				};
+		const base = itemid > 30000 ? ItemTable[itemid - 30000] : null;
+		if (!item && base) {
+			item = ItemTable[itemid] = {
+				...base,
+				identifiedDisplayName: String(base.identifiedDisplayName || '').replace(/ RE Card$/, ' Card'),
+				unidentifiedDisplayName: String(base.unidentifiedDisplayName || '').replace(/ RE Card$/, ' Card'),
+				_decoded: false
+			};
+		}
+		if (item && base) {
+			if (!item.illustResourcesName && base.illustResourcesName) {
+				item.illustResourcesName = base.illustResourcesName;
+			}
+			if (!item.prefixName && base.prefixName) {
+				item.prefixName = base.prefixName;
+			}
+			if (item.isPostfix == null && base.isPostfix) {
+				item.isPostfix = base.isPostfix;
 			}
 		}
 		item = item || unknownItem;
