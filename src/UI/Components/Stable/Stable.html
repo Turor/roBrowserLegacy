@@ -22,8 +22,28 @@
 		</div>
 	</div>
 	<div class="panel panel-pets" style="display:none">
-		<div class="hint">Account-wide. Summon without an egg. Legacy eggs on this character can be deposited. “To egg” restores the old egg item.</div>
+		<div class="hint">Click a pet to inspect it. The list scrolls. Summon from the account stable, or deposit a legacy egg.</div>
 		<div class="list pet-list"></div>
+		<div class="pet-detail">
+			<div class="detail-main">
+				<div class="detail-stats">
+					<div class="empty-detail">Click a pet in the list to see its details.</div>
+					<dl class="stats" hidden>
+						<div><dt>Name</dt><dd class="d-name"></dd></div>
+						<div><dt>Species</dt><dd class="d-species"></dd></div>
+						<div><dt>Level</dt><dd class="d-level"></dd></div>
+						<div><dt>Hunger</dt><dd class="d-hunger"></dd></div>
+						<div><dt>Intimacy</dt><dd class="d-intimacy"></dd></div>
+						<div><dt>Accessory</dt><dd class="d-equip"></dd></div>
+						<div><dt>Status</dt><dd class="d-status"></dd></div>
+						<div><dt>Renamed</dt><dd class="d-rename"></dd></div>
+						<div><dt>Owner</dt><dd class="d-owner"></dd></div>
+					</dl>
+				</div>
+				<canvas class="pet-sprite" width="140" height="160"></canvas>
+			</div>
+			<div class="detail-actions"></div>
+		</div>
 		<div class="actions">
 			<button class="action store-pet">Store current pet</button>
 		</div>

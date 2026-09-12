@@ -1,12 +1,15 @@
 :host {
-	width: 420px;
-	height: 420px;
+	width: 540px;
+	height: 500px;
 }
 
 #TuroranStable {
 	position: absolute;
-	width: 420px;
-	height: 420px;
+	width: 540px;
+	height: 500px;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
 	background: #f4ead0;
 	border: 2px solid #5a3b1a;
 	box-shadow: 2px 2px 0 #0004;
@@ -15,6 +18,7 @@
 }
 
 #TuroranStable .titlebar {
+	flex: 0 0 20px;
 	height: 20px;
 	background: #8a5a28;
 	color: #fff8e0;
@@ -37,6 +41,7 @@
 }
 
 #TuroranStable .beta {
+	flex: 0 0 auto;
 	background: #efe0a8;
 	color: #6a3a10;
 	padding: 6px 8px;
@@ -45,6 +50,7 @@
 }
 
 #TuroranStable .tabs {
+	flex: 0 0 24px;
 	display: flex;
 	background: #e6d3a8;
 	border-bottom: 1px solid #c9a66a;
@@ -65,16 +71,26 @@
 	border-bottom: 2px solid #8a5a28;
 }
 
+#TuroranStable .panel {
+	flex: 1;
+	min-height: 0;
+	display: flex;
+	flex-direction: column;
+}
+
 #TuroranStable .hint {
+	flex: 0 0 auto;
 	padding: 6px 8px;
 	color: #6a4a28;
 	line-height: 1.3;
 }
 
 #TuroranStable .list {
-	height: 270px;
+	flex: 1;
+	min-height: 0;
 	overflow-y: auto;
-	padding: 0 8px;
+	overflow-x: hidden;
+	padding: 0 8px 6px;
 }
 
 #TuroranStable .row {
@@ -86,9 +102,11 @@
 	border: 1px solid #d4b88a;
 	padding: 6px;
 	margin-bottom: 6px;
+	cursor: pointer;
 }
 
-#TuroranStable .row.active {
+#TuroranStable .row.active,
+#TuroranStable .row.selected {
 	border-color: #8a5a28;
 	background: #ffe9c0;
 }
@@ -117,7 +135,8 @@
 }
 
 #TuroranStable .row-actions button,
-#TuroranStable .actions .action {
+#TuroranStable .actions .action,
+#TuroranStable .detail-actions button {
 	border: 1px solid #8a5a28;
 	background: #e8c888;
 	color: #3a2410;
@@ -128,22 +147,20 @@
 }
 
 #TuroranStable .row-actions button:hover,
-#TuroranStable .actions .action:hover {
+#TuroranStable .actions .action:hover,
+#TuroranStable .detail-actions button:hover {
 	background: #f0d8a0;
 }
 
-#TuroranStable .empty {
-	padding: 20px 8px;
+#TuroranStable .empty,
+#TuroranStable .empty-detail {
+	padding: 16px 8px;
 	text-align: center;
 	color: #7a5a38;
 }
 
 #TuroranStable .actions {
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	height: 32px;
+	flex: 0 0 32px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -158,4 +175,70 @@
 	margin-left: 4px;
 	background: #8a5a28;
 	color: #fff8e0;
+}
+
+#TuroranStable .pet-detail {
+	flex: 0 0 188px;
+	border-top: 1px solid #c9a66a;
+	background: #fff6dc;
+	display: flex;
+	flex-direction: column;
+	min-height: 0;
+}
+
+#TuroranStable .detail-main {
+	flex: 1;
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+	min-height: 0;
+	padding: 6px 8px 0;
+	gap: 8px;
+}
+
+#TuroranStable .detail-stats {
+	flex: 1;
+	min-width: 0;
+	overflow-y: auto;
+}
+
+#TuroranStable .stats {
+	margin: 0;
+}
+
+#TuroranStable .stats > div {
+	display: flex;
+	gap: 8px;
+	margin-bottom: 3px;
+}
+
+#TuroranStable .stats dt {
+	width: 72px;
+	flex: 0 0 72px;
+	font-weight: bold;
+	color: #6a3a10;
+}
+
+#TuroranStable .stats dd {
+	margin: 0;
+	flex: 1;
+	min-width: 0;
+}
+
+#TuroranStable .pet-sprite {
+	flex: 0 0 140px;
+	width: 140px;
+	height: 160px;
+	background: #efe3c0;
+	border: 1px solid #d4b88a;
+	image-rendering: pixelated;
+}
+
+#TuroranStable .detail-actions {
+	flex: 0 0 28px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 6px;
+	padding: 0 8px 4px;
 }
