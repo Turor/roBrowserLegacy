@@ -41,10 +41,17 @@ CardIllustration.init = function init() {
  */
 CardIllustration.setCard = function setCard(item) {
 	const root = this.getRoot();
-	root.querySelector('.titlebar .text').textContent = item.identifiedDisplayName;
+	const id = item.ITID || item.nameid;
+	const info = id ? DB.getItemInfo(id) : item;
+	const title = (info && info.identifiedDisplayName) || item.identifiedDisplayName || '';
+	const illust = (info && info.illustResourcesName) || item.illustResourcesName;
+	root.querySelector('.titlebar .text').textContent = title;
 	root.querySelector('.content').style.backgroundImage = 'none';
+	if (!illust) {
+		return;
+	}
 
-	Client.loadFile(`${DB.INTERFACE_PATH}cardbmp/${item.illustResourcesName}.bmp`, data => {
+	Client.loadFile(`${DB.INTERFACE_PATH}cardbmp/${illust}.bmp`, data => {
 		const r = CardIllustration.getRoot();
 		r.querySelector('.content').style.backgroundImage = `url(${data})`;
 	});

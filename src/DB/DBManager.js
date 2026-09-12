@@ -399,7 +399,7 @@ class DB {
 			}
 			// Turoran: new filename so browser FileSystem cache of itemInfo.turoran.lua
 			// cannot hide the Id+30000 pre-re card entries.
-			const turoranDual = 'System/itemInfo.turoran.dual.lua';
+			const turoranDual = 'System/itemInfo.turoran.cards.lua';
 			if (!iteminfoNames.includes(turoranDual)) {
 				iteminfoNames.push(turoranDual);
 			}
@@ -813,7 +813,7 @@ class DB {
 			}
 		}
 		loadTable(
-			'data/num2cardillustnametable.txt',
+			'data/num2cardillustnametable.turoran.txt',
 			'#',
 			2,
 			function (_index, key, val) {
@@ -822,7 +822,7 @@ class DB {
 			onLoad()
 		);
 		loadTable(
-			'data/cardprefixnametable.txt',
+			'data/cardprefixnametable.turoran.txt',
 			'#',
 			2,
 			function (_index, key, val) {
