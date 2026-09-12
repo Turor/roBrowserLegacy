@@ -133,7 +133,9 @@ export function createBasicInfo(config) {
 				WorldMap.toggle();
 				break;
 			case 'bank':
-				Bank.toggle();
+				if (Configs.get('enableBank')) {
+					Bank.toggle();
+				}
 				break;
 			case 'quest':
 				Quest.getUI().toggle();
@@ -271,7 +273,11 @@ export function createBasicInfo(config) {
 			}
 		}
 
-		hideIds.forEach(id => {
+		const hidden = hideIds.slice();
+		if (!Configs.get('enableBank')) {
+			hidden.push('bank');
+		}
+		hidden.forEach(id => {
 			const el = root.querySelector(`#${id}`);
 			if (el) {
 				el.style.display = 'none';

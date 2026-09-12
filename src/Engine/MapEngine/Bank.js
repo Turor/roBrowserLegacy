@@ -21,18 +21,29 @@ class BankEngine {
 		Network.hookPacket(PACKET.ZC.ACK_BANKING_WITHDRAW, onBankWithdrawUpdate);
 		Network.hookPacket(PACKET.ZC.ACK_CLOSE_BANKING, onBankClose);
 	}
+
+	static requestOpen() {
+		requestBankInfo();
+	}
 }
 
-function onOpenBank(pkt) {
+function requestBankInfo() {
 	const send_pkt = new PACKET.CZ.REQ_BANKING_CHECK();
 	send_pkt.AID = Session.AID;
 	Network.sendPacket(send_pkt);
 }
 
+function onOpenBank(pkt) {
+	requestBankInfo();
+}
+
 function onBankInfo(pkt) {
 	if (!Bank.__active) {
 		Bank.append();
-		Bank.updateBankDisplay(pkt.money, Session.zeny);
+		if (typeof pkt.zeny === 'number') {
+		Session.zeny = pkt.zeny;
+	}
+	Bank.updateBankDisplay(pkt.money, Session.zeny);
 		Bank.focusInput();
 	}
 }
@@ -50,7 +61,10 @@ function onBankDepoUpdate(pkt) {
 
 	switch (pkt.reason) {
 		case 0:
-			Bank.updateBankDisplay(pkt.money, Session.zeny);
+			if (typeof pkt.zeny === 'number') {
+		Session.zeny = pkt.zeny;
+	}
+	Bank.updateBankDisplay(pkt.money, Session.zeny);
 			Bank.clearError();
 			break;
 		case 1:
@@ -77,7 +91,10 @@ function onBankWithdrawUpdate(pkt) {
 
 	switch (pkt.reason) {
 		case 0:
-			Bank.updateBankDisplay(pkt.money, Session.zeny);
+			if (typeof pkt.zeny === 'number') {
+		Session.zeny = pkt.zeny;
+	}
+	Bank.updateBankDisplay(pkt.money, Session.zeny);
 			Bank.clearError();
 			Bank.clearInput();
 			break;

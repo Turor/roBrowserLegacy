@@ -9,6 +9,7 @@
  */
 
 import DB from 'DB/DBManager.js';
+import Configs from 'Core/Configs.js';
 import Network from 'Network/NetworkManager.js';
 import PACKET from 'Network/PacketStructure.js';
 import KEYS from 'Controls/KeyEventHandler.js';
@@ -339,6 +340,9 @@ Bank.onShortCut = function onShortCut(key) {
  * Request to toggle open/close bank
  */
 Bank.toggle = function toggle() {
+	if (!Configs.get('enableBank')) {
+		return;
+	}
 	if (!Bank.__active) {
 		reqOpenBank();
 	} else {

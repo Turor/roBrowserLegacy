@@ -18,6 +18,7 @@ import PACKETVER from 'Network/PacketVerManager.js';
 import CheckAttendance from 'UI/Components/CheckAttendance/CheckAttendance.js';
 import EnchantGradeUI from 'UI/Components/EnchantGrade/EnchantGrade.js';
 import EnchantUI from 'UI/Components/Enchant/Enchant.js';
+import BankEngine from './Bank.js';
 
 /**
  * Received data and request to open a specific UI
@@ -41,6 +42,11 @@ function onUIOpen(pkt) {
 	//    10 = ENCHANT_UI
 
 	switch (pkt.ui_type) {
+		case 0: // BANK_UI (ZC_OPEN_UI / openbank)
+			if (Configs.get('enableBank')) {
+				BankEngine.requestOpen();
+			}
+			break;
 		case 7:
 			if (Configs.get('enableCheckAttendance') && PACKETVER.value >= 20180307) {
 				CheckAttendance.prepare();
