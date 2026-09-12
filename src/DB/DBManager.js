@@ -792,12 +792,23 @@ class DB {
 		);
 
 		// Card
+		// Turoran: pre-re monster cards live at officialId+30000. Mirror art/prefix
+		// so the client can tell them apart from the Renewal card at the original id.
+		const PRE_RE_CARD_OFFSET = 30000;
+		function mirrorPreReCardField(key, field, val) {
+			(ItemTable[key] || (ItemTable[key] = {}))[field] = val;
+			const preId = key + PRE_RE_CARD_OFFSET;
+			const pre = ItemTable[preId] || (ItemTable[preId] = {});
+			if (pre[field] == null) {
+				pre[field] = val;
+			}
+		}
 		loadTable(
 			'data/num2cardillustnametable.txt',
 			'#',
 			2,
 			function (_index, key, val) {
-				(ItemTable[key] || (ItemTable[key] = {})).illustResourcesName = val;
+				mirrorPreReCardField(key, 'illustResourcesName', val);
 			},
 			onLoad()
 		);
@@ -806,7 +817,7 @@ class DB {
 			'#',
 			2,
 			function (_index, key, val) {
-				(ItemTable[key] || (ItemTable[key] = {})).prefixName = val;
+				mirrorPreReCardField(key, 'prefixName', val);
 			},
 			onLoad(),
 			true
@@ -816,7 +827,7 @@ class DB {
 			'#',
 			1,
 			function (_index, key) {
-				(ItemTable[key] || (ItemTable[key] = {})).isPostfix = true;
+				mirrorPreReCardField(key, 'isPostfix', true);
 			},
 			onLoad(),
 			true
