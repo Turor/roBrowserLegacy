@@ -18,6 +18,9 @@ import htmlText from './PetInformations.html?raw';
 import cssText from './PetInformations.css?raw';
 import KEYS from 'Controls/KeyEventHandler.js';
 import PACKETVER from 'Network/PacketVerManager.js';
+import Configs from 'Core/Configs.js';
+import Session from 'Engine/SessionStorage.js';
+import EntityManager from 'Renderer/EntityManager.js';
 
 /**
  * Create Component
@@ -36,15 +39,19 @@ const _preferences = Preferences.get(
 	{
 		x: 100,
 		y: 200,
-		show: true
+		show: true,
+		autoFeed: 1
 	},
-	1.0
+	1.1
 );
 
 /**
- * Auto Feed Flag
+ * Auto Feed Flag (server CZ_CONFIG)
  */
 let petAutoFeeding = 0;
+let autoFeedInterval;
+const autoFeedIntervalMs = 1000 * 60 * 1;
+const autoFeedHunger = 25;
 
 /**
  * Initialize component
@@ -131,6 +138,13 @@ PetInformations.onAppend = function onAppend() {
 		if (feeding) {
 			feeding.style.display = 'none';
 		}
+	} else if (Configs.get('enablePetAutoFeed', true)) {
+		if (!petAutoFeeding) {
+			PetInformations.onConfigUpdate(2, 1);
+		}
+		if (PACKETVER.value < 20170920) {
+			PetInformations.startAutoFeed();
+		}
 	}
 
 	this._host.style.top = `${Math.min(Math.max(0, _preferences.y), Renderer.height - this._host.getBoundingClientRect().height)}px`;
@@ -145,6 +159,7 @@ PetInformations.onRemove = function onRemove() {
 	_preferences.y = parseInt(this._host.style.top, 10);
 	_preferences.x = parseInt(this._host.style.left, 10);
 	_preferences.save();
+	PetInformations.stopAutoFeed();
 };
 
 /**
@@ -260,8 +275,46 @@ PetInformations.setIntimacy = function setIntimacy(val) {
 	}
 };
 
+PetInformations.startAutoFeed = function startAutoFeed() {
+	window.clearInterval(autoFeedInterval);
+	autoFeedInterval = window.setInterval(
+		autoFeedCheck,
+		Number(Configs.get('petAutoFeedTimeMs')) || autoFeedIntervalMs
+	);
+	autoFeedCheck();
+};
+
+PetInformations.stopAutoFeed = function stopAutoFeed() {
+	window.clearInterval(autoFeedInterval);
+};
+
+function autoFeedCheck() {
+	if (!Configs.get('enablePetAutoFeed', true)) {
+		return;
+	}
+	if (!petAutoFeeding && !_preferences.autoFeed) {
+		return;
+	}
+	const player = Session.Entity;
+	if (!player || player.life.hp <= 0) {
+		return;
+	}
+	if (!Session.petId) {
+		return;
+	}
+	const hunger = Session.pet && typeof Session.pet.hungry === 'number' ? Session.pet.hungry : 100;
+	if (hunger > Number(Configs.get('petAutoFeedHunger', autoFeedHunger))) {
+		return;
+	}
+	if (typeof PetInformations.reqPetFeedSilent === 'function') {
+		PetInformations.reqPetFeedSilent();
+	}
+}
+
 PetInformations.setFeedConfig = function setFeedConfig(flag) {
 	petAutoFeeding = flag;
+	_preferences.autoFeed = flag ? 1 : 0;
+	_preferences.save();
 
 	const root = PetInformations.getRoot();
 	if (root) {

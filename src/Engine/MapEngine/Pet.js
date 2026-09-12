@@ -256,12 +256,20 @@ function onPetAction(pkt) {
 /**
  * Client request to feed QPet.
  */
+function sendPetFeed() {
+	const pkt = new PACKET.CZ.COMMAND_PET();
+	pkt.cSub = 1;
+	Network.sendPacket(pkt);
+}
+
+PetInformations.reqPetFeedSilent = function reqPetFeedSilent() {
+	sendPetFeed();
+};
+
 PetInformations.reqPetFeed = function reqPetFeed() {
 	// Are you sure you want to feed your pet ?
 	UIManager.showPromptBox(DB.getMessage(601), 'ok', 'cancel', () => {
-		const pkt = new PACKET.CZ.COMMAND_PET();
-		pkt.cSub = 1;
-		Network.sendPacket(pkt);
+		sendPetFeed();
 	});
 };
 
