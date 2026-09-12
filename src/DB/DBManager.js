@@ -5342,11 +5342,25 @@ function loadItemInfo(filename, callback, onEnd) {
 				// doing this way we avoid to have to load the other file
 				// on my tests dont care if the main() is on itemInfo.lub or itemInfo_f.lub the content is always the same
 				lua.doStringSync(`
+						function is_iteminfo_stub(d)
+							if type(d) ~= "table" or #d == 0 then
+								return true
+							end
+							if #d == 1 and d[1] == "..." then
+								return true
+							end
+							return false
+						end
 						function main_item()
-							_processedItems = _processedItems or {} 
+							_processedItems = _processedItems or {}
 							for ItemID, DESC in pairs(tbl) do
-								if not _processedItems[ItemID] and #DESC.identifiedDescriptionName > 0 then
-									_processedItems[ItemID] = true 
+								local stub = is_iteminfo_stub(DESC.identifiedDescriptionName)
+								if stub and _processedItems[ItemID] then
+									-- keep real overlay text
+								elseif #DESC.identifiedDescriptionName > 0 then
+									if not stub then
+										_processedItems[ItemID] = true
+									end
 									result, msg = AddItem(ItemID, DESC.unidentifiedDisplayName, DESC.unidentifiedResourceName, DESC.identifiedDisplayName, DESC.identifiedResourceName, DESC.slotCount, DESC.ClassNum)
 									if not result then
 										return false, msg
