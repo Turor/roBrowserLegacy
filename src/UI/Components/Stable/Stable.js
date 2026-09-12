@@ -27,7 +27,7 @@ let _pets = { activePetId: 0, list: [] };
 let _selectedPetId = 0;
 
 const _preview = {
-	entity: new Entity(),
+	entity: null,
 	ctx: null,
 	running: false
 };
@@ -117,7 +117,7 @@ function stopPetPreview() {
 }
 
 function renderPetPreview() {
-	if (!_preview.ctx) {
+	if (!_preview.ctx || !_preview.entity) {
 		return;
 	}
 	const ctx = _preview.ctx;
@@ -127,6 +127,9 @@ function renderPetPreview() {
 }
 
 function startPetPreview(classId) {
+	if (typeof Entity !== 'function') {
+		return;
+	}
 	if (!_preview.ctx) {
 		const root = Stable.getRoot();
 		const canvas = root?.querySelector('.pet-sprite');
@@ -134,6 +137,9 @@ function startPetPreview(classId) {
 			return;
 		}
 		_preview.ctx = canvas.getContext('2d');
+	}
+	if (!_preview.entity) {
+		_preview.entity = new Entity();
 	}
 	_preview.entity.set({
 		objecttype: Entity.TYPE_PET,
