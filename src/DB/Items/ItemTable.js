@@ -8408,6 +8408,5 @@ export default {
 	25005: { ClassNum: 0 },
 	25006: { ClassNum: 0 },
 	25007: { ClassNum: 0 },
-	25008: { ClassNum: 0 },
-	30000: { ClassNum: 0, illustResourcesName: 'mavka', prefixName: 'of Terra' }
+	25008: { ClassNum: 0 }
 };
