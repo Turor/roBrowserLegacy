@@ -1362,13 +1362,12 @@ function onEntityUseSkill(pkt) {
 			Sound.playPosition('_heal_effect.wav', dstEntity.position); // healing on neutral targets got another effect than undeads
 		}
 
-		// Hunter Fly / drain cards: amount is on the attacker (src), green like Heal
+		// Hunter Fly / HP-drain cards: amount is on the attacker (src), green like Heal
 		if (pkt.SKID === SkillId.NPC_BLOODDRAIN && pkt.level && srcEntity) {
 			Damage.add(pkt.level, srcEntity, Renderer.tick, null, Damage.TYPE.HEAL);
 		}
-		if (pkt.SKID === SkillId.NPC_ENERGYDRAIN && pkt.level && srcEntity) {
-			Damage.add(pkt.level, srcEntity, Renderer.tick, null, Damage.TYPE.HEAL | Damage.TYPE.SP);
-		}
+		// Dracula / SP-drain: blue numbers come from ZC.RECOVERY (same as SP heal).
+		// Keep the energy-drain particles from spamSkill below.
 
 		// Steal Coin zeny
 		if (pkt.SKID === SkillId.RG_STEALCOIN) {
