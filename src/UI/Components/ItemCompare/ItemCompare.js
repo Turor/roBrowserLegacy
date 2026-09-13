@@ -112,7 +112,7 @@ ItemCompare.init = function init() {
 	if (viewBtn) {
 		viewBtn.addEventListener('click', () => {
 			CardIllustration.append();
-			CardIllustration.setCard(this.item);
+			CardIllustration.setCard(Object.assign({}, this.item, { ITID: this._boundItem && this._boundItem.ITID }));
 		});
 	}
 
@@ -134,6 +134,7 @@ ItemCompare.setItem = function setItem(item) {
 	const optionContainer = root.querySelector('.option-container');
 
 	this.item = it;
+	this._boundItem = item;
 	Client.loadFile(
 		DB.INTERFACE_PATH +
 			'collection/' +

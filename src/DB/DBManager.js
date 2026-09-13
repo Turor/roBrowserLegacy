@@ -374,6 +374,27 @@ class DB {
 
 				if (DB.index === DB.count) {
 					DB.isLoaded = true;
+					const OFFSET = 30000;
+					for (const key of Object.keys(ItemTable)) {
+						const id = Number(key);
+						if (!Number.isFinite(id) || id >= OFFSET) {
+							continue;
+						}
+						const src = ItemTable[id];
+						if (!src) {
+							continue;
+						}
+						const dst = ItemTable[id + OFFSET] || (ItemTable[id + OFFSET] = {});
+						if (!dst.illustResourcesName && src.illustResourcesName) {
+							dst.illustResourcesName = src.illustResourcesName;
+						}
+						if (!dst.prefixName && src.prefixName) {
+							dst.prefixName = src.prefixName;
+						}
+						if (dst.isPostfix == null && src.isPostfix) {
+							dst.isPostfix = src.isPostfix;
+						}
+					}
 					// Force cleanup of DB file data (lua, txt, csv, bson blobs) that are no longer needed
 					// gl is null here because we may not have a WebGL context yet during lazy loading
 					MemoryManager.forceClean(null, /\.(lub|lua|txt|csv|bson)$/i);
@@ -2332,6 +2353,7 @@ class DB {
 	 * @return {object} item
 	 */
 	static getItemInfo(itemid) {
+		itemid = Number(itemid);
 		let item = ItemTable[itemid];
 		const base = itemid > 30000 ? ItemTable[itemid - 30000] : null;
 		if (!item && base) {

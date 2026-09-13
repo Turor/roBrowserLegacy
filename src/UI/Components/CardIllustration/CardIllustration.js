@@ -41,10 +41,14 @@ CardIllustration.init = function init() {
  */
 CardIllustration.setCard = function setCard(item) {
 	const root = this.getRoot();
-	const id = item.ITID || item.nameid;
+	const id = Number(item.ITID || item.nameid || 0);
 	const info = id ? DB.getItemInfo(id) : item;
 	const title = (info && info.identifiedDisplayName) || item.identifiedDisplayName || '';
-	const illust = (info && info.illustResourcesName) || item.illustResourcesName;
+	let illust = (info && info.illustResourcesName) || item.illustResourcesName;
+	if (!illust && id > 30000) {
+		const base = DB.getItemInfo(id - 30000);
+		illust = base && base.illustResourcesName;
+	}
 	root.querySelector('.titlebar .text').textContent = title;
 	root.querySelector('.content').style.backgroundImage = 'none';
 	if (!illust) {
