@@ -295,6 +295,7 @@ ChatBox.init = function init() {
 		inputChatbox.maxLength = MAX_LENGTH;
 
 		inputChatbox.addEventListener('input', event => {
+			applyChatChannelShortcut(inputChatbox);
 			const currentText = extractChatMessage(inputChatbox);
 			if (currentText.length >= MAX_LENGTH) {
 				event.preventDefault();
@@ -1187,6 +1188,22 @@ ChatBox.submit = function Submit() {
 
 	$text.innerHTML = '';
 
+	const channel = trimmedText.match(/^\/([pgcs])(?:\s+(.*))?$/i);
+	if (channel) {
+		const types = {
+			p: ChatBox.TYPE.PARTY,
+			g: ChatBox.TYPE.GUILD,
+			c: ChatBox.TYPE.CLAN,
+			s: ChatBox.TYPE.PUBLIC
+		};
+		onChangeTargetMessage(types[channel[1].toLowerCase()])();
+		const rest = (channel[2] || '').trim();
+		if (rest.length) {
+			this.onRequestTalk(user, rest, ChatBox.sendTo);
+		}
+		return;
+	}
+
 	// Command
 	if (trimmedText[0] === '/') {
 		Commands.processCommand.call(this, trimmedText.substr(1));
@@ -1199,6 +1216,56 @@ ChatBox.submit = function Submit() {
 /**
  * Extract plain chat text from the contenteditable input while preserving item links.
  */
+function applyChatChannelShortcut(inputEl) {
+	if (!inputEl) {
+		return;
+	}
+	const text = extractChatMessage(inputEl);
+	const match = text.match(/^\/([pgcs]) /i);
+	if (!match) {
+		return;
+	}
+	const types = {
+		p: ChatBox.TYPE.PARTY,
+		g: ChatBox.TYPE.GUILD,
+		c: ChatBox.TYPE.CLAN,
+		s: ChatBox.TYPE.PUBLIC
+	};
+	onChangeTargetMessage(types[match[1].toLowerCase()])();
+	stripLeadingChars(inputEl, match[0].length);
+	placeCaretAtEnd(inputEl);
+}
+
+function stripLeadingChars(el, count) {
+	let left = count;
+	const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+	const nodes = [];
+	while (walker.nextNode()) {
+		nodes.push(walker.currentNode);
+	}
+	for (let i = 0; i < nodes.length && left > 0; i++) {
+		const node = nodes[i];
+		const len = node.nodeValue.length;
+		if (len <= left) {
+			left -= len;
+			node.nodeValue = '';
+		} else {
+			node.nodeValue = node.nodeValue.slice(left);
+			left = 0;
+		}
+	}
+}
+
+function placeCaretAtEnd(el) {
+	el.focus();
+	const range = document.createRange();
+	const sel = window.getSelection();
+	range.selectNodeContents(el);
+	range.collapse(false);
+	sel.removeAllRanges();
+	sel.addRange(range);
+}
+
 function extractChatMessage(inputEl) {
 	if (!inputEl) return '';
 	const clone = inputEl.cloneNode(true);
