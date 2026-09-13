@@ -12238,9 +12238,26 @@ export default {
 		}
 	],
 
-	//723: [{}],	//EF_CHIMTO2	   Hundred Spear (sound effect)
-	//724: [{}],	//EF_WINDCUTTER	   Green version of Detecting
-	//725: [{}],	//EF_DETECT2	   Oratorio (like Detecting)
+	723: [
+{
+wav: 'hundred',
+attachedEntity: true
+}
+], // EF_CHIMTO2 Hundred Spear sound
+	724: [
+{
+type: 'STR',
+file: 'new_windcutter/new_windcutter/new_windcutter',
+attachedEntity: true
+}
+], // remade 3rd-job STR
+	725: [
+{
+type: 'STR',
+file: 'new_secrament/new_secrament/new_secrament',
+attachedEntity: true
+}
+], // remade 3rd-job STR
 	726: [
 		{
 			//EF_FROSTMYSTY	   Frost Misty (blue vapor and bubbles)
@@ -12274,7 +12291,13 @@ export default {
 			file: 'mashofa'
 		}
 	],
-	//730: [{}],	//EF_SPR_SOULE	   Small, cartoony explosion (part of Soul Expansion)
+	730: [
+{
+type: 'STR',
+file: 'new_soulexpansion/new_soulexpansion_hit/new_soulexpansion_hit',
+attachedEntity: true
+}
+], // remade 3rd-job STR
 
 	731: [
 		{
@@ -12339,7 +12362,13 @@ export default {
 	//741: [{}],	//EF_MAIZE_TRAP	   Old Maize Trap
 	//742: [{}],	//EF_VERDURE_TRAP	   Old Verdure Trap
 	//743: [{}],	//EF_NORMAL_TRAP	   White Ranger Trap
-	//744: [{}],	//EF_CLOAKING2	   Camouflage
+	744: [
+{
+type: 'STR',
+file: 'new_fearbreeze/new_fearbreeze',
+attachedEntity: true
+}
+], // remade 3rd-job STR
 
 	745: [
 		{
@@ -12395,9 +12424,21 @@ export default {
 		}
 	],
 
-	//751: [{}],	//EF_FIREBALL2	   Releasing summoned warlock spheres
+	751: [
+{
+type: 'STR',
+file: 'new_soulexpansion/new_soulexpansion_cast/new_soulexpansion_cast',
+attachedEntity: true
+}
+], // remade 3rd-job STR
 	//752: [{}],	//EF_BUNSINJYUTSU2	   Like Energy Coat, but not as dark
-	//753: [{}],	//EF_CLEARTIME	   Clearance
+	753: [
+{
+type: 'STR',
+file: 'new_clearence/new_clearence/new_clearence',
+attachedEntity: true
+}
+], // remade 3rd-job STR
 
 	754: [
 		{
@@ -12478,7 +12519,13 @@ export default {
 		}
 	],
 
-	//755: [{}],	//EF_ORATIO	   Oratio (spinning blue symbol)
+	755: [
+{
+type: 'STR',
+file: 'new_secrament/new_secrament/new_secrament',
+attachedEntity: true
+}
+], // remade 3rd-job STR
 
 	756: [
 		{
@@ -13431,12 +13478,24 @@ export default {
 	],
 
 	//768: [{}],	//EF_PURPLEBODY	   Blinking
-	//769: [{}],	//EF_STIN6	   Cross Ripper Slasher (flying knives)
+	769: [
+{
+type: 'STR',
+file: 'new_crossripperslasher/new_crossripperslasher/new_crossripperslasher',
+attachedEntity: true
+}
+], // remade 3rd-job STR
 	//770: [{}],	//EF_RG_COIN4	   Strip sound
 	//771: [{}],	//EF_POISONWAV	   Poison sound
 	//772: [{}],	//EF_POISONSMOKE	   Poison particles
 	//773: [{}],	//EF_GUMGANG4	   Expanding purple aura (part of Phantom Menace)
-	//774: [{}],	//EF_SHIELDBOOMERANG4	   Axe Boomerang
+	774: [
+{
+type: 'STR',
+file: 'new_axeboomerang/new_axeboomerang/new_axeboomerang',
+attachedEntity: true
+}
+], // remade 3rd-job STR
 
 	775: [
 		{
@@ -13460,22 +13519,58 @@ export default {
 		}
 	],
 
-	//776: [{}],	//EF_VULCANWAV	   Like Desperado sound effect
+	776: [
+{
+type: 'STR',
+file: 'new_vulcanarm/new_vulcanarm/new_vulcanarm',
+attachedEntity: true
+}
+], // remade 3rd-job STR
 	//777: [{}],	//EF_AGIUP2	   Faded light from the ground [S]
 	//778: [{}],	//EF_DETECT3	   Expanding white aura (like Clearance)
 	//779: [{}],	//EF_AGIUP3	   Faded light from the ground [S]
 	//780: [{}],	//EF_DETECT4	   Expanding red aura (from Infrared Scan)
-	//781: [{}],	//EF_ELECTRIC3	   Magnetic Field (purple chains)
+	781: [
+{
+type: 'STR',
+file: 'new_psychicwave/new_psychicwave/new_psychicwave',
+attachedEntity: true
+}
+], // remade 3rd-job STR
 	//782: [{}],	//EF_GUARD4	   All-around shield [S]
 	//783: [{}],	//EF_BOTTOM_BARRIER	   Yellow shaft of light
 	//784: [{}],	//EF_BOTTOM_STEALTH	   White shaft of light
-	//785: [{}],	//EF_REPAIRTIME	   Upward flying wrenches
+	785: [
+{
+type: 'STR',
+file: 'new_reparatio/new_reparatio/new_reparatio',
+attachedEntity: true
+}
+], // remade 3rd-job STR
 	//786: [{}],	//EF_NC_ANAL	   Symbol with bleeping sound [S]
-	//787: [{}],	//EF_FIRETHROW	   Flare Launcher (line of fire)
-	//788: [{}],	//EF_VENOMIMPRESS	   Venom Impress (green skull)
+	787: [
+{
+type: 'STR',
+file: 'new_dragonbreath/new_dragonbreath_bomb/new_dragonbreath_bomb',
+attachedEntity: true
+}
+], // remade 3rd-job STR
+	788: [
+{
+type: 'STR',
+file: 'new_potent_venom/new_potent_venom',
+attachedEntity: true
+}
+], // remade 3rd-job STR
 	//789: [{}],	//EF_FROSTMISTY	   Freezing Status Effect (two ancillas)
 	//790: [{}],	//EF_BURNING	   Burning Status Effect (flame symbol)
-	//791: [{}],	//EF_COLDTHROW	   Two ice shots
+	791: [
+{
+type: 'STR',
+file: 'new_diamonddust/new_diamonddust/new_diamonddust',
+attachedEntity: true
+}
+], // remade 3rd-job STR
 	//792: [{}],	//EF_MAKEHALLU	   Upward streaming white particles
 	//793: [{}],	//EF_HALLUTIME	   Same, but more brief
 	//794: [{}],	//EF_INFRAREDSCAN	   Infrared Scan (red lasers)
@@ -13498,8 +13593,20 @@ export default {
 			wav: 'effect/wl_stasis'
 		}
 	],
-	//800: [{}],	//EF_REDLINE	   Hell Inferno (red lights)
-	//801: [{}],	//EF_FROSTDIVER3	   Jack Frost unit (ice spikes)
+	800: [
+{
+type: 'STR',
+file: 'new_hellinferno/new_hellinferno/new_hellinferno',
+attachedEntity: true
+}
+], // remade 3rd-job STR
+	801: [
+{
+type: 'STR',
+file: 'new_jackfrost/new_jackfrost/new_jackfrost_00',
+attachedEntity: true
+}
+], // remade 3rd-job STR
 
 	802: [
 		//EF_BOTTOM_BASILICA2	   White Imprison
@@ -16347,7 +16454,465 @@ export default {
 		}
 	],
 
-	ef_: [
+	
+
+ef_rk_windcutter: [
+{
+type: 'STR',
+file: 'new_windcutter/new_windcutter/new_windcutter',
+attachedEntity: true
+}
+],
+
+ef_rk_ignitionbreak: [
+{
+type: 'STR',
+file: 'new_ignitionbreak/new_ignitionbreak/new_ignitionbreak',
+attachedEntity: true
+}
+],
+
+ef_rk_dragonbreath: [
+{
+type: 'STR',
+file: 'new_dragonbreath/new_dragonbreath_bomb/new_dragonbreath_bomb',
+attachedEntity: true
+}
+],
+
+ef_rk_dragonbreath_water: [
+{
+type: 'STR',
+file: 'new_dragonbreath_water/new_dragonbreath_water_bomb/new_dragonbreath_water_bomb',
+attachedEntity: true
+}
+],
+
+ef_wl_soulexpansion: [
+{
+type: 'STR',
+file: 'new_soulexpansion/new_soulexpansion_hit/new_soulexpansion_hit',
+attachedEntity: true
+}
+],
+
+ef_wl_comet: [
+{
+type: 'STR',
+file: 'new_comet/new_comet/new_comet',
+attachedEntity: true
+}
+],
+
+ef_wl_chainlightning: [
+{
+type: 'STR',
+file: 'new_chainlightning/new_chainlightning_target/new_chainlightning_target',
+attachedEntity: true
+}
+],
+
+ef_wl_crimsonrock: [
+{
+type: 'STR',
+file: 'new_crimsonrock/new_crimsonrock/new_crimsonrock',
+attachedEntity: true
+}
+],
+
+ef_wl_hellinferno: [
+{
+type: 'STR',
+file: 'new_hellinferno/new_hellinferno/new_hellinferno',
+attachedEntity: true
+}
+],
+
+ef_gc_crossimpact: [
+{
+type: 'STR',
+file: 'new_crossimpact/new_crossimpact/new_crossimpact',
+attachedEntity: true
+}
+],
+
+ef_gc_counterslash: [
+{
+type: 'STR',
+file: 'new_counter_slash/new_counter_slash/new_counter_slash',
+attachedEntity: true
+}
+],
+
+ef_gc_rollingcutter: [
+{
+type: 'STR',
+file: 'new_rollingcutter/new_rollingcutter/new_rollingcutter',
+attachedEntity: true
+}
+],
+
+ef_gc_crossripperslasher: [
+{
+type: 'STR',
+file: 'new_crossripperslasher/new_crossripperslasher/new_crossripperslasher',
+attachedEntity: true
+}
+],
+
+ef_gc_poisonsmoke: [
+{
+type: 'STR',
+file: 'new_poisonsmoke/new_poisonsmoke/new_poisonsmoke_1',
+attachedEntity: true
+}
+],
+
+ef_ab_judex: [
+{
+type: 'STR',
+file: 'new_judex/new_judex_target/new_judex_target',
+attachedEntity: true
+}
+],
+
+ef_ab_adoramus: [
+{
+type: 'STR',
+file: 'new_adoramus/new_adoramus/new_adoramus',
+attachedEntity: true
+}
+],
+
+ef_ab_epiclesis: [
+{
+type: 'STR',
+file: 'new_epiclesis/new_epiclesis_combine/new_epiclesis_combine',
+attachedEntity: true
+}
+],
+
+ef_ab_clearance: [
+{
+type: 'STR',
+file: 'new_clearence/new_clearence/new_clearence',
+attachedEntity: true
+}
+],
+
+ef_ab_secrament: [
+{
+type: 'STR',
+file: 'new_secrament/new_secrament/new_secrament',
+attachedEntity: true
+}
+],
+
+ef_ra_arrowstorm: [
+{
+type: 'STR',
+file: 'new_arrowstorm/new_arrowstorm_00/new_arrowstorm_00',
+attachedEntity: true
+}
+],
+
+ef_ra_aimedbolt: [
+{
+type: 'STR',
+file: 'new_aimedbolt/new_aimedbolt_target_loop/new_aimedbolt_target_loop',
+attachedEntity: true
+}
+],
+
+ef_ra_fearbreeze: [
+{
+type: 'STR',
+file: 'new_fearbreeze/new_fearbreeze',
+attachedEntity: true
+}
+],
+
+ef_nc_vulcanarm: [
+{
+type: 'STR',
+file: 'new_vulcanarm/new_vulcanarm/new_vulcanarm',
+attachedEntity: true
+}
+],
+
+ef_nc_armscannon: [
+{
+type: 'STR',
+file: 'new_armscannon/new_armscannon_01_up/new_armscannon_01_up',
+attachedEntity: true
+}
+],
+
+ef_nc_axetornado: [
+{
+type: 'STR',
+file: 'new_axetornado/new_axetornado/new_axetornado',
+attachedEntity: true
+}
+],
+
+ef_nc_axeboomerang: [
+{
+type: 'STR',
+file: 'new_axeboomerang/new_axeboomerang/new_axeboomerang',
+attachedEntity: true
+}
+],
+
+ef_nc_powerswing: [
+{
+type: 'STR',
+file: 'new_powerswing/new_powerswing_bottom/new_powerswing_bottom',
+attachedEntity: true
+}
+],
+
+ef_sc_fatalmenace: [
+{
+type: 'STR',
+file: 'new_fatal_menace/new_fatal_menace/new_fatal_menace',
+attachedEntity: true
+}
+],
+
+ef_sc_autoshadowspell: [
+{
+type: 'STR',
+file: 'new_autoshadowspell/new_autoshadowspell/new_autoshadowspell',
+attachedEntity: true
+}
+],
+
+ef_sc_reproduce: [
+{
+type: 'STR',
+file: 'new_reproduce/new_reproduce/new_reproduce',
+attachedEntity: true
+}
+],
+
+ef_sc_triangleshot: [
+{
+type: 'STR',
+file: 'new_triangleshot/new_triangleshot/new_triangleshot',
+attachedEntity: true
+}
+],
+
+ef_sc_feintbomb: [
+{
+type: 'STR',
+file: 'new_peintbomb/new_peintbomb/new_peintbomb',
+attachedEntity: true
+}
+],
+
+ef_lg_cannonspear: [
+{
+type: 'STR',
+file: 'new_cannon_spear/new_cannon_spear_01_clock/new_cannon_spear_01_clock',
+attachedEntity: true
+}
+],
+
+ef_lg_banishingpoint: [
+{
+type: 'STR',
+file: 'new_banishingpoint/new_banishingpoint_01/new_banishingpoint_01',
+attachedEntity: true
+}
+],
+
+ef_lg_overbrand: [
+{
+type: 'STR',
+file: 'new_overbrand/new_overbrand_hit/new_overbrand_hit',
+attachedEntity: true
+}
+],
+
+ef_lg_rayofgenesis: [
+{
+type: 'STR',
+file: 'new_rayofgenesis/new_rayofgenesis/new_rayofgenesis',
+attachedEntity: true
+}
+],
+
+ef_lg_earthdrive: [
+{
+type: 'STR',
+file: 'new_earthdrive/new_earthdrive/new_earthdrive',
+attachedEntity: true
+}
+],
+
+ef_sr_fallenempire: [
+{
+type: 'STR',
+file: 'new_fallenempire/new_fallenempire/new_fallenempire',
+attachedEntity: true
+}
+],
+
+ef_sr_tigercannon: [
+{
+type: 'STR',
+file: 'new_tigercannon/new_tigercannon',
+attachedEntity: true
+}
+],
+
+ef_sr_gateofhell: [
+{
+type: 'STR',
+file: 'new_gateofhell/new_gateofhell_target/new_gateofhell_target',
+attachedEntity: true
+}
+],
+
+ef_sr_rampageblaster: [
+{
+type: 'STR',
+file: 'new_rampageblaster/new_rampageblaster/new_rampageblaster',
+attachedEntity: true
+}
+],
+
+ef_wm_reverberation: [
+{
+type: 'STR',
+file: 'new_reverberation/new_reverberation_hit/new_reverberation_hit',
+attachedEntity: true
+}
+],
+
+ef_wm_severerainstorm: [
+{
+type: 'STR',
+file: 'new_severerainstorm/new_severerainstorm/new_severerainstorm',
+attachedEntity: true
+}
+],
+
+ef_wm_metalicsound: [
+{
+type: 'STR',
+file: 'new_metalicsound/new_metalicsound/new_metalicsound',
+attachedEntity: true
+}
+],
+
+ef_wm_howlingoflion: [
+{
+type: 'STR',
+file: 'new_howlingoflion/new_howlingoflion/new_howlingoflion',
+attachedEntity: true
+}
+],
+
+ef_wm_soundofdestruction: [
+{
+type: 'STR',
+file: 'new_soundofdestruction/new_soundofdestruction_target/new_soundofdestruction_target',
+attachedEntity: true
+}
+],
+
+ef_so_diamonddust: [
+{
+type: 'STR',
+file: 'new_diamonddust/new_diamonddust/new_diamonddust',
+attachedEntity: true
+}
+],
+
+ef_so_earthgrave: [
+{
+type: 'STR',
+file: 'new_earthgrave/new_earthgrave/new_earthgrave',
+attachedEntity: true
+}
+],
+
+ef_so_psychicwave: [
+{
+type: 'STR',
+file: 'new_psychicwave/new_psychicwave/new_psychicwave',
+attachedEntity: true
+}
+],
+
+ef_so_varetyr_spear: [
+{
+type: 'STR',
+file: 'new_varetyrspear/new_varetyrspear/new_varetyrspear',
+attachedEntity: true
+}
+],
+
+ef_so_spellfist: [
+{
+type: 'STR',
+file: 'new_spellfist/new_spellfist_fire/new_spellfist_fire',
+attachedEntity: true
+}
+],
+
+ef_gn_cart_tornado: [
+{
+type: 'STR',
+file: 'new_cart_tornado/new_cart_tornado/new_cart_tornado',
+attachedEntity: true
+}
+],
+
+ef_gn_cartcannon: [
+{
+type: 'STR',
+file: 'new_cart_cannon/new_cart_cannon/new_cart_cannon',
+attachedEntity: true
+}
+],
+
+ef_gn_cartboost: [
+{
+type: 'STR',
+file: 'new_cartboost/new_cartboost/new_cartboost',
+attachedEntity: true
+}
+],
+
+ef_gn_mandragora: [
+{
+type: 'STR',
+file: 'new_mandragora/new_mandragora/new_mandragora',
+attachedEntity: true
+}
+],
+
+ef_gn_wallofthorn: [
+{
+type: 'STR',
+file: 'new_wallofthorn/new_wallofthorn_cast/new_wallofthorn_cast',
+attachedEntity: true
+}
+],
+
+ef_ra_unlimit: [
+{
+type: 'STR',
+file: 'new_unlimit/new_unlimit/new_unlimit',
+attachedEntity: true
+}
+],
+
+ef_: [
 		{
 			wav: 'effect/',
 			attachedEntity: true
