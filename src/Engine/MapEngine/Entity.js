@@ -80,7 +80,11 @@ const SkillNameDisplayExclude = [
 	SkillId.WL_SUMMON_ATK_FIRE,
 	SkillId.WL_SUMMON_ATK_WIND,
 	SkillId.WL_SUMMON_ATK_WATER,
-	SkillId.WL_SUMMON_ATK_GROUND
+	SkillId.WL_SUMMON_ATK_GROUND,
+
+	// Weapon-card HP/SP drain (Hunter Fly, etc.) — visual only, no skill name
+	SkillId.NPC_BLOODDRAIN,
+	SkillId.NPC_ENERGYDRAIN
 ];
 
 // Skills that display blue crit like combo damage
@@ -1329,8 +1333,8 @@ function onEntityUseSkill(pkt) {
 		}
 	}
 
-	//Action handling
-	if (srcEntity) {
+	//Action handling (card drain is a proc — do not replay the skill motion)
+	if (srcEntity && pkt.SKID !== SkillId.NPC_BLOODDRAIN && pkt.SKID !== SkillId.NPC_ENERGYDRAIN) {
 		if (srcEntity.action !== srcEntity.ACTION.DIE && srcEntity.action !== srcEntity.ACTION.SIT) {
 			if (pkt.SKID in SkillActionTable) {
 				const action = SkillActionTable[pkt.SKID];
@@ -1356,6 +1360,14 @@ function onEntityUseSkill(pkt) {
 		if (pkt.SKID === SkillId.AL_HEAL || pkt.SKID === SkillId.AB_HIGHNESSHEAL || pkt.SKID === SkillId.AB_CHEAL) {
 			Damage.add(pkt.level, dstEntity, Renderer.tick, null, Damage.TYPE.HEAL);
 			Sound.playPosition('_heal_effect.wav', dstEntity.position); // healing on neutral targets got another effect than undeads
+		}
+
+		// Hunter Fly / drain cards: amount is on the attacker (src), green like Heal
+		if (pkt.SKID === SkillId.NPC_BLOODDRAIN && pkt.level && srcEntity) {
+			Damage.add(pkt.level, srcEntity, Renderer.tick, null, Damage.TYPE.HEAL);
+		}
+		if (pkt.SKID === SkillId.NPC_ENERGYDRAIN && pkt.level && srcEntity) {
+			Damage.add(pkt.level, srcEntity, Renderer.tick, null, Damage.TYPE.HEAL | Damage.TYPE.SP);
 		}
 
 		// Steal Coin zeny
