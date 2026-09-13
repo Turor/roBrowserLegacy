@@ -145,6 +145,25 @@ SkillAction[SK.SM_BASH] =
 	SkillAction[SK.SR_TIGERCANNON] =
 	SkillAction[SK.SR_CRESCENTELBOW] =
 	SkillAction[SK.SR_GATEOFHELL] =
+	SkillAction[SK.HFLI_MOON] =
+	SkillAction[SK.HFLI_SBR44] =
+	SkillAction[SK.HVAN_CAPRICE] =
+	SkillAction[SK.HVAN_EXPLOSION] =
+	SkillAction[SK.MH_NEEDLE_OF_PARALYZE] =
+	SkillAction[SK.MH_ERASER_CUTTER] =
+	SkillAction[SK.MH_XENO_SLASHER] =
+	SkillAction[SK.MH_SONIC_CRAW] =
+	SkillAction[SK.MH_SILVERVEIN_RUSH] =
+	SkillAction[SK.MH_MIDNIGHT_FRENZY] =
+	SkillAction[SK.MH_STAHL_HORN] =
+	SkillAction[SK.MH_HEILIGE_STANGE] =
+	SkillAction[SK.MH_TINDER_BREAKER] =
+	SkillAction[SK.MH_CBC] =
+	SkillAction[SK.MH_EQC] =
+	SkillAction[SK.MH_MAGMA_FLOW] =
+	SkillAction[SK.MH_LAVA_SLIDE] =
+	SkillAction[SK.MH_PYROCLASTIC] =
+	SkillAction[SK.MH_NEEDLE_STINGER] =
 		function (entity, tick) {
 			return {
 				action: entity.ACTION.ATTACK,

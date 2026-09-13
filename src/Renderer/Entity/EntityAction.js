@@ -241,7 +241,8 @@ export default function Init() {
 			this.ySize = 20;
 			break;
 
-		// Homunculus
+		// Homunculus / elemental: 8-action sprite (no player SKILL slot).
+		// Default SkillAction uses ACTION.SKILL; without it, MH_* FX never pose.
 		case Entity.TYPE_HOM:
 		case Entity.TYPE_ELEM:
 			this.ACTION.IDLE = 0;
@@ -252,6 +253,13 @@ export default function Init() {
 			this.ACTION.ATTACK2 = 5;
 			this.ACTION.ATTACK3 = 6;
 			this.ACTION.ACTION = 7;
+			this.ACTION.SKILL = 7;
+			this.ACTION.SIT = 0;
+			this.ACTION.PICKUP = 0;
+			this.ACTION.READYFIGHT = 0;
+			this.ACTION.FREEZE = 3;
+			this.ACTION.FREEZE2 = 3;
+			this.ACTION.ATTACK1 = 2;
 			break;
 
 		case Entity.TYPE_FALCON:

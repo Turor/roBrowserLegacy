@@ -726,7 +726,7 @@ SkillTargetSelection.onUseSkillToPos = function onUseSkillToPos(id, level, x, y)
 	let entity;
 	let range;
 
-	const isHomun = id > 8000 && id < 8044;
+	const isHomun = id > SkillId.HOMUN_BEGIN && id < SkillId.HOMUN_LAST;
 
 	if (isHomun) {
 		entity = EntityManager.get(Session.homunId);

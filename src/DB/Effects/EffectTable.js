@@ -10192,7 +10192,14 @@ export default {
 		}
 	],
 
-	//505: [{}],	//EF_MEMORIZE	   Memorize
+	505: [
+{
+type: 'STR',
+file: 'mapae',
+wav: 'effect/h_mental_change',
+attachedEntity: true
+}
+], // EF_MEMORIZE / Lif Mental Change
 	//506: [{}],	//EF_SOULLIGHT	   (Nothing)
 
 	507: [
@@ -10932,7 +10939,22 @@ export default {
 		}
 	],
 
-	//564: [{}],	//EF_HOMUNCASTING	   Wedding Cast
+	564: [
+{
+type: 'CYLINDER',
+alphaMax: 0.8,
+blendMode: 2,
+animation: 2,
+attachedEntity: true,
+bottomSize: 1,
+fade: true,
+height: 4,
+rotate: false,
+textureName: 'ring_yellow',
+topSize: 5,
+wav: 'effect/ef_beginspell'
+}
+], // EF_HOMUNCASTING
 
 	565: [
 		{
@@ -14614,8 +14636,20 @@ attachedEntity: true
 		}
 	],
 
-	//961: [{}],	//EF_SILENT_BREEZE	   Cartoony whirlwind
-	//962: [{}],	//EF_MAGMA_FLOW	   Rising fire
+	961: [
+{
+type: 'SPR',
+file: 'silent_brz',
+attachedEntity: true
+}
+], // EF_SILENT_BREEZE
+	962: [
+{
+type: 'SPR',
+file: 'magma_flow',
+attachedEntity: true
+}
+], // EF_MAGMA_FLOW
 	//963: [{}],	//EF_GRAYBODY	   Dark filter (like Stone Curse)
 
 	964: [
@@ -14889,7 +14923,15 @@ attachedEntity: true
 		}
 	],
 
-	1094: [
+	
+1082: [
+{
+type: 'STR',
+file: 'eraser_cutter',
+attachedEntity: true
+}
+], // EF_XENO_SLASHER (no dedicated STR; Eraser Cutter family)
+1094: [
 		{
 			//EF_ACH_COMPLETE
 			type: 'STR',
@@ -16908,6 +16950,40 @@ ef_ra_unlimit: [
 {
 type: 'STR',
 file: 'new_unlimit/new_unlimit/new_unlimit',
+attachedEntity: true
+}
+],
+
+
+
+ef_mh_needle: [
+{
+type: 'STR',
+file: 'needle_stinger/needle_stinger/needle_stinger',
+attachedEntity: true
+}
+],
+
+ef_mh_goldene: [
+{
+type: 'STR',
+file: 'goldene_tone/goldene_tone/goldene_tone',
+attachedEntity: true
+}
+],
+
+ef_mh_heilige_pferd: [
+{
+type: 'STR',
+file: 'heilige_pferd/heilige_pferd/heilige_pferd',
+attachedEntity: true
+}
+],
+
+ef_mh_stahlhorn: [
+{
+type: 'STR',
+file: 'eraser_cutter',
 attachedEntity: true
 }
 ],
