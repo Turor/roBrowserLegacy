@@ -32,15 +32,22 @@ let InvTypeName = '';
  * @param {object} pkt - PACKET.ZC.NOTIFY_STOREITEM_COUNTINFO
  */
 function onStorageInfo(pkt) {
-	if (!(Storage.getUI().__loaded && Storage.getUI().__active)) {
-		Storage.getUI().append();
-		// Update Storage Title based on InvTypeName
-		if (PACKETVER.value >= 20181002) {
-			Storage.getUI().ui.find('.titlebar .text').text(InvTypeName);
+	const ui = Storage.getUI();
+	if (!ui) {
+		return;
+	}
+	if (!(ui.__loaded && ui.__active)) {
+		ui.append();
+	}
+	if (PACKETVER.value >= 20181002 && InvTypeName) {
+		const title = ui.getRoot && ui.getRoot();
+		const el = title && title.querySelector('.titlebar .text');
+		if (el) {
+			el.textContent = InvTypeName;
 		}
 	}
-	Storage.getUI().setItemInfo(pkt.curCount, pkt.maxCount);
-	Storage.getUI().setItems(itemBuffer);
+	ui.setItemInfo(pkt.curCount, pkt.maxCount);
+	ui.setItems(itemBuffer);
 
 	itemBuffer = [];
 }
@@ -168,7 +175,7 @@ function onItemListSet(pkt) {
 			InvTypeName = pkt.name;
 			break;
 		default:
-			throw new Error("[PACKET.ZC.SPLIT_SEND_ITEMLIST_SET] - Unknown invType '" + pkt.invType + "'.");
+			console.warn("[PACKET.ZC.SPLIT_SEND_ITEMLIST_SET] Unknown invType", pkt.invType);
 	}
 }
 
@@ -185,7 +192,7 @@ function onItemListResult(pkt) {
 		case 3: // Guild Storage
 			break;
 		default:
-			throw new Error("[PACKET.ZC.SPLIT_SEND_ITEMLIST_RESULT] - Unknown invType '" + pkt.invType + "'.");
+			console.warn("[PACKET.ZC.SPLIT_SEND_ITEMLIST_RESULT] Unknown invType", pkt.invType);
 	}
 }
 

@@ -593,20 +593,31 @@ function onRecoverPenaltyOverweight(pkt) {
  *
  * @param {object} pkt - PACKET.ZC.SPLIT_SEND_ITEMLIST_NORMAL
  */
+function applyStorageItemList(pkt) {
+	const items = pkt.itemInfo || pkt.ItemInfo || [];
+	const ui = Storage.getUI();
+	if (!ui) {
+		return;
+	}
+	ui.append();
+	ui.setItems(items);
+}
+
 function onItemListNormal(pkt) {
+	const items = pkt.itemInfo || pkt.ItemInfo || [];
 	switch (pkt.invType) {
 		case 0:
-			Inventory.getUI().setItems(pkt.itemInfo || pkt.ItemInfo);
+			Inventory.getUI().setItems(items);
 			break;
 		case 1:
-			CartItems.setItems(pkt.itemInfo || pkt.ItemInfo);
+			CartItems.setItems(items);
 			break;
-		case 2:
-			Storage.getUI().append();
-			Storage.getUI().setItems(pkt.itemInfo || pkt.ItemInfo);
+		case 2: // Storage
+		case 3: // Guild Storage
+			applyStorageItemList(pkt);
 			break;
 		default:
-			throw new Error("[PACKET.ZC.SPLIT_SEND_ITEMLIST_NORMAL] - Unknown invType '" + pkt.invType + "'.");
+			console.warn("[PACKET.ZC.SPLIT_SEND_ITEMLIST_NORMAL] Unknown invType", pkt.invType);
 	}
 }
 
@@ -616,18 +627,20 @@ function onItemListNormal(pkt) {
  * @param {object} pkt - PACKET.ZC.SPLIT_SEND_ITEMLIST_EQUIP
  */
 function onItemListEquip(pkt) {
+	const items = pkt.itemInfo || pkt.ItemInfo || [];
 	switch (pkt.invType) {
 		case 0:
-			Inventory.getUI().setItems(pkt.itemInfo || pkt.ItemInfo);
+			Inventory.getUI().setItems(items);
 			break;
 		case 1:
-			CartItems.setItems(pkt.itemInfo || pkt.ItemInfo);
+			CartItems.setItems(items);
 			break;
-		case 2:
-			Storage.getUI().setItems(pkt.itemInfo || pkt.ItemInfo);
+		case 2: // Storage
+		case 3: // Guild Storage
+			applyStorageItemList(pkt);
 			break;
 		default:
-			throw new Error("[PACKET.ZC.SPLIT_SEND_ITEMLIST_NORMAL] - Unknown invType '" + pkt.invType + "'.");
+			console.warn("[PACKET.ZC.SPLIT_SEND_ITEMLIST_EQUIP] Unknown invType", pkt.invType);
 	}
 }
 

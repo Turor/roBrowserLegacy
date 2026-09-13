@@ -233,6 +233,9 @@ export function createStorage(config) {
 	};
 
 	Component.setItems = function setItems(items) {
+		if (!items || !items.length) {
+			return;
+		}
 		for (let i = 0, count = items.length; i < count; ++i) {
 			if (this.addItemSub(items[i])) {
 				_list.push(items[i]);
@@ -269,8 +272,11 @@ export function createStorage(config) {
 		const tab = getItemTab(item);
 
 		if (tab === _preferences.tab) {
-			const it = DB.getItemInfo(item.ITID);
+			const it = DB.getItemInfo(item.ITID) || {};
 			const root = this.getRoot();
+			if (!root) {
+				return true;
+			}
 			const content = root.querySelector('.container .content');
 
 			const itemEl = document.createElement('div');
