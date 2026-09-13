@@ -840,7 +840,9 @@ class DB {
 			function (_index, key, val) {
 				mirrorPreReCardField(key, 'illustResourcesName', val);
 			},
-			onLoad()
+			onLoad(),
+			false,
+			'windows-1252'
 		);
 		loadTable(
 			'data/cardprefixnametable.turoran.txt',
@@ -4346,14 +4348,14 @@ function getSystemAliases(basePath) {
  * @param {function} callback to call for each group
  * @param {function} onEnd to run once the file is loaded
  */
-function loadTable(filename, separator, size, callback, onEnd, useCharPage = false) {
+function loadTable(filename, separator, size, callback, onEnd, useCharPage = false, charset = null) {
 	Client.loadFile(
 		filename,
 		function (buffer) {
 			console.log('Loading file "' + filename + '"...');
 
 			let data = buffer instanceof ArrayBuffer ? new Uint8Array(buffer) : buffer;
-			data = TextEncoding.decode(data, useCharPage ? userCharpage : null);
+			data = TextEncoding.decode(data, charset || (useCharPage ? userCharpage : null));
 
 			// Remove commented lines
 			const content = ('\n' + data).replace(/\n(\/\/[^\n]+)/g, '');
