@@ -9251,6 +9251,14 @@ PACKET.ZC.PROGRESS.size = 10;
 PACKET.ZC.PROGRESS_CANCEL = function PACKET_ZC_PROGRESS_CANCEL(fp, end) {};
 PACKET.ZC.PROGRESS_CANCEL.size = 2;
 
+// 0x9d1 ZC_PROGRESS_ACTOR — progress bar on a unit (Venom Splasher, etc.)
+PACKET.ZC.PROGRESS_ACTOR = function PACKET_ZC_PROGRESS_ACTOR(fp, end) {
+	this.GID = fp.readULong();
+	this.color = fp.readULong();
+	this.time = fp.readULong();
+};
+PACKET.ZC.PROGRESS_ACTOR.size = 14;
+
 // 0x35d
 PACKET.ZC.SIMPLE_CASHSHOP_POINT_ITEMLIST = function PACKET_ZC_SIMPLE_CASHSHOP_POINT_ITEMLIST(fp, end) {
 	this.CashPoint = fp.readULong();

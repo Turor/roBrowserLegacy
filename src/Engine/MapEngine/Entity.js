@@ -2786,6 +2786,23 @@ function processBlockStatus(entity, pkt) {
 /**
  * Initialize
  */
+
+/**
+ * Progress bar attached to an entity (ZC_PROGRESS_ACTOR / 0x9d1).
+ * Used for Venom Splasher fuse on the target, not the caster.
+ */
+function onEntityProgressActor(pkt) {
+	const entity = EntityManager.get(pkt.GID);
+	if (!entity || !entity.cast) {
+		return;
+	}
+	const rgb =
+		'rgb(' +
+		[(pkt.color & 0x00ff0000) >> 16, (pkt.color & 0x0000ff00) >> 8, pkt.color & 0x000000ff].join(',') +
+		')';
+	entity.cast.set(pkt.time * 1000, pkt.color ? rgb : '#00FF00');
+}
+
 export default function EntityEngine() {
 	Network.hookPacket(PACKET.ZC.NOTIFY_STANDENTRY, onEntitySpam);
 	Network.hookPacket(PACKET.ZC.NOTIFY_NEWENTRY, onEntitySpam);
@@ -2879,4 +2896,5 @@ export default function EntityEngine() {
 	Network.hookPacket(PACKET.ZC.MVP_GETTING_ITEM, onEntityMvpRewardItemMessage);
 	Network.hookPacket(PACKET.ZC.ACK_CHANGE_TITLE, onTitleChangeAck);
 	Network.hookPacket(PACKET.ZC.HAT_EFFECT, onHatEffects);
+	Network.hookPacket(PACKET.ZC.PROGRESS_ACTOR, onEntityProgressActor);
 }
