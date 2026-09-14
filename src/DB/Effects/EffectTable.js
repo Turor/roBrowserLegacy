@@ -16992,7 +16992,7 @@ attachedEntity: true
 	1884: [
 		{
 			//EF_HEAL	   Heal Effect
-			alphaMax: 0.2,
+			alphaMax: 0.08,
 			animation: 1,
 			attachedEntity: true,
 			blendMode: 2,
@@ -17009,7 +17009,7 @@ attachedEntity: true
 			type: 'CYLINDER',
 		},
 		{
-			alphaMax: 0.2,
+			alphaMax: 0.08,
 			animation: 1,
 			attachedEntity: true,
 			blendMode: 2,
@@ -17026,7 +17026,7 @@ attachedEntity: true
 			type: 'CYLINDER'
 		},
 		{
-			alphaMax: 0.6,
+			alphaMax: 0.22,
 			attachedEntity: true,
 			blendMode: 2,
 			blue: 1,
@@ -17050,7 +17050,7 @@ attachedEntity: true
 			zIndex: 1
 		},
 		{
-			alphaMax: 0.6,
+			alphaMax: 0.22,
 			attachedEntity: true,
 			blendMode: 2,
 			blue: 1,
@@ -17077,7 +17077,7 @@ attachedEntity: true
 	1885: [
 		{
 			//EF_HEALSP	Blue restoring effect
-			alphaMax: 0.2,
+			alphaMax: 0.08,
 			animation: 1,
 			attachedEntity: true,
 			blendMode: 2,
@@ -17094,7 +17094,7 @@ attachedEntity: true
 			type: 'CYLINDER',
 		},
 		{
-			alphaMax: 0.8,
+			alphaMax: 0.28,
 			attachedEntity: true,
 			blendMode: 2,
 			duration: 1000,
@@ -17120,7 +17120,7 @@ attachedEntity: true
 			zIndex: 1
 		},
 		{
-			alphaMax: 0.8,
+			alphaMax: 0.28,
 			attachedEntity: true,
 			blendMode: 2,
 			duration: 900,
