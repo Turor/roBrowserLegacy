@@ -163,6 +163,9 @@ const renderGUI = (function renderGUIClosure() {
 		if (entity.cast.display) {
 			entity.cast.render(_matrix);
 		}
+		if (entity.fuse && entity.fuse.display) {
+			entity.fuse.render(_matrix);
+		}
 		if (entity.room.display) {
 			entity.room.render(_matrix);
 		}

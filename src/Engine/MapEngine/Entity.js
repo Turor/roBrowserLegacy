@@ -2793,14 +2793,14 @@ function processBlockStatus(entity, pkt) {
  */
 function onEntityProgressActor(pkt) {
 	const entity = EntityManager.get(pkt.GID);
-	if (!entity || !entity.cast) {
+	if (!entity || !entity.fuse) {
 		return;
 	}
 	const rgb =
 		'rgb(' +
 		[(pkt.color & 0x00ff0000) >> 16, (pkt.color & 0x0000ff00) >> 8, pkt.color & 0x000000ff].join(',') +
 		')';
-	entity.cast.set(pkt.time * 1000, pkt.color ? rgb : '#00FF00');
+	entity.fuse.set(pkt.time * 1000, pkt.color ? rgb : '#cc44ff');
 }
 
 export default function EntityEngine() {

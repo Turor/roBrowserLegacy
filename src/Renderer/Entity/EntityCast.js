@@ -32,19 +32,21 @@ const _size = new Float32Array(2);
  * @property {CanvasRenderingContext2D} ctx Progressbar 2d rendering context
  */
 class Cast {
-	constructor() {
+	constructor(opts) {
+		opts = opts || {};
 		this.tick = 0;
 		this.delay = 0;
 		this.percent = -1;
 		this.display = false;
-		this.color = '#00FF00';
+		this.color = opts.defaultColor || '#00FF00';
+		this.yOffset = opts.yOffset != null ? opts.yOffset : 90 / 35;
 		this.onComplete = null;
 
 		this.canvas = document.createElement('canvas');
-		this.canvas.className = 'entity-cast';
+		this.canvas.className = opts.className || 'entity-cast';
 		this.ctx = this.canvas.getContext('2d');
 		this.canvas.style.position = 'absolute';
-		this.canvas.style.zIndex = 1;
+		this.canvas.style.zIndex = opts.zIndex != null ? String(opts.zIndex) : '1';
 		this.canvas.width = 60;
 		this.canvas.height = 6;
 	}
@@ -133,7 +135,7 @@ class Cast {
 
 		// Cast position
 		_pos[0] = 0.0;
-		_pos[1] = 90 / 35;
+		_pos[1] = this.yOffset;
 		_pos[2] = 0.0;
 		_pos[3] = 1.0;
 
@@ -161,4 +163,11 @@ class Cast {
  */
 export default function Init() {
 	this.cast = new Cast();
+	// Venom Splasher fuse — purple, sits above the skill cast bar.
+	this.fuse = new Cast({
+		className: 'entity-fuse',
+		defaultColor: '#cc44ff',
+		yOffset: 90 / 35 + 0.45,
+		zIndex: 2
+	});
 }

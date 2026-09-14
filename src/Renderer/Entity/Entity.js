@@ -424,6 +424,9 @@ class Entity {
 		this.display.clean();
 		this.dialog.clean();
 		this.cast.clean();
+		if (this.fuse) {
+			this.fuse.clean();
+		}
 		this.room.clean();
 		this.attachments.remove('lockon');
 		this.animations.free();
