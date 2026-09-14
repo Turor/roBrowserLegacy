@@ -369,10 +369,10 @@ class Damage {
 			}
 			obj.delay = 3000;
 		} else if (obj.type & Damage.TYPE.CRIT) {
-			// yellow
-			obj.color[0] = 0.9;
-			obj.color[1] = 0.9;
-			obj.color[2] = 0.15;
+			// Turoran: crit numbers are red (including multi-hit abilities)
+			obj.color[0] = 1.0;
+			obj.color[1] = 0.0;
+			obj.color[2] = 0.0;
 
 			// Add CRIT background
 			const bgObj = new Damage();
