@@ -84,7 +84,9 @@ const SkillNameDisplayExclude = [
 
 	// Weapon-card HP/SP drain (Hunter Fly, etc.) — visual only, no skill name
 	SkillId.NPC_BLOODDRAIN,
-	SkillId.NPC_ENERGYDRAIN
+	SkillId.NPC_ENERGYDRAIN,
+	SkillId.TURORAN_CARD_HPGAIN,
+	SkillId.TURORAN_CARD_SPGAIN
 ];
 
 // Skills that display blue crit like combo damage
@@ -1334,7 +1336,13 @@ function onEntityUseSkill(pkt) {
 	}
 
 	//Action handling (card drain is a proc — do not replay the skill motion)
-	if (srcEntity && pkt.SKID !== SkillId.NPC_BLOODDRAIN && pkt.SKID !== SkillId.NPC_ENERGYDRAIN) {
+	if (
+		srcEntity &&
+		pkt.SKID !== SkillId.NPC_BLOODDRAIN &&
+		pkt.SKID !== SkillId.NPC_ENERGYDRAIN &&
+		pkt.SKID !== SkillId.TURORAN_CARD_HPGAIN &&
+		pkt.SKID !== SkillId.TURORAN_CARD_SPGAIN
+	) {
 		if (srcEntity.action !== srcEntity.ACTION.DIE && srcEntity.action !== srcEntity.ACTION.SIT) {
 			if (pkt.SKID in SkillActionTable) {
 				const action = SkillActionTable[pkt.SKID];
@@ -1368,6 +1376,13 @@ function onEntityUseSkill(pkt) {
 		}
 		// Dracula / SP-drain: blue numbers come from ZC.RECOVERY (same as SP heal).
 		// Keep the energy-drain particles from spamSkill below.
+		// Card HP/SP gain: numbers only (ZC.RECOVERY plays heal/SP wav).
+		if (pkt.SKID === SkillId.TURORAN_CARD_HPGAIN && pkt.level && srcEntity) {
+			Damage.add(pkt.level, srcEntity, Renderer.tick, null, Damage.TYPE.HEAL);
+		}
+		if (pkt.SKID === SkillId.TURORAN_CARD_SPGAIN && pkt.level && srcEntity) {
+			Damage.add(pkt.level, srcEntity, Renderer.tick, null, Damage.TYPE.HEAL | Damage.TYPE.SP);
+		}
 
 		// Steal Coin zeny
 		if (pkt.SKID === SkillId.RG_STEALCOIN) {
