@@ -436,7 +436,11 @@ class DB {
 			}
 			// Turoran: new filename so browser FileSystem cache of itemInfo.turoran.lua
 			// cannot hide the Id+30000 pre-re card entries.
-			const turoranDual = 'System/itemInfo.turoran.diff.lua';
+			const turoranRe = 'System/itemInfo.turoran.re.diff.lua';
+if (!iteminfoNames.includes(turoranRe)) {
+			iteminfoNames.push(turoranRe);
+		}
+		const turoranDual = 'System/itemInfo.turoran.diff.lua';
 			if (!iteminfoNames.includes(turoranDual)) {
 				iteminfoNames.push(turoranDual);
 			}
