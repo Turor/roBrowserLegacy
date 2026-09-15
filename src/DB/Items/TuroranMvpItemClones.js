@@ -143,6 +143,27 @@ const TuroranMvpItemClones = {
 	41473: { base: 1473, slotCount: 4 }, // Wizardy_Staff_Mvp
 	41468: { base: 1468, slotCount: 4 }, // Zephyrus_Mvp
 	41168: { base: 1168, slotCount: 4 }, // Zweihander_Mvp
+	445096: { base: 5096, slotCount: 2 }, // Assassin_Mask__RE_Mvp
+	445116: { base: 5116, slotCount: 2 }, // Banana_Hat_RE_Mvp
+	441614: { base: 1614, slotCount: 4 }, // Blessed_Wand_RE_Mvp
+	441615: { base: 1615, slotCount: 4 }, // Bone_Wand_RE_Mvp
+	442507: { base: 2507, slotCount: 2 }, // Cape_Of_Ancient_Lord_RE_Mvp
+	445019: { base: 5019, slotCount: 2 }, // Corsair_RE_Mvp
+	442235: { base: 2235, slotCount: 2 }, // Crown_RE_Mvp
+	442344: { base: 2344, slotCount: 2 }, // Flame_Sprits_Armor_RE_Mvp
+	445002: { base: 5002, slotCount: 2 }, // Gemmed_Crown_RE_Mvp
+	442111: { base: 2111, slotCount: 2 }, // Herald_Of_GOD_RE_Mvp
+	442327: { base: 2327, slotCount: 2 }, // Holy_Robe_RE_Mvp
+	445007: { base: 5007, slotCount: 2 }, // Loard_Circlet_RE_Mvp
+	442334: { base: 2334, slotCount: 2 }, // Mage_Coat_RE_Mvp
+	442256: { base: 2256, slotCount: 2 }, // Magestic_Goat_RE_Mvp
+	445012: { base: 5012, slotCount: 2 }, // Ph_D_Hat_RE_Mvp
+	445035: { base: 5035, slotCount: 2 }, // Poring_Hat_RE_Mvp
+	442615: { base: 2615, slotCount: 3 }, // Safety_Ring_RE_Mvp
+	442258: { base: 2258, slotCount: 2 }, // Sharp_Gear_RE_Mvp
+	441618: { base: 1618, slotCount: 4 }, // Survival_Rod__RE_Mvp
+	442234: { base: 2234, slotCount: 2 }, // Tiara_RE_Mvp
+	441473: { base: 1473, slotCount: 4 }, // Wizardy_Staff_RE_Mvp
 };
 
 export default TuroranMvpItemClones;
