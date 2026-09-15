@@ -23,6 +23,7 @@ import MonsterNameTable from './Monsters/MonsterNameTable.js';
 import PetIllustration from './Pets/PetIllustration.js';
 import PetAction from './Pets/PetAction.js';
 import ItemTable from './Items/ItemTable.js';
+import TuroranMvpItemClones from './Items/TuroranMvpItemClones.js';
 import ItemType from './Items/ItemType.js';
 import HatTable from './Items/HatTable.js';
 import ShieldTable from './Items/ShieldTable.js';
@@ -395,7 +396,22 @@ class DB {
 							dst.isPostfix = src.isPostfix;
 						}
 					}
-					// Force cleanup of DB file data (lua, txt, csv, bson blobs) that are no longer needed
+					
+				// Turoran: MVP drop clones (Id+40000) reuse official itemInfo sprites.
+				for (const [nid, spec] of Object.entries(TuroranMvpItemClones)) {
+					const src = ItemTable[spec.base];
+					if (!src) {
+						continue;
+					}
+					const dst = {
+						...src,
+						slotCount: spec.slotCount,
+						_decoded: false
+					};
+					ItemTable[Number(nid)] = dst;
+				}
+
+			// Force cleanup of DB file data (lua, txt, csv, bson blobs) that are no longer needed
 					// gl is null here because we may not have a WebGL context yet during lazy loading
 					MemoryManager.forceClean(null, /\.(lub|lua|txt|csv|bson)$/i);
 				}
@@ -2360,11 +2376,14 @@ class DB {
 		let base = null;
 		if (itemid >= 34001 && itemid <= 34453) {
 			base = ItemTable[itemid - 30000] || null;
+		} else if (TuroranMvpItemClones[itemid]) {
+			base = ItemTable[TuroranMvpItemClones[itemid].base] || ItemTable[itemid - 40000] || null;
 		} else if (itemid >= 400000 && itemid < 500000) {
 			base = ItemTable[itemid - 400000] || null;
 		}
 		if (!item && base) {
 			const isReCopy = itemid >= 400000 && itemid < 500000;
+			const mvp = TuroranMvpItemClones[itemid];
 			const idn = String(base.identifiedDisplayName || '');
 			const udn = String(base.unidentifiedDisplayName || '');
 			item = ItemTable[itemid] = {
@@ -2375,6 +2394,7 @@ class DB {
 				unidentifiedDisplayName: isReCopy
 					? (udn.endsWith(' RE') ? udn : udn + ' RE')
 					: udn.replace(/ RE Card$/, ' Card'),
+				slotCount: mvp ? mvp.slotCount : base.slotCount,
 				_decoded: false
 			};
 		}
