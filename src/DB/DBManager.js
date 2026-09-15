@@ -2357,12 +2357,24 @@ class DB {
 	static getItemInfo(itemid) {
 		itemid = Number(itemid);
 		let item = ItemTable[itemid];
-		const base = itemid > 30000 ? ItemTable[itemid - 30000] : null;
+		let base = null;
+		if (itemid >= 34001 && itemid <= 34453) {
+			base = ItemTable[itemid - 30000] || null;
+		} else if (itemid >= 400000 && itemid < 500000) {
+			base = ItemTable[itemid - 400000] || null;
+		}
 		if (!item && base) {
+			const isReCopy = itemid >= 400000 && itemid < 500000;
+			const idn = String(base.identifiedDisplayName || '');
+			const udn = String(base.unidentifiedDisplayName || '');
 			item = ItemTable[itemid] = {
 				...base,
-				identifiedDisplayName: String(base.identifiedDisplayName || '').replace(/ RE Card$/, ' Card'),
-				unidentifiedDisplayName: String(base.unidentifiedDisplayName || '').replace(/ RE Card$/, ' Card'),
+				identifiedDisplayName: isReCopy
+					? (idn.endsWith(' RE') ? idn : idn + ' RE')
+					: idn.replace(/ RE Card$/, ' Card'),
+				unidentifiedDisplayName: isReCopy
+					? (udn.endsWith(' RE') ? udn : udn + ' RE')
+					: udn.replace(/ RE Card$/, ' Card'),
 				_decoded: false
 			};
 		}
