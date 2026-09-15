@@ -324,6 +324,43 @@
 	background: #6aa84f;
 }
 
+#TuroranStable .evo-block {
+	flex-direction: column;
+	align-items: stretch;
+	gap: 4px;
+	margin-top: 8px;
+	padding-top: 6px;
+	border-top: 1px solid #c9a66a;
+}
+
+#TuroranStable .evo-heading {
+	width: auto;
+	flex: none;
+}
+
+#TuroranStable .d-evo-materials {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+#TuroranStable .evo-target {
+	font-weight: bold;
+	color: #5a3b1a;
+	margin-top: 2px;
+}
+
+#TuroranStable .evo-mat {
+	display: flex;
+	justify-content: space-between;
+	gap: 8px;
+}
+
+#TuroranStable .evo-mat .qty {
+	flex: 0 0 auto;
+	color: #6a3a10;
+}
+
 #TuroranStable .detail-actions {
 	flex: 0 0 auto;
 	display: flex;

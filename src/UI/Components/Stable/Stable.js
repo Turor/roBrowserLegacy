@@ -358,6 +358,43 @@ Stable.showPetDetail = function showPetDetail(row) {
 	root.querySelector('.d-rename').textContent = row.renameFlag ? 'Yes' : 'No';
 	root.querySelector('.d-owner').textContent = row.ownerName || '—';
 
+	const evoBlock = root.querySelector('.evo-block');
+	const evoList = root.querySelector('.d-evo-materials');
+	if (evoBlock && evoList) {
+		evoList.innerHTML = '';
+		const evolution =
+			typeof DB.getPetEvolutionByJob === 'function' ? DB.getPetEvolutionByJob(row.classId) : null;
+		if (evolution && Object.keys(evolution).length) {
+			evoBlock.hidden = false;
+			for (const targetEggID of Object.keys(evolution)) {
+				const evoPet = DB.getPetByEggID(Number(targetEggID));
+				const target = document.createElement('div');
+				target.className = 'evo-target';
+				target.textContent = evoPet
+					? evoPet.PetString || evoPet.PetName || `Egg ${targetEggID}`
+					: `Egg ${targetEggID}`;
+				evoList.appendChild(target);
+				const materials = evolution[targetEggID] || [];
+				for (const mat of materials) {
+					const item = DB.getItemInfo(mat.MaterialID);
+					const name = item ? item.identifiedDisplayName || item.Name : `Item ${mat.MaterialID}`;
+					const rowEl = document.createElement('div');
+					rowEl.className = 'evo-mat';
+					const nameEl = document.createElement('span');
+					nameEl.textContent = name;
+					const qtyEl = document.createElement('span');
+					qtyEl.className = 'qty';
+					qtyEl.textContent = String(mat.Amount);
+					rowEl.appendChild(nameEl);
+					rowEl.appendChild(qtyEl);
+					evoList.appendChild(rowEl);
+				}
+			}
+		} else {
+			evoBlock.hidden = true;
+		}
+	}
+
 	const next = Number(row.nextExp) || 0;
 	const exp = Number(row.exp) || 0;
 	const fill = root.querySelector('.exp-fill');
