@@ -55,6 +55,7 @@ import Network from 'Network/NetworkManager.js';
 import PACKET from 'Network/PacketStructure.js';
 import PACKETVER from 'Network/PacketVerManager.js';
 import MemoryManager from 'Core/MemoryManager.js';
+import Session from 'Engine/SessionStorage.js';
 
 //Pet
 //MapName
@@ -254,6 +255,104 @@ TextEncoding.setCharset(grfCharpage);
 
 // create decoders
 const userStringDecoder = TextEncoding;
+
+/**
+ * Parent job for skill-description job prefixes (Mage vs Priest Safety Wall, Acolyte vs Crusader Cure).
+ * Prefix is the JobId that learns the skill with those requirements.
+ */
+const JOB_SKILL_PARENT = (() => {
+	const parent = Object.create(null);
+	for (const k of Object.keys(JobId)) {
+		const v = JobId[k];
+		if (typeof v !== 'number') {
+			continue;
+		}
+		if (k.endsWith('_H') || k.endsWith('_B')) {
+			const base = k.replace(/_[HB]$/, '');
+			if (typeof JobId[base] === 'number') {
+				parent[v] = JobId[base];
+			}
+		}
+		if (/2$/.test(k)) {
+			const base = k.slice(0, -1);
+			if (typeof JobId[base] === 'number') {
+				parent[v] = JobId[base];
+			}
+		}
+	}
+	const second = {
+		KNIGHT: 'SWORDMAN',
+		PRIEST: 'ACOLYTE',
+		WIZARD: 'MAGICIAN',
+		BLACKSMITH: 'MERCHANT',
+		HUNTER: 'ARCHER',
+		ASSASSIN: 'THIEF',
+		CRUSADER: 'SWORDMAN',
+		MONK: 'ACOLYTE',
+		SAGE: 'MAGICIAN',
+		ROGUE: 'THIEF',
+		ALCHEMIST: 'MERCHANT',
+		BARD: 'ARCHER',
+		DANCER: 'ARCHER',
+		SUPERNOVICE: 'NOVICE',
+		SUPERNOVICE2: 'SUPERNOVICE'
+	};
+	for (const [child, par] of Object.entries(second)) {
+		if (typeof JobId[child] === 'number' && typeof JobId[par] === 'number') {
+			parent[JobId[child]] = JobId[par];
+		}
+	}
+	const third = {
+		RUNE_KNIGHT: 'KNIGHT',
+		WARLOCK: 'WIZARD',
+		RANGER: 'HUNTER',
+		ARCHBISHOP: 'PRIEST',
+		MECHANIC: 'BLACKSMITH',
+		GUILLOTINE_CROSS: 'ASSASSIN',
+		ROYAL_GUARD: 'CRUSADER',
+		SORCERER: 'SAGE',
+		MINSTREL: 'BARD',
+		WANDERER: 'DANCER',
+		SURA: 'MONK',
+		GENETIC: 'ALCHEMIST',
+		SHADOW_CHASER: 'ROGUE'
+	};
+	for (const [child, par] of Object.entries(third)) {
+		if (typeof JobId[child] === 'number' && typeof JobId[par] === 'number') {
+			parent[JobId[child]] = JobId[par];
+		}
+	}
+	return parent;
+})();
+
+function jobAncestry(job) {
+	const seen = new Set();
+	let j = job;
+	let guard = 0;
+	while (j != null && !seen.has(j) && guard++ < 16) {
+		seen.add(j);
+		j = JOB_SKILL_PARENT[j];
+	}
+	return seen;
+}
+
+function filterJobPrefixedSkillDesc(desc, job) {
+	if (!desc || job == null || job < 0) {
+		return desc;
+	}
+	const ancestry = jobAncestry(job);
+	return String(desc)
+		.split('\n')
+		.filter(line => {
+			const m = line.match(/^(\d+)\^/);
+			if (!m) {
+				return true;
+			}
+			return ancestry.has(Number(m[1]));
+		})
+		.map(line => line.replace(/^\d+(?=\^)/, ''))
+		.join('\n');
+}
 
 /**
  * DB NameSpace
@@ -527,7 +626,7 @@ if (!iteminfoNames.includes(turoranRe)) {
 				}
 				// Load description - skillid.lub is re-executed harmlessly (Lua just repopulates globals)
 				loadLuaTable(
-					[DB.LUA_PATH + 'skillinfoz/skillid.turoran2.lub', DB.LUA_PATH + 'skillinfoz/skilldescript.turoran9.lub'],
+					[DB.LUA_PATH + 'skillinfoz/skillid.turoran2.lub', DB.LUA_PATH + 'skillinfoz/skilldescript.turoran10.lub'],
 					'SKILL_DESCRIPT',
 					_json => {
 						SkillDescription = _json;
@@ -2829,6 +2928,8 @@ if (!iteminfoNames.includes(turoranRe)) {
 	 */
 	static getSkillDescription(id, level) {
 		let desc = SkillDescription[id] || '...';
+		const job = Session.Entity ? Session.Entity.job : null;
+		desc = filterJobPrefixedSkillDesc(desc, job);
 		const info = SkillInfo[id];
 		const amounts = info && Array.isArray(info.SpAmount) ? info.SpAmount.map(Number) : [];
 		const lv = Math.max(1, level || 1);
