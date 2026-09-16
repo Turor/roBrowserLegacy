@@ -3634,6 +3634,14 @@ SkillInfo[SK.MER_BENEDICTION] = {
 	bSeperateLv: false,
 	AttackRange: [9]
 };
+SkillInfo[SK.PR_BOOKMASTERY] = {
+	Name: 'SA_ADVANCEDBOOK',
+	SkillName: 'Book Mastery',
+	MaxLv: 10,
+	SpAmount: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	bSeperateLv: false,
+	AttackRange: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+};
 SkillInfo[SK.PR_MACEMASTERY] = {
 	Name: 'PR_MACEMASTERY',
 	SkillName: 'Mace Mastery',

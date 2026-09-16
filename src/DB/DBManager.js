@@ -513,7 +513,7 @@ if (!iteminfoNames.includes(turoranRe)) {
 
 			// Skill - load skillid.lub to populate SKID, then load description
 			const onSkillEnd = onLoad();
-			loadLuaValue(DB.LUA_PATH + 'skillinfoz/skillid.turoran.lub', 'SKID', json => {
+			loadLuaValue(DB.LUA_PATH + 'skillinfoz/skillid.turoran2.lub', 'SKID', json => {
 				if (json && typeof json === 'object') {
 					// Validate and merge entries into SKID
 					for (const k in json) {
@@ -527,16 +527,16 @@ if (!iteminfoNames.includes(turoranRe)) {
 				}
 				// Load description - skillid.lub is re-executed harmlessly (Lua just repopulates globals)
 				loadLuaTable(
-					[DB.LUA_PATH + 'skillinfoz/skillid.turoran.lub', DB.LUA_PATH + 'skillinfoz/skilldescript.turoran8.lub'],
+					[DB.LUA_PATH + 'skillinfoz/skillid.turoran2.lub', DB.LUA_PATH + 'skillinfoz/skilldescript.turoran9.lub'],
 					'SKILL_DESCRIPT',
 					_json => {
 						SkillDescription = _json;
 					},
 					() => {
 						// Calls after skillids and descs been populated
-						loadSkillInfoList(DB.LUA_PATH + 'skillinfoz/skillinfolist.turoran4.lub', null, () => {
+						loadSkillInfoList(DB.LUA_PATH + 'skillinfoz/skillinfolist.turoran5.lub', null, () => {
 							loadSkillSpAmountTable(() => {
-								loadSkillTreeView(DB.LUA_PATH + 'skillinfoz/skilltreeview.wsarmor3.lub', null, () => {
+								loadSkillTreeView(DB.LUA_PATH + 'skillinfoz/skilltreeview.bookm.lub', null, () => {
 									// Load ez2streffect, PACKETVER unknown when the while has been added, tied to default PACKETVER of rathena for 4th job
 									if (PACKETVER.value >= 20211103) {
 										const bsonOnLoad = onLoad();
