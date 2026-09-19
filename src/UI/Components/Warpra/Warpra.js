@@ -71,7 +71,7 @@ function formatZeny(n) {
 }
 
 function thumbUrl(map) {
-	return `warpra/${encodeURIComponent(map)}.png`;
+	return `/warpra/${encodeURIComponent(map)}.jpg`;
 }
 
 function sendAction(action, kind, locId) {
