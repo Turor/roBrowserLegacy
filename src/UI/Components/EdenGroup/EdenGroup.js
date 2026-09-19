@@ -219,12 +219,17 @@ EdenGroup.renderList = function renderList() {
 	if (!rows.length) {
 		const empty = document.createElement('div');
 		empty.className = 'empty';
-		empty.textContent =
-			tab === 'turnin'
-				? 'No missions ready to turn in.'
-				: tab === 'active'
-					? 'No mission in progress.'
-					: 'No Eden missions for this filter.';
+		if (tab === 'turnin') {
+			empty.textContent = 'No missions ready to turn in.';
+		} else if (tab === 'active') {
+			empty.textContent = 'No mission in progress.';
+		} else if (tab === 'available' && _baseLevel < 11) {
+			empty.textContent = `No hunts for base level ${_baseLevel}. Eden hunting starts at level 11.`;
+		} else if (tab === 'available') {
+			empty.textContent = `No available hunts for base level ${_baseLevel}.`;
+		} else {
+			empty.textContent = 'No Eden missions for this filter.';
+		}
 		listEl.appendChild(empty);
 		EdenGroup.renderDetail();
 		return;
