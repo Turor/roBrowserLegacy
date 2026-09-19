@@ -36,6 +36,7 @@ import StatusConst from 'DB/Status/StatusState.js';
 import CheckAttendance from 'UI/Components/CheckAttendance/CheckAttendance.js';
 import Stable from 'UI/Components/Stable/Stable.js';
 import EdenGroup from 'UI/Components/EdenGroup/EdenGroup.js';
+import Warpra from 'UI/Components/Warpra/Warpra.js';
 import WinStats from 'UI/Components/WinStats/WinStats.js';
 import Inventory from 'UI/Components/Inventory/Inventory.js';
 import Storage from 'UI/Components/Storage/Storage.js';
@@ -107,6 +108,7 @@ import ChatRoomEngine from './MapEngine/ChatRoom.js';
 import PetEngine from './MapEngine/Pet.js';
 import StableEngine from './MapEngine/Stable.js';
 import EdenGroupEngine from './MapEngine/EdenGroup.js';
+import WarpraEngine from './MapEngine/Warpra.js';
 import HomunEngine from './MapEngine/Homun.js';
 import MercenaryEngine from './MapEngine/Mercenary.js';
 import StoreEngine from './MapEngine/Store.js';
@@ -313,6 +315,7 @@ class MapEngine {
 			PetEngine();
 	StableEngine();
 EdenGroupEngine();
+	WarpraEngine();
 			HomunEngine();
 			MercenaryEngine();
 			StoreEngine();
@@ -415,6 +418,7 @@ EdenGroupEngine();
 			}
 			Stable.prepare();
 EdenGroup.prepare();
+	Warpra.prepare();
 
 			if (PACKETVER.value >= 20200916) {
 				ItemReform.prepare();

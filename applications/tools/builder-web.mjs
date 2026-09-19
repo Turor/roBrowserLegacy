@@ -698,6 +698,9 @@ async function copyPwaFiles() {
 		.resize(390, 844)
 		.png()
 		.toFile(dist + platform + '/screenshotnarrow.png');
+	if (fs.existsSync('./applications/pwa/warpra')) {
+		copyFolder('./applications/pwa/warpra', dist + platform + '/warpra');
+	}
 	console.log('PWA files copied', Date.now() - start, 'ms.');
 }
 

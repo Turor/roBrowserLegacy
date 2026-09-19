@@ -16045,4 +16045,49 @@ PACKET.ZC.TURORAN_EDEN_SHOP = function PACKET_ZC_TURORAN_EDEN_SHOP(fp, end) {
 PACKET.ZC.TURORAN_EDEN_SHOP.size = -1;
 
 
+
+// Turoran Warpra menu
+PACKET.CZ.TURORAN_WARPRA_REQ = function PACKET_CZ_TURORAN_WARPRA_REQ() {
+	this.action = 0;
+	this.kind = 0;
+	this.locId = 0;
+};
+PACKET.CZ.TURORAN_WARPRA_REQ.prototype.build = function () {
+	const pkt_buf = new BinaryWriter(8);
+	pkt_buf.writeShort(0x0ef4);
+	pkt_buf.writeShort(this.action);
+	pkt_buf.writeShort(this.kind);
+	pkt_buf.writeShort(this.locId);
+	return pkt_buf;
+};
+
+PACKET.ZC.TURORAN_WARPRA_LIST = function PACKET_ZC_TURORAN_WARPRA_LIST(fp, end) {
+	this.zeny = fp.readLong();
+	this.price = fp.readLong();
+	this.count = fp.readShort();
+	this.list = [];
+	for (let i = 0; i < this.count && fp.tell() < end; i++) {
+		this.list.push({
+			kind: fp.readUChar(),
+			id: fp.readShort(),
+			unlocked: fp.readUChar(),
+			x: fp.readShort(),
+			y: fp.readShort(),
+			group: fp.readUChar(),
+			map: fp.readBinaryString(16),
+			name: fp.readBinaryString(40),
+			groupName: fp.readBinaryString(24)
+		});
+	}
+};
+PACKET.ZC.TURORAN_WARPRA_LIST.size = -1;
+
+PACKET.ZC.TURORAN_WARPRA_RESULT = function PACKET_ZC_TURORAN_WARPRA_RESULT(fp, end) {
+	this.result = fp.readShort();
+	this.kind = fp.readShort();
+	this.locId = fp.readShort();
+};
+PACKET.ZC.TURORAN_WARPRA_RESULT.size = 8;
+
+
 export default PACKET;
