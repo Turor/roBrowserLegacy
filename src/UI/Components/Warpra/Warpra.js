@@ -55,6 +55,7 @@ let _list = [];
 let _zeny = 0;
 let _price = 50000000;
 let _fieldGroup = null;
+let _dungeonGroup = null;
 let _pending = null;
 
 function escapeHtml(value) {
@@ -70,7 +71,7 @@ function formatZeny(n) {
 }
 
 function thumbUrl(map) {
-	return `warpra/${encodeURIComponent(map)}.jpg`;
+	return `warpra/${encodeURIComponent(map)}.png`;
 }
 
 function sendAction(action, kind, locId) {
@@ -85,14 +86,14 @@ function ofKind(kind) {
 	return _list.filter(loc => loc.kind === kind);
 }
 
-function fieldGroups() {
+function grouped(kind) {
 	const groups = new Map();
-	ofKind(KIND.FIELD).forEach(loc => {
+	ofKind(kind).forEach(loc => {
 		const key = loc.group;
 		if (!groups.has(key)) {
 			groups.set(key, {
 				id: key,
-				name: loc.groupName || `Region ${key}`,
+				name: loc.groupName || loc.name || `Group ${key}`,
 				locs: [],
 				unlocked: 0
 			});
@@ -104,6 +105,23 @@ function fieldGroups() {
 		}
 	});
 	return Array.from(groups.values());
+}
+
+function fieldGroups() {
+	return grouped(KIND.FIELD);
+}
+
+function dungeonGroups() {
+	return grouped(KIND.DUNGEON);
+}
+
+function parentLoc(group) {
+	const first = group.locs[0];
+	return {
+		...first,
+		name: group.name,
+		unlocked: group.unlocked > 0
+	};
 }
 
 function updateZeny() {
@@ -134,7 +152,9 @@ function showModal(loc) {
 	_pending = loc;
 	root.querySelector('.m-title').textContent = `Unlock ${loc.name}?`;
 	root.querySelector('.m-body').textContent =
-		`${loc.name} is locked. Buy this warp for ${formatZeny(_price)} zeny?`;
+		loc.kind === KIND.DUNGEON
+			? `${loc.name} is locked. Unlock every floor of this dungeon for ${formatZeny(_price)} zeny?`
+			: `${loc.name} is locked. Buy this warp for ${formatZeny(_price)} zeny?`;
 	root.querySelector('.m-zeny').textContent = `You have ${formatZeny(_zeny)} zeny.`;
 	root.querySelector('.buy').disabled = _zeny < _price;
 	root.querySelector('.modal').hidden = false;
@@ -194,6 +214,39 @@ function renderGrid() {
 		return;
 	}
 
+	if (tab === 'dungeon' && _dungeonGroup === null) {
+		crumb.hidden = true;
+		const groups = dungeonGroups();
+		if (!groups.length) {
+			grid.innerHTML = '<div class="empty">No dungeons loaded.</div>';
+			return;
+		}
+		groups.forEach(g => {
+			const parent = parentLoc(g);
+			const tile = document.createElement('button');
+			tile.type = 'button';
+			tile.className = 'tile' + (parent.unlocked ? '' : ' locked');
+			tile.innerHTML =
+				`<img class="thumb" alt="" src="${thumbUrl(parent.map)}" />` +
+				`<div class="meta"><span class="name">${escapeHtml(g.name)}</span>` +
+				`<span class="sub">${g.locs.length} levels</span>` +
+				`<span class="stamp">${parent.unlocked ? 'Visited' : 'Locked'}</span></div>`;
+			tile.querySelector('img').addEventListener('error', ev => {
+				ev.target.style.visibility = 'hidden';
+			});
+			tile.addEventListener('click', () => {
+				if (!parent.unlocked) {
+					showModal(parent);
+					return;
+				}
+				_dungeonGroup = g.id;
+				renderGrid();
+			});
+			grid.appendChild(tile);
+		});
+		return;
+	}
+
 	let rows = ofKind(TAB_KIND[tab] ?? KIND.TOWN);
 	if (tab === 'field') {
 		const groups = fieldGroups();
@@ -201,9 +254,16 @@ function renderGrid() {
 		crumb.hidden = false;
 		root.querySelector('.crumb-label').textContent = g ? `${g.name} Fields` : 'Fields';
 		rows = rows.filter(loc => loc.group === _fieldGroup);
+	} else if (tab === 'dungeon') {
+		const groups = dungeonGroups();
+		const g = groups.find(x => x.id === _dungeonGroup);
+		crumb.hidden = false;
+		root.querySelector('.crumb-label').textContent = g ? g.name : 'Dungeon';
+		rows = rows.filter(loc => loc.group === _dungeonGroup);
 	} else {
 		crumb.hidden = true;
 		_fieldGroup = null;
+		_dungeonGroup = null;
 	}
 
 	if (!rows.length) {
@@ -217,7 +277,9 @@ function renderGrid() {
 		tile.className = 'tile' + (loc.unlocked ? '' : ' locked');
 		const extra = loc.kind === KIND.SPECIAL && loc.groupName
 			? `<span class="sub">${escapeHtml(loc.groupName)}</span>`
-			: '';
+			: loc.kind === KIND.DUNGEON && loc.groupName
+				? `<span class="sub">${escapeHtml(loc.groupName)}</span>`
+				: '';
 		tile.innerHTML =
 			`<img class="thumb" alt="" src="${thumbUrl(loc.map)}" />` +
 			`<div class="meta"><span class="name">${escapeHtml(loc.name)}</span>${extra}` +
@@ -243,13 +305,18 @@ Warpra.init = function init() {
 			_preferences.tab = el.dataset.tab;
 			_preferences.save();
 			_fieldGroup = null;
+			_dungeonGroup = null;
 			hideModal();
 			renderGrid();
 		});
 	});
 
 	root.querySelector('.back').addEventListener('click', () => {
-		_fieldGroup = null;
+		if (_dungeonGroup !== null) {
+			_dungeonGroup = null;
+		} else {
+			_fieldGroup = null;
+		}
 		renderGrid();
 	});
 
@@ -299,6 +366,9 @@ Warpra.setList = function setList(pkt) {
 		const next = _list.find(loc => loc.kind === _pending.kind && loc.id === _pending.id);
 		if (next && next.unlocked) {
 			hideModal();
+			if (_pending.kind === KIND.DUNGEON) {
+				_dungeonGroup = next.group;
+			}
 		}
 	}
 	renderGrid();
@@ -311,6 +381,9 @@ Warpra.onResult = function onResult(pkt) {
 	case RES.OK:
 		if (_pending && _pending.kind === pkt.kind && _pending.id === pkt.locId) {
 			ChatBox.addText(`Unlocked ${name}.`, ChatBox.TYPE.INFO);
+			if (_pending.kind === KIND.DUNGEON) {
+				_dungeonGroup = _pending.group;
+			}
 			hideModal();
 		} else if (loc && loc.unlocked) {
 			Warpra._host.style.display = 'none';
