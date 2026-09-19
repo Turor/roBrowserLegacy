@@ -11,6 +11,7 @@ import GUIComponent from 'UI/GUIComponent.js';
 import Network from 'Network/NetworkManager.js';
 import PACKET from 'Network/PacketStructure.js';
 import ChatBox from 'UI/Components/ChatBox/ChatBox.js';
+import Quest from 'UI/Components/Quest/Quest.js';
 import htmlText from './EdenGroup.html?raw';
 import cssText from './EdenGroup.css?raw';
 import 'UI/Elements/Elements.js';
@@ -37,6 +38,7 @@ const _preferences = Preferences.get('TuroranEden', { x: 180, y: 120, tab: 'avai
 let _list = [];
 let _baseLevel = 1;
 let _selectedId = 0;
+let _syncedQuestIds = new Set();
 
 function monsterName(id) {
 	if (!id) {
@@ -89,6 +91,70 @@ function sendAction(action, questId) {
 
 function selectedQuest() {
 	return _list.find(q => q.questId === _selectedId) || null;
+}
+
+
+function huntName(q) {
+	return monsterName(q.mobId) || q.name;
+}
+
+function buildLogQuest(q) {
+	const huntID = q.questId;
+	const hunt_list = [];
+	if (q.huntMax > 0 || q.mobId) {
+		hunt_list[huntID] = {
+			huntID: huntID,
+			huntIDCount: 0,
+			mobType: 0,
+			mobGID: q.mobId,
+			lvlMin: 0,
+			lvlMax: 0,
+			huntCount: q.huntCount || 0,
+			maxCount: q.huntMax || 0,
+			mobName: huntName(q)
+		};
+	}
+	return {
+		questID: q.questId,
+		title: q.name || 'Eden mission',
+		summary: q.hint || '',
+		description: q.hint ? [q.hint] : [],
+		icon: 'ico_nq.bmp',
+		npc_spr: null,
+		npc_navi: null,
+		npc_pos_x: null,
+		npc_pos_y: null,
+		reward_item_list: [],
+		reward_exp_base: q.baseExp || 0,
+		reward_exp_job: q.jobExp || 0,
+		active: 1,
+		start_time: 0,
+		end_time: 0,
+		count: q.huntMax > 0 ? 1 : 0,
+		hunt_list: hunt_list
+	};
+}
+
+function syncQuestLog(list) {
+	const ui = typeof Quest.getUI === 'function' ? Quest.getUI() : Quest;
+	if (!ui || typeof ui.addQuest !== 'function') {
+		return;
+	}
+	const keep = new Set();
+	(list || []).forEach(q => {
+		if (q.state !== ST.ACTIVE && q.state !== ST.TURNIN) {
+			return;
+		}
+		keep.add(q.questId);
+		ui.addQuest(buildLogQuest(q), q.questId);
+		_syncedQuestIds.add(q.questId);
+	});
+	for (const id of Array.from(_syncedQuestIds)) {
+		if (!keep.has(id) && typeof ui.removeQuest === 'function') {
+			ui.removeQuest(id);
+			_syncedQuestIds.delete(id);
+		}
+	}
 }
 
 function matchesTab(q, tab) {
@@ -187,6 +253,7 @@ EdenGroup.setList = function setList(pkt) {
 		const active = _list.find(q => q.state === ST.ACTIVE);
 		_selectedId = (ready || active || _list[0] || {}).questId || 0;
 	}
+	syncQuestLog(_list);
 	EdenGroup.renderList();
 };
 

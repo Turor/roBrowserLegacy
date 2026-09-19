@@ -95,9 +95,12 @@ function onAddQuest(pkt) {
 		count: pkt.count,
 		hunt_list: []
 	};
-	if (quest.count > 0) {
-		for (let i = 0; i < quest.count; i++) {
+	if (quest.count > 0 && Array.isArray(pkt.hunt)) {
+		for (let i = 0; i < quest.count && i < pkt.hunt.length; i++) {
 			const hunt = pkt.hunt[i];
+			if (!hunt) {
+				continue;
+			}
 			const local_hunt = {
 				huntID: hunt.huntID || null,
 				huntIDCount: hunt.huntIDCount || 0,

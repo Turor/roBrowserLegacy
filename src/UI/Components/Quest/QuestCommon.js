@@ -322,17 +322,29 @@ export function createQuest(config) {
 	 * @param {number} huntID
 	 */
 	Quest.updateMissionHunt = function updateMissionHunt(hunt_info, questID, huntID) {
-		if (hunt_info.huntIDCount) {
-			_questList[questID].hunt_list[huntID].huntIDCount = hunt_info.huntIDCount;
+		if (!_questList[questID] || !_questList[questID].hunt_list) {
+			return;
 		}
-		if (hunt_info.maxCount) {
-			_questList[questID].hunt_list[huntID].maxCount = hunt_info.maxCount;
+		if (!_questList[questID].hunt_list[huntID]) {
+			_questList[questID].hunt_list[huntID] = {
+				huntID: huntID,
+				huntCount: 0,
+				maxCount: 0,
+				mobName: ''
+			};
 		}
-		if (hunt_info.huntCount) {
-			_questList[questID].hunt_list[huntID].huntCount = hunt_info.huntCount;
+		const row = _questList[questID].hunt_list[huntID];
+		if (hunt_info.huntIDCount != null) {
+			row.huntIDCount = hunt_info.huntIDCount;
+		}
+		if (hunt_info.maxCount != null) {
+			row.maxCount = hunt_info.maxCount;
+		}
+		if (hunt_info.huntCount != null) {
+			row.huntCount = hunt_info.huntCount;
 		}
 		if (hunt_info.mobGID) {
-			_questList[questID].hunt_list[huntID].mobGID = hunt_info.mobGID;
+			row.mobGID = hunt_info.mobGID;
 		}
 
 		const mob_name = _questList[questID].hunt_list[huntID].mobName;
@@ -409,8 +421,10 @@ export function createQuest(config) {
 			let ul_id = '';
 			const toggle_id = `qid${quest.questID}`;
 			const show_id = `sid${quest.questID}`;
-			const title = quest.title.length > 30 ? `${quest.title.substr(0, 30)}...` : quest.title;
-			const summary = quest.summary.length > 30 ? `${quest.summary.substr(0, 30)}...` : quest.summary;
+			const titleRaw = quest.title == null ? '' : String(quest.title);
+			const summaryRaw = quest.summary == null ? '' : String(quest.summary);
+			const title = titleRaw.length > 30 ? `${titleRaw.substr(0, 30)}...` : titleRaw;
+			const summary = summaryRaw.length > 30 ? `${summaryRaw.substr(0, 30)}...` : summaryRaw;
 			const bt_check = _questNotShowList.includes(parseInt(Number(quest.questID)))
 				? 'bt_check_off'
 				: 'bt_check_on';
@@ -457,8 +471,11 @@ export function createQuest(config) {
 				return;
 			}
 
+			root.querySelectorAll(`.quest-item[data-quest-id="${quest.questID}"]`).forEach(el => el.remove());
+
 			const li = document.createElement('li');
 			li.className = 'quest-item';
+			li.dataset.questId = String(quest.questID);
 			li.innerHTML = li_text;
 
 			// Load background images for the quest item
