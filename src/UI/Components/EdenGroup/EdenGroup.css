@@ -228,6 +228,28 @@
 	margin-bottom: 4px;
 }
 
+#TuroranEden .mob-sprite {
+	align-self: center;
+	width: 160px;
+	height: 140px;
+	background: #efe3c0;
+	border: 1px solid #d4b88a;
+	image-rendering: pixelated;
+	margin: 4px 0 8px;
+}
+
+#TuroranEden .d-where,
+#TuroranEden .d-merit {
+	margin-bottom: 6px;
+	line-height: 1.35;
+	color: #5a3b1a;
+}
+
+#TuroranEden .d-merit {
+	font-weight: bold;
+	color: #6a3a10;
+}
+
 #TuroranEden .d-range,
 #TuroranEden .d-hint,
 #TuroranEden .d-hunt,

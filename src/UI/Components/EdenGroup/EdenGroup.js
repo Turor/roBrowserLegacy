@@ -6,6 +6,8 @@ import DB from 'DB/DBManager.js';
 import MonsterTable from 'DB/Monsters/MonsterTable.js';
 import Preferences from 'Core/Preferences.js';
 import Renderer from 'Renderer/Renderer.js';
+import Entity from 'Renderer/Entity/Entity.js';
+import SpriteRenderer from 'Renderer/SpriteRenderer.js';
 import UIManager from 'UI/UIManager.js';
 import GUIComponent from 'UI/GUIComponent.js';
 import Network from 'Network/NetworkManager.js';
@@ -52,6 +54,7 @@ let _baseLevel = 1;
 let _merit = 0;
 let _selectedId = 0;
 let _syncedQuestIds = new Set();
+const _preview = { entity: null, ctx: null, running: false, mobId: 0 };
 
 function monsterName(id) {
 	if (!id) {
@@ -93,6 +96,62 @@ function stateLabel(state) {
 		default:
 			return 'Available';
 	}
+}
+
+function stopMobPreview() {
+	if (_preview.running) {
+		Renderer.stop(renderMobPreview);
+		_preview.running = false;
+	}
+	if (_preview.ctx) {
+		_preview.ctx.clearRect(0, 0, _preview.ctx.canvas.width, _preview.ctx.canvas.height);
+	}
+	_preview.mobId = 0;
+}
+
+function renderMobPreview() {
+	if (!_preview.ctx || !_preview.entity) {
+		return;
+	}
+	const ctx = _preview.ctx;
+	SpriteRenderer.bind2DContext(ctx, Math.floor(ctx.canvas.width / 2), ctx.canvas.height - 10);
+	ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+	_preview.entity.renderEntity();
+}
+
+function startMobPreview(mobId) {
+	const root = EdenGroup.getRoot();
+	const canvas = root?.querySelector('.mob-sprite');
+	if (!canvas || !mobId || typeof Entity !== 'function') {
+		stopMobPreview();
+		return;
+	}
+	if (!_preview.entity) {
+		_preview.entity = new Entity();
+	}
+	_preview.ctx = canvas.getContext('2d');
+	_preview.entity.set({
+		objecttype: Entity.TYPE_MOB,
+		job: mobId,
+		action: 0,
+		direction: 0
+	});
+	_preview.mobId = mobId;
+	if (!_preview.running) {
+		_preview.running = true;
+		Renderer.render(renderMobPreview);
+	}
+}
+
+function recommendedWhere(q) {
+	if (!q.map) {
+		return '';
+	}
+	const pretty = DB.getMapName(`${q.map}.gat`, q.map);
+	if (q.spawnCount > 0) {
+		return `Best spawn: ${pretty} (${q.spawnCount})`;
+	}
+	return `Best spawn: ${pretty}`;
 }
 
 function sendAction(action, questId) {
@@ -256,6 +315,14 @@ EdenGroup.applyTab = function applyTab() {
 	root.querySelector('.panel-shop').hidden = main !== 'shop';
 	root.querySelector('.panel-gear').hidden = main !== 'gear';
 	root.querySelector('.panel-upgrade').hidden = main !== 'upgrade';
+	if (main !== 'missions') {
+		stopMobPreview();
+	} else {
+		const q = selectedQuest();
+		if (q && q.mobId) {
+			startMobPreview(q.mobId);
+		}
+	}
 };
 
 EdenGroup.onAppend = function onAppend() {
@@ -279,7 +346,12 @@ EdenGroup.toggle = function toggle() {
 		sendAction(ACT.LIST, 0);
 	} else {
 		this._host.style.display = 'none';
+		stopMobPreview();
 	}
+};
+
+EdenGroup.onRemove = function onRemove() {
+	stopMobPreview();
 };
 
 EdenGroup.setList = function setList(pkt) {
@@ -404,6 +476,15 @@ EdenGroup.renderDetail = function renderDetail() {
 	body.hidden = false;
 
 	root.querySelector('.d-name').textContent = q.name;
+	const where = recommendedWhere(q);
+	root.querySelector('.d-where').textContent = where;
+	root.querySelector('.d-merit').textContent =
+		q.merit > 0 ? `Merit Badges: ${q.merit}` : 'Merit Badges: none';
+	if (q.mobId) {
+		startMobPreview(q.mobId);
+	} else {
+		stopMobPreview();
+	}
 	root.querySelector('.d-range').textContent = `Lv ${q.minLv}–${q.maxLv}  ·  you are ${_baseLevel}`;
 	root.querySelector('.d-hint').textContent = q.hint;
 	if (q.huntMax > 0) {
@@ -435,8 +516,12 @@ EdenGroup.renderDetail = function renderDetail() {
 	if (q.rewardItem > 0 && q.rewardItemAmount > 0) {
 		rewards.push(`${q.rewardItemAmount}× ${itemName(q.rewardItem)}`);
 	}
-	rewards.push('Eden Merit Badges');
-	root.querySelector('.d-reward').textContent = `Reward: ${rewards.join(', ')}`;
+	if (q.merit > 0) {
+		rewards.push(`${q.merit} Eden Merit Badge${q.merit === 1 ? '' : 's'}`);
+	}
+	root.querySelector('.d-reward').textContent = rewards.length
+		? `Reward: ${rewards.join(', ')}`
+		: 'Reward: none listed';
 
 	root.querySelector('.accept').disabled = q.state !== ST.AVAILABLE;
 	root.querySelector('.complete').disabled = q.state !== ST.TURNIN;

@@ -16010,6 +16010,9 @@ PACKET.ZC.TURORAN_EDEN_LIST = function PACKET_ZC_TURORAN_EDEN_LIST(fp, end) {
 			jobExp: fp.readLong(),
 			rewardItem: fp.readLong(),
 			rewardItemAmount: fp.readShort(),
+			merit: fp.readShort(),
+			map: fp.readBinaryString(16),
+			spawnCount: fp.readShort(),
 			name: fp.readBinaryString(48),
 			hint: fp.readBinaryString(96)
 		});
