@@ -15974,4 +15974,53 @@ PACKET.ZC.TURORAN_STABLE_RESULT.size = 8;
 /**
  * Export
  */
+
+// Turoran Eden Group board
+PACKET.CZ.TURORAN_EDEN_REQ = function PACKET_CZ_TURORAN_EDEN_REQ() {
+	this.action = 0;
+	this.questId = 0;
+};
+PACKET.CZ.TURORAN_EDEN_REQ.prototype.build = function () {
+	const pkt_buf = new BinaryWriter(8);
+	pkt_buf.writeShort(0x0ef3);
+	pkt_buf.writeShort(this.action);
+	pkt_buf.writeLong(this.questId);
+	return pkt_buf;
+};
+
+PACKET.ZC.TURORAN_EDEN_LIST = function PACKET_ZC_TURORAN_EDEN_LIST(fp, end) {
+	this.baseLevel = fp.readShort();
+	this.count = fp.readUChar();
+	fp.readUChar();
+	this.list = [];
+	for (let i = 0; i < this.count && fp.tell() < end; i++) {
+		this.list.push({
+			questId: fp.readLong(),
+			state: fp.readUChar(),
+			minLv: fp.readShort(),
+			maxLv: fp.readShort(),
+			mobId: fp.readLong(),
+			huntCount: fp.readShort(),
+			huntMax: fp.readShort(),
+			itemId: fp.readLong(),
+			itemHave: fp.readShort(),
+			itemNeed: fp.readShort(),
+			baseExp: fp.readLong(),
+			jobExp: fp.readLong(),
+			rewardItem: fp.readLong(),
+			rewardItemAmount: fp.readShort(),
+			name: fp.readBinaryString(48),
+			hint: fp.readBinaryString(96)
+		});
+	}
+};
+PACKET.ZC.TURORAN_EDEN_LIST.size = -1;
+
+PACKET.ZC.TURORAN_EDEN_RESULT = function PACKET_ZC_TURORAN_EDEN_RESULT(fp, end) {
+	this.result = fp.readShort();
+	this.questId = fp.readLong();
+};
+PACKET.ZC.TURORAN_EDEN_RESULT.size = 8;
+
+
 export default PACKET;

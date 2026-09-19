@@ -1,0 +1,41 @@
+<div id="TuroranEden">
+	<div class="titlebar">
+		<div class="left">Eden Group</div>
+		<div class="right">
+			<ui-button
+				class="base close"
+				bg="basic_interface/sys_close_off.bmp"
+				hover="basic_interface/sys_close_on.bmp"
+			></ui-button>
+		</div>
+	</div>
+	<div class="intro">
+		Hunting missions for your level. Accept and turn in here — you do not need to visit Eden Headquarters.
+	</div>
+	<div class="tabs">
+		<button class="tab active" data-tab="available">Available</button>
+		<button class="tab" data-tab="active">In Progress</button>
+		<button class="tab" data-tab="turnin">Turn In</button>
+		<button class="tab" data-tab="all">All</button>
+	</div>
+	<div class="body">
+		<div class="list"></div>
+		<aside class="detail">
+			<div class="empty-detail">Select a mission.</div>
+			<div class="detail-body" hidden>
+				<div class="d-name"></div>
+				<div class="d-range"></div>
+				<div class="d-hint"></div>
+				<div class="d-hunt"></div>
+				<div class="hunt-bar"><div class="hunt-fill"></div></div>
+				<div class="d-item" hidden></div>
+				<div class="d-reward"></div>
+				<div class="detail-actions">
+					<button class="action accept">Accept</button>
+					<button class="action complete">Turn in</button>
+					<button class="action abandon">Abandon</button>
+				</div>
+			</div>
+		</aside>
+	</div>
+</div>

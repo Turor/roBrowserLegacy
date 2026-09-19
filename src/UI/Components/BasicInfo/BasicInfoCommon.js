@@ -31,6 +31,7 @@ import Escape from 'UI/Components/Escape/Escape.js';
 import WorldMap from 'UI/Components/WorldMap/WorldMap.js';
 import CheckAttendance from 'UI/Components/CheckAttendance/CheckAttendance.js';
 import Stable from 'UI/Components/Stable/Stable.js';
+import EdenGroup from 'UI/Components/EdenGroup/EdenGroup.js';
 import ChatRoomCreate from 'UI/Components/ChatRoomCreate/ChatRoomCreate.js';
 import Rodex from 'UI/Components/Rodex/Rodex.js';
 import WinStats from 'UI/Components/WinStats/WinStats.js';
@@ -154,6 +155,9 @@ export function createBasicInfo(config) {
 				break;
 			case 'stable':
 				Stable.toggle();
+				break;
+			case 'eden':
+				EdenGroup.toggle();
 				break;
 			case 'achievment':
 				if (Configs.get('enableAchievements') && PACKETVER.value >= 20150513) {
