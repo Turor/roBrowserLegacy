@@ -241,3 +241,18 @@
 #Storage .footer .storage-order-by option {
 	border: 1px solid blue;
 }
+
+#Storage .footer .store-all {
+	margin-left: 6px;
+	height: 18px;
+	padding: 0 8px;
+	font-size: 11px;
+	cursor: pointer;
+	border: 1px solid #7a6a4a;
+	background: #e8d9b0;
+	color: #3a2a10;
+	border-radius: 2px;
+}
+#Storage .footer .store-all:hover {
+	background: #f4e8c4;
+}

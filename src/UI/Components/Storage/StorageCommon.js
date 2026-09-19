@@ -140,6 +140,12 @@ export function createStorage(config) {
 			}
 		}
 
+		const storeAllBtn = root.querySelector('.store-all');
+		if (storeAllBtn) {
+			storeAllBtn.addEventListener('mousedown', e => e.stopImmediatePropagation());
+			storeAllBtn.addEventListener('click', () => storeAllOfCurrentTab());
+		}
+
 		Client.loadFile(`${DB.INTERFACE_PATH}basic_interface/tab_itm_ex_0${_preferences.tab + 1}.bmp`, data => {
 			const tabs = root.querySelector('.tabs');
 			if (tabs) {
@@ -746,6 +752,47 @@ export function createStorage(config) {
 
 		return true;
 	};
+
+
+	function storeAllOfCurrentTab() {
+		const inv = Inventory.getUI();
+		if (!inv || !Array.isArray(inv.list)) {
+			return;
+		}
+
+		const tab = _preferences.tab;
+		const queue = [];
+		const seen = {};
+
+		inv.list.forEach(item => {
+			if (!item || seen[item.index]) {
+				return;
+			}
+			// Equipped gear stays on the character (ammo/cards can still be stored).
+			if (item.WearState && item.type !== ItemType.AMMO && item.type !== ItemType.CARD) {
+				return;
+			}
+			if (getItemTab(item) !== tab) {
+				return;
+			}
+			seen[item.index] = true;
+			queue.push(item);
+		});
+
+		let i = 0;
+		const batch = 8;
+		const sendBatch = () => {
+			const end = Math.min(i + batch, queue.length);
+			for (; i < end; i++) {
+				const item = queue[i];
+				Component.reqAddItem(item.index, item.count || 1);
+			}
+			if (i < queue.length) {
+				setTimeout(sendBatch, 40);
+			}
+		};
+		sendBatch();
+	}
 
 	Component.onClosePressed = function onClosedPressed() {};
 	Component.reqAddItem = function reqAddItem() {};

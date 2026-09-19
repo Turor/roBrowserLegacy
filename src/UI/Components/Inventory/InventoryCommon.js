@@ -267,7 +267,7 @@ export function createInventory(config) {
 		}
 		const mcnt = root.querySelector('.mcnt');
 		if (mcnt) {
-			mcnt.textContent = '100';
+			mcnt.textContent = '600';
 		}
 
 		this.draggable('.titlebar');
@@ -1619,7 +1619,7 @@ export function createInventory(config) {
 						const itemname = DB.getItemName(item);
 						const root = Component.getRoot();
 						const mcntEl = root.querySelector('.mcnt');
-						const currentlimit = mcntEl ? parseInt(mcntEl.textContent, 10) : 100;
+						const currentlimit = mcntEl ? parseInt(mcntEl.textContent, 10) : 600;
 						const newlimit = currentlimit + 10;
 
 						UIManager.showPromptBox(
