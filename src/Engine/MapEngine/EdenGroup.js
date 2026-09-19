@@ -17,7 +17,13 @@ function onResult(pkt) {
 	EdenGroup.onResult(pkt);
 }
 
+function onShop(pkt) {
+	EdenGroup.prepare();
+	EdenGroup.setShop(pkt);
+}
+
 export default function EdenGroupEngine() {
 	Network.hookPacket(PACKET.ZC.TURORAN_EDEN_LIST, onList);
 	Network.hookPacket(PACKET.ZC.TURORAN_EDEN_RESULT, onResult);
+	Network.hookPacket(PACKET.ZC.TURORAN_EDEN_SHOP, onShop);
 }

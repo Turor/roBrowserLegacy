@@ -15992,6 +15992,7 @@ PACKET.ZC.TURORAN_EDEN_LIST = function PACKET_ZC_TURORAN_EDEN_LIST(fp, end) {
 	this.baseLevel = fp.readShort();
 	this.count = fp.readUChar();
 	fp.readUChar();
+	this.merit = fp.readLong();
 	this.list = [];
 	for (let i = 0; i < this.count && fp.tell() < end; i++) {
 		this.list.push({
@@ -16021,6 +16022,24 @@ PACKET.ZC.TURORAN_EDEN_RESULT = function PACKET_ZC_TURORAN_EDEN_RESULT(fp, end) 
 	this.questId = fp.readLong();
 };
 PACKET.ZC.TURORAN_EDEN_RESULT.size = 8;
+
+PACKET.ZC.TURORAN_EDEN_SHOP = function PACKET_ZC_TURORAN_EDEN_SHOP(fp, end) {
+	this.merit = fp.readLong();
+	this.count = fp.readShort();
+	this.list = [];
+	for (let i = 0; i < this.count && fp.tell() < end; i++) {
+		this.list.push({
+			slot: fp.readShort(),
+			cat: fp.readUChar(),
+			minLv: fp.readUChar(),
+			itemId: fp.readLong(),
+			amount: fp.readShort(),
+			priceMerit: fp.readLong(),
+			priceZeny: fp.readLong()
+		});
+	}
+};
+PACKET.ZC.TURORAN_EDEN_SHOP.size = -1;
 
 
 export default PACKET;

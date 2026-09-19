@@ -1,5 +1,5 @@
 /**
- * Eden Group hunting board (Turoran). Accept and turn in from the menu.
+ * Eden Group hunting board, merit shop, and gear (Turoran).
  */
 
 import DB from 'DB/DBManager.js';
@@ -30,13 +30,26 @@ const ACT = {
 	LIST: 0,
 	ACCEPT: 1,
 	COMPLETE: 2,
-	ABANDON: 3
+	ABANDON: 3,
+	BUY: 4
 };
 
-const _preferences = Preferences.get('TuroranEden', { x: 180, y: 120, tab: 'available' }, 1.0);
+const CAT = {
+	SUPPLY: 0,
+	GEAR: 1,
+	UPGRADE: 2
+};
+
+const _preferences = Preferences.get(
+	'TuroranEden',
+	{ x: 180, y: 120, tab: 'available', main: 'missions' },
+	1.0
+);
 
 let _list = [];
+let _shop = [];
 let _baseLevel = 1;
+let _merit = 0;
 let _selectedId = 0;
 let _syncedQuestIds = new Set();
 
@@ -92,7 +105,6 @@ function sendAction(action, questId) {
 function selectedQuest() {
 	return _list.find(q => q.questId === _selectedId) || null;
 }
-
 
 function huntName(q) {
 	return monsterName(q.mobId) || q.name;
@@ -173,6 +185,17 @@ function matchesTab(q, tab) {
 	return true;
 }
 
+function updateMerit() {
+	const root = EdenGroup.getRoot();
+	if (!root) {
+		return;
+	}
+	const el = root.querySelector('.merit-count');
+	if (el) {
+		el.textContent = String(_merit);
+	}
+}
+
 EdenGroup.init = function init() {
 	const root = this.getRoot();
 
@@ -180,7 +203,15 @@ EdenGroup.init = function init() {
 		EdenGroup._host.style.display = 'none';
 	});
 
-	root.querySelectorAll('.tab').forEach(el => {
+	root.querySelectorAll('.main-tab').forEach(el => {
+		el.addEventListener('click', () => {
+			_preferences.main = el.dataset.main;
+			_preferences.save();
+			EdenGroup.applyTab();
+		});
+	});
+
+	root.querySelectorAll('.sub-tab').forEach(el => {
 		el.addEventListener('click', () => {
 			_preferences.tab = el.dataset.tab;
 			_preferences.save();
@@ -213,19 +244,28 @@ EdenGroup.init = function init() {
 
 EdenGroup.applyTab = function applyTab() {
 	const root = this.getRoot();
+	const main = _preferences.main || 'missions';
 	const tab = _preferences.tab || 'available';
-	root.querySelectorAll('.tab').forEach(el => {
+	root.querySelectorAll('.main-tab').forEach(el => {
+		el.classList.toggle('active', el.dataset.main === main);
+	});
+	root.querySelectorAll('.sub-tab').forEach(el => {
 		el.classList.toggle('active', el.dataset.tab === tab);
 	});
+	root.querySelector('.panel-missions').hidden = main !== 'missions';
+	root.querySelector('.panel-shop').hidden = main !== 'shop';
+	root.querySelector('.panel-gear').hidden = main !== 'gear';
+	root.querySelector('.panel-upgrade').hidden = main !== 'upgrade';
 };
 
 EdenGroup.onAppend = function onAppend() {
 	Object.assign(this._host.style, {
-		top: `${Math.min(Math.max(0, _preferences.y), Renderer.height - 460)}px`,
+		top: `${Math.min(Math.max(0, _preferences.y), Renderer.height - 500)}px`,
 		left: `${Math.min(Math.max(0, _preferences.x), Renderer.width - 640)}px`
 	});
 	EdenGroup.applyTab();
 	EdenGroup.renderList();
+	EdenGroup.renderShop();
 	sendAction(ACT.LIST, 0);
 };
 
@@ -244,6 +284,9 @@ EdenGroup.toggle = function toggle() {
 
 EdenGroup.setList = function setList(pkt) {
 	_baseLevel = pkt.baseLevel || _baseLevel;
+	if (typeof pkt.merit === 'number') {
+		_merit = pkt.merit;
+	}
 	_list = pkt.list || [];
 	if (_selectedId && !_list.some(q => q.questId === _selectedId)) {
 		_selectedId = 0;
@@ -254,19 +297,30 @@ EdenGroup.setList = function setList(pkt) {
 		_selectedId = (ready || active || _list[0] || {}).questId || 0;
 	}
 	syncQuestLog(_list);
+	updateMerit();
 	EdenGroup.renderList();
+};
+
+EdenGroup.setShop = function setShop(pkt) {
+	if (typeof pkt.merit === 'number') {
+		_merit = pkt.merit;
+	}
+	_shop = pkt.list || [];
+	updateMerit();
+	EdenGroup.renderShop();
 };
 
 EdenGroup.onResult = function onResult(pkt) {
 	const messages = {
 		1: 'Eden Group could not process that request.',
-		2: 'That mission is not for your base level.',
+		2: 'That is not available at your base level.',
 		3: 'Finish or abandon your current Eden mission first.',
 		4: 'You are not on that mission.',
 		5: 'The hunt is not finished yet.',
 		6: 'You are missing the required items.',
 		7: 'That mission is still on cooldown.',
-		8: 'Not enough inventory space for the reward.'
+		8: 'Not enough inventory space for the reward.',
+		9: 'Not enough Eden Merit Badges.'
 	};
 	if (pkt.result !== 0) {
 		ChatBox.addText(messages[pkt.result] || messages[1], ChatBox.TYPE.ERROR | ChatBox.TYPE.SELF);
@@ -278,7 +332,8 @@ EdenGroup.renderList = function renderList() {
 	if (!root) {
 		return;
 	}
-	const listEl = root.querySelector('.list');
+	updateMerit();
+	const listEl = root.querySelector('.mission-list');
 	const tab = _preferences.tab || 'available';
 	const rows = _list.filter(q => matchesTab(q, tab));
 
@@ -349,7 +404,7 @@ EdenGroup.renderDetail = function renderDetail() {
 	body.hidden = false;
 
 	root.querySelector('.d-name').textContent = q.name;
-	root.querySelector('.d-range').textContent = `Lv ${q.minLv}–${q.maxLv}  ·  you are ${ _baseLevel}`;
+	root.querySelector('.d-range').textContent = `Lv ${q.minLv}–${q.maxLv}  ·  you are ${_baseLevel}`;
 	root.querySelector('.d-hint').textContent = q.hint;
 	if (q.huntMax > 0) {
 		root.querySelector('.d-hunt').textContent =
@@ -380,13 +435,45 @@ EdenGroup.renderDetail = function renderDetail() {
 	if (q.rewardItem > 0 && q.rewardItemAmount > 0) {
 		rewards.push(`${q.rewardItemAmount}× ${itemName(q.rewardItem)}`);
 	}
-	root.querySelector('.d-reward').textContent = rewards.length
-		? `Reward: ${rewards.join(', ')}`
-		: 'Reward: none listed';
+	rewards.push('Eden Merit Badges');
+	root.querySelector('.d-reward').textContent = `Reward: ${rewards.join(', ')}`;
 
 	root.querySelector('.accept').disabled = q.state !== ST.AVAILABLE;
 	root.querySelector('.complete').disabled = q.state !== ST.TURNIN;
 	root.querySelector('.abandon').disabled = q.state !== ST.ACTIVE && q.state !== ST.TURNIN;
+};
+
+EdenGroup.renderShop = function renderShop() {
+	const root = EdenGroup.getRoot();
+	if (!root) {
+		return;
+	}
+	updateMerit();
+	root.querySelectorAll('.shop-list').forEach(listEl => {
+		const cat = Number(listEl.dataset.cat);
+		const rows = _shop.filter(it => it.cat === cat);
+		listEl.innerHTML = '';
+		if (!rows.length) {
+			const empty = document.createElement('div');
+			empty.className = 'empty';
+			empty.textContent = 'Nothing in this shop right now.';
+			listEl.appendChild(empty);
+			return;
+		}
+		rows.forEach(it => {
+			const locked = _baseLevel < it.minLv;
+			const row = document.createElement('div');
+			row.className = 'row shop' + (locked ? ' locked' : '');
+			const price = it.priceMerit > 0 ? `${it.priceMerit} Merit` : `${it.priceZeny} z`;
+			row.innerHTML =
+				`<div class="meta"><div class="name">${escapeHtml(itemName(it.itemId))}</div>` +
+				`<div class="sub">${it.amount}× · Lv ${it.minLv}+ · ${price}</div></div>` +
+				`<button class="buy" ${locked || _merit < it.priceMerit ? 'disabled' : ''}>Buy</button>`;
+			const btn = row.querySelector('.buy');
+			btn.addEventListener('click', () => sendAction(ACT.BUY, it.slot));
+			listEl.appendChild(row);
+		});
+	});
 };
 
 export default UIManager.addComponent(EdenGroup);

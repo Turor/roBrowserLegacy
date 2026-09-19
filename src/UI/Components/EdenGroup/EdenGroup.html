@@ -2,6 +2,7 @@
 	<div class="titlebar">
 		<div class="left">Eden Group</div>
 		<div class="right">
+			<span class="merit">Merit <b class="merit-count">0</b></span>
 			<ui-button
 				class="base close"
 				bg="basic_interface/sys_close_off.bmp"
@@ -10,32 +11,52 @@
 		</div>
 	</div>
 	<div class="intro">
-		Hunting missions for your level. Accept and turn in here — you do not need to visit Eden Headquarters.
+		Hunts pay <b>Eden Merit Badges</b>. Spend them here on supplies, Eden gear, and upgrades — no headquarters trip.
 	</div>
-	<div class="tabs">
-		<button class="tab active" data-tab="available">Available</button>
-		<button class="tab" data-tab="active">In Progress</button>
-		<button class="tab" data-tab="turnin">Turn In</button>
-		<button class="tab" data-tab="all">All</button>
+	<div class="tabs main-tabs">
+		<button class="tab main-tab active" data-main="missions">Missions</button>
+		<button class="tab main-tab" data-main="shop">Shop</button>
+		<button class="tab main-tab" data-main="gear">Gear</button>
+		<button class="tab main-tab" data-main="upgrade">Upgrades</button>
 	</div>
-	<div class="body">
-		<div class="list"></div>
-		<aside class="detail">
-			<div class="empty-detail">Select a mission.</div>
-			<div class="detail-body" hidden>
-				<div class="d-name"></div>
-				<div class="d-range"></div>
-				<div class="d-hint"></div>
-				<div class="d-hunt"></div>
-				<div class="hunt-bar"><div class="hunt-fill"></div></div>
-				<div class="d-item" hidden></div>
-				<div class="d-reward"></div>
-				<div class="detail-actions">
-					<button class="action accept">Accept</button>
-					<button class="action complete">Turn in</button>
-					<button class="action abandon">Abandon</button>
+	<div class="panel panel-missions">
+		<div class="tabs">
+			<button class="tab sub-tab active" data-tab="available">Available</button>
+			<button class="tab sub-tab" data-tab="active">In Progress</button>
+			<button class="tab sub-tab" data-tab="turnin">Turn In</button>
+			<button class="tab sub-tab" data-tab="all">All</button>
+		</div>
+		<div class="body">
+			<div class="list mission-list"></div>
+			<aside class="detail">
+				<div class="empty-detail">Select a mission.</div>
+				<div class="detail-body" hidden>
+					<div class="d-name"></div>
+					<div class="d-range"></div>
+					<div class="d-hint"></div>
+					<div class="d-hunt"></div>
+					<div class="hunt-bar"><div class="hunt-fill"></div></div>
+					<div class="d-item" hidden></div>
+					<div class="d-reward"></div>
+					<div class="detail-actions">
+						<button class="action accept">Accept</button>
+						<button class="action complete">Turn in</button>
+						<button class="action abandon">Abandon</button>
+					</div>
 				</div>
-			</div>
-		</aside>
+			</aside>
+		</div>
+	</div>
+	<div class="panel panel-shop" hidden>
+		<div class="hint">Potions, wings, and field supplies. Prices are Merit Badges.</div>
+		<div class="list shop-list" data-cat="0"></div>
+	</div>
+	<div class="panel panel-gear" hidden>
+		<div class="hint">Eden Group uniforms, boots, and weapons. Equip level still applies.</div>
+		<div class="list shop-list" data-cat="1"></div>
+	</div>
+	<div class="panel panel-upgrade" hidden>
+		<div class="hint">Late-game Eden sets and manuals. Same Merit Badge currency.</div>
+		<div class="list shop-list" data-cat="2"></div>
 	</div>
 </div>

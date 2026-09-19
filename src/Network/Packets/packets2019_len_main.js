@@ -4903,6 +4903,7 @@ function init(packetver) {
 	length_list[0x0efa] = 8;
 	length_list[0x0efb] = -1;
 	length_list[0x0efc] = 8;
+	length_list[0x0efd] = -1;
 	return length_list;
 }
 
