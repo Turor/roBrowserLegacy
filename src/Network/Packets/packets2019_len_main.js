@@ -4907,6 +4907,7 @@ function init(packetver) {
 	length_list[0x0ef4] = 8;
 	length_list[0x0efe] = -1;
 	length_list[0x0eff] = 8;
+	length_list[0x0ef5] = -1; // Turoran MVP minimap (variable)
 	return length_list;
 }
 

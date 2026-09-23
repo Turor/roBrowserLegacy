@@ -109,6 +109,7 @@ import PetEngine from './MapEngine/Pet.js';
 import StableEngine from './MapEngine/Stable.js';
 import EdenGroupEngine from './MapEngine/EdenGroup.js';
 import WarpraEngine from './MapEngine/Warpra.js';
+import MvpMinimapEngine from './MapEngine/MvpMinimap.js';
 import HomunEngine from './MapEngine/Homun.js';
 import MercenaryEngine from './MapEngine/Mercenary.js';
 import StoreEngine from './MapEngine/Store.js';
@@ -316,6 +317,7 @@ class MapEngine {
 	StableEngine();
 EdenGroupEngine();
 	WarpraEngine();
+	MvpMinimapEngine();
 			HomunEngine();
 			MercenaryEngine();
 			StoreEngine();

@@ -16090,4 +16090,21 @@ PACKET.ZC.TURORAN_WARPRA_RESULT = function PACKET_ZC_TURORAN_WARPRA_RESULT(fp, e
 PACKET.ZC.TURORAN_WARPRA_RESULT.size = 8;
 
 
+// Turoran MVP minimap markers (payload after auto-skipped id+len)
+PACKET.ZC.TURORAN_MVP_MINIMAP = function PACKET_ZC_TURORAN_MVP_MINIMAP(fp, end) {
+	this.flags = fp.readUChar();
+	this.count = fp.readUShort();
+	this.list = [];
+	for (let i = 0; i < this.count && fp.tell() < end; i++) {
+		this.list.push({
+			gid: fp.readULong(),
+			classId: fp.readUShort(),
+			x: fp.readUShort(),
+			y: fp.readUShort()
+		});
+	}
+};
+PACKET.ZC.TURORAN_MVP_MINIMAP.size = -1;
+
+
 export default PACKET;

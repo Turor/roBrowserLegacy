@@ -90,6 +90,11 @@ export function createMiniMap({
 	const _markers = [];
 
 	/**
+	 * @var {Array} MVP markers (permanent until cleared)
+	 */
+	const _mvp = [];
+
+	/**
 	 * @var {Array} others towninfo
 	 */
 	let _towninfo = [];
@@ -215,6 +220,7 @@ export function createMiniMap({
 	 * @param {string} mapname
 	 */
 	MiniMap.setMap = function setMap(mapname) {
+		_mvp.length = 0;
 		_map.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==';
 
 		_towninfo = DB.getTownInfo(mapname.replace(/\..*/, ''));
@@ -251,6 +257,7 @@ export function createMiniMap({
 		_party.length = 0;
 		_guild.length = 0;
 		_markers.length = 0;
+		_mvp.length = 0;
 	};
 
 	/**
@@ -435,6 +442,41 @@ export function createMiniMap({
 	/**
 	 * Render GUI
 	 */
+
+	/**
+	 * Add or update an MVP mark (permanent until cleared/removed)
+	 */
+	MiniMap.addMvpMark = function addMvpMark(gid, x, y, classId) {
+		for (let i = 0; i < _mvp.length; ++i) {
+			if (_mvp[i].gid === gid) {
+				_mvp[i].x = x;
+				_mvp[i].y = y;
+				_mvp[i].classId = classId;
+				return;
+			}
+		}
+		_mvp.push({ gid, x, y, classId });
+	};
+
+	/**
+	 * Remove an MVP mark by gid
+	 */
+	MiniMap.removeMvpMark = function removeMvpMark(gid) {
+		for (let i = 0; i < _mvp.length; ++i) {
+			if (_mvp[i].gid === gid) {
+				_mvp.splice(i, 1);
+				break;
+			}
+		}
+	};
+
+	/**
+	 * Clear all MVP marks
+	 */
+	MiniMap.clearMvpMarks = function clearMvpMarks() {
+		_mvp.length = 0;
+	};
+
 	const render = (function renderClosure() {
 		const ZOOM_SIZE = 20;
 		let max, start_x, start_y, zoom, f;
@@ -610,6 +652,27 @@ export function createMiniMap({
 				}
 				_ctx.stroke();
 				_ctx.fill();
+			}
+
+			// Render MVP markers (orange diamond, larger than party)
+			count = _mvp.length;
+			if (count) {
+				_ctx.fillStyle = 'rgb(255,120,0)';
+				_ctx.strokeStyle = 'rgb(180,40,0)';
+				_ctx.lineWidth = 1;
+				for (i = 0; i < count; ++i) {
+					dot = _mvp[i];
+					const px = projectX(dot.x);
+					const py = projectY(dot.y);
+					_ctx.beginPath();
+					_ctx.moveTo(px + 0, py - 6);
+					_ctx.lineTo(px + 5, py + 0);
+					_ctx.lineTo(px + 0, py + 6);
+					_ctx.lineTo(px - 5, py + 0);
+					_ctx.closePath();
+					_ctx.fill();
+					_ctx.stroke();
+				}
 			}
 		};
 	})();
