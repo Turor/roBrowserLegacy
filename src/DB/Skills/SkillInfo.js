@@ -1049,6 +1049,19 @@ SkillInfo[SK.WS_ARMORREFINE] = {
 	AttackRange: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 	_NeedSkillList: [[SK.WS_WEAPONREFINE, 10]]
 };
+
+SkillInfo[SK.WS_TITANAXEMASTERY] = {
+	Name: 'WS_TITANAXEMASTERY',
+	SkillName: "Titan's Axe Mastery",
+	MaxLv: 1,
+	SpAmount: [0],
+	bSeperateLv: false,
+	AttackRange: [1],
+	_NeedSkillList: [
+		[SK.AM_AXEMASTERY, 10],
+		[SK.WS_CARTTERMINATION, 10]
+	]
+};
 SkillInfo[SK.CR_SLIMPITCHER] = {
 	Name: 'CR_SLIMPITCHER',
 	SkillName: 'Aid Condensed Potion',
