@@ -104,8 +104,75 @@ function setMapList() {
 
 function onSelect() {
 	const root = WorldMap.getRoot();
-	selectMap(root.querySelector('.titlebar select').value);
+	const mapId = root.querySelector('.titlebar select').value;
+	highlightRegionButton(mapId);
+	selectMap(mapId);
 }
+
+/** Representative minimap icon per region worldmap id */
+const REGION_ICONS = {
+	'worldmap.jpg': 'prontera',
+	'worldmap_localizing1.bmp': 'yuno',
+	'worldmap_localizing2.bmp': 'rachel',
+	'worldmap_dimension.bmp': 'mid_camp'
+};
+
+/**
+ * Build left-side region buttons from the same MAPS list as the dropdown.
+ */
+function setRegionRail() {
+	const root = WorldMap.getRoot();
+	const rail = root.querySelector('.region-rail');
+	if (!rail) return;
+	rail.innerHTML = '';
+
+	for (const map of MAPS) {
+		if (!(WorldMap.settings.episode >= map.ep_from && WorldMap.settings.episode < map.ep_to)) {
+			continue;
+		}
+		const btn = document.createElement('button');
+		btn.type = 'button';
+		btn.className = 'region-btn';
+		btn.dataset.mapId = map.id;
+		btn.setAttribute('aria-label', map.name);
+
+		const icon = document.createElement('span');
+		icon.className = 'region-icon';
+		icon.setAttribute('aria-hidden', 'true');
+
+		const label = document.createElement('span');
+		label.className = 'region-name';
+		label.textContent = map.name;
+
+		btn.appendChild(icon);
+		btn.appendChild(label);
+		btn.addEventListener('click', () => onRegionButtonClick(map.id));
+		rail.appendChild(btn);
+
+		const iconMap = REGION_ICONS[map.id] || 'prontera';
+		Client.loadFile(`${DB.INTERFACE_PATH}map/${iconMap}.bmp`, data => {
+			icon.style.backgroundImage = `url(${data})`;
+		});
+	}
+}
+
+function onRegionButtonClick(mapId) {
+	const root = WorldMap.getRoot();
+	const selectEl = root.querySelector('#WorldMaps');
+	if (selectEl && selectEl.value !== mapId) {
+		selectEl.value = mapId;
+	}
+	highlightRegionButton(mapId);
+	selectMap(mapId);
+}
+
+function highlightRegionButton(mapId) {
+	const root = WorldMap.getRoot();
+	root.querySelectorAll('.region-rail .region-btn').forEach(btn => {
+		btn.classList.toggle('active', btn.dataset.mapId === mapId);
+	});
+}
+
 
 /**
  * Select world map
@@ -128,6 +195,7 @@ function selectMap(name = null) {
 			if (map.id === name) {
 				createWorldMapView(map, data);
 				resizeMap();
+				highlightRegionButton(name);
 				break;
 			}
 		}
@@ -535,9 +603,14 @@ WorldMap.onAppend = function onAppend() {
 
 	// set maps
 	setMapList();
+	setRegionRail();
 
 	// resize map container & add sections
 	selectMap();
+	const selectEl = this.getRoot().querySelector('#WorldMaps');
+	if (selectEl && selectEl.value) {
+		highlightRegionButton(selectEl.value);
+	}
 
 	WorldMapWarp.bind(WorldMap);
 

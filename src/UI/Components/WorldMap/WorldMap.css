@@ -457,3 +457,92 @@
 	font-weight: bold;
 	color: #5a3b1a;
 }
+
+/* Region rail (#79) — left-side zone buttons (icon + name) */
+#WorldMap .worldmap-body {
+	display: flex;
+	height: calc(100% - 17px);
+	width: 100%;
+}
+
+#WorldMap .region-rail {
+	flex: 0 0 168px;
+	width: 168px;
+	height: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	background: rgba(16, 16, 24, 0.92);
+	border-right: 1px solid #555;
+	padding: 8px 6px;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+#WorldMap .region-rail .region-btn {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	width: 100%;
+	padding: 6px 6px;
+	margin: 0;
+	border: 1px solid #444;
+	border-radius: 4px;
+	background: rgba(40, 40, 52, 0.95);
+	color: #f0f0f0;
+	cursor: pointer;
+	text-align: left;
+	font-size: 12px;
+	font-weight: bold;
+	box-sizing: border-box;
+}
+
+#WorldMap .region-rail .region-btn:hover {
+	border-color: #7ab8ff;
+	background: rgba(0, 96, 180, 0.45);
+}
+
+#WorldMap .region-rail .region-btn.active {
+	border-color: #ffd27a;
+	background: rgba(180, 120, 0, 0.4);
+	box-shadow: inset 0 0 0 1px #ffd27a;
+}
+
+#WorldMap .region-rail .region-btn .region-icon {
+	flex: 0 0 40px;
+	width: 40px;
+	height: 40px;
+	border: 1px solid #666;
+	border-radius: 3px;
+	background-color: #222;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+#WorldMap .region-rail .region-btn .region-name {
+	flex: 1 1 auto;
+	line-height: 1.2;
+	white-space: normal;
+	word-break: break-word;
+}
+
+#WorldMap .worldmap-body .map {
+	flex: 1 1 auto;
+	min-width: 0;
+	height: 100%;
+}
+
+#WorldMap .titlebar .worldmap-title {
+	font-size: 11px;
+	font-weight: bold;
+	margin-right: 8px;
+	vertical-align: middle;
+}
+
+#WorldMap .titlebar .worldmap-select-fallback {
+	/* Keep for accessibility / sync; visually de-emphasized */
+	max-width: 140px;
+	opacity: 0.85;
+}
