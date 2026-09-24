@@ -566,7 +566,7 @@ Warpra.refreshList = function refreshList() {
 };
 
 /**
- * Warp if unlocked; otherwise show the 50m unlock modal.
+ * Warp if unlocked; otherwise show ok/cancel 50m unlock prompt.
  * When autoWarpAfterBuy is set, a successful unlock immediately warps.
  * @param {object} loc
  * @param {{ autoWarpAfterBuy?: boolean }} [opts]
@@ -591,10 +591,12 @@ Warpra.unlockOrWarp = function unlockOrWarp(loc, opts) {
 			? `${label} is locked. Spend ${formatZeny(_price)} zeny to unlock every floor and teleport? (You have ${formatZeny(_zeny)}.)`
 			: `${label} is locked. Spend ${formatZeny(_price)} zeny to unlock and teleport there? (You have ${formatZeny(_zeny)}.)`;
 
-	UIManager.showPromptBox(
+	// Use ok/cancel button bitmaps (btn_ok.bmp / btn_cancel.bmp). 'Yes'/'No'
+	// have no GRF textures, so the prompt appeared with no visible choices (#55).
+	const prompt = UIManager.showPromptBox(
 		body,
-		'Yes',
-		'No',
+		'ok',
+		'cancel',
 		function onYes() {
 			_pending = loc;
 			_warpAfterBuy = opts.autoWarpAfterBuy ? loc : null;
@@ -604,6 +606,10 @@ Warpra.unlockOrWarp = function unlockOrWarp(loc, opts) {
 			_warpAfterBuy = null;
 		}
 	);
+	// World map is fullscreen; keep confirm above it.
+	if (prompt && typeof prompt.placeOnTop === 'function') {
+		prompt.placeOnTop();
+	}
 };
 
 
