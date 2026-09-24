@@ -15972,6 +15972,21 @@ PACKET.ZC.TURORAN_STABLE_RESULT = function PACKET_ZC_TURORAN_STABLE_RESULT(fp, e
 PACKET.ZC.TURORAN_STABLE_RESULT.size = 8;
 
 
+// 0x0ef6 — Turoran Stable: owned counts for evolution materials (inv + storage)
+PACKET.ZC.TURORAN_STABLE_OWNED = function PACKET_ZC_TURORAN_STABLE_OWNED(fp, end) {
+	this.count = fp.readUShort();
+	this.list = [];
+	for (let i = 0; i < this.count && fp.tell() < end; i++) {
+		this.list.push({
+			nameid: fp.readLong(),
+			owned: fp.readLong()
+		});
+	}
+};
+PACKET.ZC.TURORAN_STABLE_OWNED.size = -1;
+
+
+
 /**
  * Export
  */

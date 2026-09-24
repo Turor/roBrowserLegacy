@@ -400,3 +400,24 @@
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
+
+#TuroranStable .evo-mat.short .qty {
+	color: #c44;
+}
+#TuroranStable .evo-mat.ok .qty {
+	color: #2a7;
+}
+#TuroranStable .detail-actions button:disabled {
+	opacity: 0.45;
+	cursor: not-allowed;
+}
+#TuroranStable .equip-picker {
+	margin-top: 6px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+}
+#TuroranStable .equip-picker button {
+	font-size: 11px;
+	padding: 2px 6px;
+}
