@@ -60,6 +60,7 @@ let _dungeonGroup = null;
 let _pending = null;
 let _warpAfterBuy = null;
 let _listListeners = [];
+let _warpSuccessListeners = [];
 
 function escapeHtml(value) {
 	return String(value ?? '')
@@ -435,10 +436,12 @@ Warpra.onResult = function onResult(pkt) {
 				sendAction(ACT.WARP, warpTarget.kind, warpTarget.id);
 			}
 		} else if (loc && loc.unlocked) {
+			// Successful WARP (unlock-only RESULT OK handled above).
 			if (Warpra._host) {
 				Warpra._host.style.display = 'none';
 			}
 			hideModal();
+			notifyWarpSuccess(loc, pkt);
 		}
 		break;
 	case RES.LOCKED:
@@ -522,6 +525,16 @@ Warpra.getDungeonFloors = function getDungeonFloors(mapId) {
 	};
 };
 
+function notifyWarpSuccess(loc, pkt) {
+	_warpSuccessListeners.slice().forEach(cb => {
+		try {
+			cb(loc, pkt);
+		} catch (err) {
+			console.error('[Warpra] warp success listener', err);
+		}
+	});
+}
+
 Warpra.onListChange = function onListChange(cb) {
 	if (typeof cb !== 'function') {
 		return () => {};
@@ -529,6 +542,22 @@ Warpra.onListChange = function onListChange(cb) {
 	_listListeners.push(cb);
 	return () => {
 		_listListeners = _listListeners.filter(fn => fn !== cb);
+	};
+};
+
+/**
+ * Subscribe to successful Warpra teleports (RESULT OK for WARP).
+ * Unlock-only RESULT OK does not fire this. Canceling a 50m purchase does not.
+ * @param {Function} cb
+ * @returns {Function} unsubscribe
+ */
+Warpra.onWarpSuccess = function onWarpSuccess(cb) {
+	if (typeof cb !== 'function') {
+		return () => {};
+	}
+	_warpSuccessListeners.push(cb);
+	return () => {
+		_warpSuccessListeners = _warpSuccessListeners.filter(fn => fn !== cb);
 	};
 };
 
