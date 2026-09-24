@@ -3,6 +3,7 @@
  */
 
 import DB from 'DB/DBManager.js';
+import Client from 'Core/Client.js';
 import MonsterTable from 'DB/Monsters/MonsterTable.js';
 import Preferences from 'Core/Preferences.js';
 import Renderer from 'Renderer/Renderer.js';
@@ -88,6 +89,33 @@ function itemName(nameid) {
 	const info = DB.getItemInfo(nameid);
 	return info?.identifiedDisplayName || `#${nameid}`;
 }
+
+function setAccessoryDisplay(root, nameid) {
+	const icon = root.querySelector('.d-equip-icon');
+	const label = root.querySelector('.d-equip');
+	if (label) {
+		label.textContent = itemName(nameid);
+	}
+	if (!icon) {
+		return;
+	}
+	icon.style.backgroundImage = '';
+	icon.classList.toggle('empty', !nameid);
+	if (!nameid) {
+		return;
+	}
+	const info = DB.getItemInfo(nameid);
+	const res = info && info.identifiedResourceName;
+	if (!res) {
+		return;
+	}
+	Client.loadFile(DB.INTERFACE_PATH + 'item/' + res + '.bmp', data => {
+		if (_selectedPetId && root.querySelector('.d-equip-icon') === icon) {
+			icon.style.backgroundImage = `url(${data})`;
+		}
+	});
+}
+
 
 function petStatus(row) {
 	const egg = (row.flags & 0x04) !== 0;
@@ -369,7 +397,7 @@ Stable.showPetDetail = function showPetDetail(row) {
 	root.querySelector('.d-aspd').textContent = String(row.aspd ?? '—');
 	root.querySelector('.d-hunger').textContent = `${hungerLabel(row.hungry)} (${row.hungry}/100)`;
 	root.querySelector('.d-intimacy').textContent = `${intimacyLabel(row.intimate, false)} (${row.intimate}/1000)`;
-	root.querySelector('.d-equip').textContent = itemName(row.equip);
+	setAccessoryDisplay(root, row.equip);
 	root.querySelector('.d-food').textContent = itemName(row.foodId);
 	root.querySelector('.d-status').textContent = petStatus(row);
 	root.querySelector('.d-rename').textContent = row.renameFlag ? 'Yes' : 'No';
