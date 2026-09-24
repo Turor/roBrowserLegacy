@@ -39,6 +39,8 @@ const ITEMID_PHRACON = 1010;
 const ITEMID_EMVERETARCON = 1011;
 const ITEMID_ORIDECON = 984;
 const ITEMID_ELUNIUM = 985;
+const ITEMID_CARNIUM = 6223;
+const ITEMID_BRADIUM = 6224;
 
 /** Pre-re NormalChance to reach refine+1 (index = current refine). */
 const SKILL_REFINE_CHANCE = {
@@ -86,7 +88,7 @@ Refine.hammer = 0;
 const itemMessageMapping = {
 	2988: [1000336, 1000355, 1000368, 1000369, 1000370, 1000371],
 	2989: [6225, 6226, 1000331, 1000333],
-	2990: [6223, 6624]
+	2990: [6223, 6224]
 };
 
 /**
@@ -475,17 +477,54 @@ function chanceAt(table, refine) {
 	return table[Math.min(Math.max(refine, 0), table.length - 1)];
 }
 
+/**
+ * Turoran Whitesmith success % (mirrors skill.c skill_weaponrefine):
+ *   base    = refine_db NormalChance at current refine, or Lv10 baseline past +10
+ *   penalty = 10% * max(0, target_refine - 11)
+ *   bonus   = 10% * floor(job_level / 20)
+ * clamped 0..100. NPC Refinery UI uses server-sent chance instead.
+ */
+function skillRefineChance(item) {
+	const refine = item.RefiningLevel || 0;
+	let table;
+	if (item.type === ItemType.ARMOR) {
+		table = SKILL_REFINE_CHANCE.armor;
+	} else {
+		const wlv = getWeaponLevelFromItem(item);
+		table = SKILL_REFINE_CHANCE[wlv] || SKILL_REFINE_CHANCE[3];
+	}
+	const baseIndex = refine >= 10 ? 9 : refine;
+	const base = chanceAt(table, baseIndex);
+	const target = refine + 1;
+	const penalty = 10 * (target > 11 ? target - 11 : 0);
+	const jobLevel = Session.Entity && Session.Entity.joblevel ? Session.Entity.joblevel : 0;
+	const bonus = 10 * Math.floor(jobLevel / 20);
+	let chance = base - penalty + bonus;
+	if (chance < 0) {
+		chance = 0;
+	}
+	if (chance > 100) {
+		chance = 100;
+	}
+	return chance;
+}
+
 function skillRefineMaterialsFor(item) {
 	const refine = item.RefiningLevel || 0;
+	const chance = skillRefineChance(item);
 
 	if (item.type === ItemType.ARMOR) {
 		return [
 			{
-				itemId: ITEMID_ELUNIUM,
-				chance: chanceAt(SKILL_REFINE_CHANCE.armor, refine),
+				itemId: refine >= 10 ? ITEMID_CARNIUM : ITEMID_ELUNIUM,
+				chance,
 				zeny: 0
 			}
 		];
+	}
+
+	if (refine >= 10) {
+		return [{ itemId: ITEMID_BRADIUM, chance, zeny: 0 }];
 	}
 
 	const wlv = getWeaponLevelFromItem(item);
@@ -497,13 +536,12 @@ function skillRefineMaterialsFor(item) {
 
 	if (wlv >= 1 && wlv <= 4) {
 		const id = wlv <= 2 ? ores[wlv - 1].itemId : ITEMID_ORIDECON;
-		const table = SKILL_REFINE_CHANCE[wlv] || SKILL_REFINE_CHANCE[3];
-		return [{ itemId: id, chance: chanceAt(table, refine), zeny: 0 }];
+		return [{ itemId: id, chance, zeny: 0 }];
 	}
 
 	return ores.map(ore => ({
 		itemId: ore.itemId,
-		chance: chanceAt(SKILL_REFINE_CHANCE[ore.wlv], refine),
+		chance: skillRefineChance(item),
 		zeny: 0
 	}));
 }
@@ -522,26 +560,136 @@ function enableSkillRefineButton(material) {
 		refineEnabled.style.display = 'block';
 	}
 
+	applyMaterialChanceDisplay(material);
+}
+
+/**
+ * Show success % / zeny for the selected (or previewed) material.
+ * Used by both NPC Refinery UI (server chance) and Whitesmith skill path.
+ */
+function applyMaterialChanceDisplay(material) {
+	const root = _root();
+	if (!material) {
+		return;
+	}
+
 	const numberEl = root.querySelector('.success .number');
 	if (numberEl) {
 		numberEl.textContent = material.chance;
 	}
+	const successEl = root.querySelector('.success');
+	if (successEl) {
+		successEl.style.display = 'block';
+	}
+	const chanceRate = root.querySelector('.chance_rate');
+	if (chanceRate) {
+		chanceRate.textContent = DB.getMessage(3285).replace('%d%', material.chance);
+	}
+	const refineZeny = root.querySelector('.refine_zeny');
+	if (refineZeny) {
+		refineZeny.textContent = material.zeny;
+	}
+	const refineZenyCont = root.querySelector('.refine_zeny_cont');
+	if (refineZenyCont) {
+		refineZenyCont.textContent = material.zeny;
+	}
+
+	refine_current_chance = material.chance;
+	refine_current_zeny = material.zeny;
+	refine_item_mat = material.itemId;
+	refine_fee = material.zeny;
 }
 
-function pickSkillRefineMaterial(materials) {
-	let chosen = materials[0];
+/**
+ * Visually select a material slot and update chance/zeny.
+ * @param {object} material packet material entry
+ * @param {number} idx slot index in refiningMaterials
+ * @param {boolean} enableRefine whether to enable the refine button
+ */
+function applyMaterialSelection(material, idx, enableRefine, silent) {
+	const root = _root();
+	const materialDiv = root.querySelector(`.material_${idx}`);
+	if (!materialDiv || !material) {
+		return;
+	}
+
+	if (!silent) {
+		for (const messageID in itemMessageMapping) {
+			if (itemMessageMapping[messageID].includes(material.itemId)) {
+				showMessage(messageID, 0, 'info');
+				break;
+			}
+		}
+	}
+
+	root.querySelectorAll('.mat_overlay').forEach(el => el.classList.remove('selected'));
+	const overlay = materialDiv.closest('.mat_overlay');
+	if (overlay) {
+		overlay.classList.add('selected');
+	}
+
+	const originalItem = materialDiv.querySelector('.item');
+	if (originalItem) {
+		const clonedMaterial = originalItem.cloneNode(true);
+		const matCount = clonedMaterial.querySelector('.mat_count');
+		if (matCount) {
+			matCount.remove();
+		}
+		const selectedMat = root.querySelector('.selected_mat');
+		if (selectedMat) {
+			selectedMat.innerHTML = '';
+			selectedMat.appendChild(clonedMaterial);
+		}
+	}
+
+	const refineEnabled = root.querySelector('.refine_enabled');
+	if (refineEnabled) {
+		refineEnabled.style.display = enableRefine ? 'block' : 'none';
+	}
+
+	applyMaterialChanceDisplay(material);
+
+	const refineCont = root.querySelector('.refine_cont');
+	if (refineCont) {
+		if (enableRefine) {
+			refineCont.classList.add('item');
+			refineCont.setAttribute('data-index', material.itemId);
+		} else {
+			refineCont.classList.remove('item');
+			refineCont.removeAttribute('data-index');
+		}
+	}
+}
+
+/**
+ * After materials are listed, pick the best default so success % is visible immediately.
+ * Prefers an owned material; otherwise previews the first slot's chance without enabling refine.
+ */
+function pickDefaultRefineMaterial(materials) {
+	if (!materials || !materials.length) {
+		return;
+	}
+
+	let chosenIdx = 0;
+	let owned = false;
 	for (let i = 0; i < materials.length; i++) {
 		const have = Inventory.getUI().getItemById(materials[i].itemId);
 		if (have && have.count > 0) {
-			chosen = materials[i];
-			const iconEl = _root().querySelector(`.material_${i} .icon`);
-			if (iconEl) {
-				iconEl.click();
-			}
+			chosenIdx = i;
+			owned = true;
 			break;
 		}
 	}
-	enableSkillRefineButton(chosen);
+
+	const canRefine = skillRefineMode || owned;
+	applyMaterialSelection(materials[chosenIdx], chosenIdx, canRefine, true);
+	if (skillRefineMode) {
+		enableSkillRefineButton(materials[chosenIdx]);
+	}
+}
+
+function pickSkillRefineMaterial(materials) {
+	pickDefaultRefineMaterial(materials);
 }
 
 function prepareSkillRefineItem(item) {
@@ -862,81 +1010,25 @@ function onPopulateMaterials() {
 				}
 			}
 
-			// Material Selection upon clicking
+			// Material Selection upon clicking (preview chance even with 0 owned)
 			const iconEl = materialDiv.querySelector('.icon');
 			if (iconEl) {
 				iconEl.addEventListener('click', () => {
-					const clickedItemId = material.itemId;
-					const clickedItem = Inventory.getUI().getItemById(clickedItemId);
+					const clickedItem = Inventory.getUI().getItemById(material.itemId);
 					const clickedCount = clickedItem ? clickedItem.count : 0;
-
-					if (clickedCount === 0) {
-						return;
-					}
-
-					// Check if item ID exists in the mapping and show corresponding message
-					for (const messageID in itemMessageMapping) {
-						if (itemMessageMapping[messageID].includes(clickedItemId)) {
-							showMessage(messageID, 0, 'info');
-							break;
-						}
-					}
-
-					root.querySelectorAll('.mat_overlay').forEach(el => el.classList.remove('selected'));
-					materialDiv.closest('.mat_overlay').classList.add('selected');
-
-					// Clone the material and append it to the selected_mat
-					const originalItem = materialDiv.querySelector('.item');
-					const clonedMaterial = originalItem.cloneNode(true);
-					const matCount = clonedMaterial.querySelector('.mat_count');
-					if (matCount) {
-						matCount.remove();
-					}
-
-					const selectedMat = root.querySelector('.selected_mat');
-					selectedMat.innerHTML = '';
-					selectedMat.appendChild(clonedMaterial);
-
-					// Enable refine button
-					const refineEnabled = root.querySelector('.refine_enabled');
-					if (refineEnabled) {
-						refineEnabled.style.display = 'block';
-					}
-
-					// Update success and refining_zeny
-					const numberEl = root.querySelector('.success .number');
-					if (numberEl) {
-						numberEl.textContent = material.chance;
-					}
-					const chanceRate = root.querySelector('.chance_rate');
-					if (chanceRate) {
-						chanceRate.textContent = DB.getMessage(3285).replace('%d%', material.chance);
-					}
-					const refineZeny = root.querySelector('.refine_zeny');
-					if (refineZeny) {
-						refineZeny.textContent = material.zeny;
-					}
-					const refineZenyCont = root.querySelector('.refine_zeny_cont');
-					if (refineZenyCont) {
-						refineZenyCont.textContent = material.zeny;
-					}
-
-					// Store fresh chance/zeny for re-apply after the result animation
-					refine_current_chance = material.chance;
-					refine_current_zeny = material.zeny;
-
-					// Set the refine_item_mat value to the selected material itemId
-					refine_item_mat = material.itemId;
-					refine_fee = material.zeny;
-
-					const refineCont = root.querySelector('.refine_cont');
-					if (refineCont) {
-						refineCont.classList.add('item');
-						refineCont.setAttribute('data-index', material.itemId);
+					const canRefine = skillRefineMode || clickedCount > 0;
+					applyMaterialSelection(material, idx, canRefine);
+					if (skillRefineMode) {
+						enableSkillRefineButton(material);
 					}
 				});
 			}
 		})(i);
+	}
+
+	// Show success % immediately for the default / owned material
+	if (!skillRefineMode) {
+		pickDefaultRefineMaterial(refiningMaterials);
 	}
 
 	// Update blacksmith blessing if applicable
