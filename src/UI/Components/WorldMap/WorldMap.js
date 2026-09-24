@@ -113,7 +113,7 @@ function onSelect() {
 const REGION_ICONS = {
 	'worldmap.jpg': 'prontera',
 	'worldmap_localizing1.bmp': 'yuno',
-	'worldmap_localizing2.bmp': 'rachel',
+	'worldmap_localizing2.bmp': 'moscovia',
 	'worldmap_dimension.bmp': 'mid_camp'
 };
 

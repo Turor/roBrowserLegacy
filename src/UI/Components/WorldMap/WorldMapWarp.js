@@ -20,6 +20,26 @@ function normalizeMapId(mapId) {
 }
 
 /**
+ * World-map section id → Warpra catalog map (issue #89).
+ * Covers dungeon tiles whose WM id differs from the catalog entry,
+ * and ensures every WM dungeon opens the floor picker.
+ */
+const WM_DUNGEON_ALIAS = {
+	izlu2dun: 'iz_dun00', // Byalan entrance island → dungeon floors
+	mosk_dun01: 'mosk_dun01',
+	mosk_dun02: 'mosk_dun01',
+	mosk_dun03: 'mosk_dun01',
+	odin_tem01: 'odin_tem01',
+	odin_tem02: 'odin_tem01',
+	odin_tem03: 'odin_tem01',
+	tur_dun01: 'tur_dun01',
+	gon_dun01: 'gon_dun01',
+	lou_dun01: 'lou_dun01',
+	dew_dun01: 'dew_dun01'
+};
+
+
+/**
  * Apply green check / red X marks on warpable tiles.
  */
 export function applyExploreMarks() {
@@ -34,7 +54,8 @@ export function applyExploreMarks() {
 	root.querySelectorAll('.worldmap .section').forEach(el => {
 		const mapId = normalizeMapId(el.id);
 		let mark = el.querySelector('.explore-mark');
-		const loc = byMap.get(mapId);
+		const alias = WM_DUNGEON_ALIAS[mapId];
+		const loc = byMap.get(mapId) || (alias ? byMap.get(alias) : null);
 		if (!loc) {
 			if (mark) {
 				mark.remove();
@@ -73,19 +94,23 @@ export function applyExploreMarks() {
  * @param {HTMLElement} host WorldMap root for overlays
  */
 function handleResolved(id, host) {
-	const loc = Warpra.findByMap(id);
+	const alias = WM_DUNGEON_ALIAS[id];
+	const lookupId = alias || id;
+	let loc = Warpra.findByMap(lookupId) || Warpra.findByMap(id);
 	if (!loc) {
 		ChatBox.addText(`No Warpra destination for ${id}.`, ChatBox.TYPE.ERROR);
 		return;
 	}
 
-	if (loc.kind === Warpra.KIND.DUNGEON) {
-		const info = Warpra.getDungeonFloors(id);
+	// World-map dungeon tiles (incl. aliases like izlu2dun → Byalan) open floor picker.
+	if (loc.kind === Warpra.KIND.DUNGEON || alias) {
+		const floorId = loc.kind === Warpra.KIND.DUNGEON ? loc.map : lookupId;
+		const info = Warpra.getDungeonFloors(floorId) || Warpra.getDungeonFloors(lookupId);
 		if (!info || !info.floors.length) {
 			ChatBox.addText(`No dungeon floors listed for ${id}.`, ChatBox.TYPE.ERROR);
 			return;
 		}
-		_lastDungeonMapId = id;
+		_lastDungeonMapId = floorId;
 		DungeonFloorPicker.open(host, info);
 		return;
 	}
