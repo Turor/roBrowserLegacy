@@ -327,3 +327,133 @@
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
 }
+
+
+/* Issue #34 — warpra explored marks */
+#WorldMap .worldmap .section .explore-mark {
+	position: absolute;
+	top: 1px;
+	right: 1px;
+	z-index: 3;
+	width: 12px;
+	height: 12px;
+	line-height: 12px;
+	font-size: 11px;
+	font-weight: bold;
+	text-align: center;
+	pointer-events: none;
+	text-shadow: 0 0 2px #000, 0 0 2px #000;
+}
+
+#WorldMap .worldmap .section .explore-mark.explored {
+	color: #2ecc40;
+}
+
+#WorldMap .worldmap .section .explore-mark.unexplored {
+	color: #ff4136;
+}
+
+/* Issue #34 — dungeon floor picker overlay */
+#WorldMap .wm-dungeon-picker {
+	position: absolute;
+	inset: 0;
+	z-index: 40;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(0, 0, 0, 0.45);
+}
+
+#WorldMap .wm-dungeon-picker[hidden] {
+	display: none !important;
+}
+
+#WorldMap .wm-dp-box {
+	width: min(420px, 90vw);
+	max-height: min(480px, 80vh);
+	display: flex;
+	flex-direction: column;
+	background: #f4ead0;
+	border: 2px solid #5a3b1a;
+	box-shadow: 2px 2px 0 #0006;
+	color: #3a2410;
+	font-size: 11px;
+}
+
+#WorldMap .wm-dp-titlebar {
+	flex: 0 0 22px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 6px 0 10px;
+	background: #8a5a28;
+	color: #fff8e0;
+	font-weight: bold;
+}
+
+#WorldMap .wm-dp-close {
+	border: 0;
+	background: transparent;
+	color: #fff8e0;
+	font-size: 16px;
+	cursor: pointer;
+	line-height: 1;
+	padding: 0 4px;
+}
+
+#WorldMap .wm-dp-intro {
+	padding: 6px 10px;
+	background: #efe0a8;
+	border-bottom: 1px solid #c9a66a;
+	line-height: 1.35;
+}
+
+#WorldMap .wm-dp-list {
+	overflow: auto;
+	padding: 6px;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+#WorldMap .wm-dp-row {
+	display: grid;
+	grid-template-columns: 16px 1fr auto auto;
+	gap: 8px;
+	align-items: center;
+	padding: 6px 8px;
+	border: 1px solid #c9a66a;
+	background: #fff8e0;
+	color: #3a2410;
+	cursor: pointer;
+	text-align: left;
+	font: inherit;
+}
+
+#WorldMap .wm-dp-row:hover {
+	background: #ffe9b0;
+}
+
+#WorldMap .wm-dp-row.locked {
+	opacity: 0.95;
+}
+
+#WorldMap .wm-dp-mark.explored {
+	color: #2ecc40;
+	font-weight: bold;
+}
+
+#WorldMap .wm-dp-mark.unexplored {
+	color: #ff4136;
+	font-weight: bold;
+}
+
+#WorldMap .wm-dp-map {
+	color: #7a5a30;
+	font-size: 10px;
+}
+
+#WorldMap .wm-dp-action {
+	font-weight: bold;
+	color: #5a3b1a;
+}

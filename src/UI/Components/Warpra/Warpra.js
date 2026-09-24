@@ -58,6 +58,8 @@ let _price = 50000000;
 let _fieldGroup = null;
 let _dungeonGroup = null;
 let _pending = null;
+let _warpAfterBuy = null;
+let _listListeners = [];
 
 function escapeHtml(value) {
 	return String(value ?? '')
@@ -139,10 +141,20 @@ function updateZeny() {
 function hideModal() {
 	const root = Warpra.getRoot();
 	if (!root) {
+		_pending = null;
 		return;
 	}
 	root.querySelector('.modal').hidden = true;
 	_pending = null;
+	['.grid', '.tabs', '.intro', '.crumb'].forEach(sel => {
+		const el = root.querySelector(sel);
+		if (el) el.style.visibility = '';
+	});
+	// If opened only as a world-map unlock prompt (grid was hidden), tuck host away.
+	const grid = root.querySelector('.grid');
+	if (grid && grid.style.visibility === '' && Warpra._host && !Warpra._host.classList.contains('wm-keep-open')) {
+		// no-op restore path
+	}
 }
 
 function showModal(loc) {
@@ -394,6 +406,13 @@ Warpra.setList = function setList(pkt) {
 		}
 	}
 	renderGrid();
+	_listListeners.slice().forEach(cb => {
+		try {
+			cb(_list);
+		} catch (err) {
+			console.error('[Warpra] list listener', err);
+		}
+	});
 };
 
 Warpra.onResult = function onResult(pkt) {
@@ -406,9 +425,19 @@ Warpra.onResult = function onResult(pkt) {
 			if (_pending.kind === KIND.DUNGEON) {
 				_dungeonGroup = _pending.group;
 			}
+			const warpTarget = _warpAfterBuy;
+			_warpAfterBuy = null;
 			hideModal();
+			if (Warpra._host) {
+				Warpra._host.style.display = 'none';
+			}
+			if (warpTarget) {
+				sendAction(ACT.WARP, warpTarget.kind, warpTarget.id);
+			}
 		} else if (loc && loc.unlocked) {
-			Warpra._host.style.display = 'none';
+			if (Warpra._host) {
+				Warpra._host.style.display = 'none';
+			}
 			hideModal();
 		}
 		break;
@@ -439,5 +468,114 @@ Warpra.onResult = function onResult(pkt) {
 		break;
 	}
 };
+
+
+/**
+ * World-map / external helpers (issue #34).
+ */
+Warpra.KIND = KIND;
+
+Warpra.getPrice = function getPrice() {
+	return _price;
+};
+
+Warpra.getZeny = function getZeny() {
+	return _zeny;
+};
+
+Warpra.getList = function getList() {
+	return _list.slice();
+};
+
+Warpra.getMapIndex = function getMapIndex() {
+	const map = new Map();
+	_list.forEach(loc => {
+		if (loc && loc.map) {
+			map.set(loc.map, loc);
+		}
+	});
+	return map;
+};
+
+Warpra.findByMap = function findByMap(mapId) {
+	const id = String(mapId || '')
+		.replace(/\.gat$/i, '')
+		.replace(/\.rsw$/i, '');
+	return _list.find(loc => loc.map === id) || null;
+};
+
+Warpra.getDungeonFloorsByGroup = function getDungeonFloorsByGroup(groupId) {
+	return _list.filter(loc => loc.kind === KIND.DUNGEON && loc.group === groupId);
+};
+
+Warpra.getDungeonFloors = function getDungeonFloors(mapId) {
+	const loc = Warpra.findByMap(mapId);
+	if (!loc || loc.kind !== KIND.DUNGEON) {
+		return null;
+	}
+	const floors = Warpra.getDungeonFloorsByGroup(loc.group);
+	return {
+		group: loc.group,
+		name: loc.groupName || loc.name || 'Dungeon',
+		floors,
+		unlocked: floors.some(f => f.unlocked)
+	};
+};
+
+Warpra.onListChange = function onListChange(cb) {
+	if (typeof cb !== 'function') {
+		return () => {};
+	}
+	_listListeners.push(cb);
+	return () => {
+		_listListeners = _listListeners.filter(fn => fn !== cb);
+	};
+};
+
+Warpra.refreshList = function refreshList() {
+	sendAction(ACT.LIST, 0, 0);
+};
+
+/**
+ * Warp if unlocked; otherwise show the 50m unlock modal.
+ * When autoWarpAfterBuy is set, a successful unlock immediately warps.
+ * @param {object} loc
+ * @param {{ autoWarpAfterBuy?: boolean }} [opts]
+ */
+Warpra.unlockOrWarp = function unlockOrWarp(loc, opts) {
+	if (!loc) {
+		return;
+	}
+	opts = opts || {};
+	if (loc.unlocked) {
+		_warpAfterBuy = null;
+		sendAction(ACT.WARP, loc.kind, loc.id);
+		return;
+	}
+
+	const label =
+		loc.kind === KIND.DUNGEON
+			? loc.groupName || loc.name || 'this dungeon'
+			: loc.name || 'this map';
+	const body =
+		loc.kind === KIND.DUNGEON
+			? `${label} is locked. Spend ${formatZeny(_price)} zeny to unlock every floor and teleport? (You have ${formatZeny(_zeny)}.)`
+			: `${label} is locked. Spend ${formatZeny(_price)} zeny to unlock and teleport there? (You have ${formatZeny(_zeny)}.)`;
+
+	UIManager.showPromptBox(
+		body,
+		'Yes',
+		'No',
+		function onYes() {
+			_pending = loc;
+			_warpAfterBuy = opts.autoWarpAfterBuy ? loc : null;
+			sendAction(ACT.BUY, loc.kind, loc.id);
+		},
+		function onNo() {
+			_warpAfterBuy = null;
+		}
+	);
+};
+
 
 export default UIManager.addComponent(Warpra);
