@@ -8,6 +8,8 @@
  * @author Vincent Thibault
  */
 
+import './BrowserShortcutGuard.js'; // Issue #33: lock browser modifier shortcuts
+
 /**
  * Keys Constants
  */
