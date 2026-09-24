@@ -12,6 +12,7 @@ import DungeonFloorPicker from './DungeonFloorPicker.js';
 
 let _worldMap = null;
 let _unsub = null;
+let _unsubWarp = null;
 let _lastDungeonMapId = null;
 
 function normalizeMapId(mapId) {
@@ -118,6 +119,16 @@ export function handleSectionClick(mapId, host) {
  * Bind to a WorldMap component instance (call from onAppend).
  * @param {object} worldMapComp
  */
+function closeWorldMapAfterWarp() {
+	DungeonFloorPicker.close();
+	_lastDungeonMapId = null;
+	if (_worldMap && typeof _worldMap.close === 'function') {
+		_worldMap.close();
+	} else if (_worldMap && _worldMap._host) {
+		_worldMap._host.style.display = 'none';
+	}
+}
+
 export function bind(worldMapComp) {
 	_worldMap = worldMapComp;
 	Warpra.prepare();
@@ -132,6 +143,11 @@ export function bind(worldMapComp) {
 		_unsub();
 	}
 	_unsub = Warpra.onListChange(() => applyExploreMarks());
+	if (_unsubWarp) {
+		_unsubWarp();
+	}
+	// Close after WARP RESULT OK (not on unlock prompt cancel / deny).
+	_unsubWarp = Warpra.onWarpSuccess(() => closeWorldMapAfterWarp());
 	applyExploreMarks();
 }
 
@@ -139,6 +155,10 @@ export function unbind() {
 	if (_unsub) {
 		_unsub();
 		_unsub = null;
+	}
+	if (_unsubWarp) {
+		_unsubWarp();
+		_unsubWarp = null;
 	}
 	DungeonFloorPicker.close();
 	_worldMap = null;

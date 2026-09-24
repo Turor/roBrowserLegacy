@@ -683,8 +683,21 @@ function stopPropagation(event) {
  * Closing window
  */
 function onClose() {
-	WorldMap._host.style.display = 'none';
+	WorldMap.close();
 }
+
+/**
+ * Hide the world map and persist closed state (so map-change re-append
+ * does not reopen it after a Warpra teleport).
+ */
+WorldMap.close = function close() {
+	if (this._host) {
+		this._host.style.display = 'none';
+	}
+	hideTooltip();
+	_preferences.show = false;
+	_preferences.save();
+};
 
 WorldMap.mouseMode = GUIComponent.MouseMode.STOP;
 
