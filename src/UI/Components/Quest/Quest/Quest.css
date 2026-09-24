@@ -204,3 +204,30 @@
 #cooldown-quest-list {
 	display: none;
 }
+
+/* English tab labels over Korean renew_questui chrome */
+#Quest .quest-left-panel .quest-menu .quest-menu-item {
+	position: relative;
+	writing-mode: vertical-rl;
+	text-orientation: mixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	padding: 6px 0;
+	cursor: pointer;
+}
+
+#Quest .quest-left-panel .quest-menu .quest-menu-item .quest-menu-label {
+	font-size: 10px;
+	font-weight: bold;
+	color: #1a1a1a;
+	text-shadow: 0 0 2px #fff, 0 0 2px #fff, 1px 0 #fff, -1px 0 #fff, 0 1px #fff, 0 -1px #fff;
+	letter-spacing: 0.5px;
+	pointer-events: none;
+	user-select: none;
+}
+
+#Quest .quest-left-panel .quest-menu .quest-menu-item.active-tab .quest-menu-label {
+	color: #000091;
+}
