@@ -113,10 +113,14 @@ export function createQuest(config) {
 				(sel, idx) => {
 					const el = root.querySelector(sel);
 					if (el) {
-						el.style.display = idx === 0 ? '' : 'none';
+						el.style.display = idx === 0 ? 'block' : 'none';
 					}
 				}
 			);
+			const activeTab = root.querySelector('#active');
+			if (activeTab) {
+				activeTab.classList.add('active-tab');
+			}
 
 			const toggleBtn = root.querySelector('.toggle-quest-list');
 			if (toggleBtn) {
@@ -135,7 +139,7 @@ export function createQuest(config) {
 
 			const activeList = root.querySelector('#active-quest-list');
 			if (activeList) {
-				activeList.style.display = '';
+				activeList.style.display = 'block';
 			}
 
 			this.draggable('.titlebar');
@@ -187,7 +191,7 @@ export function createQuest(config) {
 				}
 			});
 
-			root.querySelector('#active-quest-list').style.display = '';
+			root.querySelector('#active-quest-list').style.display = 'block';
 			root.querySelector('#inactive-quest-list').style.display = 'none';
 			root.querySelector('#all-quest-list').style.display = 'none';
 
@@ -208,7 +212,7 @@ export function createQuest(config) {
 			if (renewLayout) {
 				const activeList = root.querySelector('#active-quest-list');
 				if (activeList) {
-					activeList.style.display = '';
+					activeList.style.display = 'block';
 				}
 				const inactiveList = root.querySelector('#inactive-quest-list');
 				if (inactiveList) {
@@ -614,23 +618,27 @@ export function createQuest(config) {
 			root.querySelector('#inactive-quest-list').style.display = 'none';
 			root.querySelector('#feature-quest-list').style.display = 'none';
 			root.querySelector('#cooldown-quest-list').style.display = 'none';
+			root.querySelectorAll('.quest-menu-item').forEach(el => el.classList.remove('active-tab'));
+			if (menuItem) {
+				menuItem.classList.add('active-tab');
+			}
 
 			switch (_active_menu) {
 				case 'feature':
 					background_image = 'bg_quest2';
-					root.querySelector('#feature-quest-list').style.display = '';
+					root.querySelector('#feature-quest-list').style.display = 'block';
 					break;
 				case 'inactive':
 					background_image = 'bg_quest3';
-					root.querySelector('#inactive-quest-list').style.display = '';
+					root.querySelector('#inactive-quest-list').style.display = 'block';
 					break;
 				case 'cooldown':
 					background_image = 'bg_quest4';
-					root.querySelector('#cooldown-quest-list').style.display = '';
+					root.querySelector('#cooldown-quest-list').style.display = 'block';
 					break;
 				default:
 					background_image = 'bg_quest1';
-					root.querySelector('#active-quest-list').style.display = '';
+					root.querySelector('#active-quest-list').style.display = 'block';
 			}
 
 			Client.loadFile(`${DB.INTERFACE_PATH}renew_questui/${background_image}.bmp`, data => {
@@ -648,15 +656,15 @@ export function createQuest(config) {
 			switch (_active_menu) {
 				case 'inactive':
 					background_image = 'tab_que_02';
-					root.querySelector('#inactive-quest-list').style.display = '';
+					root.querySelector('#inactive-quest-list').style.display = 'block';
 					break;
 				case 'all':
 					background_image = 'tab_que_03';
-					root.querySelector('#all-quest-list').style.display = '';
+					root.querySelector('#all-quest-list').style.display = 'block';
 					break;
 				default:
 					background_image = 'tab_que_01';
-					root.querySelector('#active-quest-list').style.display = '';
+					root.querySelector('#active-quest-list').style.display = 'block';
 			}
 
 			Client.loadFile(`${DB.INTERFACE_PATH}basic_interface/${background_image}.bmp`, data => {
