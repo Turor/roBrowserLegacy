@@ -1034,19 +1034,19 @@ SkillInfo[SK.ST_FULLSTRIP] = {
 SkillInfo[SK.WS_WEAPONREFINE] = {
 	Name: 'WS_WEAPONREFINE',
 	SkillName: 'Upgrade Weapon',
-	MaxLv: 10,
-	SpAmount: [30, 30, 30, 30, 30, 30, 30, 30, 30, 30],
+	MaxLv: 20,
+	SpAmount: [30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30],
 	bSeperateLv: false,
-	AttackRange: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+	AttackRange: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 	_NeedSkillList: [[SK.BS_WEAPONRESEARCH, 10]]
 };
 SkillInfo[SK.WS_ARMORREFINE] = {
-	Name: 'WS_WEAPONREFINE',
+	Name: 'WS_ARMORREFINE',
 	SkillName: 'Upgrade Armor',
-	MaxLv: 10,
-	SpAmount: [30, 30, 30, 30, 30, 30, 30, 30, 30, 30],
+	MaxLv: 20,
+	SpAmount: [30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30],
 	bSeperateLv: false,
-	AttackRange: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+	AttackRange: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 	_NeedSkillList: [[SK.WS_WEAPONREFINE, 10]]
 };
 SkillInfo[SK.CR_SLIMPITCHER] = {
