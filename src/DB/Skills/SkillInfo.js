@@ -1041,7 +1041,7 @@ SkillInfo[SK.WS_WEAPONREFINE] = {
 	_NeedSkillList: [[SK.BS_WEAPONRESEARCH, 10]]
 };
 SkillInfo[SK.WS_ARMORREFINE] = {
-	Name: 'WS_ARMORREFINE',
+	Name: 'WS_WEAPONREFINE',
 	SkillName: 'Upgrade Armor',
 	MaxLv: 20,
 	SpAmount: [30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30],
