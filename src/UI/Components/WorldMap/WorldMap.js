@@ -19,7 +19,7 @@ import Session from 'Engine/SessionStorage.js';
 import MAPS from 'DB/Map/WorldMap.js';
 import htmlText from './WorldMap.html?raw';
 import cssText from './WorldMap.css?raw';
-import Navigation from 'UI/Components/Navigation/Navigation.js';
+import WorldMapWarp from './WorldMapWarp.js';
 
 /**
  * Create Component
@@ -166,14 +166,8 @@ function onWorldMapSectionClick(e) {
 	const section = e.target.closest('.section');
 	if (!section) return;
 
-	const displayName = section.getAttribute('data-displayname') || '';
 	const mapId = section.id;
-
-	Navigation.show();
-	const input = Navigation.getRoot().querySelector('.search-input');
-	if (input) input.value = displayName || mapId;
-	Navigation.onSearch();
-	Navigation.focus();
+	WorldMapWarp.handleSectionClick(mapId, WorldMap.getRoot());
 }
 
 /**
@@ -415,6 +409,7 @@ function createWorldMapView(map, imgData) {
 	worldmap.appendChild(mapView);
 	container.innerHTML = '';
 	container.appendChild(worldmap);
+	WorldMapWarp.applyExploreMarks();
 }
 
 /**
@@ -544,11 +539,14 @@ WorldMap.onAppend = function onAppend() {
 	// resize map container & add sections
 	selectMap();
 
+	WorldMapWarp.bind(WorldMap);
+
 	this._host.style.top = '0px';
 	this._host.style.left = '0px';
 };
 
 WorldMap.onRemove = function onRemove() {
+	WorldMapWarp.unbind();
 	// Save preferences
 	_preferences.show = this._host.style.display !== 'none';
 	_preferences.y = 0;

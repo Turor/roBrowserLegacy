@@ -34,7 +34,6 @@ import EdenGroup from 'UI/Components/EdenGroup/EdenGroup.js';
 import Warpra from 'UI/Components/Warpra/Warpra.js';
 import ChatRoomCreate from 'UI/Components/ChatRoomCreate/ChatRoomCreate.js';
 import WinStats from 'UI/Components/WinStats/WinStats.js';
-import Navigation from 'UI/Components/Navigation/Navigation.js';
 import SkillList from 'UI/Components/SkillList/SkillList.js';
 import Quest from 'UI/Components/Quest/Quest.js';
 import Achievement from 'UI/Components/Achievement/Achievement.js';
@@ -141,10 +140,7 @@ export function createBasicInfo(config) {
 			case 'quest':
 				Quest.getUI().toggle();
 				break;
-			case 'navigation':
-				Navigation.toggle();
-				break;
-			case 'stable':
+						case 'stable':
 				Stable.toggle();
 				break;
 			case 'eden':
