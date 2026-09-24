@@ -48,6 +48,54 @@ export function createWinStats({ name, htmlText, cssText, hasTraits }) {
 		}
 	}
 
+
+	/** Turoran armor DR: hard DEF/MDEF only (soft vit_def/mdef2 subtract after). */
+	function turoranArmorReductionPct(def) {
+		const n = Number(def);
+		if (!n || n <= 0) return 0;
+		return (1 - Math.pow(0.5, n / 50)) * 100;
+	}
+
+	function ensureWinStatsTooltip() {
+		let tip = document.getElementById('ro-tooltip-winstats');
+		if (!tip) {
+			tip = document.createElement('div');
+			tip.id = 'ro-tooltip-winstats';
+			tip.className = 'ro-tooltip';
+			tip.style.cssText =
+				'display:none;position:fixed;background-color:rgba(0,0,0,0.8);text-shadow:1px 1px black;color:white;padding:2px 6px;white-space:pre;z-index:20000;border-radius:2px;pointer-events:none;line-height:1.3;font-size:11px;';
+			document.body.appendChild(tip);
+		}
+		return tip;
+	}
+
+	function bindDefReductionHover(selector, label) {
+		const el = _root.querySelector(selector);
+		if (!el) return;
+		const row = el.closest('div') || el;
+		row.style.cursor = 'help';
+		row.addEventListener('mouseenter', (event) => {
+			const hard = parseInt((_root.querySelector(selector)?.textContent || '0').replace(/[^0-9-]/g, ''), 10) || 0;
+			const pct = turoranArmorReductionPct(hard);
+			const tip = ensureWinStatsTooltip();
+			tip.textContent = `${label}: ${pct.toFixed(1)}%\nSoft DEF/MDEF subtracts after`;
+			tip.style.display = 'block';
+			tip.style.top = `${event.clientY + 15}px`;
+			tip.style.left = `${event.clientX + 10}px`;
+		});
+		row.addEventListener('mousemove', (event) => {
+			const tip = document.getElementById('ro-tooltip-winstats');
+			if (tip && tip.style.display === 'block') {
+				tip.style.top = `${event.clientY + 15}px`;
+				tip.style.left = `${event.clientX + 10}px`;
+			}
+		});
+		row.addEventListener('mouseleave', () => {
+			const tip = document.getElementById('ro-tooltip-winstats');
+			if (tip) tip.style.display = 'none';
+		});
+	}
+
 	// ─── Stat button map ──────────────────────────────
 
 	const statButtonMap = {
@@ -124,6 +172,10 @@ export function createWinStats({ name, htmlText, cssText, hasTraits }) {
 				viewTraitsBtn.addEventListener('mousedown', () => toggleTraits());
 			}
 		}
+
+		// Turoran: DEF/MDEF hard-armor reduction hover (column2 spans)
+		bindDefReductionHover('.column2 .def', 'Physical reduction');
+		bindDefReductionHover('.column2 .mdef', 'Magical reduction');
 	};
 
 	// ─── stack ─────────────────────────────────────────
@@ -400,6 +452,8 @@ export function createWinStats({ name, htmlText, cssText, hasTraits }) {
 	// ─── onRemove ──────────────────────────────────────
 
 	Component.onRemove = function onRemove() {
+		const tip = document.getElementById('ro-tooltip-winstats');
+		if (tip) tip.style.display = 'none';
 		if (_preferences) {
 			// Don't save embed-relative position/show as standalone preferences
 			if (!_embedAnchor) {
