@@ -29,12 +29,10 @@ import Guild from 'UI/Components/Guild/Guild.js';
 import Bank from 'UI/Components/Bank/Bank.js';
 import Escape from 'UI/Components/Escape/Escape.js';
 import WorldMap from 'UI/Components/WorldMap/WorldMap.js';
-import CheckAttendance from 'UI/Components/CheckAttendance/CheckAttendance.js';
 import Stable from 'UI/Components/Stable/Stable.js';
 import EdenGroup from 'UI/Components/EdenGroup/EdenGroup.js';
 import Warpra from 'UI/Components/Warpra/Warpra.js';
 import ChatRoomCreate from 'UI/Components/ChatRoomCreate/ChatRoomCreate.js';
-import Rodex from 'UI/Components/Rodex/Rodex.js';
 import WinStats from 'UI/Components/WinStats/WinStats.js';
 import Navigation from 'UI/Components/Navigation/Navigation.js';
 import SkillList from 'UI/Components/SkillList/SkillList.js';
@@ -143,16 +141,8 @@ export function createBasicInfo(config) {
 			case 'quest':
 				Quest.getUI().toggle();
 				break;
-			case 'mail':
-				Rodex.toggle();
-				break;
 			case 'navigation':
 				Navigation.toggle();
-				break;
-			case 'attendance':
-				if (Configs.get('enableCheckAttendance') && PACKETVER.value >= 20180307) {
-					CheckAttendance.toggle();
-				}
 				break;
 			case 'stable':
 				Stable.toggle();
