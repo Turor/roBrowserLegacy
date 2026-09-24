@@ -354,6 +354,7 @@ Stable.showPetDetail = function showPetDetail(row) {
 	root.querySelector('.d-hunger').textContent = `${hungerLabel(row.hungry)} (${row.hungry}/100)`;
 	root.querySelector('.d-intimacy').textContent = `${intimacyLabel(row.intimate, false)} (${row.intimate}/1000)`;
 	root.querySelector('.d-equip').textContent = itemName(row.equip);
+	root.querySelector('.d-food').textContent = itemName(row.foodId);
 	root.querySelector('.d-status').textContent = petStatus(row);
 	root.querySelector('.d-rename').textContent = row.renameFlag ? 'Yes' : 'No';
 	root.querySelector('.d-owner').textContent = row.ownerName || '—';
