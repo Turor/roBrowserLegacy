@@ -369,3 +369,34 @@
 	gap: 6px;
 	padding-top: 6px;
 }
+
+#TuroranStable .equip-row dd.d-equip-wrap {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	min-width: 0;
+}
+
+#TuroranStable .d-equip-icon {
+	flex: 0 0 24px;
+	width: 24px;
+	height: 24px;
+	background-color: #e6d3a8;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	border: 1px solid #c9a66a;
+	image-rendering: pixelated;
+}
+
+#TuroranStable .d-equip-icon.empty {
+	background-image: none !important;
+	opacity: 0.45;
+}
+
+#TuroranStable .d-equip {
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
