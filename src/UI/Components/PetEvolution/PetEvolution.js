@@ -242,13 +242,10 @@ PetEvolution.hasEnoughMaterials = function () {
  * If the player does not have enough materials, display an error message.
  */
 function onRequestEvolve() {
-	if (PetEvolution.hasEnoughMaterials() === true) {
-		const pkt = new PACKET.CZ.PET_EVOLUTION();
-		pkt.evolutionPetEggITID = targetEvoPetEggId;
-		Network.sendPacket(pkt);
-	} else {
-		ChatBox.addText(DB.getMessage(2574), ChatBox.TYPE.ERROR, ChatBox.FILTER.PUBLIC_LOG);
-	}
+	/* Turoran #71: server counts inventory + personal storage; always send and let ZC result decide. */
+	const pkt = new PACKET.CZ.PET_EVOLUTION();
+	pkt.evolutionPetEggITID = targetEvoPetEggId;
+	Network.sendPacket(pkt);
 }
 
 /**

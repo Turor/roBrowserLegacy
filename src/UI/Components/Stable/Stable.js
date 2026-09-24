@@ -14,6 +14,7 @@ import GUIComponent from 'UI/GUIComponent.js';
 import Network from 'Network/NetworkManager.js';
 import PACKET from 'Network/PacketStructure.js';
 import ChatBox from 'UI/Components/ChatBox/ChatBox.js';
+import Inventory from 'UI/Components/Inventory/Inventory.js';
 import KEYS from 'Controls/KeyEventHandler.js';
 import htmlText from './Stable.html?raw';
 import cssText from './Stable.css?raw';
@@ -27,6 +28,10 @@ const _preferences = Preferences.get('TuroranStable', { x: 220, y: 140, tab: 'ho
 let _homun = { activeHomunId: 0, list: [] };
 let _pets = { activePetId: 0, list: [] };
 let _selectedPetId = 0;
+/** @type {Object.<number, number>} nameid -> owned (inv+storage) from ZC 0x0EFB */
+let _ownedCounts = {};
+/** Remember last evolve target egg for the selected pet */
+let _selectedEvoEggId = 0;
 
 const _preview = {
 	entity: null,
@@ -80,6 +85,44 @@ function intimacyLabel(value, isHomun) {
 
 function hungerLabel(value) {
 	return DB.getMessage(value < 10 ? 667 : value < 25 ? 668 : value < 75 ? 669 : value < 90 ? 670 : 671);
+}
+
+
+function ownedCount(nameid) {
+	if (!nameid) {
+		return 0;
+	}
+	if (Object.prototype.hasOwnProperty.call(_ownedCounts, nameid)) {
+		return Number(_ownedCounts[nameid]) || 0;
+	}
+	// Fallback: inventory only until ZC arrives
+	try {
+		const inv = Inventory.getUI && Inventory.getUI();
+		const item = inv && inv.getItemById ? inv.getItemById(nameid) : null;
+		return item ? Number(item.count) || 0 : 0;
+	} catch (e) {
+		return 0;
+	}
+}
+
+function petAccId(classId) {
+	const pet = typeof DB.getPetByJobID === 'function' ? DB.getPetByJobID(classId) : null;
+	return pet && pet.PetAcc_ID ? Number(pet.PetAcc_ID) : 0;
+}
+
+function findAccessoryInInventory(acceId) {
+	if (!acceId) {
+		return null;
+	}
+	try {
+		const inv = Inventory.getUI && Inventory.getUI();
+		if (!inv || !inv.getItemById) {
+			return null;
+		}
+		return inv.getItemById(acceId);
+	} catch (e) {
+		return null;
+	}
 }
 
 function itemName(nameid) {
@@ -371,9 +414,26 @@ Stable.onResult = function onResult(pkt) {
 		6: 'That companion does not belong here.',
 		7: 'No pet found.',
 		8: 'Return your current pet to its egg first, or Store it.',
-		9: 'Revive your homunculus first.'
+		9: 'Revive your homunculus first.',
+		10: 'Summon that pet first.',
+		11: 'No pet food in inventory or storage.',
+		12: 'Could not equip or unequip that accessory.',
+		13: 'Evolution failed (loyalty, materials, or recipe).'
 	};
 	ChatBox.addText(messages[pkt.result] || 'Stable action failed.', ChatBox.TYPE.ERROR | ChatBox.TYPE.SELF);
+};
+
+Stable.setOwnedCounts = function setOwnedCounts(pkt) {
+	_ownedCounts = {};
+	(pkt.list || []).forEach(row => {
+		_ownedCounts[row.nameid] = row.owned;
+	});
+	if (_selectedPetId) {
+		const selected = _pets.list.find(r => r.petId === _selectedPetId);
+		if (selected) {
+			Stable.showPetDetail(selected);
+		}
+	}
 };
 
 Stable.showPetDetail = function showPetDetail(row) {
@@ -405,13 +465,19 @@ Stable.showPetDetail = function showPetDetail(row) {
 
 	const evoBlock = root.querySelector('.evo-block');
 	const evoList = root.querySelector('.d-evo-materials');
+	_selectedEvoEggId = 0;
+	let evoReady = false;
 	if (evoBlock && evoList) {
 		evoList.innerHTML = '';
 		const evolution =
 			typeof DB.getPetEvolutionByJob === 'function' ? DB.getPetEvolutionByJob(row.classId) : null;
 		if (evolution && Object.keys(evolution).length) {
 			evoBlock.hidden = false;
+			evoReady = true;
 			for (const targetEggID of Object.keys(evolution)) {
+				if (!_selectedEvoEggId) {
+					_selectedEvoEggId = Number(targetEggID);
+				}
 				const evoPet = DB.getPetByEggID(Number(targetEggID));
 				const target = document.createElement('div');
 				target.className = 'evo-target';
@@ -423,16 +489,21 @@ Stable.showPetDetail = function showPetDetail(row) {
 				for (const mat of materials) {
 					const item = DB.getItemInfo(mat.MaterialID);
 					const name = item ? item.identifiedDisplayName || item.Name : `Item ${mat.MaterialID}`;
+					const needed = Number(mat.Amount) || 0;
+					const owned = ownedCount(mat.MaterialID);
 					const rowEl = document.createElement('div');
-					rowEl.className = 'evo-mat';
+					rowEl.className = 'evo-mat ' + (owned >= needed ? 'ok' : 'short');
 					const nameEl = document.createElement('span');
 					nameEl.textContent = name;
 					const qtyEl = document.createElement('span');
 					qtyEl.className = 'qty';
-					qtyEl.textContent = String(mat.Amount);
+					qtyEl.textContent = `${owned}/${needed}`;
 					rowEl.appendChild(nameEl);
 					rowEl.appendChild(qtyEl);
 					evoList.appendChild(rowEl);
+					if (owned < needed) {
+						evoReady = false;
+					}
 				}
 			}
 		} else {
@@ -466,6 +537,7 @@ Stable.showPetDetail = function showPetDetail(row) {
 		actions.innerHTML = '';
 		const egg = (row.flags & 0x04) !== 0;
 		const active = row.petId === _pets.activePetId;
+		const loyal = (row.intimate || 0) >= 900;
 		if (egg) {
 			const dep = document.createElement('button');
 			dep.textContent = 'Deposit egg';
@@ -491,6 +563,61 @@ Stable.showPetDetail = function showPetDetail(row) {
 				sendPetAction(3, row.petId);
 			});
 			actions.appendChild(toEgg);
+		}
+		if (!egg && active) {
+			const feed = document.createElement('button');
+			feed.textContent = 'Feed';
+			feed.title = row.foodId ? `Uses ${itemName(row.foodId)} (inventory, then storage)` : 'Feed pet';
+			feed.addEventListener('click', e => {
+				e.stopPropagation();
+				sendPetAction(4, row.petId);
+			});
+			actions.appendChild(feed);
+
+			if (_selectedEvoEggId) {
+				const evo = document.createElement('button');
+				evo.textContent = 'Evolve';
+				evo.disabled = !(loyal && evoReady);
+				evo.title = !loyal
+					? 'Pet must be Loyal'
+					: evoReady
+						? 'Evolve using inventory + storage materials'
+						: 'Not enough materials (inventory + storage)';
+				evo.addEventListener('click', e => {
+					e.stopPropagation();
+					if (!evo.disabled) {
+						sendPetAction(7, _selectedEvoEggId);
+					}
+				});
+				actions.appendChild(evo);
+			}
+
+			const acceId = petAccId(row.classId);
+			if (row.equip) {
+				const unequip = document.createElement('button');
+				unequip.textContent = 'Unequip accessory';
+				unequip.addEventListener('click', e => {
+					e.stopPropagation();
+					sendPetAction(6, row.petId);
+				});
+				actions.appendChild(unequip);
+			} else if (acceId) {
+				const held = findAccessoryInInventory(acceId);
+				const equip = document.createElement('button');
+				equip.textContent = held ? `Equip ${itemName(acceId)}` : `Need ${itemName(acceId)}`;
+				equip.disabled = !held;
+				equip.title = held
+					? 'Equip accessory from inventory'
+					: 'Accessory not in inventory';
+				equip.addEventListener('click', e => {
+					e.stopPropagation();
+					const again = findAccessoryInInventory(acceId);
+					if (again) {
+						sendPetAction(5, again.index);
+					}
+				});
+				actions.appendChild(equip);
+			}
 		}
 	}
 	startPetPreview(row.classId);
