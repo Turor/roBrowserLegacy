@@ -2,7 +2,8 @@
 	<div class="border">
 		<div class="titlebar" data-background="basic_interface/titlebar_mid.bmp">
 			<div class="left">
-				<select name="mapList" id="WorldMaps"></select>
+				<span class="worldmap-title">World Map</span>
+				<select name="mapList" id="WorldMaps" class="worldmap-select-fallback" aria-label="Region"></select>
 			</div>
 			<div class="right">
 				<button class="base showlvl" data-background="checkbox_0.bmp" data-preload="checkbox_1.bmp"></button>
@@ -20,8 +21,11 @@
 			</div>
 		</div>
 
-		<div class="map">
-			<div class="content"></div>
+		<div class="worldmap-body">
+			<nav class="region-rail" aria-label="Regions"></nav>
+			<div class="map">
+				<div class="content"></div>
+			</div>
 		</div>
 	</div>
 	<div id="map-tooltip" style="display: none">
