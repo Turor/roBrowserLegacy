@@ -5,7 +5,7 @@ concurrency:
     cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
 
 on:
-    push:  
+    push:
         branches: ['master']
     pull_request:
         branches: ['master']
@@ -17,23 +17,35 @@ permissions:
 jobs:
     build:
         name: 'Build and validate'
-        runs-on: [self-hosted, elastic, cores-2, mem-4096]
+        # image-robrowser-ci selects Alpine golden; also set via
+        # ELASTIC_IMAGE_PROFILE_TUROR_ROBROWSERLEGACY=robrowser-ci on gha-runner.
+        # aliases: image-alpine-robrowser
+        runs-on: [self-hosted, elastic, image-robrowser-ci, cores-2, mem-4096]
         timeout-minutes: 30
 
         steps:
             - name: Checkout repo
               uses: actions/checkout@v5
-
-            - name: Setup Node.js
-              uses: actions/setup-node@v6
               with:
-                  node-version: 24
+                  fetch-depth: 1
+
+            - name: verify Alpine golden Node
+              run: |
+                  set -euo pipefail
+                  test -f /etc/alpine-release
+                  cat /etc/alpine-release
+                  command -v node
+                  command -v npm
+                  node -v
+                  npm -v
+                  # Golden ships Node 22+; engines require >=22
+                  node -e 'const [maj]=process.versions.node.split(".").map(Number); if (maj < 22) process.exit(1)'
 
             - name: Install dependencies
               run: npm install
 
-            - name: Run tests  
-              run: npm test  
+            - name: Run tests
+              run: npm test
 
             - name: Build project
               run: npm run build
