@@ -76,13 +76,29 @@ function processNAVITags(text) {
  * @param {string} text - The text to process
  * @returns {string} Fully processed HTML
  */
+function normalizeQuestText(text) {
+	if (text == null || text === '') {
+		return '';
+	}
+	if (Array.isArray(text)) {
+		return text
+			.map(line => (line == null ? '' : String(line)))
+			.filter(line => line.length > 0)
+			.join('\n');
+	}
+	return String(text);
+}
+
 function processText(text) {
+	text = normalizeQuestText(text);
 	if (!text) {
 		return '';
 	}
 	text = processItemTags(text);
 	text = processNAVITags(text);
 	text = processColorCodes(text);
+	// Preserve multi-line quest descriptions from QuestInfoList Description[]
+	text = text.replace(/\r\n|\r|\n/g, '<br>');
 	return text;
 }
 

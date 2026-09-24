@@ -109,10 +109,14 @@ export function createQuest(config) {
 				item.addEventListener('click', e => onClickMenu(e));
 			});
 
-			const activeList = root.querySelector('#active-quest-list');
-			if (activeList) {
-				activeList.style.display = '';
-			}
+			['#active-quest-list', '#feature-quest-list', '#inactive-quest-list', '#cooldown-quest-list'].forEach(
+				(sel, idx) => {
+					const el = root.querySelector(sel);
+					if (el) {
+						el.style.display = idx === 0 ? '' : 'none';
+					}
+				}
+			);
 
 			const toggleBtn = root.querySelector('.toggle-quest-list');
 			if (toggleBtn) {
@@ -434,16 +438,16 @@ export function createQuest(config) {
 			if (quest.end_time > 0 && quest.end_time > epoch_seconds) {
 				ul_id = '#cooldown-quest-list';
 				li_text =
-					'<li> <div class="quest-item-icon"> <div class="quest-item-icon-image">' +
+					'<div class="quest-item-icon"> <div class="quest-item-icon-image">' +
 					' <span class="quest-item-icon-image-text">Quest</span> </div> </div>  <div class="quest-item-title"> <span class="quest-item-title-text">' +
 					title +
 					'</span>  </div> <div class="quest-item-display"> <div class="quest-item-display-image"> <span class="quest-item-display-image-text"></span> </div></div><div class="quest-item-summary"><span class="quest-item-summary-text">' +
 					summary +
-					'</span></div>				<div class="quest-item-toggle"><div class="quest-item-toggle-image"><span class="quest-item-toggle-image-text">Toggle</span></div></div></li>';
+					'</span></div>				<div class="quest-item-toggle"><div class="quest-item-toggle-image"><span class="quest-item-toggle-image-text">Toggle</span></div></div>';
 			} else if (quest.active == 1) {
 				ul_id = '#active-quest-list';
 				li_text =
-					'<li> <div class="quest-item-icon"> <div class="quest-item-icon-image">' +
+					'<div class="quest-item-icon"> <div class="quest-item-icon-image">' +
 					' <span class="quest-item-icon-image-text">Quest</span> </div> </div>  <div class="quest-item-title"> <span class="quest-item-title-text">' +
 					title +
 					'</span>  </div> <div class="quest-item-display"> <button id="' +
@@ -452,18 +456,18 @@ export function createQuest(config) {
 					summary +
 					'</span></div>				<div class="quest-item-toggle"><button id="' +
 					toggle_id +
-					'" class="quest-item-toggle-image"><span class="quest-item-toggle-image-text">Toggle</span></button></div></li>';
+					'" class="quest-item-toggle-image"><span class="quest-item-toggle-image-text">Toggle</span></button></div>';
 			} else {
 				ul_id = '#inactive-quest-list';
 				li_text =
-					'<li> <div class="quest-item-icon"> <div class="quest-item-icon-image">' +
+					'<div class="quest-item-icon"> <div class="quest-item-icon-image">' +
 					' <span class="quest-item-icon-image-text">Quest</span> </div> </div>  <div class="quest-item-title"> <span class="quest-item-title-text">' +
 					title +
 					'</span>  </div> <div class="quest-item-display"> <div class="quest-item-display-image"> <span class="quest-item-display-image-text"></span> </div></div><div class="quest-item-summary"><span class="quest-item-summary-text">' +
 					summary +
 					'</span></div>				<div class="quest-item-toggle"><button id="' +
 					toggle_id +
-					'" class="quest-item-toggle-image"><span class="quest-item-toggle-image-text">Toggle</span></button></div></li>';
+					'" class="quest-item-toggle-image"><span class="quest-item-toggle-image-text">Toggle</span></button></div>';
 			}
 
 			const ul = root.querySelector(ul_id);

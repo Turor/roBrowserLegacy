@@ -50,7 +50,9 @@
 
 #QuestInfo .titlebar .quest-info-mid-panel .quest-info-description-panel {
 	width: 342px;
-	height: 110px;
+	min-height: 110px;
+	height: auto;
+	max-height: 240px;
 }
 
 #QuestInfo .titlebar .quest-info-mid-panel .quest-info-description-panel .quest-info-description-panel-title {
@@ -61,7 +63,14 @@
 #QuestInfo .titlebar .quest-info-mid-panel .quest-info-description-panel .quest-info-description-panel-text {
 	width: 342px;
 	margin: 10px;
+	min-height: 70px;
+	max-height: 200px;
+	overflow-y: auto;
+	white-space: normal;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
 }
+
 
 #QuestInfo .titlebar .quest-info-mid-panel .quest-info-monster-panel {
 	border-top: lightblue dashed 1px;
@@ -211,4 +220,12 @@
 
 .navi-link:hover {
 	color: #ff0000;
+}
+
+#QuestInfo .quest-info-description-panel-text .quest-ui-text-span {
+	display: block;
+	white-space: normal;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	line-height: 1.35;
 }

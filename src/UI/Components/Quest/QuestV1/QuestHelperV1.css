@@ -82,3 +82,13 @@
 .navi-link:hover {
 	color: #ff0000;
 }
+
+#QuestInfoV1 .titlebar .content .summary,
+#QuestInfoV1 .titlebar .content .objective {
+	white-space: normal;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	overflow-y: auto;
+	max-height: 140px;
+	line-height: 1.35;
+}

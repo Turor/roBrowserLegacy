@@ -104,8 +104,10 @@ QuestWindow.addQuestToUI = function addQuestToUI(quest) {
 	if (!root) {
 		return;
 	}
-	const title = quest.title.length > 25 ? `${quest.title.substr(0, 25)}...` : quest.title;
-	const summary = quest.summary.length > 25 ? `${quest.summary.substr(0, 25)}...` : quest.summary;
+	const titleRaw = quest.title == null ? '' : String(quest.title);
+	const summaryRaw = quest.summary == null ? '' : String(quest.summary);
+	const title = titleRaw.length > 25 ? `${titleRaw.substr(0, 25)}...` : titleRaw;
+	const summary = summaryRaw.length > 25 ? `${summaryRaw.substr(0, 25)}...` : summaryRaw;
 	let list = '';
 	for (const huntID in quest.hunt_list) {
 		list += `<li>${quest.hunt_list[huntID].mobName} ( ${quest.hunt_list[huntID].huntCount} / ${quest.hunt_list[huntID].maxCount} )</li>`;

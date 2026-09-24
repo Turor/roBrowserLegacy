@@ -17,6 +17,15 @@ import PACKET from 'Network/PacketStructure.js';
 import Quest from 'UI/Components/Quest/Quest.js';
 import { sanitizeHtml } from 'Utils/HtmlHelper.js';
 
+function questDescription(info) {
+	const desc = info && info.Description;
+	if (Array.isArray(desc)) {
+		return desc.filter(Boolean).join('\n');
+	}
+	return desc || '';
+}
+
+
 /**
  * Quest List
  *
@@ -31,7 +40,7 @@ function onAllQuestList(pkt) {
 			questID: quest.questID,
 			title: quest_info.Title || '',
 			summary: quest_info.Summary || '',
-			description: quest_info.Description || '',
+			description: questDescription(quest_info),
 			icon: quest_info.IconName || 'ico_nq.bmp',
 			npc_spr: quest_info.NpcSpr || null,
 			npc_navi: quest_info.NpcNavi || null,
@@ -80,7 +89,7 @@ function onAddQuest(pkt) {
 		questID: pkt.questID,
 		title: quest_info.Title || '',
 		summary: quest_info.Summary || '',
-		description: quest_info.Description || '',
+		description: questDescription(quest_info),
 		icon: quest_info.IconName || 'ico_nq.bmp',
 		npc_spr: quest_info.NpcSpr || null,
 		npc_navi: quest_info.NpcNavi || null,
@@ -140,7 +149,7 @@ function onUpdateMissionHunt(pkt) {
 					questID: local_hunt.questID,
 					title: quest_info.Title ? sanitizeHtml(quest_info.Title) : '',
 					summary: quest_info.Summary ? sanitizeHtml(quest_info.Summary) : '',
-					description: quest_info.Description ? sanitizeHtml(quest_info.Description) : '',
+					description: questDescription(quest_info) ? sanitizeHtml(questDescription(quest_info)) : '',
 					icon: quest_info.IconName ? quest_info.IconName : 'ico_nq.bmp',
 					npc_spr: quest_info.NpcSpr || null,
 					npc_navi: quest_info.NpcNavi || null,
