@@ -61,6 +61,7 @@ let _pending = null;
 let _warpAfterBuy = null;
 let _listListeners = [];
 let _warpSuccessListeners = [];
+let _listAssemble = [];
 
 function escapeHtml(value) {
 	return String(value ?? '')
@@ -396,7 +397,21 @@ Warpra.onRemove = function onRemove() {
 Warpra.setList = function setList(pkt) {
 	_zeny = pkt.zeny || 0;
 	_price = pkt.price || _price;
-	_list = pkt.list || [];
+	const incoming = pkt.list || [];
+	const more = !!(pkt.flags & 0x01);
+
+	// #89: server may split the catalog across multiple ZC_LIST packets.
+	if (more) {
+		_listAssemble = _listAssemble.length ? _listAssemble.concat(incoming) : incoming.slice();
+		return; // wait for final chunk before notifying UI
+	}
+	if (_listAssemble.length) {
+		_list = _listAssemble.concat(incoming);
+		_listAssemble = [];
+	} else {
+		_list = incoming;
+	}
+
 	if (_pending) {
 		const next = _list.find(loc => loc.kind === _pending.kind && loc.id === _pending.id);
 		if (next && next.unlocked) {

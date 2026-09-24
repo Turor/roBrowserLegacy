@@ -16080,7 +16080,19 @@ PACKET.CZ.TURORAN_WARPRA_REQ.prototype.build = function () {
 PACKET.ZC.TURORAN_WARPRA_LIST = function PACKET_ZC_TURORAN_WARPRA_LIST(fp, end) {
 	this.zeny = fp.readLong();
 	this.price = fp.readLong();
-	this.count = fp.readShort();
+	// #89 chunked: flags(1) total(2) count(2). Legacy: count(2).
+	const remain = end - fp.tell();
+	const ENTRY = 89;
+	this.flags = 0;
+	this.total = 0;
+	if (remain >= 5 && (remain - 5) % ENTRY === 0) {
+		this.flags = fp.readUChar();
+		this.total = fp.readUShort();
+		this.count = fp.readUShort();
+	} else {
+		this.count = fp.readShort();
+		this.total = this.count;
+	}
 	this.list = [];
 	for (let i = 0; i < this.count && fp.tell() < end; i++) {
 		this.list.push({
