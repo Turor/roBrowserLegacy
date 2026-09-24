@@ -13,6 +13,7 @@ import GUIComponent from 'UI/GUIComponent.js';
 import Network from 'Network/NetworkManager.js';
 import PACKET from 'Network/PacketStructure.js';
 import ChatBox from 'UI/Components/ChatBox/ChatBox.js';
+import KEYS from 'Controls/KeyEventHandler.js';
 import htmlText from './Stable.html?raw';
 import cssText from './Stable.css?raw';
 import 'UI/Elements/Elements.js';
@@ -299,6 +300,21 @@ Stable.toggle = function toggle() {
 		this._host.style.display = 'none';
 		stopPetPreview();
 	}
+};
+
+Stable.captureKeyEvents = true;
+
+Stable.onKeyDown = function onKeyDown(event) {
+	if (
+		(event.which === KEYS.ESCAPE || event.key === 'Escape') &&
+		this._host &&
+		this._host.style.display !== 'none'
+	) {
+		this.toggle();
+		event.stopImmediatePropagation();
+		return false;
+	}
+	return true;
 };
 
 Stable.setHomunList = function setHomunList(pkt) {

@@ -9,6 +9,7 @@ import GUIComponent from 'UI/GUIComponent.js';
 import Network from 'Network/NetworkManager.js';
 import PACKET from 'Network/PacketStructure.js';
 import ChatBox from 'UI/Components/ChatBox/ChatBox.js';
+import KEYS from 'Controls/KeyEventHandler.js';
 import htmlText from './Warpra.html?raw';
 import cssText from './Warpra.css?raw';
 import 'UI/Elements/Elements.js';
@@ -352,6 +353,27 @@ Warpra.toggle = function toggle() {
 		this._host.style.display = 'none';
 		hideModal();
 	}
+};
+
+Warpra.captureKeyEvents = true;
+
+Warpra.onKeyDown = function onKeyDown(event) {
+	if (
+		!(event.which === KEYS.ESCAPE || event.key === 'Escape') ||
+		!this._host ||
+		this._host.style.display === 'none'
+	) {
+		return true;
+	}
+	const root = this.getRoot();
+	const modal = root && root.querySelector('.modal');
+	if (modal && !modal.hidden) {
+		hideModal();
+	} else {
+		this.toggle();
+	}
+	event.stopImmediatePropagation();
+	return false;
 };
 
 Warpra.onRemove = function onRemove() {
