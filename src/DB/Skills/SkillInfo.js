@@ -1062,6 +1062,31 @@ SkillInfo[SK.WS_TITANAXEMASTERY] = {
 		[SK.WS_CARTTERMINATION, 10]
 	]
 };
+
+SkillInfo[SK.LK_TITANSWORDMASTERY] = {
+	Name: 'LK_TITANSWORDMASTERY',
+	SkillName: "Titan's Sword Mastery",
+	MaxLv: 1,
+	SpAmount: [0],
+	bSeperateLv: false,
+	AttackRange: [1],
+	_NeedSkillList: [
+		[SK.SM_TWOHAND, 10],
+		[SK.KN_BOWLINGBASH, 10]
+	]
+};
+
+SkillInfo[SK.LK_TITANSPEARMASTERY] = {
+	Name: 'LK_TITANSPEARMASTERY',
+	SkillName: "Titan's Spear Mastery",
+	MaxLv: 1,
+	SpAmount: [0],
+	bSeperateLv: false,
+	AttackRange: [1],
+	_NeedSkillList: [
+		[SK.LK_SPIRALPIERCE, 5]
+	]
+};
 SkillInfo[SK.CR_SLIMPITCHER] = {
 	Name: 'CR_SLIMPITCHER',
 	SkillName: 'Aid Condensed Potion',
