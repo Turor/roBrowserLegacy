@@ -15959,7 +15959,8 @@ PACKET.ZC.TURORAN_STABLE_PET_LIST = function PACKET_ZC_TURORAN_STABLE_PET_LIST(f
 			aspd: fp.readShort(),
 			exp: fp.readLong(),
 			nextExp: fp.readLong(),
-			foodId: fp.readLong()
+			foodId: fp.readLong(),
+			buff: fp.readBinaryString(96)
 		});
 	}
 };

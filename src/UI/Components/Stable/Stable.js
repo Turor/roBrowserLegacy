@@ -458,6 +458,16 @@ Stable.showPetDetail = function showPetDetail(row) {
 	root.querySelector('.d-hunger').textContent = `${hungerLabel(row.hungry)} (${row.hungry}/100)`;
 	root.querySelector('.d-intimacy').textContent = `${intimacyLabel(row.intimate, false)} (${row.intimate}/1000)`;
 	setAccessoryDisplay(root, row.equip);
+	{
+		const buffEl = root.querySelector('.d-buff');
+		if (buffEl) {
+			const text = (row.buff || '').trim();
+			buffEl.textContent = text || 'No owner bonus';
+			buffEl.title = text || '';
+			buffEl.classList.toggle('active', /^Active:/i.test(text));
+			buffEl.classList.toggle('pending', /^At Loyal:/i.test(text) || /^When out:/i.test(text));
+		}
+	}
 	root.querySelector('.d-food').textContent = itemName(row.foodId);
 	root.querySelector('.d-status').textContent = petStatus(row);
 	root.querySelector('.d-rename').textContent = row.renameFlag ? 'Yes' : 'No';

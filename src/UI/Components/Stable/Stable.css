@@ -421,3 +421,16 @@
 	font-size: 11px;
 	padding: 2px 6px;
 }
+
+#TuroranStable .buff-row dd.d-buff {
+	white-space: normal;
+	line-height: 1.25;
+	max-width: 210px;
+	color: #ffe9a8;
+}
+#TuroranStable .buff-row dd.d-buff.active {
+	color: #b6ffb0;
+}
+#TuroranStable .buff-row dd.d-buff.pending {
+	color: #c8d2e0;
+}
