@@ -22,17 +22,30 @@ jobs:
         runs-on: [self-hosted, elastic, cores-2, mem-4096]
         steps:
             - name: guest packages
-              run: sudo apt-get update -qq && sudo apt-get install -y -qq rsync zip
+              run: |
+                  # Alpine robrowser-ci golden bakes rsync/zip/Node 24; Debian guests still use apt.
+                  if command -v rsync >/dev/null && command -v zip >/dev/null; then
+                    echo "rsync/zip already present"
+                  elif command -v apk >/dev/null; then
+                    sudo apk add --no-cache rsync zip
+                  elif command -v apt-get >/dev/null; then
+                    sudo apt-get update -qq && sudo apt-get install -y -qq rsync zip
+                  else
+                    echo "No package manager and rsync/zip missing" >&2
+                    exit 1
+                  fi
 
             - name: 'Checkout the repository'
               uses: actions/checkout@v5
               with:
                   ref: 'master'
 
-            - name: 'Setup NodeJS version'
-              uses: actions/setup-node@v6
-              with:
-                  node-version: 24
+            # setup-node@v6 downloads glibc Node; Alpine musl golden already has Node 24 at /usr/local/bin.
+            - name: 'Verify NodeJS version'
+              run: |
+                  node -v
+                  npm -v
+                  node -e "const m=+process.versions.node.split('.')[0]; if (m < 22) { console.error('need node>=22'); process.exit(1) }"
 
             - name: 'Generate a package-lock.json file'
               run: npm install --package-lock-only
