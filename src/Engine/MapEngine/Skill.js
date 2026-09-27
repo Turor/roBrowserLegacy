@@ -38,6 +38,7 @@ import Sense from 'UI/Components/Sense/Sense.js';
 import Announce from 'UI/Components/Announce/Announce.js';
 import Renderer from 'Renderer/Renderer.js';
 import SkillWindow from 'UI/Components/SkillList/SkillList.js';
+import VultureRange from 'DB/Skills/VultureRange.js';
 import CartDecoration from 'UI/Components/CartDecoration/CartDecoration.js';
 
 import SnowWeatherEffect from 'Renderer/Effects/SnowWeather.js';
@@ -640,16 +641,8 @@ function onUseSkill(id, level, targetID) {
 	}
 
 	const target = EntityManager.get(targetID) || entity;
-	const skill = SkillWindow.getUI().getSkillById(id);
 	const out = [];
-
-	if (skill) {
-		range = skill.attackRange + 1;
-	} else if (SkillInfo[id]) {
-		range = SkillInfo[id].AttackRange[level - 1] + 1;
-	} else {
-		range = entity.attack_range;
-	}
+	range = VultureRange.skillSearchRange(id, level, entity);
 
 	const count = PathFinding.search(
 		entity.position[0] | 0,
@@ -745,16 +738,8 @@ SkillTargetSelection.onUseSkillToPos = function onUseSkillToPos(id, level, x, y)
 	}
 
 	const pos = entity.position;
-	const skill = SkillWindow.getUI().getSkillById(id);
 	const out = [];
-
-	if (skill) {
-		range = skill.attackRange + 1;
-	} else if (SkillInfo[id]) {
-		range = SkillInfo[id].AttackRange[level - 1] + 1;
-	} else {
-		range = entity.attack_range;
-	}
+	range = VultureRange.skillSearchRange(id, level, entity);
 
 	const count = PathFinding.search(pos[0] | 0, pos[1] | 0, x | 0, y | 0, range, out, Altitude.TYPE.WALKABLE);
 

@@ -35,6 +35,7 @@ import Guild from 'Engine/MapEngine/Guild.js';
 import PartyFriends from 'UI/Components/PartyFriends/PartyFriends.js';
 import Group from 'Engine/MapEngine/Group.js';
 import HomunInformations from 'UI/Components/HomunInformations/HomunInformations.js';
+import VultureRange from 'DB/Skills/VultureRange.js';
 import MercenaryInformations from 'UI/Components/MercenaryInformations/MercenaryInformations.js';
 
 /**
@@ -304,7 +305,7 @@ class EntityControl {
 						main.position[1] | 0,
 						this.position[0] | 0,
 						this.position[1] | 0,
-						main.attack_range + 1,
+						VultureRange.playerAttackRange(main) + 1,
 						out
 					);
 

@@ -9,6 +9,7 @@
  */
 
 import Session from 'Engine/SessionStorage.js';
+import VultureRange from 'DB/Skills/VultureRange.js';
 import EntityManager from 'Renderer/EntityManager.js';
 import Network from 'Network/NetworkManager.js';
 import PACKET from 'Network/PacketStructure.js';
@@ -70,7 +71,7 @@ function attack() {
 		Player.position[1] | 0,
 		entityFocus.position[0] | 0,
 		entityFocus.position[1] | 0,
-		Player.attack_range + 1,
+		VultureRange.playerAttackRange(Player) + 1,
 		out
 	);
 
@@ -86,7 +87,7 @@ function attack() {
 	pkt.action = 7;
 	pkt.targetGID = entityFocus.GID;
 
-	if (count < Player.attack_range + 1) {
+	if (count < VultureRange.playerAttackRange(Player) + 1) {
 		Network.sendPacket(pkt);
 		return true;
 	}

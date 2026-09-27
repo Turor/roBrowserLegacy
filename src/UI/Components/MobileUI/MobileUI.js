@@ -8,6 +8,7 @@
 + */
 
 import Context from 'Core/Context.js';
+import VultureRange from 'DB/Skills/VultureRange.js';
 import UIManager from 'UI/UIManager.js';
 import GUIComponent from 'UI/GUIComponent.js';
 import Preferences from 'Core/Preferences.js';
@@ -530,7 +531,7 @@ function attackTargeted() {
 			main.position[1] | 0,
 			entityFocus.position[0] | 0,
 			entityFocus.position[1] | 0,
-			main.attack_range + 1,
+			VultureRange.playerAttackRange(main) + 1,
 			out
 		);
 
