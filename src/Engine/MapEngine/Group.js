@@ -266,6 +266,29 @@ function onPartyIsAlive(pkt) {
 }
 
 /**
+ * Place visible party members on the minimap immediately (do not wait
+ * for ZC_NOTIFY_POSITION_TO_GROUPM).
+ *
+ * @param {Array} members
+ */
+function seedPartyMinimap(members) {
+	const ui = MiniMap.getUI();
+	if (!ui || !members) {
+		return;
+	}
+	for (let i = 0; i < members.length; ++i) {
+		const m = members[i];
+		if (!m || m.AID === Session.AID) {
+			continue;
+		}
+		const entity = EntityManager.get(m.AID);
+		if (entity && entity.position) {
+			ui.addPartyMemberMark(m.AID, entity.position[0], entity.position[1]);
+		}
+	}
+}
+
+/**
  * Get list of party members
  *
  * @param {object} pkt - PACKET.ZC.GROUP_LIST
@@ -295,6 +318,7 @@ function onPartyList(pkt) {
 
 	PartyFriends.getUI().setParty(pkt.groupName, pkt.groupInfo);
 	WorldMap.updatePartyMembers(pkt);
+	seedPartyMinimap(pkt.groupInfo);
 }
 
 /**
@@ -325,6 +349,7 @@ function onPartyMemberJoin(pkt) {
 	}
 	PartyUI.setOptions(pkt.expOption, pkt.ItemPickupRule, pkt.ItemDivisionRule);
 	PartyUI.addPartyMember(pkt);
+	seedPartyMinimap([pkt]);
 }
 
 /**
@@ -351,6 +376,9 @@ function onPartyMemberLeave(pkt) {
 
 	if (Session.AID === pkt.AID) {
 		Session.hasParty = false;
+		MiniMap.getUI().clearPartyMarks();
+	} else {
+		MiniMap.getUI().removePartyMemberMark(pkt.AID);
 	}
 
 	PartyFriends.getUI().removePartyMember(pkt.AID, pkt.characterName);

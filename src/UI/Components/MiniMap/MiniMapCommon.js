@@ -14,6 +14,7 @@ import Preferences from 'Core/Preferences.js';
 import Session from 'Engine/SessionStorage.js';
 import Renderer from 'Renderer/Renderer.js';
 import Altitude from 'Renderer/Map/Altitude.js';
+import EntityManager from 'Renderer/EntityManager.js';
 import KEYS from 'Controls/KeyEventHandler.js';
 import UIManager from 'UI/UIManager.js';
 import GUIComponent from 'UI/GUIComponent.js';
@@ -305,6 +306,13 @@ export function createMiniMap({
 				break;
 			}
 		}
+	};
+
+	/**
+	 * Drop every party mark (self left the party).
+	 */
+	MiniMap.clearPartyMarks = function clearPartyMarks() {
+		_party.length = 0;
 	};
 
 	/**
@@ -622,17 +630,24 @@ export function createMiniMap({
 				}
 			}
 
-			// Render party members
+			// Render party members (prefer live entity coords when in view)
 			count = _party.length;
 			for (i = 0; i < count; ++i) {
 				dot = _party[i];
+				let px = dot.x;
+				let py = dot.y;
+				const member = EntityManager.get(dot.key);
+				if (member && member.position) {
+					px = member.position[0];
+					py = member.position[1];
+				}
 				_ctx.fillStyle = 'white';
-				_ctx.fillRect(projectX(dot.x) - 3, projectY(dot.y) - 3, 6, 6);
+				_ctx.fillRect(projectX(px) - 3, projectY(py) - 3, 6, 6);
 
 				dot.color = MiniMap.getMemberColor(dot.key);
 
 				_ctx.fillStyle = dot.color;
-				_ctx.fillRect(projectX(dot.x) - 2, projectY(dot.y) - 2, 4, 4);
+				_ctx.fillRect(projectX(px) - 2, projectY(py) - 2, 4, 4);
 			}
 
 			// Render guild members
