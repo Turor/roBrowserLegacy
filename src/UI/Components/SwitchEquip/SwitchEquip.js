@@ -327,7 +327,7 @@ function getSelectorFromLocation(location) {
 	if (location & EquipLocation.HEAD_BOTTOM) selector.push('.swap_head_bottom');
 	if (location & EquipLocation.ARMOR) selector.push('.swap_armor');
 	if (location & EquipLocation.WEAPON) selector.push('.swap_weapon');
-	if ((location & EquipLocation.SHIELD) && !(location & EquipLocation.WEAPON)) selector.push('.swap_shield');
+	if (location & EquipLocation.SHIELD) selector.push('.swap_shield');
 	if (location & EquipLocation.GARMENT) selector.push('.swap_garment');
 	if (location & EquipLocation.SHOES) selector.push('.swap_shoes');
 	if (location & EquipLocation.ACCESSORY1) selector.push('.swap_accessory1');
