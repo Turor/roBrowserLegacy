@@ -2173,7 +2173,6 @@ class DB {
 				{ min: 20000, max: 20999, type: WeaponType.TWOHANDROD },
 				{ min: 13000, max: 13099, type: WeaponType.SHORTSWORD },
 				{ min: 13100, max: 13149, type: WeaponType.GUN_HANDGUN },
-				{ min: 13150, max: 13199, type: WeaponType.GUN_RIFLE },
 				{ min: 13300, max: 13399, type: WeaponType.SYURIKEN },
 				{ min: 13400, max: 13499, type: WeaponType.SWORD },
 				{ min: 18100, max: 18499, type: WeaponType.BOW },
@@ -2187,19 +2186,23 @@ class DB {
 				}
 			}
 
-			const gunGatling = [13157, 13158, 13159, 13172, 13177];
+			const gunGatling = [13157, 13158, 13159, 13172, 13177, 13182, 13185, 13197, 13198, 13199];
 			if (gunGatling.indexOf(id) > -1) {
 				return WeaponType.GUN_GATLING;
 			}
 
-			const gunShotGun = [13154, 13155, 13156, 13167, 13168, 13169, 13173, 13178];
+			const gunShotGun = [13154, 13155, 13156, 13167, 13168, 13169, 13173, 13178, 13181, 13186, 13192, 13193, 13194, 13196, 28204];
 			if (gunShotGun.indexOf(id) > -1) {
 				return WeaponType.GUN_SHOTGUN;
 			}
 
-			const gunGranade = [13160, 13161, 13162, 13174, 13179];
+			const gunGranade = [13160, 13161, 13162, 13174, 13179, 13183, 13187, 28200, 28201, 28202];
 			if (gunGranade.indexOf(id) > -1) {
 				return WeaponType.GUN_GRANADE;
+			}
+
+			if (id >= 13150 && id <= 13199) {
+				return WeaponType.GUN_RIFLE;
 			}
 		}
 

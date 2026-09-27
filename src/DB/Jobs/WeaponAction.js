@@ -293,7 +293,7 @@ WeaponAction[JobId.GUNSLINGER] = new (function () {
 	// I don't get when 0 is used ? seems like a grenade launcher.
 	this[WeaponType.NONE] = 1;
 	this[WeaponType.GUN_HANDGUN] = 1;
-	this[WeaponType.GUN_SHOTGUN] = 1;
+	this[WeaponType.GUN_SHOTGUN] = 2;
 	this[WeaponType.GUN_GATLING] = 2;
 	this[WeaponType.GUN_RIFLE] = 2;
 	this[WeaponType.GUN_GRANADE] = 2;

@@ -64,7 +64,8 @@ function getSelectorFromLocation(location) {
 	if (location & EquipLocation.HEAD_BOTTOM) selector.push('.head_bottom');
 	if (location & EquipLocation.ARMOR) selector.push('.armor');
 	if (location & EquipLocation.WEAPON) selector.push('.weapon');
-	if (location & EquipLocation.SHIELD) selector.push('.shield');
+	// 2H items occupy WEAPON|SHIELD as one weapon. Drawing both boxes looks like dual-wield.
+	if ((location & EquipLocation.SHIELD) && !(location & EquipLocation.WEAPON)) selector.push('.shield');
 	if (location & EquipLocation.GARMENT) selector.push('.garment');
 	if (location & EquipLocation.SHOES) selector.push('.shoes');
 	if (location & EquipLocation.ACCESSORY1) selector.push('.accessory1');
