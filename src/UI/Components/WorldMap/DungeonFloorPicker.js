@@ -22,9 +22,29 @@ function formatZeny(n) {
 	return String(n || 0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
+function mountHost(host) {
+	if (!host) {
+		return null;
+	}
+	if (typeof host.querySelector === 'function') {
+		const inner = host.querySelector('#WorldMap');
+		if (inner) {
+			return inner;
+		}
+	}
+	return host;
+}
+
 function ensureDom(host) {
-	if (_root && _root.isConnected) {
+	const parent = mountHost(host);
+	if (!parent) {
+		return null;
+	}
+	if (_root && _root.isConnected && _root.parentNode === parent) {
 		return _root;
+	}
+	if (_root && _root.parentNode) {
+		_root.parentNode.removeChild(_root);
 	}
 	_root = document.createElement('div');
 	_root.className = 'wm-dungeon-picker';
@@ -44,7 +64,7 @@ function ensureDom(host) {
 			close();
 		}
 	});
-	host.appendChild(_root);
+	parent.appendChild(_root);
 	return _root;
 }
 

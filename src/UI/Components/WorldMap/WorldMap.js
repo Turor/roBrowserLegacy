@@ -226,6 +226,16 @@ function resizeMap() {
 	mapContainer.style.height = C_BASEHEIGHT * mult + 'px';
 }
 
+function worldMapOverlayHost() {
+	const root = WorldMap.getRoot();
+	if (!root || typeof root.querySelector !== 'function') {
+		return root;
+	}
+	// getRoot() is the shadow root. Floor-picker CSS is scoped under #WorldMap,
+	// and a node appended to the shadow root sits under the fixed map.
+	return root.querySelector('#WorldMap') || root;
+}
+
 /**
  * When worldmap container is clicked
  * @param {*} e
@@ -235,7 +245,7 @@ function onWorldMapSectionClick(e) {
 	if (!section) return;
 
 	const mapId = section.id;
-	WorldMapWarp.handleSectionClick(mapId, WorldMap.getRoot());
+	WorldMapWarp.handleSectionClick(mapId, worldMapOverlayHost(), section);
 }
 
 /**
@@ -358,6 +368,9 @@ function createWorldMapView(map, imgData) {
 			const el_mapname = document.createElement('div');
 
 			el.id = section.id;
+			if (section.index !== undefined && section.index !== null) {
+				el.dataset.wmIndex = String(section.index);
+			}
 
 			let sectionType = section.type !== undefined ? section.type : 0;
 
