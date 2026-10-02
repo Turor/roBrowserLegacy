@@ -86,6 +86,7 @@ import PvPTimer from 'UI/Components/PvPTimer/PvPTimer.js';
 import PvPCount from 'UI/Components/PvPCount/PvPCount.js';
 import BasicInfo from 'UI/Components/BasicInfo/BasicInfo.js';
 import MiniMap from 'UI/Components/MiniMap/MiniMap.js';
+import AudioMuteButton from 'UI/Components/AudioMuteButton/AudioMuteButton.js';
 import SkillList from 'UI/Components/SkillList/SkillList.js';
 import Quest from 'UI/Components/Quest/Quest.js';
 import PlayerViewEquip from 'UI/Components/PlayerViewEquip/PlayerViewEquip.js';
@@ -434,6 +435,8 @@ EdenGroup.prepare();
 				Achievement.prepare();
 			}
 
+			AudioMuteButton.prepare();
+
 			// Bind UI
 			PetInformations.onConfigUpdate = onConfigUpdate;
 			HomunInformations.onConfigUpdate = onConfigUpdate;
@@ -715,6 +718,7 @@ function onMapChange(pkt) {
 		// Add Game UI
 		MiniMap.getUI().append();
 		MiniMap.getUI().setMap(MapRenderer.currentMap);
+		AudioMuteButton.append();
 		if (Configs.get('enableMapName')) {
 			MapName.setMap(MapRenderer.currentMap);
 			MapName.append();

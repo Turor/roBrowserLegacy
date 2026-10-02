@@ -1,0 +1,52 @@
+:host {
+	width: 28px;
+	height: 28px;
+	top: 16px;
+	right: 152px;
+}
+
+#AudioMuteButton {
+	width: 28px;
+	height: 28px;
+}
+
+#AudioMuteButton .mute {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	padding: 0;
+	border: 1px solid rgba(255, 255, 255, 0.45);
+	border-radius: 3px;
+	background: rgba(12, 12, 16, 0.72);
+	color: #f2f2f2;
+	cursor: pointer;
+}
+
+#AudioMuteButton .mute:hover {
+	background: rgba(28, 28, 36, 0.88);
+}
+
+#AudioMuteButton .mute.is-muted {
+	background: rgba(92, 24, 24, 0.82);
+	color: #ffd0d0;
+}
+
+#AudioMuteButton .icon {
+	width: 18px;
+	height: 18px;
+	display: block;
+}
+
+#AudioMuteButton .icon-off {
+	display: none;
+}
+
+#AudioMuteButton .mute.is-muted .icon-on {
+	display: none;
+}
+
+#AudioMuteButton .mute.is-muted .icon-off {
+	display: block;
+}
