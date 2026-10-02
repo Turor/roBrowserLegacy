@@ -276,6 +276,8 @@
 	background-color: transparent !important;
 	border: 1px solid rgba(255, 0, 0, 0.6) !important;
 	display: block !important;
+	/* Later floors share the entrance rect. Let the entrance receive the click. */
+	pointer-events: none;
 }
 
 #WorldMap .worldmap .connector-line {

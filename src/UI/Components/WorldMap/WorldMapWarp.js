@@ -88,15 +88,69 @@ export function applyExploreMarks() {
 	}
 }
 
+function overlayHost(host) {
+	if (host && typeof host.querySelector === 'function') {
+		const inner = host.querySelector('#WorldMap');
+		if (inner) {
+			return inner;
+		}
+	}
+	return host;
+}
+
+function locForMap(mapId) {
+	const id = normalizeMapId(mapId);
+	const alias = WM_DUNGEON_ALIAS[id];
+	const lookupId = alias || id;
+	const loc = (lookupId && Warpra.findByMap(lookupId)) || (id && Warpra.findByMap(id)) || null;
+	return { id, alias, lookupId, loc };
+}
+
+/**
+ * Floors of one dungeon share a worldview index and the same rectangle.
+ * The topmost floor may not be a Warpra map (buried entrance still is).
+ * @param {HTMLElement} sectionEl
+ * @returns {object|null}
+ */
+function dungeonLocFromIndex(sectionEl) {
+	if (!sectionEl || !sectionEl.dataset || sectionEl.dataset.wmIndex == null || sectionEl.dataset.wmIndex === '') {
+		return null;
+	}
+	const index = sectionEl.dataset.wmIndex;
+	const root = sectionEl.closest('.worldmap') || sectionEl.parentElement;
+	if (!root) {
+		return null;
+	}
+	let found = null;
+	root.querySelectorAll('.section').forEach(el => {
+		if (found || el.dataset.wmIndex !== index || !el.id) {
+			return;
+		}
+		const { loc } = locForMap(el.id);
+		if (loc && loc.kind === Warpra.KIND.DUNGEON) {
+			found = loc;
+		}
+	});
+	return found;
+}
+
 /**
  * Handle a world-map section click.
  * @param {string} mapId section id (map name)
  * @param {HTMLElement} host WorldMap root for overlays
+ * @param {HTMLElement} [sectionEl]
  */
-function handleResolved(id, host) {
-	const alias = WM_DUNGEON_ALIAS[id];
-	const lookupId = alias || id;
-	let loc = Warpra.findByMap(lookupId) || Warpra.findByMap(id);
+function handleResolved(id, host, sectionEl) {
+	host = overlayHost(host);
+	let { alias, lookupId, loc } = locForMap(id);
+	if (!loc || loc.kind !== Warpra.KIND.DUNGEON) {
+		const groupLoc = dungeonLocFromIndex(sectionEl);
+		if (groupLoc) {
+			loc = groupLoc;
+			lookupId = groupLoc.map;
+			alias = alias || WM_DUNGEON_ALIAS[normalizeMapId(groupLoc.map)];
+		}
+	}
 	if (!loc) {
 		ChatBox.addText(`No Warpra destination for ${id}.`, ChatBox.TYPE.ERROR);
 		return;
@@ -120,16 +174,16 @@ function handleResolved(id, host) {
 	Warpra.unlockOrWarp(loc, { autoWarpAfterBuy: true });
 }
 
-export function handleSectionClick(mapId, host) {
+export function handleSectionClick(mapId, host, sectionEl) {
 	const id = normalizeMapId(mapId);
-	if (!id) {
+	if (!id && !(sectionEl && sectionEl.dataset && sectionEl.dataset.wmIndex)) {
 		return;
 	}
 
 	if (!Warpra.getList().length) {
 		const unsub = Warpra.onListChange(() => {
 			unsub();
-			handleResolved(id, host);
+			handleResolved(id, host, sectionEl);
 		});
 		Warpra.refreshList();
 		ChatBox.addText('Loading Warpra destinations…', ChatBox.TYPE.INFO);
@@ -137,7 +191,7 @@ export function handleSectionClick(mapId, host) {
 	}
 
 	Warpra.refreshList();
-	handleResolved(id, host);
+	handleResolved(id, host, sectionEl);
 }
 
 /**
