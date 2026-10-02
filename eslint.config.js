@@ -98,7 +98,8 @@ export default [
         ROConfig: 'readonly',  
         SEEK_CUR: 'readonly',  
         SEEK_SET: 'readonly',  
-        SEEK_END: 'readonly'  
+        SEEK_END: 'readonly',
+        __TURORAN_PWA_VERSION__: 'readonly'  
       }  
     },  
     rules: sharedRules

@@ -287,7 +287,11 @@ function onEntitySpam(pkt) {
  * @param {object} pkt - PACKET.ZC.NOTIFY_VANISH
  */
 function onEntityVanish(pkt) {
-	const entity = EntityManager.get(pkt.GID);
+	let entity = EntityManager.get(pkt.GID);
+	if (!entity) {
+		// Corpse left in the render list after its GID was unmapped on death.
+		entity = EntityManager.getIncludingOrphan(pkt.GID);
+	}
 	if (entity) {
 		if (entity.objecttype === Entity.TYPE_PC && pkt.GID === Session.Entity.GID) {
 			//death animation only for myself
@@ -385,7 +389,15 @@ function onEntityVanish(pkt) {
 		// lookup entry and keeps the entity in the render list, so the death /
 		// fade-out animation continues independently. Deferring removeGID would
 		// leave the GID mapped to a dying entity and let a reused GID collide.
-		EntityManager.removeGID(pkt.GID);
+		// Player account ids are not recycled while that character is online.
+		// Unmapping a dead PC detaches the corpse from ZC_RESURRECTION and from
+		// the warp vanish sent on save-point respawn, so the body stays on
+		// screen after the player is alive again.
+		const keepPlayerCorpseAddressable =
+			entity.objecttype === Entity.TYPE_PC && pkt.type === Entity.VT.DEAD;
+		if (!keepPlayerCorpseAddressable) {
+			EntityManager.removeGID(pkt.GID);
+		}
 
 		const playDeath = () => {
 			entity.remove(pkt.type);
@@ -479,38 +491,64 @@ function onEntityEmotion(pkt) {
 }
 
 /**
- * Resurect an entity
+ * Stand a unit up. Used when a corpse must stop rendering as dead.
  *
- * @param {object} pkt - PACKET_ZC_RESURRECTION
+ * @param {object} entity
  */
-function onEntityResurect(pkt) {
-	const entity = EntityManager.get(pkt.AID);
-
-	if (!entity) {
-		return;
-	}
-
-	// There is always a packet to use the skill "Resurection"
-	// on yourself after, but what if this packet isn't here ?
-	// The entity will stay die ? So update the action just in case
+function standEntityUp(entity) {
+	entity.remove_tick = 0;
+	entity.remove_delay = 0;
 	entity.setAction({
 		action: entity.ACTION.IDLE,
 		frame: 0,
 		repeat: true,
 		play: true
 	});
+}
 
-	if (entity.wug) {
-		entity.wug.setAction({
-			action: entity.ACTION.IDLE,
-			frame: 0,
-			repeat: true,
-			play: true
-		});
+/**
+ * Resurect an entity
+ *
+ * @param {object} pkt - PACKET_ZC_RESURRECTION
+ */
+function onEntityResurect(pkt) {
+	const gid = pkt.AID;
+	const matches = [];
+
+	EntityManager.forEach(entity => {
+		if (entity.GID === gid) {
+			matches.push(entity);
+		}
+	});
+
+	if (Session.Entity && Session.Entity.GID === gid && matches.indexOf(Session.Entity) === -1) {
+		matches.push(Session.Entity);
+	}
+
+	if (!matches.length) {
+		return;
+	}
+
+	// Prefer the entity still registered under this GID. Any other copy is a
+	// death sprite left behind when the id was unmapped.
+	const mapped = EntityManager.get(gid);
+	const primary = mapped && matches.indexOf(mapped) !== -1 ? mapped : matches[0];
+
+	for (let i = 0; i < matches.length; i++) {
+		if (matches[i] !== primary) {
+			matches[i].remove(Entity.VT.OUTOFSIGHT);
+		}
+	}
+
+	EntityManager.attachGID(primary);
+	standEntityUp(primary);
+
+	if (primary.wug) {
+		standEntityUp(primary.wug);
 	}
 
 	// If it's our main character update Escape ui
-	if (entity === Session.Entity) {
+	if (primary === Session.Entity) {
 		Escape.resetMenu();
 	}
 }

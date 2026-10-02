@@ -56,6 +56,41 @@ function getEntityByGID(gid) {
 }
 
 /**
+ * Find a rendered entity by GID even after it was dropped from the lookup map.
+ * A dead player used to be unmapped while the corpse stayed in the render
+ * list with its GID intact. Resurrection and a later warp vanish have to
+ * reach that sprite.
+ *
+ * @param {number} gid
+ * @returns {object|null}
+ */
+function getIncludingOrphan(gid) {
+	const mapped = getEntityByGID(gid);
+	if (mapped) {
+		return mapped;
+	}
+	const index = getEntityIndexBy(entity => entity.GID, gid);
+	return index < 0 ? null : _list[index];
+}
+
+/**
+ * Put an entity back in the GID lookup without duplicating the render list.
+ * No-op when another entity already owns the id.
+ *
+ * @param {object} entity
+ */
+function attachGID(entity) {
+	if (!entity || entity.GID == null || entity.GID < 0) {
+		return;
+	}
+	const mapped = getEntityByGID(entity.GID);
+	if (mapped && mapped !== entity) {
+		return;
+	}
+	_gidMap.set(entity.GID, entity);
+}
+
+/**
  * Find an Entity and return its index
  *
  * @param {number} aid
@@ -601,6 +636,8 @@ const EntityManager = {
 	remove: removeEntity,
 	removeGID: removeGID,
 	get: getEntity,
+	getIncludingOrphan: getIncludingOrphan,
+	attachGID: attachGID,
 	getByCID: getEntityByCID,
 	forEach: forEach,
 
