@@ -56,11 +56,13 @@ const VALUE = {
 	DECREASE: -1
 };
 
+// Human/doram HEAD.MAX match make_character_ver2 img_hairstyle* thumbs in client GRF
+// (human 01-23, doram 01-06). Head sprites may exist beyond these; do not invent thumbs.
 const CAP = {
 	[RACE.HUMAN]: {
 		HEAD: {
 			MIN: 1,
-			MAX: 29
+			MAX: 23
 		},
 		HEADPALETTE: {
 			MIN: 0,
@@ -157,6 +159,42 @@ export function createCharCreate(config) {
 	let _curhead = 1;
 	let _prevcolor = 0;
 	let _curcolor = 0;
+
+	/**
+	 * Active hairstyle grid section for the current race/gender (V4).
+	 * @param {ParentNode} root
+	 * @returns {Element|null}
+	 */
+	function getHairStyleSection(root) {
+		return root.querySelector(`#${_race}_${_gender}`);
+	}
+
+	/**
+	 * Apply selection chrome to one hairstyle cell inside the active section.
+	 * Uses GUIComponent data-active (class "active") so hover/press keep working.
+	 * @param {ParentNode} root
+	 * @param {number} prevHead
+	 * @param {number} curHead
+	 */
+	function syncHairstyleChrome(root, prevHead, curHead) {
+		const section = getHairStyleSection(root);
+		if (!section) {
+			return;
+		}
+		section.querySelectorAll('.styleCol.active').forEach(el => {
+			el.classList.remove('active');
+		});
+		if (prevHead && prevHead !== curHead) {
+			const prev = section.querySelector(`.style${prevHead}`);
+			if (prev) {
+				prev.classList.remove('active');
+			}
+		}
+		const cur = section.querySelector(`.style${curHead}`);
+		if (cur) {
+			cur.classList.add('active');
+		}
+	}
 
 	const render = hasRace ? renderRace : renderLegacy;
 
@@ -611,18 +649,6 @@ export function createCharCreate(config) {
 				}
 			);
 
-			Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/bt_hairstyle_normal.bmp`, dataURI => {
-				const el = root.querySelector(`.style${_prevhead}`);
-				if (el) {
-					el.style.backgroundImage = `url(${dataURI})`;
-				}
-			});
-			Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/bt_hairstyle_select.bmp`, dataURI => {
-				const el = root.querySelector(`.style${_curhead}`);
-				if (el) {
-					el.style.backgroundImage = `url(${dataURI})`;
-				}
-			});
 		}
 	}
 
@@ -809,17 +835,12 @@ export function createCharCreate(config) {
 	function updateHStyle(target) {
 		const root = Component.getRoot();
 		const type = 'head';
-		const value = parseInt(target.getAttribute('for'));
+		// Label `for` is like "12_human_male" — parseInt yields the style id.
+		const value = parseInt(target.getAttribute('for'), 10);
 
 		_prevhead = _model.entity.head;
-		Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/bt_hairstyle_normal.bmp`, dataURI => {
-			const el = root.querySelector(`.style${_prevhead}`);
-			if (el) {
-				el.style.backgroundImage = `url(${dataURI})`;
-			}
-		});
-
 		_curhead = value;
+		syncHairstyleChrome(root, _prevhead, _curhead);
 
 		updateCharacterGrid(type, value);
 	}
@@ -878,15 +899,10 @@ export function createCharCreate(config) {
 			value = 4218;
 		}
 
-		// In between changes of race, it needs to clear everything
-		for (let i = 1; i <= 24; i++) {
-			Client.loadFile(`${DB.INTERFACE_PATH}make_character_ver2/bt_hairstyle_normal.bmp`, dataURI => {
-				const el = root.querySelector(`.style${i}`);
-				if (el) {
-					el.style.backgroundImage = `url(${dataURI})`;
-				}
-			});
-		}
+		// Clear selection chrome across all hairstyle grids
+		root.querySelectorAll('.hair-style .styleCol.active').forEach(el => {
+			el.classList.remove('active');
+		});
 
 		// Reset Head
 		_prevhead = 1;
@@ -894,6 +910,7 @@ export function createCharCreate(config) {
 
 		updateHstyleList(type, value);
 		updateCharacterGrid(type, value);
+		syncHairstyleChrome(root, _prevhead, _curhead);
 	}
 
 	/**
@@ -952,6 +969,7 @@ export function createCharCreate(config) {
 		if (hairStyleEl) {
 			hairStyleEl.style.display = 'block';
 		}
+		syncHairstyleChrome(root, _prevhead, _curhead);
 	}
 
 	function cleanup() {
@@ -994,7 +1012,11 @@ export function createCharCreate(config) {
 			});
 		}
 
+		root.querySelectorAll('.hair-style .styleCol.active').forEach(el => {
+			el.classList.remove('active');
+		});
 		updateCharacterGrid('default', 0);
+		syncHairstyleChrome(root, 1, 1);
 	}
 
 	/**
