@@ -62,7 +62,7 @@ class SoundManager {
 		} else {
 			volume = this.volume;
 		}
-		if (volume <= 0 || !Preferences.Sound.play) {
+		if (volume <= 0 || !Preferences.Sound.play || Preferences.muted) {
 			return;
 		}
 		if (!(filename in _sounds)) {

@@ -24,7 +24,10 @@ export default Preferences.get(
 		Sound: {
 			play: true,
 			volume: 0.5
-		}
+		},
+
+		// Master mute for this browser client only. Does not affect other players.
+		muted: false
 	},
 	1.0
 );

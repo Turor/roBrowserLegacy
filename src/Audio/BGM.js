@@ -108,7 +108,7 @@ class BGM {
 
 		BGM.filename = filename;
 		const myToken = ++_playToken;
-		if (Preferences.BGM.play) {
+		if (Preferences.BGM.play && !Preferences.muted) {
 			Client.loadFile(`BGM/${filename}`, url => {
 				if (myToken !== _playToken) {
 					return;
@@ -124,7 +124,7 @@ class BGM {
 	 * @param {string} url (HTTP / DATA URI or BLOB)
 	 */
 	static load(url) {
-		if (!Preferences.BGM.play) {
+		if (!Preferences.BGM.play || Preferences.muted) {
 			return;
 		}
 
