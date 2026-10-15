@@ -15,6 +15,7 @@ import WebGL from 'Utils/WebGL.js';
 import Network from 'Network/NetworkManager.js';
 import PACKET from 'Network/PacketStructure.js';
 import PACKETVER from 'Network/PacketVerManager.js';
+import Configs from 'Core/Configs.js';
 import Session from 'Engine/SessionStorage.js';
 import UIManager from 'UI/UIManager.js';
 import GUIComponent from 'UI/GUIComponent.js';
@@ -1675,11 +1676,20 @@ function onRequestClose() {
 		setStatus('Request in progress...', false);
 		return;
 	}
-	if (PACKETVER.value >= 20211103) {
-		const pkt = new PACKET.CZ.CLOSE_UI_ENCHANT();
-		Network.sendPacket(pkt);
-	}
 	Enchant.remove();
+}
+
+// Tell the server the Enchant UI is closed (clears sd->state.enchant_ui, which
+// otherwise blocks walking). Turoran #129: also on 20190530 with enableEnchantUI.
+let serverUIOpen = false;
+function sendCloseUI() {
+	if (!serverUIOpen) {
+		return;
+	}
+	serverUIOpen = false;
+	if (Configs.get('enableEnchantUI') || PACKETVER.value >= 20211103) {
+		Network.sendPacket(new PACKET.CZ.CLOSE_UI_ENCHANT());
+	}
 }
 
 Enchant.onKeyDown = function onKeyDown(event) {
@@ -1900,6 +1910,7 @@ Enchant.onAppend = function onAppend() {
 
 Enchant.onRemove = function onRemove() {
 	const root = _root();
+	sendCloseUI();
 	clearState();
 	if (root) {
 		root.querySelectorAll('.close, .close_btn').forEach(btn => {
@@ -1951,6 +1962,7 @@ Enchant.onRemove = function onRemove() {
 
 Enchant.onOpenEnchantUI = function onOpenEnchantUI(groupId) {
 	clearState();
+	serverUIOpen = true;
 	EnchantState.groupId = Number(groupId);
 	EnchantState.group = DB.getEnchantGroup(EnchantState.groupId);
 	if (!EnchantState.group) {
