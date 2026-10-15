@@ -29,6 +29,7 @@ import Guild from 'UI/Components/Guild/Guild.js';
 import Bank from 'UI/Components/Bank/Bank.js';
 import Escape from 'UI/Components/Escape/Escape.js';
 import WorldMap from 'UI/Components/WorldMap/WorldMap.js';
+import ItemFinder from 'UI/Components/ItemFinder/ItemFinder.js';
 import Stable from 'UI/Components/Stable/Stable.js';
 import EdenGroup from 'UI/Components/EdenGroup/EdenGroup.js';
 import Warpra from 'UI/Components/Warpra/Warpra.js';
@@ -131,6 +132,9 @@ export function createBasicInfo(config) {
 				break;
 			case 'map':
 				WorldMap.toggle();
+				break;
+			case 'finder':
+				ItemFinder.toggle();
 				break;
 			case 'bank':
 				if (Configs.get('enableBank')) {

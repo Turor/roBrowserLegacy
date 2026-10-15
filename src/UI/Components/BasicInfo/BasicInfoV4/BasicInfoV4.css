@@ -250,3 +250,10 @@
 	pointer-events: none;
 	top: -5px;
 }
+
+#BasicInfoV4 .buttons #finder {
+	background: radial-gradient(circle at 40% 40%, #fff 0 5px, #4a6ea8 6px 8px, transparent 9px), linear-gradient(135deg, transparent 58%, #4a6ea8 59% 70%, transparent 71%), #dfe7f5;
+	border: 1px solid #7f93b8;
+	border-radius: 5px;
+	box-sizing: border-box;
+}

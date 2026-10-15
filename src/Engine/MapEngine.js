@@ -74,6 +74,7 @@ import HomunInformations from 'UI/Components/HomunInformations/HomunInformations
 import MapName from 'UI/Components/MapName/MapName.js';
 import Announce from 'UI/Components/Announce/Announce.js';
 import Navigation from 'UI/Components/Navigation/Navigation.js';
+import ItemFinder from 'UI/Components/ItemFinder/ItemFinder.js';
 import CaptchaUpload from 'UI/Components/Captcha/CaptchaUpload.js';
 import CaptchaSelector from 'UI/Components/Captcha/CaptchaSelector.js';
 import CaptchaAnswer from 'UI/Components/Captcha/CaptchaAnswer.js';
@@ -370,6 +371,7 @@ EdenGroupEngine();
 			Roulette.prepare();
 			PCGoldTimer.prepare();
 			Navigation.prepare();
+			ItemFinder.prepare();
 			CaptchaUpload.prepare();
 			CaptchaSelector.prepare();
 			CaptchaAnswer.prepare();

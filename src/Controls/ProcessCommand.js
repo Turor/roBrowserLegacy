@@ -45,6 +45,7 @@ import PokJukWeatherEffect from 'Renderer/Effects/PokJukWeatherEffect.js';
 import CloudWeatherEffect from 'Renderer/Effects/CloudWeatherEffect.js';
 import ChatBox from 'UI/Components/ChatBox/ChatBox.js';
 import Navigation from 'UI/Components/Navigation/Navigation.js';
+import ItemFinder from 'UI/Components/ItemFinder/ItemFinder.js';
 import RankingTypes from 'DB/Jobs/RankingTypes.js';
 
 let aliases = {};
@@ -801,6 +802,14 @@ const CommandStore = {
 				pkt.captchaID = matches[1];
 				Network.sendPacket(pkt);
 			}
+			return;
+		}
+	},
+	finder: {
+		description: 'Open the Item Finder (search weapons, armor and cards by effect). Hotkey: Alt+F',
+		aliases: ['itemfinder'],
+		callback: function () {
+			ItemFinder.toggle();
 			return;
 		}
 	},
