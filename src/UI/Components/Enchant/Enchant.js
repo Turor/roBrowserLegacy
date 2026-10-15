@@ -255,6 +255,33 @@ function setStatus(message, isError) {
 	status.classList.toggle('error', !!isError);
 }
 
+/**
+ * Turoran: the enchant lub ships Korean (CP949) caution text, which shows as
+ * mojibake on our English client. Build an English caution from the group data.
+ */
+function buildCaution(group) {
+	if (!group) {
+		return '';
+	}
+	const raw = group.caution || '';
+	if (!/[^\x00-\x7f]/.test(raw)) {
+		return raw;
+	}
+	const pct = raw.match(/\d+\s*%/g) || [];
+	const lines = [];
+	const minRefine = group.condition ? group.condition.minRefine : 0;
+	if (minRefine > 0) {
+		lines.push('Requires refine +' + minRefine + ' or higher.');
+	}
+	if (pct[0]) {
+		lines.push('Normal enchant success rate: ' + pct[0].replace(/\s/g, ''));
+	}
+	if (pct[1]) {
+		lines.push('Enchant reset success rate: ' + pct[1].replace(/\s/g, ''));
+	}
+	return lines.join('\n');
+}
+
 function setCaution(message) {
 	const root = _root();
 	if (!root) {
@@ -1360,7 +1387,7 @@ function refreshUI() {
 	renderItemPreview();
 	refreshActionContent();
 	renderSlots();
-	setCaution(EnchantState.group ? EnchantState.group.caution : '');
+	setCaution(buildCaution(EnchantState.group));
 }
 
 function validateItem(item) {
