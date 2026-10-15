@@ -42,6 +42,11 @@ function getPacketVersion() {
  *
  * @return {number} blocksize
  */
+/**
+ * Turoran #138: server (TURORAN_WIDE_HPSP) sends HP/SP as 64-bit in the char block.
+ */
+export const TURORAN_WIDE_HPSP = true;
+
 function calculateBlockSize() {
 	// Not dependent of PACKETVER
 	let blockSize = 106;
@@ -102,7 +107,8 @@ function calculateBlockSize() {
 		blockSize += 4; // job_exp
 	}
 
-	if (_value >= 20211103) {
+	// Turoran #138: hercules-prere-plus sends the 64-bit HP/SP block on every PACKETVER
+	if (_value >= 20211103 || TURORAN_WIDE_HPSP) {
 		blockSize += 4; // hp
 		blockSize += 4; // maxhp
 		blockSize += 6; // sp
