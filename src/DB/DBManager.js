@@ -630,7 +630,7 @@ class DB {
 				}
 				// Load description - skillid.lub is re-executed harmlessly (Lua just repopulates globals)
 				loadLuaTable(
-					[DB.LUA_PATH + 'skillinfoz/skillid.turoran4.lub', DB.LUA_PATH + 'skillinfoz/skilldescript.turoran13.lub'],
+					[DB.LUA_PATH + 'skillinfoz/skillid.turoran4.lub', 'System/skilldescript.turoran.re1.lub'],
 					'SKILL_DESCRIPT',
 					_json => {
 						SkillDescription = _json;
