@@ -6112,7 +6112,7 @@ SkillInfo[SK.RG_GRAFFITI] = {
 	SpAmount: [15],
 	bSeperateLv: false,
 	AttackRange: [1],
-	_NeedSkillList: [[SK.RG_FLAGGRAFFITI, 5]]
+	_NeedSkillList: [[SK.RG_FLAGGRAFFITI, 1]]
 };
 SkillInfo[SK.GD_BATTLEORDER] = {
 	Name: 'GD_BATTLEORDER',
