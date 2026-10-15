@@ -155,6 +155,7 @@ class LoginEngine {
 				'ok',
 				() => {
 					UIManager.removeComponents();
+					Session.Playing = false; // pre-game: allow browser Ctrl/Alt defaults
 					WinLogin.getUI().append();
 				},
 				true
@@ -167,6 +168,7 @@ class LoginEngine {
 			Configs.set('autoLogin', null);
 		} else {
 			q.add(function () {
+				Session.Playing = false; // pre-game: allow browser Ctrl/Alt defaults
 				WinLogin.getUI().append();
 			});
 		}
@@ -205,6 +207,7 @@ class LoginEngine {
 		UIManager.removeComponents();
 		WinLogin.getUI().onConnectionRequest = onConnectionRequest;
 		WinLogin.getUI().onExitRequest = onExitRequest;
+		Session.Playing = false; // pre-game: allow browser Ctrl/Alt defaults
 		WinLogin.getUI().append();
 
 		Network.close();
@@ -246,6 +249,7 @@ function onConnectionRequest(username, password) {
 				'ok',
 				() => {
 					UIManager.removeComponents();
+					Session.Playing = false; // pre-game: allow browser Ctrl/Alt defaults
 					WinLogin.getUI().append();
 				},
 				true
@@ -422,6 +426,7 @@ function onConnectionAccepted(pkt) {
 		WinList.onExitRequest = () => {
 			Network.close();
 			WinList.remove();
+			Session.Playing = false; // pre-game: allow browser Ctrl/Alt defaults
 			WinLogin.getUI().append();
 		};
 		WinList.append();
@@ -489,6 +494,7 @@ function onTarenConnectionRefused(pkt) {
 		'ok',
 		() => {
 			UIManager.removeComponents();
+			Session.Playing = false; // pre-game: allow browser Ctrl/Alt defaults
 			WinLogin.getUI().append();
 		},
 		true
@@ -548,6 +554,7 @@ function onTarenConnectionRefused2(pkt) {
 		'ok',
 		() => {
 			UIManager.removeComponents();
+			Session.Playing = false; // pre-game: allow browser Ctrl/Alt defaults
 			WinLogin.getUI().append();
 		},
 		true
@@ -615,6 +622,7 @@ function onInternationalConnectionRefused(pkt) {
 		'ok',
 		() => {
 			UIManager.removeComponents();
+			Session.Playing = false; // pre-game: allow browser Ctrl/Alt defaults
 			WinLogin.getUI().append();
 		},
 		true
@@ -825,6 +833,7 @@ function onConnectionRefused(pkt) {
 		'ok',
 		() => {
 			UIManager.removeComponents();
+			Session.Playing = false; // pre-game: allow browser Ctrl/Alt defaults
 			WinLogin.getUI().append();
 		},
 		true
@@ -937,6 +946,7 @@ function onServerClosed(pkt) {
 		'ok',
 		() => {
 			UIManager.removeComponents();
+			Session.Playing = false; // pre-game: allow browser Ctrl/Alt defaults
 			WinLogin.getUI().append();
 		},
 		true
