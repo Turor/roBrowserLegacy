@@ -9,7 +9,12 @@
  * inside Shadow DOM, keep normal browser shortcuts.
  *
  * TuroranRO / hercules-prere-plus issue #33.
+ *
+ * Only active in game (Session.Playing). On the login / server / character
+ * screens browser defaults (paste, select-all, AltGr chars, ...) are untouched.
+ * In game only the browser default is prevented; app handlers still run.
  */
+import Session from 'Engine/SessionStorage.js';
 
 /**
  * Pierces Shadow DOM to the real focused element.
@@ -78,6 +83,9 @@ function isBrowserChromeShortcut(event) {
  * @param {KeyboardEvent} event
  */
 function onKeyDownCapture(event) {
+	if (!Session.Playing) {
+		return;
+	}
 	if (isTextEntry(getDeepActiveElement())) {
 		return;
 	}
@@ -92,6 +100,9 @@ function onKeyDownCapture(event) {
  * @param {KeyboardEvent} event
  */
 function onKeyUpCapture(event) {
+	if (!Session.Playing) {
+		return;
+	}
 	if (isTextEntry(getDeepActiveElement())) {
 		return;
 	}
