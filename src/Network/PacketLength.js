@@ -92,6 +92,11 @@ function init(packetver) {
 		packets_len = Lengths.init(packetver);
 		packets_len[0x097f] = packets_len[0x097f] || -1;
 		packets_len[0x0980] = packets_len[0x0980] || 7;
+		// Turoran #138: 64-bit HP/SP char block (175 bytes) on the classic ids
+		if (packetver < 20211103) {
+			packets_len[0x006d] = 177;
+			packets_len[0x08e3] = 177;
+		}
 		console.log('%c[Network] Packet Length initialized ', 'color:#007000', packetver);
 	} else {
 		console.error(`[Network] Failed to load packet lengths for year ${selectedYear} (path: ${modulePath})`);
