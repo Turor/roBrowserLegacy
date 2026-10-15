@@ -533,19 +533,20 @@ class DB {
 			} else {
 				iteminfoNames = iteminfoNames.concat(getSystemAliases('System/itemInfo.lub'));
 			}
-			// Turoran: new filename so browser FileSystem cache of itemInfo.turoran.lua
-			// cannot hide the Id+30000 pre-re card entries.
-			const turoranRe = 'System/itemInfo.turoran.re.def7.lua';
-			if (!iteminfoNames.includes(turoranRe)) {
-				iteminfoNames.push(turoranRe);
-			}
-			const turoranDual = 'System/itemInfo.turoran.diff.lua';
-			if (!iteminfoNames.includes(turoranDual)) {
-				iteminfoNames.push(turoranDual);
-			}
-			const turoranCookie = 'System/itemInfo.turoran.cookiehl.lua';
-			iteminfoNames = iteminfoNames.filter(function (n) { return n !== turoranCookie; });
-			iteminfoNames.push(turoranCookie);
+			// Turoran (renewal migration): drop the pre-re era overlays (dual *_Pre cards,
+			// Def/7 RE descriptions, Cookie Card 25%) and load renewal descriptions last.
+			// New filename busts the browser FileSystem cache.
+			const turoranLegacy = [
+				'System/itemInfo.turoran.re.def7.lua',
+				'System/itemInfo.turoran.re.diff.lua',
+				'System/itemInfo.turoran.diff.lua',
+				'System/itemInfo.turoran.cookiehl.lua'
+			];
+			const turoranRenewal = 'System/itemInfo.turoran.renewal.lua';
+			iteminfoNames = iteminfoNames.filter(function (n) {
+				return turoranLegacy.indexOf(n) === -1 && n !== turoranRenewal;
+			});
+			iteminfoNames.push(turoranRenewal);
 			tryLoadLuaAliases(loadItemInfo, iteminfoNames, null, onLoad(), true);
 
 			loadLuaTable(
