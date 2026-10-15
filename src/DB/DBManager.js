@@ -852,7 +852,7 @@ class DB {
 				'#',
 				2,
 				function (_index, key, val) {
-					(ItemTable[key] || (ItemTable[key] = {})).unidentifiedDescriptionName = val.split('\n');
+					(ItemTable[key] || (ItemTable[key] = {})).unidentifiedDescriptionName = stripItemNaviTags(val).split('\n');
 				},
 				onLoad(),
 				true
@@ -881,7 +881,7 @@ class DB {
 				'#',
 				2,
 				function (_index, key, val) {
-					(ItemTable[key] || (ItemTable[key] = {})).identifiedDescriptionName = val.split('\n');
+					(ItemTable[key] || (ItemTable[key] = {})).identifiedDescriptionName = stripItemNaviTags(val).split('\n');
 				},
 				onLoad(),
 				true
@@ -5474,6 +5474,20 @@ function tryLoadLuaAliases(rFunc, files, callBack, onEnd, loadAll = false) {
 	tryNext(0);
 }
 
+/**
+ * Item descriptions still carry official <NAVI>…<INFO>…</INFO></NAVI> links.
+ * Navigation is disabled, so keep the visible label and drop the tags.
+ *
+ * @param {string} text
+ * @returns {string}
+ */
+function stripItemNaviTags(text) {
+	if (!text || (String(text).indexOf('NAVI') === -1 && String(text).indexOf('navi') === -1)) {
+		return text;
+	}
+	return String(text).replace(/<NAVI>(.*?)<INFO>.*?<\/INFO><\/NAVI>/gi, '$1');
+}
+
 /* Load ItemInfo file to object
  *
  * @param {string} filename to load
@@ -5523,11 +5537,11 @@ function loadItemInfo(filename, callback, onEnd) {
 					return 1;
 				};
 				ctx.AddItemUnidentifiedDesc = (ItemID, v) => {
-					ItemTable[ItemID].unidentifiedDescriptionName.push(userStringDecoder.decode(v, 'windows-949'));
+					ItemTable[ItemID].unidentifiedDescriptionName.push(stripItemNaviTags(userStringDecoder.decode(v, 'windows-949')));
 					return 1;
 				};
 				ctx.AddItemIdentifiedDesc = (ItemID, v) => {
-					ItemTable[ItemID].identifiedDescriptionName.push(userStringDecoder.decode(v, 'windows-949'));
+					ItemTable[ItemID].identifiedDescriptionName.push(stripItemNaviTags(userStringDecoder.decode(v, 'windows-949')));
 					return 1;
 				};
 				ctx.AddItemEffectInfo = (ItemID, EffectID) => {

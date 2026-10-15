@@ -45,6 +45,11 @@ let _cat = 'weapon';
 let _page = 0;
 let _results = [];
 
+function stripItemNavi(s) {
+	// Keep the label from navigation link tags. Navigation is off.
+	return String(s).replace(/<NAVI>(.*?)<INFO>.*?<\/INFO><\/NAVI>/gi, '$1');
+}
+
 function esc(s) {
 	return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 }
@@ -202,10 +207,10 @@ function renderPage() {
 				const shown = new Set();
 				effs = it.d
 					.map(l => {
-						if (l.h) return `<li class="hdr">${esc(l.x)}</li>`;
+						if (l.h) return `<li class="hdr">${esc(stripItemNavi(l.x))}</li>`;
 						const isHit = hit && l.b.some(i => hit.includes(i));
 						l.b.forEach(i => shown.add(i));
-						return `<li class="${isHit ? 'hit' : ''}${l.c ? ' cond' : ''}">${esc(l.x)}</li>`;
+						return `<li class="${isHit ? 'hit' : ''}${l.c ? ' cond' : ''}">${esc(stripItemNavi(l.x))}</li>`;
 					})
 					.join('');
 				// matched bonuses the description does not mention: show the script wording, flagged
@@ -449,6 +454,7 @@ function showDetail(id) {
 	}
 	let desc = info.identifiedDescriptionName || '';
 	if (Array.isArray(desc)) desc = desc.join('\n');
+	desc = stripItemNavi(desc);
 	root.querySelector('.ddesc').innerHTML = desc
 		? DB.formatMsgToHtml(esc(desc))
 		: esc(it ? it.eff.map(e => e.x).join('\n') : '');
