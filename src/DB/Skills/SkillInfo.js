@@ -99,7 +99,12 @@ SkillInfo[SK.WS_CARTBOOST] = {
 	SpAmount: [20],
 	bSeperateLv: false,
 	AttackRange: [1],
-	_NeedSkillList: [[SK.MC_PUSHCART, 5], [SK.BS_HILTBINDING, 1], [SK.MC_CARTREVOLUTION], [SK.MC_CHANGECART]]
+	_NeedSkillList: [
+		[SK.MC_PUSHCART, 5],
+		[SK.MC_CARTREVOLUTION, 1],
+		[SK.MC_CHANGECART, 1],
+		[SK.BS_HILTBINDING, 1]
+	]
 };
 SkillInfo[SK.WS_SYSTEMCREATE] = {
 	Name: 'WS_SYSTEMCREATE',
@@ -170,12 +175,10 @@ SkillInfo[SK.CG_ARROWVULCAN] = {
 	AttackRange: [9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
 	NeedSkillList: {
 		[JobId.BARD_H]: [
-			[SK.AC_DOUBLE, 5],
 			[SK.AC_SHOWER, 5],
 			[SK.BA_MUSICALSTRIKE, 1]
 		],
 		[JobId.DANCER_H]: [
-			[SK.AC_DOUBLE, 5],
 			[SK.AC_SHOWER, 5],
 			[SK.DC_THROWARROW, 1]
 		]
@@ -208,11 +211,11 @@ SkillInfo[SK.CG_MARIONETTE] = {
 	AttackRange: [7],
 	NeedSkillList: {
 		[JobId.BARD_H]: [
-			[SK.AC_CONCENTRATION, 10],
+			[SK.AC_CONCENTRATION, 5],
 			[SK.BA_MUSICALLESSON, 5]
 		],
 		[JobId.DANCER_H]: [
-			[SK.AC_CONCENTRATION, 10],
+			[SK.AC_CONCENTRATION, 5],
 			[SK.DC_DANCINGLESSON, 5]
 		]
 	}
@@ -251,6 +254,7 @@ SkillInfo[SK.LK_JOINTBEAT] = {
 	bSeperateLv: true,
 	AttackRange: [4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
 	_NeedSkillList: [
+		[SK.KN_SPEARMASTERY, 9],
 		[SK.KN_CAVALIERMASTERY, 3],
 		[SK.LK_HEADCRUSH, 3]
 	]
@@ -280,7 +284,11 @@ SkillInfo[SK.CH_SOULCOLLECT] = {
 	SpAmount: [20],
 	bSeperateLv: false,
 	AttackRange: [1],
-	_NeedSkillList: [[SK.MO_EXPLOSIONSPIRITS, 5]]
+	_NeedSkillList: [
+		[SK.MO_CALLSPIRITS, 5],
+		[SK.MO_ABSORBSPIRITS, 1],
+		[SK.MO_EXPLOSIONSPIRITS, 5]
+	]
 };
 SkillInfo[SK.PF_MINDBREAKER] = {
 	Name: 'PF_MINDBREAKER',
@@ -291,7 +299,7 @@ SkillInfo[SK.PF_MINDBREAKER] = {
 	AttackRange: [9, 9, 9, 9, 9],
 	_NeedSkillList: [
 		[SK.MG_SRECOVERY, 3],
-		[SK.PF_SOULBURN, 2]
+		[SK.PF_SOULBURN, 1]
 	]
 };
 SkillInfo[SK.PF_MEMORIZE] = {
@@ -793,7 +801,7 @@ SkillInfo[SK.SL_SUPERNOVICE] = {
 	SpAmount: [460, 360, 260, 160, 60],
 	bSeperateLv: false,
 	AttackRange: [9, 9, 9, 9, 9],
-	_NeedSkillList: [[SK.SL_STAR, 1]]
+	_NeedSkillList: []
 };
 SkillInfo[SK.SL_KNIGHT] = {
 	Name: 'SL_KNIGHT',
@@ -909,9 +917,8 @@ SkillInfo[SK.SL_KAAHI] = {
 	bSeperateLv: true,
 	AttackRange: [9, 9, 9, 9, 9, 9, 9],
 	_NeedSkillList: [
-		[SK.SL_CRUSADER, 1],
-		[SK.SL_MONK, 1],
-		[SK.SL_PRIEST, 1]
+		[SK.SL_PRIEST, 1],
+		[SK.SL_CRUSADER, 1]
 	]
 };
 SkillInfo[SK.AL_INCAGI] = {
@@ -931,7 +938,6 @@ SkillInfo[SK.SL_KAUPE] = {
 	bSeperateLv: false,
 	AttackRange: [9, 9, 9],
 	_NeedSkillList: [
-		[SK.SL_ASSASIN, 1],
 		[SK.SL_ROGUE, 1]
 	]
 };
@@ -943,7 +949,6 @@ SkillInfo[SK.SL_KAITE] = {
 	bSeperateLv: false,
 	AttackRange: [9, 9, 9, 9, 9, 9, 9],
 	_NeedSkillList: [
-		[SK.SL_SAGE, 1],
 		[SK.SL_WIZARD, 1]
 	]
 };
@@ -1029,7 +1034,12 @@ SkillInfo[SK.ST_FULLSTRIP] = {
 	SpAmount: [22, 24, 26, 28, 30],
 	bSeperateLv: true,
 	AttackRange: [1, 1, 1, 1, 1],
-	_NeedSkillList: [[SK.RG_STRIPWEAPON, 5]]
+	_NeedSkillList: [
+		[SK.RG_STRIPWEAPON, 5],
+		[SK.RG_STRIPSHIELD, 5],
+		[SK.RG_STRIPARMOR, 5],
+		[SK.RG_STRIPHELM, 5]
+	]
 };
 SkillInfo[SK.WS_WEAPONREFINE] = {
 	Name: 'WS_WEAPONREFINE',
@@ -1085,7 +1095,12 @@ SkillInfo[SK.LK_TITANSPEARMASTERY] = {
 	AttackRange: [1],
 	_NeedSkillList: [
 		[SK.LK_SPIRALPIERCE, 5]
-	]
+	],
+	NeedSkillList: {
+		[JobId.CRUSADER_H]: [
+			[SK.CR_SPEARQUICKEN, 10]
+		]
+	}
 };
 SkillInfo[SK.CR_SLIMPITCHER] = {
 	Name: 'CR_SLIMPITCHER',
@@ -1205,14 +1220,12 @@ SkillInfo[SK.CG_LONGINGFREEDOM] = {
 	AttackRange: [1, 1, 1, 1, 1],
 	NeedSkillList: {
 		[JobId.BARD_H]: [
-			[SK.CG_MARIONETTE, 1],
-			[SK.BA_DISSONANCE, 3],
-			[SK.BA_MUSICALLESSON, 10]
+			[SK.BA_MUSICALLESSON, 10],
+			[SK.CG_MARIONETTE, 1]
 		],
 		[JobId.DANCER_H]: [
-			[SK.CG_MARIONETTE, 1],
-			[SK.DC_UGLYDANCE, 3],
-			[SK.DC_DANCINGLESSON, 10]
+			[SK.DC_DANCINGLESSON, 10],
+			[SK.CG_MARIONETTE, 1]
 		]
 	}
 };
@@ -1390,7 +1403,10 @@ SkillInfo[SK.GS_TRIPLEACTION] = {
 	SpAmount: [20],
 	bSeperateLv: false,
 	AttackRange: [9],
-	_NeedSkillList: [[SK.GS_GLITTERING, 1]]
+	_NeedSkillList: [
+		[SK.GS_GLITTERING, 1],
+		[SK.GS_CHAINACTION, 10]
+	]
 };
 SkillInfo[SK.RK_DRAGONHOWLING] = {
 	Name: 'RK_DRAGONHOWLING',
@@ -1408,7 +1424,10 @@ SkillInfo[SK.GS_BULLSEYE] = {
 	SpAmount: [30],
 	bSeperateLv: false,
 	AttackRange: [9],
-	_NeedSkillList: [[SK.GS_GLITTERING, 5]]
+	_NeedSkillList: [
+		[SK.GS_GLITTERING, 5],
+		[SK.GS_TRACKING, 10]
+	]
 };
 SkillInfo[SK.RK_REFRESH] = {
 	Name: 'RK_REFRESH',
@@ -1425,7 +1444,10 @@ SkillInfo[SK.GS_MADNESSCANCEL] = {
 	SpAmount: [30],
 	bSeperateLv: false,
 	AttackRange: [1],
-	_NeedSkillList: [[SK.GS_GLITTERING, 4]]
+	_NeedSkillList: [
+		[SK.GS_GLITTERING, 4],
+		[SK.GS_GATLINGFEVER, 10]
+	]
 };
 SkillInfo[SK.RK_STORMBLAST] = {
 	Name: 'RK_STORMBLAST',
@@ -1442,7 +1464,10 @@ SkillInfo[SK.GS_ADJUSTMENT] = {
 	SpAmount: [15],
 	bSeperateLv: false,
 	AttackRange: [1],
-	_NeedSkillList: [[SK.GS_GLITTERING, 4]]
+	_NeedSkillList: [
+		[SK.GS_GLITTERING, 4],
+		[SK.GS_DISARM, 5]
+	]
 };
 SkillInfo[SK.GC_VENOMIMPRESS] = {
 	Name: 'GC_VENOMIMPRESS',
@@ -1460,7 +1485,10 @@ SkillInfo[SK.GS_INCREASING] = {
 	SpAmount: [30],
 	bSeperateLv: false,
 	AttackRange: [1],
-	_NeedSkillList: [[SK.GS_GLITTERING, 2]]
+	_NeedSkillList: [
+		[SK.GS_GLITTERING, 2],
+		[SK.GS_SNAKEEYE, 10]
+	]
 };
 SkillInfo[SK.GC_CREATENEWPOISON] = {
 	Name: 'GC_CREATENEWPOISON',
@@ -1640,7 +1668,9 @@ SkillInfo[SK.GS_SPREADATTACK] = {
 	SpAmount: [13, 16, 19, 22, 25, 28, 31, 34, 37, 40],
 	bSeperateLv: true,
 	AttackRange: [9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
-	_NeedSkillList: [[SK.GS_SINGLEACTION, 5]]
+	_NeedSkillList: [
+		[SK.GS_FULLBUSTER, 5]
+	]
 };
 SkillInfo[SK.GS_GROUNDDRIFT] = {
 	Name: 'GS_GROUNDDRIFT',
@@ -3157,8 +3187,12 @@ SkillInfo[SK.AC_VULTURE] = {
 	SpAmount: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 	bSeperateLv: false,
 	AttackRange: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-	_NeedSkillList: [[SK.AC_OWL, 3]],
-	NeedSkillList: { [JobId.ROGUE]: [] }
+	_NeedSkillList: [
+		[SK.AC_OWL, 3]
+	],
+	NeedSkillList: {
+		[JobId.ROGUE]: []
+	}
 };
 SkillInfo[SK.AC_CONCENTRATION] = {
 	Name: 'AC_CONCENTRATION',
@@ -3242,7 +3276,12 @@ SkillInfo[SK.SM_TWOHAND] = {
 	SpAmount: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 	bSeperateLv: false,
 	AttackRange: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-	_NeedSkillList: [[SK.SM_SWORD, 1]]
+	_NeedSkillList: [
+		[SK.SM_SWORD, 1]
+	],
+	NeedSkillList: {
+		[JobId.SUPERNOVICE]: []
+	}
 };
 SkillInfo[SK.TF_DOUBLE] = {
 	Name: 'TF_DOUBLE',
@@ -3848,7 +3887,9 @@ SkillInfo[SK.NC_FLAMELAUNCHER] = {
 	SpAmount: [20, 20, 20],
 	bSeperateLv: true,
 	AttackRange: [5, 5, 5],
-	_NeedSkillList: [[SK.NC_VULCANARM, 1]]
+	_NeedSkillList: [
+		[SK.NC_VULCANARM, 3]
+	]
 };
 SkillInfo[SK.NC_HOVERING] = {
 	Name: 'NC_HOVERING',
@@ -3883,7 +3924,9 @@ SkillInfo[SK.NC_REPAIR] = {
 	SpAmount: [25, 30, 35, 40, 45],
 	bSeperateLv: true,
 	AttackRange: [5, 6, 7, 8, 9],
-	_NeedSkillList: [[SK.NC_MADOLICENCE, 2]]
+	_NeedSkillList: [
+		[SK.NC_MADOLICENCE, 1]
+	]
 };
 SkillInfo[SK.NC_POWERSWING] = {
 	Name: 'NC_POWERSWING',
@@ -4041,7 +4084,7 @@ SkillInfo[SK.SR_GATEOFHELL] = {
 	AttackRange: [7, 7, 7, 7, 7, 7, 7, 7, 7, 7],
 	_NeedSkillList: [
 		[SK.SR_TIGERCANNON, 5],
-		[SK.SR_RAMPAGEBLASTER, 1]
+		[SK.SR_RAISINGDRAGON, 5]
 	]
 };
 SkillInfo[SK.SR_GENTLETOUCH_CHANGE] = {
@@ -4052,9 +4095,7 @@ SkillInfo[SK.SR_GENTLETOUCH_CHANGE] = {
 	bSeperateLv: true,
 	AttackRange: [2, 2, 2, 2, 2],
 	_NeedSkillList: [
-		[SK.SR_GENTLETOUCH_QUIET, 1],
-		[SK.SR_GENTLETOUCH_CURE, 1],
-		[SK.SR_GENTLETOUCH_ENERGYGAIN, 3]
+		[SK.SR_GENTLETOUCH_CURE, 4]
 	]
 };
 SkillInfo[SK.WA_SYMPHONY_OF_LOVER] = {
@@ -4297,7 +4338,10 @@ SkillInfo[SK.ALL_BUYING_STORE] = {
 	MaxLv: 2,
 	SpAmount: [30, 30],
 	bSeperateLv: false,
-	AttackRange: [1, 1]
+	AttackRange: [1, 1],
+	_NeedSkillList: [
+		[SK.MC_VENDING, 1]
+	]
 };
 SkillInfo[SK.SM_BASH] = {
 	Name: 'SM_BASH',
@@ -4435,7 +4479,14 @@ SkillInfo[SK.WZ_FROSTNOVA] = {
 	SpAmount: [45, 43, 41, 39, 37, 35, 33, 31, 29, 27],
 	bSeperateLv: false,
 	AttackRange: [9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
-	_NeedSkillList: [[SK.WZ_ICEWALL, 1]]
+	_NeedSkillList: [
+		[SK.WZ_ICEWALL, 1]
+	],
+	NeedSkillList: {
+		[JobId.SAGE]: [
+			[SK.MG_COLDBOLT, 5]
+		]
+	}
 };
 SkillInfo[SK.WZ_STORMGUST] = {
 	Name: 'WZ_STORMGUST',
@@ -5115,9 +5166,9 @@ SkillInfo[SK.AB_ADORAMUS] = {
 	bSeperateLv: true,
 	AttackRange: [11, 11, 11, 11, 11, 11, 11, 11, 11, 11],
 	_NeedSkillList: [
-		[SK.AB_JUDEX, 5],
-		[SK.AB_ANCILLA, 1],
-		[SK.PR_MAGNUS, 1]
+		[SK.PR_MAGNUS, 1],
+		[SK.AB_JUDEX, 1],
+		[SK.AB_ANCILLA, 1]
 	]
 };
 SkillInfo[SK.AB_CANTO] = {
@@ -5210,7 +5261,10 @@ SkillInfo[SK.HT_SPRINGTRAP] = {
 	SpAmount: [10, 10, 10, 10, 10],
 	bSeperateLv: false,
 	AttackRange: [4, 5, 6, 7, 8],
-	_NeedSkillList: [[SK.HT_FALCON], [SK.HT_REMOVETRAP, 1]]
+	_NeedSkillList: [
+		[SK.HT_REMOVETRAP, 1],
+		[SK.HT_FALCON, 1]
+	]
 };
 SkillInfo[SK.EL_WIND_CURTAIN] = {
 	Name: 'EL_WIND_CURTAIN',
@@ -5368,7 +5422,9 @@ SkillInfo[SK.RA_WUGBITE] = {
 	SpAmount: [40, 44, 46, 48, 50],
 	bSeperateLv: true,
 	AttackRange: [9, 9, 9, 9, 9],
-	_NeedSkillList: [[SK.RA_WUGSTRIKE, 1]]
+	_NeedSkillList: [
+		[SK.RA_WUGMASTERY, 1]
+	]
 };
 SkillInfo[SK.RA_RESEARCHTRAP] = {
 	Name: 'RA_RESEARCHTRAP',
@@ -5564,7 +5620,10 @@ SkillInfo[SK.SR_EARTHSHAKER] = {
 	SpAmount: [36, 40, 44, 48, 52],
 	bSeperateLv: true,
 	AttackRange: [1, 1, 1, 1, 1],
-	_NeedSkillList: [[SK.SR_DRAGONCOMBO, 3]]
+	_NeedSkillList: [
+		[SK.SR_DRAGONCOMBO, 1],
+		[SK.SR_CURSEDCIRCLE, 1]
+	]
 };
 SkillInfo[SK.SM_AUTOBERSERK] = {
 	Name: 'SM_AUTOBERSERK',
@@ -5582,7 +5641,10 @@ SkillInfo[SK.SR_KNUCKLEARROW] = {
 	SpAmount: [12, 14, 16, 18, 20, 22, 24, 26, 28, 30],
 	bSeperateLv: false,
 	AttackRange: [7, 7, 8, 8, 9, 9, 10, 10, 11, 11],
-	_NeedSkillList: [[SK.SR_LIGHTNINGWALK, 1]]
+	_NeedSkillList: [
+		[SK.SR_RAMPAGEBLASTER, 3],
+		[SK.SR_LIGHTNINGWALK, 3]
+	]
 };
 SkillInfo[SK.SR_ASSIMILATEPOWER] = {
 	Name: 'SR_ASSIMILATEPOWER',
@@ -5603,7 +5665,9 @@ SkillInfo[SK.SR_GENTLETOUCH_QUIET] = {
 	SpAmount: [20, 25, 30, 35, 40],
 	bSeperateLv: true,
 	AttackRange: [2, 2, 2, 2, 2],
-	_NeedSkillList: []
+	_NeedSkillList: [
+		[SK.SR_POWERVELOCITY, 1]
+	]
 };
 SkillInfo[SK.AC_MAKINGARROW] = {
 	Name: 'AC_MAKINGARROW',
@@ -5630,7 +5694,13 @@ SkillInfo[SK.AC_CHARGEARROW] = {
 	Type: 'Quest',
 	SpAmount: [15],
 	bSeperateLv: false,
-	AttackRange: [9]
+	AttackRange: [9],
+	_NeedSkillList: [],
+	NeedSkillList: {
+		[JobId.SUPERNOVICE]: [
+			[SK.AC_DOUBLE, 5]
+		]
+	}
 };
 SkillInfo[SK.TF_SPRINKLESAND] = {
 	Name: 'TF_SPRINKLESAND',
@@ -6147,7 +6217,7 @@ SkillInfo[SK.RG_GANGSTER] = {
 	SpAmount: [0],
 	bSeperateLv: false,
 	AttackRange: [1],
-	_NeedSkillList: [[SK.RG_STRIPSHIELD, 3]]
+	_NeedSkillList: []
 };
 SkillInfo[SK.GD_ITEMEMERGENCYCALL] = {
 	Name: 'GD_ITEMEMERGENCYCALL',
@@ -6920,7 +6990,9 @@ SkillInfo[SK.SR_CRESCENTELBOW] = {
 	SpAmount: [80, 80, 80, 80, 80],
 	bSeperateLv: false,
 	AttackRange: [1, 1, 1, 1, 1],
-	_NeedSkillList: [[SK.SR_WINDMILL, 1]]
+	_NeedSkillList: [
+		[SK.SR_SKYNETBLOW, 1]
+	]
 };
 SkillInfo[SK.GN_CARTBOOST] = {
 	Name: 'GN_CARTBOOST',
@@ -7193,8 +7265,8 @@ SkillInfo[SK.SR_RAISINGDRAGON] = {
 	bSeperateLv: true,
 	AttackRange: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 	_NeedSkillList: [
-		[SK.MO_CALLSPIRITS, 5],
-		[SK.SR_POWERVELOCITY, 1]
+		[SK.SR_RAMPAGEBLASTER, 3],
+		[SK.SR_GENTLETOUCH_ENERGYGAIN, 3]
 	]
 };
 SkillInfo[SK.SR_POWERVELOCITY] = {
@@ -7432,7 +7504,9 @@ SkillInfo[SK.SR_GENTLETOUCH_ENERGYGAIN] = {
 	SpAmount: [40, 50, 60, 70, 80],
 	bSeperateLv: true,
 	AttackRange: [1, 1, 1, 1, 1],
-	_NeedSkillList: [[SK.SR_GENTLETOUCH_CURE, 1]]
+	_NeedSkillList: [
+		[SK.SR_GENTLETOUCH_QUIET, 3]
+	]
 };
 SkillInfo[SK.MO_DODGE] = {
 	Name: 'MO_DODGE',
@@ -7444,7 +7518,12 @@ SkillInfo[SK.MO_DODGE] = {
 	_NeedSkillList: [
 		[SK.MO_IRONHAND, 5],
 		[SK.MO_CALLSPIRITS, 5]
-	]
+	],
+	NeedSkillList: {
+		[JobId.SUPERNOVICE2]: [
+			[SK.MO_IRONHAND, 5]
+		]
+	}
 };
 SkillInfo[SK.SO_EARTHGRAVE] = {
 	Name: 'SO_EARTHGRAVE',
@@ -7976,7 +8055,9 @@ SkillInfo[SK.SR_FALLENEMPIRE] = {
 	SpAmount: [18, 21, 24, 27, 30, 33, 36, 39, 42, 45],
 	bSeperateLv: false,
 	AttackRange: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-	_NeedSkillList: [[SK.SR_DRAGONCOMBO, 3]]
+	_NeedSkillList: [
+		[SK.SR_DRAGONCOMBO, 1]
+	]
 };
 SkillInfo[SK.SA_CLASSCHANGE] = {
 	Name: 'SA_CLASSCHANGE',
@@ -8010,7 +8091,9 @@ SkillInfo[SK.SR_GENTLETOUCH_CURE] = {
 	SpAmount: [40, 50, 60, 70, 80],
 	bSeperateLv: false,
 	AttackRange: [2, 2, 2, 2, 2],
-	_NeedSkillList: [[SK.SR_GENTLETOUCH_QUIET, 1]]
+	_NeedSkillList: [
+		[SK.SR_POWERVELOCITY, 1]
+	]
 };
 SkillInfo[SK.SA_REVERSEORCISH] = {
 	Name: 'SA_REVERSEORCISH',
@@ -8118,7 +8201,9 @@ SkillInfo[SK.WM_METALICSOUND] = {
 	SpAmount: [62, 64, 66, 68, 70, 72, 74, 76, 78, 80],
 	bSeperateLv: true,
 	AttackRange: [9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
-	_NeedSkillList: [[SK.WM_REVERBERATION, 5]]
+	_NeedSkillList: [
+		[SK.WM_DOMINION_IMPULSE, 1]
+	]
 };
 SkillInfo[SK.SA_LEVELUP] = {
 	Name: 'SA_LEVELUP',
@@ -8220,9 +8305,7 @@ SkillInfo[SK.SR_GENTLETOUCH_REVITALIZE] = {
 	bSeperateLv: true,
 	AttackRange: [2, 2, 2, 2, 2],
 	_NeedSkillList: [
-		[SK.SR_GENTLETOUCH_QUIET, 1],
-		[SK.SR_GENTLETOUCH_CURE, 1],
-		[SK.SR_GENTLETOUCH_ENERGYGAIN, 3]
+		[SK.SR_GENTLETOUCH_CHANGE, 5]
 	]
 };
 SkillInfo[SK.BD_LULLABY] = {
@@ -8241,7 +8324,9 @@ SkillInfo[SK.SO_PSYCHIC_WAVE] = {
 	SpAmount: [48, 56, 64, 70, 78],
 	bSeperateLv: true,
 	AttackRange: [9, 9, 9, 9, 9],
-	_NeedSkillList: [[SK.SA_DISPELL, 1]]
+	_NeedSkillList: [
+		[SK.SA_DISPELL, 2]
+	]
 };
 SkillInfo[SK.BD_RICHMANKIM] = {
 	Name: 'BD_RICHMANKIM',
@@ -8301,7 +8386,10 @@ SkillInfo[SK.SR_CURSEDCIRCLE] = {
 	SpAmount: [40, 60, 80, 100, 120],
 	bSeperateLv: false,
 	AttackRange: [1, 1, 1, 1, 1],
-	_NeedSkillList: [[SK.MO_BLADESTOP, 2]]
+	_NeedSkillList: [
+		[SK.MO_BLADESTOP, 2],
+		[SK.SR_GENTLETOUCH_QUIET, 2]
+	]
 };
 SkillInfo[SK.BD_RINGNIBELUNGEN] = {
 	Name: 'BD_RINGNIBELUNGEN',
@@ -8750,7 +8838,9 @@ SkillInfo[SK.NC_MAGICDECOY] = {
 	SpAmount: [40, 45, 50, 55, 60],
 	bSeperateLv: true,
 	AttackRange: [2, 2, 2, 2, 2],
-	_NeedSkillList: [[SK.NC_SILVERSNIPER, 2]]
+	_NeedSkillList: [
+		[SK.NC_RESEARCHFE, 2]
+	]
 };
 SkillInfo[SK.WE_MALE] = {
 	Name: 'WE_MALE',
@@ -9148,6 +9238,7 @@ SkillInfo[SK.LK_AURABLADE] = {
 	bSeperateLv: true,
 	AttackRange: [1, 1, 1, 1, 1],
 	_NeedSkillList: [
+		[SK.SM_BASH, 5],
 		[SK.SM_MAGNUM, 5],
 		[SK.SM_TWOHAND, 5]
 	]
@@ -9420,6 +9511,7 @@ SkillInfo[SK.PA_SACRIFICE] = {
 	AttackRange: [2, 2, 2, 2, 2],
 	_NeedSkillList: [
 		[SK.SM_ENDURE, 1],
+		[SK.CR_TRUST, 5],
 		[SK.CR_DEVOTION, 3]
 	]
 };
@@ -9482,6 +9574,7 @@ SkillInfo[SK.CH_TIGERFIST] = {
 	_NeedSkillList: [
 		[SK.MO_IRONHAND, 5],
 		[SK.MO_TRIPLEATTACK, 5],
+		[SK.MO_CALLSPIRITS, 5],
 		[SK.MO_COMBOFINISH, 3]
 	]
 };
@@ -10084,7 +10177,7 @@ SkillInfo[SK.NC_MAGMA_ERUPTION] = {
 	SpAmount: [60, 70, 80, 90, 100],
 	bSeperateLv: true,
 	AttackRange: [1, 1, 1, 1, 1],
-	_NeedSkillList: [[SK.NC_RESEARCHFE, 1]]
+	_NeedSkillList: []
 };
 SkillInfo[SK.WM_FRIGG_SONG] = {
 	Name: 'WM_FRIGG_SONG',
@@ -10093,7 +10186,9 @@ SkillInfo[SK.WM_FRIGG_SONG] = {
 	SpAmount: [200, 230, 260, 290, 320],
 	bSeperateLv: true,
 	AttackRange: [1, 1, 1, 1, 1],
-	_NeedSkillList: [[SK.WM_LESSON, 2]]
+	_NeedSkillList: [
+		[SK.WM_LESSON, 1]
+	]
 };
 SkillInfo[SK.SO_ELEMENTAL_SHIELD] = {
 	Name: 'SO_ELEMENTAL_SHIELD',
@@ -10114,8 +10209,8 @@ SkillInfo[SK.SR_FLASHCOMBO] = {
 	_NeedSkillList: [
 		[SK.SR_DRAGONCOMBO, 3],
 		[SK.SR_FALLENEMPIRE, 3],
-		[SK.SR_SKYNETBLOW, 1],
-		[SK.SR_TIGERCANNON, 5]
+		[SK.SR_TIGERCANNON, 1],
+		[SK.SR_SKYNETBLOW, 1]
 	]
 };
 SkillInfo[SK.SC_ESCAPE] = {
@@ -10241,7 +10336,7 @@ SkillInfo[SK.RL_B_TRAP] = {
 	SpAmount: [30, 32, 34, 36, 38],
 	bSeperateLv: true,
 	AttackRange: [0, 0, 0, 0, 0],
-	_NeedSkillList: [[SK.RL_FLICKER, 1]]
+	_NeedSkillList: []
 };
 SkillInfo[SK.RL_BANISHING_BUSTER] = {
 	Name: 'RL_BANISHING_BUSTER',
@@ -10290,7 +10385,6 @@ SkillInfo[SK.RL_E_CHAIN] = {
 	bSeperateLv: true,
 	AttackRange: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 	_NeedSkillList: [
-		[SK.GS_GLITTERING, 1],
 		[SK.GS_CHAINACTION, 10]
 	]
 };
@@ -10301,7 +10395,9 @@ SkillInfo[SK.RL_QD_SHOT] = {
 	SpAmount: [5],
 	bSeperateLv: false,
 	AttackRange: [0],
-	_NeedSkillList: [[SK.GS_CHAINACTION, 1]]
+	_NeedSkillList: [
+		[SK.RL_E_CHAIN, 1]
+	]
 };
 SkillInfo[SK.RL_C_MARKER] = {
 	Name: 'RL_C_MARKER',
@@ -10310,7 +10406,9 @@ SkillInfo[SK.RL_C_MARKER] = {
 	SpAmount: [10],
 	bSeperateLv: false,
 	AttackRange: [11],
-	_NeedSkillList: [[SK.GS_GLITTERING, 1]]
+	_NeedSkillList: [
+		[SK.GS_INCREASING, 1]
+	]
 };
 SkillInfo[SK.RL_FIREDANCE] = {
 	Name: 'RL_FIREDANCE',
@@ -10319,7 +10417,9 @@ SkillInfo[SK.RL_FIREDANCE] = {
 	SpAmount: [13, 16, 19, 22, 25, 28, 31, 34, 37, 40],
 	bSeperateLv: true,
 	AttackRange: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	_NeedSkillList: [[SK.GS_DESPERADO, 1]]
+	_NeedSkillList: [
+		[SK.RL_FALLEN_ANGEL, 1]
+	]
 };
 SkillInfo[SK.RL_FIRE_RAIN] = {
 	Name: 'RL_FIRE_RAIN',
@@ -10346,7 +10446,7 @@ SkillInfo[SK.RL_P_ALTER] = {
 	SpAmount: [20, 24, 28, 32, 36],
 	bSeperateLv: true,
 	AttackRange: [0, 0, 0, 0, 0],
-	_NeedSkillList: [[SK.RL_RICHS_COIN, 1]]
+	_NeedSkillList: []
 };
 SkillInfo[SK.RL_FLICKER] = {
 	Name: 'RL_FLICKER',
@@ -10355,7 +10455,9 @@ SkillInfo[SK.RL_FLICKER] = {
 	SpAmount: [2],
 	bSeperateLv: false,
 	AttackRange: [0],
-	_NeedSkillList: [[SK.GS_GLITTERING, 1]]
+	_NeedSkillList: [
+		[SK.GS_FLING, 1]
+	]
 };
 SkillInfo[SK.RL_H_MINE] = {
 	Name: 'RL_H_MINE',
@@ -10364,7 +10466,9 @@ SkillInfo[SK.RL_H_MINE] = {
 	SpAmount: [45, 50, 55, 60, 65],
 	bSeperateLv: true,
 	AttackRange: [7, 8, 9, 10, 11],
-	_NeedSkillList: [[SK.GS_GROUNDDRIFT, 1]]
+	_NeedSkillList: [
+		[SK.GS_SPREADATTACK, 1]
+	]
 };
 SkillInfo[SK.RL_HAMMER_OF_GOD] = {
 	Name: 'RL_HAMMER_OF_GOD',
@@ -10374,7 +10478,6 @@ SkillInfo[SK.RL_HAMMER_OF_GOD] = {
 	bSeperateLv: true,
 	AttackRange: [11, 11, 11, 11, 11, 11, 11, 11, 11, 11],
 	_NeedSkillList: [
-		[SK.RL_RICHS_COIN, 1],
 		[SK.RL_AM_BLAST, 3]
 	]
 };
@@ -10385,7 +10488,9 @@ SkillInfo[SK.RL_HEAT_BARREL] = {
 	SpAmount: [30, 30, 30, 30, 30],
 	bSeperateLv: true,
 	AttackRange: [0, 0, 0, 0, 0],
-	_NeedSkillList: [[SK.RL_RICHS_COIN, 1]]
+	_NeedSkillList: [
+		[SK.RL_FIREDANCE, 2]
+	]
 };
 SkillInfo[SK.MC_CARTDECORATE] = {
 	Name: 'MC_CARTDECORATE',
@@ -10554,7 +10659,9 @@ SkillInfo[SK.SU_SCAROFTAROU] = {
 	SpAmount: [10, 12, 14, 16, 18],
 	bSeperateLv: true,
 	AttackRange: [9, 9, 9, 9, 9],
-	_NeedSkillList: [[SK.SU_ARCLOUSEDASH, 3]]
+	_NeedSkillList: [
+		[SK.SU_SV_ROOTTWIST, 3]
+	]
 };
 SkillInfo[SK.SU_LUNATICCARROTBEAT] = {
 	Name: 'SU_LUNATICCARROTBEAT',
