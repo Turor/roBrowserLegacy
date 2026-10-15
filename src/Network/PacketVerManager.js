@@ -205,7 +205,7 @@ function parseCharList(fp, end) {
 			}
 		}
 
-		if (_value < 20201007 || blockSize < 175) {
+		if ((_value < 20201007 && !TURORAN_WIDE_HPSP) || blockSize < 175) {
 			out[i].sp = fp.readShort();
 			out[i].maxsp = fp.readShort();
 		} else {
