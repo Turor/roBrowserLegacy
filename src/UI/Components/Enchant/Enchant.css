@@ -8,8 +8,9 @@
 
 #Enchant {
 	position: relative;
-	width: 100%;
-	height: 100%;
+	/* Turoran: explicit size; the shadow wrapper div has no height so 100% was 0 and the background never showed */
+	width: 690px;
+	height: 470px;
 
 	color: #2d3a55;
 	box-sizing: border-box;
@@ -583,4 +584,8 @@
 
 #Enchant .status.error {
 	color: #b13b3b;
+}
+
+#Enchant .caution {
+	white-space: pre-line;
 }
