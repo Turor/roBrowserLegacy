@@ -49,11 +49,17 @@ export function createWinStats({ name, htmlText, cssText, hasTraits }) {
 	}
 
 
-	/** Turoran armor DR: hard DEF/MDEF only (soft vit_def/mdef2 subtract after). */
-	function turoranArmorReductionPct(def) {
-		const n = Number(def);
+	/**
+	 * Renewal hard DEF/MDEF reduction, matching Hercules battle.c (RENEWAL):
+	 *   DEF:  damage * (100 - def  / (def  + 400) * 90) / 100 - vit_def
+	 *   MDEF: damage * (100 - mdef / (mdef + 100) * 90) / 100 - mdef2
+	 * Soft DEF/MDEF (vit_def / mdef2) subtract after, so they are not included.
+	 */
+	function renewalArmorReductionPct(value, kind) {
+		const n = Number(value);
 		if (!n || n <= 0) return 0;
-		return (1 - Math.pow(0.5, n / 50)) * 100;
+		const k = kind === 'mdef' ? 100 : 400;
+		return n / (n + k) * 90;
 	}
 
 	function ensureWinStatsTooltip() {
@@ -69,14 +75,14 @@ export function createWinStats({ name, htmlText, cssText, hasTraits }) {
 		return tip;
 	}
 
-	function bindDefReductionHover(selector, label) {
+	function bindDefReductionHover(selector, label, kind) {
 		const el = _root.querySelector(selector);
 		if (!el) return;
 		const row = el.closest('div') || el;
 		row.style.cursor = 'help';
 		row.addEventListener('mouseenter', (event) => {
 			const hard = parseInt((_root.querySelector(selector)?.textContent || '0').replace(/[^0-9-]/g, ''), 10) || 0;
-			const pct = turoranArmorReductionPct(hard);
+			const pct = renewalArmorReductionPct(hard, kind);
 			const tip = ensureWinStatsTooltip();
 			tip.textContent = `${label}: ${pct.toFixed(1)}%\nSoft DEF/MDEF subtracts after`;
 			tip.style.display = 'block';
@@ -174,8 +180,8 @@ export function createWinStats({ name, htmlText, cssText, hasTraits }) {
 		}
 
 		// Turoran: DEF/MDEF hard-armor reduction hover (column2 spans)
-		bindDefReductionHover('.column2 .def', 'Physical reduction');
-		bindDefReductionHover('.column2 .mdef', 'Magical reduction');
+		bindDefReductionHover('.column2 .def', 'Physical reduction', 'def');
+		bindDefReductionHover('.column2 .mdef', 'Magical reduction', 'mdef');
 	};
 
 	// ─── stack ─────────────────────────────────────────
