@@ -1,0 +1,39 @@
+<div class="ItemFinder">
+	<div class="titlebar">
+		<div class="left" data-background="basic_interface/titlebar_left.bmp"></div>
+		<div class="center" data-background="basic_interface/titlebar_mid.bmp"></div>
+		<div class="right" data-background="basic_interface/titlebar_right.bmp"></div>
+		<div class="title">Item Finder</div>
+		<ui-button class="close" bg="basic_interface/sys_close_off.bmp" hover="basic_interface/sys_close_on.bmp"></ui-button>
+	</div>
+	<div class="content">
+		<div class="tabs">
+			<span class="tab active" data-cat="weapon">Weapon</span><span class="tab" data-cat="armor">Armor</span><span class="tab" data-cat="card">Card</span>
+		</div>
+		<div class="filters">
+			<div class="row">
+				<input type="text" class="q" placeholder="Search name / effect..." />
+				<select class="sub"></select>
+			</div>
+			<div class="row kinds"></div>
+			<div class="row">
+				<input type="text" class="target" placeholder="Effect target (e.g. Demi-Human, Fire, STR)" />
+				<label><input type="checkbox" class="nocond" /> hide conditional</label>
+			</div>
+			<div class="row">
+				<input type="text" class="job" placeholder="Job (e.g. Wizard)" />
+				<input type="number" class="lv" placeholder="Max Lv" min="0" max="250" />
+				<select class="sort">
+					<option value="name">Name</option><option value="eff">Matched effect value</option>
+					<option value="atk">ATK</option><option value="matk">MATK</option><option value="def">DEF</option>
+					<option value="mdef">MDEF</option><option value="wl">Weapon Lv</option><option value="lv">Equip Lv</option>
+					<option value="s">Slots</option><option value="w">Weight</option><option value="id">ID</option>
+				</select>
+				<select class="dir"><option value="desc">desc</option><option value="asc">asc</option></select>
+			</div>
+		</div>
+		<div class="status"></div>
+		<div class="list"></div>
+		<div class="pager"><button class="prev">&lt;</button> <span class="page"></span> <button class="next">&gt;</button></div>
+	</div>
+</div>

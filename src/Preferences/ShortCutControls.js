@@ -270,6 +270,12 @@ ShortCuts.WorldMap = {
 	component: 'WorldMap',
 	cmd: 'TOGGLE'
 };
+ShortCuts.ItemFinder = {
+	init: { key: KEYS.F, alt: true, ctrl: false, shift: false },
+	cust: false,
+	component: 'ItemFinder',
+	cmd: 'TOGGLE'
+};
 ShortCuts.Equipment = {
 	init: { key: KEYS.Q, alt: true, ctrl: false, shift: false },
 	cust: false,
