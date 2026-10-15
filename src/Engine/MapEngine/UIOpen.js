@@ -64,7 +64,8 @@ function onUIOpen(pkt) {
 			}
 			break;
 		case 10:
-			if (PACKETVER.value >= 20211103) {
+			// Turoran #129: Enchant UI on 20190530 when enableEnchantUI is set
+			if (Configs.get('enableEnchantUI') || PACKETVER.value >= 20211103) {
 				EnchantUI.prepare();
 				EnchantUI.onOpenEnchantUI(pkt.data);
 			}

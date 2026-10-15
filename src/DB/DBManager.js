@@ -741,8 +741,8 @@ class DB {
 				loadItemReformFile(DB.LUA_PATH + 'ItemReform/ItemReformSystem.lub', null, onLoad());
 			}
 
-			// EnchantList
-			if (PACKETVER.value >= 20211103) {
+			// EnchantList (Turoran #129: also when enableEnchantUI on 20190530)
+			if (Configs.get('enableEnchantUI') || PACKETVER.value >= 20211103) {
 				loadEnchantListFile(DB.LUA_PATH + 'Enchant/EnchantList', onLoad());
 			}
 
