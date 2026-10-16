@@ -4893,21 +4893,6 @@ function init(packetver) {
 	if (packetver >= 20191224) {
 		length_list[0x0b6e] = 14;
 	}
-	// Turoran stable + Eden Group (custom)
-	length_list[0x0ef0] = 2;
-	length_list[0x0ef1] = 6;
-	length_list[0x0ef2] = 8;
-	length_list[0x0ef3] = 8;
-	length_list[0x0ef8] = -1;
-	length_list[0x0ef9] = -1;
-	length_list[0x0efa] = 8;
-	length_list[0x0efb] = -1;
-	length_list[0x0efc] = 8;
-	length_list[0x0efd] = -1;
-	length_list[0x0ef4] = 8;
-	length_list[0x0efe] = -1;
-	length_list[0x0eff] = 8;
-	length_list[0x0ef5] = -1; // Turoran MVP minimap (variable)
 	return length_list;
 }
 

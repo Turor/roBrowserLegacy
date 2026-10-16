@@ -168,6 +168,11 @@ class GuildEngine {
 			formData.append('WorldName', Session.ServerName);
 			formData.append('AuthToken', Session.WebToken);
 			formData.append('AID', Session.AID);
+			// Turoran: the Hercules api-server rejects emblem/download without a non-zero Version (aclif REQ_VERSION -> 502 via nginx)
+			if (!version) {
+				return;
+			}
+			formData.append('Version', version);
 
 			const xhr = new XMLHttpRequest();
 

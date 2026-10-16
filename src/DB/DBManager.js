@@ -6496,6 +6496,14 @@ function loadHatEffectInfo(onEnd) {
 							'footprinteffectinfo.lub',
 							buf instanceof ArrayBuffer ? new Uint8Array(buf) : buf
 						);
+						await lua.doString(`
+							if __turoran_HatEFID_ids ~= nil then
+								HatEFID = HatEFID or {}
+								for k, v in pairs(__turoran_HatEFID_ids) do
+									if HatEFID[k] == nil then HatEFID[k] = v end
+								end
+							end
+						`);
 						await lua.doFile('footprinteffectinfo.lub');
 						await lua.doString(`
 							if FootPrintEffectTable ~= nil then
@@ -6516,6 +6524,8 @@ function loadHatEffectInfo(onEnd) {
 				lua.mountFile('hateffectids.lub', idBuf instanceof ArrayBuffer ? new Uint8Array(idBuf) : idBuf);
 				await lua.doFile('hateffectids.lub');
 				await lua.doString(`
+					-- Turoran: keep the GRF ids; an English hateffectinfo.lub can redefine HatEFID without FOOTPRINT_EF_*
+					__turoran_HatEFID_ids = HatEFID
 					if HatEFID ~= nil then
 						for k, v in pairs(HatEFID) do
 							__js_hat_effect_id(k, v)

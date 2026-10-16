@@ -472,6 +472,14 @@ PACKET.CZ.REQ_EMOTION = function PACKET_CZ_REQ_EMOTION() {
 	this.type = 0;
 };
 PACKET.CZ.REQ_EMOTION.prototype.build = function () {
+	// 2025-07-16+ clients send CZ_REQ_EMOTION_EXPANSION 0x0be9 <group>.W <emote>.W (rathena#9514)
+	if (PACKETVER.value >= 20250716) {
+		const buf = new BinaryWriter(6);
+		buf.writeShort(0x0be9);
+		buf.writeUShort(0);
+		buf.writeUShort(this.type);
+		return buf;
+	}
 	const pkt_len = 2 + 1;
 	const pkt_buf = new BinaryWriter(pkt_len);
 
