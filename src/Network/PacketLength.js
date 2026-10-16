@@ -64,6 +64,28 @@ const packetModules = {
 let packets_len = new Array();
 
 /**
+ * Turoran custom packet lengths (hercules-prere-plus plugins turoran_stable / turoran_eden /
+ * turoran_warpra / turoran_mvp_minimap). Kept out of the per-year 4144 tables.
+ */
+export const TURORAN_CUSTOM_LENGTHS = {
+	0x0ef0: 2,
+	0x0ef1: 6,
+	0x0ef2: 8,
+	0x0ef3: 8,
+	0x0ef4: 8,
+	0x0ef5: -1, // MVP minimap (variable)
+	0x0ef6: -1, // stable owned material counts
+	0x0ef8: -1,
+	0x0ef9: -1,
+	0x0efa: 8,
+	0x0efb: -1,
+	0x0efc: 8,
+	0x0efd: -1,
+	0x0efe: -1,
+	0x0eff: 8
+};
+
+/**
  * Get a Packet Length
  *
  * @param {number} packetver - packet version (clientdate)
@@ -97,6 +119,18 @@ function init(packetver) {
 			packets_len[0x006d] = 177;
 			packets_len[0x08e3] = 177;
 		}
+		// Turoran forge_data trailer (+15 bytes: 3 extra ItemOptions) on the item packets that
+		// hercules-prere-plus uses from Main 20200916 (the 2019 table carries its own overrides).
+		if (packetver >= 20200916) {
+			for (const id of [0x0b41, 0x0b42, 0x0b43, 0x0b44, 0x0b45]) {
+				if (packets_len[id] > 0) {
+					packets_len[id] += 15;
+				}
+			}
+		}
+		// Turoran custom opcodes 0x0EF0-0x0EFF (stable, Eden Group, Warpra, MVP minimap).
+		// Version-independent: the server plugins register them the same way on every PACKETVER.
+		Object.assign(packets_len, TURORAN_CUSTOM_LENGTHS);
 		console.log('%c[Network] Packet Length initialized ', 'color:#007000', packetver);
 	} else {
 		console.error(`[Network] Failed to load packet lengths for year ${selectedYear} (path: ${modulePath})`);
