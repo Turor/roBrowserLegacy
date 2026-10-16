@@ -16,7 +16,7 @@ import htmlText from './ItemFinder.html?raw';
 import cssText from './ItemFinder.css?raw';
 
 const DATA_FILE = 'System/itemfinder.turoran.v8.json';
-const SOURCES_FILE = 'System/itemsources.turoran.v2.json';
+const SOURCES_FILE = 'System/itemsources.turoran.v3.json';
 const RMS_URL = id => `https://ratemyserver.net/index.php?page=re_item_db&item_id=${id}`;
 const PAGE = 60;
 const KINDS = [
