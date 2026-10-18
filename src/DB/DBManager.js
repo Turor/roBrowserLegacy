@@ -1113,8 +1113,8 @@ class DB {
 			(jobid >= 1001 && jobid <= 3999) ||
 			(jobid >= 20000 && jobid < 20834) ||
 			(jobid >= 20852 && jobid < 22301) ||
-			(jobid > 22313 && jobid < 22322)
-		); // 22322 = last monster released on EP21
+			(jobid > 22313 && jobid < 32000)
+		); // TuroranRO (#155): kRO Ep19-21+ mob IDs run past 22322 (rAthena MAX_MOB_DB2 31999); server MAX_MOB_DB is 32000
 	}
 
 	static isPlayer(jobid) {
