@@ -637,9 +637,9 @@ class DB {
 					},
 					() => {
 						// Calls after skillids and descs been populated
-						loadSkillInfoList(DB.LUA_PATH + 'skillinfoz/skillinfolist.turoran11.lub', null, () => {
+						loadSkillInfoList(DB.LUA_PATH + 'skillinfoz/skillinfolist.turoran12.lub', null, () => {
 							loadSkillSpAmountTable(() => {
-								loadSkillTreeView(DB.LUA_PATH + 'skillinfoz/skilltreeview.titanspear.lub', null, () => {
+								loadSkillTreeView(DB.LUA_PATH + 'skillinfoz/skilltreeview.fourth.lub', null, () => {
 									// Load ez2streffect, PACKETVER unknown when the while has been added, tied to default PACKETVER of rathena for 4th job
 									if (PACKETVER.value >= 20211103) {
 										const bsonOnLoad = onLoad();
