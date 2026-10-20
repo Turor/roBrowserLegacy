@@ -36,7 +36,8 @@ const RES = {
 	LOCKED: 2,
 	NOZENY: 3,
 	INVALID: 4,
-	BUSY: 5
+	BUSY: 5,
+	LEVEL: 6 // level-gated destination (server sends the required level in chat)
 };
 
 const TAB_KIND = {
@@ -175,8 +176,27 @@ function showModal(loc) {
 	root.querySelector('.modal').hidden = false;
 }
 
+/**
+ * Level-gated destinations (Turoran iRO-parity content) carry "(Lv N+)" in
+ * their name; they are free and cannot be bought, only reached at level N.
+ * @returns {number} required base level, or 0 for normal Warpra entries
+ */
+function levelGate(loc) {
+	const m = /\(Lv (\d+)\+\)/.exec((loc && loc.name) || '');
+	return m ? parseInt(m[1], 10) : 0;
+}
+
+function levelGateMessage(loc) {
+	const lv = levelGate(loc);
+	ChatBox.addText(`${loc.name.replace(/\s*\(Lv \d+\+\)/, '')} requires base level ${lv}.`, ChatBox.TYPE.ERROR);
+}
+
 function onTileClick(loc) {
 	if (!loc) {
+		return;
+	}
+	if (!loc.unlocked && levelGate(loc)) {
+		levelGateMessage(loc);
 		return;
 	}
 	if (!loc.unlocked) {
@@ -478,6 +498,12 @@ Warpra.onResult = function onResult(pkt) {
 	case RES.BUSY:
 		ChatBox.addText('You cannot warp right now.', ChatBox.TYPE.ERROR);
 		break;
+	case RES.LEVEL:
+		// Server already printed the level requirement.
+		_pending = null;
+		_warpAfterBuy = null;
+		hideModal();
+		break;
 	case RES.INVALID:
 	case RES.ERR:
 		ChatBox.addText('Warp failed.', ChatBox.TYPE.ERROR);
@@ -594,6 +620,10 @@ Warpra.unlockOrWarp = function unlockOrWarp(loc, opts) {
 	if (loc.unlocked) {
 		_warpAfterBuy = null;
 		sendAction(ACT.WARP, loc.kind, loc.id);
+		return;
+	}
+	if (levelGate(loc)) {
+		levelGateMessage(loc);
 		return;
 	}
 

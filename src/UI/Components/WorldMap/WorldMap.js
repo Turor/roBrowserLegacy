@@ -114,7 +114,8 @@ const REGION_ICONS = {
 	'worldmap.jpg': 'prontera',
 	'worldmap_localizing1.bmp': 'yuno',
 	'worldmap_localizing2.bmp': 'moscovia',
-	'worldmap_dimension.bmp': 'mid_camp'
+	'worldmap_dimension.bmp': 'mid_camp',
+	'WorldMap_Isgard.jpg': 'jor_tail'
 };
 
 /**

@@ -2051,6 +2051,116 @@ export default [
 				height: 91
 			}
 		]
+	},
+	// #endregion
+	// #region Isgard (Turoran: Ep20 Jormungandr fields; coordinates from kRO worldviewdata_table worldtable_Isgard)
+	{
+		id: 'WorldMap_Isgard.jpg',
+		// Turoran: shown at every episode setting (our client runs episode 13.2) so the
+		// level-gated Warpra destinations are reachable from the world map.
+		ep_from: 0,
+		ep_to: 99,
+		name: 'Isgard',
+		maps: [
+			{
+				id: 'jor_tail',
+				ep_from: 0,
+				ep_to: 99,
+				name: 'Frozen Tail',
+				top: 906,
+				left: 881,
+				width: 116,
+				height: 112,
+				moblevel: '208'
+			},
+			{
+				id: 'jor_back1',
+				ep_from: 0,
+				ep_to: 99,
+				name: 'Frozen Scale Hill',
+				top: 789,
+				left: 881,
+				width: 116,
+				height: 116,
+				moblevel: '211'
+			},
+			{
+				id: 'jor_back2',
+				ep_from: 0,
+				ep_to: 99,
+				name: 'Frozen Scale Plains',
+				top: 672,
+				left: 881,
+				width: 116,
+				height: 116,
+				moblevel: '212'
+			},
+			{
+				id: 'jor_back3',
+				ep_from: 0,
+				ep_to: 99,
+				name: 'Frozen Scale Glacier',
+				top: 672,
+				left: 764,
+				width: 116,
+				height: 116,
+				moblevel: '213'
+			},
+			{
+				id: 'jor_back4',
+				ep_from: 0,
+				ep_to: 99,
+				name: 'Frozen Scale Beach',
+				top: 556,
+				left: 764,
+				width: 116,
+				height: 114,
+				moblevel: '220'
+			},
+			{
+				id: 'jor_back5',
+				ep_from: 0,
+				ep_to: 99,
+				name: 'Ancient Ice Canyon East',
+				top: 438,
+				left: 647,
+				width: 116,
+				height: 116,
+				moblevel: '220'
+			},
+			{
+				id: 'jor_back6',
+				ep_from: 0,
+				ep_to: 99,
+				name: 'Ancient Ice Canyon West',
+				top: 438,
+				left: 530,
+				width: 116,
+				height: 116,
+				moblevel: '244'
+			},
+			{
+				id: 'jor_twice',
+				ep_from: 0,
+				ep_to: 99,
+				name: 'Drift Ice Zone',
+				top: 204,
+				left: 530,
+				width: 116,
+				height: 115,
+				moblevel: '222'
+			},
+			{
+				id: 'jor_twig',
+				ep_from: 0,
+				ep_to: 99,
+				name: "Isgard Sanctuary Twig's Nest",
+				top: 87,
+				left: 296,
+				width: 116,
+				height: 116
+			}
+		]
 	}
 	// #endregion
 ];
