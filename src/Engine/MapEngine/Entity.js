@@ -1403,7 +1403,12 @@ function onEntityUseSkill(pkt) {
 		}
 
 		// In healing skill, the level parameter stored the healed value
-		if (pkt.SKID === SkillId.AL_HEAL || pkt.SKID === SkillId.AB_HIGHNESSHEAL || pkt.SKID === SkillId.AB_CHEAL) {
+		if (
+			pkt.SKID === SkillId.AL_HEAL ||
+			pkt.SKID === SkillId.AB_HIGHNESSHEAL ||
+			pkt.SKID === SkillId.AB_CHEAL ||
+			pkt.SKID === SkillId.NPC_CHEAL // Turoran (#155): monster Coluceo Heal
+		) {
 			Damage.add(pkt.level, dstEntity, Renderer.tick, null, Damage.TYPE.HEAL);
 			Sound.playPosition('_heal_effect.wav', dstEntity.position); // healing on neutral targets got another effect than undeads
 		}
@@ -2278,6 +2283,19 @@ function onEntityStatusChange(pkt) {
 				entity.attachments.remove('status-stop');
 			}
 			break;
+
+		// Turoran (#155): kRO monster skill statuses with official looping STR visuals
+		case StatusConst.KILLING_AURA:
+		case StatusConst.DEADLY_DEFEASANCE: {
+			const loopId = pkt.index === StatusConst.KILLING_AURA ? 'ef_npc_killing_aura' : 'ef_efst_deadly_defeasance';
+			EffectManager.remove(null, pkt.AID, loopId);
+			if (pkt.state == 1) {
+				EffectManager.spam({ effectId: loopId, ownerAID: pkt.AID, persistent: true });
+			} else if (pkt.index === StatusConst.KILLING_AURA) {
+				EffectManager.spam({ effectId: 'ef_npc_killing_aura_end', ownerAID: pkt.AID });
+			}
+			break;
+		}
 
 		case StatusConst.C_MARKER:
 			if (pkt.state == 1) {

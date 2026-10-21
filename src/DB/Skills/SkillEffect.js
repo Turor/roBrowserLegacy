@@ -1187,4 +1187,31 @@ SkillEffect[SK.WM_HOWLING_OFLION] = { effectId: 'ef_wm_howlingoflion' };
 SkillEffect[SK.MH_NEEDLE_STINGER] = { effectId: 'ef_mh_needle', hitEffectId: 1 };
 SkillEffect[SK.MH_GOLDENE_TONE] = { effectId: 'ef_mh_goldene' };
 SkillEffect[SK.MH_HEILIGE_PFERD] = { effectId: 'ef_mh_heilige_pferd' };
+// Turoran (Turor/hercules-prere-plus#155, #212): kRO monster skills ported from rAthena (IDs 708, 728-783).
+// kRO reuses the player-skill visuals for most of these; the official npc_killing_aura and deadly_projection
+// STR files are used where the client ships them.
+SkillEffect[SK.NPC_COMET] = SkillEffect[SK.WL_COMET]; //Comet
+SkillEffect[SK.NPC_ARROWSTORM] = SkillEffect[SK.RA_ARROWSTORM]; //Arrow Storm
+SkillEffect[SK.NPC_CHEAL] = SkillEffect[SK.AB_CHEAL]; //Coluceo Heal
+SkillEffect[SK.NPC_CLOUD_KILL] = {}; //Cloud Kill (ground unit UNT_CLOUD_KILL, see SkillUnit.js)
+SkillEffect[SK.NPC_IGNITIONBREAK] = SkillEffect[SK.RK_IGNITIONBREAK]; //Ignition Break
+SkillEffect[SK.NPC_LEASH] = {}; //Grasp of Death (pull only, no visual in kRO)
+SkillEffect[SK.NPC_WIDELEASH] = {}; //Wide Grasp of Death
+SkillEffect[SK.NPC_WIDECRITICALWOUND] = { hitEffectId: 677 }; //Wide Critical Wounds
+SkillEffect[SK.NPC_GRADUAL_GRAVITY] = { effectId: 'ef_npc_gradual_gravity' }; //Gravity Raise
+SkillEffect[SK.NPC_MOVE_COORDINATE] = {}; //Change Location
+SkillEffect[SK.NPC_WIDEBLEEDING2] = SkillEffect[SK.NPC_WIDEBLEEDING]; //Demonic Mass Bleeding
+SkillEffect[SK.NPC_WIDESILENCE2] = SkillEffect[SK.NPC_WIDESILENCE]; //Demonic Mass Silence
+SkillEffect[SK.NPC_WIDESTUN2] = SkillEffect[SK.NPC_WIDESTUN]; //Demonic Mass Stun
+SkillEffect[SK.NPC_WIDESTONE2] = SkillEffect[SK.NPC_WIDESTONE]; //Demonic Mass Stone
+SkillEffect[SK.NPC_WIDESLEEP2] = SkillEffect[SK.NPC_WIDESLEEP]; //Demonic Mass Sleep
+SkillEffect[SK.NPC_WIDECURSE2] = SkillEffect[SK.NPC_WIDECURSE]; //Demonic Mass Curse
+SkillEffect[SK.NPC_WIDECONFUSE2] = SkillEffect[SK.NPC_WIDECONFUSE]; //Demonic Mass Confusion
+SkillEffect[SK.NPC_WIDEFREEZE2] = SkillEffect[SK.NPC_WIDEFREEZE]; //Demonic Mass Freezing
+SkillEffect[SK.NPC_BLEEDING2] = { hitEffectId: 677 }; //Bleeding
+SkillEffect[SK.NPC_HELLJUDGEMENT2] = SkillEffect[SK.NPC_HELLJUDGEMENT]; //Demonic Hell Judgement
+SkillEffect[SK.NPC_DEADLYCURSE] = { effectId: 'ef_npc_deadlycurse' }; //Deadly Curse
+SkillEffect[SK.NPC_DEADLYCURSE2] = { effectIdOnCaster: 'ef_npc_deadlycurse_cast', effectId: 'ef_npc_deadlycurse' }; //Wide Deadly Curse
+SkillEffect[SK.NPC_KILLING_AURA] = { hitEffectId: 'ef_npc_killing_aura_hit' }; //Killing Aura (aura itself: status KILLING_AURA)
+
 export default SkillEffect;

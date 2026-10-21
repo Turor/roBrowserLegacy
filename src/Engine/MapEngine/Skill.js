@@ -854,7 +854,7 @@ function onTaekwonMission(pkt) {
 function onMessageSkill(pkt) {
 	let message = DB.getMessage(pkt.MSGID);
 	const color = '#B8BEEB';
-	const name = SkillInfo[pkt.SKID].SkillName;
+	const name = (SkillInfo[pkt.SKID] && SkillInfo[pkt.SKID].SkillName) || 'Unknown Skill'; // Turoran (#155): no crash on skills without client info
 	message = `[${name}] ${message}`;
 
 	ChatBox.addText(message, ChatBox.TYPE.ANNOUNCE, ChatBox.FILTER.PUBLIC_LOG, color);
