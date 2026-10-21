@@ -1403,7 +1403,12 @@ function onEntityUseSkill(pkt) {
 		}
 
 		// In healing skill, the level parameter stored the healed value
-		if (pkt.SKID === SkillId.AL_HEAL || pkt.SKID === SkillId.AB_HIGHNESSHEAL || pkt.SKID === SkillId.AB_CHEAL) {
+		if (
+			pkt.SKID === SkillId.AL_HEAL ||
+			pkt.SKID === SkillId.AB_HIGHNESSHEAL ||
+			pkt.SKID === SkillId.AB_CHEAL ||
+			pkt.SKID === SkillId.NPC_CHEAL // Turoran (#155): monster Coluceo Heal
+		) {
 			Damage.add(pkt.level, dstEntity, Renderer.tick, null, Damage.TYPE.HEAL);
 			Sound.playPosition('_heal_effect.wav', dstEntity.position); // healing on neutral targets got another effect than undeads
 		}
