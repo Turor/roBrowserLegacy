@@ -17147,6 +17147,105 @@ attachedEntity: true
 		}
 	],
 
+// Turoran (Turor/hercules-prere-plus#155, #212): kRO monster skill visuals
+ef_cloud_kill: [
+{
+// SO_CLOUD_KILL / NPC_CLOUD_KILL unit (0xE0), one per cell
+type: '3D',
+file: 'effect/new_cloud_kill/ef_cloud_kill.tga',
+alphaMax: 0.55,
+attachedEntity: true,
+blendMode: 2,
+duration: 1500,
+fadeIn: true,
+fadeOut: true,
+posxRand: 0.3,
+posyRand: 0.3,
+poszStart: 0.3,
+poszEnd: 1.2,
+size: 60,
+sizeRand: 15,
+red: 0.75,
+green: 0.35,
+blue: 0.9,
+repeat: true
+}
+],
+
+ef_npc_gradual_gravity: [
+{
+type: 'STR',
+file: 'hyper_novice/hn_ground_gravitation/ground_gravitation_start',
+wav: 'effect/hyper_novice/hn_ground_gravitation',
+attachedEntity: true
+},
+{
+type: 'STR',
+file: 'hyper_novice/hn_ground_gravitation/ground_gravitation_bottom_start',
+attachedEntity: true
+}
+],
+
+ef_npc_deadlycurse: [
+{
+type: 'STR',
+file: 'deadly_projection/deadly_projection_hit/deadly_projection_hit',
+min: 'deadly_projection/deadly_projection_hit/min_deadly_projection_hit',
+wav: 'effect/ag_deadly_projection',
+attachedEntity: true
+}
+],
+
+ef_npc_deadlycurse_cast: [
+{
+type: 'STR',
+file: 'deadly_projection/deadly_projection_cast/deadly_projection_cast',
+min: 'deadly_projection/deadly_projection_cast/min_deadly_projection_cast',
+attachedEntity: true
+},
+{
+type: 'STR',
+file: 'deadly_projection/deadly_projection_cast_bottom/deadly_projection_cast_bottom',
+min: 'deadly_projection/deadly_projection_cast_bottom/min_deadly_projection_cast_bottom',
+attachedEntity: true
+}
+],
+
+ef_efst_deadly_defeasance: [
+{
+// EFST_DEADLY_DEFEASANCE while active
+type: 'STR',
+file: 'deadly_projection/efst_deadly_defeasance/efst_deadly_defeasance',
+min: 'deadly_projection/efst_deadly_defeasance/min_efst_deadly_defeasance',
+attachedEntity: true
+}
+],
+
+ef_npc_killing_aura: [
+{
+// EFST_KILLING_AURA on the monster while active (loops)
+type: 'STR',
+file: 'npc_killing_aura/npc_killing_aura_bottom/killing_aura',
+attachedEntity: true
+}
+],
+
+ef_npc_killing_aura_end: [
+{
+type: 'STR',
+file: 'npc_killing_aura/npc_killing_aura_bottom/killing_aura_end',
+attachedEntity: true
+}
+],
+
+ef_npc_killing_aura_hit: [
+{
+type: 'STR',
+file: 'npc_killing_aura/npc_killing_aura_hit/killing_aura_hit',
+attachedEntity: true
+}
+],
+
 ef_: [
 		{
 			wav: 'effect/',

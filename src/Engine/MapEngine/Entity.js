@@ -2279,6 +2279,19 @@ function onEntityStatusChange(pkt) {
 			}
 			break;
 
+		// Turoran (#155): kRO monster skill statuses with official looping STR visuals
+		case StatusConst.KILLING_AURA:
+		case StatusConst.DEADLY_DEFEASANCE: {
+			const loopId = pkt.index === StatusConst.KILLING_AURA ? 'ef_npc_killing_aura' : 'ef_efst_deadly_defeasance';
+			EffectManager.remove(null, pkt.AID, loopId);
+			if (pkt.state == 1) {
+				EffectManager.spam({ effectId: loopId, ownerAID: pkt.AID, persistent: true });
+			} else if (pkt.index === StatusConst.KILLING_AURA) {
+				EffectManager.spam({ effectId: 'ef_npc_killing_aura_end', ownerAID: pkt.AID });
+			}
+			break;
+		}
+
 		case StatusConst.C_MARKER:
 			if (pkt.state == 1) {
 				const EF_Init_Par = {
