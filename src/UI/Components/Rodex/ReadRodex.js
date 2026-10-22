@@ -91,7 +91,7 @@ ReadRodex.initData = function initData(data, mail) {
 	}
 	const contentEl = root.querySelector('.content-text');
 	if (contentEl) {
-		contentEl.textContent = data.Textcontent;
+		contentEl.textContent = Rodex.resolveMsg(data.Textcontent);
 	}
 	const valueEl = root.querySelector('.value');
 	if (valueEl) {
