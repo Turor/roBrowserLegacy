@@ -87,7 +87,8 @@ CheckAttendance.onAppend = function onAppend() {
 	if (_checkAttendanceData >= 0 && _CheckAttendanceInfo.Config) {
 		CheckAttendance.updateUI();
 		this.focus();
-	} else {
+	} else if (_checkAttendanceData !== undefined) {
+		// Turoran: only after the server answered an open request, not on every map load
 		ChatBox.addText('Currently there is no attendance check event.', ChatBox.TYPE.ERROR | ChatBox.TYPE.SELF);
 	}
 };
@@ -141,7 +142,11 @@ CheckAttendance.updateUI = function updateUI() {
 		const regex = /(\d{4})(\d{2})(\d{2})/;
 		const start = regex.exec(_CheckAttendanceInfo.Config.StartDate);
 		const end = regex.exec(_CheckAttendanceInfo.Config.EndDate);
-		const period_string = `Event Period: From ${start[2]}/${start[3]} ~ Until ${end[2]}/${end[3]} (Month/Day) 24:00`;
+		// Turoran: the server repeats the 20-day cycle until 2099, so show it as ongoing
+		const ongoing = parseInt(end[1], 10) >= 2099;
+		const period_string = ongoing
+			? 'Event Period: Ongoing (20-day cycle, repeats)'
+			: `Event Period: From ${start[2]}/${start[3]} ~ Until ${end[2]}/${end[3]} (Month/Day) 24:00`;
 		const periodEl = root.querySelector('.top-panel-period');
 		if (periodEl) {
 			periodEl.innerHTML = period_string;
@@ -158,7 +163,9 @@ CheckAttendance.updateUI = function updateUI() {
 
 			const end_date = new Date(`${end[1]}-${end[2]}-${end[3]}`);
 			const now_date = new Date();
-			const remaining_days = Math.round(Math.abs((end_date.getTime() - now_date.getTime()) / (1000 * 3600 * 24)));
+			const remaining_days = ongoing
+				? Math.max(0, 20 - attendance_count)
+				: Math.round(Math.abs((end_date.getTime() - now_date.getTime()) / (1000 * 3600 * 24)));
 
 			const totalDaysEl = root.querySelector('.total-days');
 			if (totalDaysEl) {
