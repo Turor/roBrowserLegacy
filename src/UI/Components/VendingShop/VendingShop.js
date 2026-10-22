@@ -341,14 +341,17 @@ VendingShop.addItemSub = function addItemSub(item) {
  * @param {number} index in inventory
  * @param {number} count
  */
-VendingShop.removeItem = function removeItem(index, count) {
+VendingShop.removeItem = function removeItem(index, count, message) {
 	const item = this.getItemByIndex(index);
 
 	if (!item || count <= 0) {
 		return null;
 	}
 
-	const msg = DB.getMessage(231).replace('%s', DB.getItemName(item)).replace('%d', count);
+	const msg =
+		typeof message === 'function'
+			? message(item)
+			: DB.getMessage(231).replace('%s', DB.getItemName(item)).replace('%d', count);
 	ChatBox.addText(msg, ChatBox.TYPE.BLUE, ChatBox.FILTER.PUBLIC_LOG);
 
 	const root = this.getRoot();

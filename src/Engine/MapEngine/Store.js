@@ -281,6 +281,63 @@ function onSellToBuyingStoreResult(pkt) {
 }
 
 /**
+ * Seller side: my item was sold to a buying store (sent instead of the normal delete)
+ *
+ * @param {object} pkt - PACKET.ZC.ITEM_DELETE_BUYING_STORE
+ */
+function onSoldToBuyingStore(pkt) {
+	const item = Inventory.getUI().removeItem(pkt.index, pkt.count);
+	const name = item ? DB.getItemName(item) : '';
+	ChatBox.addText(
+		DB.getMessage(1746)
+			.replace('%s', name)
+			.replace('%d', pkt.count)
+			.replace('%d', prettyNumber(pkt.zeny * pkt.count)),
+		ChatBox.TYPE.BLUE,
+		ChatBox.FILTER.PUBLIC_LOG
+	);
+}
+
+/**
+ * Buyer side: someone sold me items through my buying store
+ *
+ * @param {object} pkt - PACKET.ZC.UPDATE_ITEM_FROM_BUYING_STORE(2)
+ */
+function onBuyingStoreItemBought(pkt) {
+	const item = VendingShop.list.find(it => it.ITID === pkt.ITID);
+	if (item) {
+		VendingShop.removeItem(
+			item.index,
+			pkt.count,
+			it => `Bought ${DB.getItemName(it)} x ${pkt.count} for ${prettyNumber(pkt.zeny)}z.`
+		);
+	} else {
+		const info = DB.getItemInfo(pkt.ITID);
+		ChatBox.addText(
+			`${info ? info.identifiedDisplayName : pkt.ITID} x ${pkt.count} bought.`,
+			ChatBox.TYPE.BLUE,
+			ChatBox.FILTER.PUBLIC_LOG
+		);
+	}
+}
+
+/**
+ * Buyer side: buying store closed because the limit was reached
+ *
+ * @param {object} pkt - PACKET.ZC.FAILED_TRADE_BUYING_STORE_TO_BUYER
+ */
+function onBuyingStoreBuyerFailed(pkt) {
+	const msg = { 3: 1743, 4: 1744 }[pkt.Result];
+	if (msg) {
+		ChatBox.addText(DB.getMessage(msg), ChatBox.TYPE.INFO, ChatBox.FILTER.PUBLIC_LOG);
+	}
+}
+
+function prettyNumber(n) {
+	return Number(n).toLocaleString('en-US');
+}
+
+/**
  * Received items list to buy from npc
  *
  * @param {object} pkt - PACKET.ZC.PC_SELL_ITEMLIST
@@ -535,6 +592,10 @@ export default function MainEngine() {
 	Network.hookPacket(PACKET.ZC.PC_PURCHASE_ITEMLIST_FROMMC3, onVendingStoreList);
 	Network.hookPacket(PACKET.ZC.ACK_ITEMLIST_BUYING_STORE, onBuyingStoreList);
 	Network.hookPacket(PACKET.ZC.FAILED_TRADE_BUYING_STORE_TO_SELLER, onSellToBuyingStoreResult);
+	Network.hookPacket(PACKET.ZC.ITEM_DELETE_BUYING_STORE, onSoldToBuyingStore);
+	Network.hookPacket(PACKET.ZC.UPDATE_ITEM_FROM_BUYING_STORE, onBuyingStoreItemBought);
+	Network.hookPacket(PACKET.ZC.UPDATE_ITEM_FROM_BUYING_STORE2, onBuyingStoreItemBought);
+	Network.hookPacket(PACKET.ZC.FAILED_TRADE_BUYING_STORE_TO_BUYER, onBuyingStoreBuyerFailed);
 	Network.hookPacket(PACKET.ZC.NPC_MARKET_OPEN2, onMarketShop);
 	Network.hookPacket(PACKET.ZC.NPC_MARKET_PURCHASE_RESULT, onMarketShopResult);
 	Network.hookPacket(PACKET.ZC.NPC_MARKET_PURCHASE_RESULT2, onMarketShopResult);

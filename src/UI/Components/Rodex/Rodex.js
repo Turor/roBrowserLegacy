@@ -268,6 +268,44 @@ Rodex.deleteAll = function deleteAll() {
 	}
 };
 
+/**
+ * Clear an attachment flag on a listed mail and refresh its row icon.
+ * Called after the server confirms the item (flag 4) or zeny (flag 2) was taken.
+ *
+ * @param {number} MailID
+ * @param {number} flag - 4 = item, 2 = zeny
+ */
+Rodex.clearAttachment = function clearAttachment(MailID, flag) {
+	const mail = Rodex.getMailByID(MailID);
+	if (!mail) {
+		return;
+	}
+	mail.type = (mail.type || 0) & ~flag;
+	if (mail.type === 8) {
+		mail.type = 0; // nothing left besides the gift bit
+	}
+	const root = _root();
+	if (!root) {
+		return;
+	}
+	const mailEl = root.querySelector(`#mail_${MailID}`);
+	const row = mailEl ? mailEl.closest('.mail-item') : null;
+	const icon = row ? row.querySelector('.mail-content') : null;
+	if (!icon) {
+		return;
+	}
+	const path = Rodex.attachmentType[mail.type] || '';
+	if (!path) {
+		icon.style.backgroundImage = 'none';
+		icon.removeAttribute('data-background');
+		return;
+	}
+	icon.setAttribute('data-background', path);
+	Client.loadFile(DB.INTERFACE_PATH + path, data => {
+		icon.style.backgroundImage = `url(${data})`;
+	});
+};
+
 Rodex.updateDeletedMailContent = function updateDeletedMailContent(openType, MailID) {
 	const root = _root();
 	const mailEl = root.querySelector(`#mail_${MailID}`);

@@ -310,6 +310,7 @@ function rodexGetZeny(pkt) {
 		default:
 			ChatBox.addText(DB.getMessage(2591), ChatBox.TYPE.INFO_MAIL, ChatBox.FILTER.PUBLIC_LOG);
 			ReadRodex.clearZeny();
+			Rodex.clearAttachment(pkt.MailID, 2);
 	}
 }
 
@@ -329,6 +330,7 @@ function rodexGetItem(pkt) {
 		default:
 			ChatBox.addText(DB.getMessage(2588), ChatBox.TYPE.INFO_MAIL, ChatBox.FILTER.PUBLIC_LOG);
 			ReadRodex.clearItemList();
+			Rodex.clearAttachment(pkt.MailID, 4);
 	}
 }
 

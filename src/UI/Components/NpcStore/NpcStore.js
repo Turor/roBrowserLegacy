@@ -1130,20 +1130,28 @@ function onItemSelected() {
 
 	const root = NpcStore.getRoot();
 	const input = root.querySelector('.InputWindow');
+	const output = root.querySelector('.OutputWindow');
+	// Buying store: the sellable items live in the "Available items" window, not in the
+	// buyer's wanted list, so double-click moves between Available and the sell list.
+	const source = _type === NpcStore.Type.BUYING_STORE ? root.querySelector('.AvailableItemsWindow') : input;
 
-	if (input.contains(this)) {
-		from = input;
-		to = root.querySelector('.OutputWindow');
+	if (_type === NpcStore.Type.BUYING_STORE && input.contains(this)) {
+		return;
+	}
+
+	if (source.contains(this)) {
+		from = source;
+		to = output;
 	} else {
-		from = root.querySelector('.OutputWindow');
-		to = input;
+		from = output;
+		to = source;
 	}
 
 	requestMoveItem(
 		parseInt(this.getAttribute('data-index'), 10),
 		from.querySelector('.content'),
 		to.querySelector('.content'),
-		from === input
+		from === source
 	);
 }
 
