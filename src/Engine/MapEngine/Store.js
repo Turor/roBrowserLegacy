@@ -306,7 +306,11 @@ function onSoldToBuyingStore(pkt) {
 function onBuyingStoreItemBought(pkt) {
 	const item = VendingShop.list.find(it => it.ITID === pkt.ITID);
 	if (item) {
-		VendingShop.removeItem(item.index, pkt.count);
+		VendingShop.removeItem(
+			item.index,
+			pkt.count,
+			it => `Bought ${DB.getItemName(it)} x ${pkt.count} for ${prettyNumber(pkt.zeny)}z.`
+		);
 	} else {
 		const info = DB.getItemInfo(pkt.ITID);
 		ChatBox.addText(
