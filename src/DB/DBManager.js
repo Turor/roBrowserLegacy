@@ -783,7 +783,8 @@ class DB {
 
 			// CheckAttendance
 			if (Configs.get('enableCheckAttendance') && PACKETVER.value >= 20180307) {
-				loadAttendanceFile('System/CheckAttendance.lub', null, onLoad());
+				// Turoran: renamed so the browser file cache picks up the new reward table
+				loadAttendanceFile('System/CheckAttendance.turoran1.lub', null, onLoad());
 			}
 
 			// Quest
