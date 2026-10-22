@@ -167,7 +167,9 @@ function resolveItems(term) {
 			break;
 		}
 	}
-	return exact.concat(partial).slice(0, MAX_ITEM_IDS);
+	// The server rejects the whole query if any id is unknown to it, so an exact name
+	// match is searched on its own; partial matches are only used when nothing matches exactly.
+	return (exact.length ? exact : partial).slice(0, MAX_ITEM_IDS);
 }
 
 SearchStore.search = function search() {
