@@ -4067,7 +4067,9 @@ PACKET.CZ.REQ_TRADE_BUYING_STORE = function PACKET_CZ_REQ_TRADE_BUYING_STORE() {
 };
 PACKET.CZ.REQ_TRADE_BUYING_STORE.prototype.build = function () {
 	const ver = this.getPacketVersion();
-	const len = 2 + 2 + 4 + 4 + this.itemList.length * 6; // ver[2] = -1
+	// <index>.W <nameid>.W (.L since 20181121) <amount>.W
+	const wide = PACKETVER.value >= 20181121;
+	const len = 2 + 2 + 4 + 4 + this.itemList.length * (wide ? 8 : 6); // ver[2] = -1
 	const pkt = new BinaryWriter(len);
 	let i, count;
 
@@ -4078,7 +4080,11 @@ PACKET.CZ.REQ_TRADE_BUYING_STORE.prototype.build = function () {
 
 	for (i = 0, count = this.itemList.length; i < count; ++i) {
 		pkt.writeUShort(this.itemList[i].index);
-		pkt.writeUShort(this.itemList[i].ITID);
+		if (wide) {
+			pkt.writeULong(this.itemList[i].ITID);
+		} else {
+			pkt.writeUShort(this.itemList[i].ITID);
+		}
 		pkt.writeShort(this.itemList[i].count);
 	}
 
@@ -10041,6 +10047,17 @@ PACKET.ZC.UPDATE_ITEM_FROM_BUYING_STORE = function PACKET_ZC_UPDATE_ITEM_FROM_BU
 };
 PACKET.ZC.UPDATE_ITEM_FROM_BUYING_STORE.size = 10;
 
+// 0x9e6 (PACKETVER >= 20141016): buyer side, an item was sold into my buying store
+PACKET.ZC.UPDATE_ITEM_FROM_BUYING_STORE2 = function PACKET_ZC_UPDATE_ITEM_FROM_BUYING_STORE2(fp, end) {
+	this.ITID = PACKETVER.value >= 20181121 ? fp.readULong() : fp.readUShort();
+	this.count = fp.readUShort();
+	this.zeny = fp.readULong();
+	this.limitZeny = fp.readULong();
+	this.GID = fp.readULong();
+	this.date = fp.readULong();
+};
+PACKET.ZC.UPDATE_ITEM_FROM_BUYING_STORE2.size = -1;
+
 // 0x81c
 PACKET.ZC.ITEM_DELETE_BUYING_STORE = function PACKET_ZC_ITEM_DELETE_BUYING_STORE(fp, end) {
 	this.index = fp.readShort();
@@ -10096,7 +10113,7 @@ PACKET.AC.OTP_AUTH_ACK.size = 6;
 // 0x824
 PACKET.ZC.FAILED_TRADE_BUYING_STORE_TO_SELLER = function PACKET_ZC_FAILED_TRADE_BUYING_STORE_TO_SELLER(fp, end) {
 	this.Result = fp.readShort();
-	this.ITID = fp.readUShort();
+	this.ITID = PACKETVER.value >= 20181121 ? fp.readULong() : fp.readUShort();
 };
 PACKET.ZC.FAILED_TRADE_BUYING_STORE_TO_SELLER.size = 6;
 
