@@ -637,7 +637,7 @@ class DB {
 						// Turoran (iRO item sync step 6): additive description overrides kept in their own GRF file,
 						// so the base translation file stays untouched. Optional: a missing file only logs an error.
 						loadLuaTable(
-							['System/skilldescript.turoran.step6.lub', 'System/skilldescript.turoran.step6.lub'],
+							[DB.LUA_PATH + 'skillinfoz/skillid.turoran4.lub', 'System/skilldescript.turoran.step6.lub'],
 							'SKILL_DESCRIPT_TURORAN_S6',
 							_ov => {
 								Object.assign(SkillDescription, _ov);
