@@ -542,7 +542,7 @@ class DB {
 				'System/itemInfo.turoran.diff.lua',
 				'System/itemInfo.turoran.cookiehl.lua'
 			];
-			const turoranRenewal = 'System/itemInfo.turoran.renewal7.lua';
+			const turoranRenewal = 'System/itemInfo.turoran.renewal8.lua';
 			iteminfoNames = iteminfoNames.filter(function (n) {
 				return turoranLegacy.indexOf(n) === -1 && n !== turoranRenewal;
 			});
