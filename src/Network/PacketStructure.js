@@ -4366,14 +4366,14 @@ PACKET.CZ.SEARCH_STORE_INFO = function PACKET_CZ_SEARCH_STORE_INFO() {
 PACKET.CZ.SEARCH_STORE_INFO.prototype.build = function () {
 	let i, count, offset;
 	const ver = this.getPacketVersion();
-	const pkt = new BinaryWriter(ver[2]);
+	// Item ids are 4 bytes since 20181121 and the opcode is no longer shuffled (Hercules: 0x0835).
+	const wide = PACKETVER.value >= 20181121;
+	const idSize = wide ? 4 : 2;
+	const len = 2 + 2 + 1 + 4 + 4 + 1 + 1 + (this.ItemIDList.length + this.CardIDList.length) * idSize;
+	const pkt = new BinaryWriter(len);
 
-	pkt.writeShort(ver[1]);
-	pkt.view.setInt16(
-		ver[3],
-		2 + 2 + 1 + 4 + 4 + 1 + 1 + this.ItemIDList.length * 2 + this.CardIDList.length * 2,
-		true
-	);
+	pkt.writeShort(wide ? 0x0835 : ver[1]);
+	pkt.view.setInt16(ver[3], len, true);
 	pkt.view.setUint8(ver[4], this.StoreType, true);
 	pkt.view.setUint32(ver[5], this.maxPrice, true);
 	pkt.view.setUint32(ver[6], this.minPrice, true);
@@ -4383,13 +4383,21 @@ PACKET.CZ.SEARCH_STORE_INFO.prototype.build = function () {
 	offset = ver[9];
 
 	for (i = 0, count = this.ItemIDList.length; i < count; ++i) {
-		pkt.view.setUint16(offset, this.ItemIDList[i], true);
-		offset += 2;
+		if (wide) {
+			pkt.view.setUint32(offset, this.ItemIDList[i], true);
+		} else {
+			pkt.view.setUint16(offset, this.ItemIDList[i], true);
+		}
+		offset += idSize;
 	}
 
 	for (i = 0, count = this.CardIDList.length; i < count; ++i) {
-		pkt.view.setUint16(offset, this.CardIDList[i], true);
-		offset += 2;
+		if (wide) {
+			pkt.view.setUint32(offset, this.CardIDList[i], true);
+		} else {
+			pkt.view.setUint16(offset, this.CardIDList[i], true);
+		}
+		offset += idSize;
 	}
 
 	return pkt;
@@ -4399,9 +4407,9 @@ PACKET.CZ.SEARCH_STORE_INFO.prototype.build = function () {
 PACKET.CZ.SEARCH_STORE_INFO_NEXT_PAGE = function PACKET_CZ_SEARCH_STORE_INFO_NEXT_PAGE() {};
 PACKET.CZ.SEARCH_STORE_INFO_NEXT_PAGE.prototype.build = function () {
 	const ver = this.getPacketVersion();
-	const pkt = new BinaryWriter(ver[2]);
+	const pkt = new BinaryWriter(2);
 
-	pkt.writeShort(ver[1]);
+	pkt.writeShort(PACKETVER.value >= 20181121 ? 0x0838 : ver[1]);
 	return pkt;
 };
 
@@ -4409,9 +4417,9 @@ PACKET.CZ.SEARCH_STORE_INFO_NEXT_PAGE.prototype.build = function () {
 PACKET.CZ.CLOSE_SEARCH_STORE_INFO = function PACKET_CZ_CLOSE_SEARCH_STORE_INFO() {};
 PACKET.CZ.CLOSE_SEARCH_STORE_INFO.prototype.build = function () {
 	const ver = this.getPacketVersion();
-	const pkt = new BinaryWriter(ver[2]);
+	const pkt = new BinaryWriter(2);
 
-	pkt.writeShort(ver[1]);
+	pkt.writeShort(PACKETVER.value >= 20181121 ? 0x083b : ver[1]);
 	return pkt;
 };
 
@@ -4422,13 +4430,19 @@ PACKET.CZ.SSILIST_ITEM_CLICK = function PACKET_CZ_SSILIST_ITEM_CLICK() {
 	this.ITID = 0;
 };
 PACKET.CZ.SSILIST_ITEM_CLICK.prototype.build = function () {
-	const ver = this.getPacketVersion();
-	const pkt = new BinaryWriter(ver[2]);
+	// 083c <account id>.L <store id>.L <nameid>.W (.L since 20181121)
+	const wide = PACKETVER.value >= 20181121;
+	const ver = wide ? null : this.getPacketVersion();
+	const pkt = new BinaryWriter(wide ? 14 : 12);
 
-	pkt.writeShort(ver[1]);
-	pkt.view.setUint32(ver[3], this.AID, true);
-	pkt.view.setULong(ver[4], this.SSI_ID, true);
-	pkt.view.setUShort(ver[5], this.ITID, true);
+	pkt.writeShort(wide ? 0x083c : ver[1]);
+	pkt.view.setUint32(2, this.AID, true);
+	pkt.view.setUint32(6, this.SSI_ID, true);
+	if (wide) {
+		pkt.view.setUint32(10, this.ITID, true);
+	} else {
+		pkt.view.setUint16(10, this.ITID, true);
+	}
 
 	return pkt;
 };
@@ -10152,6 +10166,37 @@ PACKET.ZC.SEARCH_STORE_INFO_ACK = function PACKET_ZC_SEARCH_STORE_INFO_ACK(fp, e
 	})();
 };
 PACKET.ZC.SEARCH_STORE_INFO_ACK.size = -1;
+
+// 0xb64 (PACKETVER >= 20200916): adds item options, forge options and grade
+PACKET.ZC.SEARCH_STORE_INFO_ACK2 = function PACKET_ZC_SEARCH_STORE_INFO_ACK2(fp, end) {
+	this.IsFirstPage = fp.readUChar();
+	this.IsNexPage = fp.readUChar();
+	this.RemainedSearchCnt = fp.readUChar();
+	// storeId.L AID.L shopName.80B itemId.L type.B price.L amount.W cards 4x.L options 5x5B forge 3x5B refine.B grade.B
+	const blockSize = 4 + 4 + 80 + 4 + 1 + 4 + 2 + 16 + 25 + 15 + 1 + 1;
+	const count = ((end - fp.tell()) / blockSize) | 0;
+	this.SSI_List = new Array(count);
+	for (let i = 0; i < count; ++i) {
+		const e = {};
+		e.SSI_ID = fp.readULong();
+		e.AID = fp.readULong();
+		e.StoreName = fp.readString(80);
+		e.ITID = fp.readULong();
+		e.ItemType = fp.readUChar();
+		e.price = fp.readLong();
+		e.count = fp.readUShort();
+		e.slot = { card1: fp.readULong(), card2: fp.readULong(), card3: fp.readULong(), card4: fp.readULong() };
+		e.Options = [];
+		for (let j = 0; j < 5; ++j) {
+			e.Options.push({ index: fp.readShort(), value: fp.readShort(), param: fp.readUChar() });
+		}
+		fp.seek(15, SEEK_CUR); // forge options (unused by the UI)
+		e.RefiningLevel = fp.readUChar();
+		e.grade = fp.readUChar();
+		this.SSI_List[i] = e;
+	}
+};
+PACKET.ZC.SEARCH_STORE_INFO_ACK2.size = -1;
 
 // 0x837
 PACKET.ZC.SEARCH_STORE_INFO_FAILED = function PACKET_ZC_SEARCH_STORE_INFO_FAILED(fp, end) {

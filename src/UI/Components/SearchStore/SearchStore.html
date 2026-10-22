@@ -1,0 +1,23 @@
+<div id="SearchStore">
+	<div class="titlebar">
+		<span class="title">Shop Search</span>
+		<span class="uses"></span>
+		<button class="close" title="Close">x</button>
+	</div>
+	<div class="form">
+		<label><input type="radio" name="sstype" value="0" checked /> Selling</label>
+		<label><input type="radio" name="sstype" value="1" /> Buying</label>
+		<input type="text" class="term" placeholder="Item name or ID" maxlength="40" />
+		<div class="prices">
+			<input type="number" class="min" placeholder="Min zeny" min="0" />
+			<input type="number" class="max" placeholder="Max zeny" min="0" />
+			<button class="search">Search</button>
+		</div>
+		<div class="matches"></div>
+	</div>
+	<ul class="results"></ul>
+	<div class="footer">
+		<span class="hint"></span>
+		<button class="next" style="display: none">Next</button>
+	</div>
+</div>

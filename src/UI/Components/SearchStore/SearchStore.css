@@ -1,0 +1,134 @@
+:host {
+	top: 120px;
+	left: 220px;
+	width: 380px;
+}
+#SearchStore {
+	width: 380px;
+	background: #fff;
+	border: 1px solid #8c9db8;
+	border-radius: 3px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #222;
+	box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+}
+#SearchStore .titlebar {
+	height: 18px;
+	line-height: 18px;
+	padding: 0 4px;
+	background: linear-gradient(#e8eef8, #c6d3ea);
+	border-bottom: 1px solid #8c9db8;
+	cursor: move;
+	font-weight: bold;
+	font-size: 11px;
+}
+#SearchStore .titlebar .uses {
+	margin-left: 8px;
+	font-weight: normal;
+	color: #555;
+}
+#SearchStore .titlebar .close {
+	float: right;
+	margin-top: 2px;
+	width: 14px;
+	height: 14px;
+	line-height: 10px;
+	padding: 0;
+	font-size: 10px;
+	cursor: pointer;
+}
+#SearchStore .form {
+	padding: 6px;
+	border-bottom: 1px solid #dde3ee;
+}
+#SearchStore .form label {
+	margin-right: 10px;
+	cursor: pointer;
+}
+#SearchStore .term {
+	display: block;
+	width: 356px;
+	margin: 5px 0;
+	font-size: 12px;
+}
+#SearchStore .prices input {
+	width: 110px;
+	font-size: 12px;
+}
+#SearchStore .prices .search {
+	float: right;
+	cursor: pointer;
+}
+#SearchStore .matches {
+	margin-top: 4px;
+	color: #666;
+	font-size: 11px;
+	min-height: 13px;
+}
+#SearchStore .results {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	height: 220px;
+	overflow-y: auto;
+}
+#SearchStore .results li {
+	display: flex;
+	align-items: center;
+	height: 30px;
+	padding: 0 4px;
+	border-bottom: 1px solid #eef1f6;
+	cursor: pointer;
+}
+#SearchStore .results li:hover {
+	background: #eef3ff;
+}
+#SearchStore .results .icon {
+	width: 24px;
+	height: 24px;
+	margin-right: 6px;
+	background-repeat: no-repeat;
+	background-position: center;
+	flex: none;
+}
+#SearchStore .results .info {
+	flex: 1;
+	overflow: hidden;
+	white-space: nowrap;
+}
+#SearchStore .results .name {
+	font-weight: bold;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#SearchStore .results .shop {
+	color: #666;
+	font-size: 11px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+#SearchStore .results .price {
+	text-align: right;
+	white-space: nowrap;
+	margin-left: 6px;
+}
+#SearchStore .results .price .ea {
+	display: block;
+	color: #666;
+	font-size: 11px;
+}
+#SearchStore .footer {
+	height: 22px;
+	line-height: 22px;
+	padding: 0 6px;
+	background: #f3f5fa;
+	border-top: 1px solid #dde3ee;
+	font-size: 11px;
+	color: #555;
+}
+#SearchStore .footer .next {
+	float: right;
+	margin-top: 2px;
+	cursor: pointer;
+}
