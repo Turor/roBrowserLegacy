@@ -136,8 +136,30 @@ Rodex.onRemove = function OnRemove() {
  *
  * @param {object} read
  */
+/**
+ * Turoran: server-generated mail (attendance, NPCs) sends msgstringtable references such as
+ * "<MSG>3456,2</MSG>". Inserted as HTML that became an unknown <MSG> element showing "3456,2".
+ * Resolve them to the client's message text, filling %d/%s with the comma-separated arguments.
+ */
+Rodex.resolveMsg = function resolveMsg(str) {
+	if (typeof str !== 'string' || str.toUpperCase().indexOf('<MSG>') < 0) {
+		return str;
+	}
+	return str.replace(/<MSG>(\d+)(?:,([^<]*))?<\/MSG>/gi, (whole, id, args) => {
+		const text = DB.getMessage(parseInt(id, 10), '');
+		if (!text) {
+			return whole.replace(/<\/?MSG>/gi, '');
+		}
+		const values = args ? args.split(',') : [];
+		let i = 0;
+		return text.replace(/%(?:\d+\$)?[ds]/g, () => (i < values.length ? values[i++] : ''));
+	});
+};
+
 Rodex.initData = function initData(pkt) {
-	Rodex.list = pkt.MailList;
+	Rodex.list = (pkt.MailList || []).map(mail =>
+		Object.assign(mail, { title: Rodex.resolveMsg(mail.title), SenderName: Rodex.resolveMsg(mail.SenderName) })
+	);
 	Rodex.isEnd = pkt.isEnd;
 	Rodex.openType = typeof pkt.openType !== 'undefined' ? pkt.openType : 0;
 	Rodex.createRodexList();
@@ -263,7 +285,9 @@ Rodex.updateDeletedMailContent = function updateDeletedMailContent(openType, Mai
  * Show/Hide UI
  */
 Rodex.toggle = function toggle() {
-	if (this._host && this._host.style.display !== 'none') {
+	// Turoran: before the first open the host exists but is not in the DOM (display ''), which made
+	// the first click of the Mail button "close" the mailbox instead of opening it.
+	if (this._host && this.__active && this._host.style.display !== 'none') {
 		Rodex.closeRodexBox();
 		this._host.style.display = 'none';
 	} else {

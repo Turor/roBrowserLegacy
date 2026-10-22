@@ -30,6 +30,7 @@ import Bank from 'UI/Components/Bank/Bank.js';
 import Escape from 'UI/Components/Escape/Escape.js';
 import WorldMap from 'UI/Components/WorldMap/WorldMap.js';
 import CheckAttendance from 'UI/Components/CheckAttendance/CheckAttendance.js';
+import Rodex from 'UI/Components/Rodex/Rodex.js';
 import ItemFinder from 'UI/Components/ItemFinder/ItemFinder.js';
 import Stable from 'UI/Components/Stable/Stable.js';
 import EdenGroup from 'UI/Components/EdenGroup/EdenGroup.js';
@@ -136,6 +137,9 @@ export function createBasicInfo(config) {
 				break;
 			case 'finder':
 				ItemFinder.toggle();
+				break;
+			case 'mail':
+				Rodex.toggle();
 				break;
 			case 'attendance':
 				if (Configs.get('enableCheckAttendance') && PACKETVER.value >= 20180307) {
