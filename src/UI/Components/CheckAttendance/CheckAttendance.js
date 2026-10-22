@@ -265,14 +265,22 @@ function onClickAttendance(e) {
 	const completedDiv = document.createElement('div');
 	completedDiv.className = 'completed';
 	completedDiv.dataset.background = 'check_attendance/bt_slot_complete.tga';
-	el.appendChild(completedDiv);
+	// Turoran: .item is the positioned box; appended to the <li> the overlay landed on the window corner
+	(el.querySelector('.item') || el).appendChild(completedDiv);
 	GUIComponent.processDataAttrs(completedDiv);
+	el.removeEventListener('click', onClickAttendance);
+	el.classList.remove('event_add_cursor');
 
 	const current_day = parseInt(_checkAttendanceData / 10) + 1;
 	const total_days_string = `${current_day} Day attendance success`;
 	const totalDaysEl = root.querySelector('.total-days');
 	if (totalDaysEl) {
 		totalDaysEl.innerHTML = total_days_string;
+	}
+	const end = /(\d{4})/.exec(_CheckAttendanceInfo?.Config?.EndDate ?? '');
+	const remainingEl = root.querySelector('.remaining-day-text');
+	if (end && parseInt(end[1], 10) >= 2099 && remainingEl) {
+		remainingEl.textContent = Math.max(0, 20 - current_day);
 	}
 	const _pkt = new PACKET.CZ.REQ_CHECK_ATTENDANCE();
 	Network.sendPacket(_pkt);
