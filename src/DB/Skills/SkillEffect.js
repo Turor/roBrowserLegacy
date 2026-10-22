@@ -1002,6 +1002,16 @@ SkillEffect[SK.ECL_PEONYMAMY] = {}; //Peony Mamy
 SkillEffect[SK.ECL_SADAGUI] = {}; //Sadagui
 SkillEffect[SK.ECL_SEQUOIADUST] = {}; //Sequoia Dust
 SkillEffect[SK.ECLAGE_RECALL] = {}; //Return To Eclage
+// Turoran (iRO item sync step 6): item-granted skills ported from rAthena
+SkillEffect[SK.ALL_NIFLHEIM_RECALL] = {}; //Return To Niflheim
+SkillEffect[SK.ALL_PRONTERA_RECALL] = {}; //Return To Prontera
+SkillEffect[SK.ALL_GLASTHEIM_RECALL] = {}; //Return To Glast Heim
+SkillEffect[SK.ALL_THANATOS_RECALL] = {}; //Return To Thanatos Tower
+SkillEffect[SK.All_EVENT_20TH_ANNIVERSARY] = { effectId: 508 }; //RO 20th Anniversary Firecracker (EF_ITEMPOKJUK)
+SkillEffect[SK.BA_POEMBRAGI2] = { effectId: 288, groundEffectId: '288_ground' }; //Magic Strings (item)
+SkillEffect[SK.DC_FORTUNEKISS2] = { effectId: 293, groundEffectId: '293_ground' }; //Lady Luck (item)
+SkillEffect[SK.NPC_RAYOFGENESIS] = { effectId: 'ef_lg_rayofgenesis' }; //Ray of Genesis (NPC)
+SkillEffect[SK.AB_VITUPERATUM] = { effectId: 85 }; //Vituperatum (Lex Aeterna effect)
 // Copied Bard / Dancer Skills
 // EP 14.3 Part 2 3rd Job Skills
 SkillEffect[SK.GC_DARKCROW] = { effectId: 1040 }; //Dark Claw
