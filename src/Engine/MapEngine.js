@@ -67,6 +67,7 @@ import Rodex from 'UI/Components/Rodex/Rodex.js';
 import RodexIcon from 'UI/Components/Rodex/RodexIcon.js';
 import Roulette from 'UI/Components/Roulette/Roulette.js';
 import PCGoldTimer from 'UI/Components/PCGoldTimer/PCGoldTimer.js';
+import MemorialDungeon from 'UI/Components/MemorialDungeon/MemorialDungeon.js';
 import Refine from 'UI/Components/Refine/Refine.js';
 import Reputation from 'UI/Components/Reputation/Reputation.js';
 import PetInformations from 'UI/Components/PetInformations/PetInformations.js';
@@ -123,6 +124,7 @@ import RodexEngine from './MapEngine/Rodex.js';
 import SearchStoreEngine from './MapEngine/SearchStore.js';
 import RouletteEngine from './MapEngine/Roulette.js';
 import PCGoldTimerEngine from './MapEngine/PCGoldTimer.js';
+import MemorialDungeonEngine from './MapEngine/MemorialDungeon.js';
 import CaptchaEngine from './MapEngine/Captcha.js';
 import ClanEngine from './MapEngine/Clan.js';
 import CashShopEngine from './MapEngine/CashShop.js';
@@ -332,6 +334,7 @@ EdenGroupEngine();
 			SearchStoreEngine();
 			RouletteEngine();
 			PCGoldTimerEngine();
+			MemorialDungeonEngine();
 			CaptchaEngine();
 			ClanEngine();
 			if (Configs.get('enableCashShop')) {
@@ -372,6 +375,7 @@ EdenGroupEngine();
 			RodexIcon.prepare();
 			Roulette.prepare();
 			PCGoldTimer.prepare();
+			MemorialDungeon.prepare();
 			Navigation.prepare();
 			ItemFinder.prepare();
 			CaptchaUpload.prepare();
@@ -761,6 +765,8 @@ function onMapChange(pkt) {
 			PCGoldTimer.append();
 		}
 
+		MemorialDungeon.restore();
+
 		WinStats.getUI().append();
 
 		Quest.getUI().append();
@@ -815,6 +821,12 @@ function onServerChange(pkt) {
  */
 function cleanGameUI() {
 	WhisperBox.clearAll();
+
+	// Memorial Dungeon window state belongs to the character that left
+	if (MemorialDungeon.__active) {
+		MemorialDungeon.remove();
+	}
+	MemorialDungeon.reset();
 
 	const tasks = [
 		[BasicInfo, 'remove'],
