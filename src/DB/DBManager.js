@@ -225,6 +225,7 @@ const FootPrintEffectInfo = {};
  * @const {Array} CashShopBanner Table
  */
 const CashShopBannerTable = [];
+let StylingShopTable = null;
 
 /**
  * @const {Object} Ez2streffect Table
@@ -4366,6 +4367,26 @@ class DB {
 	 */
 	static getHatResource(id) {
 		return HatEffectInfo[id] || null;
+	}
+
+	/**
+	 * Styling Shop price list (official stylingshop/StylingShopInfo.lub).
+	 * StylingShopInfo_F.lub defines the StylingShop table and its Add* helpers,
+	 * StylingShopInfo.lub fills it. Loaded once, on first use.
+	 *
+	 * @param {function} callback - receives the StylingShop table (or null)
+	 */
+	static loadStylingShop(callback) {
+		if (StylingShopTable) {
+			callback(StylingShopTable);
+			return;
+		}
+		loadLuaValue(DB.LUA_PATH + 'stylingshop/stylingshopinfo_f.lub', 'StylingShop', () => {
+			loadLuaValue(DB.LUA_PATH + 'stylingshop/stylingshopinfo.lub', 'StylingShop', json => {
+				StylingShopTable = json;
+				callback(json);
+			});
+		});
 	}
 
 	/**
