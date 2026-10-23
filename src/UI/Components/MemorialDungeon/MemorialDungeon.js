@@ -58,7 +58,10 @@ function msg(id, fallback) {
 }
 
 function escapeHtml(text) {
-	return String(text).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+	return String(text).replace(
+		/[&<>"']/g,
+		c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]
+	);
 }
 
 /** Escape, then turn RO ^RRGGBB colour codes into spans. */
@@ -253,7 +256,11 @@ MemorialDungeon.onSubscriptionInfo = function onSubscriptionInfo(pkt) {
  */
 MemorialDungeon.onSubscriptionNotify = function onSubscriptionNotify(pkt) {
 	if (pkt.PriorityOrderNum < 0) {
-		ChatBox.addText(msg(1345, 'The Memorial Dungeon reservation has been canceled.'), ChatBox.TYPE.INFO, ChatBox.FILTER.PUBLIC_LOG);
+		ChatBox.addText(
+			msg(1345, 'The Memorial Dungeon reservation has been canceled.'),
+			ChatBox.TYPE.INFO,
+			ChatBox.FILTER.PUBLIC_LOG
+		);
 		close();
 		return;
 	}
@@ -272,7 +279,9 @@ MemorialDungeon.onInfo = function onInfo(pkt) {
 	const wasProgress = sameDungeon && _data.state === 'progress';
 	if (!sameDungeon && !_data.state) {
 		ChatBox.addText(
-			msg(1322, 'Memorial Dungeon, [%s] is created.\n Please enter in 5 minutes.').replace('%s', pkt.MemorialDungeonName).replace(/\\n/g, ' '),
+			msg(1322, 'Memorial Dungeon, [%s] is created.\n Please enter in 5 minutes.')
+				.replace('%s', pkt.MemorialDungeonName)
+				.replace(/\\n/g, ' '),
 			ChatBox.TYPE.INFO,
 			ChatBox.FILTER.PUBLIC_LOG
 		);
@@ -296,7 +305,11 @@ MemorialDungeon.onNotify = function onNotify(pkt) {
 			}
 			return;
 		case MD_NOTIFY.DESTROY_EXPIRED:
-			ChatBox.addText(msg(1346, 'The Memorial Dungeon duration expired; it has been destroyed.'), ChatBox.TYPE.INFO, ChatBox.FILTER.PUBLIC_LOG);
+			ChatBox.addText(
+				msg(1346, 'The Memorial Dungeon duration expired; it has been destroyed.'),
+				ChatBox.TYPE.INFO,
+				ChatBox.FILTER.PUBLIC_LOG
+			);
 			break;
 		case MD_NOTIFY.DESTROY_ENTER_TIMEOUT:
 			ChatBox.addText(
@@ -306,7 +319,11 @@ MemorialDungeon.onNotify = function onNotify(pkt) {
 			);
 			break;
 		case MD_NOTIFY.DESTROY_REMOVED:
-			ChatBox.addText(msg(1348, 'The Memorial Dungeon has been removed.'), ChatBox.TYPE.INFO, ChatBox.FILTER.PUBLIC_LOG);
+			ChatBox.addText(
+				msg(1348, 'The Memorial Dungeon has been removed.'),
+				ChatBox.TYPE.INFO,
+				ChatBox.FILTER.PUBLIC_LOG
+			);
 			break;
 		default:
 			// 4: create failure / left the instance owner group: just close the window
