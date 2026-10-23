@@ -114,6 +114,7 @@ import WarpraEngine from './MapEngine/Warpra.js';
 import MvpMinimapEngine from './MapEngine/MvpMinimap.js';
 import HomunEngine from './MapEngine/Homun.js';
 import MercenaryEngine from './MapEngine/Mercenary.js';
+import ElementalEngine from './MapEngine/Elemental.js';
 import StoreEngine from './MapEngine/Store.js';
 import TradeEngine from './MapEngine/Trade.js';
 import FriendsEngine from './MapEngine/Friends.js';
@@ -323,6 +324,7 @@ EdenGroupEngine();
 	MvpMinimapEngine();
 			HomunEngine();
 			MercenaryEngine();
+			ElementalEngine();
 			StoreEngine();
 			TradeEngine();
 			FriendsEngine.init();
@@ -595,6 +597,7 @@ function onConnectionAccepted(pkt) {
 	Session.guildRight = 0;
 
 	Session.homunId = 0;
+	Session.elementalId = 0;
 
 	// clevel is already populated by Entity.set() in the Player constructor
 
