@@ -1,0 +1,236 @@
+:host {
+	width: 480px;
+	height: 330px;
+	top: 120px;
+	left: 200px;
+}
+
+#StylingShop {
+	position: relative;
+	width: 480px;
+	height: 330px;
+	background-repeat: no-repeat;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000;
+}
+
+#StylingShop button {
+	border: none;
+	padding: 0;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+#StylingShop .titlebar {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 480px;
+	height: 17px;
+	cursor: move;
+}
+
+#StylingShop .titlebar .title {
+	position: absolute;
+	left: 18px;
+	top: 3px;
+	color: #000;
+	font-weight: bold;
+}
+
+#StylingShop .titlebar .close {
+	position: absolute;
+	right: 2px;
+	top: 1px;
+	width: 15px;
+	height: 15px;
+}
+
+#StylingShop .tabs {
+	position: absolute;
+	left: 1px;
+	top: 20px;
+	width: 37px;
+}
+
+#StylingShop .tab {
+	display: block;
+	width: 37px;
+	height: 40px;
+	margin-bottom: 2px;
+}
+
+#StylingShop .tab.disabled {
+	cursor: default;
+}
+
+#StylingShop .preview {
+	position: absolute;
+	left: 46px;
+	top: 26px;
+	width: 130px;
+	height: 268px;
+	text-align: center;
+}
+
+#StylingShop .preview .frame {
+	position: relative;
+	margin: 0 auto;
+	width: 109px;
+	height: 137px;
+}
+
+#StylingShop .preview canvas {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+#StylingShop .preview .rotate {
+	margin-top: 6px;
+}
+
+#StylingShop .preview .rotate button {
+	width: 21px;
+	height: 9px;
+	margin: 0 10px;
+}
+
+#StylingShop .preview .hint {
+	margin-top: 12px;
+	padding: 0 4px;
+	color: #6a6a6a;
+	line-height: 13px;
+}
+
+#StylingShop .options {
+	position: absolute;
+	left: 186px;
+	top: 26px;
+	width: 284px;
+	height: 268px;
+	overflow-y: auto;
+}
+
+#StylingShop .section {
+	padding: 6px 4px 8px 4px;
+	border-bottom: 1px dotted #b8b8b8;
+}
+
+#StylingShop .section .label {
+	color: #4a5a8c;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+#StylingShop .picker {
+	display: flex;
+	align-items: center;
+	height: 20px;
+}
+
+#StylingShop .picker .prev,
+#StylingShop .picker .next {
+	width: 14px;
+	height: 20px;
+	flex: none;
+}
+
+#StylingShop .picker .value {
+	width: 120px;
+	text-align: center;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#StylingShop .picker .price {
+	margin-left: 8px;
+	color: #6a6a6a;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 110px;
+}
+
+#StylingShop .swatches {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+	align-items: center;
+}
+
+#StylingShop .swatch {
+	width: 14px;
+	height: 14px;
+}
+
+#StylingShop .swatches .price {
+	margin-left: 6px;
+	color: #6a6a6a;
+}
+
+#StylingShop .note {
+	color: #c04040;
+	margin-top: 3px;
+}
+
+#StylingShop .footer {
+	position: absolute;
+	left: 0;
+	top: 302px;
+	width: 480px;
+	height: 28px;
+}
+
+#StylingShop .footer .cost {
+	position: absolute;
+	left: 46px;
+	top: 3px;
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	width: 300px;
+}
+
+#StylingShop .footer .zeny-icon {
+	display: inline-block;
+	width: 23px;
+	height: 21px;
+	background-repeat: no-repeat;
+}
+
+#StylingShop .footer .total {
+	font-weight: bold;
+}
+
+#StylingShop .footer .coupons {
+	color: #6a6a6a;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 220px;
+}
+
+#StylingShop .footer .reset {
+	position: absolute;
+	left: 360px;
+	top: 6px;
+	width: 16px;
+	height: 16px;
+}
+
+#StylingShop .footer .buy,
+#StylingShop .footer .buy-disabled {
+	position: absolute;
+	left: 388px;
+	top: 4px;
+	width: 80px;
+	height: 20px;
+}
+
+#StylingShop .footer .buy-disabled {
+	cursor: default;
+}

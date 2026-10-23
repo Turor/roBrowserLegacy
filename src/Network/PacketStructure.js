@@ -13551,6 +13551,64 @@ PACKET.AC.REFUSE_LOGIN_USA = function PACKET_AC_REFUSE_LOGIN_USA(fp, end) {
 };
 PACKET.AC.REFUSE_LOGIN_USA.size = 30;
 
+// 0xa46
+PACKET.CZ.REQ_STYLE_CHANGE = function PACKET_CZ_REQ_STYLE_CHANGE() {
+	this.HeadPalette = 0;
+	this.HeadStyle = 0;
+	this.BodyPalette = 0;
+	this.TopAccessory = 0;
+	this.MidAccessory = 0;
+	this.BottomAccessory = 0;
+};
+PACKET.CZ.REQ_STYLE_CHANGE.prototype.build = function () {
+	const pkt_buf = new BinaryWriter(14);
+	pkt_buf.writeShort(0xa46);
+	pkt_buf.writeShort(this.HeadPalette);
+	pkt_buf.writeShort(this.HeadStyle);
+	pkt_buf.writeShort(this.BodyPalette);
+	pkt_buf.writeShort(this.TopAccessory);
+	pkt_buf.writeShort(this.MidAccessory);
+	pkt_buf.writeShort(this.BottomAccessory);
+	return pkt_buf;
+};
+
+// 0xafc (PACKETVER >= 20180516)
+PACKET.CZ.REQ_STYLE_CHANGE2 = function PACKET_CZ_REQ_STYLE_CHANGE2() {
+	this.HeadPalette = 0;
+	this.HeadStyle = 0;
+	this.BodyPalette = 0;
+	this.TopAccessory = 0;
+	this.MidAccessory = 0;
+	this.BottomAccessory = 0;
+	this.BodyStyle = 0;
+};
+PACKET.CZ.REQ_STYLE_CHANGE2.prototype.build = function () {
+	const pkt_buf = new BinaryWriter(16);
+	pkt_buf.writeShort(0xafc);
+	pkt_buf.writeShort(this.HeadPalette);
+	pkt_buf.writeShort(this.HeadStyle);
+	pkt_buf.writeShort(this.BodyPalette);
+	pkt_buf.writeShort(this.TopAccessory);
+	pkt_buf.writeShort(this.MidAccessory);
+	pkt_buf.writeShort(this.BottomAccessory);
+	pkt_buf.writeShort(this.BodyStyle);
+	return pkt_buf;
+};
+
+// 0xa47
+PACKET.ZC.STYLE_CHANGE_RES = function PACKET_ZC_STYLE_CHANGE_RES(fp, end) {
+	this.flag = fp.readUChar();
+};
+PACKET.ZC.STYLE_CHANGE_RES.size = 3;
+
+// 0xa48
+PACKET.CZ.CLOSE_UI_STYLINGSHOP = function PACKET_CZ_CLOSE_UI_STYLINGSHOP() {};
+PACKET.CZ.CLOSE_UI_STYLINGSHOP.prototype.build = function () {
+	const pkt_buf = new BinaryWriter(2);
+	pkt_buf.writeShort(0xa48);
+	return pkt_buf;
+};
+
 //0xae2
 PACKET.ZC.UI_OPEN = function PACKET_ZC_UI_OPEN(fp, end) {
 	this.ui_type = fp.readByte();

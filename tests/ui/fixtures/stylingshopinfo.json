@@ -1,0 +1,600 @@
+{
+	"HeadPalette": [
+		{
+			"goods": 1,
+			"isDoram": true,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 2,
+			"isDoram": true,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 3,
+			"isDoram": true,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 4,
+			"isDoram": true,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 5,
+			"isDoram": true,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 6,
+			"isDoram": true,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 7,
+			"isDoram": true,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 8,
+			"isDoram": true,
+			"payment": {
+				"zeny": 100000
+			}
+		}
+	],
+	"HeadStyle": [
+		{
+			"goods": 1,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 2,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 3,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 4,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 5,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 6,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 7,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 8,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 9,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 10,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 11,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 12,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 13,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 14,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 15,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 16,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 17,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 18,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 19,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 20,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 21,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 22,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 23,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 24,
+			"payment": {
+				"boxitid": 16843,
+				"itid": 7622
+			}
+		},
+		{
+			"goods": 25,
+			"payment": {
+				"boxitid": 16843,
+				"itid": 7622
+			}
+		},
+		{
+			"goods": 26,
+			"payment": {
+				"boxitid": 16843,
+				"itid": 7622
+			}
+		},
+		{
+			"goods": 27,
+			"payment": {
+				"boxitid": 16843,
+				"itid": 7622
+			}
+		},
+		{
+			"goods": 28,
+			"payment": {
+				"boxitid": 17336,
+				"itid": 6707
+			}
+		},
+		{
+			"goods": 29,
+			"payment": {
+				"boxitid": 17336,
+				"itid": 6707
+			}
+		},
+		{
+			"goods": 30,
+			"payment": {
+				"boxitid": 25736,
+				"itid": 25736
+			}
+		},
+		{
+			"goods": 31,
+			"payment": {
+				"boxitid": 25736,
+				"itid": 25736
+			}
+		},
+		{
+			"goods": 32,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 33,
+			"payment": {
+				"zeny": 3000000
+			}
+		},
+		{
+			"goods": 34,
+			"payment": {
+				"zeny": 3000000
+			}
+		},
+		{
+			"goods": 35,
+			"payment": {
+				"zeny": 3000000
+			}
+		},
+		{
+			"goods": 36,
+			"payment": {
+				"zeny": 3000000
+			}
+		},
+		{
+			"goods": 37,
+			"payment": {
+				"zeny": 3000000
+			}
+		},
+		{
+			"goods": 38,
+			"payment": {
+				"zeny": 3000000
+			}
+		},
+		{
+			"goods": 39,
+			"payment": {
+				"zeny": 3000000
+			}
+		},
+		{
+			"goods": 40,
+			"payment": {
+				"zeny": 3000000
+			}
+		},
+		{
+			"goods": 41,
+			"payment": {
+				"zeny": 3000000
+			}
+		},
+		{
+			"goods": 42,
+			"payment": {
+				"zeny": 3000000
+			}
+		}
+	],
+	"BodyPalette": [
+		{
+			"goods": 0,
+			"payment": {
+				"boxitid": 16855,
+				"itid": 6047
+			}
+		},
+		{
+			"goods": 2,
+			"payment": {
+				"boxitid": 16854,
+				"itid": 6046
+			}
+		},
+		{
+			"goods": 3,
+			"payment": {
+				"boxitid": 16854,
+				"itid": 6046
+			}
+		},
+		{
+			"goods": 4,
+			"payment": {
+				"boxitid": 16854,
+				"itid": 6046
+			}
+		},
+		{
+			"goods": 5,
+			"payment": {
+				"boxitid": 16854,
+				"itid": 6046
+			}
+		},
+		{
+			"goods": 6,
+			"payment": {
+				"boxitid": 16854,
+				"itid": 6046
+			}
+		},
+		{
+			"goods": 7,
+			"payment": {
+				"boxitid": 16854,
+				"itid": 6046
+			}
+		}
+	],
+	"TopAccessory": [
+		{
+			"goods": 2220,
+			"isDoram": true,
+			"payment": {
+				"zeny": 1000
+			}
+		},
+		{
+			"goods": 2208,
+			"isDoram": true,
+			"payment": {
+				"zeny": 800
+			}
+		},
+		{
+			"goods": 2211,
+			"isDoram": true,
+			"payment": {
+				"zeny": 400
+			}
+		}
+	],
+	"MidAccessory": [
+		{
+			"goods": 2239,
+			"isDoram": true,
+			"payment": {
+				"zeny": 10000
+			}
+		},
+		{
+			"goods": 2201,
+			"isDoram": true,
+			"payment": {
+				"zeny": 5000
+			}
+		},
+		{
+			"goods": 2242,
+			"isDoram": true,
+			"payment": {
+				"zeny": 24000
+			}
+		},
+		{
+			"goods": 2243,
+			"isDoram": true,
+			"payment": {
+				"zeny": 20000
+			}
+		},
+		{
+			"goods": 2205,
+			"isDoram": true,
+			"payment": {
+				"zeny": 3500
+			}
+		},
+		{
+			"goods": 2203,
+			"isDoram": true,
+			"payment": {
+				"zeny": 4000
+			}
+		},
+		{
+			"goods": 2212,
+			"isDoram": true,
+			"payment": {
+				"zeny": 1000
+			}
+		}
+	],
+	"BottomAccessory": [
+		{
+			"goods": 2241,
+			"isDoram": true,
+			"payment": {
+				"zeny": 5000
+			}
+		}
+	],
+	"BodyStyle": [
+		{
+			"goods": 0,
+			"payment": {
+				"boxitid": 6959,
+				"itid": 6959
+			}
+		},
+		{
+			"goods": 1,
+			"payment": {
+				"boxitid": 6959,
+				"itid": 6959
+			}
+		}
+	],
+	"DoramHeadStyle": [
+		{
+			"goods": 1,
+			"isColoring": true,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 2,
+			"isColoring": false,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 3,
+			"isColoring": true,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 4,
+			"isColoring": true,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 5,
+			"isColoring": false,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 6,
+			"isColoring": false,
+			"payment": {
+				"zeny": 100000
+			}
+		},
+		{
+			"goods": 7,
+			"isColoring": false,
+			"payment": {
+				"boxitid": 25736,
+				"itid": 25736
+			}
+		},
+		{
+			"goods": 8,
+			"isColoring": false,
+			"payment": {
+				"boxitid": 25736,
+				"itid": 25736
+			}
+		},
+		{
+			"goods": 9,
+			"isColoring": false,
+			"payment": {
+				"boxitid": 25736,
+				"itid": 25736
+			}
+		},
+		{
+			"goods": 10,
+			"isColoring": false,
+			"payment": {
+				"boxitid": 25736,
+				"itid": 25736
+			}
+		}
+	],
+	"DoramBodyPalette": [
+		{
+			"goods": 0,
+			"payment": {
+				"boxitid": 16855,
+				"itid": 6047
+			}
+		},
+		{
+			"goods": 2,
+			"payment": {
+				"boxitid": 16854,
+				"itid": 6046
+			}
+		},
+		{
+			"goods": 3,
+			"payment": {
+				"boxitid": 16854,
+				"itid": 6046
+			}
+		},
+		{
+			"goods": 4,
+			"payment": {
+				"boxitid": 16854,
+				"itid": 6046
+			}
+		},
+		{
+			"goods": 5,
+			"payment": {
+				"boxitid": 16854,
+				"itid": 6046
+			}
+		},
+		{
+			"goods": 6,
+			"payment": {
+				"boxitid": 16854,
+				"itid": 6046
+			}
+		},
+		{
+			"goods": 7,
+			"payment": {
+				"boxitid": 16854,
+				"itid": 6046
+			}
+		}
+	],
+	"DoramBodyStyle": []
+}

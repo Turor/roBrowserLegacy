@@ -18,6 +18,7 @@ import PACKETVER from 'Network/PacketVerManager.js';
 import CheckAttendance from 'UI/Components/CheckAttendance/CheckAttendance.js';
 import EnchantGradeUI from 'UI/Components/EnchantGrade/EnchantGrade.js';
 import EnchantUI from 'UI/Components/Enchant/Enchant.js';
+import StylingShop from 'UI/Components/StylingShop/StylingShop.js';
 import BankEngine from './Bank.js';
 
 /**
@@ -46,6 +47,9 @@ function onUIOpen(pkt) {
 			if (Configs.get('enableBank')) {
 				BankEngine.requestOpen();
 			}
+			break;
+		case 1: // STYLIST_UI (openstylist)
+			StylingShop.open();
 			break;
 		case 7:
 			if (Configs.get('enableCheckAttendance') && PACKETVER.value >= 20180307) {
@@ -81,4 +85,5 @@ function onUIOpen(pkt) {
 export default function MainEngine() {
 	Network.hookPacket(PACKET.ZC.UI_OPEN, onUIOpen);
 	Network.hookPacket(PACKET.ZC.UI_OPEN_V3, onUIOpen);
+	Network.hookPacket(PACKET.ZC.STYLE_CHANGE_RES, pkt => StylingShop.onResult(pkt));
 }
