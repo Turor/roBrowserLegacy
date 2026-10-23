@@ -1,0 +1,94 @@
+:host {
+	width: 280px;
+	top: 120px;
+	right: 10px;
+}
+
+#MemorialDungeon {
+	position: absolute;
+	width: 280px;
+	font-size: 11px;
+	color: #000;
+}
+
+#MemorialDungeon .clear {
+	clear: both;
+}
+
+#MemorialDungeon .titlebar {
+	width: 280px;
+	height: 17px;
+	background-color: white;
+	background-repeat: repeat-x;
+	border-radius: 3px 3px 0px 0px;
+	cursor: move;
+}
+
+#MemorialDungeon .titlebar .base {
+	width: 11px;
+	height: 11px;
+	border: none;
+	background-color: transparent;
+	background-repeat: no-repeat;
+	vertical-align: middle;
+}
+
+#MemorialDungeon .titlebar .left {
+	margin-left: 3px;
+	float: left;
+}
+
+#MemorialDungeon .titlebar .text {
+	text-shadow: 1px 1px white;
+	vertical-align: -2px;
+	white-space: nowrap;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+#MemorialDungeon .content {
+	background-color: #f7f7f7;
+	border: 1px solid #b5b5b5;
+	border-top: none;
+	border-radius: 0px 0px 3px 3px;
+	padding: 6px 8px 6px 8px;
+}
+
+#MemorialDungeon.minimized .content {
+	display: none;
+}
+
+#MemorialDungeon .name {
+	font-weight: bold;
+	color: #2d4b8f;
+	margin-bottom: 4px;
+	word-break: break-word;
+}
+
+#MemorialDungeon .line {
+	margin: 2px 0px;
+	line-height: 14px;
+}
+
+#MemorialDungeon .mission .value {
+	font-weight: bold;
+	color: #ff0000;
+}
+
+#MemorialDungeon .buttons {
+	text-align: right;
+	margin-top: 5px;
+}
+
+#MemorialDungeon .destroy {
+	font-size: 11px;
+	padding: 1px 8px;
+	border: 1px solid #8a8a8a;
+	border-radius: 3px;
+	background: linear-gradient(#ffffff, #dcdcdc);
+	cursor: pointer;
+}
+
+#MemorialDungeon .destroy:hover {
+	background: linear-gradient(#ffffff, #c8d8f0);
+}
