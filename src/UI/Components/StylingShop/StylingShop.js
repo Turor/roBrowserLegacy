@@ -13,6 +13,7 @@
  */
 
 import DB from 'DB/DBManager.js';
+import Client from 'Core/Client.js';
 import Preferences from 'Core/Preferences.js';
 import Session from 'Engine/SessionStorage.js';
 import Network from 'Network/NetworkManager.js';
@@ -116,13 +117,31 @@ StylingShop.init = function init() {
 	root.querySelectorAll('.tab[data-tab]').forEach(tab => {
 		tab.addEventListener('click', () => {
 			_tab = tab.dataset.tab;
-			root.querySelectorAll('.tab[data-tab]').forEach(t => t.classList.toggle('active', t === tab));
+			updateTabs();
 			refresh();
 		});
 	});
 
 	_ctx = root.querySelector('canvas.character').getContext('2d');
 };
+
+/**
+ * Tab images: tab_<name>_on.bmp for the open tab, tab_<name>_off.bmp for the others.
+ */
+function updateTabs() {
+	if (!StylingShop.__active) {
+		return;
+	}
+	StylingShop.getRoot()
+		.querySelectorAll('.tab[data-tab]')
+		.forEach(tab => {
+			const on = tab.dataset.tab === _tab;
+			tab.classList.toggle('active', on);
+			Client.loadFile(`${DB.INTERFACE_PATH}styleshop/${tab.dataset.image}_${on ? 'on' : 'off'}.bmp`, url => {
+				tab.style.backgroundImage = `url(${url})`;
+			});
+		});
+}
 
 /**
  * Open the window (server asked with ZC_UI_OPEN type 1).
@@ -141,8 +160,7 @@ StylingShop.open = function open() {
 		if (!StylingShop.__active) {
 			StylingShop.append();
 		}
-		const root = StylingShop.getRoot();
-		root.querySelectorAll('.tab[data-tab]').forEach(t => t.classList.toggle('active', t.dataset.tab === 'hair'));
+		updateTabs();
 		refresh();
 	});
 };
