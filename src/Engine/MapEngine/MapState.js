@@ -15,6 +15,7 @@ import Network from 'Network/NetworkManager.js';
 import PACKET from 'Network/PacketStructure.js';
 import PvPTimer from 'UI/Components/PvPTimer/PvPTimer.js';
 import PvPCount from 'UI/Components/PvPCount/PvPCount.js';
+import { leaveBattlefield } from './Battleground.js';
 
 const MapProperty = MapState.MapProperty;
 const MapType = MapState.MapType;
@@ -43,6 +44,10 @@ function onMapProperty(pkt) {
 		if (Session.mapState.isPVP) {
 			PvPTimer.append();
 		}
+	}
+
+	if (!(Session.mapState.flag & MapFlag.BATTLEFIELD)) {
+		leaveBattlefield();
 	}
 }
 
