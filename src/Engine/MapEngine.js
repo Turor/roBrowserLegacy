@@ -116,6 +116,7 @@ import MvpMinimapEngine from './MapEngine/MvpMinimap.js';
 import HomunEngine from './MapEngine/Homun.js';
 import MercenaryEngine from './MapEngine/Mercenary.js';
 import ElementalEngine from './MapEngine/Elemental.js';
+import BattlegroundEngine, { sendBattleChat } from './MapEngine/Battleground.js';
 import StoreEngine from './MapEngine/Store.js';
 import TradeEngine from './MapEngine/Trade.js';
 import FriendsEngine from './MapEngine/Friends.js';
@@ -327,6 +328,7 @@ EdenGroupEngine();
 			HomunEngine();
 			MercenaryEngine();
 			ElementalEngine();
+			BattlegroundEngine();
 			StoreEngine();
 			TradeEngine();
 			FriendsEngine.init();
@@ -1020,6 +1022,12 @@ function onRequestTalk(user, text, target) {
 
 	if (flag_guild) {
 		target = (target & ~ChatBox.TYPE.GUILD) | (~target & ChatBox.TYPE.GUILD);
+	}
+
+	// Battlefield chat (/battlechat on, no party/guild prefix)
+	if (Session.battleChat && !flag_party && !flag_guild && Session.mapState.isBattleField) {
+		sendBattleChat(Session.Entity.display.name + ' : ' + text);
+		return;
 	}
 
 	// Get packet

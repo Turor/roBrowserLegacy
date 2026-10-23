@@ -9055,6 +9055,14 @@ PACKET.ZC.BATTLEFIELD_NOTIFY_HP = function PACKET_ZC_BATTLEFIELD_NOTIFY_HP(fp, e
 };
 PACKET.ZC.BATTLEFIELD_NOTIFY_HP.size = 34;
 
+// 0xa0e
+PACKET.ZC.BATTLEFIELD_NOTIFY_HP2 = function PACKET_ZC_BATTLEFIELD_NOTIFY_HP2(fp, end) {
+	this.accountID = fp.readULong();
+	this.hp = fp.readLong();
+	this.maxHp = fp.readLong();
+};
+PACKET.ZC.BATTLEFIELD_NOTIFY_HP2.size = 14;
+
 // 0x2e1
 PACKET.ZC.NOTIFY_ACT2 = function PACKET_ZC_NOTIFY_ACT2(fp, end) {
 	this.GID = fp.readULong();

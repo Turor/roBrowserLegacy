@@ -47,6 +47,7 @@ import ChatBox from 'UI/Components/ChatBox/ChatBox.js';
 import Navigation from 'UI/Components/Navigation/Navigation.js';
 import ItemFinder from 'UI/Components/ItemFinder/ItemFinder.js';
 import RankingTypes from 'DB/Jobs/RankingTypes.js';
+import { toggleBattleChat } from 'Engine/MapEngine/Battleground.js';
 
 let aliases = {};
 
@@ -189,6 +190,13 @@ const CommandStore = {
 			this.addText(messages[MapPreferences.smoothlight], this.TYPE.INFO, this.FILTER.PUBLIC_LOG);
 			MapPreferences.save();
 			return;
+		}
+	},
+
+	battlechat: {
+		description: 'Toggles Battlefield chat: normal chat goes to your camp while on a battleground',
+		callback: function () {
+			toggleBattleChat();
 		}
 	},
 

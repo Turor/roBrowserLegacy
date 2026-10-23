@@ -1,0 +1,38 @@
+:host {
+	top: 28px;
+	left: 50%;
+	transform: translateX(-50%);
+	pointer-events: none;
+	z-index: 900 !important;
+}
+
+#BattlefieldScore {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 3px 12px;
+	border-radius: 4px;
+	background: rgba(0, 0, 0, 0.55);
+	color: #fff;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	white-space: nowrap;
+	text-shadow: 1px 1px 0 #000;
+}
+
+#BattlefieldScore .point {
+	font-size: 18px;
+	font-weight: bold;
+	min-width: 22px;
+	text-align: center;
+}
+
+#BattlefieldScore .camp-a,
+#BattlefieldScore .point-a {
+	color: #7fb2ff;
+}
+
+#BattlefieldScore .camp-b,
+#BattlefieldScore .point-b {
+	color: #ff8080;
+}
