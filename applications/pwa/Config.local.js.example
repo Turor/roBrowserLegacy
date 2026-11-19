@@ -37,5 +37,9 @@ window.ROConfigLocal = {
 	// skipIntro: true,
 
 	// Example: Custom remote client URL
-	// remoteClient: 'https://my-grf-server.com/',
+	// remoteClient: 'https://data.example.invalid/',
+
+	// Signed data manifest. Default is "report" (log only).
+	// Switch to "enforce" after a report-mode soak. See docs/data-manifest.md.
+	// dataManifestMode: 'enforce',
 };

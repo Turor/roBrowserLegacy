@@ -52,7 +52,10 @@ class Client {
 
 		// GRF Host config
 		if (remoteClient) {
-			Thread.send('SET_HOST', remoteClient);
+			Thread.send('SET_HOST', {
+				remoteClient,
+				dataManifestMode: Configs.get('dataManifestMode', 'report')
+			});
 		}
 
 		// Save full client

@@ -17,6 +17,8 @@ import Sprite from 'Loaders/Sprite.js';
 import Action from 'Loaders/Action.js';
 import Str from 'Loaders/Str.js';
 import FileSystem from 'Core/FileSystem.js';
+import { dataManifest } from 'Core/DataManifest.js';
+import { cacheLookupNames } from 'Core/ManifestPath.js';
 
 // Load dependencies
 /* global process */
@@ -200,6 +202,11 @@ class FileManager {
 		// Trim the path
 		filename = filename.replace(/^\s+|\s+$/g, '');
 
+		if (FileManager.remoteClient) {
+			FileManager._getChecked(filename, callback);
+			return;
+		}
+
 		if (fs && fs.existsSync(filename)) {
 			callback(fs.readFileSync(filename));
 			return;
@@ -254,6 +261,8 @@ class FileManager {
 			url = '/client/' + url;
 		} else {
 			url = FileManager.remoteClient + url;
+			FileManager._getHTTPChecked(filename, url, callback);
+			return;
 		}
 
 		// Don't load mp3 sounds to avoid blocking the queue
@@ -343,10 +352,17 @@ class FileManager {
 					body: JSON.stringify({ files: files })
 				})
 					.then(r => {
-						return r.json();
+						const version = r.headers.get('X-Data-Version');
+						return r.json().then(results => {
+							return { results, version };
+						});
 					})
-					.then(results => {
-						queue.forEach(q => {
+					.then(async ({ results, version }) => {
+						await dataManifest.ensureReady(FileManager.remoteClient);
+						if (version) {
+							await dataManifest.noteServerVersion(version);
+						}
+						for (const q of queue) {
 							const key = q.filename.replace(/\\/g, '/');
 							if (results[key]) {
 								const binary = atob(results[key]);
@@ -355,12 +371,11 @@ class FileManager {
 								for (let i = 0; i < binary.length; i++) {
 									view[i] = binary.charCodeAt(i);
 								}
-								q.callback(buffer);
-								FileSystem.saveFile(q.filename, buffer);
+								await FileManager._consider(q.filename, buffer, 'http', q.callback, null);
 							} else {
 								q.callback(null, "Can't get file");
 							}
-						});
+						}
 					})
 					.catch(() => {
 						// Fallback: load individually
@@ -485,7 +500,193 @@ class FileManager {
 			callback(result, error);
 		});
 	}
+
+	/**
+	 * Remote-client get: normalize cache names and verify against the manifest.
+	 *
+	 * @param {string} filename
+	 * @param {function} callback
+	 */
+	static _getChecked(filename, callback) {
+		const run = async () => {
+			await dataManifest.ensureReady(FileManager.remoteClient);
+			if (fs && fs.existsSync(filename)) {
+				const data = fs.readFileSync(filename);
+				const buffer = data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength);
+				await FileManager._consider(filename, buffer, 'local', callback, null);
+				return;
+			}
+			const cached = await readFirstCached(cacheLookupNames(filename));
+			if (cached) {
+				await FileManager._consider(filename, cached, 'cache', callback, () => {
+					FileManager._fromGrf(filename, callback);
+				});
+				return;
+			}
+			FileManager._fromGrf(filename, callback);
+		};
+		run().catch(() => {
+			callback(null, "Can't get file");
+		});
+	}
+
+	/**
+	 * @param {string} filename
+	 * @param {function} callback
+	 */
+	static _fromGrf(filename, callback) {
+		const path = filename.replace(/\//g, '\\');
+		const fileList = FileManager.gameFiles;
+		const tryAt = i => {
+			if (i >= fileList.length) {
+				FileManager.getHTTP(filename, callback);
+				return;
+			}
+			const hit = fileList[i].getFile(path, buffer => {
+				FileManager._consider(filename, buffer, 'grf', callback, () => {
+					FileManager.getHTTP(filename, callback);
+				}).catch(() => {
+					callback(null, "Can't get file");
+				});
+			});
+			if (!hit) {
+				tryAt(i + 1);
+			}
+		};
+		tryAt(0);
+	}
+
+	/**
+	 * @param {string} filename
+	 * @param {ArrayBuffer} buffer
+	 * @param {string} source
+	 * @param {function} callback
+	 * @param {function|null} next
+	 */
+	static async _consider(filename, buffer, source, callback, next) {
+		const decision = await dataManifest.assess(filename, buffer, source);
+		if (decision.action === 'accept') {
+			if (decision.save && decision.saveAs) {
+				FileSystem.saveFile(decision.saveAs, buffer);
+			}
+			callback(buffer);
+			return;
+		}
+		if (next && (decision.action === 'fallback' || decision.action === 'reject')) {
+			next();
+			return;
+		}
+		if (decision.action === 'fallback') {
+			callback(buffer);
+			return;
+		}
+		callback(null, decision.error || "Can't get file");
+	}
+
+	/**
+	 * Fetch a remote file and verify it before use or cache.
+	 *
+	 * @param {string} filename
+	 * @param {string} url
+	 * @param {function} callback
+	 */
+	static _getHTTPChecked(filename, url, callback) {
+		const run = async () => {
+			await dataManifest.ensureReady(FileManager.remoteClient);
+			if (!dataManifest.requiresByteCheck() && /\.(mp3|wav)$/i.test(filename)) {
+				callback(url);
+				return;
+			}
+			if (typeof fetch !== 'undefined') {
+				const response = await fetch(url);
+				if (!response.ok) {
+					throw new Error(`HTTP ${response.status}`);
+				}
+				const contentType = response.headers.get('content-type') || '';
+				if (contentType.indexOf('text/html') !== -1) {
+					throw new Error('Received HTML instead of binary data (likely 404 page)');
+				}
+				const version = response.headers.get('X-Data-Version');
+				if (version) {
+					await dataManifest.noteServerVersion(version);
+				}
+				const buffer = await response.arrayBuffer();
+				await FileManager._consider(filename, buffer, 'http', callback, null);
+				return;
+			}
+			await readArrayBufferXHR(url, async (buffer, version) => {
+				if (version) {
+					await dataManifest.noteServerVersion(version);
+				}
+				await FileManager._consider(filename, buffer, 'http', callback, null);
+			});
+		};
+		run().catch(() => {
+			callback(null, "Can't get file");
+		});
+	}
 }
+
+/**
+ * Read the first cached name that exists.
+ *
+ * @param {string[]} names
+ * @returns {Promise<ArrayBuffer|null>}
+ */
+function readFirstCached(names) {
+	return new Promise(resolve => {
+		const next = i => {
+			if (i >= names.length) {
+				resolve(null);
+				return;
+			}
+			FileSystem.getFile(
+				names[i],
+				file => {
+					try {
+						const reader = new FileReader();
+						reader.onloadend = () => resolve(reader.result);
+						reader.onerror = () => next(i + 1);
+						reader.readAsArrayBuffer(file);
+					} catch {
+						next(i + 1);
+					}
+				},
+				() => next(i + 1)
+			);
+		};
+		next(0);
+	});
+}
+
+/**
+ * @param {string} url
+ * @param {function} onData
+ * @returns {Promise<void>}
+ */
+function readArrayBufferXHR(url, onData) {
+	return new Promise((resolve, reject) => {
+		const xhr = new XMLHttpRequest();
+		xhr.open('GET', url, true);
+		xhr.responseType = 'arraybuffer';
+		xhr.onload = () => {
+			if (xhr.status == 200) {
+				Promise.resolve(onData(xhr.response, xhr.getResponseHeader('X-Data-Version'))).then(resolve, reject);
+				return;
+			}
+			reject(new Error(`HTTP ${xhr.status}`));
+		};
+		xhr.onerror = () => {
+			reject(new Error('network'));
+		};
+		try {
+			xhr.send(null);
+		} catch (error) {
+			reject(error);
+		}
+	});
+}
+
 /**
  * Export
  */
