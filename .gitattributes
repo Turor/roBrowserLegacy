@@ -19,6 +19,9 @@
 # Documentation
 *.md				text diff=markdown
 
+# Shared path fixture is compared byte for byte and must stay LF.
+testdata/manifest-v2-normalize.txt text eol=lf
+
 # Configs
 *.lock				text -diff
 package.json		text eol=crlf

@@ -61,5 +61,8 @@ window.ROConfigBase = {
 	registrationweb: '',
 	saveFiles: true,
 	ThirdPersonCamera: false,
-	transitionDuration: 500
+	transitionDuration: 500,
+	// Signed data manifest. Keep "report" until a soak is clean, then
+	// set "enforce". See docs/data-manifest.md.
+	dataManifestMode: 'report'
 };

@@ -545,7 +545,8 @@ window.ROConfigBase = {
     saveFiles: true,  
     ThirdPersonCamera: false,  
     transitionDuration: 500,  
-    restoreChatFocus: false
+    restoreChatFocus: false,
+    dataManifestMode: 'report'
 };  
 `;
 	fs.writeFileSync(dist + platform + '/Config.js', configContent, { encoding: 'utf8' });

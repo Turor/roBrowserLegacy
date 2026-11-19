@@ -11,6 +11,16 @@
 import FileManager from 'Core/FileManager.js';
 import FileSystem from 'Core/FileSystem.js';
 import MapLoader from 'Loaders/MapLoader.js';
+import { dataManifest, setDataManifestLogger } from 'Core/DataManifest.js';
+
+setDataManifestLogger((level, message) => {
+	if (level === 'info') {
+		console.info(message);
+	} else {
+		console.warn(message);
+	}
+	sendLog(message);
+});
 
 /**
  *	Send an Error to main thread
@@ -40,13 +50,25 @@ onmessage = function receive(event) {
 
 	switch (msg.type) {
 		// Modify client host
-		case 'SET_HOST':
-			if (msg.data.substr(-1) !== '/') {
-				msg.data += '/';
+		case 'SET_HOST': {
+			let remote = msg.data;
+			let mode = 'report';
+			if (remote && typeof remote === 'object') {
+				mode = remote.dataManifestMode === 'enforce' ? 'enforce' : 'report';
+				remote = typeof remote.remoteClient === 'string' ? remote.remoteClient : '';
 			}
-
-			FileManager.remoteClient = msg.data;
+			if (typeof remote !== 'string') {
+				break;
+			}
+			if (remote.slice(-1) !== '/') {
+				remote += '/';
+			}
+			FileManager.remoteClient = remote;
+			if (remote) {
+				dataManifest.configure({ remoteClient: remote, mode });
+			}
 			break;
+		}
 
 		// Save full client and use it
 		case 'CLIENT_INIT':
